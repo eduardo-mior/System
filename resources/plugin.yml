@@ -3,6 +3,11 @@ version: 1.0
 name: System
 
 commands:
+  alerta:
+    description: Limpa o chat do servidor.
+    aliases: [cc]
+    permission: system.alerta
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
   clearchat:
     description: Limpa o chat do servidor.
     aliases: [cc]
@@ -12,6 +17,11 @@ commands:
     description: Mostra a lista de cores do minecraft.
     aliases: [colors]
     permission: system.cores
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  divulgar:
+    description: Divulga um link no chat.
+    aliases: []
+    permission: system.divulgar
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   lixo:
     description: Abre a lixeira virtual.
@@ -60,6 +70,12 @@ permissions:
   system.slime:
     description: Permissão para verificar se você esta em uma slimechunk.
     default: true
+  system.alerta:
+    description: Permissão para enviar um alerta no servidor.
+    default: op
+  system.divulgar:
+    description: Permissão para divulgar um link no chat.
+    default: op
   system.setspawn:
     description: Permissão para definir o spawn do servidor.
     default: op
@@ -95,11 +111,13 @@ permissions:
     description: Acesso a todos os comandos do plugin.
     default: op
     children:
-      system.setspawn: true
+      system.alerta: true
       system.clearchat: true
-      system.ping: true
-      system.lixo: true
       system.cores: true
+      system.divulgar: true
+      system.lixo: true
       system.luz: true
+      system.ping: true
+      system.setspawn: true
       system.slime: true
       system.sgive: true

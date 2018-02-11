@@ -47,6 +47,7 @@ Bloquear-Shift-Em-Containers:
 ############################################################
 Desativar-Mobs-Naturais: true
 Desativar-Propagacao-Do-Fogo: true
+Desativar-Queda-Das-Folhas: true
 Desativar-Queda-Da-Areia: true
 Desativar-Flow-Da-Agua-E-Lava: true
 Desativar-Chuva: true
@@ -183,13 +184,13 @@ CorAutomatica:
 ############################################################
 Auto-Anuncio: true
 Destacar-Anuncio: true
-Delay-Entre-Anuncios: 1
+Delay-Entre-Anuncios: 5
 Reproduzir-Som-No-Anuncio: true
 Lista-De-Anuncios:
-  - '&a[Anuncio] &eapenas enviando uma mensagem'
-  - '&b[Anuncio] &2apenas enviando uma mensagem'
-  - '&4[Anuncio] &3apenas enviando uma mensagem'
-  - '&1[Anuncio] &7apenas enviando uma mensagem'
+  - '&e&l[Anuncio] &eInscreva-se em nosso canal e fique por dentro de tudo &b&nhttp://bit.ly/hypixel&e!'
+  - '&e&l[Anuncio] &eAdquira já seu vip através do nosso site &b&nhttps://hypixel.net/&e!'
+  - '&e&l[Anuncio] &eAcesse já nosso fórum e fique por dentro de tudo &b&nhttps://hypixel.net/forums/&e!'
+  - '&e&l[Anuncio] &eO evento base perdida ira ocorrer nesta semana! Saiba mais &b&nhttp://bit.ly/karaoke&e!'
 
 ############################################################
 # +------------------------------------------------------+ #

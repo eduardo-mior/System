@@ -17,8 +17,10 @@ import org.bukkit.scheduler.BukkitTask;
 
 import rush.addons.LegendChat;
 import rush.addons.McMMO;
+import rush.comandos.ComandoAlerta;
 import rush.comandos.ComandoClearChat;
 import rush.comandos.ComandoCores;
+import rush.comandos.ComandoDivulgar;
 import rush.comandos.ComandoLixo;
 import rush.comandos.ComandoLuz;
 import rush.comandos.ComandoPing;
@@ -45,6 +47,7 @@ import rush.recursos.antilag.DesativarFlowDaAguaELava;
 import rush.recursos.antilag.DesativarMobsNaturais;
 import rush.recursos.antilag.DesativarPropagacaoDoFogo;
 import rush.recursos.antilag.DesativarQuedaDaAreia;
+import rush.recursos.antilag.DesativarQuedaDasFolhas;
 import rush.recursos.gerais.BloquearCairNoVoid;
 import rush.recursos.gerais.BloquearCriarPortal;
 import rush.recursos.gerais.BloquearTeleportPorPortal;
@@ -97,8 +100,10 @@ public class Main extends JavaPlugin implements Listener {
    }
    
    public void registrarComandos() {
+	    getCommand("alerta").setExecutor(new ComandoAlerta()); 
 	    getCommand("clearchat").setExecutor(new ComandoClearChat()); 
 	    getCommand("cores").setExecutor(new ComandoCores());
+	    getCommand("divulgar").setExecutor(new ComandoDivulgar()); 
 	    getCommand("lixo").setExecutor(new ComandoLixo());
 	    getCommand("luz").setExecutor(new ComandoLuz());
 	    getCommand("ping").setExecutor(new ComandoPing());
@@ -203,6 +208,9 @@ public class Main extends JavaPlugin implements Listener {
 	    
 	    if (getConfig().getBoolean("Desativar-Queda-Da-Areia")){
 	    pm.registerEvents(new DesativarQuedaDaAreia(), this);}
+	    
+	    if (getConfig().getBoolean("Desativar-Queda-Das-Folhas")){
+	    pm.registerEvents(new DesativarQuedaDasFolhas(), this);}
 	    
 	    if (getConfig().getBoolean("Dropar-Spawner-Ao-Explodir")){
 	    pm.registerEvents(new DroparSpawnerAoExplodir(), this);}

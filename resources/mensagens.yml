@@ -40,10 +40,26 @@ mcMMO-Upou-100-Niveis: "&6&lHABILIDADES: &e%player% atingiu o &6nível %level% &
 
 ############################################################
 # +------------------------------------------------------+ #
-# |                  Comando /setspawn                   | #
+# |                  Comando /divulgar                   | #
 # +------------------------------------------------------+ #
 ############################################################
-Spawn-Definido: "&aSpawn definido com sucesso."
+Divulgar-Comando-Incorreto: "&cComando incorreto, use /divulgar video/live/outro <link>"
+Link-Invalido: "&cO link &n%link%&c não é um link valido portanto a divulgação foi cancelada! Verifique o link e tente novamente."
+Divulgando-Live: "&e%player% esta divulgando uma live!"
+Divulgando-Video: "&e%player% esta divulgando um vídeo!"
+Divulgando-Outro: "&e%player% esta divulgando um link!"
+Link: "&eLink: &b&n%link%"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   Comando /alerta                    | #
+# +------------------------------------------------------+ #
+############################################################
+Alerta-Comando-Incorreto: "&cComando incorreto, use /alerta <mensagem>"
+Alerta-Chat: "&a[ALERTA] %alerta%"
+Alerta-Title: "&a&lALERTA"
+Alerta-SubTitle: "&eO PLAYER %player% ENVIOU UM ALERTA!"
+#Você pode usar as variaveis %alerta% e %player% nos titles e nas mensagens :D
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -69,6 +85,13 @@ SlimeChunk:
 # +------------------------------------------------------+ #
 ############################################################
 Titulo-Da-Lixeira: "&0Lixeira"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                  Comando /setspawn                   | #
+# +------------------------------------------------------+ #
+############################################################
+Spawn-Definido: "&aSpawn definido com sucesso."
 
 ############################################################
 # +------------------------------------------------------+ #
