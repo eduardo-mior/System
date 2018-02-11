@@ -1,0 +1,105 @@
+main: rush.Main
+version: 1.0
+name: System
+
+commands:
+  clearchat:
+    description: Limpa o chat do servidor.
+    aliases: [cc]
+    permission: system.clearchat
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  cores:
+    description: Mostra a lista de cores do minecraft.
+    aliases: [colors]
+    permission: system.cores
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  lixo:
+    description: Abre a lixeira virtual.
+    aliases: [lixeira]
+    permission: system.lixo
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  luz:
+    description: Liga e desliga a lanterna.
+    aliases: [lanterna]
+    permission: system.luz
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  ping:
+    description: Mostra o seu ping.
+    aliases: []
+    permission: system.ping
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  setspawn:
+    description: Define o spawn do servidor.
+    aliases: []
+    permission: system.setspawn
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  slime:
+    description: Verifica se você esta em uma slimechunk.
+    aliases: [slimechunk]
+    permission: system.slime
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  sgive:
+    description: Envia geradores para um player.
+    aliases: []
+    permission: system.sgive
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+
+permissions:
+  system.cores:
+    description: Permissão para ver a lista de cores do minecraft.
+    default: true
+  system.lixo:
+    description: Permissão para abrir a lixeira virtual.
+    default: true
+  system.luz:
+    description: Permissão para ligar e desligar a lanterna.
+    default: true
+  system.ping:
+    description: Permissão para ver o seu ping ou o ping de outro player.
+    default: true
+  system.slime:
+    description: Permissão para verificar se você esta em uma slimechunk.
+    default: true
+  system.setspawn:
+    description: Permissão para definir o spawn do servidor.
+    default: op
+  system.clearchat:
+    description: Permissão para limpar o chat do servidor.
+    default: op
+  system.sgive:
+    description: Permissão para ver o seu ping ou o ping de outro player.
+    default: op
+  system.cor1:
+   default: false
+  system.cor2:
+   default: false
+  system.cor3:
+   default: false
+  system.cor4:
+   default: false
+  system.cor5:
+   default: false
+  system.cor6:
+   default: false
+  system.cor7:
+   default: false
+  system.cor8:
+   default: false
+  system.cor9:
+   default: false
+  system.cor10:
+   default: false
+  system.destaquechat:
+   default: false
+  system.admin:
+    description: Acesso a todos os comandos do plugin.
+    default: op
+    children:
+      system.setspawn: true
+      system.clearchat: true
+      system.ping: true
+      system.lixo: true
+      system.cores: true
+      system.luz: true
+      system.slime: true
+      system.sgive: true

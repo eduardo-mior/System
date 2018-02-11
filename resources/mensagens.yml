@@ -1,0 +1,111 @@
+﻿############################################################
+# +------------------------------------------------------+ #
+# |                   Mensagens gerais                   | #
+# +------------------------------------------------------+ #
+############################################################
+Console-Nao-Pode: "&cO console nao pode usar este comando."
+Comando-Bloqueado: "&cEste comando foi bloqueado do servidor."
+Tentou-Passar-Da-Borda: "&cVocê não pode se teleportar para o outro lado da borda."
+Sem-Permissao: "&cVocê não tem permissão para utilizar este comando."
+Spawn-Nao-Configurado: "&cO spawn do servidor ainda não foi configurado!"
+Tentou-Vender-Com-Valor-Negativo: "&cO valor do item não pode ser negativo."
+Aguarde-EnderPearl-Cooldown: "&cAguarde %tempo% segundos para poder lançar outra Enderpearl."
+Numero-Invalido: "&cEste número não é um número valido."
+Player-Offline: "&cEste player não esta online no momento ou não existe."
+Shift-Bloqueado-No-Container: "&cVocê não pode usar o SHIFT %tipo%."
+Placas:
+  Palavras-Desativadas-Na-Placa: "&cVocê não pode escrever em placas pois este recurso foi desativado no servidor."
+  Palavra-Bloqueada-Na-Placa: "&cA palavra '%palavra%' foi bloqueada de ser usada em placas."
+
+############################################################
+# +------------------------------------------------------+ #
+# |                Sistema de MobSpawners                | #
+# +------------------------------------------------------+ #
+############################################################
+Inventario-Cheio-Quebrou: "&cVocê esta com seu inventário cheio! O gerador foi dropado no chão."
+Spawner-Bugado: "&cEste gerador esta com defeitos! Contate um staff do seu servidor para resolver este problema."
+Spawner-Givado: "&aSpawner de %tipo% givado com sucesso."
+Inventario-Cheio-Give: "&cVocê esta com seu inventário cheio! Libera mais espaço para poder pegar geradores."
+Sgive-Comando-Incoreto: "&cComando incorreto, use /sgive <player> <tipo> <quantia>"
+Spawner-Desconhecido: "&cTipo de Spawner desconhecido!\n&eLista de Spawners: &7Porco&8, &7Galinha&8, &7Ovelha&8, &7Vaca&8, &7Coelho&8, &7Esqueleto&8, &7Creeper&8, &7Aranha&8, &7Aranha_da_Caverna&8, &7Slime&8, &7Zumbi&8, &7Zumbi_Pigman&8, &7Blaze&8, &7Wither&8, &7Iron_Golem&8."
+Nome-Do-MobSpawner: "&eGerador de Monstros"
+Lore-Do-MobSpawner: "§7Tipo: §f"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                 Mensagem de UP mcMMO                 | #
+# +------------------------------------------------------+ #
+############################################################
+mcMMO-Upou-100-Niveis: "&6&lHABILIDADES: &e%player% atingiu o &6nível %level% &ena habilidade de &6%skill%&e!"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                  Comando /setspawn                   | #
+# +------------------------------------------------------+ #
+############################################################
+Spawn-Definido: "&aSpawn definido com sucesso."
+
+############################################################
+# +------------------------------------------------------+ #
+# |                     Comando /luz                     | #
+# +------------------------------------------------------+ #
+############################################################
+Luz:
+  Ativada: "&aLanterna ativada com sucesso!"
+  Desativada: "&cLanterna desativada com sucesso!"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                    Comando /slime                    | #
+# +------------------------------------------------------+ #
+############################################################
+SlimeChunk:
+  Esta: "&aVocê está em uma Slime Chunk!"
+  NaoEsta: "&cVocê não está em uma Slime Chunk!"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   Comando /lixeira                   | #
+# +------------------------------------------------------+ #
+############################################################
+Titulo-Da-Lixeira: "&0Lixeira"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                    Comando /cores                    | #
+# +------------------------------------------------------+ #
+############################################################
+Tabela-De-Cores:
+  - " §fTabela de Cores"
+  - "§a&a Verde Claro"
+  - "§b&b Azul Claro"
+  - "§c&c Vermelho Claro"
+  - "§d&d Rosa"
+  - "§e&e Amarelo"
+  - "§f&f Branco"
+  - "§0&0 Preto"
+  - "§1&1 Azul Escuro"
+  - "§2&2 Verde Escuro"
+  - "§3&3 Ciano"
+  - "§4&4 Vermelho Escuro"
+  - "§5&5 Roxo"
+  - "§6&6 Dourado"
+  - "§7&7 Cinza Claro"
+  - "§8&8 Cinza Escuro"
+  - "§9&9 Azul Celeste"
+  - "§f "
+  - " §fCódigos de Formatação"
+  - "&l §lNegrito"
+  - "&o §oItálico"
+  - "&n §nSublinhado"
+  - "&m §mRiscado"
+  - "&r §rResetar"
+  - "&k §kMagic"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                  Comando /clearchat                  | #
+# +------------------------------------------------------+ #
+############################################################
+Avisar-Que-O-Chat-Foi-Limpo: true
+Aviso-Que-O-Chat-Limpo: "&aO chat foi limpo por %player%!"
