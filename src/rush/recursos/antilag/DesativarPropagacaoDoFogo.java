@@ -16,5 +16,4 @@ public class DesativarPropagacaoDoFogo implements Listener {
         if (e.getCause() == IgniteCause.LAVA || e.getCause() == IgniteCause.SPREAD)
         	e.setCancelled(true);
       }
-    
 }

@@ -4,14 +4,21 @@
 # +------------------------------------------------------+ #
 ############################################################
 Console-Nao-Pode: "&cO console nao pode usar este comando."
-Comando-Bloqueado: "&cEste comando foi bloqueado do servidor."
-Tentou-Passar-Da-Borda: "&cVocê não pode se teleportar para o outro lado da borda."
 Sem-Permissao: "&cVocê não tem permissão para utilizar este comando."
 Spawn-Nao-Configurado: "&cO spawn do servidor ainda não foi configurado!"
-Tentou-Vender-Com-Valor-Negativo: "&cO valor do item não pode ser negativo."
-Aguarde-EnderPearl-Cooldown: "&cAguarde %tempo% segundos para poder lançar outra Enderpearl."
 Numero-Invalido: "&cEste número não é um número valido."
 Player-Offline: "&cEste player não esta online no momento ou não existe."
+
+############################################################
+# +------------------------------------------------------+ #
+# |                Mensagens dos Recursos                | #
+# +------------------------------------------------------+ #
+############################################################
+Nick-Bloqueado: "&cA palavra '%nick%' foi bloqueada de ser usada em nicks!"
+Comando-Bloqueado: "&cEste comando foi bloqueado do servidor."
+Tentou-Passar-Da-Borda: "&cVocê não pode se teleportar para o outro lado da borda."
+Tentou-Vender-Com-Valor-Negativo: "&cO valor do item não pode ser negativo."
+Aguarde-EnderPearl-Cooldown: "&cAguarde %tempo% segundos para poder lançar outra Enderpearl."
 Shift-Bloqueado-No-Container: "&cVocê não pode usar o SHIFT %tipo%."
 Placas:
   Palavras-Desativadas-Na-Placa: "&cVocê não pode escrever em placas pois este recurso foi desativado no servidor."

@@ -2,6 +2,7 @@ package rush;
 
 import java.io.File;
 import java.util.List;
+import java.util.logging.Level;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -29,6 +30,7 @@ import rush.comandos.ComandoSetspawn;
 import rush.comandos.ComandoSlime;
 import rush.recursos.adicionais.BloquearComandos;
 import rush.recursos.adicionais.BloquearCrafts;
+import rush.recursos.adicionais.BloquearNicksImproprios;
 import rush.recursos.adicionais.BloquearPlacas;
 import rush.recursos.adicionais.CoresNaBigorna;
 import rush.recursos.adicionais.CoresNaPlaca;
@@ -42,6 +44,8 @@ import rush.recursos.antibug.BloquearSubirNoTetoNether;
 import rush.recursos.antibug.BloquearXpAoQuebrarMobSpawners;
 import rush.recursos.antibug.EnderPearlCooldown;
 import rush.recursos.antibug.Outros;
+import rush.recursos.antilag.BloquearCongelarAgua;
+import rush.recursos.antilag.BloquearDerreterGeloENeve;
 import rush.recursos.antilag.DesativarChuva;
 import rush.recursos.antilag.DesativarFlowDaAguaELava;
 import rush.recursos.antilag.DesativarMobsNaturais;
@@ -59,6 +63,7 @@ import rush.recursos.gerais.DesativarMensagemDeEntrada;
 import rush.recursos.gerais.DesativarMensagemDeMorte;
 import rush.recursos.gerais.DesativarMensagemDeSaida;
 import rush.recursos.gerais.EntrarNoSpawnAoLogar;
+import rush.sistemas.gerais.AnunciarMorte;
 import rush.sistemas.gerais.AutoAnuncio;
 import rush.sistemas.gerais.Motd;
 import rush.sistemas.gerais.ScoreBoard;
@@ -73,7 +78,7 @@ public class Main extends JavaPlugin implements Listener {
    public static Location loc;
    public List<String> mensagens = getConfig().getStringList("Lista-De-Anuncios");
    public static File customYml;
-   public static FileConfiguration customConfig;
+   public static FileConfiguration customConfig;   
    
    public void onEnable() {
 	    loadLoc();
@@ -85,7 +90,8 @@ public class Main extends JavaPlugin implements Listener {
 	    aqui = this;
 	    this.registrarEventos();
 	    this.registrarComandos();
-   }
+	   }
+
    
    public void onDisable() {
 	    PluginManager pm = Bukkit.getServer().getPluginManager();
@@ -116,6 +122,9 @@ public class Main extends JavaPlugin implements Listener {
     public void registrarEventos() {
 	    PluginManager pm = Bukkit.getServer().getPluginManager();
 	    
+	    if (getConfig().getBoolean("Anunciar-Morte")){
+	    pm.registerEvents(new AnunciarMorte(), this);}
+	    
 	    if (getConfig().getBoolean("Auto-Anuncio")){
 	    BukkitTask AutoAnuncio = new AutoAnuncio(mensagens).runTaskTimer(this, 20 * getConfig().getInt("Delay-Entre-Anuncios") * 60, 20 * getConfig().getInt("Delay-Entre-Anuncios") * 60);}
 	    
@@ -134,14 +143,23 @@ public class Main extends JavaPlugin implements Listener {
 	    if (getConfig().getBoolean("Bloquear-Comandos")){
 	    pm.registerEvents(new BloquearComandos(), this);}
 	    
+	    if (getConfig().getBoolean("Bloquear-Congelar-Agua")){
+	    pm.registerEvents(new BloquearCongelarAgua(), this);}
+	    
 	    if (getConfig().getBoolean("Bloquear-Crafts")){
 	    pm.registerEvents(new BloquearCrafts(), this);}
 	    
 	    if (getConfig().getBoolean("Bloquear-Criar-Portal")){
 	    pm.registerEvents(new BloquearCriarPortal(), this);}
 	    
+	    if (getConfig().getBoolean("Bloquear-Derreter-Gelo-E-Neve")){
+	    pm.registerEvents(new BloquearDerreterGeloENeve(), this);}
+	    
 	    if (getConfig().getBoolean("Bloquear-NameTag")){
 	    pm.registerEvents(new BloquearNameTag(), this);}
+	    
+	    if (getConfig().getBoolean("Bloquear-Nicks-Improprios")){
+	    pm.registerEvents(new BloquearNicksImproprios(), this);}
 	    
 	    if (getConfig().getBoolean("Bloquear-Passar-Da-Borda")){
 	    pm.registerEvents(new BloquearPassarDaBorda(), this);}

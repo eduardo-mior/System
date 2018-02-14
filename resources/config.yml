@@ -45,6 +45,8 @@ Bloquear-Shift-Em-Containers:
 # |                  Recursos Anti-LAG                   | #
 # +------------------------------------------------------+ #
 ############################################################
+Bloquear-Congelar-Agua: true
+Bloquear-Derreter-Gelo-E-Neve: true
 Desativar-Mobs-Naturais: true
 Desativar-Propagacao-Do-Fogo: true
 Desativar-Queda-Das-Folhas: true
@@ -151,6 +153,18 @@ Lista-Das-Palavras-Bloqueadas:
 
 ############################################################
 # +------------------------------------------------------+ #
+# |               Bloquear Nicks Impróprios              | #
+# +------------------------------------------------------+ #
+############################################################
+Bloquear-Nicks-Improprios: true
+Nicks-Bloqueados:
+  - 'puta'
+  - 'vadia'
+  - 'AdminShop'
+  - 'ServerAdmin'
+
+############################################################
+# +------------------------------------------------------+ #
 # |                         mcMMO                        | #
 # +------------------------------------------------------+ #
 ############################################################
@@ -190,7 +204,23 @@ Lista-De-Anuncios:
   - '&e&l[Anuncio] &eInscreva-se em nosso canal e fique por dentro de tudo &b&nhttp://bit.ly/hypixel&e!'
   - '&e&l[Anuncio] &eAdquira já seu vip através do nosso site &b&nhttps://hypixel.net/&e!'
   - '&e&l[Anuncio] &eAcesse já nosso fórum e fique por dentro de tudo &b&nhttps://hypixel.net/forums/&e!'
-  - '&e&l[Anuncio] &eO evento base perdida ira ocorrer nesta semana! Saiba mais &b&nhttp://bit.ly/karaoke&e!'
+  - '&e&l[Anuncio] &eO evento karaoke ira ocorrer nesta semana! Saiba mais &b&nhttp://bit.ly/karaoke&e!'
+
+############################################################
+# +------------------------------------------------------+ #
+# |                     Anunciar Morte                   | #
+# +------------------------------------------------------+ #
+############################################################
+Anunciar-Morte: true
+Anuncios: 
+  Mostrar-Para-Quem-Morreu: true
+  Mensagem-Para-Defunto: "&cVocê foi porto por %playerMatou%!"
+
+  Mostrar-Para-Quem-Matou: true
+  Mensagem-Para-Matador: "&cVocê matou o player %playerMorreu%!"
+
+  Mostrar-Para-Todo-Servidor: false
+  Mensagem-Para-Todos: "&c%playerMorreu% foi morto por %playerMatou%!"
 
 ############################################################
 # +------------------------------------------------------+ #

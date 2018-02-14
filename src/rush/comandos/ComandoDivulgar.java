@@ -9,12 +9,9 @@ import org.bukkit.event.Listener;
 import rush.Main;
 
 public class ComandoDivulgar implements Listener, CommandExecutor {
-	
-	String[] link = {"http", "https", "com", "br", "me", "sc", "net", "ly", "org", "www", "tk", "ts"};
-	
+		
 	  public boolean onCommand(CommandSender Sender, Command Cmd, String Label, String[] args)
 	  {
-        for (String check: link) {
         String nome = Sender.getName();
 	    if (Cmd.getName().equalsIgnoreCase("divulgar"))
 	    {
@@ -27,15 +24,26 @@ public class ComandoDivulgar implements Listener, CommandExecutor {
 	        if (args.length < 2 || args.length > 2)
 	        { 
 	        	Sender.sendMessage(Main.aqui.getMensagens().getString("Divulgar-Comando-Incorreto").replaceAll("&", "§"));
-	        	return false;
+		          return true;
 	        }
 	        
-	       	if (args[1].equalsIgnoreCase(check) || args[1].contains(check))  {
-	        if (args[0].equalsIgnoreCase("live")) {
+	        if 
+	        (args[1].contains("http") || 
+	        (args[1].contains("www")  || 
+	        (args[1].contains("com")) || 
+	        (args[1].contains("br"))  || 
+	        (args[1].contains("net")) ||
+	        (args[1].contains("org")) ||
+	        (args[1].contains("ly"))  ||
+	        (args[1].contains("sc"))  ||
+	        (args[1].contains("me"))  || 
+	        (args[1].contains("tk")))) {
+	        	if (args[0].equalsIgnoreCase("live")) {
 	              Bukkit.broadcastMessage("");
 		          Bukkit.broadcastMessage(Main.aqui.getMensagens().getString("Divulgando-Live").replaceAll("&", "§").replaceAll("%player%", nome));
 	              Bukkit.broadcastMessage(Main.aqui.getMensagens().getString("Link").replaceAll("&", "§").replaceAll("%link%", args[1]).replaceFirst("live", ""));
 	              Bukkit.broadcastMessage("");
+	       		  return false;
 	            }
 	        
 	        if (args[0].equalsIgnoreCase("video")) {
@@ -43,16 +51,19 @@ public class ComandoDivulgar implements Listener, CommandExecutor {
 	            Bukkit.broadcastMessage(Main.aqui.getMensagens().getString("Divulgando-Video").replaceAll("&", "§").replaceAll("%player%", nome));
 	            Bukkit.broadcastMessage(Main.aqui.getMensagens().getString("Link").replaceAll("&", "§").replaceAll("%link%", args[1]).replaceFirst("video", ""));
 	            Bukkit.broadcastMessage("");
+       			return false;
 	          }
+	        
 	        if (args[0].equalsIgnoreCase("outro")) {
 	            Bukkit.broadcastMessage("");
 	            Bukkit.broadcastMessage(Main.aqui.getMensagens().getString("Divulgando-Outro").replaceAll("&", "§").replaceAll("%player%", nome));
 	            Bukkit.broadcastMessage(Main.aqui.getMensagens().getString("Link").replaceAll("&", "§").replaceAll("%link%", args[1]).replaceFirst("outro", ""));
 	            Bukkit.broadcastMessage("");
+       			return false;
 	        		}
-            		Sender.sendMessage(Main.aqui.getMensagens().getString("Link-Invalido").replaceAll("&", "§").replaceAll("%link%", args[1]));
 	       			}
-	    		}
+	       			Sender.sendMessage(Main.aqui.getMensagens().getString("Link-Invalido").replaceAll("&", "§").replaceAll("%link%", args[1]));
+	       			return false;
 	    	}
 		return false;
 	  }
