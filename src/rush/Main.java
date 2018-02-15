@@ -24,10 +24,13 @@ import rush.comandos.ComandoCores;
 import rush.comandos.ComandoDivulgar;
 import rush.comandos.ComandoLixo;
 import rush.comandos.ComandoLuz;
+import rush.comandos.ComandoMundoVip;
+import rush.comandos.ComandoOnline;
 import rush.comandos.ComandoPing;
 import rush.comandos.ComandoSGive;
 import rush.comandos.ComandoSetspawn;
 import rush.comandos.ComandoSlime;
+import rush.comandos.ComandoSpawn;
 import rush.recursos.adicionais.BloquearComandos;
 import rush.recursos.adicionais.BloquearCrafts;
 import rush.recursos.adicionais.BloquearNicksImproprios;
@@ -70,24 +73,24 @@ import rush.sistemas.gerais.ScoreBoard;
 import rush.sistemas.spawners.BloquearTrocarTipoDoSpawnerComOvo;
 import rush.sistemas.spawners.DroparSpawnerAoExplodir;
 import rush.sistemas.spawners.SistemaDeSpawners;
+import rush.utils.Locations;
 
 @SuppressWarnings("all")
 public class Main extends JavaPlugin implements Listener {
 
    public static Main aqui;
-   public static Location loc;
    public List<String> mensagens = getConfig().getStringList("Lista-De-Anuncios");
    public static File customYml;
    public static FileConfiguration customConfig;   
    
    public void onEnable() {
-	    loadLoc();
 	    saveDefaultConfig();
         if (!new File(getDataFolder(), "mensagens.yml").exists()) {
         saveResource("mensagens.yml", false);}
         customYml = new File(this.getDataFolder() + "/mensagens.yml");
         customConfig = (FileConfiguration)YamlConfiguration.loadConfiguration(customYml);
 	    aqui = this;
+	    Locations.loadLocations();
 	    this.registrarEventos();
 	    this.registrarComandos();
 	   }
@@ -112,10 +115,13 @@ public class Main extends JavaPlugin implements Listener {
 	    getCommand("divulgar").setExecutor(new ComandoDivulgar()); 
 	    getCommand("lixo").setExecutor(new ComandoLixo());
 	    getCommand("luz").setExecutor(new ComandoLuz());
+	    getCommand("mundovip").setExecutor(new ComandoMundoVip()); 
+	    getCommand("online").setExecutor(new ComandoOnline()); 
 	    getCommand("ping").setExecutor(new ComandoPing());
 	    getCommand("setspawn").setExecutor(new ComandoSetspawn());
 	    getCommand("sgive").setExecutor(new ComandoSGive()); 
-	    getCommand("slime").setExecutor(new ComandoSlime()); 
+	    getCommand("slime").setExecutor(new ComandoSlime());
+	    getCommand("spawn").setExecutor(new ComandoSpawn()); 
 
    }
 	
@@ -124,6 +130,12 @@ public class Main extends JavaPlugin implements Listener {
 	    
 	    if (getConfig().getBoolean("Anunciar-Morte")){
 	    pm.registerEvents(new AnunciarMorte(), this);}
+	    
+	    if (getConfig().getBoolean("Ativar-Cores-Na-Bigorna")){
+	    pm.registerEvents(new CoresNaBigorna(), this);}
+	    
+	    if (getConfig().getBoolean("Ativar-Cores-Na-Placa")){
+	    pm.registerEvents(new CoresNaPlaca(), this);}
 	    
 	    if (getConfig().getBoolean("Auto-Anuncio")){
 	    BukkitTask AutoAnuncio = new AutoAnuncio(mensagens).runTaskTimer(this, 20 * getConfig().getInt("Delay-Entre-Anuncios") * 60, 20 * getConfig().getInt("Delay-Entre-Anuncios") * 60);}
@@ -184,12 +196,6 @@ public class Main extends JavaPlugin implements Listener {
 	    	    
 	    if (getConfig().getBoolean("Bloquear-Xp-Ao-Quebrar-Mob-Spawners")){
 	    pm.registerEvents(new BloquearXpAoQuebrarMobSpawners(), this);}
-	    
-	    if (getConfig().getBoolean("Cores-Na-Bigorna")){
-	    pm.registerEvents(new CoresNaBigorna(), this);}
-	    
-	    if (getConfig().getBoolean("Cores-Na-Placa")){
-	    pm.registerEvents(new CoresNaPlaca(), this);}
 	    
 	    if (getConfig().getBoolean("Desativar-Chuva")){
 	    pm.registerEvents(new DesativarChuva(), this);}
@@ -260,20 +266,6 @@ public class Main extends JavaPlugin implements Listener {
 		pm.registerEvents(new McMMO(), this);
 	    getServer().getConsoleSender().sendMessage("§a[System] mcMMO encontrado, ativando addons!");}}
 	    
-	    pm.registerEvents(new Outros(), this);
-	    
+	    pm.registerEvents(new Outros(), this);    
    }
-	   public void loadLoc()
-	   {
-	     if (getConfig().getString("Spawn.world") != null) {
-	       loc = new Location(getServer().getWorld
-	                (getConfig().getString("Spawn.world")), 
-	                getConfig().getDouble("Spawn.x"), 
-	                getConfig().getDouble("Spawn.y"), 
-	                getConfig().getDouble("Spawn.z"), 
-	                Float.parseFloat(getConfig().getString("Spawn.yaw")), 
-	                Float.parseFloat(getConfig().getString("Spawn.pitch")));
-	     }
-	   }
-	   
 }

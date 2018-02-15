@@ -6,7 +6,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
-import rush.Main;
+import rush.utils.Locations;
 
 public class BloquearCairNoVoid implements Listener {
 
@@ -15,7 +15,7 @@ public class BloquearCairNoVoid implements Listener {
     	if(e.getCause() == DamageCause.VOID && e.getEntity() instanceof Player) {
             e.setCancelled(true);
     		e.getEntity().setFallDistance(1);
-    		e.getEntity().teleport(Main.loc);
+    		e.getEntity().teleport(Locations.spawn);
     	}
     }
 	

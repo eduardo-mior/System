@@ -8,6 +8,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
 import rush.Main;
+import rush.utils.Locations;
 
 public class ComandoSetspawn implements Listener, CommandExecutor {
 
@@ -19,21 +20,21 @@ public class ComandoSetspawn implements Listener, CommandExecutor {
 		          s.sendMessage(Main.aqui.getMensagens().getString("Console-Nao-Pode").replaceAll("&", "§")); }
 		      else {
 		                Player p = (Player)s;
-		                Main.loc = p.getLocation();
-		                saveLoc(Main.loc);
+		                Locations.spawn = p.getLocation();
+		                saveLoc(Locations.spawn);
 		                s.sendMessage(Main.aqui.getMensagens().getString("Spawn-Definido").replaceAll("&", "§"));
 		      			}      
 		 			}
 		          return true;
 		       }
 
-	     public static void saveLoc(Location loc) {
-	     Main.aqui.getConfig().set("Spawn", loc);
-	     Main.aqui.getConfig().set("Spawn.world", loc.getWorld().getName());
-	     Main.aqui.getConfig().set("Spawn.x", Double.valueOf(loc.getX()));
-	     Main.aqui.getConfig().set("Spawn.y", Double.valueOf(loc.getY()));
-	     Main.aqui.getConfig().set("Spawn.z", Double.valueOf(loc.getZ()));
-	     Main.aqui.getConfig().set("Spawn.yaw", Float.valueOf(loc.getYaw()));
-	     Main.aqui.getConfig().set("Spawn.pitch", Float.valueOf(loc.getPitch()));
+	     public static void saveLoc(Location spawn) {
+	     Main.aqui.getConfig().set("Spawn", spawn);
+	     Main.aqui.getConfig().set("Spawn.world", spawn.getWorld().getName());
+	     Main.aqui.getConfig().set("Spawn.x", Double.valueOf(spawn.getX()));
+	     Main.aqui.getConfig().set("Spawn.y", Double.valueOf(spawn.getY()));
+	     Main.aqui.getConfig().set("Spawn.z", Double.valueOf(spawn.getZ()));
+	     Main.aqui.getConfig().set("Spawn.yaw", Float.valueOf(spawn.getYaw()));
+	     Main.aqui.getConfig().set("Spawn.pitch", Float.valueOf(spawn.getPitch()));
 	     Main.aqui.saveConfig(); }
 }

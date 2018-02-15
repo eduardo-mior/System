@@ -7,6 +7,5 @@
 	<classpathentry exported="true" kind="lib" path="D:/Meus Documentos/Desktop/JARs/mcMMO-TRADUZIDO.jar"/>
 	<classpathentry exported="true" kind="lib" path="D:/Meus Documentos/Desktop/JARs/bukkit.jar"/>
 	<classpathentry exported="true" kind="lib" path="D:/Meus Documentos/Desktop/JARs/Vault.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/Meus Documentos/Desktop/JARs/ProtocolLib-TRADUZIDO.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
