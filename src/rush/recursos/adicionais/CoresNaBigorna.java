@@ -1,52 +1,52 @@
 package rush.recursos.adicionais;
 
+import org.bukkit.Material;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
+import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.bukkit.permissions.Permissible;
 
 public class CoresNaBigorna implements Listener {
 	
-	   private String cores = "0123456789abcdefklmnor";
-	
-    @EventHandler
-    public void aoUsarBigorna(final InventoryClickEvent e) {
-        if (e.isCancelled()) {
-            return;
-        }
-        if (!e.getWhoClicked().hasPermission("system.cornabigorna")) {
-            return;
-        }
-        if (e.getInventory().getType() != InventoryType.ANVIL) {
-            return;
-        }
-        if (e.getSlotType() == InventoryType.SlotType.RESULT) {
-            final ItemMeta meta = e.getCurrentItem().getItemMeta();
-            final String name = translateColors((Permissible)e.getWhoClicked(), meta.getDisplayName());
-            meta.setDisplayName(name);
-            e.getCurrentItem().setItemMeta(meta);
-        }
-    }
-    
-    private String translateColors(final Permissible p, final String texto) {
-        String textoColorido = "";
-        for (int i = 0; i < texto.length(); ++i) {
-            final char c = texto.charAt(i);
-            boolean sucesso  = false;
-            if (c == '&') {
-                final char cor = texto.charAt(i + 1);
-                if (cores.contains(String.valueOf(cor))) {
-                	textoColorido = String.valueOf(textoColorido) + "§" + cor;
-                    sucesso  = true;
-                    ++i;
-                }
-            }
-            if (!sucesso) {
-            	textoColorido = String.valueOf(textoColorido) + c;
-            }
-        }
-        return textoColorido;
-    }
+	   @EventHandler
+	   public void aoRenomearNaBigorna(InventoryClickEvent e) {
+	      if (e.getInventory().getType() == InventoryType.ANVIL && e.getWhoClicked().hasPermission("system.cornaplac")) {
+	         ItemStack item;
+	         ItemMeta meta;
+	         if (e.getRawSlot() == 2) {
+	            if (e.getCurrentItem() == null || e.getCurrentItem().getType() == Material.AIR || !e.getCurrentItem().getItemMeta().hasDisplayName()) {
+	               return;
+	            }
+
+	            item = e.getCurrentItem();
+	            meta = item.getItemMeta();
+	            if (meta.getDisplayName().length() > 30) {
+	               meta.setDisplayName(meta.getDisplayName().substring(0, 30).replaceAll("&", "§"));
+	            } else {
+	               meta.setDisplayName(meta.getDisplayName().replaceAll("&", "§"));
+	            }
+
+	            item.setItemMeta(meta);
+	            e.setCurrentItem(item);
+	         } else if (e.getRawSlot() == 0) {
+	            if (e.getCursor() == null || e.getCursor().getType() == Material.AIR || !e.getCursor().getItemMeta().hasDisplayName()) {
+	               return;
+	            }
+
+	            item = e.getCursor();
+	            meta = item.getItemMeta();
+	            if (meta.getDisplayName().length() > 30) {
+	               meta.setDisplayName(meta.getDisplayName().substring(0, 30).replaceAll("&", "§"));
+	            } else {
+	               meta.setDisplayName(meta.getDisplayName());
+	            }
+
+	            item.setItemMeta(meta);
+	            item.setAmount(item.getAmount());
+	         }
+	      }
+	   }
+
 }

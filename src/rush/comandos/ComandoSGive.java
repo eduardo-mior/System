@@ -39,7 +39,7 @@ public class ComandoSGive implements Listener, CommandExecutor {
             final String tipo = args[1];
             final Player beneficiado = Bukkit.getPlayer(nome);
             for (String type: mobs)
-            	if (tipo.equalsIgnoreCase(type) || tipo.contains(type)) {
+            	if (tipo.equals(type)) {
             if (beneficiado != null) {
                 final ItemStack mob = new ItemStack(Material.MOB_SPAWNER, 1);
                 ItemMeta mobMeta = mob.getItemMeta();
@@ -72,7 +72,7 @@ public class ComandoSGive implements Listener, CommandExecutor {
             final String nome = args[0];
             final Player beneficiado = Bukkit.getPlayer(nome);
             for (String type: mobs)
-            if (tipo.equalsIgnoreCase(type) || tipo.contains(type)) {
+            if (tipo.equals(type)) {
             if (beneficiado != null) {
                 final ItemStack mob = new ItemStack(Material.MOB_SPAWNER, quantidade);
                 ItemMeta mobMeta = mob.getItemMeta();

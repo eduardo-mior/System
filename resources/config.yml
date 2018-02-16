@@ -5,6 +5,7 @@
 ############################################################
 AtivarAddons:
   Legendchat: true
+  MassiveFactions: true
   mcMMO: true
 
 ############################################################
@@ -79,6 +80,7 @@ Bloquear-Teleport-Por-Portal:
 # |                  Recursos Adicionais                 | #
 # +------------------------------------------------------+ #
 ############################################################
+Bigorna-Infinita: true
 Ativar-Cores-Na-Bigorna: true
 Ativar-Cores-Na-Placa: true
 

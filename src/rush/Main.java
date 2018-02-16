@@ -17,6 +17,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
 import rush.addons.LegendChat;
+import rush.addons.MassiveFactions;
 import rush.addons.McMMO;
 import rush.comandos.ComandoAlerta;
 import rush.comandos.ComandoClearChat;
@@ -31,6 +32,7 @@ import rush.comandos.ComandoSGive;
 import rush.comandos.ComandoSetspawn;
 import rush.comandos.ComandoSlime;
 import rush.comandos.ComandoSpawn;
+import rush.recursos.adicionais.BigornaInfinita;
 import rush.recursos.adicionais.BloquearComandos;
 import rush.recursos.adicionais.BloquearCrafts;
 import rush.recursos.adicionais.BloquearNicksImproprios;
@@ -81,7 +83,7 @@ public class Main extends JavaPlugin implements Listener {
    public static Main aqui;
    public List<String> mensagens = getConfig().getStringList("Lista-De-Anuncios");
    public static File customYml;
-   public static FileConfiguration customConfig;   
+   public static FileConfiguration customConfig;
    
    public void onEnable() {
 	    saveDefaultConfig();
@@ -140,8 +142,8 @@ public class Main extends JavaPlugin implements Listener {
 	    if (getConfig().getBoolean("Auto-Anuncio")){
 	    BukkitTask AutoAnuncio = new AutoAnuncio(mensagens).runTaskTimer(this, 20 * getConfig().getInt("Delay-Entre-Anuncios") * 60, 20 * getConfig().getInt("Delay-Entre-Anuncios") * 60);}
 	    
-	    if (getConfig().getBoolean("Sistema-De-Spawners")){
-	    pm.registerEvents(new SistemaDeSpawners(), this);}
+	    if (getConfig().getBoolean("Bigorna-Infinita")){
+	    pm.registerEvents(new BigornaInfinita(), this);}
 	    
 	    if (getConfig().getBoolean("Bloquear-Abrir-Containers.Ativar")){
 	    pm.registerEvents(new BloquearAbrirContainers(), this);}
@@ -250,6 +252,9 @@ public class Main extends JavaPlugin implements Listener {
 	    
 	    if (getConfig().getBoolean("ScoreBoard.Ativar")){
 	    pm.registerEvents(new ScoreBoard(), this);}
+	    
+	    if (getConfig().getBoolean("Sistema-De-Spawners")){
+	    pm.registerEvents(new SistemaDeSpawners(), this);}
 	     
 	    if (getConfig().getBoolean("AtivarAddons.Legendchat")){
 	    if (pm.getPlugin("Legendchat") == null) {
@@ -257,13 +262,20 @@ public class Main extends JavaPlugin implements Listener {
 	    } else { 
 		pm.registerEvents(new LegendChat(), this);
 	    getServer().getConsoleSender().sendMessage("§a[System] Legendchat encontrado, ativando addons!");}}
+	    
+	    if (getConfig().getBoolean("AtivarAddons.MassiveFactions")){
+	    if (pm.getPlugin("Factions") == null) {
+	    getServer().getConsoleSender().sendMessage("§c[System] Factions nao encontrado, desativando addons!");
+	    } else { 
+		pm.registerEvents(new MassiveFactions(), this);
+	    getServer().getConsoleSender().sendMessage("§a[System] Factions encontrado, ativando addons!");}}
 
 	    if (getConfig().getBoolean("AtivarAddons.mcMMO")){
 	    if (pm.getPlugin("mcMMO") == null) {
 	    getServer().getConsoleSender().sendMessage("§c[System] mcMMO nao encontrado, desativando addons!");
 	    } else { 
-		McMMO.checkMCTop();
 		pm.registerEvents(new McMMO(), this);
+		McMMO.checkMCTop();
 	    getServer().getConsoleSender().sendMessage("§a[System] mcMMO encontrado, ativando addons!");}}
 	    
 	    pm.registerEvents(new Outros(), this);    
