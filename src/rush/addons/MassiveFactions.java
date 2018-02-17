@@ -18,6 +18,8 @@ import com.massivecraft.factions.Rel;
 import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.factions.entity.MPlayer;
 
+import rush.Main;
+
 public class MassiveFactions implements Listener {
 	
 	@EventHandler
@@ -36,6 +38,7 @@ public class MassiveFactions implements Listener {
         	Player p = e.getPlayer();
         	MPlayer mplayer = MPlayer.get(p);
         	Faction faction = mplayer.getFaction();
+        	String factionNome = faction.getName();
         	int terras = faction.getLandCount();
         	
 			if (cmd.contains("f desproteger all") || cmd.contains("f abandonar all") || cmd.contains("f unclaim all")) {
@@ -44,29 +47,29 @@ public class MassiveFactions implements Listener {
 					
 					if (mplayer.getRole() == Rel.LEADER || mplayer.getRole() == Rel.OFFICER) {
 				
-				Inventory inv = Bukkit.createInventory(null, 36, "§8Abandonar todas as terras");
+				Inventory inv = Bukkit.createInventory(null, 36, Main.aqui.getMensagens().getString("Titulo-do-Menu-UnclaimAll").replace("&", "§"));
 				
 				ItemStack confirmar = new ItemStack(Material.WOOL, 1, DyeColor.LIME.getWoolData());
 				ItemMeta confirmarmeta = confirmar.getItemMeta();
-				confirmarmeta.setDisplayName("§aConfirmar ação");
+				confirmarmeta.setDisplayName(Main.aqui.getMensagens().getString("Item-Confirmar-Nome").replace("&", "§"));
 				ArrayList<String> confirmarlore = new ArrayList<>();
-				confirmarlore.add("§7Clique para confirmar.");
+				confirmarlore.add(Main.aqui.getMensagens().getString("Item-Confirmar-Lore").replace("&", "§"));
 				confirmarmeta.setLore(confirmarlore);
 				confirmar.setItemMeta(confirmarmeta);
 				
 				ItemStack negar = new ItemStack(Material.WOOL, 1, DyeColor.RED.getWoolData());
 				ItemMeta negarmeta = negar.getItemMeta();
-				negarmeta.setDisplayName("§cCancelar ação");
+				negarmeta.setDisplayName(Main.aqui.getMensagens().getString("Item-Cancelar-Nome").replace("&", "§"));
 				ArrayList<String> negarlore = new ArrayList<>();
-				negarlore.add("§7Clique para cancelar.");
+				negarlore.add(Main.aqui.getMensagens().getString("Item-Cancelar-Lore").replace("&", "§"));
 				negarmeta.setLore(negarlore);
 				negar.setItemMeta(negarmeta);
 				
 				ItemStack informacoes = new ItemStack(Material.GRASS);
 				ItemMeta informacoesmeta = informacoes.getItemMeta();
-				informacoesmeta.setDisplayName("§7Informações");
+				informacoesmeta.setDisplayName(Main.aqui.getMensagens().getString("Item-Informacoes-Nome").replace("&", "§"));
 				ArrayList<String> informacoeslore = new ArrayList<>();
-				informacoeslore.add("§7Você esta prestes a abandonar " + terras + "§7 terras");
+				informacoeslore.add(Main.aqui.getMensagens().getString("Item-Informacoes-Lore").replace("&", "§").replaceAll("%terras%", String.valueOf(terras)));
 				informacoesmeta.setLore(informacoeslore);
 				informacoes.setItemMeta(informacoesmeta);
 				
@@ -80,7 +83,8 @@ public class MassiveFactions implements Listener {
 				
 			return;
 				}
-				p.sendMessage(faction + "não deixa você administrar os territórios.");
+				p.sendMessage("§c" + factionNome + " §cnão deixa você administrar os territórios.");
+				return;
 			}
 			p.sendMessage("§cVocê precisa estar em alguma facção para poder utilizar este comando.");
 		}
@@ -90,17 +94,18 @@ public class MassiveFactions implements Listener {
 	public void aoClickar(InventoryClickEvent e) {
 		Player p = (Player)e.getWhoClicked();
     	MPlayer mplayer = MPlayer.get(p);
-    	String faction = mplayer.getFaction().getName();
-		if (e.getInventory().getName().equalsIgnoreCase("§8Abandonar todas as terras")) {
+    	Faction faction = mplayer.getFaction();
+    	String factionNome = faction.getName();
+		if (e.getInventory().getName().equalsIgnoreCase(Main.aqui.getMensagens().getString("Titulo-do-Menu-UnclaimAll").replace("&", "§"))) {
 			e.setCancelled(true);
 		
 		if (e.getSlot() == 24) {
-			p.sendMessage("§cAção cancelada com sucesso!");
+			p.sendMessage(Main.aqui.getMensagens().getString("Cancelou-O-Evento-UnclaimAll").replace("&", "§"));
 			p.closeInventory();
 			}
 		
 		if (e.getSlot() == 20) {
-			p.performCommand("f unclaim all all" + faction);
+			p.performCommand("f unclaim all all " + factionNome);
 			p.closeInventory();
 			}
 		}

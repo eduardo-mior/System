@@ -48,6 +48,11 @@ commands:
     aliases: []
     permission: system.ping
     permission-message: "§cVocê não tem permissão para utilizar este comando."
+  setmundovip:
+    description: Define a mundo vip e não vip do servidor.
+    aliases: []
+    permission: system.setmundovip
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
   setspawn:
     description: Define o spawn do servidor.
     aliases: []
@@ -106,6 +111,9 @@ permissions:
   system.semdelay:
     description: Permissão para se teleportar sem ter que esperar o delay.
     default: op
+  system.setmundovip:
+    description: Permissão para definir a area vip e não vip do servidor.
+    default: op
   system.setspawn:
     description: Permissão para definir o spawn do servidor.
     default: op
@@ -152,6 +160,7 @@ permissions:
       system.mundovip: true
       system.vip: true 
       system.semdelay: true
+      system.setmundovip: true
       system.setspawn: true
       system.slime: true
       system.sgive: true

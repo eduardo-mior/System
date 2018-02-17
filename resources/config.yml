@@ -60,6 +60,7 @@ Desativar-Chuva: true
 # |                   Recursos Gerais                    | #
 # +------------------------------------------------------+ #
 ############################################################
+Bloquear-Mobs-De-Pegarem-Fogo-Para-O-Sol: true
 Bloquear-Cair-No-Void: true
 Desativar-Ciclo-Do-Dia: true
 Desativar-Dano-Do-EnderDragon: true

@@ -126,6 +126,15 @@ Spawn-Definido: "&aSpawn definido com sucesso."
 
 ############################################################
 # +------------------------------------------------------+ #
+# |                 Comando /setmundovip                 | #
+# +------------------------------------------------------+ #
+############################################################
+Area-Vip-Definida: "&aArea VIP definida com sucesso! É para este local que as pessoas &6VIPs&e irão ser teleportadas!"
+Area-Nao-Vip-Definida: "&aArea dos não VIP definida com sucesso! É para este local que as pessoas &csem VIP&a irão ser teleportadas!"
+Setmundovip-Comando-Incoreto: "&cComando incorreto, use /setmundovip <areaVip &8ou&c areaNaoVip>"
+
+############################################################
+# +------------------------------------------------------+ #
 # |                    Comando /cores                    | #
 # +------------------------------------------------------+ #
 ############################################################
@@ -163,3 +172,17 @@ Tabela-De-Cores:
 ############################################################
 Avisar-Que-O-Chat-Foi-Limpo: true
 Aviso-Que-O-Chat-Limpo: "&aO chat foi limpo por %player%!"
+
+############################################################
+# +------------------------------------------------------+ #
+# |             Factions Menu /f unclaim all             | #
+# +------------------------------------------------------+ #
+############################################################
+Titulo-do-Menu-UnclaimAll: "&8Abandonar todas as terras"
+Cancelou-O-Evento-UnclaimAll: "&cAção cancelada com sucesso."
+Item-Confirmar-Nome: "&aConfirmar ação"
+Item-Confirmar-Lore: "&7Clique para confirmar."
+Item-Cancelar-Nome: "&cCancelar ação."
+Item-Cancelar-Lore: "&7Clique para cancelar."
+Item-Informacoes-Nome: "&7Informações"
+Item-Informacoes-Lore: "&7Você esta prestes a abandonar %terras% terras."

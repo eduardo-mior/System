@@ -21,14 +21,14 @@ public class ComandoSetspawn implements Listener, CommandExecutor {
 		      else {
 		                Player p = (Player)s;
 		                Locations.spawn = p.getLocation();
-		                saveLoc(Locations.spawn);
+		                saveSpawn(Locations.spawn);
 		                s.sendMessage(Main.aqui.getMensagens().getString("Spawn-Definido").replaceAll("&", "§"));
 		      			}      
 		 			}
 		          return true;
 		       }
 
-	     public static void saveLoc(Location spawn) {
+	     public static void saveSpawn(Location spawn) {
 	     Main.aqui.getConfig().set("Spawn", spawn);
 	     Main.aqui.getConfig().set("Spawn.world", spawn.getWorld().getName());
 	     Main.aqui.getConfig().set("Spawn.x", Double.valueOf(spawn.getX()));

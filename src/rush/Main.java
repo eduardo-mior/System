@@ -29,6 +29,7 @@ import rush.comandos.ComandoMundoVip;
 import rush.comandos.ComandoOnline;
 import rush.comandos.ComandoPing;
 import rush.comandos.ComandoSGive;
+import rush.comandos.ComandoSetmundovip;
 import rush.comandos.ComandoSetspawn;
 import rush.comandos.ComandoSlime;
 import rush.comandos.ComandoSpawn;
@@ -59,6 +60,7 @@ import rush.recursos.antilag.DesativarQuedaDaAreia;
 import rush.recursos.antilag.DesativarQuedaDasFolhas;
 import rush.recursos.gerais.BloquearCairNoVoid;
 import rush.recursos.gerais.BloquearCriarPortal;
+import rush.recursos.gerais.BloquearMobsDePegaremFogoParaOSol;
 import rush.recursos.gerais.BloquearTeleportPorPortal;
 import rush.recursos.gerais.DesativarCicloDoDia;
 import rush.recursos.gerais.DesativarDanoDoEnderDragon;
@@ -120,6 +122,7 @@ public class Main extends JavaPlugin implements Listener {
 	    getCommand("mundovip").setExecutor(new ComandoMundoVip()); 
 	    getCommand("online").setExecutor(new ComandoOnline()); 
 	    getCommand("ping").setExecutor(new ComandoPing());
+	    getCommand("setmundovip").setExecutor(new ComandoSetmundovip());
 	    getCommand("setspawn").setExecutor(new ComandoSetspawn());
 	    getCommand("sgive").setExecutor(new ComandoSGive()); 
 	    getCommand("slime").setExecutor(new ComandoSlime());
@@ -174,6 +177,9 @@ public class Main extends JavaPlugin implements Listener {
 	    
 	    if (getConfig().getBoolean("Bloquear-Nicks-Improprios")){
 	    pm.registerEvents(new BloquearNicksImproprios(), this);}
+	    
+	    if (getConfig().getBoolean("Bloquear-Mobs-De-Pegarem-Fogo-Para-O-Sol")){
+	    pm.registerEvents(new BloquearMobsDePegaremFogoParaOSol(), this);}
 	    
 	    if (getConfig().getBoolean("Bloquear-Passar-Da-Borda")){
 	    pm.registerEvents(new BloquearPassarDaBorda(), this);}
