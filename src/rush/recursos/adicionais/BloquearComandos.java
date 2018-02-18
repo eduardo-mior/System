@@ -15,7 +15,7 @@ public class BloquearComandos implements Listener {
         final String cmd = e.getMessage().toLowerCase();
         final Player p = e.getPlayer();
         for (final String cmds : Main.aqui.getConfig().getStringList("Lista-Dos-Comandos-Bloqueados")) {
-            if (cmd.equalsIgnoreCase(cmds) || cmd.contains(cmds)) {
+            if (cmd.equals(cmds) || cmd.startsWith(cmds + " ")) {
                 p.sendMessage(Main.aqui.getMensagens().getString("Comando-Bloqueado").replaceAll("&", "§"));
                 e.setCancelled(true);
             }

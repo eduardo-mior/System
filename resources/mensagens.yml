@@ -129,7 +129,7 @@ Spawn-Definido: "&aSpawn definido com sucesso."
 # |                 Comando /setmundovip                 | #
 # +------------------------------------------------------+ #
 ############################################################
-Area-Vip-Definida: "&aArea VIP definida com sucesso! É para este local que as pessoas &6VIPs&e irão ser teleportadas!"
+Area-Vip-Definida: "&aArea VIP definida com sucesso! É para este local que as pessoas &6VIPs&a irão ser teleportadas!"
 Area-Nao-Vip-Definida: "&aArea dos não VIP definida com sucesso! É para este local que as pessoas &csem VIP&a irão ser teleportadas!"
 Setmundovip-Comando-Incoreto: "&cComando incorreto, use /setmundovip <areaVip &8ou&c areaNaoVip>"
 

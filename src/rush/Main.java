@@ -74,6 +74,7 @@ import rush.sistemas.gerais.AnunciarMorte;
 import rush.sistemas.gerais.AutoAnuncio;
 import rush.sistemas.gerais.Motd;
 import rush.sistemas.gerais.ScoreBoard;
+import rush.sistemas.gerais.Tablist;
 import rush.sistemas.spawners.BloquearTrocarTipoDoSpawnerComOvo;
 import rush.sistemas.spawners.DroparSpawnerAoExplodir;
 import rush.sistemas.spawners.SistemaDeSpawners;
@@ -261,6 +262,9 @@ public class Main extends JavaPlugin implements Listener {
 	    
 	    if (getConfig().getBoolean("Sistema-De-Spawners")){
 	    pm.registerEvents(new SistemaDeSpawners(), this);}
+
+		if (getConfig().getBoolean("Ativar-Tablist")){
+	    pm.registerEvents(new Tablist(), this);}
 	     
 	    if (getConfig().getBoolean("AtivarAddons.Legendchat")){
 	    if (pm.getPlugin("Legendchat") == null) {

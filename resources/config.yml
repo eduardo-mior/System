@@ -144,8 +144,8 @@ AreaVip:
 ############################################################
 Motd:
   Ativar: true
-  Linha1: "§f§lGamer's§9§lBoard §7www.gamersboard.com.br"
-  Linha2: "§fA sua comunidade gamer!"
+  Linha1: "&f&lGamer's&6&lBoard &7www.gamersboard.com.br"
+  Linha2: "&fA sua comunidade gamer!"
   Maximo-De-Players: 340
 
 ############################################################
@@ -261,11 +261,30 @@ Anuncios:
 ############################################################
 ScoreBoard:
   Ativar: true
-  Titulo: "  §f§lGamer's§9§lBoard  "
+  Titulo: "  &f&lGamer's&6&lBoard  "
   Linhas:
-  - '§bOlá %player%!'
-  - '§bSejá bem vindo ao'
-  - '§d§l> master-mc.net <'
-  - '§r'
-  - '§aACESSE NOSSO SITE:'
-  - '§7gamersboard.com.br'
+  - '&eSeja Bem Vindo %player%!'
+  - '&r'
+  - '&aAdquira VIP e Cash acessando:'
+  - '&7gamersboard.com.br'
+
+############################################################
+# +------------------------------------------------------+ #
+# |                       Tablist                        | #
+# +------------------------------------------------------+ #
+############################################################
+Ativar-Tablist: true
+Parte-De-Cima: |
+  &r 
+  &r 
+  &f&lGamer's&6&lBoard
+  &fgamersboard.com.br
+Parte-De-Baixo: |
+  &r 
+  &6Fórum:&f hypixel.net/forums
+  &6Team Speak:&f ts.hypixel.net
+  &6Facebook:&f fb.com/Hypixel
+  &6Twiiter:&f twitter.com/hypixel
+  &r
+  &6Adquira VIP e Cash acessando: &fstore.hypixel.net
+  &r
