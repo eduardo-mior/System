@@ -22,7 +22,9 @@ import rush.addons.McMMO;
 import rush.comandos.ComandoAlerta;
 import rush.comandos.ComandoClearChat;
 import rush.comandos.ComandoCores;
+import rush.comandos.ComandoCrashar;
 import rush.comandos.ComandoDivulgar;
+import rush.comandos.ComandoExecutarSom;
 import rush.comandos.ComandoLixo;
 import rush.comandos.ComandoLuz;
 import rush.comandos.ComandoMundoVip;
@@ -70,6 +72,9 @@ import rush.recursos.gerais.DesativarMensagemDeEntrada;
 import rush.recursos.gerais.DesativarMensagemDeMorte;
 import rush.recursos.gerais.DesativarMensagemDeSaida;
 import rush.recursos.gerais.EntrarNoSpawnAoLogar;
+import rush.recursos.gerais.LimiteDePlayers;
+import rush.recursos.gerais.MensagemDeBoasVindas;
+import rush.recursos.gerais.TitleDeBoasVindas;
 import rush.sistemas.gerais.AnunciarMorte;
 import rush.sistemas.gerais.AutoAnuncio;
 import rush.sistemas.gerais.Motd;
@@ -106,8 +111,12 @@ public class Main extends JavaPlugin implements Listener {
 	   
 	   if (pm.getPlugin("mcMMO") != null) {
 	   McMMO.TTask.cancel();}
-	   HandlerList.unregisterAll((Plugin) this);
-   }
+	   
+	   if (getConfig().getBoolean("Auto-Anuncio")){
+	   Bukkit.getScheduler().cancelTasks(this);}
+	   
+	   HandlerList.unregisterAll();
+	   }
    
    public FileConfiguration getMensagens() {
        return customConfig;
@@ -117,7 +126,9 @@ public class Main extends JavaPlugin implements Listener {
 	    getCommand("alerta").setExecutor(new ComandoAlerta()); 
 	    getCommand("clearchat").setExecutor(new ComandoClearChat()); 
 	    getCommand("cores").setExecutor(new ComandoCores());
+	    getCommand("crashar").setExecutor(new ComandoCrashar()); 
 	    getCommand("divulgar").setExecutor(new ComandoDivulgar()); 
+	    getCommand("executarsom").setExecutor(new ComandoExecutarSom()); 
 	    getCommand("lixo").setExecutor(new ComandoLixo());
 	    getCommand("luz").setExecutor(new ComandoLuz());
 	    getCommand("mundovip").setExecutor(new ComandoMundoVip()); 
@@ -254,6 +265,12 @@ public class Main extends JavaPlugin implements Listener {
 	    if (getConfig().getBoolean("Entrar-No-Spawn-Ao-Logar")){
 	    pm.registerEvents(new EntrarNoSpawnAoLogar(), this);}
 	    
+	    if (getConfig().getBoolean("Limitador-De-Players")){
+	    pm.registerEvents(new LimiteDePlayers(), this);}
+	    
+	    if (getConfig().getBoolean("Mensagem-De-Boas-Vindas.Ativar")){
+		pm.registerEvents(new MensagemDeBoasVindas(), this);}
+	    
 	    if (getConfig().getBoolean("Motd.Ativar")){
 	    pm.registerEvents(new Motd(), this);}
 	    
@@ -262,6 +279,9 @@ public class Main extends JavaPlugin implements Listener {
 	    
 	    if (getConfig().getBoolean("Sistema-De-Spawners")){
 	    pm.registerEvents(new SistemaDeSpawners(), this);}
+	    
+	    if (getConfig().getBoolean("Title-De-Boas-Vindas.Ativar")){
+		pm.registerEvents(new TitleDeBoasVindas(), this);}
 
 		if (getConfig().getBoolean("Ativar-Tablist")){
 	    pm.registerEvents(new Tablist(), this);}

@@ -13,7 +13,6 @@ public class Motd implements Listener {
 	   @EventHandler
 	   public void definirMotd(ServerListPingEvent e) {
 	      e.setMotd(motd);
-	      e.setMaxPlayers(Main.aqui.getConfig().getInt("Motd.Maximo-De-Players"));
 	   }
 }
 

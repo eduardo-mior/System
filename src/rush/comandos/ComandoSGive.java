@@ -57,7 +57,6 @@ public class ComandoSGive implements Listener, CommandExecutor {
             }
             sender.sendMessage(Main.aqui.getMensagens().getString("Spawner-Desconhecido").replaceAll("&", "§"));
         }
-
         
         if (args.length == 3) {
             int quantidade;

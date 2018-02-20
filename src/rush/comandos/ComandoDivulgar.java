@@ -4,15 +4,18 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
 import rush.Main;
 
 public class ComandoDivulgar implements Listener, CommandExecutor {
 		
-	  public boolean onCommand(CommandSender Sender, Command Cmd, String Label, String[] args)
+	@SuppressWarnings("deprecation")
+	public boolean onCommand(CommandSender Sender, Command Cmd, String Label, String[] args)
 	  {
         String nome = Sender.getName();
+	    for (Player todos : Bukkit.getOnlinePlayers()) {
 	    if (Cmd.getName().equalsIgnoreCase("divulgar"))
 	    {
 	        if (!Sender.hasPermission("system.divulgar"))
@@ -20,12 +23,14 @@ public class ComandoDivulgar implements Listener, CommandExecutor {
 	        	Sender.sendMessage(Main.aqui.getMensagens().getString("Sem-Permissao"));
 	          return true;
 	        }
-	        
+	        	        
 	        if (args.length < 2 || args.length > 2)
 	        { 
 	        	Sender.sendMessage(Main.aqui.getMensagens().getString("Divulgar-Comando-Incorreto").replaceAll("&", "§"));
 		          return true;
 	        }
+	        
+	        if (args[0].equalsIgnoreCase("live") || args[0].equalsIgnoreCase("video") || args[0].equalsIgnoreCase("outro")) {
 	        
 	        if 
 	        (args[1].contains("http") || 
@@ -38,15 +43,22 @@ public class ComandoDivulgar implements Listener, CommandExecutor {
 	        (args[1].contains("sc"))  ||
 	        (args[1].contains("me"))  || 
 	        (args[1].contains("tk")))) {
-	        	if (args[0].equalsIgnoreCase("live")) {
-	              Bukkit.broadcastMessage("");
-		          Bukkit.broadcastMessage(Main.aqui.getMensagens().getString("Divulgando-Live").replaceAll("&", "§").replaceAll("%player%", nome));
-	              Bukkit.broadcastMessage(Main.aqui.getMensagens().getString("Link").replaceAll("&", "§").replaceAll("%link%", args[1]).replaceFirst("live", ""));
-	              Bukkit.broadcastMessage("");
-	       		  return false;
+	        	
+	        if (args[0].equalsIgnoreCase("live")) {
+	              todos.sendTitle(
+	            Main.aqui.getMensagens().getString("Divulgando-Title").replace("&", "§").replaceAll("%link%", args[1]).replace("_", " ").replaceAll("%player%", nome),
+	            Main.aqui.getMensagens().getString("Divulgando-SubTitle").replace("&", "§").replaceAll("%link%", args[1]).replace("_", " ").replaceAll("%player%", nome));
+	            Bukkit.broadcastMessage("");
+		        Bukkit.broadcastMessage(Main.aqui.getMensagens().getString("Divulgando-Live").replaceAll("&", "§").replaceAll("%player%", nome));
+	            Bukkit.broadcastMessage(Main.aqui.getMensagens().getString("Link").replaceAll("&", "§").replaceAll("%link%", args[1]).replaceFirst("live", ""));
+	            Bukkit.broadcastMessage("");
+	       		return false;
 	            }
 	        
 	        if (args[0].equalsIgnoreCase("video")) {
+	            todos.sendTitle(
+	            Main.aqui.getMensagens().getString("Divulgando-Title").replace("&", "§").replaceAll("%link%", args[1]).replace("_", " ").replaceAll("%player%", nome),
+	            Main.aqui.getMensagens().getString("Divulgando-SubTitle").replace("&", "§").replaceAll("%link%", args[1]).replace("_", " ").replaceAll("%player%", nome));
 	            Bukkit.broadcastMessage("");
 	            Bukkit.broadcastMessage(Main.aqui.getMensagens().getString("Divulgando-Video").replaceAll("&", "§").replaceAll("%player%", nome));
 	            Bukkit.broadcastMessage(Main.aqui.getMensagens().getString("Link").replaceAll("&", "§").replaceAll("%link%", args[1]).replaceFirst("video", ""));
@@ -55,6 +67,9 @@ public class ComandoDivulgar implements Listener, CommandExecutor {
 	          }
 	        
 	        if (args[0].equalsIgnoreCase("outro")) {
+	            todos.sendTitle(
+	            Main.aqui.getMensagens().getString("Divulgando-Title").replace("&", "§").replaceAll("%link%", args[1]).replace("_", " ").replaceAll("%player%", nome),
+	            Main.aqui.getMensagens().getString("Divulgando-SubTitle").replace("&", "§").replaceAll("%link%", args[1]).replace("_", " ").replaceAll("%player%", nome));
 	            Bukkit.broadcastMessage("");
 	            Bukkit.broadcastMessage(Main.aqui.getMensagens().getString("Divulgando-Outro").replaceAll("&", "§").replaceAll("%player%", nome));
 	            Bukkit.broadcastMessage(Main.aqui.getMensagens().getString("Link").replaceAll("&", "§").replaceAll("%link%", args[1]).replaceFirst("outro", ""));
@@ -64,7 +79,11 @@ public class ComandoDivulgar implements Listener, CommandExecutor {
 	       			}
 	       			Sender.sendMessage(Main.aqui.getMensagens().getString("Link-Invalido").replaceAll("&", "§").replaceAll("%link%", args[1]));
 	       			return false;
+	          }
+        	  Sender.sendMessage(Main.aqui.getMensagens().getString("Divulgar-Comando-Incorreto").replaceAll("&", "§"));
+	          return false;
 	    	}
+	      }
 		return false;
 	  }
 }

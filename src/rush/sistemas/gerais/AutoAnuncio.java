@@ -34,7 +34,7 @@ public class AutoAnuncio extends BukkitRunnable {
 		    if (Main.aqui.getConfig().getBoolean("Destacar-Anuncio")){
 			Bukkit.broadcastMessage("");}
 	        if (Main.aqui.getConfig().getBoolean("Reproduzir-Som-No-Anuncio")){
-                todos.playSound(todos.getLocation(), Sound.LEVEL_UP, 1, 1);
+                todos.playSound(todos.getLocation(), Sound.valueOf(Main.aqui.getConfig().getString("Som-Do-Anuncio")), 1, 1);
               }
 		   }
 		}

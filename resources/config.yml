@@ -60,6 +60,7 @@ Desativar-Chuva: true
 # |                   Recursos Gerais                    | #
 # +------------------------------------------------------+ #
 ############################################################
+Delay-Para-Teleportar-Comandos: 5
 Bloquear-Mobs-De-Pegarem-Fogo-Para-O-Sol: true
 Bloquear-Cair-No-Void: true
 Desativar-Ciclo-Do-Dia: true
@@ -87,6 +88,14 @@ Ativar-Cores-Na-Placa: true
 
 ############################################################
 # +------------------------------------------------------+ #
+# |                Configurações Diversas                | #
+# +------------------------------------------------------+ #
+############################################################
+Limitador-De-Players: true
+Limite-De-Players: 340
+
+############################################################
+# +------------------------------------------------------+ #
 # |                 Sistemas de Spawners                 | #
 # +------------------------------------------------------+ #
 ############################################################
@@ -97,10 +106,23 @@ Chance-De-Dropar-Ao-Explodir: 60
 
 ############################################################
 # +------------------------------------------------------+ #
-# |                Configurações Diversas                | #
+# |           Mensagem e Title de Boas-Vindas            | #
 # +------------------------------------------------------+ #
 ############################################################
-Delay-Para-Teleportar-Comandos: 5
+Mensagem-De-Boas-Vindas:
+  Ativar: true
+  Mensagem:
+    - '&6-&e=&6-&e=&6-&e=&6-&e=&6-{ &bSeja Bem Vindo ao Hypixel! &6}-&e=&6-&e=&6-&e=&6-&e=&6-'
+    - '&eAdquira CASH e VIP em: &6store.hypixel.net'
+    - '&eNos siga no twiiter: &6twiiter.com/hypixel'
+    - '&eDivirta-se em nosso TS3: &6ts.hypixel.net'
+    # %player% mostra o nome do player.
+
+Title-De-Boas-Vindas:
+  Ativar: true
+  Titulo: '&6&lHYPIXEL'
+  Subtitulo: '&eSEJA BEM-VINDO!'
+  # %player% mostra o nome do player.
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -146,7 +168,6 @@ Motd:
   Ativar: true
   Linha1: "&f&lGamer's&6&lBoard &7www.gamersboard.com.br"
   Linha2: "&fA sua comunidade gamer!"
-  Maximo-De-Players: 340
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -232,6 +253,8 @@ Auto-Anuncio: true
 Destacar-Anuncio: true
 Delay-Entre-Anuncios: 5
 Reproduzir-Som-No-Anuncio: true
+Som-Do-Anuncio: LEVEL_UP
+# Lista de sons do minecraft 1.8 http://docs.codelanx.com/Bukkit/1.8/org/bukkit/Sound.html
 Lista-De-Anuncios:
   - '&e&l[Anuncio] &eInscreva-se em nosso canal e fique por dentro de tudo &b&nhttp://bit.ly/hypixel&e!'
   - '&e&l[Anuncio] &eAdquira já seu vip através do nosso site &b&nhttps://hypixel.net/&e!'
@@ -278,7 +301,7 @@ Parte-De-Cima: |
   &r 
   &r 
   &f&lGamer's&6&lBoard
-  &fgamersboard.com.br
+  &f   gamersboard.com.br
 Parte-De-Baixo: |
   &r 
   &6Fórum:&f hypixel.net/forums

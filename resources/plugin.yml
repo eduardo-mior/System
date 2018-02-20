@@ -5,7 +5,7 @@ name: System
 commands:
   alerta:
     description: Limpa o chat do servidor.
-    aliases: [cc]
+    aliases: []
     permission: system.alerta
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   clearchat:
@@ -18,10 +18,20 @@ commands:
     aliases: [colors]
     permission: system.cores
     permission-message: "§cVocê não tem permissão para utilizar este comando."
+  crashar:
+    description: Crasha o minecraft de um player.
+    aliases: []
+    permission: system.crashar
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
   divulgar:
     description: Divulga um link no chat.
     aliases: []
     permission: system.divulgar
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  executarsom:
+    description: Executa um som para um player ou para todo server.
+    aliases: [playsound]
+    permission: system.executarsom
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   lixo:
     description: Abre a lixeira virtual.
@@ -105,8 +115,14 @@ permissions:
   system.clearchat:
     description: Permissão para limpar o chat do servidor.
     default: op
+  system.crashar: 
+    description: Permissão para crashar o minecraft de algue,
+    default: op
   system.divulgar:
     description: Permissão para divulgar um link no chat.
+    default: op
+  system.executarsom:
+    description: Permissão para enviar um som para um player ou para todo servidor.
     default: op
   system.semdelay:
     description: Permissão para se teleportar sem ter que esperar o delay.
@@ -152,7 +168,9 @@ permissions:
       system.alerta: true
       system.clearchat: true
       system.cores: true
+      system.crashar: true
       system.divulgar: true
+      system.executarsom: true
       system.lixo: true
       system.luz: true
       system.online: true

@@ -17,7 +17,7 @@ import rush.Main;
 
 public class ScoreBoard implements Listener {
 
-    private String titulo = Main.aqui.getConfig().getString("ScoreBoard.Titulo");
+    private String titulo = Main.aqui.getConfig().getString("ScoreBoard.Titulo").replaceAll("&", "§");
 	
 	@EventHandler
 	public void pj(PlayerJoinEvent e) {

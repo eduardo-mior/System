@@ -14,6 +14,7 @@ Player-Offline: "&cEste player não esta online no momento ou não existe."
 # |                Mensagens dos Recursos                | #
 # +------------------------------------------------------+ #
 ############################################################
+Servidor-Lotado: "&cDesculpe mas o servidor esta cheio!\n&cAdquira já seu VIP em &ewww.gamersboard.com.br"
 Nick-Bloqueado: "&cA palavra '%nick%' foi bloqueada de ser usada em nicks!"
 Comando-Bloqueado: "&cEste comando foi bloqueado do servidor."
 Tentou-Passar-Da-Borda: "&cVocê não pode se teleportar para o outro lado da borda."
@@ -56,6 +57,8 @@ Divulgando-Live: "&e%player% esta divulgando uma live!"
 Divulgando-Video: "&e%player% esta divulgando um vídeo!"
 Divulgando-Outro: "&e%player% esta divulgando um link!"
 Link: "&eLink: &b&n%link%"
+Divulgando-Title: "&r"
+Divulgando-SubTitle: "&b&l%player% ESTA DIVULGANDO!"
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -67,6 +70,27 @@ Alerta-Chat: "&a[ALERTA] %alerta%"
 Alerta-Title: "&a&lALERTA"
 Alerta-SubTitle: "&eO PLAYER %player% ENVIOU UM ALERTA!"
 #Você pode usar as variaveis %alerta% e %player% nos titles e nas mensagens :D
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   Comando /crashar                   | #
+# +------------------------------------------------------+ #
+############################################################
+Crashar-Comando-Incorreto: "&cComando incorreto, use /crashar <player>"
+Player-Crashado: "&aVocê crashou o minecraft de %player%!"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   Comando /alerta                    | #
+# +------------------------------------------------------+ #
+############################################################
+ExecutarSom-Comando-Incoreto: |
+  &cComando incorreto, use:
+  &c/executarsom <som> <player> &8-&7 Envia o som para um player.
+  &c/executarsom <som> all &8-&7 Envia o som para all os players.
+Som-Invalido: "&cEste SOM não é um som valido! Você pode ver a lista completa com todos os sons do minecraft acessando: &nhttp://docs.codelanx.com/Bukkit/1.8/org/bukkit/Sound.html"
+Som-Executado-Player: "&aSom '%som%' executado para o player %player%."
+Som-Executado-Todos: "&aSom '%som%' executado para todos os players do servidor."
 
 ############################################################
 # +------------------------------------------------------+ #

@@ -23,7 +23,7 @@ public class ComandoSetspawn implements Listener, CommandExecutor {
 		                Locations.spawn = p.getLocation();
 		                saveSpawn(Locations.spawn);
 		                s.sendMessage(Main.aqui.getMensagens().getString("Spawn-Definido").replaceAll("&", "§"));
-		      			}      
+		      			} 
 		 			}
 		          return true;
 		       }
