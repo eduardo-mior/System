@@ -30,7 +30,7 @@ public class ComandoAlerta implements CommandExecutor, Listener {
 	        else {
 	        	String msg = "";
 	            for (int i = 0; i < args.length; i++) {
-	              msg = msg + args[i] + " ";
+	            msg = msg + args[i] + " ";
 	            }
 	              todos.sendTitle(
 	              Main.aqui.getMensagens().getString("Alerta-Title").replace("&", "§").replaceAll("%alerta%", msg).replace("_", " ").replaceAll("%player%", nome),

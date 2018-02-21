@@ -30,7 +30,7 @@ commands:
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   executarsom:
     description: Executa um som para um player ou para todo server.
-    aliases: [playsound]
+    aliases: [playsound, som]
     permission: system.executarsom
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   lixo:
@@ -83,11 +83,31 @@ commands:
     aliases: []
     permission: system.spawn
     permission-message: "§cVocê não tem permissão para utilizar este comando."
+  title:
+    description: Envia um title para um player ou para todo servidor.
+    aliases: [tm]
+    permission: system.title
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
 
 permissions:
+  system.alerta:
+    description: Permissão para enviar um alerta no servidor.
+    default: op
+  system.clearchat:
+    description: Permissão para limpar o chat do servidor.
+    default: op
   system.cores:
     description: Permissão para ver a lista de cores do minecraft.
     default: true
+  system.crashar: 
+    description: Permissão para crashar o minecraft de algue,
+    default: op
+  system.divulgar:
+    description: Permissão para divulgar um link no chat.
+    default: op
+  system.executarsom:
+    description: Permissão para enviar um som para um player ou para todo servidor.
+    default: op
   system.lixo:
     description: Permissão para abrir a lixeira virtual.
     default: true
@@ -103,27 +123,6 @@ permissions:
   system.ping:
     description: Permissão para ver o seu ping ou o ping de outro player.
     default: true
-  system.slime:
-    description: Permissão para verificar se você esta em uma slimechunk.
-    default: true
-  system.spawn:
-    description: Permissão para se teleportar até o spawn.
-    default: true
-  system.alerta:
-    description: Permissão para enviar um alerta no servidor.
-    default: op
-  system.clearchat:
-    description: Permissão para limpar o chat do servidor.
-    default: op
-  system.crashar: 
-    description: Permissão para crashar o minecraft de algue,
-    default: op
-  system.divulgar:
-    description: Permissão para divulgar um link no chat.
-    default: op
-  system.executarsom:
-    description: Permissão para enviar um som para um player ou para todo servidor.
-    default: op
   system.semdelay:
     description: Permissão para se teleportar sem ter que esperar o delay.
     default: op
@@ -135,6 +134,15 @@ permissions:
     default: op
   system.sgive:
     description: Permissão para ver o seu ping ou o ping de outro player.
+    default: op
+  system.slime:
+    description: Permissão para verificar se você esta em uma slimechunk.
+    default: true
+  system.spawn:
+    description: Permissão para se teleportar até o spawn.
+    default: true
+  system.title:
+    description: Permissão para enviar um title para todo servidor.
     default: op
   system.vip:
     description: Permissão para se teleportar até a area vip.
@@ -173,13 +181,14 @@ permissions:
       system.executarsom: true
       system.lixo: true
       system.luz: true
+      system.mundovip: true
       system.online: true
       system.ping: true
-      system.mundovip: true
-      system.vip: true 
       system.semdelay: true
       system.setmundovip: true
       system.setspawn: true
-      system.slime: true
       system.sgive: true
+      system.slime: true
       system.spawn: true
+      system.title: true
+      system.vip: true

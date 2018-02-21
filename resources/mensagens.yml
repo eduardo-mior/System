@@ -31,7 +31,7 @@ Placas:
 # +------------------------------------------------------+ #
 ############################################################
 Inventario-Cheio-Quebrou: "&cVocê esta com seu inventário cheio! O gerador foi dropado no chão."
-Spawner-Bugado: "&cEste gerador esta com defeitos! Contate um staff do seu servidor para resolver este problema."
+Spawner-Bugado: "&cEste gerador esta com defeitos! Contate um staff do seu servidor para que ele poça lhe resolver este problema."
 Spawner-Givado: "&aSpawner de %tipo% givado com sucesso."
 Inventario-Cheio-Give: "&cVocê esta com seu inventário cheio! Libera mais espaço para poder pegar geradores."
 Sgive-Comando-Incoreto: "&cComando incorreto, use /sgive <player> <tipo> <quantia>"
@@ -81,13 +81,13 @@ Player-Crashado: "&aVocê crashou o minecraft de %player%!"
 
 ############################################################
 # +------------------------------------------------------+ #
-# |                   Comando /alerta                    | #
+# |                 Comando /executarsom                 | #
 # +------------------------------------------------------+ #
 ############################################################
 ExecutarSom-Comando-Incoreto: |
   &cComando incorreto, use:
   &c/executarsom <som> <player> &8-&7 Envia o som para um player.
-  &c/executarsom <som> all &8-&7 Envia o som para all os players.
+  &c/executarsom <som> all &8-&7 Envia o som para todos os players.
 Som-Invalido: "&cEste SOM não é um som valido! Você pode ver a lista completa com todos os sons do minecraft acessando: &nhttp://docs.codelanx.com/Bukkit/1.8/org/bukkit/Sound.html"
 Som-Executado-Player: "&aSom '%som%' executado para o player %player%."
 Som-Executado-Todos: "&aSom '%som%' executado para todos os players do servidor."
@@ -147,6 +147,14 @@ Players-Online: "&2O servidor esta atualmente com &a%online%&2 players online!"
 # +------------------------------------------------------+ #
 ############################################################
 Spawn-Definido: "&aSpawn definido com sucesso."
+
+############################################################
+# +------------------------------------------------------+ #
+# |                    Comando /title                    | #
+# +------------------------------------------------------+ #
+############################################################
+Title-Comando-Incorreto: "&cComando incorreto use /title <title> [nl] <subtitle>"
+Tile-Enviado: "&aTitle enviado com sucesso."
 
 ############################################################
 # +------------------------------------------------------+ #

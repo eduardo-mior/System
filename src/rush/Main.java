@@ -35,6 +35,7 @@ import rush.comandos.ComandoSetmundovip;
 import rush.comandos.ComandoSetspawn;
 import rush.comandos.ComandoSlime;
 import rush.comandos.ComandoSpawn;
+import rush.comandos.ComandoTitle;
 import rush.recursos.adicionais.BigornaInfinita;
 import rush.recursos.adicionais.BloquearComandos;
 import rush.recursos.adicionais.BloquearCrafts;
@@ -139,6 +140,7 @@ public class Main extends JavaPlugin implements Listener {
 	    getCommand("sgive").setExecutor(new ComandoSGive()); 
 	    getCommand("slime").setExecutor(new ComandoSlime());
 	    getCommand("spawn").setExecutor(new ComandoSpawn()); 
+	    getCommand("title").setExecutor(new ComandoTitle()); 
 
    }
 	
