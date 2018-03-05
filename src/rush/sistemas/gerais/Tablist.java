@@ -14,8 +14,8 @@ import rush.Main;
 
 public class Tablist implements Listener {
 	
-	String header = Main.aqui.getConfig().getString("Parte-De-Cima").replace("&", "§");
-	String footer = Main.aqui.getConfig().getString("Parte-De-Baixo").replace("&", "§");
+   String header = Main.aqui.getConfig().getString("Parte-De-Cima").replace("&", "§");
+   String footer = Main.aqui.getConfig().getString("Parte-De-Baixo").replace("&", "§");
 	
    public static void sendTabList(Player player, String header, String footer) {
       if (header == null) {

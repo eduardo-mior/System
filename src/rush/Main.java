@@ -17,12 +17,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
 
 import rush.addons.LegendChat;
-import rush.addons.MassiveFactions;
 import rush.addons.McMMO;
 import rush.comandos.ComandoAlerta;
 import rush.comandos.ComandoClearChat;
 import rush.comandos.ComandoCores;
-import rush.comandos.ComandoCrashar;
 import rush.comandos.ComandoDivulgar;
 import rush.comandos.ComandoExecutarSom;
 import rush.comandos.ComandoLixo;
@@ -91,16 +89,19 @@ public class Main extends JavaPlugin implements Listener {
 
    public static Main aqui;
    public List<String> mensagens = getConfig().getStringList("Lista-De-Anuncios");
-   public static File customYml;
-   public static FileConfiguration customConfig;
+   public static File arquivoMensagens;
+   public static File arquivoSpawn;
+   public static File arquivoVip;
+   public static File arquivoNaoVip;
+   public static FileConfiguration configMensagens;
+   public static FileConfiguration configSpawn;
+   public static FileConfiguration configVip;
+   public static FileConfiguration configNaoVip;
+
    
    public void onEnable() {
-	    saveDefaultConfig();
-        if (!new File(getDataFolder(), "mensagens.yml").exists()) {
-        saveResource("mensagens.yml", false);}
-        customYml = new File(this.getDataFolder() + "/mensagens.yml");
-        customConfig = (FileConfiguration)YamlConfiguration.loadConfiguration(customYml);
 	    aqui = this;
+	    this.gerarConfigs();
 	    Locations.loadLocations();
 	    this.registrarEventos();
 	    this.registrarComandos();
@@ -108,26 +109,61 @@ public class Main extends JavaPlugin implements Listener {
 
    
    public void onDisable() {
-	    PluginManager pm = Bukkit.getServer().getPluginManager();
+	   PluginManager pm = Bukkit.getServer().getPluginManager();
 	   
 	   if (pm.getPlugin("mcMMO") != null) {
 	   McMMO.TTask.cancel();}
 	   
-	   if (getConfig().getBoolean("Auto-Anuncio")){
-	   Bukkit.getScheduler().cancelTasks(this);}
-	   
+	   Bukkit.getScheduler().cancelTasks(Main.aqui);
 	   HandlerList.unregisterAll();
-	   }
+   }
+   
+   public void gerarConfigs() {
+	   saveDefaultConfig();
+
+       if (!new File(getDataFolder(), "mensagens.yml").exists()) {
+       saveResource("mensagens.yml", false); }
+       arquivoMensagens = new File(this.getDataFolder() + "/mensagens.yml");
+	   configMensagens = (FileConfiguration)YamlConfiguration.loadConfiguration(arquivoMensagens);
+       
+       if (!new File(getDataFolder(), "spawn.yml").exists()) {
+       saveResource("spawn.yml", false); }
+       arquivoSpawn = new File(this.getDataFolder() + "/spawn.yml");
+       configSpawn = (FileConfiguration)YamlConfiguration.loadConfiguration(arquivoSpawn);
+       
+       if (!new File(getDataFolder(), "vip.yml").exists()) {
+       saveResource("vip.yml", false); }
+       arquivoVip = new File(this.getDataFolder() + "/vip.yml");
+       configVip = (FileConfiguration)YamlConfiguration.loadConfiguration(arquivoVip);
+
+       
+       if (!new File(getDataFolder(), "naovip.yml").exists()) {
+       saveResource("naovip.yml", false); }
+       arquivoNaoVip = new File(this.getDataFolder() + "/naovip.yml");
+       configNaoVip = (FileConfiguration)YamlConfiguration.loadConfiguration(arquivoNaoVip);
+
+   }
    
    public FileConfiguration getMensagens() {
-       return customConfig;
+       return configMensagens;
+   }
+   
+   public FileConfiguration getSpawn() {
+       return configSpawn;
+   }
+
+   public FileConfiguration getVip() {
+       return configVip;
+   }
+   
+   public FileConfiguration getNaoVip() {
+       return configNaoVip;
    }
    
    public void registrarComandos() {
 	    getCommand("alerta").setExecutor(new ComandoAlerta()); 
 	    getCommand("clearchat").setExecutor(new ComandoClearChat()); 
 	    getCommand("cores").setExecutor(new ComandoCores());
-	    getCommand("crashar").setExecutor(new ComandoCrashar()); 
 	    getCommand("divulgar").setExecutor(new ComandoDivulgar()); 
 	    getCommand("executarsom").setExecutor(new ComandoExecutarSom()); 
 	    getCommand("lixo").setExecutor(new ComandoLixo());
@@ -294,13 +330,6 @@ public class Main extends JavaPlugin implements Listener {
 	    } else { 
 		pm.registerEvents(new LegendChat(), this);
 	    getServer().getConsoleSender().sendMessage("§a[System] Legendchat encontrado, ativando addons!");}}
-	    
-	    if (getConfig().getBoolean("AtivarAddons.MassiveFactions")){
-	    if (pm.getPlugin("Factions") == null) {
-	    getServer().getConsoleSender().sendMessage("§c[System] Factions nao encontrado, desativando addons!");
-	    } else { 
-		pm.registerEvents(new MassiveFactions(), this);
-	    getServer().getConsoleSender().sendMessage("§a[System] Factions encontrado, ativando addons!");}}
 
 	    if (getConfig().getBoolean("AtivarAddons.mcMMO")){
 	    if (pm.getPlugin("mcMMO") == null) {

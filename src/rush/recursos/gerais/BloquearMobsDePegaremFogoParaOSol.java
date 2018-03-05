@@ -14,11 +14,11 @@ public class BloquearMobsDePegaremFogoParaOSol implements Listener {
 	boolean sol = false;
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void aoPegarFogo(EntityCombustEvent e) {
-	    if (!sol) {
-	         if ((e.getEntity() instanceof Zombie || e.getEntity() instanceof Skeleton)) {
-	         e.setCancelled(true);
-	         }
-	    }
+		if (!sol) {
+			if ((e.getEntity() instanceof Zombie || e.getEntity() instanceof Skeleton)) {
+	        e.setCancelled(true);
+			}
+		}
 	sol = false;
 	}
 	  

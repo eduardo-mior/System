@@ -18,11 +18,6 @@ commands:
     aliases: [colors]
     permission: system.cores
     permission-message: "§cVocê não tem permissão para utilizar este comando."
-  crashar:
-    description: Crasha o minecraft de um player.
-    aliases: []
-    permission: system.crashar
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
   divulgar:
     description: Divulga um link no chat.
     aliases: []
@@ -99,9 +94,12 @@ permissions:
   system.cores:
     description: Permissão para ver a lista de cores do minecraft.
     default: true
-  system.crashar: 
-    description: Permissão para crashar o minecraft de algue,
-    default: op
+  system.cornabigorna:
+    description: Permissão para renomear itens com cores.
+    default: false
+  system.cornaplaca:
+    description: Permissão para renomear itens com cores.
+    default: false
   system.divulgar:
     description: Permissão para divulgar um link no chat.
     default: op
@@ -148,35 +146,77 @@ permissions:
     description: Permissão para se teleportar até a area vip.
     default: op
   system.cor1:
-   default: false
+    default: false
   system.cor2:
-   default: false
+    default: false
   system.cor3:
-   default: false
+    default: false
   system.cor4:
-   default: false
+    default: false
   system.cor5:
-   default: false
+    default: false
   system.cor6:
-   default: false
+    default: false
   system.cor7:
-   default: false
+    default: false
   system.cor8:
-   default: false
+    default: false
   system.cor9:
-   default: false
+    default: false
   system.cor10:
-   default: false
+    default: false
   system.destaquechat:
-   default: false
+    default: false
+  system.bypass.comandobloqueado:
+    description: Permissão para usar comandos que foram bloqueados.
+    default: false
+  system.bypass.containerbloqueado:
+    description: Permissão para abrir um inventario que foi bloqueado.
+    default: false
+  system.bypass.craftbloqueado:
+    description: Permissão para craftar itens que foram bloqueados.
+    default: false
+  system.bypass.entraremveiculos:
+    description: Permissão para entrar em veiculos mesmo se estiver bloqueado.
+    default: false
+  system.bypass.entrarnacama:
+    description: Permissão para entrar na cama mesmo se ela estiver bloqueada.
+    default: false
+  system.bypass.placabloqueada:
+    description: Permissão para escrever nas placas mesmo se elas estiverem bloqueadas.
+    default: false
+  system.bypass.shiftemcontainer:
+    description: Permissão para usar o shift em containers mesmo se estiver bloqueado.
+    default: false
+  system.bypass.teleportarporportal:
+    description: Permissão para usar o shift em containers mesmo se estiver bloqueado.
+    default: false
+  system.bypass.usarnametag:
+    description: Permissão para usar a NameTag mesmo se ela estiver bloqueada.
+    default: false
+
+  system.bypass.all:
+    description: Permissão para burlar todos os recursos do plugin.
+    default: false
+    children:
+      system.bypass.comandobloqueado: true
+      system.bypass.containerbloqueado: true
+      system.bypass.craftbloqueado: true
+      system.bypass.entraremveiculos: true
+      system.bypass.entrarnacama: true
+      system.bypass.placabloqueada: true
+      system.bypass.shiftemcontainer: true
+      system.bypass.teleportarporportal: true
+      system.bypass.usarnametag: true
+
   system.admin:
     description: Acesso a todos os comandos do plugin.
     default: op
     children:
       system.alerta: true
       system.clearchat: true
+      system.cornaplaca: true
       system.cores: true
-      system.crashar: true
       system.divulgar: true
       system.executarsom: true
       system.lixo: true

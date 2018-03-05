@@ -7,11 +7,12 @@ import org.bukkit.event.vehicle.VehicleEnterEvent;
 
 public class BloquearSubirEmVeiculos implements Listener {
 
-    @EventHandler
+	@EventHandler
     public void aoEntrarNoVeiculo(VehicleEnterEvent e) {
-    if (e.getEntered() instanceof Player ) {
-    e.setCancelled(true);
-    	}
-    }
-	
+		if (e.getEntered() instanceof Player ) {
+			if (e.getEntered().hasPermission("system.bypass.entraremveiculos")) {
+				e.setCancelled(true);
+			}
+		}
+	}
 }

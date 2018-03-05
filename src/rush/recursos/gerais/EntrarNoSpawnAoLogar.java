@@ -11,14 +11,14 @@ import rush.utils.Locations;
 
 public class EntrarNoSpawnAoLogar implements Listener {
 
-	   @EventHandler (priority=EventPriority.LOW)
-	   public void aoRenascer(PlayerRespawnEvent e) {
-	        e.setRespawnLocation(Locations.spawn);
-	   		}
+	@EventHandler (priority=EventPriority.LOW)
+	public void aoRenascer(PlayerRespawnEvent e) {
+		e.setRespawnLocation(Locations.spawn);
+	}
 	    
-	   @EventHandler (priority=EventPriority.LOW)
-	   public void aoLogar(PlayerJoinEvent e) {
-	        Player p = e.getPlayer();
-	        p.teleport(Locations.spawn);
-	   		}
+	@EventHandler (priority=EventPriority.LOW)
+	public void aoLogar(PlayerJoinEvent e) {
+		Player p = e.getPlayer();
+		p.teleport(Locations.spawn);
+	}
 }

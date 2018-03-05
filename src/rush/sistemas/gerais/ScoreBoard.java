@@ -29,9 +29,7 @@ public class ScoreBoard implements Listener {
 	    Player p = e.getPlayer();
         final List<String> stringList = (List<String>)Main.aqui.getConfig().getStringList("ScoreBoard.Linhas");
         IntStream.range(0, stringList.size()).forEach(i -> {
-            Score score2 = o.getScore((String)stringList.get(i)
-            		.replaceAll("%player%", p.getDisplayName())
-            		.replaceAll("&", "§"));
+            Score score2 = o.getScore((String)stringList.get(i).replaceAll("%player%", p.getDisplayName()).replaceAll("&", "§"));
             score2.setScore(stringList.size() - i);
 	    p.setScoreboard(scoreboard);
 	      });

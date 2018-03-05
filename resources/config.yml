@@ -41,6 +41,14 @@ Bloquear-Shift-Em-Containers:
   - 'BREWING'
   # Lista de containers: https://ghostbin.com/paste/mxjom
 
+Comandos-Que-Envolvem-Dinheiro:
+  - 'coins'
+  - 'money'
+  - 'cash'
+  - 'mercado'
+  - 'eco'
+  - 'pay'
+
 ############################################################
 # +------------------------------------------------------+ #
 # |                  Recursos Anti-LAG                   | #

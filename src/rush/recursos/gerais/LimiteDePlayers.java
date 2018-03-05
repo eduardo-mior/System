@@ -11,16 +11,16 @@ import rush.Main;
 
 public class LimiteDePlayers implements Listener {
 	
-	   @EventHandler
-	   public void aoEntrar(PlayerLoginEvent e) {
-	      int i = Bukkit.getOnlinePlayers().size();
-	      if (i >= Main.aqui.getConfig().getInt("Limite-De-Players")) {
-	         e.disallow(Result.KICK_OTHER, Main.aqui.getMensagens().getString("Servidor-Lotado").replace("&", "§"));
-	      }
-	   }
+	@EventHandler
+	public void aoEntrar(PlayerLoginEvent e) {
+		int i = Bukkit.getOnlinePlayers().size();
+		if (i >= Main.aqui.getConfig().getInt("Limite-De-Players")) {
+			e.disallow(Result.KICK_OTHER, Main.aqui.getMensagens().getString("Servidor-Lotado").replace("&", "§"));
+		}
+	}
 	   
-	   @EventHandler
-	   public void aoVerMotd(ServerListPingEvent e) { 
-		  e.setMaxPlayers(Main.aqui.getConfig().getInt("Limite-De-Players"));
-	   }
+	@EventHandler
+	public void aoVerMotd(ServerListPingEvent e) { 
+		e.setMaxPlayers(Main.aqui.getConfig().getInt("Limite-De-Players"));
+	}
 }

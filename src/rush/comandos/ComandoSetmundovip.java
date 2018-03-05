@@ -54,23 +54,23 @@ public class ComandoSetmundovip implements Listener, CommandExecutor {
 	}
 
     public static void saveAreaVip(Location areavip) {
-    Main.aqui.getConfig().set("AreaVip", areavip);
-    Main.aqui.getConfig().set("AreaVip.world", areavip.getWorld().getName());
-    Main.aqui.getConfig().set("AreaVip.x", Double.valueOf(areavip.getX()));
-    Main.aqui.getConfig().set("AreaVip.y", Double.valueOf(areavip.getY()));
-    Main.aqui.getConfig().set("AreaVip.z", Double.valueOf(areavip.getZ()));
-    Main.aqui.getConfig().set("AreaVip.yaw", Float.valueOf(areavip.getYaw()));
-    Main.aqui.getConfig().set("AreaVip.pitch", Float.valueOf(areavip.getPitch()));
-    Main.aqui.saveConfig(); }
+    	Main.aqui.getVip().set("AreaVip", areavip);
+    	Main.aqui.getVip().set("AreaVip.world", areavip.getWorld().getName());
+    	Main.aqui.getVip().set("AreaVip.x", Double.valueOf(areavip.getX()));
+    	Main.aqui.getVip().set("AreaVip.y", Double.valueOf(areavip.getY()));
+    	Main.aqui.getVip().set("AreaVip.z", Double.valueOf(areavip.getZ()));
+    	Main.aqui.getVip().set("AreaVip.yaw", Float.valueOf(areavip.getYaw()));
+    	Main.aqui.getVip().set("AreaVip.pitch", Float.valueOf(areavip.getPitch()));
+	    Main.aqui.saveResource("vip.yml", true); }
     
     public static void saveAreaNaoVip(Location areanaovip) {
-    Main.aqui.getConfig().set("AreaNaoVip", areanaovip);
-    Main.aqui.getConfig().set("AreaNaoVip.world", areanaovip.getWorld().getName());
-    Main.aqui.getConfig().set("AreaNaoVip.x", Double.valueOf(areanaovip.getX()));
-    Main.aqui.getConfig().set("AreaNaoVip.y", Double.valueOf(areanaovip.getY()));
-    Main.aqui.getConfig().set("AreaNaoVip.z", Double.valueOf(areanaovip.getZ()));
-    Main.aqui.getConfig().set("AreaNaoVip.yaw", Float.valueOf(areanaovip.getYaw()));
-    Main.aqui.getConfig().set("AreaNaoVip.pitch", Float.valueOf(areanaovip.getPitch()));
-    Main.aqui.saveConfig(); }
+    	Main.aqui.getNaoVip().set("AreaNaoVip", areanaovip);
+    	Main.aqui.getNaoVip().set("AreaNaoVip.world", areanaovip.getWorld().getName());
+    	Main.aqui.getNaoVip().set("AreaNaoVip.x", Double.valueOf(areanaovip.getX()));
+    	Main.aqui.getNaoVip().set("AreaNaoVip.y", Double.valueOf(areanaovip.getY()));
+    	Main.aqui.getNaoVip().set("AreaNaoVip.z", Double.valueOf(areanaovip.getZ()));
+    	Main.aqui.getNaoVip().set("AreaNaoVip.yaw", Float.valueOf(areanaovip.getYaw()));
+    	Main.aqui.getNaoVip().set("AreaNaoVip.pitch", Float.valueOf(areanaovip.getPitch()));
+	    Main.aqui.saveResource("naovip.yml", true); }
 	
 }

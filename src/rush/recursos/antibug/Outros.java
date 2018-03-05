@@ -18,8 +18,23 @@ public class Outros implements Listener {
        if (e.getMessage().contains("mercado vender -") || e.getMessage().contains("market vender -")) {
           e.setCancelled(true);
              p.sendMessage(Main.aqui.getMensagens().getString("Numero-Invalido").replaceAll("&", "§"));
-       }
+       	}
     }
+    
+	@EventHandler
+	public void onCommandEvent(PlayerCommandPreprocessEvent e) {
+				
+	Player p = e.getPlayer();
+	String cmd = e.getMessage().toLowerCase();
+    String[] arg1 = null;
+	arg1 = cmd.split(" ");
+	
+		for (String cmdmoney: Main.aqui.getConfig().getStringList("Comandos-Que-Envolvem-Dinheiro"))
+		if (arg1[0].contains(cmdmoney)) {
+			e.setCancelled(true);
+			p.sendMessage(Main.aqui.getMensagens().getString("Numero-Invalido").replaceAll("&", "§"));
+		}
+	}
     
 	@EventHandler
 	public void morreuAoEntrar(EntityPortalEnterEvent e) {

@@ -20,7 +20,7 @@ Comando-Bloqueado: "&cEste comando foi bloqueado do servidor."
 Tentou-Passar-Da-Borda: "&cVocê não pode se teleportar para o outro lado da borda."
 Tentou-Vender-Com-Valor-Negativo: "&cO valor do item não pode ser negativo."
 Aguarde-EnderPearl-Cooldown: "&cAguarde %tempo% segundos para poder lançar outra Enderpearl."
-Shift-Bloqueado-No-Container: "&cVocê não pode usar o SHIFT %tipo%."
+Shift-Bloqueado-No-Container: "&cO botão SHIFT foi desabilitado %tipo%."
 Placas:
   Palavras-Desativadas-Na-Placa: "&cVocê não pode escrever em placas pois este recurso foi desativado no servidor."
   Palavra-Bloqueada-Na-Placa: "&cA palavra '%palavra%' foi bloqueada de ser usada em placas."
@@ -70,14 +70,6 @@ Alerta-Chat: "&a[ALERTA] %alerta%"
 Alerta-Title: "&a&lALERTA"
 Alerta-SubTitle: "&eO PLAYER %player% ENVIOU UM ALERTA!"
 #Você pode usar as variaveis %alerta% e %player% nos titles e nas mensagens :D
-
-############################################################
-# +------------------------------------------------------+ #
-# |                   Comando /crashar                   | #
-# +------------------------------------------------------+ #
-############################################################
-Crashar-Comando-Incorreto: "&cComando incorreto, use /crashar <player>"
-Player-Crashado: "&aVocê crashou o minecraft de %player%!"
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -153,7 +145,7 @@ Spawn-Definido: "&aSpawn definido com sucesso."
 # |                    Comando /title                    | #
 # +------------------------------------------------------+ #
 ############################################################
-Title-Comando-Incorreto: "&cComando incorreto use /title <title> [nl] <subtitle>"
+Title-Comando-Incorreto: "&cComando incorreto use /title [title] <nl> [subtitle]"
 Tile-Enviado: "&aTitle enviado com sucesso."
 
 ############################################################
@@ -204,17 +196,3 @@ Tabela-De-Cores:
 ############################################################
 Avisar-Que-O-Chat-Foi-Limpo: true
 Aviso-Que-O-Chat-Limpo: "&aO chat foi limpo por %player%!"
-
-############################################################
-# +------------------------------------------------------+ #
-# |             Factions Menu /f unclaim all             | #
-# +------------------------------------------------------+ #
-############################################################
-Titulo-do-Menu-UnclaimAll: "&8Abandonar todas as terras"
-Cancelou-O-Evento-UnclaimAll: "&cAção cancelada com sucesso."
-Item-Confirmar-Nome: "&aConfirmar ação"
-Item-Confirmar-Lore: "&7Clique para confirmar."
-Item-Cancelar-Nome: "&cCancelar ação."
-Item-Cancelar-Lore: "&7Clique para cancelar."
-Item-Informacoes-Nome: "&7Informações"
-Item-Informacoes-Lore: "&7Você esta prestes a abandonar %terras% terras."

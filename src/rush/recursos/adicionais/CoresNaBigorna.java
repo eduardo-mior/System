@@ -10,14 +10,14 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 public class CoresNaBigorna implements Listener {
 	
-	   @EventHandler
-	   public void aoRenomearNaBigorna(InventoryClickEvent e) {
-	      if (e.getInventory().getType() == InventoryType.ANVIL && e.getWhoClicked().hasPermission("system.cornaplac")) {
-	         ItemStack item;
-	         ItemMeta meta;
-	         if (e.getRawSlot() == 2) {
-	            if (e.getCurrentItem() == null || e.getCurrentItem().getType() == Material.AIR || !e.getCurrentItem().getItemMeta().hasDisplayName()) {
-	               return;
+	@EventHandler
+	public void aoRenomearNaBigorna(InventoryClickEvent e) {
+		if (e.getInventory().getType() == InventoryType.ANVIL && e.getWhoClicked().hasPermission("system.cornabigorna")) {
+			ItemStack item;
+	        ItemMeta meta;
+	        if (e.getRawSlot() == 2) {
+	        	if (e.getCurrentItem() == null || e.getCurrentItem().getType() == Material.AIR || !e.getCurrentItem().getItemMeta().hasDisplayName()) {
+	        		return;
 	            }
 
 	            item = e.getCurrentItem();

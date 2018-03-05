@@ -10,15 +10,21 @@ import rush.Main;
 public class BloquearTeleportPorPortal implements Listener {
 	
     @EventHandler
-    public static void onPortalTravel(final PlayerPortalEvent e) {
-	    if (Main.aqui.getConfig().getBoolean("Bloquear-Teleport-Por-Portal.NetherPortal"))
-        if (e.getCause() == PlayerTeleportEvent.TeleportCause.NETHER_PORTAL) {
-            e.setCancelled(true);
-            
-        }
-	    if (Main.aqui.getConfig().getBoolean("Bloquear-Teleport-Por-Portal.EndPortal"))
-	    if (e.getCause() == PlayerTeleportEvent.TeleportCause.END_PORTAL) {
-	            e.setCancelled(true);
+    public static void aoTeleportaPorPortal(final PlayerPortalEvent e) {
+	    if (Main.aqui.getConfig().getBoolean("Bloquear-Teleport-Por-Portal.NetherPortal")) {
+	    	if (e.getCause() == PlayerTeleportEvent.TeleportCause.NETHER_PORTAL) {
+	    		if (!(e.getPlayer().hasPermission("system.bypass.teleportarporportal"))) {
+	    			e.setCancelled(true);
+	    		}
+	    	}
+	    }
+	    
+	    if (Main.aqui.getConfig().getBoolean("Bloquear-Teleport-Por-Portal.EndPortal")) {
+	    	if (e.getCause() == PlayerTeleportEvent.TeleportCause.END_PORTAL) {
+	    		if (!(e.getPlayer().hasPermission("system.bypass.teleportarporportal"))) {
+	    			e.setCancelled(true);
+	    		}
+	    	}
+	    }
     }
-  }
 }

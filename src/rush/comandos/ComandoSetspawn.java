@@ -28,13 +28,13 @@ public class ComandoSetspawn implements Listener, CommandExecutor {
 		          return true;
 		       }
 
-	     public static void saveSpawn(Location spawn) {
-	     Main.aqui.getConfig().set("Spawn", spawn);
-	     Main.aqui.getConfig().set("Spawn.world", spawn.getWorld().getName());
-	     Main.aqui.getConfig().set("Spawn.x", Double.valueOf(spawn.getX()));
-	     Main.aqui.getConfig().set("Spawn.y", Double.valueOf(spawn.getY()));
-	     Main.aqui.getConfig().set("Spawn.z", Double.valueOf(spawn.getZ()));
-	     Main.aqui.getConfig().set("Spawn.yaw", Float.valueOf(spawn.getYaw()));
-	     Main.aqui.getConfig().set("Spawn.pitch", Float.valueOf(spawn.getPitch()));
-	     Main.aqui.saveConfig(); }
+	 public static void saveSpawn(Location spawn) {
+	     Main.aqui.getSpawn().set("Spawn", spawn);
+	     Main.aqui.getSpawn().set("Spawn.world", spawn.getWorld().getName());
+	     Main.aqui.getSpawn().set("Spawn.x", Double.valueOf(spawn.getX()));
+	     Main.aqui.getSpawn().set("Spawn.y", Double.valueOf(spawn.getY()));
+	     Main.aqui.getSpawn().set("Spawn.z", Double.valueOf(spawn.getZ()));
+	     Main.aqui.getSpawn().set("Spawn.yaw", Float.valueOf(spawn.getYaw()));
+	     Main.aqui.getSpawn().set("Spawn.pitch", Float.valueOf(spawn.getPitch()));
+	     Main.aqui.saveResource("spawn.yml", true); }
 }

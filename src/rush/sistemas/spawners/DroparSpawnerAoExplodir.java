@@ -19,13 +19,13 @@ public class DroparSpawnerAoExplodir implements Listener {
 
 	private static Random random = new Random();
 	
-    @EventHandler(priority = EventPriority.MONITOR)
-    public void aoExplodir(final EntityExplodeEvent e) { 	// Ao explodir o MobSpawner
-	     if (!e.isCancelled()) {
-         for (final Block b : e.blockList()) {
-            if (b.getType() == Material.MOB_SPAWNER && random.nextInt(100) <= (Main.aqui.getConfig().getInt("Chance-De-Dropar-Ao-Explodir"))) {
-	             final ItemStack is = new ItemStack(Material.MOB_SPAWNER);
-	             final ItemMeta im = is.getItemMeta();
+	@EventHandler(priority = EventPriority.MONITOR)
+	public void aoExplodir(final EntityExplodeEvent e) {
+		if (!e.isCancelled()) {
+			for (final Block b : e.blockList()) {
+				if (b.getType() == Material.MOB_SPAWNER && random.nextInt(100) <= (Main.aqui.getConfig().getInt("Chance-De-Dropar-Ao-Explodir"))) {
+	               final ItemStack is = new ItemStack(Material.MOB_SPAWNER);
+	               final ItemMeta im = is.getItemMeta();
 	               im.setDisplayName(Main.aqui.getMensagens().getString("Nome-Do-MobSpawner").replace("&", "§"));
 	               im.setLore(Arrays.asList(((CreatureSpawner)b.getState()).getCreatureTypeName()
 	            		    .replace("Pig", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Porco")
@@ -37,6 +37,7 @@ public class DroparSpawnerAoExplodir implements Listener {
 				    		.replace("Spider", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Aranha")
 				    		.replace("Creeper", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Creeper")
 				    		.replace("Rabbit", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Coelho")
+				    		.replace("LavaSlime", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Cubo de Magma")
 				    		.replace("VillagerGolem", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Iron Golem")
 				    		.replace("WitherBoss", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Wither")
 				    		.replace("Slime", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Slime")
@@ -47,8 +48,8 @@ public class DroparSpawnerAoExplodir implements Listener {
 				    		));
 	               is.setItemMeta(im);
                 b.getWorld().dropItem(b.getLocation(), is);
-            }
-         }
-	   }
-    }
+				}
+			}
+		}
+	}
 }

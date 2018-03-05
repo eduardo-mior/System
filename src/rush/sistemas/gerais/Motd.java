@@ -10,9 +10,9 @@ public class Motd implements Listener {
 
 	String motd =  Main.aqui.getConfig().getString("Motd.Linha1").replaceAll("&", "§") + "\n" + Main.aqui.getConfig().getString("Motd.Linha2").replaceAll("&", "§");
 	
-	   @EventHandler
-	   public void definirMotd(ServerListPingEvent e) {
-	      e.setMotd(motd);
-	   }
+	@EventHandler
+	public void definirMotd(ServerListPingEvent e) {
+		e.setMotd(motd);
+	}
 }
 

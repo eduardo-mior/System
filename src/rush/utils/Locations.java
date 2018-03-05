@@ -18,31 +18,31 @@ public class Locations {
 
 	public static void areaVip() {
          areaVip = new Location(Main.aqui.getServer().getWorld
-            (Main.aqui.getConfig().getString("AreaVip.world")), 
-            Main.aqui.getConfig().getDouble("AreaVip.x"), 
-            Main.aqui.getConfig().getDouble("AreaVip.y"), 
-            Main.aqui.getConfig().getDouble("AreaVip.z"), 
-            Float.parseFloat(Main.aqui.getConfig().getString("AreaVip.yaw")), 
-            Float.parseFloat(Main.aqui.getConfig().getString("AreaVip.pitch")));
+            (Main.aqui.getVip().getString("AreaVip.world")), 
+            Main.aqui.getVip().getDouble("AreaVip.x"), 
+            Main.aqui.getVip().getDouble("AreaVip.y"), 
+            Main.aqui.getVip().getDouble("AreaVip.z"), 
+            Float.parseFloat(Main.aqui.getVip().getString("AreaVip.yaw")), 
+            Float.parseFloat(Main.aqui.getVip().getString("AreaVip.pitch")));
 	}
 	
 	public static void areaNaoVip() {
         areaNaoVip = new Location(Main.aqui.getServer().getWorld
-           (Main.aqui.getConfig().getString("AreaNaoVip.world")), 
-           Main.aqui.getConfig().getDouble("AreaNaoVip.x"), 
-           Main.aqui.getConfig().getDouble("AreaNaoVip.y"), 
-           Main.aqui.getConfig().getDouble("AreaNaoVip.z"), 
-           Float.parseFloat(Main.aqui.getConfig().getString("AreaNaoVip.yaw")), 
-           Float.parseFloat(Main.aqui.getConfig().getString("AreaNaoVip.pitch")));
+           (Main.aqui.getNaoVip().getString("AreaNaoVip.world")), 
+           Main.aqui.getNaoVip().getDouble("AreaNaoVip.x"), 
+           Main.aqui.getNaoVip().getDouble("AreaNaoVip.y"), 
+           Main.aqui.getNaoVip().getDouble("AreaNaoVip.z"), 
+           Float.parseFloat(Main.aqui.getNaoVip().getString("AreaNaoVip.yaw")), 
+           Float.parseFloat(Main.aqui.getNaoVip().getString("AreaNaoVip.pitch")));
 	}
 	
 	public static void spawn() {
 	    spawn = new Location(Main.aqui.getServer().getWorld
-	        (Main.aqui.getConfig().getString("Spawn.world")), 
-	        Main.aqui.getConfig().getDouble("Spawn.x"), 
-	        Main.aqui.getConfig().getDouble("Spawn.y"), 
-	        Main.aqui.getConfig().getDouble("Spawn.z"), 
-	        Float.parseFloat(Main.aqui.getConfig().getString("Spawn.yaw")), 
-	        Float.parseFloat(Main.aqui.getConfig().getString("Spawn.pitch")));
-	   }
+	        (Main.aqui.getSpawn().getString("Spawn.world")), 
+	        Main.aqui.getSpawn().getDouble("Spawn.x"), 
+	        Main.aqui.getSpawn().getDouble("Spawn.y"), 
+	        Main.aqui.getSpawn().getDouble("Spawn.z"), 
+	        Float.parseFloat(Main.aqui.getSpawn().getString("Spawn.yaw")), 
+	        Float.parseFloat(Main.aqui.getSpawn().getString("Spawn.pitch")));
+	} 
 }

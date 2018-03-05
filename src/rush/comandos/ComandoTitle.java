@@ -34,7 +34,7 @@ public class ComandoTitle implements Listener, CommandExecutor {
 		            for (int i = 0; i < args.length; i++) {
 		            msg = msg + args[i] + " ";
 		            
-		            msg2 = (msg).replaceAll(" ", "_").replaceAll("%nl%", "<nl>").replaceAll("[nl]", "<nl>");
+		            msg2 = (msg).replaceAll(" ", "_");
 		            
 		            msg3 = msg2.split("<nl>");
 		            

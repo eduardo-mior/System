@@ -16,7 +16,7 @@ import rush.Main;
 
 public class ComandoSGive implements Listener, CommandExecutor {	
 	
-	String[] mobs = {"Porco", "Galinha", "Ovelha", "Vaca", "Esqueleto", "Aranha_da_Caverna", "Aranha", "Creeper", "Coelho", "Iron_Golem", "Wither", "Slime", "Enderman", "Zumbi", "Zumbi_Pigman", "Blaze"};
+	String[] mobs = {"Porco", "Galinha", "Ovelha", "Vaca", "Esqueleto", "Aranha_da_Caverna", "Aranha", "Creeper", "Coelho", "Iron_Golem", "Wither", "Slime", "Enderman", "Zumbi", "Zumbi_Pigman", "Blaze", "Cubo_De_Magma"};
 	
     @SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
 	public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {

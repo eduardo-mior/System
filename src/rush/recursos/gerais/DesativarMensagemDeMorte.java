@@ -8,9 +8,7 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 public class DesativarMensagemDeMorte implements Listener {
 
     @EventHandler(priority=EventPriority.MONITOR)
-    public void aoMorrer(PlayerDeathEvent e)
-    {
-      e.setDeathMessage(null);
+    public void aoMorrer(PlayerDeathEvent e) {
+    	e.setDeathMessage(null);
     }
-	
 }

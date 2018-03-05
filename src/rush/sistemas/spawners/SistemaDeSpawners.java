@@ -21,11 +21,11 @@ public class SistemaDeSpawners implements Listener {
 	   
 	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.MONITOR)
-	public static void quebrouSpawner(final BlockBreakEvent e) { 		// Ao quebrar o MobSpawner
-			final Player p = e.getPlayer();
-	     	final Block b = e.getBlock();
-	        if (b.getType() == Material.MOB_SPAWNER && p.getItemInHand().getType().name().contains("PICKAXE") && p.getItemInHand().getItemMeta().hasEnchant(Enchantment.SILK_TOUCH) && !e.isCancelled()) {
-	            e.setCancelled(true);
+	public static void quebrouSpawner(final BlockBreakEvent e) {
+		Player p = e.getPlayer();
+	    Block b = e.getBlock();
+	    if (b.getType() == Material.MOB_SPAWNER && p.getItemInHand().getType().name().contains("PICKAXE") && p.getItemInHand().getItemMeta().hasEnchant(Enchantment.SILK_TOUCH) && !e.isCancelled()) {
+	    	e.setCancelled(true);
 	            final ItemStack drop = new ItemStack(b.getType());
 	            final CreatureSpawner cs = (CreatureSpawner)b.getState();
 	            final ItemMeta imd = drop.getItemMeta();
@@ -41,6 +41,7 @@ public class SistemaDeSpawners implements Listener {
 			    		.replace("Creeper", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Creeper")
 			    		.replace("Rabbit", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Coelho")
 			    		.replace("VillagerGolem", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Iron Golem")
+			    		.replace("LavaSlime", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Cubo de Magma")
 			    		.replace("WitherBoss", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Wither")
 			    		.replace("Slime", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Slime")
 			    		.replace("Enderman", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Enderman")
@@ -65,11 +66,11 @@ public class SistemaDeSpawners implements Listener {
 	    }
 
 	@EventHandler(priority = EventPriority.HIGHEST)
-	public static void colocouSpawner(final BlockPlaceEvent e) {		// Ao colocar MobSpawner
-			final Block b = e.getBlock();
-	        if (b.getType() == Material.MOB_SPAWNER) {
-	            if (e.getItemInHand().hasItemMeta() && e.getItemInHand().getItemMeta().hasLore()) {
-	                final CreatureSpawner cs = (CreatureSpawner)b.getState();
+	public static void colocouSpawner(final BlockPlaceEvent e) {
+		Block b = e.getBlock();
+		if (b.getType() == Material.MOB_SPAWNER) {
+			if (e.getItemInHand().hasItemMeta() && e.getItemInHand().getItemMeta().hasLore()) {
+				final CreatureSpawner cs = (CreatureSpawner)b.getState();
 	                cs.setCreatureTypeByName((String)e.getItemInHand().getItemMeta().getLore().get(0)
 				    		.replace(Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Porco", "Pig")
 				    		.replace(Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Galinha", "Chicken")
@@ -93,6 +94,6 @@ public class SistemaDeSpawners implements Listener {
 	                e.setCancelled(true);
 	                e.getPlayer().sendMessage(Main.aqui.getMensagens().getString("Spawner-Bugado").replaceAll("&", "§"));
 	            }
-	        }
-	    }
+		}
+	}
 }

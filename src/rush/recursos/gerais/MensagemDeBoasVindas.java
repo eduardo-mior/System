@@ -11,10 +11,10 @@ public class MensagemDeBoasVindas implements Listener {
 	
 	@EventHandler
 	public void aoEntrar(PlayerJoinEvent e) {
-	for (String mensagem : Main.aqui.getConfig().getStringList("Mensagem-De-Boas-Vindas.Mensagem")) {
-	Player p = e.getPlayer();
-	String nome = p.getName();
-    p.sendMessage((mensagem).replace("&", "§").replace("%player%", nome));
-	}
+		for (String mensagem : Main.aqui.getConfig().getStringList("Mensagem-De-Boas-Vindas.Mensagem")) {
+			Player p = e.getPlayer();
+			String nome = p.getName();
+			p.sendMessage((mensagem).replace("&", "§").replace("%player%", nome));
+		}
 	}
 }

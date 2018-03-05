@@ -18,5 +18,4 @@ public class TitleDeBoasVindas implements Listener {
 		Main.aqui.getConfig().getString("Title-De-Boas-Vindas.Titulo").replace("&", "§").replace("%player%", nome),
 		Main.aqui.getConfig().getString("Title-De-Boas-Vindas.Subtitulo").replace("&", "§").replace("%player%", nome));
 	}
-
 }
