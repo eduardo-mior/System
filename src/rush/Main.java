@@ -1,26 +1,17 @@
 package rush;
 
-import java.io.File;
-import java.util.List;
-import java.util.logging.Level;
-
 import org.bukkit.Bukkit;
-import org.bukkit.Location;
-import org.bukkit.World;
-import org.bukkit.configuration.file.FileConfiguration;
-import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitTask;
 
 import rush.addons.LegendChat;
 import rush.addons.McMMO;
 import rush.comandos.ComandoAlerta;
 import rush.comandos.ComandoClearChat;
 import rush.comandos.ComandoCores;
+import rush.comandos.ComandoDelwarp;
 import rush.comandos.ComandoDivulgar;
 import rush.comandos.ComandoExecutarSom;
 import rush.comandos.ComandoLixo;
@@ -31,9 +22,12 @@ import rush.comandos.ComandoPing;
 import rush.comandos.ComandoSGive;
 import rush.comandos.ComandoSetmundovip;
 import rush.comandos.ComandoSetspawn;
+import rush.comandos.ComandoSetwarp;
 import rush.comandos.ComandoSlime;
 import rush.comandos.ComandoSpawn;
 import rush.comandos.ComandoTitle;
+import rush.comandos.ComandoWarp;
+import rush.comandos.ComandoWarps;
 import rush.recursos.adicionais.BigornaInfinita;
 import rush.recursos.adicionais.BloquearComandos;
 import rush.recursos.adicionais.BloquearCrafts;
@@ -82,88 +76,51 @@ import rush.sistemas.gerais.Tablist;
 import rush.sistemas.spawners.BloquearTrocarTipoDoSpawnerComOvo;
 import rush.sistemas.spawners.DroparSpawnerAoExplodir;
 import rush.sistemas.spawners.SistemaDeSpawners;
+import rush.utils.ConfigManager;
+import rush.utils.DataManager;
 import rush.utils.Locations;
 
-@SuppressWarnings("all")
 public class Main extends JavaPlugin implements Listener {
 
    public static Main aqui;
-   public List<String> mensagens = getConfig().getStringList("Lista-De-Anuncios");
-   public static File arquivoMensagens;
-   public static File arquivoSpawn;
-   public static File arquivoVip;
-   public static File arquivoNaoVip;
-   public static FileConfiguration configMensagens;
-   public static FileConfiguration configSpawn;
-   public static FileConfiguration configVip;
-   public static FileConfiguration configNaoVip;
 
-   
    public void onEnable() {
-	    aqui = this;
-	    this.gerarConfigs();
+	    instanceMain();
+	    gerarConfigs();
 	    Locations.loadLocations();
-	    this.registrarEventos();
-	    this.registrarComandos();
-	   }
-
+	    registrarEventos();
+	    registrarComandos();
+   }
    
    public void onDisable() {
 	   PluginManager pm = Bukkit.getServer().getPluginManager();
 	   
 	   if (pm.getPlugin("mcMMO") != null) {
-	   McMMO.TTask.cancel();}
+	   McMMO.TTask.cancel(); }
 	   
-	   Bukkit.getScheduler().cancelTasks(Main.aqui);
+	   if (ConfigManager.getConfig("settings").getBoolean("Auto-Anuncio")) {
+	   AutoAnuncio.XTask.cancel(); }
+	   
 	   HandlerList.unregisterAll();
    }
    
+   public void instanceMain() {
+	   aqui = this;
+   }
+   
    public void gerarConfigs() {
-	   saveDefaultConfig();
-
-       if (!new File(getDataFolder(), "mensagens.yml").exists()) {
-       saveResource("mensagens.yml", false); }
-       arquivoMensagens = new File(this.getDataFolder() + "/mensagens.yml");
-	   configMensagens = (FileConfiguration)YamlConfiguration.loadConfiguration(arquivoMensagens);
-       
-       if (!new File(getDataFolder(), "spawn.yml").exists()) {
-       saveResource("spawn.yml", false); }
-       arquivoSpawn = new File(this.getDataFolder() + "/spawn.yml");
-       configSpawn = (FileConfiguration)YamlConfiguration.loadConfiguration(arquivoSpawn);
-       
-       if (!new File(getDataFolder(), "vip.yml").exists()) {
-       saveResource("vip.yml", false); }
-       arquivoVip = new File(this.getDataFolder() + "/vip.yml");
-       configVip = (FileConfiguration)YamlConfiguration.loadConfiguration(arquivoVip);
-
-       
-       if (!new File(getDataFolder(), "naovip.yml").exists()) {
-       saveResource("naovip.yml", false); }
-       arquivoNaoVip = new File(this.getDataFolder() + "/naovip.yml");
-       configNaoVip = (FileConfiguration)YamlConfiguration.loadConfiguration(arquivoNaoVip);
-
-   }
-   
-   public FileConfiguration getMensagens() {
-       return configMensagens;
-   }
-   
-   public FileConfiguration getSpawn() {
-       return configSpawn;
-   }
-
-   public FileConfiguration getVip() {
-       return configVip;
-   }
-   
-   public FileConfiguration getNaoVip() {
-       return configNaoVip;
+	   DataManager.createFolder("Warps");
+	   ConfigManager.createNewConfig("mensagens");
+	   ConfigManager.createNewConfig("settings");
+	   ConfigManager.createNewConfig("permissions");
+	   ConfigManager.createNewConfig("locations");
    }
    
    public void registrarComandos() {
 	    getCommand("alerta").setExecutor(new ComandoAlerta()); 
 	    getCommand("clearchat").setExecutor(new ComandoClearChat()); 
 	    getCommand("cores").setExecutor(new ComandoCores());
+	    getCommand("delwarp").setExecutor(new ComandoDelwarp()); 
 	    getCommand("divulgar").setExecutor(new ComandoDivulgar()); 
 	    getCommand("executarsom").setExecutor(new ComandoExecutarSom()); 
 	    getCommand("lixo").setExecutor(new ComandoLixo());
@@ -171,167 +128,169 @@ public class Main extends JavaPlugin implements Listener {
 	    getCommand("mundovip").setExecutor(new ComandoMundoVip()); 
 	    getCommand("online").setExecutor(new ComandoOnline()); 
 	    getCommand("ping").setExecutor(new ComandoPing());
-	    getCommand("setmundovip").setExecutor(new ComandoSetmundovip());
-	    getCommand("setspawn").setExecutor(new ComandoSetspawn());
+	    getCommand("setmundovip").setExecutor(new ComandoSetmundovip()); 
+	    getCommand("setspawn").setExecutor(new ComandoSetspawn()); 
+	    getCommand("setwarp").setExecutor(new ComandoSetwarp()); 
 	    getCommand("sgive").setExecutor(new ComandoSGive()); 
 	    getCommand("slime").setExecutor(new ComandoSlime());
 	    getCommand("spawn").setExecutor(new ComandoSpawn()); 
 	    getCommand("title").setExecutor(new ComandoTitle()); 
-
+	    getCommand("warp").setExecutor(new ComandoWarp()); 
+	    getCommand("warps").setExecutor(new ComandoWarps());
    }
 	
-    public void registrarEventos() {
+   public void registrarEventos() {
 	    PluginManager pm = Bukkit.getServer().getPluginManager();
 	    
-	    if (getConfig().getBoolean("Anunciar-Morte")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Anunciar-Morte")){
 	    pm.registerEvents(new AnunciarMorte(), this);}
 	    
-	    if (getConfig().getBoolean("Ativar-Cores-Na-Bigorna")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Ativar-Cores-Na-Bigorna")){
 	    pm.registerEvents(new CoresNaBigorna(), this);}
 	    
-	    if (getConfig().getBoolean("Ativar-Cores-Na-Placa")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Ativar-Cores-Na-Placa")){
 	    pm.registerEvents(new CoresNaPlaca(), this);}
 	    
-	    if (getConfig().getBoolean("Auto-Anuncio")){
-	    BukkitTask AutoAnuncio = new AutoAnuncio(mensagens).runTaskTimer(this, 20 * getConfig().getInt("Delay-Entre-Anuncios") * 60, 20 * getConfig().getInt("Delay-Entre-Anuncios") * 60);}
-	    
-	    if (getConfig().getBoolean("Bigorna-Infinita")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Auto-Anuncio")){
+	    AutoAnuncio.runMensagens();	}
+	    	
+	    if (ConfigManager.getConfig("settings").getBoolean("Bigorna-Infinita")){
 	    pm.registerEvents(new BigornaInfinita(), this);}
 	    
-	    if (getConfig().getBoolean("Bloquear-Abrir-Containers.Ativar")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Abrir-Containers.Ativar")){
 	    pm.registerEvents(new BloquearAbrirContainers(), this);}
 	    
-	    if (getConfig().getBoolean("Bloquear-Cair-No-Void")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Cair-No-Void")){
 	    pm.registerEvents(new BloquearCairNoVoid(), this);}
 	    
-	    if (getConfig().getBoolean("Bloquear-Cama")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Cama")){
 	    pm.registerEvents(new BloquearCama(), this);}
 	    
-	    if (getConfig().getBoolean("Bloquear-Comandos")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Comandos")){
 	    pm.registerEvents(new BloquearComandos(), this);}
 	    
-	    if (getConfig().getBoolean("Bloquear-Congelar-Agua")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Congelar-Agua")){
 	    pm.registerEvents(new BloquearCongelarAgua(), this);}
 	    
-	    if (getConfig().getBoolean("Bloquear-Crafts")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Crafts")){
 	    pm.registerEvents(new BloquearCrafts(), this);}
 	    
-	    if (getConfig().getBoolean("Bloquear-Criar-Portal")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Criar-Portal")){
 	    pm.registerEvents(new BloquearCriarPortal(), this);}
 	    
-	    if (getConfig().getBoolean("Bloquear-Derreter-Gelo-E-Neve")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Derreter-Gelo-E-Neve")){
 	    pm.registerEvents(new BloquearDerreterGeloENeve(), this);}
 	    
-	    if (getConfig().getBoolean("Bloquear-NameTag")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Bloquear-NameTag")){
 	    pm.registerEvents(new BloquearNameTag(), this);}
 	    
-	    if (getConfig().getBoolean("Bloquear-Nicks-Improprios")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Nicks-Improprios")){
 	    pm.registerEvents(new BloquearNicksImproprios(), this);}
 	    
-	    if (getConfig().getBoolean("Bloquear-Mobs-De-Pegarem-Fogo-Para-O-Sol")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Mobs-De-Pegarem-Fogo-Para-O-Sol")){
 	    pm.registerEvents(new BloquearMobsDePegaremFogoParaOSol(), this);}
 	    
-	    if (getConfig().getBoolean("Bloquear-Passar-Da-Borda")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Passar-Da-Borda")){
 	    pm.registerEvents(new BloquearPassarDaBorda(), this);}
 	    
-	    if (getConfig().getBoolean("Bloquear-Placas")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Placas")){
 	    pm.registerEvents(new BloquearPlacas(), this);}
 	    
-	    if (getConfig().getBoolean("Bloquear-Shift-Em-Containers.Ativar")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Shift-Em-Containers.Ativar")){
 	    pm.registerEvents(new BloquearShiftEmContainers(), this);}
 	    
-	    if (getConfig().getBoolean("Bloquear-Subir-Em-Veiculos")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Subir-Em-Veiculos")){
 	    pm.registerEvents(new BloquearSubirEmVeiculos(), this);}
 	    
-	    if (getConfig().getBoolean("Bloquear-Subir-No-Teto-Nether")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Subir-No-Teto-Nether")){
 	    pm.registerEvents(new BloquearSubirNoTetoNether(), this);}
 	    
-	    if (getConfig().getBoolean("Bloquear-Teleport-Por-Portal.Ativar")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Teleport-Por-Portal.Ativar")){
 	    pm.registerEvents(new BloquearTeleportPorPortal(), this);}
 	    
-	    if (getConfig().getBoolean("Bloquear-Trocar-Tipo-Do-Spawner-Com-Ovo")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Trocar-Tipo-Do-Spawner-Com-Ovo")){
 	    pm.registerEvents(new BloquearTrocarTipoDoSpawnerComOvo(), this);}
 	    	    
-	    if (getConfig().getBoolean("Bloquear-Xp-Ao-Quebrar-Mob-Spawners")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Xp-Ao-Quebrar-Mob-Spawners")){
 	    pm.registerEvents(new BloquearXpAoQuebrarMobSpawners(), this);}
 	    
-	    if (getConfig().getBoolean("Desativar-Chuva")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Desativar-Chuva")){
 	    pm.registerEvents(new DesativarChuva(), this);}
 	    
-	    if (getConfig().getBoolean("Desativar-Ciclo-Do-Dia")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Desativar-Ciclo-Do-Dia")){
 	    pm.registerEvents(new DesativarCicloDoDia(), this);}
 	    
-	    if (getConfig().getBoolean("Desativar-Dano-Do-EnderDragon")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Desativar-Dano-Do-EnderDragon")){
 	    pm.registerEvents(new DesativarDanoDoEnderDragon(), this);}
 	    
-	    if (getConfig().getBoolean("Desativar-Dano-Do-Whither")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Desativar-Dano-Do-Whither")){
 	    pm.registerEvents(new DesativarDanoDoWhiter(), this);}
 	    
-	    if (getConfig().getBoolean("Desativar-Flow-Da-Agua-E-Lava")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Desativar-Flow-Da-Agua-E-Lava")){
 	    pm.registerEvents(new DesativarFlowDaAguaELava(), this);}
 	    
-	    if (getConfig().getBoolean("Desativar-Fome-Nos-Mundos")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Desativar-Fome-Nos-Mundos")){
 	    pm.registerEvents(new DesativarFomeNosMundos(), this);}
 	    
-	    if (getConfig().getBoolean("Desativar-Mensagem-De-Entrada")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Desativar-Mensagem-De-Entrada")){
 	    pm.registerEvents(new DesativarMensagemDeEntrada(), this);}
 	    
-	    if (getConfig().getBoolean("Desativar-Mensagem-De-Morte")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Desativar-Mensagem-De-Morte")){
 	    pm.registerEvents(new DesativarMensagemDeMorte(), this);}
 	    
-	    if (getConfig().getBoolean("Desativar-Mensagem-De-Saida")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Desativar-Mensagem-De-Saida")){
 	    pm.registerEvents(new DesativarMensagemDeSaida(), this);}
 	    
-	    if (getConfig().getBoolean("Desativar-Mobs-Naturais")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Desativar-Mobs-Naturais")){
 	    pm.registerEvents(new DesativarMobsNaturais(), this);}
 	    
-	    if (getConfig().getBoolean("Desativar-Propagacao-Do-Fogo")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Desativar-Propagacao-Do-Fogo")){
 	    pm.registerEvents(new DesativarPropagacaoDoFogo(), this);}
 	    
-	    if (getConfig().getBoolean("Desativar-Queda-Da-Areia")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Desativar-Queda-Da-Areia")){
 	    pm.registerEvents(new DesativarQuedaDaAreia(), this);}
 	    
-	    if (getConfig().getBoolean("Desativar-Queda-Das-Folhas")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Desativar-Queda-Das-Folhas")){
 	    pm.registerEvents(new DesativarQuedaDasFolhas(), this);}
 	    
-	    if (getConfig().getBoolean("Dropar-Spawner-Ao-Explodir")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Dropar-Spawner-Ao-Explodir")){
 	    pm.registerEvents(new DroparSpawnerAoExplodir(), this);}
 	    
-	    if (getConfig().getBoolean("EnderPearl-Cooldown.Ativar")){
+	    if (ConfigManager.getConfig("settings").getBoolean("EnderPearl-Cooldown.Ativar")){
 	    pm.registerEvents(new EnderPearlCooldown(), this);}
 	    
-	    if (getConfig().getBoolean("Entrar-No-Spawn-Ao-Logar")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Entrar-No-Spawn-Ao-Logar")){
 	    pm.registerEvents(new EntrarNoSpawnAoLogar(), this);}
 	    
-	    if (getConfig().getBoolean("Limitador-De-Players")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Limitador-De-Players")){
 	    pm.registerEvents(new LimiteDePlayers(), this);}
 	    
-	    if (getConfig().getBoolean("Mensagem-De-Boas-Vindas.Ativar")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Mensagem-De-Boas-Vindas.Ativar")){
 		pm.registerEvents(new MensagemDeBoasVindas(), this);}
 	    
-	    if (getConfig().getBoolean("Motd.Ativar")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Motd.Ativar")){
 	    pm.registerEvents(new Motd(), this);}
 	    
-	    if (getConfig().getBoolean("ScoreBoard.Ativar")){
+	    if (ConfigManager.getConfig("settings").getBoolean("ScoreBoard.Ativar")){
 	    pm.registerEvents(new ScoreBoard(), this);}
 	    
-	    if (getConfig().getBoolean("Sistema-De-Spawners")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Sistema-De-Spawners")){
 	    pm.registerEvents(new SistemaDeSpawners(), this);}
 	    
-	    if (getConfig().getBoolean("Title-De-Boas-Vindas.Ativar")){
+	    if (ConfigManager.getConfig("settings").getBoolean("Title-De-Boas-Vindas.Ativar")){
 		pm.registerEvents(new TitleDeBoasVindas(), this);}
 
-		if (getConfig().getBoolean("Ativar-Tablist")){
+		if (ConfigManager.getConfig("settings").getBoolean("Ativar-Tablist")){
 	    pm.registerEvents(new Tablist(), this);}
 	     
-	    if (getConfig().getBoolean("AtivarAddons.Legendchat")){
+	    if (ConfigManager.getConfig("settings").getBoolean("AtivarAddons.Legendchat")){
 	    if (pm.getPlugin("Legendchat") == null) {
 	    getServer().getConsoleSender().sendMessage("§c[System] Legendchat nao encontrado, desativando addons!");
 	    } else { 
 		pm.registerEvents(new LegendChat(), this);
 	    getServer().getConsoleSender().sendMessage("§a[System] Legendchat encontrado, ativando addons!");}}
 
-	    if (getConfig().getBoolean("AtivarAddons.mcMMO")){
+	    if (ConfigManager.getConfig("settings").getBoolean("AtivarAddons.mcMMO")){
 	    if (pm.getPlugin("mcMMO") == null) {
 	    getServer().getConsoleSender().sendMessage("§c[System] mcMMO nao encontrado, desativando addons!");
 	    } else { 

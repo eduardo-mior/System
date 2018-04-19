@@ -8,25 +8,21 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 import org.bukkit.inventory.Inventory;
 
-import rush.Main;
+import rush.utils.ConfigManager;
 
 public class ComandoLixo implements Listener, CommandExecutor {
 
 	public boolean onCommand(CommandSender sender, Command cmd, String commandlabel, String[] args) {
-	      Inventory inv;
-	      if (cmd.getName().equalsIgnoreCase("lixo")) 
-                {
-	          if ((sender instanceof Player))
-	            {
-	        	  Player p = (Player) sender;
-                {
-                    inv = Bukkit.getServer().createInventory(p, 36, Main.aqui.getMensagens().getString("Titulo-Da-Lixeira").replaceAll("&", "§"));
+		Inventory inv;
+		if (cmd.getName().equalsIgnoreCase("lixo")) {
+			if (sender instanceof Player) {
+				Player p = (Player) sender;
+				inv = Bukkit.getServer().createInventory(p, 36, ConfigManager.getConfig("mensagens").getString("Titulo-Da-Lixeira").replaceAll("&", "§"));
 	            p.openInventory(inv);
-                }
-                } else {
-   	             sender.sendMessage(Main.aqui.getMensagens().getString("Console-Nao-Pode").replaceAll("&", "§")); 
-                }
-                }
-	      return false;
+            } else {
+				sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Console-Nao-Pode").replaceAll("&", "§")); 
+			}
+		}
+		return false;
 	}
 }

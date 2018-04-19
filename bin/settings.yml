@@ -13,8 +13,6 @@ AtivarAddons:
 # |                  Recursos Anti-BUG                   | #
 # +------------------------------------------------------+ #
 ############################################################
-Bloquear-Abrir-Bigorna: true
-Bloquear-Abrir-Funil: true
 Bloquear-Cama: true
 Bloquear-Subir-Em-Veiculos: true
 Bloquear-NameTag: true
@@ -134,38 +132,10 @@ Title-De-Boas-Vindas:
 
 ############################################################
 # +------------------------------------------------------+ #
-# |                   Spawn do Servidor                  | #
-# +------------------------------------------------------+ #
-############################################################
-Spawn:
-  world: world
-  x: -200.0
-  y: 4.0
-  z: 200.0
-  yaw: 112.50008
-  pitch: 2.1000016
-
-############################################################
-# +------------------------------------------------------+ #
 # |                 Mundo VIP do Servidor                | #
 # +------------------------------------------------------+ #
 ############################################################
 Ativar-Camarote-Para-Os-Sem-Vip: true
-AreaNaoVip:
-  world: world
-  x: -200.0
-  y: 4.0
-  z: 194.0
-  yaw: 112.50008
-  pitch: 2.1000016
-
-AreaVip:
-  world: world
-  x: -200.0
-  y: 4.0
-  z: 206.0
-  yaw: 112.50008
-  pitch: 2.1000016
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -249,8 +219,8 @@ CorAutomatica:
   Cor8: "§3"
   Cor9: "§d"
   Cor10: "§f"
-  #Permissão para usar a cor automatica nas frases: system.cor1 // system.cor2 // etc...
-  #Permissão para escrever em destaque no /g: system.destaquechat
+  #Permissão para usar a cor automatica nas frases: system.chat.cor1 // system.chat.cor2 // etc...
+  #Permissão para escrever em destaque no /g: system.chat.destaque
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -259,7 +229,7 @@ CorAutomatica:
 ############################################################
 Auto-Anuncio: true
 Destacar-Anuncio: true
-Delay-Entre-Anuncios: 5
+Delay-Entre-Anuncios: 300
 Reproduzir-Som-No-Anuncio: true
 Som-Do-Anuncio: LEVEL_UP
 # Lista de sons do minecraft 1.8 http://docs.codelanx.com/Bukkit/1.8/org/bukkit/Sound.html

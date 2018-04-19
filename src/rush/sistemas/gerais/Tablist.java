@@ -10,12 +10,12 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import rush.Main;
+import rush.utils.ConfigManager;
 
 public class Tablist implements Listener {
 	
-   String header = Main.aqui.getConfig().getString("Parte-De-Cima").replace("&", "§");
-   String footer = Main.aqui.getConfig().getString("Parte-De-Baixo").replace("&", "§");
+   String header = ConfigManager.getConfig("settings").getString("Parte-De-Cima").replace("&", "§");
+   String footer = ConfigManager.getConfig("settings").getString("Parte-De-Baixo").replace("&", "§");
 	
    public static void sendTabList(Player player, String header, String footer) {
       if (header == null) {

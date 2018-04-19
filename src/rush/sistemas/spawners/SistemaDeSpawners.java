@@ -15,7 +15,7 @@ import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import rush.Main;
+import rush.utils.ConfigManager;
 
 public class SistemaDeSpawners implements Listener {
 	   
@@ -29,25 +29,25 @@ public class SistemaDeSpawners implements Listener {
 	            final ItemStack drop = new ItemStack(b.getType());
 	            final CreatureSpawner cs = (CreatureSpawner)b.getState();
 	            final ItemMeta imd = drop.getItemMeta();
-	            imd.setDisplayName(Main.aqui.getMensagens().getString("Nome-Do-MobSpawner").replaceAll("&", "§"));
+	            imd.setDisplayName(ConfigManager.getConfig("mensagens").getString("Nome-Do-MobSpawner").replaceAll("&", "§"));
 			    imd.setLore(Arrays.asList(cs.getCreatureTypeName()
-			    		.replace("Pig", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Porco")
-			    		.replace("Chicken", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Galinha")
-			    		.replace("Sheep", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Ovelha")
-			    		.replace("Cow", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Vaca")
-			    		.replace("Skeleton", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Esqueleto")
-			    		.replace("CaveSpider", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Aranha da Caverna")
-			    		.replace("Spider", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Aranha")
-			    		.replace("Creeper", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Creeper")
-			    		.replace("Rabbit", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Coelho")
-			    		.replace("VillagerGolem", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Iron Golem")
-			    		.replace("LavaSlime", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Cubo de Magma")
-			    		.replace("WitherBoss", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Wither")
-			    		.replace("Slime", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Slime")
-			    		.replace("Enderman", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Enderman")
-			    		.replace("Zombie", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Zumbi")
-			    		.replace("PigZombie", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Zumbi Pigman")
-			    		.replace("Blaze", Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Blaze")
+			    		.replace("Pig", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Porco")
+			    		.replace("Chicken", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Galinha")
+			    		.replace("Sheep", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Ovelha")
+			    		.replace("Cow", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Vaca")
+			    		.replace("Skeleton", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Esqueleto")
+			    		.replace("CaveSpider", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Aranha da Caverna")
+			    		.replace("Spider", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Aranha")
+			    		.replace("Creeper", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Creeper")
+			    		.replace("Rabbit", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Coelho")
+			    		.replace("VillagerGolem", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Iron Golem")
+			    		.replace("LavaSlime", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Cubo de Magma")
+			    		.replace("WitherBoss", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Wither")
+			    		.replace("Slime", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Slime")
+			    		.replace("Enderman", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Enderman")
+			    		.replace("Zombie", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Zumbi")
+			    		.replace("PigZombie", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Zumbi Pigman")
+			    		.replace("Blaze", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Blaze")
 			    		));
 			    drop.setItemMeta(imd);
 	            boolean droped = false;
@@ -59,7 +59,7 @@ public class SistemaDeSpawners implements Listener {
 	            if (!droped) {
 	            }
 	            else {
-	                p.sendMessage(Main.aqui.getMensagens().getString("Inventario-Cheio-Quebrou").replaceAll("&", "§"));
+	                p.sendMessage(ConfigManager.getConfig("mensagens").getString("Inventario-Cheio-Quebrou").replaceAll("&", "§"));
 	            }
 	            b.setType(Material.AIR);
 	        }
@@ -72,27 +72,27 @@ public class SistemaDeSpawners implements Listener {
 			if (e.getItemInHand().hasItemMeta() && e.getItemInHand().getItemMeta().hasLore()) {
 				final CreatureSpawner cs = (CreatureSpawner)b.getState();
 	                cs.setCreatureTypeByName((String)e.getItemInHand().getItemMeta().getLore().get(0)
-				    		.replace(Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Porco", "Pig")
-				    		.replace(Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Galinha", "Chicken")
-				    		.replace(Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Ovelha", "Sheep")
-				    		.replace(Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Vaca", "Cow")
-				    		.replace(Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Esqueleto", "Skeleton")
-				    		.replace(Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Aranha da Caverna", "CaveSpider")
-				    		.replace(Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Aranha", "Spider")
-				    		.replace(Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Cubo de Magma", "LavaSlime")
-				    		.replace(Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Creeper", "Creeper")
-				    		.replace(Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Coelho", "Rabbit")
-				    		.replace(Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Iron Golem", "VillagerGolem")
-				    		.replace(Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Wither", "WitherBoss")
-				    		.replace(Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Slime", "Slime")
-				    		.replace(Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Enderman", "Enderman")
-				    		.replace(Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Zumbi", "Zombie")
-				    		.replace(Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Zumbi Pigman", "PigZombie")
-				    		.replace(Main.aqui.getMensagens().getString("Lore-Do-MobSpawner") + "Blaze", "Blaze")
+				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Porco", "Pig")
+				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Galinha", "Chicken")
+				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Ovelha", "Sheep")
+				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Vaca", "Cow")
+				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Esqueleto", "Skeleton")
+				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Aranha da Caverna", "CaveSpider")
+				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Aranha", "Spider")
+				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Cubo de Magma", "LavaSlime")
+				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Creeper", "Creeper")
+				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Coelho", "Rabbit")
+				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Iron Golem", "VillagerGolem")
+				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Wither", "WitherBoss")
+				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Slime", "Slime")
+				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Enderman", "Enderman")
+				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Zumbi", "Zombie")
+				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Zumbi Pigman", "PigZombie")
+				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Blaze", "Blaze")
 	                		);
 	            } else {
 	                e.setCancelled(true);
-	                e.getPlayer().sendMessage(Main.aqui.getMensagens().getString("Spawner-Bugado").replaceAll("&", "§"));
+	                e.getPlayer().sendMessage(ConfigManager.getConfig("mensagens").getString("Spawner-Bugado").replaceAll("&", "§"));
 	            }
 		}
 	}

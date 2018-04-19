@@ -18,31 +18,31 @@ public class Locations {
 
 	public static void areaVip() {
          areaVip = new Location(Main.aqui.getServer().getWorld
-            (Main.aqui.getVip().getString("AreaVip.world")), 
-            Main.aqui.getVip().getDouble("AreaVip.x"), 
-            Main.aqui.getVip().getDouble("AreaVip.y"), 
-            Main.aqui.getVip().getDouble("AreaVip.z"), 
-            Float.parseFloat(Main.aqui.getVip().getString("AreaVip.yaw")), 
-            Float.parseFloat(Main.aqui.getVip().getString("AreaVip.pitch")));
+           (ConfigManager.getConfig("locations").getString("AreaVip.world")), 
+           ConfigManager.getConfig("locations").getDouble("AreaVip.x"), 
+           ConfigManager.getConfig("locations").getDouble("AreaVip.y"), 
+           ConfigManager.getConfig("locations").getDouble("AreaVip.z"), 
+           Float.parseFloat(ConfigManager.getConfig("locations").getString("AreaVip.yaw")), 
+           Float.parseFloat(ConfigManager.getConfig("locations").getString("AreaVip.pitch")));
 	}
 	
 	public static void areaNaoVip() {
         areaNaoVip = new Location(Main.aqui.getServer().getWorld
-           (Main.aqui.getNaoVip().getString("AreaNaoVip.world")), 
-           Main.aqui.getNaoVip().getDouble("AreaNaoVip.x"), 
-           Main.aqui.getNaoVip().getDouble("AreaNaoVip.y"), 
-           Main.aqui.getNaoVip().getDouble("AreaNaoVip.z"), 
-           Float.parseFloat(Main.aqui.getNaoVip().getString("AreaNaoVip.yaw")), 
-           Float.parseFloat(Main.aqui.getNaoVip().getString("AreaNaoVip.pitch")));
+           (ConfigManager.getConfig("locations").getString("AreaNaoVip.world")), 
+           ConfigManager.getConfig("locations").getDouble("AreaNaoVip.x"), 
+           ConfigManager.getConfig("locations").getDouble("AreaNaoVip.y"), 
+           ConfigManager.getConfig("locations").getDouble("AreaNaoVip.z"), 
+           Float.parseFloat(ConfigManager.getConfig("locations").getString("AreaNaoVip.yaw")), 
+           Float.parseFloat(ConfigManager.getConfig("locations").getString("AreaNaoVip.pitch")));
 	}
 	
 	public static void spawn() {
 	    spawn = new Location(Main.aqui.getServer().getWorld
-	        (Main.aqui.getSpawn().getString("Spawn.world")), 
-	        Main.aqui.getSpawn().getDouble("Spawn.x"), 
-	        Main.aqui.getSpawn().getDouble("Spawn.y"), 
-	        Main.aqui.getSpawn().getDouble("Spawn.z"), 
-	        Float.parseFloat(Main.aqui.getSpawn().getString("Spawn.yaw")), 
-	        Float.parseFloat(Main.aqui.getSpawn().getString("Spawn.pitch")));
+	       (ConfigManager.getConfig("locations").getString("Spawn.world")), 
+	       ConfigManager.getConfig("locations").getDouble("Spawn.x"), 
+	       ConfigManager.getConfig("locations").getDouble("Spawn.y"), 
+	       ConfigManager.getConfig("locations").getDouble("Spawn.z"), 
+	       Float.parseFloat(ConfigManager.getConfig("locations").getString("Spawn.yaw")), 
+	       Float.parseFloat(ConfigManager.getConfig("locations").getString("Spawn.pitch")));
 	} 
 }

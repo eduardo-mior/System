@@ -7,7 +7,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 
-import rush.Main;
+import rush.utils.ConfigManager;
 
 public class AnunciarMorte implements Listener {
 
@@ -18,19 +18,19 @@ public class AnunciarMorte implements Listener {
 		if (entidade instanceof Player) {
 	        String killer = player.getKiller().getPlayer().getName();
 			
-		    if (Main.aqui.getConfig().getBoolean("Anuncios.Mostrar-Para-Quem-Matou"))
+		    if (ConfigManager.getConfig("settings").getBoolean("Anuncios.Mostrar-Para-Quem-Matou"))
 		    {
-		    entidade.sendMessage(Main.aqui.getConfig().getString("Anuncios.Mensagem-Para-Matador").replace("%playerMorreu%", e.getEntity().getName()).replace("&", "§"));
+		    entidade.sendMessage(ConfigManager.getConfig("settings").getString("Anuncios.Mensagem-Para-Matador").replace("%playerMorreu%", e.getEntity().getName()).replace("&", "§"));
 			}
 		    
-		    if (Main.aqui.getConfig().getBoolean("Anuncios.Mostrar-Para-Quem-Morreu"))
+		    if (ConfigManager.getConfig("settings").getBoolean("Anuncios.Mostrar-Para-Quem-Morreu"))
 		    {
-			player.sendMessage(Main.aqui.getConfig().getString("Anuncios.Mensagem-Para-Defunto").replace("%playerMatou%", killer).replace("&", "§"));
+			player.sendMessage(ConfigManager.getConfig("settings").getString("Anuncios.Mensagem-Para-Defunto").replace("%playerMatou%", killer).replace("&", "§"));
 			}
 		    
-		    if (Main.aqui.getConfig().getBoolean("Anuncios.Mostrar-Para-Todo-Servidor"))
+		    if (ConfigManager.getConfig("settings").getBoolean("Anuncios.Mostrar-Para-Todo-Servidor"))
 		    {
-            Bukkit.broadcastMessage(Main.aqui.getConfig().getString("Anuncios.Mensagem-Para-Todos").replace("%playerMatou%", killer).replace("%playerMorreu%", e.getEntity().getName()).replace("&", "§"));
+            Bukkit.broadcastMessage(ConfigManager.getConfig("settings").getString("Anuncios.Mensagem-Para-Todos").replace("%playerMatou%", killer).replace("%playerMorreu%", e.getEntity().getName()).replace("&", "§"));
             }
 		}
 	}

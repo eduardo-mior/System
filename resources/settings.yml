@@ -1,0 +1,291 @@
+﻿############################################################
+# +------------------------------------------------------+ #
+# |              Recuros Adicionais (Addons)             | #
+# +------------------------------------------------------+ #
+############################################################
+AtivarAddons:
+  Legendchat: true
+  MassiveFactions: true
+  mcMMO: true
+
+############################################################
+# +------------------------------------------------------+ #
+# |                  Recursos Anti-BUG                   | #
+# +------------------------------------------------------+ #
+############################################################
+Bloquear-Cama: true
+Bloquear-Subir-Em-Veiculos: true
+Bloquear-NameTag: true
+Bloquear-Passar-Da-Borda: true
+Bloquear-Xp-Ao-Quebrar-Mob-Spawners: true
+Bloquear-Subir-No-Teto-Nether: true
+EnderPearl-Cooldown: 
+  Ativar: true
+  Cooldown: 5
+
+Bloquear-Abrir-Containers:
+  Ativar: true
+  Containers:
+  - 'ANVIL'
+  - 'ENCHANTING'
+  - 'HOPPER'
+  # Lista de containers: https://ghostbin.com/paste/mxjom
+
+Bloquear-Shift-Em-Containers:
+  Ativar: True
+  Containers:
+  - 'ENDER_CHEST'
+  - 'BEACON'
+  - 'BREWING'
+  # Lista de containers: https://ghostbin.com/paste/mxjom
+
+Comandos-Que-Envolvem-Dinheiro:
+  - 'coins'
+  - 'money'
+  - 'cash'
+  - 'mercado'
+  - 'eco'
+  - 'pay'
+
+############################################################
+# +------------------------------------------------------+ #
+# |                  Recursos Anti-LAG                   | #
+# +------------------------------------------------------+ #
+############################################################
+Bloquear-Congelar-Agua: true
+Bloquear-Derreter-Gelo-E-Neve: true
+Desativar-Mobs-Naturais: true
+Desativar-Propagacao-Do-Fogo: true
+Desativar-Queda-Das-Folhas: true
+Desativar-Queda-Da-Areia: true
+Desativar-Flow-Da-Agua-E-Lava: true
+Desativar-Chuva: true
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   Recursos Gerais                    | #
+# +------------------------------------------------------+ #
+############################################################
+Delay-Para-Teleportar-Comandos: 5
+Bloquear-Mobs-De-Pegarem-Fogo-Para-O-Sol: true
+Bloquear-Cair-No-Void: true
+Desativar-Ciclo-Do-Dia: true
+Desativar-Dano-Do-EnderDragon: true
+Desativar-Dano-Do-Whither: true
+Desativar-Fome-Nos-Mundos: true
+Desativar-Mensagem-De-Entrada: true
+Desativar-Mensagem-De-Morte: true
+Desativar-Mensagem-De-Saida: true
+Entrar-No-Spawn-Ao-Logar: true
+Bloquear-Criar-Portal: true
+Bloquear-Teleport-Por-Portal:
+  Ativar: true
+  NetherPortal: true
+  EndPortal: false
+
+############################################################
+# +------------------------------------------------------+ #
+# |                  Recursos Adicionais                 | #
+# +------------------------------------------------------+ #
+############################################################
+Bigorna-Infinita: true
+Ativar-Cores-Na-Bigorna: true
+Ativar-Cores-Na-Placa: true
+
+############################################################
+# +------------------------------------------------------+ #
+# |                Configurações Diversas                | #
+# +------------------------------------------------------+ #
+############################################################
+Limitador-De-Players: true
+Limite-De-Players: 340
+
+############################################################
+# +------------------------------------------------------+ #
+# |                 Sistemas de Spawners                 | #
+# +------------------------------------------------------+ #
+############################################################
+Sistema-De-Spawners: true
+Bloquear-Trocar-Tipo-Do-Spawner-Com-Ovo: true
+Dropar-Spawner-Ao-Explodir: true
+Chance-De-Dropar-Ao-Explodir: 60
+
+############################################################
+# +------------------------------------------------------+ #
+# |           Mensagem e Title de Boas-Vindas            | #
+# +------------------------------------------------------+ #
+############################################################
+Mensagem-De-Boas-Vindas:
+  Ativar: true
+  Mensagem:
+    - '&6-&e=&6-&e=&6-&e=&6-&e=&6-{ &bSeja Bem Vindo ao Hypixel! &6}-&e=&6-&e=&6-&e=&6-&e=&6-'
+    - '&eAdquira CASH e VIP em: &6store.hypixel.net'
+    - '&eNos siga no twiiter: &6twiiter.com/hypixel'
+    - '&eDivirta-se em nosso TS3: &6ts.hypixel.net'
+    # %player% mostra o nome do player.
+
+Title-De-Boas-Vindas:
+  Ativar: true
+  Titulo: '&6&lHYPIXEL'
+  Subtitulo: '&eSEJA BEM-VINDO!'
+  # %player% mostra o nome do player.
+
+############################################################
+# +------------------------------------------------------+ #
+# |                 Mundo VIP do Servidor                | #
+# +------------------------------------------------------+ #
+############################################################
+Ativar-Camarote-Para-Os-Sem-Vip: true
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   Motd do Servidor                   | #
+# +------------------------------------------------------+ #
+############################################################
+Motd:
+  Ativar: true
+  Linha1: "&f&lGamer's&6&lBoard &7www.gamersboard.com.br"
+  Linha2: "&fA sua comunidade gamer!"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   Bloquear Comandos                  | #
+# +------------------------------------------------------+ #
+############################################################
+Bloquear-Comandos: true
+Lista-Dos-Comandos-Bloqueados:
+  - '/pl'
+  - '/plugins'
+ 
+############################################################
+# +------------------------------------------------------+ #
+# |                    Bloquear Crafts                   | #
+# +------------------------------------------------------+ #
+############################################################
+Bloquear-Crafts: true
+Lista-Dos-Crafts-Bloqueados: 
+  - '333'
+  - '145'
+  - '52'
+  # Lista de IDs: https://www.minecraftinfo.com/idlist.htm
+
+############################################################
+# +------------------------------------------------------+ #
+# |                    Bloquear Placas                   | #
+# +------------------------------------------------------+ #
+############################################################
+Bloquear-Placas: true
+Bloquear-Todas-As-Palavras: false
+Bloquear-Apenas-Algumas-Palavras: true
+Lista-Das-Palavras-Bloqueadas:
+  - 'AdminShop'
+  - '&0AdminShop'
+  - 'puta'
+
+############################################################
+# +------------------------------------------------------+ #
+# |               Bloquear Nicks Impróprios              | #
+# +------------------------------------------------------+ #
+############################################################
+Bloquear-Nicks-Improprios: true
+Nicks-Bloqueados:
+  - 'puta'
+  - 'vadia'
+  - 'AdminShop'
+  - 'ServerAdmin'
+
+############################################################
+# +------------------------------------------------------+ #
+# |                         mcMMO                        | #
+# +------------------------------------------------------+ #
+############################################################
+mcTopTag:
+  Tempo-De-Checagem: 300
+  Tag: '&9[⚒] '
+
+############################################################
+# +------------------------------------------------------+ #
+# |                      LegendChat                      | #
+# +------------------------------------------------------+ #
+############################################################
+CorAutomatica:
+  Cor1: "§6"
+  Cor2: "§4"
+  Cor3: "§c"
+  Cor4: "§2"
+  Cor5: "§e"
+  Cor6: "§a"
+  Cor7: "§b"
+  Cor8: "§3"
+  Cor9: "§d"
+  Cor10: "§f"
+  #Permissão para usar a cor automatica nas frases: system.chat.cor1 // system.chat.cor2 // etc...
+  #Permissão para escrever em destaque no /g: system.chat.destaque
+
+############################################################
+# +------------------------------------------------------+ #
+# |                     Auto-Anunciar                    | #
+# +------------------------------------------------------+ #
+############################################################
+Auto-Anuncio: true
+Destacar-Anuncio: true
+Delay-Entre-Anuncios: 300
+Reproduzir-Som-No-Anuncio: true
+Som-Do-Anuncio: LEVEL_UP
+# Lista de sons do minecraft 1.8 http://docs.codelanx.com/Bukkit/1.8/org/bukkit/Sound.html
+Lista-De-Anuncios:
+  - '&e&l[Anuncio] &eInscreva-se em nosso canal e fique por dentro de tudo &b&nhttp://bit.ly/hypixel&e!'
+  - '&e&l[Anuncio] &eAdquira já seu vip através do nosso site &b&nhttps://hypixel.net/&e!'
+  - '&e&l[Anuncio] &eAcesse já nosso fórum e fique por dentro de tudo &b&nhttps://hypixel.net/forums/&e!'
+  - '&e&l[Anuncio] &eO evento karaoke ira ocorrer nesta semana! Saiba mais &b&nhttp://bit.ly/karaoke&e!'
+
+############################################################
+# +------------------------------------------------------+ #
+# |                     Anunciar Morte                   | #
+# +------------------------------------------------------+ #
+############################################################
+Anunciar-Morte: true
+Anuncios: 
+  Mostrar-Para-Quem-Morreu: true
+  Mensagem-Para-Defunto: "&cVocê foi porto por %playerMatou%!"
+
+  Mostrar-Para-Quem-Matou: true
+  Mensagem-Para-Matador: "&cVocê matou o player %playerMorreu%!"
+
+  Mostrar-Para-Todo-Servidor: false
+  Mensagem-Para-Todos: "&c%playerMorreu% foi morto por %playerMatou%!"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                      ScoreBoard                      | #
+# +------------------------------------------------------+ #
+############################################################
+ScoreBoard:
+  Ativar: true
+  Titulo: "  &f&lGamer's&6&lBoard  "
+  Linhas:
+  - '&eSeja Bem Vindo %player%!'
+  - '&r'
+  - '&aAdquira VIP e Cash acessando:'
+  - '&7gamersboard.com.br'
+
+############################################################
+# +------------------------------------------------------+ #
+# |                       Tablist                        | #
+# +------------------------------------------------------+ #
+############################################################
+Ativar-Tablist: true
+Parte-De-Cima: |
+  &r 
+  &r 
+  &f&lGamer's&6&lBoard
+  &f   gamersboard.com.br
+Parte-De-Baixo: |
+  &r 
+  &6Fórum:&f hypixel.net/forums
+  &6Team Speak:&f ts.hypixel.net
+  &6Facebook:&f fb.com/Hypixel
+  &6Twiiter:&f twitter.com/hypixel
+  &r
+  &6Adquira VIP e Cash acessando: &fstore.hypixel.net
+  &r

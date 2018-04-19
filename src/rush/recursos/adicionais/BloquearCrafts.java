@@ -7,7 +7,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.PrepareItemCraftEvent;
 import org.bukkit.inventory.ItemStack;
 
-import rush.Main;
+import rush.utils.ConfigManager;
 
 public class BloquearCrafts implements Listener {
 	
@@ -16,7 +16,7 @@ public class BloquearCrafts implements Listener {
     public void aoPrepararCraft(PrepareItemCraftEvent e){
 		Player p = (Player) e.getView().getPlayer();
 		int itemType = e.getRecipe().getResult().getType().getId();
-			if (Main.aqui.getConfig().getIntegerList("Lista-Dos-Crafts-Bloqueados").contains(Integer.valueOf(itemType))) {
+			if (ConfigManager.getConfig("settings").getIntegerList("Lista-Dos-Crafts-Bloqueados").contains(Integer.valueOf(itemType))) {
 				if (!(p.hasPermission("system.bypass.craftbloqueado"))) {
 					e.getInventory().setResult(new ItemStack(Material.AIR));
 			}

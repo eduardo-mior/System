@@ -1,13 +1,19 @@
 package rush.comandos;
 
+import java.io.File;
+import java.io.IOException;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
 
-import rush.Main;
+import rush.utils.ConfigManager;
+import rush.utils.DataManager;
 import rush.utils.Locations;
 
 public class ComandoSetmundovip implements Listener, CommandExecutor {
@@ -19,58 +25,61 @@ public class ComandoSetmundovip implements Listener, CommandExecutor {
 				 if (s instanceof Player) {
 					 
 				     if (args.length == 0) {
-				          s.sendMessage(Main.aqui.getMensagens().getString("Setmundovip-Comando-Incoreto").replaceAll("&", "§"));
+				          s.sendMessage(ConfigManager.getConfig("mensagens").getString("Setmundovip-Comando-Incorreto").replace("&", "§"));
 				          return false;
-				        }
+				     }
 				     
 				     if (args.length > 1) {
-				          s.sendMessage(Main.aqui.getMensagens().getString("Setmundovip-Comando-Incoreto").replaceAll("&", "§"));
+				          s.sendMessage(ConfigManager.getConfig("mensagens").getString("Setmundovip-Comando-Incorreto").replace("&", "§"));
 				          return false;
-				        }
+				     }
+				     
+				     File file = DataManager.getFile("locations");
+				     FileConfiguration config = DataManager.getConfiguration(file);
+		        	 Player p = (Player)s;
+		             Location area = p.getLocation();
 				     
 			         if (args[0].equalsIgnoreCase("areavip")) {
-			        	 Player p = (Player)s;
-			             Locations.areaVip = p.getLocation();
-			             saveAreaVip(Locations.areaVip);
-			             s.sendMessage(Main.aqui.getMensagens().getString("Area-Vip-Definida").replaceAll("&", "§"));
+			             Locations.areaVip = area;
+			             config.set("AreaVip.world", area.getWorld().getName());
+			         	 config.set("AreaVip.x", Double.valueOf(area.getX()));
+			        	 config.set("AreaVip.y", Double.valueOf(area.getY()));
+			        	 config.set("AreaVip.z", Double.valueOf(area.getZ()));
+			        	 config.set("AreaVip.yaw", Float.valueOf(area.getYaw()));
+			        	 config.set("AreaVip.pitch", Float.valueOf(area.getPitch()));
+			    	     try {
+			    	 		 config.save(file);
+			    		 } catch (IOException e) {
+			    			 Bukkit.getConsoleSender().sendMessage(ConfigManager.getConfig("mensagens").getString("Falha-Ao-Salvar").replace("&", "§").replace("%arquivo%", "locations.yml"));
+			    		 }
+			             s.sendMessage(ConfigManager.getConfig("mensagens").getString("Area-Vip-Definida").replace("&", "§"));
 			             return false;
 			         }
 			         
 			         if (args[0].equalsIgnoreCase("areanaovip")) {
-			        	 Player p = (Player)s;
-			             Locations.areaNaoVip = p.getLocation();
-			             saveAreaNaoVip(Locations.areaNaoVip);
-			             s.sendMessage(Main.aqui.getMensagens().getString("Area-Nao-Vip-Definida").replaceAll("&", "§"));
+			             Locations.areaNaoVip = area;
+			         	 config.set("AreaNaoVip", area);
+			        	 config.set("AreaNaoVip.world", area.getWorld().getName());
+			        	 config.set("AreaNaoVip.x", Double.valueOf(area.getX()));
+			        	 config.set("AreaNaoVip.y", Double.valueOf(area.getY()));
+			        	 config.set("AreaNaoVip.z", Double.valueOf(area.getZ()));
+			        	 config.set("AreaNaoVip.yaw", Float.valueOf(area.getYaw()));
+			        	 config.set("AreaNaoVip.pitch", Float.valueOf(area.getPitch()));
+			    	     try {
+			    			 config.save(file);
+			    	 	 } catch (IOException e) {
+			    			 Bukkit.getConsoleSender().sendMessage(ConfigManager.getConfig("mensagens").getString("Falha-Ao-Salvar").replace("&", "§").replace("%arquivo%", "locations.yml"));
+			    		 }
+			             s.sendMessage(ConfigManager.getConfig("mensagens").getString("Area-Nao-Vip-Definida").replace("&", "§"));
 			             return false;
 			         }
 				 }
-				 s.sendMessage(Main.aqui.getMensagens().getString("Console-Nao-Pode").replace("&", "§"));
+				 s.sendMessage(ConfigManager.getConfig("mensagens").getString("Console-Nao-Pode").replace("&", "§"));
 				 return false;
 			 }
-			 s.sendMessage(Main.aqui.getMensagens().getString("Sem-Permissao").replace("&", "§"));
+			 s.sendMessage(ConfigManager.getConfig("mensagens").getString("Sem-Permissao").replace("&", "§"));
 			 return false;
 		 }
-		return false;
+		 return false;
 	}
-
-    public static void saveAreaVip(Location areavip) {
-    	Main.aqui.getVip().set("AreaVip", areavip);
-    	Main.aqui.getVip().set("AreaVip.world", areavip.getWorld().getName());
-    	Main.aqui.getVip().set("AreaVip.x", Double.valueOf(areavip.getX()));
-    	Main.aqui.getVip().set("AreaVip.y", Double.valueOf(areavip.getY()));
-    	Main.aqui.getVip().set("AreaVip.z", Double.valueOf(areavip.getZ()));
-    	Main.aqui.getVip().set("AreaVip.yaw", Float.valueOf(areavip.getYaw()));
-    	Main.aqui.getVip().set("AreaVip.pitch", Float.valueOf(areavip.getPitch()));
-	    Main.aqui.saveResource("vip.yml", true); }
-    
-    public static void saveAreaNaoVip(Location areanaovip) {
-    	Main.aqui.getNaoVip().set("AreaNaoVip", areanaovip);
-    	Main.aqui.getNaoVip().set("AreaNaoVip.world", areanaovip.getWorld().getName());
-    	Main.aqui.getNaoVip().set("AreaNaoVip.x", Double.valueOf(areanaovip.getX()));
-    	Main.aqui.getNaoVip().set("AreaNaoVip.y", Double.valueOf(areanaovip.getY()));
-    	Main.aqui.getNaoVip().set("AreaNaoVip.z", Double.valueOf(areanaovip.getZ()));
-    	Main.aqui.getNaoVip().set("AreaNaoVip.yaw", Float.valueOf(areanaovip.getYaw()));
-    	Main.aqui.getNaoVip().set("AreaNaoVip.pitch", Float.valueOf(areanaovip.getPitch()));
-	    Main.aqui.saveResource("naovip.yml", true); }
-	
 }

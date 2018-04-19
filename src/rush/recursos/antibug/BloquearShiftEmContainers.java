@@ -7,20 +7,21 @@ import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.Listener;
-import rush.Main;
+
+import rush.utils.ConfigManager;
 
 public class BloquearShiftEmContainers implements Listener {
 
 	@EventHandler
 	public void aoUsarShift(InventoryClickEvent e) {
 		HumanEntity p = e.getWhoClicked();
-		for (String containers : Main.aqui.getConfig().getStringList("Bloquear-Shift-Em-Containers.Containers"))
+		for (String containers : ConfigManager.getConfig("settings").getStringList("Bloquear-Shift-Em-Containers.Containers"))
 			if (e.getInventory().getType().equals((Object)InventoryType.valueOf(containers))) {
 				if (e.getClick() == ClickType.SHIFT_LEFT || e.getClick() == ClickType.SHIFT_RIGHT) {
 					if (e.getCurrentItem().getType() != Material.AIR) {
 						if (!(p.hasPermission("system.bypass.shiftemcontainer"))) {
 							e.setCancelled(true);
-							p.sendMessage(Main.aqui.getMensagens().getString("Shift-Bloqueado-No-Container")
+							p.sendMessage(ConfigManager.getConfig("mensagens").getString("Shift-Bloqueado-No-Container")
 								.replaceAll("%tipo%", String.valueOf(e.getInventory().getType()))
 								.replaceAll("ANVIL", "na bigorna")
 								.replaceAll("BEACON", "no sinalizdor")

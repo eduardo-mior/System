@@ -14,12 +14,12 @@ import org.bukkit.inventory.Inventory;
 public class BigornaInfinita implements Listener {
 	
 	@EventHandler
-    public void aoUsarBigorna(PlayerInteractEvent e) {
-	   Block block = e.getClickedBlock();
-	   Player p = e.getPlayer();
-       Inventory i = Bukkit.createInventory(p, InventoryType.ANVIL);
-	   if (e.getAction() == Action.RIGHT_CLICK_BLOCK && block.getType() == Material.ANVIL) {
+	public void aoUsarBigorna(PlayerInteractEvent e) {
+		Block block = e.getClickedBlock();
+		Player p = e.getPlayer();
+		Inventory i = Bukkit.createInventory(p, InventoryType.ANVIL);
+		if (e.getAction() == Action.RIGHT_CLICK_BLOCK && block.getType() == Material.ANVIL) {
 	    	p.openInventory(i);
-	    	}
-	 }
+		}
+	}
 }

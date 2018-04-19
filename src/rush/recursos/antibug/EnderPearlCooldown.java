@@ -11,7 +11,7 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 import org.bukkit.inventory.ItemStack;
 
-import rush.Main;
+import rush.utils.ConfigManager;
 
 public class EnderPearlCooldown  implements Listener {
 	
@@ -30,7 +30,7 @@ public class EnderPearlCooldown  implements Listener {
 	
     	if (cooldown.containsKey(p) && cooldown.get(p).after(new Timestamp(System.currentTimeMillis()))) {
     		e.setCancelled(true);
-    		p.sendMessage(Main.aqui.getMensagens().getString("Aguarde-EnderPearl-Cooldown").replaceAll("&", "§").replaceAll("%tempo%", String.valueOf(Main.aqui.getConfig().getInt("EnderPearl-Cooldown.Cooldown"))));
+    		p.sendMessage(ConfigManager.getConfig("mensagens").getString("Aguarde-EnderPearl-Cooldown").replaceAll("&", "§").replaceAll("%tempo%", String.valueOf(ConfigManager.getConfig("settings").getInt("EnderPearl-Cooldown.Cooldown"))));
     		p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.ENDER_PEARL) });
     		return;
     		
@@ -39,6 +39,6 @@ public class EnderPearlCooldown  implements Listener {
     }
 	e.setCancelled(false);
 	
-	cooldown.put(p, new Timestamp(System.currentTimeMillis()+1000*(Main.aqui.getConfig().getInt("EnderPearl-Cooldown.Cooldown"))));
+	cooldown.put(p, new Timestamp(System.currentTimeMillis()+1000*(ConfigManager.getConfig("settings").getInt("EnderPearl-Cooldown.Cooldown"))));
     }
 }

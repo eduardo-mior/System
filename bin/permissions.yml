@@ -1,0 +1,45 @@
+#    +---------------------------------------------------------------------------------------------+
+#    | system.alerta       - Permissão para utilizar o comando /alerta                         	   |
+#    | system.clearchat    - Permissão para utilizar o comando /clearchat					  	   |
+#    | system.cores        - Permissão para utilizar o comando /cores						  	   |
+#    | system.cornabigorna - Permissão para renomear itens usando cores no nome &			  	   |
+#    | system.cornaplaca   - Permissão para escrever colorido nas placas					  	   |
+#    | system.delwarp      - Permissão para utilizar o comando /delwarp						  	   |
+#    | system.divulgar     - Permissão para utilizar o comando /divulgar 					       |
+#    | system.executarsom  - Permissão para utilizar o comando /executarsom					  	   |
+#    | system.lixo         - Permissão para utilizar o comando /lixo						  	   |
+#    | system.luz          - Permissão para utilizar o comando /luz							  	   | 
+#    | system.mundovip     - Permissão para utilizar o comando /vip							  	   |
+#    | system.online       - Permissão para utilizar o comando /online						  	   | 
+#    | system.ping         - Permissão para utilizar o comando /ping					      	   | 
+#    | system.semdelay     - Permissão para se teleportar sem precisa esperar o delay		  	   |  
+#    | system.setmundovip  - Permissão para utilizar o comando /setmundovip					  	   |
+#    | system.setspawn     - Permissão para utilizar o comando /setspawn					  	   |
+#    | system.setwarp      - Permissão para utilizar o comando /setwarp						  	   |
+#    | system.sgive        - Permissão para utilizar o comando /sgive						  	   |
+#    | system.slime        - Permissão para utilizar o comando /slime						  	   |
+#    | system.spawn        - Permissão para utilizar o comando /spawn						  	   | 
+#    | system.title        - Permissão para utilizar o comando /title						  	   | 
+#    | system.vip          - Permissão para se teleportar para a Area VIP do comando /vip	  	   | 
+#    | system.warp         - Permissão para utilizar o comando /warp							   |
+#    | system.warps         - Permissão para utilizar o comando /warps							   |    	
+#    +---------------------------------------------------------------------------------------------+
+#    | system.chat.destaque - Permissão para escrever em destaque no chat.						   |
+#    | system.chat.cor1     - Permissão para escrever com uma cor automatica (definida na config)  |
+#    | system.chat.cor1     - Permissão para escrever com uma cor automatica (definida na config)  |
+#    | system.chat.cor...   - Permissão para escrever com uma cor automatica (definida na config)  |
+#    | system.chat.cor10    - Permissão para escrever com uma cor automatica (definida na config)  |
+#    +---------------------------------------------------------------------------------------------+
+#    | system.bypass.comandobloqueado    - Permissão para utilizar comandos que foram bloqueados   |
+#    | system.bypass.containerbloqueado  - Permissão para abrir containers que foram bloqueados	   |
+#    | system.bypass.craftbloqueado      - Permissão para craftar itens que foram bloqueados       |
+#    | system.bypass.entraremveiculos    - Permissão para entrar em veiculos que foram bloqueados  |
+#    | system.bypass.entrarnacama        - Permissão para entrar na cama mesmo estando bloqueada   |
+#    | system.bypass.placabloqueada      - Permissão para usar a placa mesmo estando bloqueada     |
+#    | system.bypass.shiftemcontainer    - Permissão para usar o SHIFT mesmo estando bloqueado	   |
+#    | system.bypass.teleportarporportal - Permissão para usar o portal mesmo estando bloqueado    |
+#    | system.bypass.usarnametag         - Permissão para usar nameTagEdit mesmo estando bloqueada |
+#    +---------------------------------------------------------------------------------------------+
+#    | system.bypass.all - Permissão que da acesso a todos os bypass do plugin!                   |
+#    | system.admin - Permissão que da acesso a TODAS as outras permissões do plugin EXCETO bypass |
+#    +---------------------------------------------------------------------------------------------+

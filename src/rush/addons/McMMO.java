@@ -21,20 +21,17 @@ import com.gmail.nossr50.util.player.UserManager;
 import br.com.devpaulo.legendchat.api.events.ChatMessageEvent;
 import rush.Main;
 import rush.utils.ActionBar;
+import rush.utils.ConfigManager;
 
 public class McMMO implements Listener {
 	
 	public static BukkitTask TTask;
 	private static String playerTopOne;
-	
-	//
-	// Verifica o TOP 1 do mcMMO e adiciona uma tag antes do nick {mctop}
-	//
 	   
 	@EventHandler
 	private void onChat(ChatMessageEvent event) {
 	   if (playerTopOne != null && playerTopOne.equalsIgnoreCase(event.getSender().getName()) && event.getTags().contains("mctop")) {
-	      event.setTagValue("mctop", Main.aqui.getConfig().getString("mcTopTag.Tag"));
+	      event.setTagValue("mctop", ConfigManager.getConfig("settings").getString("mcTopTag.Tag"));
 	     }
 	}
 
@@ -46,18 +43,14 @@ public class McMMO implements Listener {
 	            playerTopOne = ((PlayerStat)tops.get(0)).name;
 	         }
 	      }
-	   }).runTaskTimerAsynchronously((Plugin) Main.aqui, 60L, (long)Main.aqui.getConfig().getInt("mcTopTag.Tempo-De-Checagem") * 20L);
+	   }).runTaskTimerAsynchronously((Plugin) Main.aqui, 60L, (long)ConfigManager.getConfig("settings").getInt("mcTopTag.Tempo-De-Checagem") * 20L);
 	}
-
-	//
-	// Envia um broadcast toda vez que alguem upa level 100 ou 200 ou 300 etc...
-	//
 	   
 	@EventHandler
 	public void onPlayerUp(McMMOPlayerLevelUpEvent e) {
       Player p = e.getPlayer();
       if (e.getSkillLevel() % 100 == 0){
-        Bukkit.broadcastMessage(Main.aqui.getMensagens().getString("mcMMO-Upou-100-Niveis")
+        Bukkit.broadcastMessage(ConfigManager.getConfig("mensagens").getString("mcMMO-Upou-100-Niveis")
     	.replace("%skill%", e.getSkill().name())
         .replace("ACROBATICS", "Acrobacia")
         .replace("ALCHEMY", "Alquimia")
@@ -78,10 +71,6 @@ public class McMMO implements Listener {
     p.getWorld().strikeLightningEffect(p.getLocation());
     }
   }
-	
-	//
-	// Envia mensagens na ActionBar informando o XP que ganho, o nível atual etc...
-	//
 	  
 	@SuppressWarnings("deprecation")
 	@EventHandler

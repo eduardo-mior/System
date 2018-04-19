@@ -13,11 +13,11 @@ import org.bukkit.scoreboard.Objective;
 import org.bukkit.scoreboard.Score;
 import org.bukkit.scoreboard.Scoreboard;
 
-import rush.Main;
+import rush.utils.ConfigManager;
 
 public class ScoreBoard implements Listener {
 
-    private String titulo = Main.aqui.getConfig().getString("ScoreBoard.Titulo").replaceAll("&", "§");
+    private String titulo = ConfigManager.getConfig("settings").getString("ScoreBoard.Titulo").replaceAll("&", "§");
 	
 	@EventHandler
 	public void pj(PlayerJoinEvent e) {
@@ -27,7 +27,7 @@ public class ScoreBoard implements Listener {
 	    o.setDisplaySlot(DisplaySlot.SIDEBAR);
 	    
 	    Player p = e.getPlayer();
-        final List<String> stringList = (List<String>)Main.aqui.getConfig().getStringList("ScoreBoard.Linhas");
+        final List<String> stringList = (List<String>)ConfigManager.getConfig("settings").getStringList("ScoreBoard.Linhas");
         IntStream.range(0, stringList.size()).forEach(i -> {
             Score score2 = o.getScore((String)stringList.get(i).replaceAll("%player%", p.getDisplayName()).replaceAll("&", "§"));
             score2.setScore(stringList.size() - i);

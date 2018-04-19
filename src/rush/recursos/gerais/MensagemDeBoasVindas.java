@@ -5,13 +5,13 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 
-import rush.Main;
+import rush.utils.ConfigManager;
 
 public class MensagemDeBoasVindas implements Listener {
 	
 	@EventHandler
 	public void aoEntrar(PlayerJoinEvent e) {
-		for (String mensagem : Main.aqui.getConfig().getStringList("Mensagem-De-Boas-Vindas.Mensagem")) {
+		for (String mensagem : ConfigManager.getConfig("settings").getStringList("Mensagem-De-Boas-Vindas.Mensagem")) {
 			Player p = e.getPlayer();
 			String nome = p.getName();
 			p.sendMessage((mensagem).replace("&", "§").replace("%player%", nome));

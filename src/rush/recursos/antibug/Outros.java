@@ -8,7 +8,7 @@ import org.bukkit.event.entity.EntityPortalEnterEvent;
 import org.bukkit.event.entity.EntityPortalExitEvent;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
-import rush.Main;
+import rush.utils.ConfigManager;
 
 public class Outros implements Listener {
 
@@ -17,7 +17,7 @@ public class Outros implements Listener {
        Player p = e.getPlayer();
        if (e.getMessage().contains("mercado vender -") || e.getMessage().contains("market vender -")) {
           e.setCancelled(true);
-             p.sendMessage(Main.aqui.getMensagens().getString("Numero-Invalido").replaceAll("&", "§"));
+             p.sendMessage(ConfigManager.getConfig("mensagens").getString("Numero-Invalido").replaceAll("&", "§"));
        	}
     }
     
@@ -26,13 +26,16 @@ public class Outros implements Listener {
 				
 	Player p = e.getPlayer();
 	String cmd = e.getMessage().toLowerCase();
-    String[] arg1 = null;
-	arg1 = cmd.split(" ");
+    String[] arg;
+	arg = cmd.split(" ");
 	
-		for (String cmdmoney: Main.aqui.getConfig().getStringList("Comandos-Que-Envolvem-Dinheiro"))
-		if (arg1[0].contains(cmdmoney)) {
-			e.setCancelled(true);
-			p.sendMessage(Main.aqui.getMensagens().getString("Numero-Invalido").replaceAll("&", "§"));
+	for (String cmdmoney: ConfigManager.getConfig("settings").getStringList("Comandos-Que-Envolvem-Dinheiro")) {
+		if (arg[0].contains(cmdmoney)) {
+				if (cmd.contains(" null") || cmd.contains(" nan")) {
+					e.setCancelled(true);
+					p.sendMessage(ConfigManager.getConfig("mensagens").getString("Money-Null").replaceAll("&", "§"));
+				}
+			}
 		}
 	}
     

@@ -74,7 +74,7 @@ Setmundovip-Comando-Incorreto: "&cComando incorreto, use /setmundovip <areaVip &
 
 ############################################################
 # +------------------------------------------------------+ #
-# |                  Comando /setspawn                   | #
+# |                 Comando /setmundovip                 | #
 # +------------------------------------------------------+ #
 ############################################################
 Spawn-Definido: "&aSpawn definido com sucesso!"

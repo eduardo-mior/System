@@ -7,7 +7,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.event.Listener;
 
-import rush.Main;
+import rush.utils.ConfigManager;
 
 public class ComandoClearChat implements Listener, CommandExecutor {
 	
@@ -18,15 +18,14 @@ public class ComandoClearChat implements Listener, CommandExecutor {
 	public boolean onCommand(CommandSender sender, Command cmd, String commandlabel, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("clearchat")) {
 	         if (!sender.hasPermission("system.clearchat")) {
-	             sender.sendMessage(Main.aqui.getMensagens().getString("Sem-Permissao").replaceAll("&", "§")); }
-	         else {
-	    		  Bukkit.broadcastMessage(limparchat);
-	    		 if (Main.aqui.getMensagens().getBoolean("Avisar-Que-O-Chat-Foi-Limpo")) {
-	    			 Bukkit.broadcastMessage(Main.aqui.getMensagens().getString("Aviso-Que-O-Chat-Limpo").replaceAll("&", "§").replaceAll("%player%", sender.getName()));
+    			 sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Sem-Permissao"));
+	         } else {
+	        	 Bukkit.broadcastMessage(limparchat);
+	        	 if (ConfigManager.getConfig("mensagens").getBoolean("Avisar-Que-O-Chat-Foi-Limpo")) {
+	    			 Bukkit.broadcastMessage(ConfigManager.getConfig("mensagens").getString("Aviso-Que-O-Chat-Limpo-Global").replaceAll("&", "§").replaceAll("%player%", sender.getName()));
 	    		 }
-	         }
-	       }
+	        }
+		}
 		return false;
 	}
-	
 }

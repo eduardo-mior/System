@@ -5,9 +5,6 @@
 	<classpathentry kind="src" path="resources"/>
 	<classpathentry exported="true" kind="lib" path="D:/Meus Documentos/Desktop/JARs/mcMMO-TRADUZIDO.jar"/>
 	<classpathentry exported="true" kind="lib" path="D:/Meus Documentos/Desktop/JARs/bukkit.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/Meus Documentos/Desktop/JARs/Vault.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/Meus Documentos/Desktop/JARs/Factions.jar"/>
-	<classpathentry exported="true" kind="lib" path="D:/Meus Documentos/Desktop/JARs/MassiveCore.jar"/>
 	<classpathentry exported="true" kind="lib" path="D:/Meus Documentos/Desktop/JARs/LegendChat-TRADUZIDO.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

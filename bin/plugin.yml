@@ -151,7 +151,7 @@ permissions:
     description: Permissão para definir a area vip e não vip do servidor.
     default: op
   system.setspawn: 
-    description: Permissão para definir o spawn do servidor.
+    description: Permissão para definir o spawn do servidor
     default: op
   system.setwarp:
     description: Permissão para definir uma warp.

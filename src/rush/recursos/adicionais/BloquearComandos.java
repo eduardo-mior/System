@@ -6,7 +6,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 
-import rush.Main;
+import rush.utils.ConfigManager;
 
 public class BloquearComandos implements Listener {
 
@@ -14,10 +14,10 @@ public class BloquearComandos implements Listener {
     public void aoExecutarComando(final PlayerCommandPreprocessEvent e) {
         final String cmd = e.getMessage().toLowerCase();
         final Player p = e.getPlayer();
-        for (final String cmds : Main.aqui.getConfig().getStringList("Lista-Dos-Comandos-Bloqueados")) {
+        for (final String cmds : ConfigManager.getConfig("settings").getStringList("Lista-Dos-Comandos-Bloqueados")) {
             	if (cmd.equals(cmds) || cmd.startsWith(cmds + " ")) {
                     if (!(p.hasPermission("system.bypass.comandobloqueado"))) {
-            		p.sendMessage(Main.aqui.getMensagens().getString("Comando-Bloqueado").replaceAll("&", "§"));
+            		p.sendMessage(ConfigManager.getConfig("mensagens").getString("Comando-Bloqueado").replaceAll("&", "§"));
             		e.setCancelled(true);
             	}
             }
