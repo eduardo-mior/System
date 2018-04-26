@@ -18,6 +18,11 @@ commands:
     aliases: [colors]
     permission: system.cores
     permission-message: "§cVocê não tem permissão para utilizar este comando."
+  delhome:
+    description: Deleta uma home.
+    aliases: []
+    permission: system.delhome
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
   delwarp:
     description: Deleta uma warp.
     aliases: []
@@ -28,10 +33,25 @@ commands:
     aliases: []
     permission: system.divulgar
     permission-message: "§cVocê não tem permissão para utilizar este comando."
+  echest:
+    description: Abre o enderchest virtual.
+    aliases: [ec]
+    permission: system.echest
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
   executarsom:
     description: Executa um som para um player ou para todo server.
     aliases: [playsound, som]
     permission: system.executarsom
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  home:
+    description: Teleporta até uma home.
+    aliases: []
+    permission: system.home
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  homes:
+    description: Mostra a lista de homes salvas.
+    aliases: []
+    permission: system.homes
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   lixo:
     description: Abre a lixeira virtual.
@@ -53,10 +73,25 @@ commands:
     aliases: []
     permission: system.online
     permission-message: "§cVocê não tem permissão para utilizar este comando."
+  particular:
+    description: Define uma home como particular.
+    aliases: []
+    permission: system.particular
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
   ping:
     description: Mostra o seu ping atual.
     aliases: []
     permission: system.ping
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  publica:
+    description: Define uma home como publica.
+    aliases: []
+    permission: system.publica
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  sethome:
+    description: Define uma home.
+    aliases: []
+    permission: system.sethome
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   setmundovip:
     description: Define a mundo vip e não vip do servidor.
@@ -120,15 +155,36 @@ permissions:
   system.cornaplaca:
     description: Permissão para renomear itens com cores.
     default: false
+  system.delhome:
+    description: Permissão para definir uma home.
+    default: true
   system.delwarp:
     description: Permissão para deletar uma warp.
     default: op
   system.divulgar:
     description: Permissão para divulgar um link no chat.
     default: op
+  system.echest:
+    description: Permissão para abrir o enderchest virtual.
+    default: op
+  system.echest.mod:
+    description: Permissão para ver o enderchest virtual de outras pessoas.
+    default: op
+  system.echest.admin:
+    description: Permissão para editar o enderchest virtual de outras pessoas.
+    default: op
   system.executarsom:
     description: Permissão para enviar um som para um player ou para todo servidor.
     default: op
+  system.home:
+    description: Permissão para se teleportar até uma home.
+    default: true
+  system.home.admin:
+    description: Permissão para ver e para se teleportar para as homes privadas de alguem.
+    default: op
+  system.homes:
+    description: Permissão para ver a lista de homes.
+    default: true
   system.lixo:
     description: Permissão para abrir a lixeira virtual.
     default: true
@@ -141,12 +197,21 @@ permissions:
   system.online:
     description: Permissão para ver o número de players online no servidor.
     default: true
+  system.particular:
+    description: Permissão para definir uma home como particular.
+    default: true
   system.ping:
     description: Permissão para ver o seu ping ou o ping de outro player.
+    default: true
+  system.publica:
+    description: Permissão para definir uma home como publica.
     default: true
   system.semdelay:
     description: Permissão para se teleportar sem ter que esperar o delay.
     default: op
+  system.sethome:
+    description: Permissão para definir uma home.
+    default: true
   system.setmundovip:
     description: Permissão para definir a area vip e não vip do servidor.
     default: op
@@ -242,22 +307,32 @@ permissions:
       system.bypass.usarnametag: true
 
   system.admin:
-    description: Acesso a todos os comandos do plugin.
+    description: Acesso a todos os recursos do plugin.
     default: op
     children:
       system.alerta: true
       system.clearchat: true
       system.cores: true
       system.cornaplaca: true
+      system.delhome: true
       system.delwarp: true
       system.divulgar: true
+      system.echest: true
+      system.echest.mod: true
+      system.echest.admin: true
       system.executarsom: true
+      system.home: true
+      system.home.admin: true
+      system.homes: true
       system.lixo: true
       system.luz: true
       system.mundovip: true
       system.online: true
+      system.particular: true
       system.ping: true
+      system.publica: true
       system.semdelay: true
+      system.sethome: true
       system.setmundovip: true
       system.setspawn: true
       system.setwarp: true

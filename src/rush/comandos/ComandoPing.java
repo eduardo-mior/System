@@ -3,6 +3,7 @@ package rush.comandos;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -13,6 +14,7 @@ import rush.utils.ConfigManager;
 
 public class ComandoPing implements Listener, CommandExecutor {
 	
+	@SuppressWarnings("deprecation")
 	public boolean onCommand(final CommandSender s, Command cmd, String lbl, String[] args) {
  	     if (cmd.getName().equalsIgnoreCase("ping"))
              if (!(s instanceof Player)) {
@@ -21,21 +23,36 @@ public class ComandoPing implements Listener, CommandExecutor {
              }
  	     
  	     	try {
- 	     		Player player = (Player)s;
- 	     		if (player == null) {
- 	     			s.sendMessage(String.format(ConfigManager.getConfig("mensagens").getString("Player-Offline").replaceAll("&", "§")));
+ 	     		if (args.length > 1) {
+		     		s.sendMessage(ConfigManager.getConfig("mensagens").getString("Ping-Comando-Incorreto").replace("&", "§"));
  	     			return false;
- 	     		} else {
- 	     			Method player_getHandle = player.getClass().getMethod("getHandle");
- 	     			Object player_MC = player_getHandle.invoke(player, (Object[])null);
- 	     			Field player_ping = player_MC.getClass().getField("ping");
- 	     			String ping = String.valueOf(player_ping.get(player_MC));
- 	     			s.sendMessage(args.length == 0 ? 
- 	     					ConfigManager.getConfig("mensagens").getString("Ping.Seu-Ping").replace("&", "§").replace("%ping%", ping) : 
- 	     					ConfigManager.getConfig("mensagens").getString("Ping.Player-Ping").replace("&", "§").replace("%ping%", ping).replace("%player%", player.getName()));
- 	     			}
+ 	     		}
+ 	     		
+ 	     		if (args.length == 0) {
+	 	     		Player player = (Player)s;
+	 	     		Method player_getHandle = player.getClass().getMethod("getHandle");
+		     		Object player_MC = player_getHandle.invoke(player, (Object[])null);
+		     		Field player_ping = player_MC.getClass().getField("ping");
+		     		String ping = String.valueOf(player_ping.get(player_MC));
+		     		s.sendMessage(ConfigManager.getConfig("mensagens").getString("Ping.Seu-Ping").replace("&", "§").replace("%ping%", ping));
+		     		return false;
+ 	     		}
+ 	     		
+ 	     		if (args.length == 1) {
+ 	     			Player player = Bukkit.getPlayer(args[0]);
+ 	 	     		if (player == null) {
+ 	 	     			s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Offline").replaceAll("&", "§"));
+ 	 	     			return false;
+ 	 	     		} else {
+ 	 	     			Method player_getHandle = player.getClass().getMethod("getHandle");
+ 	 	     			Object player_MC = player_getHandle.invoke(player, (Object[])null);
+ 	 	     			Field player_ping = player_MC.getClass().getField("ping");
+ 	 	     			String ping = String.valueOf(player_ping.get(player_MC));
+	     				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Ping.Player-Ping").replace("&", "§").replace("%ping%", ping).replace("%player%", player.getName()));
+ 	 	     		}
+ 	     		}
  	     	} catch (Exception var10) {
- 	     		var10.printStackTrace();     
+ 	     		var10.printStackTrace();
  	     	}
  	     	return false;
        }

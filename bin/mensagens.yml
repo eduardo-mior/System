@@ -3,13 +3,16 @@
 # |                   Mensagens gerais                   | #
 # +------------------------------------------------------+ #
 ############################################################
+Separador-De-Listas: "&8,&7"
 Console-Nao-Pode: "&cO console nao pode usar este comando."
 Sem-Permissao: "&cVocê não tem permissão para utilizar este comando."
 Spawn-Nao-Configurado: "&cO spawn do servidor ainda não foi configurado!"
 Numero-Invalido: "&cEste número não é um número valido."
 Money-Null: "&cA palavra 'null' e a palavra 'nan' foram bloqueadas de serem usadas em comandos que envolvem dinheiro!"
 Player-Offline: "&cEste player não esta online no momento ou não existe."
-Falha-Ao-Criar: "&cNao foi possivel criar o arquivo %arquivo%!"
+Player-Nao-Existe: "&cO player '%player%' não existe!"
+Falha-Ao-Criar-Arquivo: "&cNao foi possivel criar o arquivo %arquivo%!"
+Falha-Ao-Criar-Pasta: "&cNao foi possivel criar a pasta %pasta%!"
 Falha-Ao-Salvar: "&cNao foi possivel salvar o arquivo %arquivo%!"
 
 ############################################################
@@ -17,6 +20,7 @@ Falha-Ao-Salvar: "&cNao foi possivel salvar o arquivo %arquivo%!"
 # |                Mensagens dos Recursos                | #
 # +------------------------------------------------------+ #
 ############################################################
+Nick-Similar: "&cO nick '%novo%' não pode ser usado pois já existe um cadastro com o nick '%antigo%'.\n&c\n&cVocê deve utilizar a mesma configuração de caracteres maiusculos\n&c e minúsculos para poder acessar o servidor com este nick."
 Servidor-Lotado: "&cDesculpe mas o servidor esta cheio!\n&cAdquira já seu VIP em &ewww.gamersboard.com.br"
 Nick-Bloqueado: "&cA palavra '%nick%' foi bloqueada de ser usada em nicks!"
 Comando-Bloqueado: "&cEste comando foi bloqueado do servidor."
@@ -41,6 +45,49 @@ Sgive-Comando-Incorreto: "&cComando incorreto, use /sgive <player> <tipo> <quant
 Spawner-Desconhecido: "&cTipo de Spawner desconhecido!\n&eLista de Spawners: &7Porco&8, &7Galinha&8, &7Ovelha&8, &7Vaca&8, &7Coelho&8, &7Esqueleto&8, &7Creeper&8, &7Aranha&8, &7Aranha_da_Caverna&8, &7Slime&8, &7Zumbi&8, &7Zumbi_Pigman&8, &7Blaze&8, &7Wither&8, &7Iron_Golem&8."
 Nome-Do-MobSpawner: "&eGerador de Monstros"
 Lore-Do-MobSpawner: "§7Tipo: §f"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   Sistema de Warps                   | #
+# +------------------------------------------------------+ #
+############################################################
+SetWarp-Comando-Incorreto: "&cComando incorreto, use /setwarp <warp>"
+DelWarp-Comando-Incorreto: "&cComando incorreto, use /delwarp <warp>"
+Warp-Comando-Incorreto: "&cComando incorreto, use /warp <warp>"
+Warp-Definida: "&aWarp '%warp%' definida com sucesso!"
+Warp-Deletada: "&aWarp '%warp%' deletada com sucesso!"
+Warp-Ja-Existe: "&cA warp '%warp%' já existe!"
+Warp-Nao-Existe: "&cA warp '%warp%' não existe!"
+Nenhuma-Warp-Definida: "&cO servidor ainda não possui nenhuma definida."
+Warps-Lista: "&eWarps disponíveis(%n%): &7%warps%"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   Sistema de Homes                   | #
+# +------------------------------------------------------+ #
+############################################################
+Publica-Comando-Incorreto: "&cComando incorreto, use /publica <home"
+SetHome-Comando-Incorreto: "&cComando incorreto, use /sethome <home>"
+DelHome-Comando-Incorreto: "&cComando incorreto, use /delhome <home>"
+Homes-Comando-Incorreto: "&cComando incorreto, use /homes <player>"
+Home-Comando-Incorreto: "&cComando incorreto, use /home <home>"
+Home-Outro-Comando-Incorreto: "&cComando incorreto, use /home <player>:<home>"
+Home-Definida: "&aHome '%home%' definida com sucesso!"
+Home-Deletada: "&aHome '%home%' deletada com sucesso!"
+Home-Nao-Existe: "&cA home '%home%' não existe!"
+Player-Home-Nao-Existe: "&cA home '%home%' do player %player% não existe!"
+Player-Home-Nao-Publica: "&cA home '%home%' do player %player% não é publica!"
+Home-Privada-Iniciando-Teleporte: "&eIniciando teleporte para a home '%home%' em %tempo% segundos."
+Home-Publica-Iniciando-Teleporte: "&eIniciando teleporte para a home '%home%' do player %player% em %tempo% segundos."
+Home-Privada-Teleportado-Sucesso: "&aTeleportado com sucesso para a home '%home%'!"
+Home-Publica-Teleportado-Sucesso: "&aTeleportado com sucesso para a home '%home%' do player %player%."
+Homes-Publicas: "&eHomes publicas: &7%homes%"
+Homes-Particulares: "&eHomes particulares: &7%homes%"
+Limite-De-Homes-Atingido: "&cVocê antingiu o seu limite máximo de homes (%limite%)!"
+Home-Ja-Publica: "&cA home '%home%' já é publica!"
+Home-Ja-Particular: "&cA home '%home%' já é particular!"
+Tornou-Home-Publica: "&aA home '%home%' agora é uma home publica, ou seja, qualquer pessoa pode acessa-la!"
+Tornou-Home-Particular: "&aA home '%home%' agora é uma home particular, ou seja, só você pode acessa-la!"
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -74,44 +121,10 @@ Setmundovip-Comando-Incorreto: "&cComando incorreto, use /setmundovip <areaVip &
 
 ############################################################
 # +------------------------------------------------------+ #
-# |                 Comando /setmundovip                 | #
+# |                  Comando /setspawn                   | #
 # +------------------------------------------------------+ #
 ############################################################
 Spawn-Definido: "&aSpawn definido com sucesso!"
-
-############################################################
-# +------------------------------------------------------+ #
-# |                   Comando /setwarp                   | #
-# +------------------------------------------------------+ #
-############################################################
-SetWarp-Comando-Incorreto: "&cComando incorreto, use /setwarp <warp>"
-Warp-Definida: "&aWarp '%warp%' definida com sucesso!"
-Warp-Ja-Existe: "&cA warp '%warp%' já existe!"
-
-############################################################
-# +------------------------------------------------------+ #
-# |                   Comando /delwarp                   | #
-# +------------------------------------------------------+ #
-############################################################
-DelWarp-Comando-Incorreto: "&cComando incorreto, use /delwarp <warp>"
-Warp-Deletada: "&aWarp '%warp%' deletada com sucesso!"
-Warp-Nao-Existe: "&cA warp '%warp%' não existe!"
-
-############################################################
-# +------------------------------------------------------+ #
-# |                     Comando /warp                    | #
-# +------------------------------------------------------+ #
-############################################################
-Warp-Comando-Incorreto: "&cComando incorreto, use /warp <warp>"
-
-############################################################
-# +------------------------------------------------------+ #
-# |                    Comando /warps                    | #
-# +------------------------------------------------------+ #
-############################################################
-Nenhuma-Warp-Definida: "&cO servidor ainda não possui nenhuma definida."
-Warps-Lista: "&eWarps disponíveis(%n%): &7%warps%"
-Separador-De-Warps: "&8,&7"
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -168,9 +181,10 @@ Iniciando-Teleporte-Spawn: "&eEm %tempo% segundos você ira para o spawn."
 # |                     Comando /ping                    | #
 # +------------------------------------------------------+ #
 ############################################################
+Ping-Comando-Incorreto: "&cComando incorreto, use /ping <player>"
 Ping:
-  Seu-Ping: "&aSeu ping é %ping%."
-  Player-Ping: "O ping de %player% é %ping%."
+  Seu-Ping: "&aSeu ping é %ping%ms."
+  Player-Ping: "&aO ping de %player% é %ping%ms."
 
 ############################################################
 # +------------------------------------------------------+ #

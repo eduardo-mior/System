@@ -19,7 +19,7 @@ public class DataManager implements Listener {
 				pasta.mkdirs();
 			}
 		} catch(SecurityException e) {
-			Bukkit.getConsoleSender().sendMessage("§c[System] Falha ao tentar criar a pasta" + folder + "!");
+			Bukkit.getConsoleSender().sendMessage(ConfigManager.getConfig("mensagens").getString("Falha-Ao-Criar-Pasta").replace("&", "§").replace("%pasta%", folder));
 		}
 	}
 	
@@ -27,7 +27,7 @@ public class DataManager implements Listener {
 		try {
 			file.createNewFile();
 		} catch (IOException e) {
-			Bukkit.getConsoleSender().sendMessage(ConfigManager.getConfig("mensagens").getString("Falha-Ao-Criar").replace("&", "§").replace("%arquivo%", file.getName() + ".yml"));
+			Bukkit.getConsoleSender().sendMessage(ConfigManager.getConfig("mensagens").getString("Falha-Ao-Criar-Arquivo").replace("&", "§").replace("%arquivo%", file.getName()));
 		}
 	}
 	
@@ -44,6 +44,11 @@ public class DataManager implements Listener {
 	public static File getFile(String file) {
       	File Arquivo = new File(Main.aqui.getDataFolder() + "/" + file + ".yml");
       	return Arquivo;
+	}
+	
+	public static File getListFiles(String file, String folder) {
+		File Arquivo = new File(Main.aqui.getDataFolder() + File.separator + folder, file + ".yml");
+		return Arquivo;
 	}
 	
 	public static FileConfiguration getConfiguration(File file) {

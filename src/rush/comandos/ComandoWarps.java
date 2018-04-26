@@ -16,35 +16,39 @@ public class ComandoWarps implements Listener, CommandExecutor {
 	
 	public boolean onCommand(CommandSender s, Command cmd, String commandlabel, String[] args) {
 	      if (cmd.getName().equalsIgnoreCase("warps")) {
-	    	  File folder = DataManager.getFolder("Warps");
-	    	  File[] file = folder.listFiles();
-	    	  List<String> warps = new ArrayList<String>();
-	    	  String separador = ConfigManager.getConfig("mensagens").getString("Separador-De-Warps").replace("&", "§");
-	    	  int cont = 0;
-	    	  if (file.length == 0) {
-	    		  s.sendMessage(ConfigManager.getConfig("mensagens").getString("Nenhuma-Warp-Definida").replace("&", "§"));
-	    		  return false;
-	    	  } 
-	    	  else {
-	    		  for (int i=0; i < file.length; i++) {
-	    			  if (file[i].isFile()) {
-	    				  String permissao = DataManager.getConfiguration(file[i]).getString("Permissao");
-	    				  
-	    				  if(s.hasPermission(permissao))
-	    					  warps.add(file[i].getName().replace(".yml", ""));
-	    					  cont++;
-	    			  }
-	    		  }
-	    		  if (cont == 0) {
-		    		  s.sendMessage(ConfigManager.getConfig("mensagens").getString("Nenhuma-Warp-Definida").replace("&", "§"));
-		    		  return false;
-	    		  } 
-	    		  else {
-	    			  String warplist = warps.toString();
-		    		  s.sendMessage(ConfigManager.getConfig("mensagens").getString("Warps-Lista").replace("&", "§").replace("%warps%", warplist.substring(1,warplist.length() -1)).replace("%n%", String.valueOf(cont)).replace(",", separador));
-	    		  }
-	    	  }
+	    	  ListWarps(s);
 	      }
 	return false;
+	}
+	
+	public static void ListWarps(CommandSender s) {
+		File folder = DataManager.getFolder("warps");
+		File[] file = folder.listFiles();
+  	  	List<String> warps = new ArrayList<String>();
+  	  	String separador = ConfigManager.getConfig("mensagens").getString("Separador-De-Listas").replace("&", "§");
+  	  	int cont = 0;
+  	  	if (file.length == 0) {
+  	  		s.sendMessage(ConfigManager.getConfig("mensagens").getString("Nenhuma-Warp-Definida").replace("&", "§"));
+  	  		return;
+  	  	} 
+  	  	else {
+  	  		for (int i=0; i < file.length; i++) {
+  	  			if (file[i].isFile()) {
+  	  				String permissao = DataManager.getConfiguration(file[i]).getString("Permissao");
+  				  
+  	  				if(s.hasPermission(permissao))
+  	  					warps.add(file[i].getName().replace(".yml", ""));
+  					  	cont++;
+  	  			}
+  	  		}
+  	  		if (cont == 0) {
+  	  			s.sendMessage(ConfigManager.getConfig("mensagens").getString("Nenhuma-Warp-Definida").replace("&", "§"));
+  	  			return;
+  	  		} 
+  	  		else {
+  	  			String warplist = warps.toString();
+  	  			s.sendMessage(ConfigManager.getConfig("mensagens").getString("Warps-Lista").replace("&", "§").replace("%warps%", warplist.substring(1,warplist.length() -1)).replace("%n%", String.valueOf(cont)).replace(",", separador));
+  	  		}
+  	  	}
 	}
 }

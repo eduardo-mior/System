@@ -11,9 +11,8 @@ import rush.utils.ConfigManager;
 
 public class ComandoTitle implements Listener, CommandExecutor {
 	
-	@SuppressWarnings({ "deprecation", "unused" })
+	@SuppressWarnings({ "deprecation" })
 	public boolean onCommand(CommandSender Sender, Command Cmd, String Label, String[] args) {
-        String nome = Sender.getName();
 	    for (Player todos : Bukkit.getOnlinePlayers()) {
 	    if (Cmd.getName().equalsIgnoreCase("title")) {
 	    	if (!Sender.hasPermission("system.title")) {

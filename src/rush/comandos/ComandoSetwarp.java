@@ -37,11 +37,10 @@ public class ComandoSetwarp implements Listener, CommandExecutor {
 				     
 				     else {
 				    	String warp = args[0];
-				        File file = DataManager.getFile(warp, "Warps");
+				        File file = DataManager.getFile(warp, "warps");
 				        FileConfiguration config = DataManager.getConfiguration(file);
 				        if (!file.exists()) {
 							DataManager.createFile(file);
-							s.sendMessage(ConfigManager.getConfig("mensagens").getString("Warp-Definida").replace("&", "§").replace("%warp%", warp));
 							Location location = p.getLocation();
 							String locationSerialized = location.getWorld().getName() + "," + location.getX() + "," + location.getY() + "," + location.getZ() + "," + location.getYaw() + "," + location.getPitch();
 							config.set("Localizacao" , locationSerialized);
@@ -56,6 +55,8 @@ public class ComandoSetwarp implements Listener, CommandExecutor {
 							config.set("SubTitle" , "&ePARA A WARP " + warp.toUpperCase());
 							try {
 								config.save(file);
+								s.sendMessage(ConfigManager.getConfig("mensagens").getString("Warp-Definida").replace("&", "§").replace("%warp%", warp));
+
 							} catch (IOException e) {
 								Bukkit.getConsoleSender().sendMessage(ConfigManager.getConfig("mensagens").getString("Falha-Ao-Salvar").replace("&", "§").replace("%arquivo%", file.getName()));
 							}

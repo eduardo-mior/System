@@ -11,15 +11,22 @@ import rush.addons.McMMO;
 import rush.comandos.ComandoAlerta;
 import rush.comandos.ComandoClearChat;
 import rush.comandos.ComandoCores;
+import rush.comandos.ComandoDelhome;
 import rush.comandos.ComandoDelwarp;
 import rush.comandos.ComandoDivulgar;
+import rush.comandos.ComandoEchest;
 import rush.comandos.ComandoExecutarSom;
+import rush.comandos.ComandoHome;
+import rush.comandos.ComandoHomes;
 import rush.comandos.ComandoLixo;
 import rush.comandos.ComandoLuz;
 import rush.comandos.ComandoMundoVip;
 import rush.comandos.ComandoOnline;
+import rush.comandos.ComandoParticular;
 import rush.comandos.ComandoPing;
+import rush.comandos.ComandoPublica;
 import rush.comandos.ComandoSGive;
+import rush.comandos.ComandoSethome;
 import rush.comandos.ComandoSetmundovip;
 import rush.comandos.ComandoSetspawn;
 import rush.comandos.ComandoSetwarp;
@@ -70,6 +77,7 @@ import rush.recursos.gerais.MensagemDeBoasVindas;
 import rush.recursos.gerais.TitleDeBoasVindas;
 import rush.sistemas.gerais.AnunciarMorte;
 import rush.sistemas.gerais.AutoAnuncio;
+import rush.sistemas.gerais.EnderChest;
 import rush.sistemas.gerais.Motd;
 import rush.sistemas.gerais.ScoreBoard;
 import rush.sistemas.gerais.Tablist;
@@ -79,6 +87,7 @@ import rush.sistemas.spawners.SistemaDeSpawners;
 import rush.utils.ConfigManager;
 import rush.utils.DataManager;
 import rush.utils.Locations;
+import rush.utils.Playerdata;
 
 public class Main extends JavaPlugin implements Listener {
 
@@ -109,7 +118,8 @@ public class Main extends JavaPlugin implements Listener {
    }
    
    public void gerarConfigs() {
-	   DataManager.createFolder("Warps");
+	   DataManager.createFolder("warps");
+	   DataManager.createFolder("playerdata");
 	   ConfigManager.createNewConfig("mensagens");
 	   ConfigManager.createNewConfig("settings");
 	   ConfigManager.createNewConfig("permissions");
@@ -120,14 +130,21 @@ public class Main extends JavaPlugin implements Listener {
 	    getCommand("alerta").setExecutor(new ComandoAlerta()); 
 	    getCommand("clearchat").setExecutor(new ComandoClearChat()); 
 	    getCommand("cores").setExecutor(new ComandoCores());
+	    getCommand("delhome").setExecutor(new ComandoDelhome()); 
 	    getCommand("delwarp").setExecutor(new ComandoDelwarp()); 
 	    getCommand("divulgar").setExecutor(new ComandoDivulgar()); 
-	    getCommand("executarsom").setExecutor(new ComandoExecutarSom()); 
+	    getCommand("echest").setExecutor(new ComandoEchest());
+	    getCommand("executarsom").setExecutor(new ComandoExecutarSom());
+	    getCommand("home").setExecutor(new ComandoHome());
+	    getCommand("homes").setExecutor(new ComandoHomes()); 
 	    getCommand("lixo").setExecutor(new ComandoLixo());
 	    getCommand("luz").setExecutor(new ComandoLuz());
 	    getCommand("mundovip").setExecutor(new ComandoMundoVip()); 
 	    getCommand("online").setExecutor(new ComandoOnline()); 
+	    getCommand("particular").setExecutor(new ComandoParticular());
 	    getCommand("ping").setExecutor(new ComandoPing());
+	    getCommand("publica").setExecutor(new ComandoPublica());
+	    getCommand("sethome").setExecutor(new ComandoSethome()); 
 	    getCommand("setmundovip").setExecutor(new ComandoSetmundovip()); 
 	    getCommand("setspawn").setExecutor(new ComandoSetspawn()); 
 	    getCommand("setwarp").setExecutor(new ComandoSetwarp()); 
@@ -298,6 +315,8 @@ public class Main extends JavaPlugin implements Listener {
 		McMMO.checkMCTop();
 	    getServer().getConsoleSender().sendMessage("§a[System] mcMMO encontrado, ativando addons!");}}
 	    
-	    pm.registerEvents(new Outros(), this);    
+	    pm.registerEvents(new Playerdata(), this);
+	    pm.registerEvents(new EnderChest(), this);
+	    pm.registerEvents(new Outros(), this);
    }
 }

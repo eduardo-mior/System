@@ -37,11 +37,12 @@ public class ComandoWarp implements Listener, CommandExecutor {
 				     
 				else {
 				   	String warp = args[0];
-				    File file = DataManager.getFile(warp, "Warps");
+				    File file = DataManager.getFile(warp, "warps");
 				    
 				    if (!file.exists()) {
 				    	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Warp-Nao-Existe").replace("&", "§").replace("%warp%", warp));
-				    
+				    	ComandoWarps.ListWarps(s);
+				    	
 				    } else {
 					    FileConfiguration config = DataManager.getConfiguration(file);
 					    String[] locationSplitted = config.getString("Localizacao").split(",");
@@ -71,7 +72,7 @@ public class ComandoWarp implements Listener, CommandExecutor {
 				    			}
 				    		}.runTaskLater(Main.aqui, 20 * config.getInt("Delay"));
 				    		return false;
-				    	} 
+				    	}
 				    	
 				    	else {
 						    s.sendMessage(config.getString("MensagemFinal").replace("&", "§"));
