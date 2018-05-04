@@ -1,4 +1,4 @@
-package rush.recursos.antibug;
+package rush.sistemas.spawners;
 
 import org.bukkit.Material;
 import org.bukkit.block.Block;

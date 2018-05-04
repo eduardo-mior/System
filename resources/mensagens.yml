@@ -58,7 +58,7 @@ Warp-Definida: "&aWarp '%warp%' definida com sucesso!"
 Warp-Deletada: "&aWarp '%warp%' deletada com sucesso!"
 Warp-Ja-Existe: "&cA warp '%warp%' já existe!"
 Warp-Nao-Existe: "&cA warp '%warp%' não existe!"
-Nenhuma-Warp-Definida: "&cO servidor ainda não possui nenhuma definida."
+Nenhuma-Warp-Definida: "&cNão há warps disponíveis."
 Warps-Lista: "&eWarps disponíveis(%n%): &7%warps%"
 
 ############################################################
@@ -91,10 +91,23 @@ Tornou-Home-Particular: "&aA home '%home%' agora é uma home particular, ou seja
 
 ############################################################
 # +------------------------------------------------------+ #
-# |                 Mensagem de UP mcMMO                 | #
+# |                   Sistema de Kits                    | #
 # +------------------------------------------------------+ #
 ############################################################
-mcMMO-Upou-100-Niveis: "&6&lHABILIDADES: &e%player% atingiu o &6nível %level% &ena habilidade de &6%skill%&e!"
+DelKit-Comando-Incorreto: "&cComando incorreto, use /delkit <kit>"
+CriarKit-Comando-Incorreto: "&cComando incorreto, use /criarkit <kit>"
+EditarKit-Comando-Incorreto: "&cComando incorreto, use /editarkit <kit>"
+Kit-Comando-Incorreto: "&cComando incorreto, use /kit <kit>"
+Kit-Nao-Existe: "&cO kit '%kit%' não existe."
+Kit-Ja-Existe: "&cO kit '%kit%' já existe."
+Kit-Sem-Permissao: "&cVocê não tem permissão para pegar este kit."
+Kit-Criado: "&aKit '%kit%' criado com sucesso."
+Kit-Editado: "&aKit '%kit%' editado com sucesso."
+Kit-Deletado: "&aKit '%kit%' deletado com sucesso."
+Kit-Pego: "&aKit '%kit%' adquirido com sucesso."
+Kit-Aguarde: "&cAguarde mais %tempo% para poder pegar este kit novamente."
+Nenhum-Kit-Criado: "&cNão há kits disponíveis."
+Kits-Lista: "&eKits disponíveis(%n%): &7%kits%"
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -112,19 +125,28 @@ Divulgando-SubTitle: "&b&l%player% ESTA DIVULGANDO!"
 
 ############################################################
 # +------------------------------------------------------+ #
+# |                     Comando /fly                     | #
+# +------------------------------------------------------+ #
+############################################################
+Fly-Comando-Incorreto: "&cComando incorreto, use /fly <player> [on/off]"
+Fly-Outro-Sem-Permissao: "&cVocê não tem permissão para alterar o fly de outras pessoas!"
+Fly-Desabilitado-Voce: "&cModo fly desabilitado com sucesso."
+Fly-Desabilitado-Outro: "&cModo fly desabilitado com sucesso para %player%."
+Fly-Habilitado-Voce: "&aModo fly habilitado com sucesso."
+Fly-Habilitado-Outro: "&aModo fly habilitado com sucesso para %player%."
+Fly-Ja-Habilitado-Voce: "&eO seu modo fly já esta &ahabilitado&e!"
+Fly-Ja-Habilitado-Outro: "&eO modo fly de %player% já esta &ahabilitado&e!"
+Fly-Ja-Desabilitado-Voce: "&eO seu modo fly já esta &cdesabilitado&e!"
+Fly-Ja-Desabilitado-Outro: "&eO modo fly de %player% já esta &cdesabilitado&e!"
+
+############################################################
+# +------------------------------------------------------+ #
 # |                 Comando /setmundovip                 | #
 # +------------------------------------------------------+ #
 ############################################################
 Area-Vip-Definida: "&aArea VIP definida com sucesso! É para este local que as pessoas &6VIPs&a irão ser teleportadas!"
 Area-Nao-Vip-Definida: "&aArea dos não VIP definida com sucesso! É para este local que as pessoas &csem VIP&a irão ser teleportadas!"
 Setmundovip-Comando-Incorreto: "&cComando incorreto, use /setmundovip <areaVip &8ou&c areaNaoVip>"
-
-############################################################
-# +------------------------------------------------------+ #
-# |                  Comando /setspawn                   | #
-# +------------------------------------------------------+ #
-############################################################
-Spawn-Definido: "&aSpawn definido com sucesso!"
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -197,6 +219,30 @@ Teleportado-Com-Sucesso-Vip: "&aBem vindo ao mundo VIP."
 
 ############################################################
 # +------------------------------------------------------+ #
+# |                     Comando /back                    | #
+# +------------------------------------------------------+ #
+############################################################
+Nao-Possui-Back: "&cVocê não possui nenhuma localização para voltar."
+Back-Teleportado-Sucesso: "&aVocê foi teleportado para a sua ultima localização."
+
+############################################################
+# +------------------------------------------------------+ #
+# |                    Comando /chapeu                   | #
+# +------------------------------------------------------+ #
+############################################################
+Chapeu-Colocado: "&aAproveite seu novo chapéu ☻"
+Chapeu-Invalido: "&cEste item não pode ser usado como chapéu!"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                    Comando /title                    | #
+# +------------------------------------------------------+ #
+############################################################
+Title-Comando-Incorreto: "&cComando incorreto use /title [title] <nl> [subtitle]"
+Tile-Enviado: "&aTitle enviado com sucesso."
+
+############################################################
+# +------------------------------------------------------+ #
 # |                   Comando /lixeira                   | #
 # +------------------------------------------------------+ #
 ############################################################
@@ -211,11 +257,10 @@ Players-Online: "&2O servidor esta atualmente com &a%online%&2 players online!"
 
 ############################################################
 # +------------------------------------------------------+ #
-# |                    Comando /title                    | #
+# |                  Comando /setspawn                   | #
 # +------------------------------------------------------+ #
 ############################################################
-Title-Comando-Incorreto: "&cComando incorreto use /title [title] <nl> [subtitle]"
-Tile-Enviado: "&aTitle enviado com sucesso."
+Spawn-Definido: "&aSpawn definido com sucesso!"
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -257,3 +302,10 @@ Tabela-De-Cores:
 ############################################################
 Avisar-Que-O-Chat-Foi-Limpo: true
 Aviso-Que-O-Chat-Limpo-Global: "&aO chat foi limpo por %player%!"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                 Mensagem de UP mcMMO                 | #
+# +------------------------------------------------------+ #
+############################################################
+mcMMO-Upou-100-Niveis: "&6&lHABILIDADES: &e%player% atingiu o &6nível %level% &ena habilidade de &6%skill%&e!"

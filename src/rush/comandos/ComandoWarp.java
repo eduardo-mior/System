@@ -24,13 +24,8 @@ public class ComandoWarp implements Listener, CommandExecutor {
 		 if (cmd.getName().equalsIgnoreCase("warp")) {
 			 if (s instanceof Player) {
 				Player p = (Player) s;
-					 
-				if (args.length == 0) {
-					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Warp-Comando-Incorreto").replaceAll("&", "§"));
-				    return false;
-			    }
 				     
-				if (args.length > 1) {
+			    if (args.length > 1 || args.length < 1) {
 				     s.sendMessage(ConfigManager.getConfig("mensagens").getString("Warp-Comando-Incorreto").replaceAll("&", "§"));
 				     return false;
 				}

@@ -29,6 +29,7 @@ public class Playerdata implements Listener {
         	DataManager.createFile(file);
         	config.set("Nick", NewPlayer);
         	config.createSection("Homes");
+        	config.createSection("Kits");
 			try {
 				config.save(file);
 			} catch (IOException ex) {

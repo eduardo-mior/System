@@ -16,7 +16,7 @@ public class ComandoClearChat implements Listener, CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String commandlabel, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("clearchat")) {
+		if (cmd.getName().equalsIgnoreCase("clearchat")) {		
 	         if (!sender.hasPermission("system.clearchat")) {
     			 sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Sem-Permissao"));
 	         } else {

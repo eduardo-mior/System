@@ -13,10 +13,12 @@ public class BloquearCairNoVoid implements Listener {
 	@EventHandler
     public void aoSofrerDano(EntityDamageEvent e) {
     	if(e.getCause() == DamageCause.VOID && e.getEntity() instanceof Player) {
-            e.setCancelled(true);
-    		e.getEntity().setFallDistance(1);
-    		e.getEntity().teleport(Locations.spawn);
+    		Player p = (Player) e.getEntity();
+    		if (p.getLocation().getBlockY() < 0) {
+	            e.setCancelled(true);
+	    		p.setFallDistance(1);
+	    		p.teleport(Locations.spawn);
+    		}
     	}
     }
-	
 }

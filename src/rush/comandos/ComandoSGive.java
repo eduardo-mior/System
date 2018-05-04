@@ -41,7 +41,7 @@ public class ComandoSGive implements Listener, CommandExecutor {
             for (String type: mobs) {
             	if (tipo.equals(type)) {
             		if (beneficiado != null) {
-            			final ItemStack mob = new ItemStack(Material.MOB_SPAWNER, 1);
+            			ItemStack mob = new ItemStack(Material.MOB_SPAWNER, 1);
             			ItemMeta mobMeta = mob.getItemMeta();
             			ArrayList<String> desc = new ArrayList();
 		                desc.add(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner").replaceAll("&", "§") + args[1].replaceAll("_", " "));
@@ -75,7 +75,7 @@ public class ComandoSGive implements Listener, CommandExecutor {
             	for (String type: mobs) {
             		if (tipo.equals(type)) {
             			if (beneficiado != null) {
-			                final ItemStack mob = new ItemStack(Material.MOB_SPAWNER, quantidade);
+			                ItemStack mob = new ItemStack(Material.MOB_SPAWNER, quantidade);
 			                ItemMeta mobMeta = mob.getItemMeta();
 			                ArrayList<String> desc = new ArrayList();
 			                desc.add(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner").replaceAll("&", "§") + args[1].replaceAll("_", " "));

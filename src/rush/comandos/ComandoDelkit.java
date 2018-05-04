@@ -10,28 +10,29 @@ import org.bukkit.event.Listener;
 import rush.utils.ConfigManager;
 import rush.utils.DataManager;
 
-public class ComandoDelwarp implements Listener, CommandExecutor {
+public class ComandoDelkit implements Listener, CommandExecutor {
 	
 	@Override
 	 public boolean onCommand(final CommandSender s, Command cmd, String lbl, String[] args) {
-		 if (cmd.getName().equalsIgnoreCase("delwarp")) {
-			 if (s.hasPermission("system.delwarp")) {					 					 
-				     
+		 if (cmd.getName().equalsIgnoreCase("delkit")) {
+			 if (s.hasPermission("system.delkit")) {
 			     if (args.length > 1 || args.length < 1) {
-			          s.sendMessage(ConfigManager.getConfig("mensagens").getString("DelWarp-Comando-Incorreto").replaceAll("&", "§"));
+			          s.sendMessage(ConfigManager.getConfig("mensagens").getString("DelKit-Comando-Incorreto").replaceAll("&", "§"));
 			          return false;
 			     } 
 				     
-			     String warp = args[0];
-			     File file = DataManager.getFile(warp, "warps");
+			     String kit = args[0].toLowerCase();
+			     File file = DataManager.getFile(kit, "kits");
 			     if (file.exists()) {
 			    	 DataManager.deleteFile(file);
-			    	 s.sendMessage(ConfigManager.getConfig("mensagens").getString("Warp-Deletada").replace("&", "§").replace("%warp%", warp));
+			    	 s.sendMessage(ConfigManager.getConfig("mensagens").getString("Kit-Deletado").replace("&", "§").replace("%kit%", kit));
+			    	 return false;
 			     } 
 				       
 			     else {
-			    	 s.sendMessage(ConfigManager.getConfig("mensagens").getString("Warp-Nao-Existe").replace("&", "§").replace("%warp%", warp));
-				     ComandoWarps.ListWarps(s);
+			         s.sendMessage(ConfigManager.getConfig("mensagens").getString("Kit-Nao-Existe").replaceAll("&", "§").replace("%kit%", kit));
+				     ComandoKits.ListKits(s);
+				     return false;
 			     }
 			 }
 			 s.sendMessage(ConfigManager.getConfig("mensagens").getString("Sem-Permissao").replace("&", "§"));

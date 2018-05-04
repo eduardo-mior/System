@@ -40,8 +40,8 @@ public class ComandoHome implements Listener, CommandExecutor {
 		     
 		    int delay = ConfigManager.getConfig("settings").getInt("Delay-Para-Teleportar-Comandos");
 		    String home = args[0];
+		    Player p = (Player)s;
 		   	if (home.contains(":")) {
-			    Player p = (Player)s;
 		   		String[] homeSplit = home.split(":");
 		        
 		        if (homeSplit.length < 1 || homeSplit.length > 3) {
@@ -107,7 +107,6 @@ public class ComandoHome implements Listener, CommandExecutor {
 		   	}
 		   	
 		   	else {
-			    Player p = (Player)s;
 		   		String player = s.getName();
 		        File file = DataManager.getFile(player.toLowerCase(), "playerdata");
 		        FileConfiguration config = DataManager.getConfiguration(file);
@@ -146,7 +145,6 @@ public class ComandoHome implements Listener, CommandExecutor {
 			    	}
 		   		}
 		   	}
-		 return false;
 		 }
 	return false;
 	}

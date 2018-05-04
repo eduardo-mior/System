@@ -8,6 +8,16 @@ commands:
     aliases: []
     permission: system.alerta
     permission-message: "§cVocê não tem permissão para utilizar este comando."
+  back:
+    description: Volta ao local anterior do seu teleporte.
+    aliases: []
+    permission: system.back
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  chapeu:
+    description: Veste um chapeu.
+    aliases: [hat]
+    permission: system.chapeu
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
   clearchat:
     description: Limpa o chat do servidor.
     aliases: [cc]
@@ -18,10 +28,20 @@ commands:
     aliases: [colors]
     permission: system.cores
     permission-message: "§cVocê não tem permissão para utilizar este comando."
+  criarkit:
+    description: Cria um kit.
+    aliases: [createkit]
+    permission: system.criarkit
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
   delhome:
     description: Deleta uma home.
     aliases: []
     permission: system.delhome
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  delkit:
+    description: Deleta um kit.
+    aliases: [apagarkit]
+    permission: system.delkit
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   delwarp:
     description: Deleta uma warp.
@@ -38,10 +58,20 @@ commands:
     aliases: [ec]
     permission: system.echest
     permission-message: "§cVocê não tem permissão para utilizar este comando."
+  editarkit:
+    description: Edita um kit criado.
+    aliases: [editkit]
+    permission: system.editarkit
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
   executarsom:
     description: Executa um som para um player ou para todo server.
     aliases: [playsound, som]
     permission: system.executarsom
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  fly:
+    description: Ativa ou desativa o modo fly.
+    aliases: [voar]
+    permission: system.fly
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   home:
     description: Teleporta até uma home.
@@ -52,6 +82,16 @@ commands:
     description: Mostra a lista de homes salvas.
     aliases: []
     permission: system.homes
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  kit:
+    description: Pega um kit.
+    aliases: []
+    permission: system.kit
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  kits:
+    description: Lista todos os kits disponiveis.
+    aliases: []
+    permission: system.kits
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   lixo:
     description: Abre a lixeira virtual.
@@ -134,7 +174,7 @@ commands:
     permission: system.warp
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   warps:
-    description: Mostra a lista de todas as warps do servidor.
+    description: Lista todas as warps disponiveis.
     aliases: []
     permission: system.warps
     permission-message: "§cVocê não tem permissão para utilizar este comando."
@@ -142,6 +182,12 @@ commands:
 permissions:
   system.alerta:
     description: Permissão para enviar um alerta no servidor.
+    default: op
+  system.chapeu:
+    description: Permissão para vestir um chapeu.
+    default: op
+  system.back:
+    description: Permissão para voltar ao local alterior do seu teleporte.
     default: op
   system.clearchat:
     description: Permissão para limpar o chat do servidor.
@@ -155,9 +201,15 @@ permissions:
   system.cornaplaca:
     description: Permissão para renomear itens com cores.
     default: false
+  system.criarkit:
+    description: Permissão para criar um kit.
+    default: op
   system.delhome:
     description: Permissão para definir uma home.
     default: true
+  system.delkit:
+    description: Permissão para deletar um kit.
+    default: op
   system.delwarp:
     description: Permissão para deletar uma warp.
     default: op
@@ -173,8 +225,17 @@ permissions:
   system.echest.admin:
     description: Permissão para editar o enderchest virtual de outras pessoas.
     default: op
+  system.editarkit: 
+    description: Permissão para editar um kit criado.
+    default: op
   system.executarsom:
     description: Permissão para enviar um som para um player ou para todo servidor.
+    default: op
+  system.fly:
+    description: Permissão para ativar ou desativar o seu modo fly.
+    default: op
+  system.fly.outros:
+    description: Permissão para ativar ou desativar o fly de outras pessoas.
     default: op
   system.home:
     description: Permissão para se teleportar até uma home.
@@ -182,6 +243,12 @@ permissions:
   system.home.admin:
     description: Permissão para ver e para se teleportar para as homes privadas de alguem.
     default: op
+  system.kit:
+    description: Permissão para utilizar o comando /kit.
+    default: true
+  system.kits:
+    description: Permissão para ver a lista de kits disponiveis.
+    default: true
   system.homes:
     description: Permissão para ver a lista de homes.
     default: true
@@ -237,10 +304,10 @@ permissions:
     description: Permissão para se teleportar até a area vip.
     default: op
   system.warp:
-    description: Permissão para se teleportar até a area vip.
+    description: Permissão para se teleportar para uma warp.
     default: true
   system.warps:
-    description: Permissão para se teleportar até a area vip.
+    description: Permissão para ver a lista de warps disponiveis.
     default: true
   system.chat.cor1:
     default: false
@@ -273,6 +340,9 @@ permissions:
   system.bypass.craftbloqueado:
     description: Permissão para craftar itens que foram bloqueados.
     default: false
+  system.bypass.delaykit:
+    description: Permissão para pegar um kit sem precisar esperar o delay.
+    default: false
   system.bypass.entraremveiculos:
     description: Permissão para entrar em veiculos mesmo se estiver bloqueado.
     default: false
@@ -299,6 +369,7 @@ permissions:
       system.bypass.comandobloqueado: true
       system.bypass.containerbloqueado: true
       system.bypass.craftbloqueado: true
+      system.bypass.delaykit: true
       system.bypass.entraremveiculos: true
       system.bypass.entrarnacama: true
       system.bypass.placabloqueada: true
@@ -311,19 +382,29 @@ permissions:
     default: op
     children:
       system.alerta: true
+      system.back: true
+      system.chapeu: true
       system.clearchat: true
       system.cores: true
+      system.cornabigorna: true
       system.cornaplaca: true
+      system.criarkit: true
       system.delhome: true
+      system.delkit: true
       system.delwarp: true
       system.divulgar: true
       system.echest: true
       system.echest.mod: true
       system.echest.admin: true
+      system.editarkit: true
       system.executarsom: true
+      system.fly: true
+      system.fly.outros: true
       system.home: true
       system.home.admin: true
       system.homes: true
+      system.kit: true
+      system.kits: true
       system.lixo: true
       system.luz: true
       system.mundovip: true

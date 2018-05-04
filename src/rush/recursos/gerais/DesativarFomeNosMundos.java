@@ -7,8 +7,8 @@ import org.bukkit.event.entity.FoodLevelChangeEvent;
 public class DesativarFomeNosMundos implements Listener {
 
 	@EventHandler
-	  public void aoAlterarNivelDaFome(FoodLevelChangeEvent e) {
+	public void aoAlterarNivelDaFome(FoodLevelChangeEvent e) {
 		e.setFoodLevel(40);
 	    e.setCancelled(true);
-	  }
+	}
 }

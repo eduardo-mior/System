@@ -1,4 +1,4 @@
-package rush.sistemas.gerais;
+package rush.sistemas.comandos;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;

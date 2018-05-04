@@ -22,7 +22,7 @@ public class ComandoEchest implements Listener, CommandExecutor {
 			 }
 			 
 			 Player sender = (Player)s;
-			 if (args.length == 1 && s.hasPermission("system.echest.mod")) {
+			 if (args.length > 0 && s.hasPermission("system.echest.mod")) {
 				 Player p = Bukkit.getPlayer(args[0]);
 				 if (p == null) {
          			s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Offline").replaceAll("&", "§"));

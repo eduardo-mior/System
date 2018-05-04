@@ -13,8 +13,8 @@ public class ComandoCores implements Listener, CommandExecutor {
 	      if (cmd.getName().equalsIgnoreCase("cores")) {
 	    		for (String list : ConfigManager.getConfig("mensagens").getStringList("Tabela-De-Cores")) {
                     sender.sendMessage(list);
-                }
-	    	}
-		return false;
+	    		}
+	      }
+	      return false;
 	}
 }

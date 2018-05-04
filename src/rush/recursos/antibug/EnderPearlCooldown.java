@@ -20,13 +20,13 @@ public class EnderPearlCooldown  implements Listener {
     @EventHandler
     public void aoJogarEnder(ProjectileLaunchEvent e) {
     	if (!(e.getEntity().getShooter() instanceof Player)) {
-		return;
-	}
+    		return;
+    	}
     	
     	Player p = (Player) e.getEntity().getShooter();
     	if (e.getEntityType() != EntityType.ENDER_PEARL) {
-    	return;
-	}
+    		return;
+    	}
 	
     	if (cooldown.containsKey(p) && cooldown.get(p).after(new Timestamp(System.currentTimeMillis()))) {
     		e.setCancelled(true);
@@ -34,11 +34,9 @@ public class EnderPearlCooldown  implements Listener {
     		p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.ENDER_PEARL) });
     		return;
     		
-    } else {
+    	} else {
     		cooldown.remove(p);
-    }
-	e.setCancelled(false);
-	
-	cooldown.put(p, new Timestamp(System.currentTimeMillis()+1000*(ConfigManager.getConfig("settings").getInt("EnderPearl-Cooldown.Cooldown"))));
+    	}
+    	cooldown.put(p, new Timestamp(System.currentTimeMillis()+1000*(ConfigManager.getConfig("settings").getInt("EnderPearl-Cooldown.Cooldown"))));
     }
 }

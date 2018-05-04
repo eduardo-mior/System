@@ -13,8 +13,8 @@ public class ComandoTitle implements Listener, CommandExecutor {
 	
 	@SuppressWarnings({ "deprecation" })
 	public boolean onCommand(CommandSender Sender, Command Cmd, String Label, String[] args) {
-	    for (Player todos : Bukkit.getOnlinePlayers()) {
 	    if (Cmd.getName().equalsIgnoreCase("title")) {
+		    for (Player todos : Bukkit.getOnlinePlayers()) {
 	    	if (!Sender.hasPermission("system.title")) {
 		          Sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Sem-Permissao"));
 		          return true;
@@ -46,7 +46,7 @@ public class ComandoTitle implements Listener, CommandExecutor {
 		             todos.sendTitle(msg3[0].replaceAll("&", "§").replaceAll("¨", " "), msg3[1].replaceAll("&", "§").replaceAll("¨", " "));
 		            }
 		        }
-	    }
+		    }
 	    }
 	    return false;
 	}
