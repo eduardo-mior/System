@@ -1,7 +1,6 @@
 package rush;
 
 import org.bukkit.Bukkit;
-import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -22,6 +21,7 @@ import rush.comandos.ComandoEchest;
 import rush.comandos.ComandoEditarkit;
 import rush.comandos.ComandoExecutarSom;
 import rush.comandos.ComandoFly;
+import rush.comandos.ComandoGamemode;
 import rush.comandos.ComandoHome;
 import rush.comandos.ComandoHomes;
 import rush.comandos.ComandoKit;
@@ -112,15 +112,7 @@ public class Main extends JavaPlugin implements Listener {
    }
    
    public void onDisable() {
-	   PluginManager pm = Bukkit.getServer().getPluginManager();
-	   
-	   if (pm.getPlugin("mcMMO") != null) {
-	   McMMO.TTask.cancel(); }
-	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Auto-Anuncio")) {
-	   AutoAnuncio.XTask.cancel(); }
-	   
-	   HandlerList.unregisterAll();
+	   desativarRecursos();
    }
    
    public void instanceMain() {
@@ -152,6 +144,7 @@ public class Main extends JavaPlugin implements Listener {
 	   getCommand("editarkit").setExecutor(new ComandoEditarkit());
 	   getCommand("executarsom").setExecutor(new ComandoExecutarSom());
 	   getCommand("fly").setExecutor(new ComandoFly());
+	   getCommand("gamemode").setExecutor(new ComandoGamemode());
 	   getCommand("home").setExecutor(new ComandoHome());
 	   getCommand("homes").setExecutor(new ComandoHomes());
 	   getCommand("kit").setExecutor(new ComandoKit());
@@ -196,7 +189,7 @@ public class Main extends JavaPlugin implements Listener {
 	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Abrir-Containers.Ativar")){
 	   pm.registerEvents(new BloquearAbrirContainers(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Cair-No-Void")){
+	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Cair-No-Void") && Locations.validarSpawn()){
 	   pm.registerEvents(new BloquearCairNoVoid(), this);}
 	   
 	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Cama")){
@@ -238,7 +231,7 @@ public class Main extends JavaPlugin implements Listener {
 	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Subir-Em-Veiculos")){
 	   pm.registerEvents(new BloquearSubirEmVeiculos(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Subir-No-Teto-Nether")){
+	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Subir-No-Teto-Nether") && Locations.validarSpawn()){
 	   pm.registerEvents(new BloquearSubirNoTetoNether(), this);}
 	   
 	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Teleport-Por-Portal.Ativar")){
@@ -295,7 +288,7 @@ public class Main extends JavaPlugin implements Listener {
 	   if (ConfigManager.getConfig("settings").getBoolean("EnderPearl-Cooldown.Ativar")){
 	   pm.registerEvents(new EnderPearlCooldown(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Entrar-No-Spawn-Ao-Logar")){
+	   if (ConfigManager.getConfig("settings").getBoolean("Entrar-No-Spawn-Ao-Logar") && Locations.validarSpawn()){
 	   pm.registerEvents(new EntrarNoSpawnAoLogar(), this);}
 	   
 	   if (ConfigManager.getConfig("settings").getBoolean("Limitador-De-Players")){
@@ -339,5 +332,15 @@ public class Main extends JavaPlugin implements Listener {
 	   pm.registerEvents(new KitsListener(), this); 
 	   pm.registerEvents(new BackListener(), this);
 	   pm.registerEvents(new Outros(), this);
+   }
+   
+   public void desativarRecursos() {
+	   PluginManager pm = Bukkit.getServer().getPluginManager();
+	   
+	   if (pm.getPlugin("mcMMO") != null) {
+	   McMMO.TTask.cancel(); }
+	   
+	   if (ConfigManager.getConfig("settings").getBoolean("Auto-Anuncio")) {
+	   AutoAnuncio.XTask.cancel(); }
    }
 }

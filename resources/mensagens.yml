@@ -128,7 +128,7 @@ Divulgando-SubTitle: "&b&l%player% ESTA DIVULGANDO!"
 # |                     Comando /fly                     | #
 # +------------------------------------------------------+ #
 ############################################################
-Fly-Comando-Incorreto: "&cComando incorreto, use /fly <player> [on/off]"
+Fly-Comando-Incorreto: "&cComando incorreto, use /fly [player] [on/off]"
 Fly-Outro-Sem-Permissao: "&cVocê não tem permissão para alterar o fly de outras pessoas!"
 Fly-Desabilitado-Voce: "&cModo fly desabilitado com sucesso."
 Fly-Desabilitado-Outro: "&cModo fly desabilitado com sucesso para %player%."
@@ -138,6 +138,20 @@ Fly-Ja-Habilitado-Voce: "&eO seu modo fly já esta &ahabilitado&e!"
 Fly-Ja-Habilitado-Outro: "&eO modo fly de %player% já esta &ahabilitado&e!"
 Fly-Ja-Desabilitado-Voce: "&eO seu modo fly já esta &cdesabilitado&e!"
 Fly-Ja-Desabilitado-Outro: "&eO modo fly de %player% já esta &cdesabilitado&e!"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                  Comando /gamemode                   | #
+# +------------------------------------------------------+ #
+############################################################
+Gamemode-Comando-Incorreto: "&cComando incorreto use, /gamemode <modo> [player]"
+Gamemode-Invalido: "&cO gamemode '%gm%' não é um gamemode valido."
+Gamemode-Ja-Esta-Outro: "&c%player% já esta no gamemode %gm%."
+Gamemode-Ja-Esta-Voce: "&cVocê já esta no gamemode %gm%."
+Gamemode-Definido-Outro: "&aGamemode %gm% definido com sucesso para %player%."
+Gamemode-Definido-Voce: "&aGamemode alterado com sucesso para %gm%."
+Gamemode-Outro-Sem-Permissao: "&cVocê não tem permissão para alterar o gamemode de outras pessoas!"
+Gamemode-Sem-Permissao-Tipo: "&cVocê não tem permissão para entrar no gamemode %gm%!"
 
 ############################################################
 # +------------------------------------------------------+ #

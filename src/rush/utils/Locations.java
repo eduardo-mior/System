@@ -1,6 +1,10 @@
 package rush.utils;
 
+import java.util.List;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.World;
 
 import rush.Main;
 
@@ -14,6 +18,13 @@ public class Locations {
 		areaVip();
 		areaNaoVip();
 		spawn();
+	}
+	
+	public static boolean validarSpawn() {
+		List<World> worlds = Bukkit.getWorlds();
+		World world = spawn.getWorld();
+		if (worlds.contains(world)) return true;
+		else return false;
 	}
 
 	public static void areaVip() {

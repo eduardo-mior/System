@@ -1,6 +1,7 @@
 main: rush.Main
 version: 1.0
 name: System
+softdepend: [Legendchat, mcMMO]
 
 commands:
   alerta:
@@ -25,7 +26,7 @@ commands:
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   cores:
     description: Mostra a lista de cores do minecraft.
-    aliases: [colors]
+    aliases: []
     permission: system.cores
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   criarkit:
@@ -72,6 +73,11 @@ commands:
     description: Ativa ou desativa o modo fly.
     aliases: [voar]
     permission: system.fly
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  gamemode:
+    description: Altera o seu modo de jogo.
+    aliases: [gm]
+    permission: system.gamemode
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   home:
     description: Teleporta até uma home.
@@ -197,10 +203,10 @@ permissions:
     default: true
   system.cornabigorna:
     description: Permissão para renomear itens com cores.
-    default: false
+    default: op
   system.cornaplaca:
     description: Permissão para renomear itens com cores.
-    default: false
+    default: op
   system.criarkit:
     description: Permissão para criar um kit.
     default: op
@@ -236,6 +242,24 @@ permissions:
     default: op
   system.fly.outros:
     description: Permissão para ativar ou desativar o fly de outras pessoas.
+    default: op
+  system.gamemode:
+    description: Permissão para poder alterar o seu modo de jogo.
+    default: op
+  system.gamemode.outros:
+    description: Permissão para poder alterar o modo de jogo de outras pessoas.
+    default: op
+  system.gamemode.survival: 
+    description: Permissão para alterar o seu modo de jogo para survival.
+    default: op
+  system.gamemode.creative: 
+    description: Permissão para alterar o seu modo de jogo para criativo.
+    default: op
+  system.gamemode.adventure: 
+    description: Permissão para alterar o seu modo de jogo para aventura.
+    default: op
+  system.gamemode.spectator: 
+    description: Permissão para alterar o seu modo de jogo para espectador.
     default: op
   system.home:
     description: Permissão para se teleportar até uma home.
@@ -362,6 +386,15 @@ permissions:
     description: Permissão para usar a NameTag mesmo se ela estiver bloqueada.
     default: false
 
+  system.gamemode.all:
+    description: Permissão para poder entrar em todos os modos de jogo.
+    default: false
+    children:
+      system.gamemode.survival: true
+      system.gamemode.creative: true
+      system.gamemode.adventure: true
+      system.gamemode.spectator: true
+
   system.bypass.all:
     description: Permissão para burlar todos os recursos do plugin.
     default: false
@@ -400,6 +433,9 @@ permissions:
       system.executarsom: true
       system.fly: true
       system.fly.outros: true
+      system.gamemode: true
+      system.gamemode.outros: true
+      system.gamemode.all: true
       system.home: true
       system.home.admin: true
       system.homes: true
