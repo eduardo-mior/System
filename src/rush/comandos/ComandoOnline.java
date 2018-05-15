@@ -10,10 +10,10 @@ import rush.utils.ConfigManager;
 
 public class ComandoOnline implements Listener, CommandExecutor {
 	
-	public boolean onCommand(CommandSender sender, Command cmd, String commandlabel, String[] args) {
-	      if (cmd.getName().equalsIgnoreCase("online")) {
-                  sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Players-Online").replace("&", "§").replace("%online%", String.valueOf(Bukkit.getOnlinePlayers().size())));
-	      }
-	return false;
+	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
+		if (cmd.getName().equalsIgnoreCase("online")) {
+			s.sendMessage(ConfigManager.getConfig("mensagens").getString("Players-Online").replace("&", "§").replace("%online%", String.valueOf(Bukkit.getOnlinePlayers().size())));
+		}
+		return false;
 	}
 }

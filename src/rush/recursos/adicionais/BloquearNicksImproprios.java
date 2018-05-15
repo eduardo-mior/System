@@ -12,12 +12,13 @@ public class BloquearNicksImproprios implements Listener {
 	
 	@EventHandler
 	public void aoEntrar(PlayerPreLoginEvent e) {
-        for (String nomebloqueado: ConfigManager.getConfig("settings").getStringList("Nicks-Bloqueados")) {
+        for (String nomebloqueado : ConfigManager.getConfig("settings").getStringList("Nicks-Bloqueados")) {
         	String nome = e.getName().toLowerCase();
         	String check = nomebloqueado.toLowerCase();
 			if (nome.contains(check)) {
-				e.setKickMessage(ConfigManager.getConfig("mensagens").getString("Nick-Bloqueado").replaceAll("&", "§").replaceAll("%nick%", nomebloqueado));
+				e.setKickMessage(ConfigManager.getConfig("mensagens").getString("Nick-Bloqueado").replace("&", "§").replace("%nick%", nomebloqueado));
 				e.setResult(Result.KICK_OTHER);
+				return;
 			}
         }
 	}

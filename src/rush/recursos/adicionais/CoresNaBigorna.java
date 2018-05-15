@@ -23,30 +23,29 @@ public class CoresNaBigorna implements Listener {
 	            item = e.getCurrentItem();
 	            meta = item.getItemMeta();
 	            if (meta.getDisplayName().length() > 30) {
-	               meta.setDisplayName(meta.getDisplayName().substring(0, 30).replaceAll("&", "§"));
+	            	meta.setDisplayName(meta.getDisplayName().substring(0, 30).replace("&", "§"));
 	            } else {
-	               meta.setDisplayName(meta.getDisplayName().replaceAll("&", "§"));
+	            	meta.setDisplayName(meta.getDisplayName().replace("&", "§"));
 	            }
 
 	            item.setItemMeta(meta);
 	            e.setCurrentItem(item);
-	         } else if (e.getRawSlot() == 0) {
-	            if (e.getCursor() == null || e.getCursor().getType() == Material.AIR || !e.getCursor().getItemMeta().hasDisplayName()) {
-	               return;
-	            }
+	        } else if (e.getRawSlot() == 0) {
+	        	if (e.getCursor() == null || e.getCursor().getType() == Material.AIR || !e.getCursor().getItemMeta().hasDisplayName()) {
+	        		return;
+	        	}
 
-	            item = e.getCursor();
-	            meta = item.getItemMeta();
-	            if (meta.getDisplayName().length() > 30) {
-	               meta.setDisplayName(meta.getDisplayName().substring(0, 30).replaceAll("&", "§"));
-	            } else {
-	               meta.setDisplayName(meta.getDisplayName());
-	            }
+	        	item = e.getCursor();
+	        	meta = item.getItemMeta();
+	        	if (meta.getDisplayName().length() > 30) {
+	        		meta.setDisplayName(meta.getDisplayName().substring(0, 30).replace("&", "§"));
+	        	} else {
+	        		meta.setDisplayName(meta.getDisplayName());
+	        	}
 
-	            item.setItemMeta(meta);
-	            item.setAmount(item.getAmount());
-	         }
-	      }
-	   }
-
+	        	item.setItemMeta(meta);
+	        	item.setAmount(item.getAmount());
+	        }
+		}
+	}
 }

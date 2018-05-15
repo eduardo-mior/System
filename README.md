@@ -4,4 +4,4 @@ Este sistema foi originalmente criado por RUSHyotuber com o intuito de ajudar mu
 
 Atualmente este código é mantido e atualizado por [RUSHyoutber]
 
-Pessoas que contribuiram com o projeto [AnonyDev, LeoDev, Wolf_131, leonardosc, TequilAxBr, zAth, Mysterium, KickPost, gcunha, Gutyerrez, AlexHackers, BigWriter, Hard, Alomax, Joao Seidel, Pica-Pau, codename_G, Shisui]
+Pessoas que contribuiram com o projeto [AnonyDev, LeoDev, Wolf_131, leonardosc, TequilAxBr, zAth, Mysterium, KickPost, gcunha, Gutyerrez, AlexHackers, BigWriter, Hard, Alomax, Joao Seidel, Pica-Pau, codename_G, Shisui, Kaway, Jamp]

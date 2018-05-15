@@ -15,8 +15,9 @@ public class BloquearPlacas implements Listener {
 		if (!(p.hasPermission("system.bypass.placabloqueada"))) {
 			if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Todas-As-Palavras")) {
 				e.setCancelled(true);
-				e.getPlayer().sendMessage(ConfigManager.getConfig("mensagens").getString("Placas.Palavras-Desativadas-Na-Placa").replaceAll("&", "§"));
-				}
+				e.getPlayer().sendMessage(ConfigManager.getConfig("mensagens").getString("Placas.Palavras-Desativadas-Na-Placa").replace("&", "§"));
+				return;
+			}
 		
 			if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Apenas-Algumas-Palavras")) {
 				String[] linhas;
@@ -26,7 +27,7 @@ public class BloquearPlacas implements Listener {
 					for (String palavra : ConfigManager.getConfig("settings").getStringList("Lista-Das-Palavras-Bloqueadas")) {
 						if (s.toLowerCase().contains(palavra.toLowerCase()))  {
 							e.setCancelled(true);
-							e.getPlayer().sendMessage((ConfigManager.getConfig("mensagens").getString("Placas.Palavra-Bloqueada-Na-Placa")).replaceAll("%palavra%", palavra).replaceAll("&", "§"));
+							e.getPlayer().sendMessage((ConfigManager.getConfig("mensagens").getString("Placas.Palavra-Bloqueada-Na-Placa")).replace("&", "§").replace("%palavra%", palavra));
 							e.getBlock().breakNaturally();
 							return;
 						}

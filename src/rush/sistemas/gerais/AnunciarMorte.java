@@ -13,24 +13,21 @@ public class AnunciarMorte implements Listener {
 
 	@EventHandler
 	public void aoSerMorto(PlayerDeathEvent e) {
-        Player player = e.getEntity();
-        Entity entidade = player.getKiller();
-		if (entidade instanceof Player) {
-	        String killer = player.getKiller().getPlayer().getName();
+        Player p = e.getEntity();
+        Entity k = p.getKiller();
+		if (k instanceof Player) {
+	        String killer = p.getKiller().getPlayer().getName();
 			
-		    if (ConfigManager.getConfig("settings").getBoolean("Anuncios.Mostrar-Para-Quem-Matou"))
-		    {
-		    entidade.sendMessage(ConfigManager.getConfig("settings").getString("Anuncios.Mensagem-Para-Matador").replace("%playerMorreu%", e.getEntity().getName()).replace("&", "§"));
+		    if (ConfigManager.getConfig("settings").getBoolean("Anuncios.Mostrar-Para-Quem-Matou")) {
+		    	k.sendMessage(ConfigManager.getConfig("settings").getString("Anuncios.Mensagem-Para-Matador").replace("%playerMorreu%", e.getEntity().getName()).replace("&", "§"));
 			}
 		    
-		    if (ConfigManager.getConfig("settings").getBoolean("Anuncios.Mostrar-Para-Quem-Morreu"))
-		    {
-			player.sendMessage(ConfigManager.getConfig("settings").getString("Anuncios.Mensagem-Para-Defunto").replace("%playerMatou%", killer).replace("&", "§"));
+		    if (ConfigManager.getConfig("settings").getBoolean("Anuncios.Mostrar-Para-Quem-Morreu")) {
+		    	p.sendMessage(ConfigManager.getConfig("settings").getString("Anuncios.Mensagem-Para-Defunto").replace("%playerMatou%", killer).replace("&", "§"));
 			}
 		    
-		    if (ConfigManager.getConfig("settings").getBoolean("Anuncios.Mostrar-Para-Todo-Servidor"))
-		    {
-            Bukkit.broadcastMessage(ConfigManager.getConfig("settings").getString("Anuncios.Mensagem-Para-Todos").replace("%playerMatou%", killer).replace("%playerMorreu%", e.getEntity().getName()).replace("&", "§"));
+		    if (ConfigManager.getConfig("settings").getBoolean("Anuncios.Mostrar-Para-Todo-Servidor")) {
+		    	Bukkit.broadcastMessage(ConfigManager.getConfig("settings").getString("Anuncios.Mensagem-Para-Todos").replace("%playerMatou%", killer).replace("%playerMorreu%", e.getEntity().getName()).replace("&", "§"));
             }
 		}
 	}

@@ -12,7 +12,6 @@ public class DesativarCicloDoDia implements Listener {
 	public void aoCarregarMundo(WorldLoadEvent e) {
 		for (World w : Bukkit.getWorlds()) {
             w.setGameRuleValue("doDaylightCycle", "false");
-			w.setTime(6000);
 		}
 	}
 }

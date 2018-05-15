@@ -94,10 +94,16 @@ Tornou-Home-Particular: "&aA home '%home%' agora é uma home particular, ou seja
 # |                   Sistema de Kits                    | #
 # +------------------------------------------------------+ #
 ############################################################
+Kit-Comando-Incorreto: "&cComando incorreto, use /kit <kit>"
 DelKit-Comando-Incorreto: "&cComando incorreto, use /delkit <kit>"
 CriarKit-Comando-Incorreto: "&cComando incorreto, use /criarkit <kit>"
-EditarKit-Comando-Incorreto: "&cComando incorreto, use /editarkit <kit>"
-Kit-Comando-Incorreto: "&cComando incorreto, use /kit <kit>"
+EditarKit-Comando-Incorreto-Delay: "&cComando incorreto, use /editarkit <kit> delay <minutos>"
+EditarKit-Comando-Incorreto-Perm: "&cComando incorreto, use /editarkit <kit> perm <permissão>" 
+EditarKit-Comando-Incorreto: | 
+  &cComando incorreto, use:
+  &c/editarkit <kit> itens &8-&7 Edita os itens.
+  &c/editarkit <kit> perm <permissão> &8-&7 Editar a permissão.
+  &c/editarkit <kit> delay <minutos> &8-&7 Edita o delay.
 Kit-Nao-Existe: "&cO kit '%kit%' não existe."
 Kit-Ja-Existe: "&cO kit '%kit%' já existe."
 Kit-Sem-Permissao: "&cVocê não tem permissão para pegar este kit."
@@ -138,6 +144,7 @@ Fly-Ja-Habilitado-Voce: "&eO seu modo fly já esta &ahabilitado&e!"
 Fly-Ja-Habilitado-Outro: "&eO modo fly de %player% já esta &ahabilitado&e!"
 Fly-Ja-Desabilitado-Voce: "&eO seu modo fly já esta &cdesabilitado&e!"
 Fly-Ja-Desabilitado-Outro: "&eO modo fly de %player% já esta &cdesabilitado&e!"
+Fly-Desabilitado-Neste-Mundo: "&cO modo fly não é permitido neste mundo!"
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -150,8 +157,35 @@ Gamemode-Ja-Esta-Outro: "&c%player% já esta no gamemode %gm%."
 Gamemode-Ja-Esta-Voce: "&cVocê já esta no gamemode %gm%."
 Gamemode-Definido-Outro: "&aGamemode %gm% definido com sucesso para %player%."
 Gamemode-Definido-Voce: "&aGamemode alterado com sucesso para %gm%."
-Gamemode-Outro-Sem-Permissao: "&cVocê não tem permissão para alterar o gamemode de outras pessoas!"
-Gamemode-Sem-Permissao-Tipo: "&cVocê não tem permissão para entrar no gamemode %gm%!"
+Gamemode-Outro-Sem-Permissao: "&cVocê não tem permissão para alterar o gamemode de outras pessoas."
+Gamemode-Sem-Permissao-Tipo: "&cVocê não tem permissão para entrar no gamemode %gm%."
+
+############################################################
+# +------------------------------------------------------+ #
+# |                    Comando /clear                    | #
+# +------------------------------------------------------+ #
+############################################################
+Clear-Comando-Incorreto: "&cComando incorreto, use /clear [player]"
+Clear-Inventario-Vazio-Outro: "&cO inventário de %player% já esta vazio."
+Clear-Inventario-Vazio-Voce: "&cO seu inventário já esta vazio."
+Clear-Inventario-Limpado-Outro: "&aO inventário de %player% foi esvaziado com sucesso."
+Clear-Inventario-Limpado-Voce: "&aInventário esvaziado com sucesso."
+Clear-Outro-Sem-Permissao: "&cVocê não tem permissão para limpar o inventário de outros players."
+
+############################################################
+# +------------------------------------------------------+ #
+# |                 Comando /editaritem                  | #
+# +------------------------------------------------------+ #
+############################################################
+Editar-Item-Invalido: "&cEste item não é um item valido!"
+Editar-Item-Com-Sucesso: "&aItem editado com sucesso."
+Editar-Item-Comando-Incorreto: |
+  &cComando incorreto, use:
+  &c/editaritem renomar <nome> &8-&7 Renomeia o nome do item.
+  &c/editaritem flags &8-&7 Adiciona flags especiais ao item.
+  &c/editaritem glow &8-&7 Adiciona um brilho ao item.
+  &c/editaritem removelore &8-&7 Remove toda a lore do item.
+  &c/editaritem addlore <frase> &8-&7 Adiciona uma linha de lore.
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -214,6 +248,31 @@ Iniciando-Teleporte-Spawn: "&eEm %tempo% segundos você ira para o spawn."
 
 ############################################################
 # +------------------------------------------------------+ #
+# |                     Comando /luz                     | #
+# +------------------------------------------------------+ #
+############################################################
+Skull-Comando-Incorreto: "&cComando incorreto, use /skull <nome> [player]"
+Skull-Enviada-Outro: "&aSkull de %dono% enviada com sucesso para %player%."
+Skull-Enviada-Voce: "&aSkull de %dono% enviada para o seu inventário."
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   Comando /derreter                  | #
+# +------------------------------------------------------+ #
+############################################################
+Derreter-Nao-Possui: "&cVocê não possui itens para derreter."
+Derreter-Com-Sucesso: "&a%quantia% itens derretidos com sucesso."
+
+############################################################
+# +------------------------------------------------------+ #
+# |                  Comando /compactar                  | #
+# +------------------------------------------------------+ #
+############################################################
+Compactar-Nao-Possui: "&cVocê não possui itens para compactar."
+Compactar-Com-Sucesso: "&a%quantia% itens compactados com sucesso."
+
+############################################################
+# +------------------------------------------------------+ #
 # |                     Comando /ping                    | #
 # +------------------------------------------------------+ #
 ############################################################
@@ -249,10 +308,18 @@ Chapeu-Invalido: "&cEste item não pode ser usado como chapéu!"
 
 ############################################################
 # +------------------------------------------------------+ #
+# |                    Comando /invsee                   | #
+# +------------------------------------------------------+ #
+############################################################
+Invsee-Comando-Incorreto: "&cComando incorreto, use /invsee <player>"
+Invsee-Abrindo-Inventario: "&aAbrindo inventário de %player%."
+
+############################################################
+# +------------------------------------------------------+ #
 # |                    Comando /title                    | #
 # +------------------------------------------------------+ #
 ############################################################
-Title-Comando-Incorreto: "&cComando incorreto use /title [title] <nl> [subtitle]"
+Title-Comando-Incorreto: "&cComando incorreto, use /title [title] <nl> [subtitle]"
 Tile-Enviado: "&aTitle enviado com sucesso."
 
 ############################################################

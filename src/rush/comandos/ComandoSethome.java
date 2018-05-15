@@ -18,50 +18,41 @@ import rush.utils.DataManager;
 
 public class ComandoSethome implements Listener, CommandExecutor {
 	
-	@Override
-	 public boolean onCommand(final CommandSender s, Command cmd, String lbl, String[] args) {
-		 if (cmd.getName().equalsIgnoreCase("sethome")) {
-				 if (s instanceof Player) {
+	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
+		if (cmd.getName().equalsIgnoreCase("sethome")) {
+			
+			if (!(s instanceof Player)) {
+				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Console-Nao-Pode").replace("&", "§"));
+				return false;
+			}
 					 
-					 Player p = (Player) s;
-					 
-				     if (args.length == 0) {
-				          s.sendMessage(ConfigManager.getConfig("mensagens").getString("SetHome-Comando-Incorreto").replaceAll("&", "§"));
-				          return false;
-				     }
+			if (args.length != 1) {
+				s.sendMessage(ConfigManager.getConfig("mensagens").getString("SetHome-Comando-Incorreto").replace("&", "§"));
+				return false;
+			}
 				     
-				     if (args.length > 1) {
-				          s.sendMessage(ConfigManager.getConfig("mensagens").getString("SetHome-Comando-Incorreto").replaceAll("&", "§"));
-				          return false;
-				     }
-				     
-				     else {
-				    	String home = args[0];
-				        File file = DataManager.getFile(p.getName().toLowerCase(), "playerdata");
-				        FileConfiguration config = DataManager.getConfiguration(file);
-				        Set<String> KEYS = config.getConfigurationSection("Homes").getKeys(false);
-				        int homes = KEYS.size();
-				        int limite = getHomesLimit(p);
-						if (homes < limite) {
-							Location location = p.getLocation();
-							String locationSerialized = location.getWorld().getName() + "," + location.getX() + "," + location.getY() + "," + location.getZ() + "," + location.getYaw() + "," + location.getPitch();
-							config.set("Homes." + home + ".Localizacao" , locationSerialized);
-							config.set("Homes." + home + ".Publica" , false);
-							try {
-								config.save(file);
-								s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Definida").replace("&", "§").replace("%home%", home));
-							} catch (IOException e) {
-								Bukkit.getConsoleSender().sendMessage(ConfigManager.getConfig("mensagens").getString("Falha-Ao-Salvar").replace("&", "§").replace("%arquivo%", file.getName()));
-							}
-						} else {
-							s.sendMessage(ConfigManager.getConfig("mensagens").getString("Limite-De-Homes-Atingido").replace("&", "§").replace("%limite%", String.valueOf(limite)));
-				        }
-				     }
-					 return false;
-				 }
-				 s.sendMessage(ConfigManager.getConfig("mensagens").getString("Console-Nao-Pode").replace("&", "§"));
-				 return false;
-			 }
+			Player p = (Player) s;
+			String home = args[0];
+			File file = DataManager.getFile(p.getName().toLowerCase(), "playerdata");
+			FileConfiguration config = DataManager.getConfiguration(file);
+			Set<String> KEYS = config.getConfigurationSection("Homes").getKeys(false);
+			int homes = KEYS.size();
+			int limite = getHomesLimit(p);
+			if (homes < limite) {
+				Location location = p.getLocation();
+				String locationSerialized = location.getWorld().getName() + "," + location.getX() + "," + location.getY() + "," + location.getZ() + "," + location.getYaw() + "," + location.getPitch();
+				config.set("Homes." + home + ".Localizacao" , locationSerialized);
+				config.set("Homes." + home + ".Publica" , false);
+				try {
+					config.save(file);
+					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Definida").replace("&", "§").replace("%home%", home));
+				} catch (IOException e) {
+					Bukkit.getConsoleSender().sendMessage(ConfigManager.getConfig("mensagens").getString("Falha-Ao-Salvar").replace("&", "§").replace("%arquivo%", file.getName()));
+				}
+			} else {
+				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Limite-De-Homes-Atingido").replace("&", "§").replace("%limite%", String.valueOf(limite)));
+			}
+		}
 		return false;
 	}
 	

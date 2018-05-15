@@ -23,16 +23,18 @@ public class KitsListener implements Listener {
 			Player p = (Player) e.getPlayer();
 			Inventory inv = e.getInventory();
 			ItemStack[] itens = inv.getContents();
-			int n = itens.length;
+			int j = 0;
 			String kit = e.getInventory().getName().substring(14, e.getInventory().getName().length());
 			File file = DataManager.getListFiles(kit, "kits");
 			FileConfiguration config = DataManager.getConfiguration(file);
 			DataManager.createFile(file);
 			config.set("Permissao", "system.kit." + kit);
 			config.set("Delay", 5);
-			for (int i=0; i<n; i++) {
-				ItemStack item = itens[i];
-				config.set("Itens." + i, item);
+        	config.createSection("Itens");
+			for (ItemStack item : itens) {
+				if (item == null) continue;
+				config.set("Itens." + j, item);
+				j++;
 			}
 			try {
 				config.save(file);
@@ -42,21 +44,24 @@ public class KitsListener implements Listener {
 			}
 		}
 		
-		if (e.getInventory().getName().contains("§0Editar Kit §n")) {
+		else if (e.getInventory().getName().contains("§0Editar Kit §n")) {
 			Player p = (Player) e.getPlayer();
 			Inventory inv = e.getInventory();
 			ItemStack[] itens = inv.getContents();
-			int n = itens.length;
+			int j = 0;
 			String kit = e.getInventory().getName().substring(15, e.getInventory().getName().length());
 			File file = DataManager.getListFiles(kit, "kits");
 			FileConfiguration config = DataManager.getConfiguration(file);
-			for (int i=0; i<n; i++) {
-				ItemStack item = itens[i];
-				config.set("Itens." + i, item);
+			config.set("Itens", null);
+	    	config.createSection("Itens");
+			for (ItemStack item : itens) {
+				if (item == null) continue;
+				config.set("Itens." + j, item);
+				j++;
 			}
 			try {
 				config.save(file);
-				p.sendMessage(ConfigManager.getConfig("mensagens").getString("Kit-Criado").replace("&", "§").replace("%kit%", kit));
+				p.sendMessage(ConfigManager.getConfig("mensagens").getString("Kit-Editado").replace("&", "§").replace("%kit%", kit));
 			} catch (IOException ex) {
 				Bukkit.getConsoleSender().sendMessage(ConfigManager.getConfig("mensagens").getString("Falha-Ao-Salvar").replace("&", "§").replace("%arquivo%", file.getName()));
 			}

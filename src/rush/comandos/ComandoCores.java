@@ -9,12 +9,12 @@ import rush.utils.ConfigManager;
 
 public class ComandoCores implements Listener, CommandExecutor {
 	
-	public boolean onCommand(CommandSender sender, Command cmd, String commandlabel, String[] args) {
-	      if (cmd.getName().equalsIgnoreCase("cores")) {
-	    		for (String list : ConfigManager.getConfig("mensagens").getStringList("Tabela-De-Cores")) {
-                    sender.sendMessage(list);
-	    		}
-	      }
-	      return false;
+	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
+		if (cmd.getName().equalsIgnoreCase("cores")) {
+			for (String list : ConfigManager.getConfig("mensagens").getStringList("Tabela-De-Cores")) {
+				s.sendMessage(list);
+			}
+		}
+		return false;
 	}
 }

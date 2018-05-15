@@ -8,15 +8,15 @@ import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.inventory.Inventory;
 
-public class EnderChest implements Listener {
+public class InvseeListener implements Listener {
 	
 	@EventHandler
-	public void onOpen(InventoryClickEvent e) {
+	public void aoClicarInvsee(InventoryClickEvent e) {
 		Inventory i = e.getInventory();
-		if (i.getType() == InventoryType.ENDER_CHEST) {
+		if (i.getType() == InventoryType.PLAYER) {
 			Player p = (Player)e.getWhoClicked();
-			Inventory ec = p.getEnderChest();
-			if ((!i.equals(ec)) && (!p.hasPermission("system.echest.admin"))) {
+			Inventory inv = p.getInventory();
+			if ((!i.equals(inv)) && (!p.hasPermission("system.invsee.admin"))) {
 				e.setCancelled(true);
 				e.setResult(Result.DENY);
 			}

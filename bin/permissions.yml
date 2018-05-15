@@ -1,69 +1,80 @@
 #    +---------------------------------------------------------------------------------------------+
 #    | system.alerta             - Permissão para utilizar o comando /alerta                       |
-#    | system.back		         - Permissão para utilizar o comando /back						   |
-#    | system.chapeu	         - Permissão para utilizar o comando /chapeu					   |
-#    | system.clearchat          - Permissão para utilizar o comando /clearchat				  	   |
-#    | system.cores              - Permissão para utilizar o comando /cores					  	   |
-#    | system.cornabigorna       - Permissão para renomear itens usando cores no nome &		  	   |
-#    | system.cornaplaca         - Permissão para escrever colorido nas placas					   |
-#    | system.criarkit	         - Permissão para utilizar o comando /criarkit					   |
-#    | system.delhome          	 - Permissão para utilizar o comando /delhome					   |
-#    | system.delkit       	     - Permissão para utilizar o comando /delkit					   |
-#    | system.delwarp       	 - Permissão para utilizar o comando /delwarp					   |
-#    | system.divulgar           - Permissão para utilizar o comando /divulgar 				       |
-#    | system.echest       	     - Permissão para utilizar o comando /echest					   |
-#    | system.echest.mod   	     - Permissão para ver o enderchest de outras pessoas			   |
-#    | system.echest.admin 	     - Permissão para modificar o enderchest de outras pessoas		   |
-#    | system.editarkit    	     - Permissão para utilizar o comando /editarkit					   |
-#    | system.executarsom  	     - Permissão para utilizar o comando /executarsom				   |
-#    | system.fly        	     - Permissão para utilizar o comando /fly						   |
-#    | system.fly.outros         - Permissão para ativar ou desativar o fly de outras pessoas	   |
-#    | system.gamemode     	     - Permissão para utilizar o comando /gamemode					   |
-#    | system.gamemode.outros    - Permissão para alterar o gamemode de outras pessoas 			   |
-#    | system.gamemode.survival  - Permissão para alterar o gamemode para survival				   |
-#    | system.gamemode.creative  - Permissão para alterar o gamemode para creative				   |
-#    | system.gamemode.adventure - Permissão para alterar o gamemode para adventure				   |
-#    | system.gamemode.spectator - Permissão para alterar o gamemode para spectator				   |
-#    | system.gamemode.all       - Permissão para poder entrar em qualquer gamemode				   |
-#    | system.home        		 - Permissão para utilizar o comando /home						   |
-#    | system.home.admin  	     - Permissão para ver e para se teleportar para homes privadas 	   |
-#    | system.homes.<quantia>    - Permissão para salvar uma quantia especificade homes			   |
-#    | system.kit                - Permissão para utilizar o comando /kit						   |
-#    | system.kits   	         - Permissão para utilizar o comando /kits						   |
-#    | system.lixo  	         - Permissão para utilizar o comando /lixo						   |
-#    | system.luz          	     - Permissão para utilizar o comando /luz						   | 
-#    | system.mundovip    	     - Permissão para utilizar o comando /vip						   |
-#    | system.online      	     - Permissão para utilizar o comando /online					   |
-#    | system.particular         - Permissão para utilizar o comando /particular				   |  
-#    | system.ping               - Permissão para utilizar o comando /ping					       | 
-#    | system.publica            - Permissão para utilizar o comando /publica					   |  
-#    | system.semdelay    	     - Permissão para se teleportar sem precisa esperar o delay	  	   |
-#    | system.sethome     	     - Permissão para utilizar o comando /sehome					   |
-#    | system.setmundovip 	     - Permissão para utilizar o comando /setmundovip				   |
-#    | system.setspawn    	     - Permissão para utilizar o comando /setspawn					   |
-#    | system.setwarp     	     - Permissão para utilizar o comando /setwarp					   |
-#    | system.sgive       	     - Permissão para utilizar o comando /sgive					  	   |
-#    | system.slime       	     - Permissão para utilizar o comando /slime					  	   |
-#    | system.spawn       	     - Permissão para utilizar o comando /spawn					  	   | 
-#    | system.title       	     - Permissão para utilizar o comando /title					  	   | 
+#    | system.back               - Permissão para utilizar o comando /back                         |
+#    | system.chapeu             - Permissão para utilizar o comando /chapeu                       |
+#    | system.clear              - Permissão para utilizar o comando /clear                        |
+#    | system.clear.outros       - Permissão para limpar o inventario de outras pessoas            |
+#    | system.clearchat          - Permissão para utilizar o comando /clearchat                    |
+#    | system.compactar          - Permissão para utilizar o comando /compactar                    |
+#    | system.cores              - Permissão para utilizar o comando /cores                        |
+#    | system.cornabigorna       - Permissão para renomear itens usando cores no nome &            |
+#    | system.cornaplaca         - Permissão para escrever colorido nas placas                     |
+#    | system.criarkit           - Permissão para utilizar o comando /criarkit                     |
+#    | system.delhome            - Permissão para utilizar o comando /delhome                      |
+#    | system.delkit             - Permissão para utilizar o comando /delkit                       |
+#    | system.delwarp            - Permissão para utilizar o comando /delwarp                      |
+#    | system.delwarp            - Permissão para utilizar o comando /derreter                     |
+#    | system.divulgar           - Permissão para utilizar o comando /divulgar                     |
+#    | system.echest             - Permissão para utilizar o comando /echest                       |
+#    | system.echest.mod         - Permissão para ver o enderchest de outras pessoas               |
+#    | system.echest.admin       - Permissão para modificar o enderchest de outras pessoas         |
+#    | system.editaritem         - Permissão para utilizar o comando /editaritem                   |
+#    | system.editarkit          - Permissão para utilizar o comando /editarkit                    |
+#    | system.executarsom        - Permissão para utilizar o comando /executarsom                  |
+#    | system.fly                - Permissão para utilizar o comando /fly                          |
+#    | system.fly.outros         - Permissão para ativar ou desativar o fly de outras pessoas      |
+#    | system.fly.staff          - Permissão para poder usar o fly em qualquer mundo               |
+#    | system.gamemode           - Permissão para utilizar o comando /gamemode                     |
+#    | system.gamemode.outros    - Permissão para alterar o gamemode de outras pessoas             |
+#    | system.gamemode.survival  - Permissão para alterar o gamemode para survival                 |
+#    | system.gamemode.creative  - Permissão para alterar o gamemode para creative                 |
+#    | system.gamemode.adventure - Permissão para alterar o gamemode para adventure                |
+#    | system.gamemode.spectator - Permissão para alterar o gamemode para spectator                |
+#    | system.gamemode.all       - Permissão para poder entrar em qualquer gamemode                |
+#    | system.home               - Permissão para utilizar o comando /home                         |
+#    | system.home.admin         - Permissão para ver e para se teleportar para homes privadas     | 
+#    | system.homes.<quantia>    - Permissão para salvar uma quantia especificade homes            |
+#    | system.invsee.mod         - Permissão para utilizar o comando /invsee                       |
+#    | system.invsee.admin       - Permissão para modificar o inventario de outra pessoa           |
+#    | system.kit                - Permissão para utilizar o comando /kit                          |
+#    | system.kit.all            - Permissão para poder pegar qualquer kit                         |
+#    | system.kits               - Permissão para utilizar o comando /kits                         |
+#    | system.lixo               - Permissão para utilizar o comando /lixo                         |
+#    | system.luz                - Permissão para utilizar o comando /luz                          |
+#    | system.manterxp           - Permissão para não perder xp ao morrer                          |
+#    | system.mundovip           - Permissão para utilizar o comando /vip                          |
+#    | system.online             - Permissão para utilizar o comando /online                       |
+#    | system.particular         - Permissão para utilizar o comando /particular                   |  
+#    | system.ping               - Permissão para utilizar o comando /ping                         | 
+#    | system.publica            - Permissão para utilizar o comando /publica                      |  
+#    | system.semdelay           - Permissão para se teleportar sem precisa esperar o delay        |
+#    | system.sethome            - Permissão para utilizar o comando /sehome                       |
+#    | system.setmundovip        - Permissão para utilizar o comando /setmundovip                  |
+#    | system.setspawn           - Permissão para utilizar o comando /setspawn                     |
+#    | system.setwarp            - Permissão para utilizar o comando /setwarp                      |
+#    | system.sgive              - Permissão para utilizar o comando /sgive                        |
+#    | system.skull              - Permissão para utilizar o comando /skull                        |
+#    | system.slime              - Permissão para utilizar o comando /slime                        |
+#    | system.spawn              - Permissão para utilizar o comando /spawn                        | 
+#    | system.title              - Permissão para utilizar o comando /title                        | 
 #    | system.vip                - Permissão para se teleportar para a Area VIP do comando /vip    | 
-#    | system.warp         	     - Permissão para utilizar o comando /warp						   |
-#    | system.warps          	 - Permissão para utilizar o comando /warps						   |    	
+#    | system.warp               - Permissão para utilizar o comando /warp                         |
+#    | system.warps              - Permissão para utilizar o comando /warps                        |     
 #    +---------------------------------------------------------------------------------------------+
-#    | system.chat.destaque - Permissão para escrever em destaque no chat.						   |
+#    | system.chat.destaque - Permissão para escrever em destaque no chat.                         |
 #    | system.chat.cor1     - Permissão para escrever com uma cor automatica (definida na config)  |
 #    | system.chat.cor1     - Permissão para escrever com uma cor automatica (definida na config)  |
 #    | system.chat.cor...   - Permissão para escrever com uma cor automatica (definida na config)  |
 #    | system.chat.cor10    - Permissão para escrever com uma cor automatica (definida na config)  |
 #    +---------------------------------------------------------------------------------------------+
 #    | system.bypass.comandobloqueado    - Permissão para utilizar comandos que foram bloqueados   |
-#    | system.bypass.containerbloqueado  - Permissão para abrir containers que foram bloqueados	   |
+#    | system.bypass.containerbloqueado  - Permissão para abrir containers que foram bloqueados    |
 #    | system.bypass.craftbloqueado      - Permissão para craftar itens que foram bloqueados       |
 #    | system.bypass.delaykit            - Permissão para pegar os kits sem esperar o delay        |
 #    | system.bypass.entraremveiculos    - Permissão para entrar em veiculos que foram bloqueados  |
 #    | system.bypass.entrarnacama        - Permissão para entrar na cama mesmo estando bloqueada   |
 #    | system.bypass.placabloqueada      - Permissão para usar a placa mesmo estando bloqueada     |
-#    | system.bypass.shiftemcontainer    - Permissão para usar o SHIFT mesmo estando bloqueado	   |
+#    | system.bypass.shiftemcontainer    - Permissão para usar o SHIFT mesmo estando bloqueado     |
 #    | system.bypass.teleportarporportal - Permissão para usar o portal mesmo estando bloqueado    |
 #    | system.bypass.usarnametag         - Permissão para usar nameTagEdit mesmo estando bloqueada |
 #    +---------------------------------------------------------------------------------------------+

@@ -13,17 +13,13 @@ import rush.utils.ConfigManager;
 
 public class ComandoChapeu implements Listener, CommandExecutor {
 	
-	public boolean onCommand(CommandSender s, Command cmd, String commandlabel, String[] args) {
+	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("chapeu")) {
-			if (!(s instanceof Player)) {
-				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Console-Nao-Pode").replaceAll("&", "§"));
-				return true;
-			}
 			
-			if (!s.hasPermission("system.chapeu")) {
-		        s.sendMessage(ConfigManager.getConfig("mensagens").getString("Sem-Permissao").replaceAll("&", "§"));
-		        return false;
-		    }
+			if (!(s instanceof Player)) {
+				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Console-Nao-Pode").replace("&", "§"));
+				return false;
+			}
 			
 			Player p = (Player)s;
 			PlayerInventory i = p.getInventory();
@@ -32,9 +28,9 @@ public class ComandoChapeu implements Listener, CommandExecutor {
 			if (hand.getType() != Material.AIR && hand.getType().getMaxDurability() == 0) {
 				i.setHelmet(hand);
 				i.setItemInHand(helmet);
-		        s.sendMessage(ConfigManager.getConfig("mensagens").getString("Chapeu-Colocado").replaceAll("&", "§"));
+		        s.sendMessage(ConfigManager.getConfig("mensagens").getString("Chapeu-Colocado").replace("&", "§"));
 			} else {
-		        s.sendMessage(ConfigManager.getConfig("mensagens").getString("Chapeu-Invalido").replaceAll("&", "§"));
+		        s.sendMessage(ConfigManager.getConfig("mensagens").getString("Chapeu-Invalido").replace("&", "§"));
 			}
 		}
 		return false;

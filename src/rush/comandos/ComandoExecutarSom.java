@@ -14,57 +14,39 @@ import rush.utils.ConfigManager;
 public class ComandoExecutarSom implements Listener, CommandExecutor {
 	
 	@SuppressWarnings("deprecation")
-	public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
+	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
         if (cmd.getName().equalsIgnoreCase("executarsom")) {
-            if (sender.hasPermission("system.executarsom")) {
-        	    for (Player todos : Bukkit.getOnlinePlayers()) {
-
-                if (args.length >= 3) {
-                	sender.sendMessage(ConfigManager.getConfig("mensagens").getString("ExecutarSom-Comando-Incorreto").replaceAll("&", "§"));
-                    return true;
-                }
-            	
-                if (args.length <= 1) {
-                	sender.sendMessage(ConfigManager.getConfig("mensagens").getString("ExecutarSom-Comando-Incorreto").replaceAll("&", "§"));
-                    return true;
-                }
-    	        
-    	        if (args[1].equalsIgnoreCase("all")) {
-                    if (args.length == 2) {
-            			if (EnumUtils.isValidEnum(Sound.class, args[0].toUpperCase())) {
-            				todos.playSound(todos.getLocation(), Sound.valueOf(args[0].toUpperCase()), 1, 1);
-            				sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Som-Executado-Todos").replaceAll("&", "§").replaceAll("%som%", args[0]));
-            				return true;
-                        }
-                        sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Som-Invalido").replaceAll("&", "§"));
-                        return true;
-                    }
-                	sender.sendMessage(ConfigManager.getConfig("mensagens").getString("ExecutarSom-Comando-Incorreto").replaceAll("&", "§"));
-                    return true;
-    	        }
-    	        
-    	        if (args[1] != null) {
-                    if (args.length == 2) {
-                    final String nome = args[1];
-                    final Player beneficiado = Bukkit.getPlayer(nome);
-                    	if (beneficiado != null) {
-                    			if (EnumUtils.isValidEnum(Sound.class, args[0].toUpperCase())) {
-                    				beneficiado.playSound(beneficiado.getLocation(), Sound.valueOf(args[0].toUpperCase()), 1, 1);
-                    				sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Som-Executado-Player").replaceAll("&", "§").replaceAll("%som%", args[0]).replaceAll("%player%", args[1]));
-                    				return true;
-                                }
-                                sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Som-Invalido").replaceAll("&", "§"));
-                                return true;
-                        }
-                        sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Offline").replaceAll("&", "§"));
-                        return true;
-                    }
-                	sender.sendMessage(ConfigManager.getConfig("mensagens").getString("ExecutarSom-Comando-Incorreto").replaceAll("&", "§"));
-                    return true;
-    	        }
-        	    }
+            
+            if (args.length != 2) {
+            	s.sendMessage(ConfigManager.getConfig("mensagens").getString("ExecutarSom-Comando-Incorreto").replace("&", "§"));
+            	return false;
             }
-            sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Sem-Permissao").replaceAll("&", "§"));
+    	        
+           	if (args[1].equalsIgnoreCase("all")) {
+           		if (EnumUtils.isValidEnum(Sound.class, args[0].toUpperCase())) {
+                    for (Player todos : Bukkit.getOnlinePlayers()) {
+                    	todos.playSound(todos.getLocation(), Sound.valueOf(args[0].toUpperCase()), 1, 1);
+                    }
+                	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Som-Executado-Todos").replace("&", "§").replace("%som%", args[0]));
+                	return false;
+           		}
+       			s.sendMessage(ConfigManager.getConfig("mensagens").getString("Som-Invalido").replace("&", "§"));
+       			return false;
+            }
+    	        
+           	String player = args[1];
+           	Player beneficiado = Bukkit.getPlayer(player);
+           	if (beneficiado != null) {
+           		if (EnumUtils.isValidEnum(Sound.class, args[0].toUpperCase())) {
+           			beneficiado.playSound(beneficiado.getLocation(), Sound.valueOf(args[0].toUpperCase()), 1, 1);
+           			s.sendMessage(ConfigManager.getConfig("mensagens").getString("Som-Executado-Player").replace("&", "§").replace("%som%", args[0]).replace("%player%", args[1]));
+           			return false;
+           		}
+           		s.sendMessage(ConfigManager.getConfig("mensagens").getString("Som-Invalido").replace("&", "§"));
+           		return false;
+           	}
+           	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Offline").replace("&", "§"));
+           	return false;
         }
 		return false;
 	}

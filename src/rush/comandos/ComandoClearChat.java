@@ -14,17 +14,13 @@ public class ComandoClearChat implements Listener, CommandExecutor {
 	String chat = " §c \n §c ";
 	String limparchat = StringUtils.repeat(chat, 100);
 
-	@Override
-	public boolean onCommand(CommandSender sender, Command cmd, String commandlabel, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("clearchat")) {		
-	         if (!sender.hasPermission("system.clearchat")) {
-    			 sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Sem-Permissao"));
-	         } else {
-	        	 Bukkit.broadcastMessage(limparchat);
-	        	 if (ConfigManager.getConfig("mensagens").getBoolean("Avisar-Que-O-Chat-Foi-Limpo")) {
-	    			 Bukkit.broadcastMessage(ConfigManager.getConfig("mensagens").getString("Aviso-Que-O-Chat-Limpo-Global").replaceAll("&", "§").replaceAll("%player%", sender.getName()));
-	    		 }
-	        }
+	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
+		if (cmd.getName().equalsIgnoreCase("clearchat")) {	
+			
+			Bukkit.broadcastMessage(limparchat);
+			if (ConfigManager.getConfig("mensagens").getBoolean("Avisar-Que-O-Chat-Foi-Limpo")) {
+				Bukkit.broadcastMessage(ConfigManager.getConfig("mensagens").getString("Aviso-Que-O-Chat-Limpo-Global").replace("&", "§").replace("%player%", s.getName()));
+			}
 		}
 		return false;
 	}

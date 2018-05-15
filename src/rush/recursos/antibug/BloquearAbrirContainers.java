@@ -20,6 +20,7 @@ public class BloquearAbrirContainers implements Listener {
 			if (inv.getType() == InventoryType.valueOf(containers)) {
 				if (!(p.hasPermission("system.bypass.containerbloqueado"))) {
 					e.setCancelled(true);
+					return;
 				}
 			}
 		}

@@ -9,7 +9,8 @@ public class DesativarPropagacaoDoFogo implements Listener {
 
     @EventHandler
     public void aoPegarFogo(final BlockBurnEvent e) {
-    	e.setCancelled(true);}
+    	e.setCancelled(true);
+    }
     
     @EventHandler
     public void aoEspalharFogo(final BlockIgniteEvent e) {

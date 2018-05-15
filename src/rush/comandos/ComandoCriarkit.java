@@ -15,34 +15,28 @@ import rush.utils.DataManager;
 
 public class ComandoCriarkit implements Listener, CommandExecutor {
 
-	public boolean onCommand(CommandSender s, Command cmd, String commandlabel, String[] args) {
+	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("criarkit")) {
 			
 			if (!(s instanceof Player)) {
 			    s.sendMessage(ConfigManager.getConfig("mensagens").getString("Console-Nao-Pode").replace("&", "§"));
 			    return false;
 			}
-			 
-			if (!s.hasPermission("system.criarkit")) {
-		        s.sendMessage(ConfigManager.getConfig("mensagens").getString("Sem-Permissao").replaceAll("&", "§"));
-		        return false;
-		    }
 			
-			if (args.length > 1 || args.length < 1) {
-		        s.sendMessage(ConfigManager.getConfig("mensagens").getString("CriarKit-Comando-Incorreto").replaceAll("&", "§"));
+			if (args.length != 1) {
+		        s.sendMessage(ConfigManager.getConfig("mensagens").getString("CriarKit-Comando-Incorreto").replace("&", "§"));
 		        return false;
 			}
 			 
-			Player p = (Player)s;
 			String kit = args[0].toLowerCase();
-			File file = DataManager.getFile(kit, "kits");
-			
+			File file = DataManager.getFile(kit, "kits");		
 			if (file.exists()) {
-		        s.sendMessage(ConfigManager.getConfig("mensagens").getString("Kit-Ja-Existe").replaceAll("&", "§").replace("%kit%", kit));
+		        s.sendMessage(ConfigManager.getConfig("mensagens").getString("Kit-Ja-Existe").replace("&", "§").replace("%kit%", kit));
 		        return false;
 			}
 			
-			Inventory inv = Bukkit.getServer().createInventory(p, 54, "§0Criar Kit §n" + kit);
+			Player p = (Player)s;
+			Inventory inv = Bukkit.getServer().createInventory(p, 36, "§0Criar Kit §n" + kit);
 	        p.openInventory(inv);
 		}
 		return false;

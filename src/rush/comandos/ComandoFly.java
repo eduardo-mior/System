@@ -1,5 +1,7 @@
 package rush.comandos;
 
+import java.util.List;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -12,17 +14,18 @@ import rush.utils.ConfigManager;
 public class ComandoFly implements Listener, CommandExecutor {
 	
 	@SuppressWarnings("deprecation")
-	public boolean onCommand(CommandSender s, Command cmd, String commandlabel, String[] args) {
+	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("fly")) {
 			if (!(s instanceof Player)) {
+				
 				if(args.length > 2 || args.length < 1) {
-					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Comando-Incorreto").replaceAll("&", "§"));
+					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Comando-Incorreto").replace("&", "§"));
 		    		return false;
 				}
 	    		  
 				Player p = Bukkit.getPlayer(args[0]);
 				if (p == null) {
-					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Offline").replaceAll("&", "§"));
+					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Offline").replace("&", "§"));
 					return false;
 				}
 	    		  
@@ -59,16 +62,48 @@ public class ComandoFly implements Listener, CommandExecutor {
 				return false;
 			}
 	    	  
-			if (!s.hasPermission("system.fly")) {
-				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Sem-Permissao").replace("&", "§"));
-				return false;
-			}
+			if (!s.hasPermission("system.fly.staff")) {
+				Player p = (Player)s;
+				boolean fly = p.getAllowFlight();
+				String world = p.getWorld().getName();
+				List<String> worlds = ConfigManager.getConfig("mensagens").getStringList("Mundos-Onde-Pode-Usar-Fly");
+				if (!worlds.contains(world)) {
+					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Desabilitado-Neste-Mundo").replace("&", "§"));
+					return false;
+				}
 			
-			if (args.length > 2) {
-				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Comando-Incorreto").replaceAll("&", "§"));
+				if (args.length > 0) {
+					if (args[0].equalsIgnoreCase("on")) {
+						if (fly) {
+							s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Ja-Habilitado-Voce").replace("&", "§"));
+						} else {
+							s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Habilitado-Voce").replace("&", "§"));
+							p.setAllowFlight(true);
+						}
+						return false;
+					}
+		    		  
+					if (args[0].equalsIgnoreCase("off")) {
+						if (fly) {
+							s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Desabilitado-Voce").replace("&", "§"));
+							p.setAllowFlight(false);
+						} else {
+							s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Ja-Desabilitado-Voce").replace("&", "§"));
+						}
+						return false;
+					}
+				}
+				
+				if (fly) {
+					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Desabilitado-Voce").replace("&", "§"));
+					p.setAllowFlight(false);
+				} else {
+					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Habilitado-Voce").replace("&", "§"));
+					p.setAllowFlight(true);
+				}
 				return false;
 			}
-	    	  
+	    	 
 			if (args.length == 0) {
 				Player p = (Player)s;
 				boolean fly = p.getAllowFlight();
@@ -81,7 +116,7 @@ public class ComandoFly implements Listener, CommandExecutor {
 				}
 				return false;
 			}
-	    	  
+			
 			if (args.length > 0) {
 				if (args[0].equalsIgnoreCase("on")) {
 					Player p = (Player)s;
@@ -114,7 +149,7 @@ public class ComandoFly implements Listener, CommandExecutor {
 	    		  
 				Player p = Bukkit.getPlayer(args[0]);
 				if (p == null) {
-					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Offline").replaceAll("&", "§"));
+					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Offline").replace("&", "§"));
 					return false;
 				}
 	    		  
@@ -148,7 +183,6 @@ public class ComandoFly implements Listener, CommandExecutor {
 					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Habilitado-Outro").replace("&", "§").replace("%player%", p.getName()));
 					p.setAllowFlight(true);
 				}
-				return false;
 			}
 		}
 	    return false;

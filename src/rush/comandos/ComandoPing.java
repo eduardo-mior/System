@@ -15,18 +15,20 @@ import rush.utils.ConfigManager;
 public class ComandoPing implements Listener, CommandExecutor {
 	
 	@SuppressWarnings("deprecation")
-	public boolean onCommand(final CommandSender s, Command cmd, String lbl, String[] args) {
- 	     if (cmd.getName().equalsIgnoreCase("ping"))
-             if (!(s instanceof Player)) {
-      	          s.sendMessage(ConfigManager.getConfig("mensagens").getString("Console-Nao-Pode").replaceAll("&", "§"));
-      	          return false;
-             }
+	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
+		if (cmd.getName().equalsIgnoreCase("ping"))
+ 	    	 
+			if (!(s instanceof Player)) {
+				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Console-Nao-Pode").replace("&", "§"));
+				return false;
+			}
+ 	     
+			if (args.length > 1) {
+				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Ping-Comando-Incorreto").replace("&", "§"));
+				return false;
+			}
  	     
  	     	try {
- 	     		if (args.length > 1) {
-		     		s.sendMessage(ConfigManager.getConfig("mensagens").getString("Ping-Comando-Incorreto").replace("&", "§"));
- 	     			return false;
- 	     		}
  	     		
  	     		if (args.length == 0) {
 	 	     		Player player = (Player)s;
@@ -41,7 +43,7 @@ public class ComandoPing implements Listener, CommandExecutor {
  	     		if (args.length == 1) {
  	     			Player player = Bukkit.getPlayer(args[0]);
  	 	     		if (player == null) {
- 	 	     			s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Offline").replaceAll("&", "§"));
+ 	 	     			s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Offline").replace("&", "§"));
  	 	     			return false;
  	 	     		} else {
  	 	     			Method player_getHandle = player.getClass().getMethod("getHandle");

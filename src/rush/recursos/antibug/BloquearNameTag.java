@@ -14,7 +14,6 @@ public class BloquearNameTag implements Listener {
 	public void onInteract(PlayerInteractAtEntityEvent e) {
 		Player p = e.getPlayer();
 		ItemStack itemStack = p.getItemInHand();
-		if(itemStack == null) return;
 		if (itemStack.getType().equals(Material.NAME_TAG)) {
 			if (!(p.hasPermission("system.bypass.usarnametag"))) {
 				e.setCancelled(true);

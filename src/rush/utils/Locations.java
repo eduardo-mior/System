@@ -13,18 +13,25 @@ public class Locations {
 	public static Location spawn;
 	public static Location areaVip;
 	public static Location areaNaoVip;
+	public static Location padrao;
+
 	
 	public static void loadLocations() {
 		areaVip();
 		areaNaoVip();
 		spawn();
+		validarLocations();
 	}
 	
-	public static boolean validarSpawn() {
+	public static void validarLocations() {
 		List<World> worlds = Bukkit.getWorlds();
-		World world = spawn.getWorld();
-		if (worlds.contains(world)) return true;
-		else return false;
+		World worldSpawn = spawn.getWorld();
+		World worldVip = areaVip.getWorld();
+		World worldNaoVip = areaNaoVip.getWorld();
+		padrao = new Location(worlds.get(0), 1.0, 1.0, 1.0, 1.0F, 1.0F);
+		if (!worlds.contains(worldSpawn)) spawn = padrao;
+		if (!worlds.contains(worldVip)) areaVip = padrao;
+		if (!worlds.contains(worldNaoVip)) areaNaoVip = padrao;
 	}
 
 	public static void areaVip() {

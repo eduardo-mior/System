@@ -18,19 +18,19 @@ public class BloquearPassarDaBorda implements Listener {
 			if (e.getPlayer().getWorld().getWorldBorder().getCenter().getX() + worldborder < e.getTo().getX()) {
 				e.setCancelled(true);
 				e.getPlayer().getInventory().addItem(new ItemStack[]{new ItemStack(Material.ENDER_PEARL, 1)});
-				e.getPlayer().sendMessage(ConfigManager.getConfig("mensagens").getString("Tentou-Passar-Da-Borda").replaceAll("&", "§"));
+				e.getPlayer().sendMessage(ConfigManager.getConfig("mensagens").getString("Tentou-Passar-Da-Borda").replace("&", "§"));
 			} else if (e.getPlayer().getWorld().getWorldBorder().getCenter().getX() - worldborder > e.getTo().getX()) {
 				e.setCancelled(true);
 				e.getPlayer().getInventory().addItem(new ItemStack[]{new ItemStack(Material.ENDER_PEARL, 1)});
-				e.getPlayer().sendMessage(ConfigManager.getConfig("mensagens").getString("Tentou-Passar-Da-Borda").replaceAll("&", "§"));
+				e.getPlayer().sendMessage(ConfigManager.getConfig("mensagens").getString("Tentou-Passar-Da-Borda").replace("&", "§"));
 			} else if (e.getPlayer().getWorld().getWorldBorder().getCenter().getZ() + worldborder < e.getTo().getZ()) {
 				e.setCancelled(true);
 				e.getPlayer().getInventory().addItem(new ItemStack[]{new ItemStack(Material.ENDER_PEARL, 1)});
-				e.getPlayer().sendMessage(ConfigManager.getConfig("mensagens").getString("Tentou-Passar-Da-Borda").replaceAll("&", "§"));
+				e.getPlayer().sendMessage(ConfigManager.getConfig("mensagens").getString("Tentou-Passar-Da-Borda").replace("&", "§"));
 			} else if (e.getPlayer().getWorld().getWorldBorder().getCenter().getZ() - worldborder > e.getTo().getZ()) {
 				e.setCancelled(true);
 				e.getPlayer().getInventory().addItem(new ItemStack[]{new ItemStack(Material.ENDER_PEARL, 1)});
-				e.getPlayer().sendMessage(ConfigManager.getConfig("mensagens").getString("Tentou-Passar-Da-Borda").replaceAll("&", "§"));
+				e.getPlayer().sendMessage(ConfigManager.getConfig("mensagens").getString("Tentou-Passar-Da-Borda").replace("&", "§"));
 			}
 		}
 	}

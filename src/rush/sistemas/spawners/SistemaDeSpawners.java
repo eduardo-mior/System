@@ -29,7 +29,7 @@ public class SistemaDeSpawners implements Listener {
 	            final ItemStack drop = new ItemStack(b.getType());
 	            final CreatureSpawner cs = (CreatureSpawner)b.getState();
 	            final ItemMeta imd = drop.getItemMeta();
-	            imd.setDisplayName(ConfigManager.getConfig("mensagens").getString("Nome-Do-MobSpawner").replaceAll("&", "§"));
+	            imd.setDisplayName(ConfigManager.getConfig("mensagens").getString("Nome-Do-MobSpawner").replace("&", "§"));
 			    imd.setLore(Arrays.asList(cs.getCreatureTypeName()
 			    		.replace("Pig", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Porco")
 			    		.replace("Chicken", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Galinha")
@@ -47,8 +47,7 @@ public class SistemaDeSpawners implements Listener {
 			    		.replace("Enderman", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Enderman")
 			    		.replace("Zombie", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Zumbi")
 			    		.replace("PigZombie", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Zumbi Pigman")
-			    		.replace("Blaze", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Blaze")
-			    		));
+			    		.replace("Blaze", ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Blaze")));
 			    drop.setItemMeta(imd);
 	            boolean droped = false;
 	            for (final ItemStack is : p.getInventory().addItem(new ItemStack[] { drop }).values()) {
@@ -59,7 +58,7 @@ public class SistemaDeSpawners implements Listener {
 	            if (!droped) {
 	            }
 	            else {
-	                p.sendMessage(ConfigManager.getConfig("mensagens").getString("Inventario-Cheio-Quebrou").replaceAll("&", "§"));
+	                p.sendMessage(ConfigManager.getConfig("mensagens").getString("Inventario-Cheio-Quebrou").replace("&", "§"));
 	            }
 	            b.setType(Material.AIR);
 	        }
@@ -88,11 +87,10 @@ public class SistemaDeSpawners implements Listener {
 				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Enderman", "Enderman")
 				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Zumbi", "Zombie")
 				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Zumbi Pigman", "PigZombie")
-				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Blaze", "Blaze")
-	                		);
+				    		.replace(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner") + "Blaze", "Blaze"));
 	            } else {
 	                e.setCancelled(true);
-	                e.getPlayer().sendMessage(ConfigManager.getConfig("mensagens").getString("Spawner-Bugado").replaceAll("&", "§"));
+	                e.getPlayer().sendMessage(ConfigManager.getConfig("mensagens").getString("Spawner-Bugado").replace("&", "§"));
 	            }
 		}
 	}

@@ -15,24 +15,25 @@ public class ComandoLuz implements Listener, CommandExecutor {
 	
    public ArrayList<String> luz = new ArrayList<String>();
 
-   public boolean onCommand(CommandSender sender, Command cmd, String lb, String[] args) {
-	   if (cmd.getName().equalsIgnoreCase("luz")) {
-	       if (!(sender instanceof Player)) {
-	          sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Console-Nao-Pode").replaceAll("&", "§"));
-	          return true;
-	       }
+	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
+		if (cmd.getName().equalsIgnoreCase("luz")) {
+			
+	      	if (!(s instanceof Player)) {
+	      		s.sendMessage(ConfigManager.getConfig("mensagens").getString("Console-Nao-Pode").replace("&", "§"));
+	      		return false;
+	      	}
 	       
-      		Player p = (Player)sender;
+      		Player p = (Player)s;
       		if (luz.contains(p.getName())) {
-	            p.removePotionEffect(PotionEffectType.NIGHT_VISION);
 	            luz.remove(p.getName());
-	            p.sendMessage(ConfigManager.getConfig("mensagens").getString("Luz.Desativada").replaceAll("&", "§"));
+	            p.removePotionEffect(PotionEffectType.NIGHT_VISION);
+	            p.sendMessage(ConfigManager.getConfig("mensagens").getString("Luz.Desativada").replace("&", "§"));
       		}
       		
       		else {
-	            p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 98999901, 5, true));
 	            luz.add(p.getName());
-	            p.sendMessage(ConfigManager.getConfig("mensagens").getString("Luz.Ativada").replaceAll("&", "§"));
+	            p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 98999901, 5, true));
+	            p.sendMessage(ConfigManager.getConfig("mensagens").getString("Luz.Ativada").replace("&", "§"));
       		}
 	   }
 	return false;

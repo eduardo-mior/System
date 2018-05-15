@@ -19,22 +19,16 @@ import rush.utils.DataManager;
 
 public class ComandoHome implements Listener, CommandExecutor {
 	
-	@Override
-	public boolean onCommand(final CommandSender s, Command cmd, String lbl, String[] args) {
+	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("home")) {
 			 
 			 if (!(s instanceof Player)) {
 				 s.sendMessage(ConfigManager.getConfig("mensagens").getString("Console-Nao-Pode").replace("&", "§"));
 				 return false;
 			 }
-			 
-		     if (args.length == 0) {
-		          s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Comando-Incorreto").replaceAll("&", "§"));
-		          return false;
-		     } 
 		     
-		     if (args.length > 1) {
-		          s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Comando-Incorreto").replaceAll("&", "§"));
+		     if (args.length != 1) {
+		          s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Comando-Incorreto").replace("&", "§"));
 		          return false;
 		     }
 		     
@@ -45,15 +39,14 @@ public class ComandoHome implements Listener, CommandExecutor {
 		   		String[] homeSplit = home.split(":");
 		        
 		        if (homeSplit.length < 1 || homeSplit.length > 3) {
-		        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Outro-Comando-Incorreto").replaceAll("&", "§"));
+		        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Outro-Comando-Incorreto").replace("&", "§"));
 		        	return false;
 		        }
 		        
 		   		String player = homeSplit[0];
 		        File file = DataManager.getFile(player.toLowerCase(), "playerdata");
-		        
 		        if (!file.exists()) {
-		        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Nao-Existe").replaceAll("&", "§").replace("%player%", homeSplit[0]));
+		        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Nao-Existe").replace("&", "§").replace("%player%", homeSplit[0]));
 		        	return false;
 		        }
 		        
@@ -64,16 +57,15 @@ public class ComandoHome implements Listener, CommandExecutor {
 		        
 		        FileConfiguration config = DataManager.getConfiguration(file);
 		        Set<String> KEYS = config.getConfigurationSection("Homes").getKeys(false);
-		        
 		        if (!KEYS.contains(homeSplit[1])) {
-		        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Home-Nao-Existe").replaceAll("&", "§").replace("%player%", homeSplit[0]).replace("%home%", homeSplit[1]));
+		        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Home-Nao-Existe").replace("&", "§").replace("%player%", homeSplit[0]).replace("%home%", homeSplit[1]));
 		   			ComandoHomes.ListHomes(s, player);
 		        	return false;
 		       	}
 		       	
 		        if (config.getBoolean("Homes." + homeSplit[1] + ".Publica") == false) {
 		        	if (!s.hasPermission("system.home.admin")) {
-		        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Home-Nao-Publica").replaceAll("&", "§").replace("%player%", homeSplit[0]).replace("%home%", homeSplit[1]));
+		        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Home-Nao-Publica").replace("&", "§").replace("%player%", homeSplit[0]).replace("%home%", homeSplit[1]));
 		        	return false;
 		        	}
 		       	}
@@ -88,11 +80,11 @@ public class ComandoHome implements Listener, CommandExecutor {
 			    		Float.parseFloat(locationSplitted[5]));
 				    
 		    	if (!s.hasPermission("system.semdelay")) {
-		        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Publica-Iniciando-Teleporte").replaceAll("&", "§").replace("%home%", homeSplit[1]).replace("%tempo%", String.valueOf(delay)).replace("%player%", player));
+		        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Publica-Iniciando-Teleporte").replace("&", "§").replace("%home%", homeSplit[1]).replace("%tempo%", String.valueOf(delay)).replace("%player%", player));
 		    		new BukkitRunnable() {
 		    			@Override
 		    			public void run() {
-				        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Publica-Teleportado-Sucesso").replaceAll("&", "§").replace("%home%", homeSplit[1]).replace("%player%", player));
+				        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Publica-Teleportado-Sucesso").replace("&", "§").replace("%home%", homeSplit[1]).replace("%player%", player));
 		    				p.teleport(location);
 		    			}
 		    		}.runTaskLater(Main.aqui, 20 * delay);
@@ -100,7 +92,7 @@ public class ComandoHome implements Listener, CommandExecutor {
 		    	}
 			    	
 		    	else {
-		        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Publica-Teleportado-Sucesso").replaceAll("&", "§").replace("%home%", homeSplit[1]).replace("%player%", player));
+		        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Publica-Teleportado-Sucesso").replace("&", "§").replace("%home%", homeSplit[1]).replace("%player%", player));
 			 		p.teleport(location);
 			 		return false;
 		    	}
@@ -113,7 +105,7 @@ public class ComandoHome implements Listener, CommandExecutor {
 		        Set<String> KEYS = config.getConfigurationSection("Homes").getKeys(false);
 		   		
 		        if (!KEYS.contains(home)) {
-		        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Nao-Existe").replaceAll("&", "§").replace("%home%", home));
+		        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Nao-Existe").replace("&", "§").replace("%home%", home));
 		   			ComandoHomes.ListHomes(s, player);
 		        	return false;
 		   		}
@@ -128,11 +120,11 @@ public class ComandoHome implements Listener, CommandExecutor {
 				    		Float.parseFloat(locationSplitted[4]),
 				    		Float.parseFloat(locationSplitted[5]));
 			    	if (!s.hasPermission("system.semdelay")) {
-			        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Privada-Iniciando-Teleporte").replaceAll("&", "§").replace("%home%", home).replace("%tempo%", String.valueOf(delay)));
+			        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Privada-Iniciando-Teleporte").replace("&", "§").replace("%home%", home).replace("%tempo%", String.valueOf(delay)));
 			    		new BukkitRunnable() {
 			    			@Override
 			    			public void run() {
-					        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Privada-Teleportado-Sucesso").replaceAll("&", "§").replace("%home%", home));
+					        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Privada-Teleportado-Sucesso").replace("&", "§").replace("%home%", home));
 			    				p.teleport(location);
 			    			}
 			    		}.runTaskLater(Main.aqui, 20 * delay);
@@ -140,7 +132,7 @@ public class ComandoHome implements Listener, CommandExecutor {
 			    	}
 			    	
 			    	else {
-			        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Privada-Teleportado-Sucesso").replaceAll("&", "§").replace("%home%", home));
+			        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Privada-Teleportado-Sucesso").replace("&", "§").replace("%home%", home));
 				 		p.teleport(location);
 			    	}
 		   		}

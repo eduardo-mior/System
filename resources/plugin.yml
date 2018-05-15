@@ -19,15 +19,30 @@ commands:
     aliases: [hat]
     permission: system.chapeu
     permission-message: "§cVocê não tem permissão para utilizar este comando."
+  clear:
+    description: Limpa o seu inventario.
+    aliases: [cc]
+    permission: system.clear
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
   clearchat:
     description: Limpa o chat do servidor.
     aliases: [cc]
     permission: system.clearchat
     permission-message: "§cVocê não tem permissão para utilizar este comando."
+  compactar:
+    description: Compactar todos os itens do inventario.
+    aliases: [block, condense]
+    permission: system.compactar
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
   cores:
     description: Mostra a lista de cores do minecraft.
     aliases: []
     permission: system.cores
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  craft:
+    description: Abre uma bancada de trabalho virtual.
+    aliases: [workbench]
+    permission: system.craft
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   criarkit:
     description: Cria um kit.
@@ -49,6 +64,11 @@ commands:
     aliases: []
     permission: system.delwarp
     permission-message: "§cVocê não tem permissão para utilizar este comando."
+  derreter:
+    description: Derrete todos os minérios do inventario.
+    aliases: []
+    permission: system.derreter
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
   divulgar:
     description: Divulga um link no chat.
     aliases: []
@@ -58,6 +78,11 @@ commands:
     description: Abre o enderchest virtual.
     aliases: [ec]
     permission: system.echest
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  editaritem:
+    description: Edita o item que esta na mão.
+    aliases: [renomear, lore]
+    permission: system.editaritem
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   editarkit:
     description: Edita um kit criado.
@@ -88,6 +113,11 @@ commands:
     description: Mostra a lista de homes salvas.
     aliases: []
     permission: system.homes
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  invsee:
+    description: Abre o inventario de um player.
+    aliases: [inv]
+    permission: system.invsee.mod
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   kit:
     description: Pega um kit.
@@ -159,6 +189,11 @@ commands:
     aliases: []
     permission: system.sgive
     permission-message: "§cVocê não tem permissão para utilizar este comando."
+  skull:
+    description: Pega a cabeça de um player.
+    aliases: [head, cabeca]
+    permission: system.skull
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
   slime:
     description: Verifica se você esta em uma slimechunk.
     aliases: [slimechunk]
@@ -195,8 +230,17 @@ permissions:
   system.back:
     description: Permissão para voltar ao local alterior do seu teleporte.
     default: op
+  system.clear: 
+    description: Permissão para limpar o seu inventario.
+    default: op
+  system.clear.outros: 
+    description: Permissão para limpar o inventario de outras pessoas.
+    default: op
   system.clearchat:
     description: Permissão para limpar o chat do servidor.
+    default: op
+  system.compactar:
+    description: Permissão para compactar todos os itens do inventario.
     default: op
   system.cores:
     description: Permissão para ver a lista de cores do minecraft.
@@ -206,6 +250,9 @@ permissions:
     default: op
   system.cornaplaca:
     description: Permissão para renomear itens com cores.
+    default: op
+  system.craft:
+    description: Permissão para abrir uma bancada de trabalho virtual.
     default: op
   system.criarkit:
     description: Permissão para criar um kit.
@@ -219,6 +266,9 @@ permissions:
   system.delwarp:
     description: Permissão para deletar uma warp.
     default: op
+  system.derreter: 
+    description: Permissão para derreter todos os minérios do inventario.
+    default: op
   system.divulgar:
     description: Permissão para divulgar um link no chat.
     default: op
@@ -230,6 +280,9 @@ permissions:
     default: op
   system.echest.admin:
     description: Permissão para editar o enderchest virtual de outras pessoas.
+    default: op
+  system.editaritem:
+    description: Permissão para editar o item que esta segurando na mão.
     default: op
   system.editarkit: 
     description: Permissão para editar um kit criado.
@@ -267,9 +320,18 @@ permissions:
   system.home.admin:
     description: Permissão para ver e para se teleportar para as homes privadas de alguem.
     default: op
+  system.invsee.mod: 
+    description: Permissão para abrir o inventario de um player.
+    default: op
+  system.invsee.admin: 
+    description: Permissão para editar o inventario de um player.
+    default: op
   system.kit:
     description: Permissão para utilizar o comando /kit.
     default: true
+  system.kit.all: 
+    description: Permissão para poder pegar qualquer kit.
+    default: op
   system.kits:
     description: Permissão para ver a lista de kits disponiveis.
     default: true
@@ -282,6 +344,9 @@ permissions:
   system.luz:
     description: Permissão para ligar e desligar a lanterna.
     default: true
+  system.manterxp:
+    description: Permissão para não perder xp ao morrer.
+    default: op
   system.mundovip:
     description: Permissão para usar o comando /mundovip.
     default: true
@@ -366,7 +431,7 @@ permissions:
     default: false
   system.bypass.delaykit:
     description: Permissão para pegar um kit sem precisar esperar o delay.
-    default: false
+    default: op
   system.bypass.entraremveiculos:
     description: Permissão para entrar em veiculos mesmo se estiver bloqueado.
     default: false
@@ -417,18 +482,24 @@ permissions:
       system.alerta: true
       system.back: true
       system.chapeu: true
+      system.clear: true
+      system.clear.outros: true
       system.clearchat: true
+      system.compactar: true
       system.cores: true
       system.cornabigorna: true
       system.cornaplaca: true
       system.criarkit: true
+      system.craft: true
       system.delhome: true
       system.delkit: true
       system.delwarp: true
+      system.derreter: true
       system.divulgar: true
       system.echest: true
       system.echest.mod: true
       system.echest.admin: true
+      system.editaritem: true
       system.editarkit: true
       system.executarsom: true
       system.fly: true
@@ -439,7 +510,10 @@ permissions:
       system.home: true
       system.home.admin: true
       system.homes: true
+      system.invsee.mod: true
+      system.invsee.admin: true
       system.kit: true
+      system.kit.all: true
       system.kits: true
       system.lixo: true
       system.luz: true
@@ -454,6 +528,7 @@ permissions:
       system.setspawn: true
       system.setwarp: true
       system.sgive: true
+      system.skull: true
       system.slime: true
       system.spawn: true
       system.title: true

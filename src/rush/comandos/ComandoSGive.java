@@ -1,6 +1,7 @@
 package rush.comandos;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
@@ -18,20 +19,13 @@ public class ComandoSGive implements Listener, CommandExecutor {
 	
 	String[] mobs = {"Porco", "Galinha", "Ovelha", "Vaca", "Esqueleto", "Aranha_da_Caverna", "Aranha", "Creeper", "Coelho", "Iron_Golem", "Wither", "Slime", "Enderman", "Zumbi", "Zumbi_Pigman", "Blaze", "Cubo_De_Magma"};
 	
-    @SuppressWarnings({ "deprecation", "unchecked", "rawtypes" })
-	public boolean onCommand(final CommandSender sender, final Command cmd, final String label, final String[] args) {
+	@SuppressWarnings("deprecation")
+	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
         if (cmd.getName().equalsIgnoreCase("sgive")) {
-        if (!sender.hasPermission("system.sgive")) {
-            sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Sem-Permissao").replaceAll("&", "§"));
-            return true;
-        }
-        if (args.length >= 4) {
-        	sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Sgive-Comando-Incorreto").replaceAll("&", "§"));
-            return true;
-        }
-        if (args.length <= 1) {
-        	sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Sgive-Comando-Incorreto").replaceAll("&", "§"));
-            return true;
+        
+        if (args.length > 3 || args.length < 2) {
+        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Sgive-Comando-Incorreto").replace("&", "§"));
+            return false;
         }
         
         if (args.length == 2) {
@@ -41,21 +35,15 @@ public class ComandoSGive implements Listener, CommandExecutor {
             for (String type: mobs) {
             	if (tipo.equals(type)) {
             		if (beneficiado != null) {
-            			ItemStack mob = new ItemStack(Material.MOB_SPAWNER, 1);
-            			ItemMeta mobMeta = mob.getItemMeta();
-            			ArrayList<String> desc = new ArrayList();
-		                desc.add(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner").replaceAll("&", "§") + args[1].replaceAll("_", " "));
-		                mobMeta.setLore(desc);
-		                mobMeta.setDisplayName(ConfigManager.getConfig("mensagens").getString("Nome-Do-MobSpawner").replaceAll("&", "§"));
-		                mob.setItemMeta(mobMeta);
-		                beneficiado.getInventory().addItem(new ItemStack[] { mob });
-		                sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Spawner-Givado").replaceAll("&", "§").replaceAll("%tipo%", args[1].replaceAll("_", " ")));
-		                return true;
+		                ItemStack spawner = mobSpawner(0, tipo);
+		                beneficiado.getInventory().addItem(spawner);
+		                s.sendMessage(ConfigManager.getConfig("mensagens").getString("Spawner-Givado").replace("&", "§").replace("%tipo%", args[1].replace("_", " ")));
+		                return false;
             		}
-            		sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Offline").replaceAll("&", "§"));
+            		s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Offline").replace("&", "§"));
             		return false;
             	}
-            	sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Spawner-Desconhecido").replaceAll("&", "§"));
+            	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Spawner-Desconhecido").replace("&", "§"));
             	return false;
             }
         }
@@ -66,8 +54,8 @@ public class ComandoSGive implements Listener, CommandExecutor {
                 quantidade = Integer.valueOf(args[2]);
             }
             catch (NumberFormatException e) {
-                sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Numero-Invalido").replaceAll("&", "§"));
-                return true;
+                s.sendMessage(ConfigManager.getConfig("mensagens").getString("Numero-Invalido").replace("&", "§"));
+                return false;
             }
         	final String tipo = args[1];
             final String nome = args[0];
@@ -75,24 +63,29 @@ public class ComandoSGive implements Listener, CommandExecutor {
             	for (String type: mobs) {
             		if (tipo.equals(type)) {
             			if (beneficiado != null) {
-			                ItemStack mob = new ItemStack(Material.MOB_SPAWNER, quantidade);
-			                ItemMeta mobMeta = mob.getItemMeta();
-			                ArrayList<String> desc = new ArrayList();
-			                desc.add(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner").replaceAll("&", "§") + args[1].replaceAll("_", " "));
-			                mobMeta.setLore(desc);
-			                mobMeta.setDisplayName(ConfigManager.getConfig("mensagens").getString("Nome-Do-MobSpawner").replaceAll("&", "§"));
-			                mob.setItemMeta(mobMeta);
-			                beneficiado.getInventory().addItem(new ItemStack[] { mob });
-			                sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Spawner-Givado").replaceAll("&", "§").replaceAll("%tipo%", args[1].replaceAll("_", " ")));
-			                return true;
+			                ItemStack spawner = mobSpawner(quantidade, tipo);
+			                beneficiado.getInventory().addItem(spawner);
+			                s.sendMessage(ConfigManager.getConfig("mensagens").getString("Spawner-Givado").replace("&", "§").replace("%tipo%", args[1].replace("_", " ")));
+			                return false;
             			}
-            			sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Offline").replaceAll("&", "§"));
+            			s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Offline").replace("&", "§"));
             			return false;
             		}
-            		sender.sendMessage(ConfigManager.getConfig("mensagens").getString("Spawner-Desconhecido").replaceAll("&", "§"));
+            		s.sendMessage(ConfigManager.getConfig("mensagens").getString("Spawner-Desconhecido").replace("&", "§"));
             	}
         	}
         }
         return false;
     }
+	
+	public ItemStack mobSpawner(int quantidade, String tipo) {
+		 ItemStack mob = new ItemStack(Material.MOB_SPAWNER, quantidade);
+         ItemMeta mobMeta = mob.getItemMeta();
+         List<String> desc = new ArrayList<>();
+         desc.add(ConfigManager.getConfig("mensagens").getString("Lore-Do-MobSpawner").replace("&", "§") + tipo.replace("_", " "));
+         mobMeta.setLore(desc);
+         mobMeta.setDisplayName(ConfigManager.getConfig("mensagens").getString("Nome-Do-MobSpawner").replace("&", "§"));
+         mob.setItemMeta(mobMeta);
+         return mob;
+	}
 }

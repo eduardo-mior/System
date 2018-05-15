@@ -13,7 +13,7 @@ public class CoresNaPlaca implements Listener {
 		Player p = e.getPlayer();
 		if (p.hasPermission("system.cornaplaca")) {
 			for (int i = 0; i < 4; i++) {
-	        e.setLine(i, ChatColor.translateAlternateColorCodes('&', e.getLines()[i]));
+				e.setLine(i, ChatColor.translateAlternateColorCodes('&', e.getLines()[i]));
 			}
 		}
 	}

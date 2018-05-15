@@ -8,7 +8,8 @@ import rush.utils.ConfigManager;
 
 public class Motd implements Listener {
 
-	String motd =  ConfigManager.getConfig("settings").getString("Motd.Linha1").replaceAll("&", "§") + "\n" + ConfigManager.getConfig("settings").getString("Motd.Linha2").replaceAll("&", "§");
+	String motd = ConfigManager.getConfig("settings").getString("Motd.Linha1").replace("&", "§") + "\n"
+				+ ConfigManager.getConfig("settings").getString("Motd.Linha2").replace("&", "§");
 	
 	@EventHandler
 	public void definirMotd(ServerListPingEvent e) {

@@ -26,21 +26,21 @@ public class BloquearShiftEmContainers implements Listener {
 					if (!(p.hasPermission("system.bypass.shiftemcontainer"))) {
 						e.setCancelled(true);
 						p.sendMessage(ConfigManager.getConfig("mensagens").getString("Shift-Bloqueado-No-Container")
-							.replaceAll("%tipo%", String.valueOf(e.getInventory().getType()))
-							.replaceAll("ANVIL", "na bigorna")
-							.replaceAll("BEACON", "no sinalizdor")
-							.replaceAll("BREWING", "no suporte de poções")
-							.replaceAll("CRAFTING", "no inventario")
-							.replaceAll("DISPENSER", "no ejetor")
-							.replaceAll("DROPPER", "no liberador")
-							.replaceAll("ENCHANTING", "na mesa de encantamentos")
-							.replaceAll("ENDER_CHEST", "no echest")
-							.replaceAll("FURNACE", "no fornalha")
-							.replaceAll("HOPPER", "no funil")
-							.replaceAll("MERCHANT", "no aldeão")
-							.replaceAll("WORKBENCH", "na bancada de trabalho")
-							.replaceAll("CHEST", "no baú")
-							.replaceAll("&", "§"));
+							.replace("%tipo%", String.valueOf(e.getInventory().getType()))
+							.replace("ANVIL", "na bigorna")
+							.replace("BEACON", "no sinalizdor")
+							.replace("BREWING", "no suporte de poções")
+							.replace("CRAFTING", "no inventario")
+							.replace("DISPENSER", "no ejetor")
+							.replace("DROPPER", "no liberador")
+							.replace("ENCHANTING", "na mesa de encantamentos")
+							.replace("ENDER_CHEST", "no echest")
+							.replace("FURNACE", "no fornalha")
+							.replace("HOPPER", "no funil")
+							.replace("MERCHANT", "no aldeão")
+							.replace("WORKBENCH", "na bancada de trabalho")
+							.replace("CHEST", "no baú")
+							.replace("&", "§"));
 							return;
 					}
 				}

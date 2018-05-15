@@ -30,7 +30,7 @@ public class EnderPearlCooldown  implements Listener {
 	
     	if (cooldown.containsKey(p) && cooldown.get(p).after(new Timestamp(System.currentTimeMillis()))) {
     		e.setCancelled(true);
-    		p.sendMessage(ConfigManager.getConfig("mensagens").getString("Aguarde-EnderPearl-Cooldown").replaceAll("&", "§").replaceAll("%tempo%", String.valueOf(ConfigManager.getConfig("settings").getInt("EnderPearl-Cooldown.Cooldown"))));
+    		p.sendMessage(ConfigManager.getConfig("mensagens").getString("Aguarde-EnderPearl-Cooldown").replace("&", "§").replace("%tempo%", String.valueOf(ConfigManager.getConfig("settings").getInt("EnderPearl-Cooldown.Cooldown"))));
     		p.getInventory().addItem(new ItemStack[] { new ItemStack(Material.ENDER_PEARL) });
     		return;
     		

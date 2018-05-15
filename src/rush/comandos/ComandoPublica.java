@@ -17,24 +17,18 @@ import rush.utils.DataManager;
 
 public class ComandoPublica implements Listener, CommandExecutor {
 	
-	@Override
-	public boolean onCommand(final CommandSender s, Command cmd, String lbl, String[] args) {
+	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("publica")) {
 			 
-			 if (!(s instanceof Player)) {
-				 s.sendMessage(ConfigManager.getConfig("mensagens").getString("Console-Nao-Pode").replace("&", "§"));
-				 return false;
-			 }
+			if (!(s instanceof Player)) {
+				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Console-Nao-Pode").replace("&", "§"));
+				return false;
+			}
 			
-		     if (args.length == 0) {
-		          s.sendMessage(ConfigManager.getConfig("mensagens").getString("Publica-Comando-Incorreto").replaceAll("&", "§"));
-		          return false;
-		     } 
-		     
-		     if (args.length > 1) {
-		          s.sendMessage(ConfigManager.getConfig("mensagens").getString("Publica-Comando-Incorreto").replaceAll("&", "§"));
-		          return false;
-		     }
+			if (args.length != 1) {
+				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Publica-Comando-Incorreto").replace("&", "§"));
+				return false;
+			} 
 		     
 		    String home = args[0];
 	  		String player = s.getName().toLowerCase();
@@ -43,25 +37,23 @@ public class ComandoPublica implements Listener, CommandExecutor {
 	        Set<String> KEYS = config.getConfigurationSection("Homes").getKeys(false);
 		   		
 	        if (!KEYS.contains(home)) {
-	        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Nao-Existe").replaceAll("&", "§").replace("%home%", home));
+	        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Nao-Existe").replace("&", "§").replace("%home%", home));
 	   			ComandoHomes.ListHomes(s, player);
 	        	return false;
 	   		}
 	   		
-	   		else {
-			    boolean isPublic = config.getBoolean("Homes." + home + ".Publica");
-			    if (isPublic == false) {
-					config.set("Homes." + home + ".Publica" , true);
-					try {
-						config.save(file);
-						s.sendMessage(ConfigManager.getConfig("mensagens").getString("Tornou-Home-Publica").replace("&", "§").replace("%home%", home));
-					} catch (IOException e) {
-						Bukkit.getConsoleSender().sendMessage(ConfigManager.getConfig("mensagens").getString("Falha-Ao-Salvar").replace("&", "§").replace("%arquivo%", file.getName()));
-					}
-			    } else {
-					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Ja-Publica").replace("&", "§").replace("%home%", home));
-			    }
-	   		}
+	        boolean isPublic = config.getBoolean("Homes." + home + ".Publica");
+	        if (isPublic == false) {
+	        	config.set("Homes." + home + ".Publica" , true);
+	        	try {
+	        		config.save(file);
+	        		s.sendMessage(ConfigManager.getConfig("mensagens").getString("Tornou-Home-Publica").replace("&", "§").replace("%home%", home));
+	        	} catch (IOException e) {
+	        		Bukkit.getConsoleSender().sendMessage(ConfigManager.getConfig("mensagens").getString("Falha-Ao-Salvar").replace("&", "§").replace("%arquivo%", file.getName()));
+	        	}
+	        } else {
+	        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Ja-Publica").replace("&", "§").replace("%home%", home));
+	        }
 		}
 		return false;
 	}

@@ -66,7 +66,7 @@ public class McMMO implements Listener {
         .replace("WOODCUTTING", "Lenhador")
         .replace("%player%", p.getName())
         .replace("%level%", String.valueOf(e.getSkillLevel()))
-        .replaceAll("&", "§"));
+        .replace("&", "§"));
     p.getWorld().strikeLightningEffect(p.getLocation());
     p.getWorld().strikeLightningEffect(p.getLocation());
     }

@@ -13,7 +13,7 @@ import rush.utils.ConfigManager;
 public class ComandoEchest implements Listener, CommandExecutor {
 
 	@SuppressWarnings("deprecation")
-	public boolean onCommand(CommandSender s, Command cmd, String commandlabel, String[] args) {
+	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("echest")) {
 			 
 			 if (!(s instanceof Player)) {
@@ -23,17 +23,19 @@ public class ComandoEchest implements Listener, CommandExecutor {
 			 
 			 Player sender = (Player)s;
 			 if (args.length > 0 && s.hasPermission("system.echest.mod")) {
-				 Player p = Bukkit.getPlayer(args[0]);
-				 if (p == null) {
-         			s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Offline").replaceAll("&", "§"));
+				 Player target = Bukkit.getPlayer(args[0]);
+				 if (target == null) {
+         			s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Offline").replace("&", "§"));
          			return false;
 				 }
-				 Inventory i = p.getEnderChest();
+				 
+				 Inventory i = target.getEnderChest();
 				 sender.openInventory(i);
-			 } else {
-				 Inventory i = sender.getEnderChest();
-				 sender.openInventory(i);
+				 return false;
 			 }
+				 
+			 Inventory i = sender.getEnderChest();
+			 sender.openInventory(i);
 		}
 		return false;
 	}

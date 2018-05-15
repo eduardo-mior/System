@@ -5,7 +5,6 @@
 ############################################################
 AtivarAddons:
   Legendchat: true
-  MassiveFactions: true
   mcMMO: true
 
 ############################################################
@@ -39,7 +38,8 @@ Bloquear-Shift-Em-Containers:
   - 'BREWING'
   # Lista de containers: https://ghostbin.com/paste/mxjom
 
-Comandos-Que-Envolvem-Dinheiro:
+Bloquear-Money-Invalido: true
+Comandos-Que-Envolvem-Money:
   - 'coins'
   - 'money'
   - 'cash'
@@ -99,13 +99,20 @@ Ativar-Cores-Na-Placa: true
 ############################################################
 Limitador-De-Players: true
 Limite-De-Players: 340
+Invencibilidade-Ao-Teleportar: true
+Tempo-De-Invencibilidade-Ao-Teleportar: 3
+Dropar-Cabeca-Ao-Morrer: true
+Chance-De-Dropar-Cabeca-Ao-Morrer: 15
 
 ############################################################
 # +------------------------------------------------------+ #
-# |                   Sistema de Homes                   | #
+# |                    Sistema de Fly                    | #
 # +------------------------------------------------------+ #
 ############################################################
-
+Sistema-De-Fly-Para-Players: true
+Mundos-Onde-Pode-Usar-Fly:
+  - 'world'
+  - 'world_nether'
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -123,7 +130,7 @@ Chance-De-Dropar-Ao-Explodir: 60
 # +------------------------------------------------------+ #
 ############################################################
 Mensagem-De-Boas-Vindas:
-  Ativar: true
+  Ativar: false
   Mensagem:
     - '&6-&e=&6-&e=&6-&e=&6-&e=&6-{ &bSeja Bem Vindo ao Hypixel! &6}-&e=&6-&e=&6-&e=&6-&e=&6-'
     - '&eAdquira CASH e VIP em: &6store.hypixel.net'

@@ -16,7 +16,7 @@ import rush.utils.ConfigManager;
 
 public class ComandoBack implements Listener, CommandExecutor {
 
-	public boolean onCommand(CommandSender s, Command cmd, String commandlabel, String[] args) {
+	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("back")) {
 			
 			if (!(s instanceof Player)) {
@@ -24,29 +24,22 @@ public class ComandoBack implements Listener, CommandExecutor {
 			    return false;
 			}
 			 
-			if (!s.hasPermission("system.back")) {
-		        s.sendMessage(ConfigManager.getConfig("mensagens").getString("Sem-Permissao").replaceAll("&", "§"));
-		        return false;
-		    }
-			 
 			Player p = (Player)s;
 			ConcurrentHashMap<Player, Location> lista = BackListener.backList;
-			
 			if (!lista.containsKey(p)) {
-		        s.sendMessage(ConfigManager.getConfig("mensagens").getString("Nao-Possui-Back").replaceAll("&", "§"));
+		        s.sendMessage(ConfigManager.getConfig("mensagens").getString("Nao-Possui-Back").replace("&", "§"));
 		        return false;
-			} else {
-				Location l = lista.get(p);
-				new BukkitRunnable() {
-					@Override
-				       public void run() {
-						lista.remove(p);
-					}
-				}.runTaskLater(Main.aqui, 30);
-		        s.sendMessage(ConfigManager.getConfig("mensagens").getString("Back-Teleportado-Sucesso").replaceAll("&", "§"));
-				p.teleport(l);
-				return false;
 			}
+			
+			Location l = lista.get(p);
+			new BukkitRunnable() {
+				@Override
+				public void run() {
+					lista.remove(p);
+				}
+			}.runTaskLater(Main.aqui, 30);
+			p.teleport(l);
+			s.sendMessage(ConfigManager.getConfig("mensagens").getString("Back-Teleportado-Sucesso").replace("&", "§"));
 		}
 		return false;
 	}

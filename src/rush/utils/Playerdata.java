@@ -22,7 +22,7 @@ public class Playerdata implements Listener {
         if (file.exists()) {
         	String OldPlayer = config.getString("Nick");
         	if (!NewPlayer.equals(OldPlayer)) {
-				e.setKickMessage(ConfigManager.getConfig("mensagens").getString("Nick-Similar").replaceAll("&", "§").replaceAll("%antigo%", OldPlayer).replace("%novo%", NewPlayer));
+				e.setKickMessage(ConfigManager.getConfig("mensagens").getString("Nick-Similar").replace("&", "§").replace("%antigo%", OldPlayer).replace("%novo%", NewPlayer));
 				e.setResult(Result.KICK_OTHER);
         	}
         } else {

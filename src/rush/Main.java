@@ -1,6 +1,7 @@
 package rush;
 
 import org.bukkit.Bukkit;
+import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -10,20 +11,26 @@ import rush.addons.McMMO;
 import rush.comandos.ComandoAlerta;
 import rush.comandos.ComandoBack;
 import rush.comandos.ComandoChapeu;
+import rush.comandos.ComandoClear;
 import rush.comandos.ComandoClearChat;
+import rush.comandos.ComandoCompactar;
 import rush.comandos.ComandoCores;
+import rush.comandos.ComandoCraft;
 import rush.comandos.ComandoCriarkit;
 import rush.comandos.ComandoDelhome;
 import rush.comandos.ComandoDelkit;
 import rush.comandos.ComandoDelwarp;
+import rush.comandos.ComandoDerreter;
 import rush.comandos.ComandoDivulgar;
 import rush.comandos.ComandoEchest;
+import rush.comandos.ComandoEditaritem;
 import rush.comandos.ComandoEditarkit;
 import rush.comandos.ComandoExecutarSom;
 import rush.comandos.ComandoFly;
 import rush.comandos.ComandoGamemode;
 import rush.comandos.ComandoHome;
 import rush.comandos.ComandoHomes;
+import rush.comandos.ComandoInvsee;
 import rush.comandos.ComandoKit;
 import rush.comandos.ComandoKits;
 import rush.comandos.ComandoLixo;
@@ -38,6 +45,7 @@ import rush.comandos.ComandoSethome;
 import rush.comandos.ComandoSetmundovip;
 import rush.comandos.ComandoSetspawn;
 import rush.comandos.ComandoSetwarp;
+import rush.comandos.ComandoSkull;
 import rush.comandos.ComandoSlime;
 import rush.comandos.ComandoSpawn;
 import rush.comandos.ComandoTitle;
@@ -52,6 +60,7 @@ import rush.recursos.adicionais.CoresNaBigorna;
 import rush.recursos.adicionais.CoresNaPlaca;
 import rush.recursos.antibug.BloquearAbrirContainers;
 import rush.recursos.antibug.BloquearCama;
+import rush.recursos.antibug.BloquearMoneyInvalido;
 import rush.recursos.antibug.BloquearNameTag;
 import rush.recursos.antibug.BloquearPassarDaBorda;
 import rush.recursos.antibug.BloquearShiftEmContainers;
@@ -79,14 +88,19 @@ import rush.recursos.gerais.DesativarMensagemDeEntrada;
 import rush.recursos.gerais.DesativarMensagemDeMorte;
 import rush.recursos.gerais.DesativarMensagemDeSaida;
 import rush.recursos.gerais.EntrarNoSpawnAoLogar;
+import rush.recursos.gerais.InvencibilidadeAoTeleportar;
 import rush.recursos.gerais.LimiteDePlayers;
+import rush.recursos.gerais.ManterXpAoMorrer;
 import rush.recursos.gerais.MensagemDeBoasVindas;
 import rush.recursos.gerais.TitleDeBoasVindas;
 import rush.sistemas.comandos.BackListener;
-import rush.sistemas.comandos.EnderChest;
+import rush.sistemas.comandos.EnderChestListener;
+import rush.sistemas.comandos.FlyListener;
+import rush.sistemas.comandos.InvseeListener;
 import rush.sistemas.comandos.KitsListener;
 import rush.sistemas.gerais.AnunciarMorte;
 import rush.sistemas.gerais.AutoAnuncio;
+import rush.sistemas.gerais.DroparCabecaAoMorrer;
 import rush.sistemas.gerais.Motd;
 import rush.sistemas.gerais.ScoreBoard;
 import rush.sistemas.gerais.Tablist;
@@ -133,20 +147,26 @@ public class Main extends JavaPlugin implements Listener {
 	   getCommand("alerta").setExecutor(new ComandoAlerta());
 	   getCommand("back").setExecutor(new ComandoBack());
 	   getCommand("chapeu").setExecutor(new ComandoChapeu()); 
+	   getCommand("clear").setExecutor(new ComandoClear()); 
 	   getCommand("clearchat").setExecutor(new ComandoClearChat()); 
+	   getCommand("compactar").setExecutor(new ComandoCompactar());
 	   getCommand("cores").setExecutor(new ComandoCores());
 	   getCommand("criarkit").setExecutor(new ComandoCriarkit());
+	   getCommand("craft").setExecutor(new ComandoCraft());
 	   getCommand("delhome").setExecutor(new ComandoDelhome());
 	   getCommand("delkit").setExecutor(new ComandoDelkit()); 
 	   getCommand("delwarp").setExecutor(new ComandoDelwarp()); 
+	   getCommand("derreter").setExecutor(new ComandoDerreter());
 	   getCommand("divulgar").setExecutor(new ComandoDivulgar()); 
 	   getCommand("echest").setExecutor(new ComandoEchest());
+	   getCommand("editaritem").setExecutor(new ComandoEditaritem());
 	   getCommand("editarkit").setExecutor(new ComandoEditarkit());
 	   getCommand("executarsom").setExecutor(new ComandoExecutarSom());
 	   getCommand("fly").setExecutor(new ComandoFly());
 	   getCommand("gamemode").setExecutor(new ComandoGamemode());
 	   getCommand("home").setExecutor(new ComandoHome());
 	   getCommand("homes").setExecutor(new ComandoHomes());
+	   getCommand("invsee").setExecutor(new ComandoInvsee());
 	   getCommand("kit").setExecutor(new ComandoKit());
 	   getCommand("kits").setExecutor(new ComandoKits());
 	   getCommand("lixo").setExecutor(new ComandoLixo());
@@ -161,6 +181,7 @@ public class Main extends JavaPlugin implements Listener {
 	   getCommand("setspawn").setExecutor(new ComandoSetspawn()); 
 	   getCommand("setwarp").setExecutor(new ComandoSetwarp()); 
 	   getCommand("sgive").setExecutor(new ComandoSGive()); 
+	   getCommand("skull").setExecutor(new ComandoSkull()); 
 	   getCommand("slime").setExecutor(new ComandoSlime());
 	   getCommand("spawn").setExecutor(new ComandoSpawn()); 
 	   getCommand("title").setExecutor(new ComandoTitle()); 
@@ -189,7 +210,7 @@ public class Main extends JavaPlugin implements Listener {
 	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Abrir-Containers.Ativar")){
 	   pm.registerEvents(new BloquearAbrirContainers(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Cair-No-Void") && Locations.validarSpawn()){
+	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Cair-No-Void")){
 	   pm.registerEvents(new BloquearCairNoVoid(), this);}
 	   
 	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Cama")){
@@ -219,6 +240,9 @@ public class Main extends JavaPlugin implements Listener {
 	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Mobs-De-Pegarem-Fogo-Para-O-Sol")){
 	   pm.registerEvents(new BloquearMobsDePegaremFogoParaOSol(), this);}
 	   
+	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Money-Invalido")){
+	   pm.registerEvents(new BloquearMoneyInvalido(), this);}
+	   
 	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Passar-Da-Borda")){
 	   pm.registerEvents(new BloquearPassarDaBorda(), this);}
 	   
@@ -231,7 +255,7 @@ public class Main extends JavaPlugin implements Listener {
 	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Subir-Em-Veiculos")){
 	   pm.registerEvents(new BloquearSubirEmVeiculos(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Subir-No-Teto-Nether") && Locations.validarSpawn()){
+	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Subir-No-Teto-Nether")){
 	   pm.registerEvents(new BloquearSubirNoTetoNether(), this);}
 	   
 	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Teleport-Por-Portal.Ativar")){
@@ -282,14 +306,20 @@ public class Main extends JavaPlugin implements Listener {
 	   if (ConfigManager.getConfig("settings").getBoolean("Desativar-Queda-Das-Folhas")){
 	   pm.registerEvents(new DesativarQuedaDasFolhas(), this);}
 	   
+	   if (ConfigManager.getConfig("settings").getBoolean("Dropar-Cabeca-Ao-Morrer")){
+	   pm.registerEvents(new DroparCabecaAoMorrer(), this);}
+	   
 	   if (ConfigManager.getConfig("settings").getBoolean("Dropar-Spawner-Ao-Explodir")){
 	   pm.registerEvents(new DroparSpawnerAoExplodir(), this);}
 	   
 	   if (ConfigManager.getConfig("settings").getBoolean("EnderPearl-Cooldown.Ativar")){
 	   pm.registerEvents(new EnderPearlCooldown(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Entrar-No-Spawn-Ao-Logar") && Locations.validarSpawn()){
+	   if (ConfigManager.getConfig("settings").getBoolean("Entrar-No-Spawn-Ao-Logar")){
 	   pm.registerEvents(new EntrarNoSpawnAoLogar(), this);}
+	   
+	   if (ConfigManager.getConfig("settings").getBoolean("Invencibilidade-Ao-Teleportar")){
+	   pm.registerEvents(new InvencibilidadeAoTeleportar(), this);}
 	   
 	   if (ConfigManager.getConfig("settings").getBoolean("Limitador-De-Players")){
 	   pm.registerEvents(new LimiteDePlayers(), this);}
@@ -326,16 +356,22 @@ public class Main extends JavaPlugin implements Listener {
 	   pm.registerEvents(new McMMO(), this);
 	   McMMO.checkMCTop();
 	   getServer().getConsoleSender().sendMessage("§a[System] mcMMO encontrado, ativando addons!");}}
-	    
+	   
+	   if (ConfigManager.getConfig("settings").getBoolean("Sistema-De-Fly-Para-Players")) {
+	   pm.registerEvents(new FlyListener(), this);}
+	   
 	   pm.registerEvents(new Playerdata(), this);
-	   pm.registerEvents(new EnderChest(), this);
+	   pm.registerEvents(new EnderChestListener(), this);
+	   pm.registerEvents(new InvseeListener(), this);
 	   pm.registerEvents(new KitsListener(), this); 
 	   pm.registerEvents(new BackListener(), this);
+	   pm.registerEvents(new ManterXpAoMorrer(), this);
 	   pm.registerEvents(new Outros(), this);
    }
    
    public void desativarRecursos() {
 	   PluginManager pm = Bukkit.getServer().getPluginManager();
+	   HandlerList.unregisterAll((Listener) this);
 	   
 	   if (pm.getPlugin("mcMMO") != null) {
 	   McMMO.TTask.cancel(); }

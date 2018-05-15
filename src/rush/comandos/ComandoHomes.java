@@ -21,9 +21,10 @@ public class ComandoHomes implements Listener, CommandExecutor {
 		 if (cmd.getName().equalsIgnoreCase("homes")) {
 		     
 			 if (args.length > 1) {
-		         s.sendMessage(ConfigManager.getConfig("mensagens").getString("Homes-Comando-Incorreto").replaceAll("&", "§"));
+		         s.sendMessage(ConfigManager.getConfig("mensagens").getString("Homes-Comando-Incorreto").replace("&", "§"));
 		         return false;
 		     }
+			 
 			 String player;
 			 if (args.length == 1) {
 		    	 player = args[0].replace(":", "");
@@ -38,7 +39,7 @@ public class ComandoHomes implements Listener, CommandExecutor {
 	public static void ListHomes(CommandSender s, String player) {
 	     File file = DataManager.getFile(player.toLowerCase(), "playerdata");
 	     if (!file.exists()) {
-	       	 s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Nao-Existe").replaceAll("&", "§").replace("%player%", player));
+	       	 s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Nao-Existe").replace("&", "§").replace("%player%", player));
 	       	 return;
 	     }
 	     
