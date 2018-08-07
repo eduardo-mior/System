@@ -10,22 +10,28 @@ import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
-import rush.utils.ConfigManager;
+import rush.configuracoes.Settings;
 
 public class DroparCabecaAoMorrer implements Listener {
+
+	private static Random rnd = new Random();
 	
 	@EventHandler
-	public void aoMorrer(PlayerDeathEvent e) {
-        Player p = e.getEntity();
-        Random rnd = new Random();
-        int n = rnd.nextInt(100);
-        int chance = ConfigManager.getConfig("settings").getInt("Chance-De-Dropar-Cabeca-Ao-Morrer");
-        if (n < chance) {
-        	ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
-        	SkullMeta meta = (SkullMeta)skull.getItemMeta();
- 	       	meta.setOwner(p.getName());
- 	       	skull.setItemMeta(meta);
-        	p.getWorld().dropItem(p.getLocation(),skull);
-        }
+	public void aoMorrerDroparCabeca(PlayerDeathEvent e) {
+		int aleatorio = rnd.nextInt(100);
+		int chance = Settings.Chance_De_Dropar_Cabeca_Ao_Morrer;
+		if (aleatorio < chance) {
+			Player p = e.getEntity();
+			ItemStack skull = getSkull(p.getName());
+			p.getWorld().dropItem(p.getLocation(), skull);
+		}
+	}
+
+	private ItemStack getSkull(String player) {
+		ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
+		SkullMeta meta = (SkullMeta) skull.getItemMeta();
+		meta.setOwner(player);
+		skull.setItemMeta(meta);
+		return skull;
 	}
 }

@@ -4,45 +4,54 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import rush.Main;
-import rush.utils.ConfigManager;
-import rush.utils.Locations;
+import rush.configuracoes.Locations;
+import rush.configuracoes.Mensagens;
+import rush.configuracoes.Settings;
 
-public class ComandoMundoVip implements Listener, CommandExecutor {
+public class ComandoMundoVip implements CommandExecutor {
 	
+	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("mundovip")) {
 			
+			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
-				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Console-Nao-Pode").replace("&", "§"));
+				s.sendMessage(Mensagens.Console_Nao_Pode); 
 				return false; 
 			}
 			
+			// Pegando o player e o delay para se teleportar
 			Player p = (Player) s;
+			int delay = Settings.Delay_Para_Teleportar_Comandos;
+			
+			// Verificando se o player tem permissão para se teleportar para areavip 
 			if (!s.hasPermission("system.vip")) {
-		   	    if (ConfigManager.getConfig("settings").getBoolean("Ativar-Camarote-Para-Os-Sem-Vip")) {
-		   	    	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Iniciando-Teleporte-Vip").replace("&", "§").replace("%tempo%", String.valueOf(ConfigManager.getConfig("settings").getInt("Delay-Para-Teleportar-Comandos"))));
+				
+				// Verificando se o camarote para os sem vip esta habilitado e teleportando o palyer
+		   	    if (Settings.Ativar_Camarote_Para_Os_Sem_Vip) {
+		   	    	s.sendMessage(Mensagens.Iniciando_Teleporte_Vip.replace("%tempo%", String.valueOf(Settings.Delay_Para_Teleportar_Comandos)));
 		   	    	new BukkitRunnable() {
 		   	    		@Override
 		   	    		public void run() {
+		   	    			s.sendMessage("§f ");
+		   	    			s.sendMessage(Mensagens.Teleportado_Com_Sucesso_Sem_Vip);
+		   	    			s.sendMessage("§f ");
 		   	    			p.teleport(Locations.areaNaoVip);
-		   	    			s.sendMessage("§f ");
-		   	    			s.sendMessage(ConfigManager.getConfig("mensagens").getString("Teleportado-Com-Sucesso-Sem-Vip").replace("&", "§"));
-		   	    			s.sendMessage("§f ");
 		   	    		}
-		   	    	}.runTaskLater(Main.aqui, 20 * ConfigManager.getConfig("settings").getInt("Delay-Para-Teleportar-Comandos"));
+		   	    	}.runTaskLaterAsynchronously(Main.aqui, 20 * delay);
 		   	    	return false;
 		   	    }
-		   	    s.sendMessage(ConfigManager.getConfig("mensagens").getString("Sem-Permissao").replace("&", "§"));
+		   	    s.sendMessage(Mensagens.Sem_Permissao);
 		   	    return false;
-			}
-		    s.sendMessage(ConfigManager.getConfig("mensagens").getString("Teleportado-Com-Sucesso-Vip").replace("&", "§"));
+			} 
+			
+			// Caso o player possua a permissão 'system.vip' este código sera executado
+		    s.sendMessage(Mensagens.Teleportado_Com_Sucesso_Vip);
 		    p.teleport(Locations.areaVip);     
 		}
 		return false;
 	}
-	
 }

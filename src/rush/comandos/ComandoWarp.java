@@ -9,33 +9,33 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import rush.Main;
-import rush.utils.ConfigManager;
+import rush.configuracoes.Mensagens;
 import rush.utils.DataManager;
 
-public class ComandoWarp implements Listener, CommandExecutor {
+public class ComandoWarp implements CommandExecutor {
 	
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation")	
+	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("warp")) {
 			
 			if (!(s instanceof Player)) {
-				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Console-Nao-Pode").replace("&", "§"));
+				s.sendMessage(Mensagens.Console_Nao_Pode); 
 				return false;
 			}
 				     
 			if (args.length != 1) {
-				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Warp-Comando-Incorreto").replace("&", "§"));
+				s.sendMessage(Mensagens.Warp_Comando_Incorreto);
 				return false;
 			}
 				     
 			String warp = args[0];
 			File file = DataManager.getFile(warp, "warps");
 			if (!file.exists()) {
-				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Warp-Nao-Existe").replace("&", "§").replace("%warp%", warp));
+				s.sendMessage(Mensagens.Warp_Nao_Existe.replace("%warp%", warp));
 				ComandoWarps.ListWarps(s);
 				return false;
 			}

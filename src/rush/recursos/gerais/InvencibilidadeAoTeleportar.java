@@ -1,10 +1,11 @@
 package rush.recursos.gerais;
 
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.ArrayList;
+import java.util.List;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityDamageEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
@@ -12,32 +13,30 @@ import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import rush.Main;
-import rush.utils.ConfigManager;
+import rush.configuracoes.Settings;
 
 public class InvencibilidadeAoTeleportar implements Listener {
-	
-	private ConcurrentHashMap<Player, Integer> godList = new ConcurrentHashMap<Player, Integer>();
-	
-	@EventHandler
+
+	private List<String> protegidos = new ArrayList<>();
+
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void aoTeleportar(PlayerTeleportEvent e) {
-		Player p = e.getPlayer();
-		if (e.getCause() == TeleportCause.COMMAND) {
-			godList.put(p, 0);
+		if (e.getCause() == TeleportCause.COMMAND || e.getCause() == TeleportCause.PLUGIN || e.getCause() == TeleportCause.UNKNOWN) {
+			protegidos.add(e.getPlayer().getName());
 			new BukkitRunnable() {
+				@Override
 				public void run() {
-					godList.remove(p);
+					protegidos.remove(e.getPlayer().getName());
 				}
-			}.runTaskLater(Main.aqui, 20 * ConfigManager.getConfig("settings").getInt("Tempo-De-Invencibilidade-Ao-Teleportar"));
+			}.runTaskLater(Main.aqui, 20 * Settings.Tempo_De_Invencibilidade_Ao_Teleportar);
 		}
 	}
-	
-	
-	@EventHandler
+
+	@EventHandler(priority = EventPriority.LOWEST)
 	public void aoTomarDano(EntityDamageEvent e) {
-		if(e.getEntity() instanceof Player) {
+		if (e.getEntity() instanceof Player) {
 			Player p = (Player) e.getEntity();
-			if (godList.containsKey(p)) {
-				Bukkit.broadcastMessage(String.valueOf(godList));
+			if (protegidos.contains(p.getName())) {
 				e.setCancelled(true);
 			}
 		}

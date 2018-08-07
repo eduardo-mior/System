@@ -11,23 +11,23 @@ Numero-Invalido: "&cEste número não é um número valido."
 Money-Null: "&cA palavra 'null' e a palavra 'nan' foram bloqueadas de serem usadas em comandos que envolvem dinheiro!"
 Player-Offline: "&cEste player não esta online no momento ou não existe."
 Player-Nao-Existe: "&cO player '%player%' não existe!"
-Falha-Ao-Criar-Arquivo: "&cNao foi possivel criar o arquivo %arquivo%!"
-Falha-Ao-Criar-Pasta: "&cNao foi possivel criar a pasta %pasta%!"
-Falha-Ao-Salvar: "&cNao foi possivel salvar o arquivo %arquivo%!"
+Falha-Ao-Criar-Arquivo: "&c[ERRO] Nao foi possivel criar o arquivo %arquivo%!"
+Falha-Ao-Criar-Pasta: "&c[ERRO] Nao foi possivel criar a pasta %pasta%!"
+Falha-Ao-Salvar: "&c[ERRO] Nao foi possivel salvar o arquivo %arquivo%!"
 
 ############################################################
 # +------------------------------------------------------+ #
 # |                Mensagens dos Recursos                | #
 # +------------------------------------------------------+ #
 ############################################################
-Nick-Similar: "&cO nick '%novo%' não pode ser usado pois já existe um cadastro com o nick '%antigo%'.\n&c\n&cVocê deve utilizar a mesma configuração de caracteres maiusculos\n&c e minúsculos para poder acessar o servidor com este nick."
+Nick-Similar: "&cO nick '%novo%' não pode ser usado pois já existe um cadastro com o nick '%antigo%'.\n&c\n&cVocê deve utilizar a mesma configuração de caracteres maiusculos\n&ce minúsculos para poder acessar o servidor com este nick."
 Servidor-Lotado: "&cDesculpe mas o servidor esta cheio!\n&cAdquira já seu VIP em &ewww.gamersboard.com.br"
 Nick-Bloqueado: "&cA palavra '%nick%' foi bloqueada de ser usada em nicks!"
-Comando-Bloqueado: "&cEste comando foi bloqueado do servidor."
+Comando-Bloqueado: "&cEste comando foi bloqueado no servidor."
 Tentou-Passar-Da-Borda: "&cVocê não pode se teleportar para o outro lado da borda."
 Tentou-Vender-Com-Valor-Negativo: "&cO valor do item não pode ser negativo."
 Aguarde-EnderPearl-Cooldown: "&cAguarde %tempo% segundos para poder lançar outra Enderpearl."
-Shift-Bloqueado-No-Container: "&cO botão SHIFT foi desabilitado %tipo%."
+Shift-Bloqueado-No-Container: "&cO botão SHIFT foi desabilitado neste tipo de container (%tipo%)."
 Placas:
   Palavras-Desativadas-Na-Placa: "&cVocê não pode escrever em placas pois este recurso foi desativado no servidor."
   Palavra-Bloqueada-Na-Placa: "&cA palavra '%palavra%' foi bloqueada de ser usada em placas."
@@ -42,9 +42,8 @@ Spawner-Bugado: "&cEste gerador esta com defeitos! Contate um staff do seu servi
 Spawner-Givado: "&aSpawner de %tipo% givado com sucesso."
 Inventario-Cheio-Give: "&cVocê esta com seu inventário cheio! Libera mais espaço para poder pegar geradores."
 Sgive-Comando-Incorreto: "&cComando incorreto, use /sgive <player> <tipo> <quantia>"
-Spawner-Desconhecido: "&cTipo de Spawner desconhecido!\n&eLista de Spawners: &7Porco&8, &7Galinha&8, &7Ovelha&8, &7Vaca&8, &7Coelho&8, &7Esqueleto&8, &7Creeper&8, &7Aranha&8, &7Aranha_da_Caverna&8, &7Slime&8, &7Zumbi&8, &7Zumbi_Pigman&8, &7Blaze&8, &7Wither&8, &7Iron_Golem&8."
-Nome-Do-MobSpawner: "&eGerador de Monstros"
-Lore-Do-MobSpawner: "§7Tipo: §f"
+Spawner-Desconhecido: "&cTipo de Spawner desconhecido!\n&eLista de Spawners: %lista%."
+Nome-Do-MobSpawner: "&bGerador de Monstros"
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -66,6 +65,7 @@ Warps-Lista: "&eWarps disponíveis(%n%): &7%warps%"
 # |                   Sistema de Homes                   | #
 # +------------------------------------------------------+ #
 ############################################################
+Particular-Comando-Incorreto: "&cComando incorreto,use /particular <home>"
 Publica-Comando-Incorreto: "&cComando incorreto, use /publica <home"
 SetHome-Comando-Incorreto: "&cComando incorreto, use /sethome <home>"
 DelHome-Comando-Incorreto: "&cComando incorreto, use /delhome <home>"
@@ -120,7 +120,7 @@ Kits-Lista: "&eKits disponíveis(%n%): &7%kits%"
 # |                  Comando /divulgar                   | #
 # +------------------------------------------------------+ #
 ############################################################
-Divulgar-Comando-Incorreto: "&cComando incorreto, use /divulgar video/live/outro <link>"
+Divulgar-Comando-Incorreto: "&cComando incorreto, use /divulgar <video/live/outro> <link>"
 Link-Invalido: "&cO link &n%link%&c não é um link valido portanto a divulgação foi cancelada! Verifique o link e tente novamente."
 Divulgando-Live: "&e%player% esta divulgando uma live!"
 Divulgando-Video: "&e%player% esta divulgando um vídeo!"
@@ -134,8 +134,7 @@ Divulgando-SubTitle: "&b&l%player% ESTA DIVULGANDO!"
 # |                     Comando /fly                     | #
 # +------------------------------------------------------+ #
 ############################################################
-Fly-Comando-Incorreto: "&cComando incorreto, use /fly [player] [on/off]"
-Fly-Outro-Sem-Permissao: "&cVocê não tem permissão para alterar o fly de outras pessoas!"
+Fly-Comando-Incorreto: "&cComando incorreto, use /fly <player> [on/off]"
 Fly-Desabilitado-Voce: "&cModo fly desabilitado com sucesso."
 Fly-Desabilitado-Outro: "&cModo fly desabilitado com sucesso para %player%."
 Fly-Habilitado-Voce: "&aModo fly habilitado com sucesso."
@@ -181,11 +180,14 @@ Editar-Item-Invalido: "&cEste item não é um item valido!"
 Editar-Item-Com-Sucesso: "&aItem editado com sucesso."
 Editar-Item-Comando-Incorreto: |
   &cComando incorreto, use:
-  &c/editaritem renomar <nome> &8-&7 Renomeia o nome do item.
-  &c/editaritem flags &8-&7 Adiciona flags especiais ao item.
+  &c/editaritem renomear <nome> &8-&7 Renomeia o nome do item.
+  &c/editaritem removeflags &8-&7 Remove as flags do item.
+  &c/editaritem addflags &8-&7 Adiciona flags ao item.
   &c/editaritem glow &8-&7 Adiciona um brilho ao item.
   &c/editaritem removelore &8-&7 Remove toda a lore do item.
   &c/editaritem addlore <frase> &8-&7 Adiciona uma linha de lore.
+  &c/editaritem bugar &8-&7 Transforma o item no bloco quadriculado.
+  &c/editaritem negativo &8-&7 Define a quantia do item para &c-1&7.
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -194,7 +196,7 @@ Editar-Item-Comando-Incorreto: |
 ############################################################
 Area-Vip-Definida: "&aArea VIP definida com sucesso! É para este local que as pessoas &6VIPs&a irão ser teleportadas!"
 Area-Nao-Vip-Definida: "&aArea dos não VIP definida com sucesso! É para este local que as pessoas &csem VIP&a irão ser teleportadas!"
-Setmundovip-Comando-Incorreto: "&cComando incorreto, use /setmundovip <areaVip &8ou&c areaNaoVip>"
+Setmundovip-Comando-Incorreto: "&cComando incorreto, use /setmundovip <AreaVip &8ou&c AreaNaoVip>"
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -216,9 +218,37 @@ ExecutarSom-Comando-Incorreto: |
   &cComando incorreto, use:
   &c/executarsom <som> <player> &8-&7 Envia o som para um player.
   &c/executarsom <som> all &8-&7 Envia o som para todos os players.
-Som-Invalido: "&cEste SOM não é um som valido! Você pode ver a lista completa com todos os sons do minecraft acessando: &nhttp://docs.codelanx.com/Bukkit/1.8/org/bukkit/Sound.html"
+Som-Invalido: "&cEste SOM não é um som valido."
 Som-Executado-Player: "&aO som '%som%' foi executado para o player %player%."
 Som-Executado-Todos: "&aO som '%som%' foi executado para todos os players do servidor."
+
+############################################################
+# +------------------------------------------------------+ #
+# |                    Comando /skull                    | #
+# +------------------------------------------------------+ #
+############################################################
+Skull-Comando-Incorreto: "&cComando incorreto, use /skull <nome> [player]"
+Skull-Enviada-Outro: "&aSkull de %dono% enviada com sucesso para %player%."
+Skull-Enviada-Voce: "&aSkull de %dono% enviada para o seu inventário."
+
+############################################################
+# +------------------------------------------------------+ #
+# |                     Comando /vip                     | #
+# +------------------------------------------------------+ #
+############################################################
+Iniciando-Teleporte-Vip: "&eEm %tempo% segundos você ira para o mundo VIP."
+Teleportado-Com-Sucesso-Sem-Vip: "&cOpa, este é o mundo VIP. Para acessá-lo por completo adquira um VIP em nosso site: &ewww.gamersboard.com.br"
+Teleportado-Com-Sucesso-Vip: "&aBem vindo ao mundo VIP."
+
+############################################################
+# +------------------------------------------------------+ #
+# |                     Comando /ping                    | #
+# +------------------------------------------------------+ #
+############################################################
+Ping-Comando-Incorreto: "&cComando incorreto, use /ping <player>"
+Ping:
+  Seu-Ping: "&aSeu ping é %ping%ms."
+  Player-Ping: "&aO ping de %player% é %ping%ms."
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -248,12 +278,11 @@ Iniciando-Teleporte-Spawn: "&eEm %tempo% segundos você ira para o spawn."
 
 ############################################################
 # +------------------------------------------------------+ #
-# |                     Comando /luz                     | #
+# |                   Comando /crashar                   | #
 # +------------------------------------------------------+ #
 ############################################################
-Skull-Comando-Incorreto: "&cComando incorreto, use /skull <nome> [player]"
-Skull-Enviada-Outro: "&aSkull de %dono% enviada com sucesso para %player%."
-Skull-Enviada-Voce: "&aSkull de %dono% enviada para o seu inventário."
+Crashar-Comando-Incorreto: "&cComando incorreto, use /crashar <player>"
+Crashado-Com-Sucesso: "&aVocê crashou o minecraft de %player%!"
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -270,25 +299,6 @@ Derreter-Com-Sucesso: "&a%quantia% itens derretidos com sucesso."
 ############################################################
 Compactar-Nao-Possui: "&cVocê não possui itens para compactar."
 Compactar-Com-Sucesso: "&a%quantia% itens compactados com sucesso."
-
-############################################################
-# +------------------------------------------------------+ #
-# |                     Comando /ping                    | #
-# +------------------------------------------------------+ #
-############################################################
-Ping-Comando-Incorreto: "&cComando incorreto, use /ping <player>"
-Ping:
-  Seu-Ping: "&aSeu ping é %ping%ms."
-  Player-Ping: "&aO ping de %player% é %ping%ms."
-
-############################################################
-# +------------------------------------------------------+ #
-# |                     Comando /vip                     | #
-# +------------------------------------------------------+ #
-############################################################
-Iniciando-Teleporte-Vip: "&eEm %tempo% segundos você ira para o mundo VIP."
-Teleportado-Com-Sucesso-Sem-Vip: "&cOpa, este é o mundo VIP. Para acessá-lo por completo adquira um VIP em nosso site: &ewww.gamersboard.com.br"
-Teleportado-Com-Sucesso-Vip: "&aBem vindo ao mundo VIP."
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -320,7 +330,7 @@ Invsee-Abrindo-Inventario: "&aAbrindo inventário de %player%."
 # +------------------------------------------------------+ #
 ############################################################
 Title-Comando-Incorreto: "&cComando incorreto, use /title [title] <nl> [subtitle]"
-Tile-Enviado: "&aTitle enviado com sucesso."
+Title-Enviado: "&aTitle enviado com sucesso."
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -348,33 +358,34 @@ Spawn-Definido: "&aSpawn definido com sucesso!"
 # |                    Comando /cores                    | #
 # +------------------------------------------------------+ #
 ############################################################
-Tabela-De-Cores:
-  - "§f "
-  - " §fTabela de Cores"
-  - "§a&a Verde Claro"
-  - "§b&b Azul Claro"
-  - "§c&c Vermelho Claro"
-  - "§d&d Rosa"
-  - "§e&e Amarelo"
-  - "§f&f Branco"
-  - "§0&0 Preto"
-  - "§1&1 Azul Escuro"
-  - "§2&2 Verde Escuro"
-  - "§3&3 Ciano"
-  - "§4&4 Vermelho Escuro"
-  - "§5&5 Roxo"
-  - "§6&6 Dourado"
-  - "§7&7 Cinza Claro"
-  - "§8&8 Cinza Escuro"
-  - "§9&9 Azul Celeste"
-  - "§f "
-  - " §fCódigos de Formatação"
-  - "&l §lNegrito"
-  - "&o §oItálico"
-  - "&n §nSublinhado"
-  - "&m §mRiscado"
-  - "&r §rResetar"
-  - "&k §kMagic"
+# Nesta mensagem o '§' não é substituido pelo '&' como nas outras mensagens.
+Tabela-De-Cores: |
+   §f 
+   §f Tabela de Cores
+   §a&a Verde Claro
+   §b&b Azul Claro
+   §c&c Vermelho Claro
+   §d&d Rosa
+   §e&e Amarelo
+   §f&f Branco
+   §0&0 Preto
+   §1&1 Azul Escuro
+   §2&2 Verde Escuro
+   §3&3 Ciano
+   §4&4 Vermelho Escuro
+   §5&5 Roxo
+   §6&6 Dourado
+   §7&7 Cinza Claro
+   §8&8 Cinza Escuro
+   §9&9 Azul Celeste
+   §f 
+   §f Códigos de Formatação
+   &l §lNegrito§r
+   &o §oItálico§r
+   &n §nSublinhado§r
+   &m §mRiscado§r
+   &r §rResetar
+   &k §kMagic
 
 ############################################################
 # +------------------------------------------------------+ #

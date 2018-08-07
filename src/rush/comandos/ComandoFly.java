@@ -7,182 +7,183 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 
-import rush.utils.ConfigManager;
+import rush.configuracoes.Mensagens;
+import rush.configuracoes.Settings;
 
-public class ComandoFly implements Listener, CommandExecutor {
+public class ComandoFly implements CommandExecutor {
 	
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation")	
+	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("fly")) {
+			
+			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
 				
-				if(args.length > 2 || args.length < 1) {
-					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Comando-Incorreto").replace("&", "§"));
+				// Verificando se o sender digitou o número de argumentos correto
+				if (args.length > 2 || args.length < 1) {
+					s.sendMessage(Mensagens.Fly_Comando_Incorreto);
 		    		return false;
 				}
 	    		  
+				// Pegando o player e verificando se ele esta online
 				Player p = Bukkit.getPlayer(args[0]);
 				if (p == null) {
-					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Offline").replace("&", "§"));
+					s.sendMessage(Mensagens.Player_Offline);
 					return false;
 				}
-	    		  
-				boolean fly = p.getAllowFlight();
+	    		  				
+				// Verificando se o sender informou mais de 1 argumento /fly <player> [on/off]
 				if (args.length > 1) {
+					
+					// Verificando se esse argumento é a palavra 'on'
 					if (args[1].equalsIgnoreCase("on")) {
-						if (fly) {
-							s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Ja-Habilitado-Outro").replace("&", "§").replace("%player%", p.getName()));
+						
+						// Verificando se o player já esta com fly ligado, caso contrario o fly é ligado
+						if (p.getAllowFlight()) {
+							s.sendMessage(Mensagens.Fly_Ja_Habilitado_Outro.replace("%player%", p.getName()));
 						} else {
-							s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Habilitado-Outro").replace("&", "§").replace("%player%", p.getName()));
+							s.sendMessage(Mensagens.Fly_Habilitado_Outro.replace("%player%", p.getName()));
 							p.setAllowFlight(true);
 						}
 						return false;
 					}
 		    		  
+					// Verificando se esse argumento é a palavra 'off'
 					if (args[1].equalsIgnoreCase("off")) {
-						if (fly) {
-							s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Desabilitado-Outro").replace("&", "§").replace("%player%", p.getName()));
+						
+						// Verificando se o player esta esta com o fly ligado, caso contrar é exibida uma mensagem
+						if (p.getAllowFlight()) {
+							s.sendMessage(Mensagens.Fly_Desabilitado_Outro.replace("%player%", p.getName()));
 							p.setAllowFlight(false);
 						} else {
-							s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Ja-Desabilitado-Outro").replace("&", "§").replace("%player%", p.getName()));
+							s.sendMessage(Mensagens.Fly_Ja_Desabilitado_Outro.replace("%player%", p.getName()));
 						}
 						return false;
 					}
 				}
 	    		  
-				if (fly) {
-					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Desabilitado-Outro").replace("&", "§").replace("%player%", p.getName()));
+				// Se o player não informar 2 argumentos, ou se o segundo argumento não for 'on' ou 'off'
+				if (p.getAllowFlight()) {
+					s.sendMessage(Mensagens.Fly_Desabilitado_Outro.replace("%player%", p.getName()));
 					p.setAllowFlight(false);
 				} else {
-					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Habilitado-Outro").replace("&", "§").replace("%player%", p.getName()));
+					s.sendMessage(Mensagens.Fly_Habilitado_Outro.replace("%player%", p.getName()));
 					p.setAllowFlight(true);
 				}
 				return false;
 			}
 	    	  
+			// Verificando se o player possui permissão para ativar o fly em qualquer lugar
 			if (!s.hasPermission("system.fly.staff")) {
 				Player p = (Player)s;
-				boolean fly = p.getAllowFlight();
 				String world = p.getWorld().getName();
-				List<String> worlds = ConfigManager.getConfig("mensagens").getStringList("Mundos-Onde-Pode-Usar-Fly");
+				List<String> worlds = Settings.Mundos_Onde_Pode_Usar_Fly;
+				
+				// Verificando se o mundo onde ele esta pode ser usado fly
 				if (!worlds.contains(world)) {
-					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Desabilitado-Neste-Mundo").replace("&", "§"));
+					s.sendMessage(Mensagens.Fly_Desabilitado_Neste_Mundo);
 					return false;
 				}
-			
-				if (args.length > 0) {
-					if (args[0].equalsIgnoreCase("on")) {
-						if (fly) {
-							s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Ja-Habilitado-Voce").replace("&", "§"));
-						} else {
-							s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Habilitado-Voce").replace("&", "§"));
-							p.setAllowFlight(true);
-						}
-						return false;
-					}
-		    		  
-					if (args[0].equalsIgnoreCase("off")) {
-						if (fly) {
-							s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Desabilitado-Voce").replace("&", "§"));
-							p.setAllowFlight(false);
-						} else {
-							s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Ja-Desabilitado-Voce").replace("&", "§"));
-						}
-						return false;
-					}
-				}
-				
-				if (fly) {
-					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Desabilitado-Voce").replace("&", "§"));
-					p.setAllowFlight(false);
-				} else {
-					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Habilitado-Voce").replace("&", "§"));
-					p.setAllowFlight(true);
-				}
-				return false;
 			}
-	    	 
-			if (args.length == 0) {
-				Player p = (Player)s;
-				boolean fly = p.getAllowFlight();
-				if (fly) {
-					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Desabilitado-Voce").replace("&", "§"));
-					p.setAllowFlight(false);
-				} else {
-					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Habilitado-Voce").replace("&", "§"));
-					p.setAllowFlight(true);
-				}
-				return false;
-			}
-			
+						
+			// Verificando se o player informou ao menos 1 argumento /fly [on/off/player]
 			if (args.length > 0) {
+				
+				// Verificando se esse argumento é a palavra 'on'
 				if (args[0].equalsIgnoreCase("on")) {
 					Player p = (Player)s;
-					boolean fly = p.getAllowFlight();
-					if (fly) {
-						s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Ja-Habilitado-Voce").replace("&", "§"));
+					if (p.getAllowFlight()) {
+						s.sendMessage(Mensagens.Fly_Ja_Habilitado_Voce);
 					} else {
-						s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Habilitado-Voce").replace("&", "§"));
+						s.sendMessage(Mensagens.Fly_Habilitado_Voce);
 						p.setAllowFlight(true);
 					}
 					return false;
 				}
 	    		  
+				// Verificando se esse argumento é a palavra 'off'
 				if (args[0].equalsIgnoreCase("off")) {
 					Player p = (Player)s;
-					boolean fly = p.getAllowFlight();
-					if (fly) {
-						s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Desabilitado-Voce").replace("&", "§"));
+					if (p.getAllowFlight()) {
+						s.sendMessage(Mensagens.Fly_Desabilitado_Voce);
 						p.setAllowFlight(false);
 					} else {
-						s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Ja-Desabilitado-Voce").replace("&", "§"));
+						s.sendMessage(Mensagens.Fly_Ja_Desabilitado_Voce);
 					}
 					return false;
 				}
-	    		  
-				if (!s.hasPermission("system.fly.outros")) {
-					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Outro-Sem-Permissao").replace("&", "§"));
-					return false;
-				}
-	    		  
-				Player p = Bukkit.getPlayer(args[0]);
-				if (p == null) {
-					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Player-Offline").replace("&", "§"));
-					return false;
-				}
-	    		  
-				boolean fly = p.getAllowFlight();
-				if (args.length > 1) {
-					if (args[1].equalsIgnoreCase("on")) {
-						if (fly) {
-							s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Ja-Habilitado-Outro").replace("&", "§").replace("%player%", p.getName()));
-						} else {
-							s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Habilitado-Outro").replace("&", "§").replace("%player%", p.getName()));
-							p.setAllowFlight(true);
-						}
+	    		
+				/** Caso o primeiro argumento não for a palavra 'on' ou 'off' entende-se que é o nome de um player */
+				
+				// Verificando se o player possui permissão para alterar o fly de outros players
+				if (s.hasPermission("system.fly.outros")) {
+		    		
+					// Verificando se o sender digitou o número de argumentos correto
+					if (args.length > 2) {
+						s.sendMessage(Mensagens.Fly_Comando_Incorreto);
+			    		return false;
+					}
+					
+					// Pegando o player e verificando se ele esta online
+					Player p = Bukkit.getPlayer(args[0]);
+					if (p == null) {
+						s.sendMessage(Mensagens.Player_Offline);
 						return false;
 					}
 					
-					if (args[1].equalsIgnoreCase("off")) {
-						if (fly) {
-							s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Desabilitado-Outro").replace("&", "§").replace("%player%", p.getName()));
-							p.setAllowFlight(false);
-						} else {
-							s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Ja-Desabilitado-Outro").replace("&", "§").replace("%player%", p.getName()));
+					// Verificando se o player informou mais de 1 argumento /fly <player> [on/off]
+					if (args.length > 1) {
+						
+						// Verificando se esse argumento é a palavra 'on'
+						if (args[1].equalsIgnoreCase("on")) {
+							
+							// Verificando se o player já esta com fly ligado, caso contrario o fly é ligado
+							if (p.getAllowFlight()) {
+								s.sendMessage(Mensagens.Fly_Ja_Habilitado_Outro.replace("%player%", p.getName()));
+							} else {
+								s.sendMessage(Mensagens.Fly_Habilitado_Outro.replace("%player%", p.getName()));
+								p.setAllowFlight(true);
+							}
+							return false;
 						}
-						return false;
+						
+						// Verificando se esse argumento é a palavra 'off'
+						if (args[1].equalsIgnoreCase("off")) {
+							
+							// Verificando se o player esta esta com o fly ligado, caso contrar é exibida uma mensagem
+							if (p.getAllowFlight()) {
+								s.sendMessage(Mensagens.Fly_Desabilitado_Outro.replace("%player%", p.getName()));
+								p.setAllowFlight(false);
+							} else {
+								s.sendMessage(Mensagens.Fly_Ja_Desabilitado_Outro.replace("%player%", p.getName()));
+							}
+							return false;
+						}
 					}
+		    		  
+					// Se o player não informar 2 argumentos, ou se o segundo argumento não for 'on' ou 'off'
+					if (p.getAllowFlight()) {
+						s.sendMessage(Mensagens.Fly_Desabilitado_Outro.replace("%player%", p.getName()));
+						p.setAllowFlight(false);
+					} else {
+						s.sendMessage(Mensagens.Fly_Habilitado_Outro.replace("%player%", p.getName()));
+						p.setAllowFlight(true);
+					}
+					return false;
 				}
-	    		  
-				if (fly) {
-					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Desabilitado-Outro").replace("&", "§").replace("%player%", p.getName()));
-					p.setAllowFlight(false);
-				} else {
-					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Fly-Habilitado-Outro").replace("&", "§").replace("%player%", p.getName()));
-					p.setAllowFlight(true);
-				}
+			}
+			
+			// Se o player não informar nenhum argumento ou se os argumentos informados pelo player
+			// não se encaixar em nenhuma verificação feita no código acima este código sera executado
+			Player p = (Player)s;
+			if (p.getAllowFlight()) {
+				s.sendMessage(Mensagens.Fly_Desabilitado_Voce);
+				p.setAllowFlight(false);
+			} else {
+				s.sendMessage(Mensagens.Fly_Habilitado_Voce);
+				p.setAllowFlight(true);
 			}
 		}
 	    return false;

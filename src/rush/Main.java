@@ -16,6 +16,7 @@ import rush.comandos.ComandoClearChat;
 import rush.comandos.ComandoCompactar;
 import rush.comandos.ComandoCores;
 import rush.comandos.ComandoCraft;
+import rush.comandos.ComandoCrashar;
 import rush.comandos.ComandoCriarkit;
 import rush.comandos.ComandoDelhome;
 import rush.comandos.ComandoDelkit;
@@ -51,47 +52,51 @@ import rush.comandos.ComandoSpawn;
 import rush.comandos.ComandoTitle;
 import rush.comandos.ComandoWarp;
 import rush.comandos.ComandoWarps;
-import rush.recursos.adicionais.BigornaInfinita;
-import rush.recursos.adicionais.BloquearComandos;
-import rush.recursos.adicionais.BloquearCrafts;
-import rush.recursos.adicionais.BloquearNicksImproprios;
-import rush.recursos.adicionais.BloquearPlacas;
-import rush.recursos.adicionais.CoresNaBigorna;
-import rush.recursos.adicionais.CoresNaPlaca;
-import rush.recursos.antibug.BloquearAbrirContainers;
-import rush.recursos.antibug.BloquearCama;
-import rush.recursos.antibug.BloquearMoneyInvalido;
-import rush.recursos.antibug.BloquearNameTag;
-import rush.recursos.antibug.BloquearPassarDaBorda;
-import rush.recursos.antibug.BloquearShiftEmContainers;
-import rush.recursos.antibug.BloquearSubirEmVeiculos;
-import rush.recursos.antibug.BloquearSubirNoTetoNether;
-import rush.recursos.antibug.EnderPearlCooldown;
-import rush.recursos.antibug.Outros;
-import rush.recursos.antilag.BloquearCongelarAgua;
-import rush.recursos.antilag.BloquearDerreterGeloENeve;
-import rush.recursos.antilag.DesativarChuva;
-import rush.recursos.antilag.DesativarFlowDaAguaELava;
-import rush.recursos.antilag.DesativarMobsNaturais;
-import rush.recursos.antilag.DesativarPropagacaoDoFogo;
-import rush.recursos.antilag.DesativarQuedaDaAreia;
-import rush.recursos.antilag.DesativarQuedaDasFolhas;
-import rush.recursos.gerais.BloquearCairNoVoid;
-import rush.recursos.gerais.BloquearCriarPortal;
-import rush.recursos.gerais.BloquearMobsDePegaremFogoParaOSol;
-import rush.recursos.gerais.BloquearTeleportPorPortal;
-import rush.recursos.gerais.DesativarCicloDoDia;
-import rush.recursos.gerais.DesativarDanoDoEnderDragon;
-import rush.recursos.gerais.DesativarDanoDoWhiter;
-import rush.recursos.gerais.DesativarFomeNosMundos;
-import rush.recursos.gerais.DesativarMensagemDeEntrada;
-import rush.recursos.gerais.DesativarMensagemDeMorte;
-import rush.recursos.gerais.DesativarMensagemDeSaida;
+import rush.configuracoes.Locations;
+import rush.configuracoes.Mensagens;
+import rush.configuracoes.Settings;
+import rush.entidades.Kits;
+import rush.recursos.bloqueadores.BloquearAbrirContainers;
+import rush.recursos.bloqueadores.BloquearCairNoVoid;
+import rush.recursos.bloqueadores.BloquearCama;
+import rush.recursos.bloqueadores.BloquearComandos;
+import rush.recursos.bloqueadores.BloquearCongelarAgua;
+import rush.recursos.bloqueadores.BloquearCrafts;
+import rush.recursos.bloqueadores.BloquearCriarPortal;
+import rush.recursos.bloqueadores.BloquearDerreterGeloENeve;
+import rush.recursos.bloqueadores.BloquearMobsDePegaremFogoParaOSol;
+import rush.recursos.bloqueadores.BloquearNameTag;
+import rush.recursos.bloqueadores.BloquearNicksImproprios;
+import rush.recursos.bloqueadores.BloquearPassarDaBorda;
+import rush.recursos.bloqueadores.BloquearPlacas;
+import rush.recursos.bloqueadores.BloquearShiftEmContainers;
+import rush.recursos.bloqueadores.BloquearSubirEmVeiculos;
+import rush.recursos.bloqueadores.BloquearSubirNoTetoNether;
+import rush.recursos.bloqueadores.BloquearTeleportPorPortal;
+import rush.recursos.desativadores.DesativarChuva;
+import rush.recursos.desativadores.DesativarCicloDoDia;
+import rush.recursos.desativadores.DesativarDanoDoEnderDragon;
+import rush.recursos.desativadores.DesativarDanoDoWhiter;
+import rush.recursos.desativadores.DesativarFlowDaAguaELava;
+import rush.recursos.desativadores.DesativarFomeNosMundos;
+import rush.recursos.desativadores.DesativarMensagemDeEntrada;
+import rush.recursos.desativadores.DesativarMensagemDeMorte;
+import rush.recursos.desativadores.DesativarMensagemDeSaida;
+import rush.recursos.desativadores.DesativarMobsNaturais;
+import rush.recursos.desativadores.DesativarPropagacaoDoFogo;
+import rush.recursos.desativadores.DesativarQuedaDaAreia;
+import rush.recursos.desativadores.DesativarQuedaDasFolhas;
+import rush.recursos.gerais.BigornaInfinita;
+import rush.recursos.gerais.BloquearMoneyInvalido;
+import rush.recursos.gerais.CoresNaBigorna;
+import rush.recursos.gerais.CoresNaPlaca;
+import rush.recursos.gerais.EnderPearlCooldown;
 import rush.recursos.gerais.EntrarNoSpawnAoLogar;
 import rush.recursos.gerais.InvencibilidadeAoTeleportar;
 import rush.recursos.gerais.LimiteDePlayers;
 import rush.recursos.gerais.ManterXpAoMorrer;
 import rush.recursos.gerais.MensagemDeBoasVindas;
+import rush.recursos.gerais.Outros;
 import rush.recursos.gerais.TitleDeBoasVindas;
 import rush.sistemas.comandos.BackListener;
 import rush.sistemas.comandos.EnderChestListener;
@@ -105,45 +110,52 @@ import rush.sistemas.gerais.Motd;
 import rush.sistemas.gerais.ScoreBoard;
 import rush.sistemas.gerais.Tablist;
 import rush.sistemas.spawners.BloquearTrocarTipoDoSpawnerComOvo;
-import rush.sistemas.spawners.BloquearXpAoQuebrarMobSpawners;
 import rush.sistemas.spawners.DroparSpawnerAoExplodir;
 import rush.sistemas.spawners.SistemaDeSpawners;
 import rush.utils.ConfigManager;
 import rush.utils.DataManager;
-import rush.utils.Locations;
-import rush.utils.Playerdata;
+import rush.utils.PlayerData;
 
 public class Main extends JavaPlugin implements Listener {
 
    public static Main aqui;
 
+   @Override
    public void onEnable() {
-	   instanceMain();
+	   enablePlugin();
 	   gerarConfigs();
-	   Locations.loadLocations();
+	   carregarConfigs();
 	   registrarEventos();
 	   registrarComandos();
    }
    
+   @Override
    public void onDisable() {
 	   desativarRecursos();
    }
    
-   public void instanceMain() {
+   private void enablePlugin() {
 	   aqui = this;
    }
    
-   public void gerarConfigs() {
+   private void gerarConfigs() {
 	   DataManager.createFolder("kits");
 	   DataManager.createFolder("warps");
 	   DataManager.createFolder("playerdata");
-	   ConfigManager.createNewConfig("mensagens");
-	   ConfigManager.createNewConfig("settings");
-	   ConfigManager.createNewConfig("permissions");
-	   ConfigManager.createNewConfig("locations");
+	   ConfigManager.createConfig("mensagens");
+	   ConfigManager.createConfig("settings");
+	   ConfigManager.createConfig("permissions");
+	   ConfigManager.createConfig("locations");
    }
    
-   public void registrarComandos() {
+   private void carregarConfigs() {
+	   Locations.loadLocations();
+	   Mensagens.loadMensagens();
+	   Settings.loadSettings();
+	   Kits.loadKits();
+   }
+   
+   private void registrarComandos() {
 	   getCommand("alerta").setExecutor(new ComandoAlerta());
 	   getCommand("back").setExecutor(new ComandoBack());
 	   getCommand("chapeu").setExecutor(new ComandoChapeu()); 
@@ -151,8 +163,9 @@ public class Main extends JavaPlugin implements Listener {
 	   getCommand("clearchat").setExecutor(new ComandoClearChat()); 
 	   getCommand("compactar").setExecutor(new ComandoCompactar());
 	   getCommand("cores").setExecutor(new ComandoCores());
-	   getCommand("criarkit").setExecutor(new ComandoCriarkit());
 	   getCommand("craft").setExecutor(new ComandoCraft());
+	   getCommand("crashar").setExecutor(new ComandoCrashar());
+	   getCommand("criarkit").setExecutor(new ComandoCriarkit());
 	   getCommand("delhome").setExecutor(new ComandoDelhome());
 	   getCommand("delkit").setExecutor(new ComandoDelkit()); 
 	   getCommand("delwarp").setExecutor(new ComandoDelwarp()); 
@@ -189,167 +202,167 @@ public class Main extends JavaPlugin implements Listener {
 	   getCommand("warps").setExecutor(new ComandoWarps());
    }
 	
-   public void registrarEventos() {
+   private void registrarEventos() {
 	   PluginManager pm = Bukkit.getServer().getPluginManager();
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Anunciar-Morte")){
+	   if (Settings.Anunciar_Morte){
 	   pm.registerEvents(new AnunciarMorte(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Ativar-Cores-Na-Bigorna")){
+	   if (Settings.Ativar_Cores_Na_Bigorna){
 	   pm.registerEvents(new CoresNaBigorna(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Ativar-Cores-Na-Placa")){
+	   if (Settings.Ativar_Cores_Na_Placa){
 	   pm.registerEvents(new CoresNaPlaca(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Auto-Anuncio")){
-	   AutoAnuncio.runMensagens();	}
+	   if (Settings.Auto_Anuncio){
+	   AutoAnuncio.runMensagens();}
 	   	
-	   if (ConfigManager.getConfig("settings").getBoolean("Bigorna-Infinita")){
+	   if (Settings.Bigorna_Infinita){
 	   pm.registerEvents(new BigornaInfinita(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Abrir-Containers.Ativar")){
+	   if (Settings.Bloquear_Abrir_Containers_Ativar){
 	   pm.registerEvents(new BloquearAbrirContainers(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Cair-No-Void")){
+	   if (Settings.Bloquear_Cair_No_Void){
 	   pm.registerEvents(new BloquearCairNoVoid(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Cama")){
+	   if (Settings.Bloquear_Cama){
 	   pm.registerEvents(new BloquearCama(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Comandos")){
+	   if (Settings.Bloquear_Comandos){
 	   pm.registerEvents(new BloquearComandos(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Congelar-Agua")){
+	   if (Settings.Bloquear_Congelar_Agua){
 	   pm.registerEvents(new BloquearCongelarAgua(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Crafts")){
+	   if (Settings.Bloquear_Crafts){
 	   pm.registerEvents(new BloquearCrafts(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Criar-Portal")){
+	   if (Settings.Bloquear_Criar_Portal){
 	   pm.registerEvents(new BloquearCriarPortal(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Derreter-Gelo-E-Neve")){
+	   if (Settings.Bloquear_Derreter_Gelo_E_Neve){
 	   pm.registerEvents(new BloquearDerreterGeloENeve(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-NameTag")){
+	   if (Settings.Bloquear_NameTag){
 	   pm.registerEvents(new BloquearNameTag(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Nicks-Improprios")){
+	   if (Settings.Bloquear_Nicks_Improprios){
 	   pm.registerEvents(new BloquearNicksImproprios(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Mobs-De-Pegarem-Fogo-Para-O-Sol")){
+	   if (Settings.Bloquear_Mobs_De_Pegarem_Fogo_Para_O_Sol){
 	   pm.registerEvents(new BloquearMobsDePegaremFogoParaOSol(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Money-Invalido")){
+	   if (Settings.Bloquear_Money_Invalido){
 	   pm.registerEvents(new BloquearMoneyInvalido(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Passar-Da-Borda")){
+	   if (Settings.Bloquear_Passar_Da_Borda){
 	   pm.registerEvents(new BloquearPassarDaBorda(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Placas")){
+	   if (Settings.Bloquear_Palavras_Em_Placas_Ativar){
 	   pm.registerEvents(new BloquearPlacas(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Shift-Em-Containers.Ativar")){
+	   if (Settings.Bloquear_Shift_Em_Containers_Ativar){
 	   pm.registerEvents(new BloquearShiftEmContainers(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Subir-Em-Veiculos")){
+	   if (Settings.Bloquear_Subir_Em_Veiculos){
 	   pm.registerEvents(new BloquearSubirEmVeiculos(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Subir-No-Teto-Nether")){
+	   if (Settings.Bloquear_Subir_No_Teto_Nether){
 	   pm.registerEvents(new BloquearSubirNoTetoNether(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Teleport-Por-Portal.Ativar")){
+	   if (Settings.Bloquear_Teleport_Por_Portal_Ativar){
 	   pm.registerEvents(new BloquearTeleportPorPortal(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Trocar-Tipo-Do-Spawner-Com-Ovo")){
+	   if (Settings.Bloquear_Trocar_Tipo_Do_Spawner_Com_Ovo){
 	   pm.registerEvents(new BloquearTrocarTipoDoSpawnerComOvo(), this);}
-	   	    
-	   if (ConfigManager.getConfig("settings").getBoolean("Bloquear-Xp-Ao-Quebrar-Mob-Spawners")){
-	   pm.registerEvents(new BloquearXpAoQuebrarMobSpawners(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Desativar-Chuva")){
+	   if (Settings.Desativar_Chuva){
 	   pm.registerEvents(new DesativarChuva(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Desativar-Ciclo-Do-Dia")){
-	   pm.registerEvents(new DesativarCicloDoDia(), this);}
+	   if (Settings.Desativar_Ciclo_Do_Dia){
+	   DesativarCicloDoDia.stopDaylightCycle() ;}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Desativar-Dano-Do-EnderDragon")){
+	   if (Settings.Desativar_Dano_Do_EnderDragon){
 	   pm.registerEvents(new DesativarDanoDoEnderDragon(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Desativar-Dano-Do-Whither")){
+	   if (Settings.Desativar_Dano_Do_Whither){
 	   pm.registerEvents(new DesativarDanoDoWhiter(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Desativar-Flow-Da-Agua-E-Lava")){
+	   if (Settings.Desativar_Flow_Da_Agua_E_Lava){
 	   pm.registerEvents(new DesativarFlowDaAguaELava(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Desativar-Fome-Nos-Mundos")){
+	   if (Settings.Desativar_Fome_Nos_Mundos){
 	   pm.registerEvents(new DesativarFomeNosMundos(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Desativar-Mensagem-De-Entrada")){
+	   if (Settings.Desativar_Mensagem_De_Entrada){
 	   pm.registerEvents(new DesativarMensagemDeEntrada(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Desativar-Mensagem-De-Morte")){
+	   if (Settings.Desativar_Mensagem_De_Morte){
 	   pm.registerEvents(new DesativarMensagemDeMorte(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Desativar-Mensagem-De-Saida")){
+	   if (Settings.Desativar_Mensagem_De_Saida){
 	   pm.registerEvents(new DesativarMensagemDeSaida(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Desativar-Mobs-Naturais")){
+	   if (Settings.Desativar_Mobs_Naturais){
 	   pm.registerEvents(new DesativarMobsNaturais(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Desativar-Propagacao-Do-Fogo")){
+	   if (Settings.Desativar_Propagacao_Do_Fogo){
 	   pm.registerEvents(new DesativarPropagacaoDoFogo(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Desativar-Queda-Da-Areia")){
+	   if (Settings.Desativar_Queda_Da_Areia){
 	   pm.registerEvents(new DesativarQuedaDaAreia(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Desativar-Queda-Das-Folhas")){
+	   if (Settings.Desativar_Queda_Das_Folhas){
 	   pm.registerEvents(new DesativarQuedaDasFolhas(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Dropar-Cabeca-Ao-Morrer")){
+	   if (Settings.Dropar_Cabeca_Ao_Morrer){
 	   pm.registerEvents(new DroparCabecaAoMorrer(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Dropar-Spawner-Ao-Explodir")){
+	   if (Settings.Dropar_Spawner_Ao_Explodir){
 	   pm.registerEvents(new DroparSpawnerAoExplodir(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("EnderPearl-Cooldown.Ativar")){
+	   if (Settings.EnderPearl_Cooldown_Ativar){
 	   pm.registerEvents(new EnderPearlCooldown(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Entrar-No-Spawn-Ao-Logar")){
+	   if (Settings.Entrar_No_Spawn_Ao_Logar){
 	   pm.registerEvents(new EntrarNoSpawnAoLogar(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Invencibilidade-Ao-Teleportar")){
+	   if (Settings.Invencibilidade_Ao_Teleportar){
 	   pm.registerEvents(new InvencibilidadeAoTeleportar(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Limitador-De-Players")){
+	   if (Settings.Limitador_De_Players){
 	   pm.registerEvents(new LimiteDePlayers(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Mensagem-De-Boas-Vindas.Ativar")){
+	   if (Settings.Mensagem_De_Boas_Vindas_Ativar){
 	   pm.registerEvents(new MensagemDeBoasVindas(), this);}
 	    
-	   if (ConfigManager.getConfig("settings").getBoolean("Motd.Ativar")){
+	   if (Settings.Motd_Ativar){
 	   pm.registerEvents(new Motd(), this);}
 	    
-	   if (ConfigManager.getConfig("settings").getBoolean("ScoreBoard.Ativar")){
+	   if (Settings.ScoreBoard_Ativar){
 	   pm.registerEvents(new ScoreBoard(), this);}
+	   
+	   if (Settings.Sistema_De_Fly_Para_Players) {
+	   pm.registerEvents(new FlyListener(), this);}
 	    
-	   if (ConfigManager.getConfig("settings").getBoolean("Sistema-De-Spawners")){
+	   if (Settings.Sistema_De_Spawners){
 	   pm.registerEvents(new SistemaDeSpawners(), this);}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Title-De-Boas-Vindas.Ativar")){
+	   if (Settings.Title_De_Boas_Vindas_Ativar){
 	   pm.registerEvents(new TitleDeBoasVindas(), this);}
 
-	   if (ConfigManager.getConfig("settings").getBoolean("Ativar-Tablist")){
+	   if (Settings.Ativar_Tablist){
 	   pm.registerEvents(new Tablist(), this);}
 	     
-	   if (ConfigManager.getConfig("settings").getBoolean("AtivarAddons.Legendchat")){
+	   if (Settings.AtivarAddons_Legendchat){
 	   if (pm.getPlugin("Legendchat") == null) {
 	   getServer().getConsoleSender().sendMessage("§c[System] Legendchat nao encontrado, desativando addons!");
 	   } else { 
 	   pm.registerEvents(new LegendChat(), this);
 	   getServer().getConsoleSender().sendMessage("§a[System] Legendchat encontrado, ativando addons!");}}
 
-	   if (ConfigManager.getConfig("settings").getBoolean("AtivarAddons.mcMMO")){
+	   if (Settings.AtivarAddons_mcMMO){
 	   if (pm.getPlugin("mcMMO") == null) {
 	   getServer().getConsoleSender().sendMessage("§c[System] mcMMO nao encontrado, desativando addons!");
 	   } else { 
@@ -357,10 +370,7 @@ public class Main extends JavaPlugin implements Listener {
 	   McMMO.checkMCTop();
 	   getServer().getConsoleSender().sendMessage("§a[System] mcMMO encontrado, ativando addons!");}}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Sistema-De-Fly-Para-Players")) {
-	   pm.registerEvents(new FlyListener(), this);}
-	   
-	   pm.registerEvents(new Playerdata(), this);
+	   pm.registerEvents(new PlayerData(), this);
 	   pm.registerEvents(new EnderChestListener(), this);
 	   pm.registerEvents(new InvseeListener(), this);
 	   pm.registerEvents(new KitsListener(), this); 
@@ -369,14 +379,14 @@ public class Main extends JavaPlugin implements Listener {
 	   pm.registerEvents(new Outros(), this);
    }
    
-   public void desativarRecursos() {
+   private void desativarRecursos() {
 	   PluginManager pm = Bukkit.getServer().getPluginManager();
 	   HandlerList.unregisterAll((Listener) this);
 	   
-	   if (pm.getPlugin("mcMMO") != null) {
-	   McMMO.TTask.cancel(); }
+	   if (pm.getPlugin("mcMMO") != null){
+	   McMMO.TTask.cancel();}
 	   
-	   if (ConfigManager.getConfig("settings").getBoolean("Auto-Anuncio")) {
-	   AutoAnuncio.XTask.cancel(); }
+	   if (Settings.Auto_Anuncio){
+	   AutoAnuncio.XTask.cancel();}
    }
 }

@@ -16,49 +16,52 @@ Bloquear-Cama: true
 Bloquear-Subir-Em-Veiculos: true
 Bloquear-NameTag: true
 Bloquear-Passar-Da-Borda: true
-Bloquear-Xp-Ao-Quebrar-Mob-Spawners: true
 Bloquear-Subir-No-Teto-Nether: true
 EnderPearl-Cooldown: 
   Ativar: true
   Cooldown: 5
 
-Bloquear-Abrir-Containers:
-  Ativar: true
+Bloquear-Abrir-Containers: 
+  Ativar: false
   Containers:
   - 'ANVIL'
   - 'ENCHANTING'
   - 'HOPPER'
-  # Lista de containers: https://ghostbin.com/paste/mxjom
+  # Lista de containers da 1.8: http://docs.codelanx.com/Bukkit/1.8/org/bukkit/event/inventory/InventoryType.html
 
 Bloquear-Shift-Em-Containers:
-  Ativar: True
+  Ativar: false
   Containers:
   - 'ENDER_CHEST'
   - 'BEACON'
   - 'BREWING'
-  # Lista de containers: https://ghostbin.com/paste/mxjom
+  # Lista de containers da 1.8: http://docs.codelanx.com/Bukkit/1.8/org/bukkit/event/inventory/InventoryType.html
 
-Bloquear-Money-Invalido: true
+# É recomedando ativar isto para quem usa o BlackMarket ou BlackEconomy... 
+# Isto previne o bug do valor NaN ou null
+Bloquear-Money-Invalido: false
 Comandos-Que-Envolvem-Money:
   - 'coins'
   - 'money'
-  - 'cash'
   - 'mercado'
   - 'eco'
   - 'pay'
 
 ############################################################
 # +------------------------------------------------------+ #
-# |                  Recursos Anti-LAG                   | #
+# |             Desativar Recursos do Mapa               | #
 # +------------------------------------------------------+ #
 ############################################################
-Bloquear-Congelar-Agua: true
-Bloquear-Derreter-Gelo-E-Neve: true
+Bloquear-Congelar-Agua: false
+Bloquear-Derreter-Gelo-E-Neve: false
+Desativar-Ciclo-Do-Dia: true
+Desativar-Dano-Do-EnderDragon: false
+Desativar-Dano-Do-Whither: true
 Desativar-Mobs-Naturais: true
 Desativar-Propagacao-Do-Fogo: true
-Desativar-Queda-Das-Folhas: true
-Desativar-Queda-Da-Areia: true
-Desativar-Flow-Da-Agua-E-Lava: true
+Desativar-Queda-Das-Folhas: false
+Desativar-Queda-Da-Areia: false
+Desativar-Flow-Da-Agua-E-Lava: false
 Desativar-Chuva: true
 
 ############################################################
@@ -66,12 +69,11 @@ Desativar-Chuva: true
 # |                   Recursos Gerais                    | #
 # +------------------------------------------------------+ #
 ############################################################
-Delay-Para-Teleportar-Comandos: 5
-Bloquear-Mobs-De-Pegarem-Fogo-Para-O-Sol: true
+Bigorna-Infinita: true
+Ativar-Cores-Na-Bigorna: true
+Ativar-Cores-Na-Placa: true
 Bloquear-Cair-No-Void: true
-Desativar-Ciclo-Do-Dia: true
-Desativar-Dano-Do-EnderDragon: true
-Desativar-Dano-Do-Whither: true
+Bloquear-Mobs-De-Pegarem-Fogo-Para-O-Sol: false
 Desativar-Fome-Nos-Mundos: true
 Desativar-Mensagem-De-Entrada: true
 Desativar-Mensagem-De-Morte: true
@@ -85,24 +87,22 @@ Bloquear-Teleport-Por-Portal:
 
 ############################################################
 # +------------------------------------------------------+ #
-# |                  Recursos Adicionais                 | #
-# +------------------------------------------------------+ #
-############################################################
-Bigorna-Infinita: true
-Ativar-Cores-Na-Bigorna: true
-Ativar-Cores-Na-Placa: true
-
-############################################################
-# +------------------------------------------------------+ #
 # |                Configurações Diversas                | #
 # +------------------------------------------------------+ #
 ############################################################
-Limitador-De-Players: true
-Limite-De-Players: 340
-Invencibilidade-Ao-Teleportar: true
-Tempo-De-Invencibilidade-Ao-Teleportar: 3
-Dropar-Cabeca-Ao-Morrer: true
-Chance-De-Dropar-Cabeca-Ao-Morrer: 15
+Delay-Para-Teleportar-Comandos: 5
+
+Limitador-De-Players:
+  Ativar: true
+  Limite-De-Players: 340
+
+Invencibilidade-Ao-Teleportar: 
+  Ativar: true
+  Tempo-De-Invencibilidade-Ao-Teleportar: 3
+
+Dropar-Cabeca-Ao-Morrer: 
+  Ativar: true
+  Chance-De-Dropar-Cabeca-Ao-Morrer: 15
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -166,8 +166,10 @@ Motd:
 # |                   Bloquear Comandos                  | #
 # +------------------------------------------------------+ #
 ############################################################
-Bloquear-Comandos: true
+Bloquear-Comandos: false
 Lista-Dos-Comandos-Bloqueados:
+  - '/teste'
+  - '/dupar'
   - '/pl'
   - '/plugins'
  
@@ -179,22 +181,24 @@ Lista-Dos-Comandos-Bloqueados:
 Bloquear-Crafts: true
 Lista-Dos-Crafts-Bloqueados: 
   - '333'
-  - '145'
-  - '52'
-  # Lista de IDs: https://www.minecraftinfo.com/idlist.htm
+  - '321'
+  - '416'
+  - '328'
+  # Lista de IDs da 1.8: https://www.minecraftinfo.com/idlist.htm
 
 ############################################################
 # +------------------------------------------------------+ #
 # |                    Bloquear Placas                   | #
 # +------------------------------------------------------+ #
 ############################################################
-Bloquear-Placas: true
-Bloquear-Todas-As-Palavras: false
-Bloquear-Apenas-Algumas-Palavras: true
-Lista-Das-Palavras-Bloqueadas:
-  - 'AdminShop'
-  - '&0AdminShop'
-  - 'puta'
+Bloquear-Palavras-Em-Placas:
+  Ativar: true
+  Bloquear-Todas-As-Palavras: false
+  Bloquear-Apenas-Algumas-Palavras: true
+  Lista-Das-Palavras-Bloqueadas:
+    - 'AdminShop'
+    - '&0AdminShop'
+    - 'puta'
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -207,6 +211,8 @@ Nicks-Bloqueados:
   - 'vadia'
   - 'AdminShop'
   - 'ServerAdmin'
+  # O bloqueador verifica se o nick contem tal palavra.
+  # Ou seja se o nick do player contem a palavra "puta" o player é bloqueado de entrar.
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -276,12 +282,12 @@ Anuncios:
 ############################################################
 ScoreBoard:
   Ativar: true
-  Titulo: "  &f&lGamer's&6&lBoard  "
+  Titulo: "  &6&lHypixel  "
   Linhas:
   - '&eSeja Bem Vindo %player%!'
   - '&r'
-  - '&aAdquira VIP e Cash acessando:'
-  - '&7gamersboard.com.br'
+  - '&aAdquira VIP e Cash:'
+  - '&7store.hypixel.net'
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -292,8 +298,8 @@ Ativar-Tablist: true
 Parte-De-Cima: |
   &r 
   &r 
-  &f&lGamer's&6&lBoard
-  &f   gamersboard.com.br
+  &6&lHYPIXEL
+  &f    hypixel.net
 Parte-De-Baixo: |
   &r 
   &6Fórum:&f hypixel.net/forums

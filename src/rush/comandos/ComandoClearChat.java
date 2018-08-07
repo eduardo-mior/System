@@ -5,21 +5,22 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.event.Listener;
 
-import rush.utils.ConfigManager;
+import rush.configuracoes.Mensagens;
 
-public class ComandoClearChat implements Listener, CommandExecutor {
+public class ComandoClearChat implements CommandExecutor {
 	
-	String chat = " §c \n §c ";
-	String limparchat = StringUtils.repeat(chat, 100);
-
+	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("clearchat")) {	
-			
+		if (cmd.getName().equalsIgnoreCase("clearchat")) {
+
+			// Utilizando a classe StringUtils nós conseguimos duplicar a mensagem 100x facilmente
+			String limparchat = StringUtils.repeat(" §c \n §c ", 100);
 			Bukkit.broadcastMessage(limparchat);
-			if (ConfigManager.getConfig("mensagens").getBoolean("Avisar-Que-O-Chat-Foi-Limpo")) {
-				Bukkit.broadcastMessage(ConfigManager.getConfig("mensagens").getString("Aviso-Que-O-Chat-Limpo-Global").replace("&", "§").replace("%player%", s.getName()));
+
+			// Verificando se é necessario avisar que o chat foi limpo
+			if (Mensagens.Avisar_Que_O_Chat_Foi_Limpo) {
+				Bukkit.broadcastMessage(Mensagens.Aviso_Que_O_Chat_Limpo_Global.replace("%player%", s.getName()));
 			}
 		}
 		return false;

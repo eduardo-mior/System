@@ -10,27 +10,33 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 
-import rush.utils.ConfigManager;
+import rush.configuracoes.Locations;
+import rush.configuracoes.Mensagens;
 import rush.utils.DataManager;
-import rush.utils.Locations;
 
-public class ComandoSetspawn implements Listener, CommandExecutor {
-
+public class ComandoSetspawn implements CommandExecutor {
+	
+	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("setspawn")) {
-		      
+
+			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
-				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Console-Nao-Pode").replace("&", "§"));
+				s.sendMessage(Mensagens.Console_Nao_Pode);
 				return false;
 			}
-		      
+
+			// Pegando o player, a sua localização, o arquivo das locations e a config
+			Player p = (Player) s;
+			Location spawn = p.getLocation();
 			File file = DataManager.getFile("locations");
 			FileConfiguration config = DataManager.getConfiguration(file);
-			Player p = (Player)s;
-			Location spawn = p.getLocation();
+			
+			// Alterando a localização no cache
 			Locations.spawn = spawn;
+			
+			// Serializando a localização e salvando na config
 			config.set("Spawn", spawn);
 			config.set("Spawn.world", spawn.getWorld().getName());
 			config.set("Spawn.x", Double.valueOf(spawn.getX()));
@@ -40,11 +46,11 @@ public class ComandoSetspawn implements Listener, CommandExecutor {
 			config.set("Spawn.pitch", Float.valueOf(spawn.getPitch()));
 			try {
 				config.save(file);
-				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Spawn-Definido").replace("&", "§"));
+				s.sendMessage(Mensagens.Spawn_Definido);
 			} catch (IOException e) {
-				Bukkit.getConsoleSender().sendMessage(ConfigManager.getConfig("mensagens").getString("Falha-Ao-Salvar").replace("&", "§").replace("%arquivo%", "locations.yml"));
-			}	
+				Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", "locations.yml"));
+			}
 		}
 		return false;
-	 }
+	}
 }

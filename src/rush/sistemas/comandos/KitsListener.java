@@ -10,61 +10,65 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryCloseEvent;
 import org.bukkit.inventory.Inventory;
-import org.bukkit.inventory.ItemStack;
 
-import rush.utils.ConfigManager;
+import rush.configuracoes.Mensagens;
+import rush.entidades.Kit;
+import rush.entidades.Kits;
 import rush.utils.DataManager;
+import rush.utils.Serializer;
 
 public class KitsListener implements Listener {
-	
+
 	@EventHandler
 	public void InventoryClose(InventoryCloseEvent e) {
 		if (e.getInventory().getName().contains("§0Criar Kit §n")) {
-			Player p = (Player) e.getPlayer();
 			Inventory inv = e.getInventory();
-			ItemStack[] itens = inv.getContents();
-			int j = 0;
-			String kit = e.getInventory().getName().substring(14, e.getInventory().getName().length());
-			File file = DataManager.getListFiles(kit, "kits");
-			FileConfiguration config = DataManager.getConfiguration(file);
-			DataManager.createFile(file);
-			config.set("Permissao", "system.kit." + kit);
-			config.set("Delay", 5);
-        	config.createSection("Itens");
-			for (ItemStack item : itens) {
-				if (item == null) continue;
-				config.set("Itens." + j, item);
-				j++;
-			}
-			try {
-				config.save(file);
-				p.sendMessage(ConfigManager.getConfig("mensagens").getString("Kit-Criado").replace("&", "§").replace("%kit%", kit));
-			} catch (IOException ex) {
-				Bukkit.getConsoleSender().sendMessage(ConfigManager.getConfig("mensagens").getString("Falha-Ao-Salvar").replace("&", "§").replace("%arquivo%", file.getName()));
-			}
+			Player p = (Player) e.getPlayer();
+			createKit(inv, p);
+			return;
 		}
-		
-		else if (e.getInventory().getName().contains("§0Editar Kit §n")) {
-			Player p = (Player) e.getPlayer();
+
+		if (e.getInventory().getName().contains("§0Editar Kit §n")) {
 			Inventory inv = e.getInventory();
-			ItemStack[] itens = inv.getContents();
-			int j = 0;
-			String kit = e.getInventory().getName().substring(15, e.getInventory().getName().length());
-			File file = DataManager.getListFiles(kit, "kits");
-			FileConfiguration config = DataManager.getConfiguration(file);
-			config.set("Itens", null);
-	    	config.createSection("Itens");
-			for (ItemStack item : itens) {
-				if (item == null) continue;
-				config.set("Itens." + j, item);
-				j++;
-			}
-			try {
-				config.save(file);
-				p.sendMessage(ConfigManager.getConfig("mensagens").getString("Kit-Editado").replace("&", "§").replace("%kit%", kit));
-			} catch (IOException ex) {
-				Bukkit.getConsoleSender().sendMessage(ConfigManager.getConfig("mensagens").getString("Falha-Ao-Salvar").replace("&", "§").replace("%arquivo%", file.getName()));
-			}
+			Player p = (Player) e.getPlayer();
+			editKit(inv, p);
+			return;
+		}
+	}
+
+	private void createKit(Inventory inv, Player p) {
+		String nome = inv.getName().substring(14, inv.getName().length());
+		String permissao = "system.kit." + nome;
+		String itens = Serializer.serializeListItemStack(inv.getContents());
+		Kit kit = new Kit(nome, permissao, 5, itens);
+		File file = DataManager.getFile(nome, "kits");
+		FileConfiguration config = DataManager.getConfiguration(file);
+		DataManager.createFile(file);
+		config.set("Permissao", permissao);
+		config.set("Delay", 5);
+		config.set("Itens", itens);
+		try {
+			Kits.create(nome, kit);
+			config.save(file);
+			p.sendMessage(Mensagens.Kit_Criado.replace("%kit%", nome));
+		} catch (IOException ex) {
+			Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
+		}
+	}
+	
+	private void editKit(Inventory inv, Player p) {
+		String itens = Serializer.serializeListItemStack(inv.getContents());
+		String nome = inv.getName().substring(15, inv.getName().length());
+		Kit kit = Kits.get(nome);
+		File file = DataManager.getFile(nome, "kits");
+		FileConfiguration config = DataManager.getConfiguration(file);
+		kit.setItens(inv.getContents());
+		config.set("Itens", itens);
+		try {
+			config.save(file);
+			p.sendMessage(Mensagens.Kit_Editado.replace("%kit%", nome));
+		} catch (IOException ex) {
+			Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
 		}
 	}
 }

@@ -21,7 +21,7 @@ commands:
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   clear:
     description: Limpa o seu inventario.
-    aliases: [cc]
+    aliases: []
     permission: system.clear
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   clearchat:
@@ -36,13 +36,18 @@ commands:
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   cores:
     description: Mostra a lista de cores do minecraft.
-    aliases: []
+    aliases: [colors]
     permission: system.cores
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   craft:
     description: Abre uma bancada de trabalho virtual.
     aliases: [workbench]
     permission: system.craft
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  crashar:
+    description: Crasha o minecraft de um player.
+    aliases: []
+    permission: system.crashar
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   criarkit:
     description: Cria um kit.
@@ -76,7 +81,7 @@ commands:
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   echest:
     description: Abre o enderchest virtual.
-    aliases: [ec]
+    aliases: [ec, enderchest]
     permission: system.echest
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   editaritem:
@@ -112,12 +117,12 @@ commands:
   homes:
     description: Mostra a lista de homes salvas.
     aliases: []
-    permission: system.homes
+    permission: system.home
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   invsee:
     description: Abre o inventario de um player.
     aliases: [inv]
-    permission: system.invsee.mod
+    permission: system.invsee
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   kit:
     description: Pega um kit.
@@ -186,7 +191,7 @@ commands:
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   sgive:
     description: Envia geradores para um player.
-    aliases: []
+    aliases: [spawnergive]
     permission: system.sgive
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   skull:
@@ -224,11 +229,11 @@ permissions:
   system.alerta:
     description: Permissão para enviar um alerta no servidor.
     default: op
-  system.chapeu:
-    description: Permissão para vestir um chapeu.
-    default: op
   system.back:
     description: Permissão para voltar ao local alterior do seu teleporte.
+    default: op
+  system.chapeu:
+    description: Permissão para vestir um chapeu.
     default: op
   system.clear: 
     description: Permissão para limpar o seu inventario.
@@ -244,7 +249,7 @@ permissions:
     default: op
   system.cores:
     description: Permissão para ver a lista de cores do minecraft.
-    default: true
+    default: op
   system.cornabigorna:
     description: Permissão para renomear itens com cores.
     default: op
@@ -254,12 +259,15 @@ permissions:
   system.craft:
     description: Permissão para abrir uma bancada de trabalho virtual.
     default: op
+  system.crashar:
+    description: Permissão para crashar o minecraft de um player.
+    default: op
   system.criarkit:
     description: Permissão para criar um kit.
     default: op
   system.delhome:
     description: Permissão para definir uma home.
-    default: true
+    default: op
   system.delkit:
     description: Permissão para deletar um kit.
     default: op
@@ -316,11 +324,11 @@ permissions:
     default: op
   system.home:
     description: Permissão para se teleportar até uma home.
-    default: true
+    default: op
   system.home.admin:
     description: Permissão para ver e para se teleportar para as homes privadas de alguem.
     default: op
-  system.invsee.mod: 
+  system.invsee: 
     description: Permissão para abrir o inventario de um player.
     default: op
   system.invsee.admin: 
@@ -328,46 +336,46 @@ permissions:
     default: op
   system.kit:
     description: Permissão para utilizar o comando /kit.
-    default: true
+    default: op
   system.kit.all: 
     description: Permissão para poder pegar qualquer kit.
     default: op
   system.kits:
     description: Permissão para ver a lista de kits disponiveis.
-    default: true
+    default: op
   system.homes:
     description: Permissão para ver a lista de homes.
-    default: true
+    default: op
   system.lixo:
     description: Permissão para abrir a lixeira virtual.
-    default: true
+    default: op
   system.luz:
     description: Permissão para ligar e desligar a lanterna.
-    default: true
+    default: op
   system.manterxp:
     description: Permissão para não perder xp ao morrer.
     default: op
   system.mundovip:
     description: Permissão para usar o comando /mundovip.
-    default: true
+    default: op
   system.online:
     description: Permissão para ver o número de players online no servidor.
-    default: true
+    default: op
   system.particular:
     description: Permissão para definir uma home como particular.
-    default: true
+    default: op
   system.ping:
     description: Permissão para ver o seu ping ou o ping de outro player.
-    default: true
+    default: op
   system.publica:
     description: Permissão para definir uma home como publica.
-    default: true
+    default: op
   system.semdelay:
     description: Permissão para se teleportar sem ter que esperar o delay.
     default: op
   system.sethome:
     description: Permissão para definir uma home.
-    default: true
+    default: op
   system.setmundovip:
     description: Permissão para definir a area vip e não vip do servidor.
     default: op
@@ -382,10 +390,10 @@ permissions:
     default: op
   system.slime:
     description: Permissão para verificar se você esta em uma slimechunk.
-    default: true
+    default: op
   system.spawn:
     description: Permissão para se teleportar até o spawn.
-    default: true
+    default: op
   system.title:
     description: Permissão para enviar um title para todo servidor.
     default: op
@@ -394,10 +402,10 @@ permissions:
     default: op
   system.warp:
     description: Permissão para se teleportar para uma warp.
-    default: true
+    default: op
   system.warps:
     description: Permissão para ver a lista de warps disponiveis.
-    default: true
+    default: op
   system.chat.cor1:
     default: false
   system.chat.cor2:
@@ -431,7 +439,7 @@ permissions:
     default: false
   system.bypass.delaykit:
     description: Permissão para pegar um kit sem precisar esperar o delay.
-    default: op
+    default: false
   system.bypass.entraremveiculos:
     description: Permissão para entrar em veiculos mesmo se estiver bloqueado.
     default: false
@@ -489,8 +497,9 @@ permissions:
       system.cores: true
       system.cornabigorna: true
       system.cornaplaca: true
-      system.criarkit: true
       system.craft: true
+      system.crashar: true
+      system.criarkit: true
       system.delhome: true
       system.delkit: true
       system.delwarp: true
@@ -504,19 +513,21 @@ permissions:
       system.executarsom: true
       system.fly: true
       system.fly.outros: true
+      system.fly.staff: true
       system.gamemode: true
       system.gamemode.outros: true
       system.gamemode.all: true
       system.home: true
       system.home.admin: true
       system.homes: true
-      system.invsee.mod: true
+      system.invsee: true
       system.invsee.admin: true
       system.kit: true
       system.kit.all: true
       system.kits: true
       system.lixo: true
       system.luz: true
+      system.manterxp: true
       system.mundovip: true
       system.online: true
       system.particular: true

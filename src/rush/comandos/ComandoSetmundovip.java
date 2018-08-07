@@ -10,34 +10,42 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 
-import rush.utils.ConfigManager;
+import rush.configuracoes.Locations;
+import rush.configuracoes.Mensagens;
 import rush.utils.DataManager;
-import rush.utils.Locations;
 
-public class ComandoSetmundovip implements Listener, CommandExecutor {
-
+public class ComandoSetmundovip implements CommandExecutor {
+	
+	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("setmundovip")) {
 			
+			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
-				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Console-Nao-Pode").replace("&", "§"));
+				s.sendMessage(Mensagens.Console_Nao_Pode); 
 				return false;
 			}
 					 
+			// Verificando se o player digitou o número de argumentos corretos
 			if (args.length != 1) {
-				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Setmundovip-Comando-Incorreto").replace("&", "§"));
+				s.sendMessage(Mensagens.Setmundovip_Comando_Incorreto);
 				return false;
 			}
 				     
-			File file = DataManager.getFile("locations");
-			FileConfiguration config = DataManager.getConfiguration(file);
+			// Pegando o player, a sua localização, o arquivo das locations e a config
 			Player p = (Player)s;
 			Location area = p.getLocation();
-			
+			File file = DataManager.getFile("locations");
+			FileConfiguration config = DataManager.getConfiguration(file);
+
+			// Verificando se o player quer definir a dos vips (areavip)
 			if (args[0].equalsIgnoreCase("areavip")) {
+				
+				// Alterando a localização no cache
 				Locations.areaVip = area;
+
+				// Serializando a localização e salvando na config
 				config.set("AreaVip.world", area.getWorld().getName());
 				config.set("AreaVip.x", Double.valueOf(area.getX()));
 				config.set("AreaVip.y", Double.valueOf(area.getY()));
@@ -46,15 +54,20 @@ public class ComandoSetmundovip implements Listener, CommandExecutor {
 				config.set("AreaVip.pitch", Float.valueOf(area.getPitch()));
 				try {
 					config.save(file);
-					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Area-Vip-Definida").replace("&", "§"));
+					s.sendMessage(Mensagens.Area_Vip_Definida);
 				} catch (IOException e) {
-					Bukkit.getConsoleSender().sendMessage(ConfigManager.getConfig("mensagens").getString("Falha-Ao-Salvar").replace("&", "§").replace("%arquivo%", "locations.yml"));
+					Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", "locations.yml"));
 				}
 				return false;
 			}
-			         
+			 
+			// Verificando se o player quer definir a dos sem vips (areanaovip)
 			if (args[0].equalsIgnoreCase("areanaovip")) {
+				
+				// Alterando a localização no cache
 				Locations.areaNaoVip = area;
+				
+				// Serializando a localização e salvando na config
 				config.set("AreaNaoVip", area);
 				config.set("AreaNaoVip.world", area.getWorld().getName());
 				config.set("AreaNaoVip.x", Double.valueOf(area.getX()));
@@ -64,14 +77,15 @@ public class ComandoSetmundovip implements Listener, CommandExecutor {
 				config.set("AreaNaoVip.pitch", Float.valueOf(area.getPitch()));
 				try {
 					config.save(file);
-					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Area-Nao-Vip-Definida").replace("&", "§"));
+					s.sendMessage(Mensagens.Area_Nao_Vip_Definida);
 				} catch (IOException e) {
-					Bukkit.getConsoleSender().sendMessage(ConfigManager.getConfig("mensagens").getString("Falha-Ao-Salvar").replace("&", "§").replace("%arquivo%", "locations.yml"));
+					Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", "locations.yml"));
 				}
 				return false;
 			}
 			
-			s.sendMessage(ConfigManager.getConfig("mensagens").getString("Setmundovip-Comando-Incorreto").replace("&", "§"));
+			// Caso o argumento digitado não for 'areavip' ou 'areanaovip' sera dado como comando incorreto
+			s.sendMessage(Mensagens.Setmundovip_Comando_Incorreto);
 		}
 		return false;
 	}

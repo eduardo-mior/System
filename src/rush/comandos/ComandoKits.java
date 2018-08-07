@@ -1,53 +1,67 @@
 package rush.comandos;
 
-import java.io.File;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.event.Listener;
 
-import rush.utils.ConfigManager;
-import rush.utils.DataManager;
+import rush.configuracoes.Mensagens;
+import rush.entidades.Kit;
+import rush.entidades.Kits;
 
-public class ComandoKits implements Listener, CommandExecutor {
+public class ComandoKits implements CommandExecutor {
 	
+	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("kits")) {
 			ListKits(s);
 		}
-	    return false;
+		return false;
+	}
+
+	public static void ListKits(CommandSender s) {
+		Collection<Kit> kits = Kits.getAll();
+		List<String> listKits = new ArrayList<String>();
+
+		int cont = 0;
+		for (Kit kit : kits) {
+			String permissao = kit.getPermissao();
+			if (s.hasPermission(permissao) || s.hasPermission("system.kit.all")) {
+				listKits.add(kit.getName());
+				cont++;
+			}
+		}
+
+		if (cont == 0) {
+			s.sendMessage(Mensagens.Nenhum_Kit_Criado);
+			return;
+		}
+
+		String separador = Mensagens.Separador_De_Listas;
+		String stringKits = listKits.toString().replace(",", separador);
+		s.sendMessage(Mensagens.Kits_Lista.replace("%kits%", stringKits.substring(1, stringKits.length() - 1)).replace("%n%", String.valueOf(cont)));
 	}
 	
-	public static void ListKits(CommandSender s) {
-		File folder = DataManager.getFolder("kits");
-		File[] file = folder.listFiles();
-  	  	List<String> kits = new ArrayList<String>();
-  	  	if (file.length == 0) {
-  	  		s.sendMessage(ConfigManager.getConfig("mensagens").getString("Nenhum-Kit-Criado").replace("&", "§"));
-  	  		return;
-  	  	} 
-  	  	
-  	  	int cont = 0;
-  	  	for (int i=0; i < file.length; i++) {
-  	  		if (file[i].isFile()) {
-  	  			String permissao = DataManager.getConfiguration(file[i]).getString("Permissao");
-  	  			if(s.hasPermission(permissao)) {
-  	  				kits.add(file[i].getName().replace(".yml", ""));
-  	  				cont++;
-  	  			}
-  	  		}
-  	  	}
-  	  	
-  	  	if (cont == 0) {
-  	  		s.sendMessage(ConfigManager.getConfig("mensagens").getString("Nenhum-Kit-Criado").replace("&", "§"));
-  	  		return;
-  	  	} 
-  	  	
-  	  	String separador = ConfigManager.getConfig("mensagens").getString("Separador-De-Listas").replace("&", "§");
-  	  	String kitslist = kits.toString();
-  	  	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Kits-Lista").replace("&", "§").replace("%kits%", kitslist.substring(1,kitslist.length() -1)).replace("%n%", String.valueOf(cont)).replace(",", separador));
+	public static void ListKitsForStaff(CommandSender s) {
+		Collection<Kit> kits = Kits.getAll();
+		List<String> listKits = new ArrayList<String>();
+
+		int cont = 0;
+		for (Kit kit : kits) {
+			listKits.add(kit.getName());
+			cont++;	
+		}
+
+		if (cont == 0) {
+			s.sendMessage(Mensagens.Nenhum_Kit_Criado);
+			return;
+		}
+
+		String separador = Mensagens.Separador_De_Listas;
+		String stringKits = listKits.toString().replace(",", separador);
+		s.sendMessage(Mensagens.Kits_Lista.replace("%kits%", stringKits.substring(1, stringKits.length() - 1)).replace("%n%", String.valueOf(cont)));
 	}
 }

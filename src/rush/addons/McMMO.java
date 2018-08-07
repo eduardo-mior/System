@@ -20,8 +20,9 @@ import com.gmail.nossr50.util.player.UserManager;
 
 import br.com.devpaulo.legendchat.api.events.ChatMessageEvent;
 import rush.Main;
-import rush.utils.ActionBar;
-import rush.utils.ConfigManager;
+import rush.api.ActionBarAPI;
+import rush.configuracoes.Mensagens;
+import rush.configuracoes.Settings;
 
 public class McMMO implements Listener {
 	
@@ -29,57 +30,56 @@ public class McMMO implements Listener {
 	private static String playerTopOne;
 	   
 	@EventHandler
-	private void onChat(ChatMessageEvent event) {
-	   if (playerTopOne != null && playerTopOne.equalsIgnoreCase(event.getSender().getName()) && event.getTags().contains("mctop")) {
-	      event.setTagValue("mctop", ConfigManager.getConfig("settings").getString("mcTopTag.Tag"));
+	public void aoEnviarMenssagem(ChatMessageEvent e) {
+	   if (playerTopOne != null && playerTopOne.equalsIgnoreCase(e.getSender().getName()) && e.getTags().contains("mctop")) {
+		   e.setTagValue("mctop", Settings.mcTopTag_Tag);
 	     }
 	}
 
 	public static void checkMCTop() {
-    TTask = (new BukkitRunnable() {
-	      public void run() {
-	         List<PlayerStat> tops = DatabaseManagerFactory.getDatabaseManager().readLeaderboard((SkillType)null, 1, 1);
-	         if (!tops.isEmpty()) {
-	            playerTopOne = ((PlayerStat)tops.get(0)).name;
-	         }
-	      }
-	   }).runTaskTimerAsynchronously((Plugin) Main.aqui, 60L, (long)ConfigManager.getConfig("settings").getInt("mcTopTag.Tempo-De-Checagem") * 20L);
+		TTask = (new BukkitRunnable() {
+			public void run() {
+				List<PlayerStat> tops = DatabaseManagerFactory.getDatabaseManager().readLeaderboard((SkillType)null, 1, 1);
+				if (!tops.isEmpty()) {
+					playerTopOne = ((PlayerStat)tops.get(0)).name;
+				}
+			}
+		}).runTaskTimerAsynchronously((Plugin) Main.aqui, 60L, (long)Settings.mcTopTag_Tempo_De_Checagem * 20L);
 	}
 	   
 	@EventHandler
 	public void onPlayerUp(McMMOPlayerLevelUpEvent e) {
-      Player p = e.getPlayer();
-      if (e.getSkillLevel() % 100 == 0){
-        Bukkit.broadcastMessage(ConfigManager.getConfig("mensagens").getString("mcMMO-Upou-100-Niveis")
-    	.replace("%skill%", e.getSkill().name())
-        .replace("ACROBATICS", "Acrobacia")
-        .replace("ALCHEMY", "Alquimia")
-        .replace("ARCHERY", "Arqueiro")
-        .replace("AXES", "Machados")
-        .replace("EXCAVATION", "Escavação")
-        .replace("HERBALISM", "Herbalismo")
-        .replace("MINING", "Mineração")
-        .replace("REPAIR", "Reparação")
-        .replace("SWORDS", "Espadas")
-        .replace("TAMING", "Domador")
-        .replace("UNARMED", "Desarmado")
-        .replace("WOODCUTTING", "Lenhador")
-        .replace("%player%", p.getName())
-        .replace("%level%", String.valueOf(e.getSkillLevel()))
-        .replace("&", "§"));
-    p.getWorld().strikeLightningEffect(p.getLocation());
-    p.getWorld().strikeLightningEffect(p.getLocation());
-    }
-  }
+		Player p = e.getPlayer();
+		if (e.getSkillLevel() % 100 == 0){
+			Bukkit.broadcastMessage(Mensagens.mcMMO_Upou_100_Niveis
+				.replace("%skill%", e.getSkill().name())
+				.replace("ACROBATICS", "Acrobacia")
+				.replace("ALCHEMY", "Alquimia")
+    	    	.replace("ARCHERY", "Arqueiro")
+    	    	.replace("AXES", "Machados")
+    	    	.replace("EXCAVATION", "Escavação")
+    	    	.replace("HERBALISM", "Herbalismo")
+    	    	.replace("MINING", "Mineração")
+            	.replace("REPAIR", "Reparação")
+            	.replace("SWORDS", "Espadas")
+            	.replace("TAMING", "Domador")
+            	.replace("UNARMED", "Desarmado")
+            	.replace("WOODCUTTING", "Lenhador")
+            	.replace("%player%", p.getName())
+            	.replace("%level%", String.valueOf(e.getSkillLevel()))
+            	.replace("&", "§"));
+            p.getWorld().strikeLightningEffect(p.getLocation());
+            p.getWorld().strikeLightningEffect(p.getLocation());
+		}
+	}
 	  
 	@SuppressWarnings("deprecation")
 	@EventHandler
 	public static void aoGanharXp(McMMOPlayerXpGainEvent e) {
-	   PlayerProfile pro = UserManager.getPlayer(e.getPlayer()).getProfile();
+		PlayerProfile pro = UserManager.getPlayer(e.getPlayer()).getProfile();
 	    
-	   Player p = e.getPlayer();
-	    
-	   String skill = e.getSkill().getName()
+		Player p = e.getPlayer();
+		String skill = e.getSkill().getName()
 			    .replace("Acrobatics", "Acrobacia")
 		        .replace("Alchemy", "Alquimia")
 		        .replace("Archery", "Arqueiro")
@@ -92,11 +92,11 @@ public class McMMO implements Listener {
 		        .replace("Taming", "Domador")
 		        .replace("Unarmed", "Desarmado")
 		        .replace("Woodcutting", "Lenhador");
-	   int lvl = pro.getSkillLevel(e.getSkill());
-	   int xp = pro.getSkillXpLevel(e.getSkill());
-	   int dxp = pro.getXpToLevel(e.getSkill());
-	   int gn = Math.round(e.getXpGained());
+		int lvl = pro.getSkillLevel(e.getSkill());
+		int xp = pro.getSkillXpLevel(e.getSkill());
+		int dxp = pro.getXpToLevel(e.getSkill());
+		int gn = Math.round(e.getXpGained());
 	    
-	   ActionBar.sendActionbar(p, "§a" + skill + ": " + lvl + " (" + xp + "/" + dxp + ") +" + gn + "XP");
-	  }
+		ActionBarAPI.sendActionBar(p, "§a" + skill + ": " + lvl + " (" + xp + "/" + dxp + ") +" + gn + "XP");
+	}
 }

@@ -7,14 +7,15 @@ import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerPreLoginEvent;
-import org.bukkit.event.player.PlayerPreLoginEvent.Result;
+import org.bukkit.event.player.AsyncPlayerPreLoginEvent;
+import org.bukkit.event.player.AsyncPlayerPreLoginEvent.Result;
 
-@SuppressWarnings({ "deprecation"})
-public class Playerdata implements Listener {
+import rush.configuracoes.Mensagens;
+
+public class PlayerData implements Listener {
 	
 	@EventHandler
-	public void aoEntrar(PlayerPreLoginEvent e) {
+	public void aoEntrar(AsyncPlayerPreLoginEvent e) {
 		String NewPlayer = e.getName();
         File file = DataManager.getFile(NewPlayer.toLowerCase(), "playerdata");
         FileConfiguration config = DataManager.getConfiguration(file);
@@ -22,8 +23,8 @@ public class Playerdata implements Listener {
         if (file.exists()) {
         	String OldPlayer = config.getString("Nick");
         	if (!NewPlayer.equals(OldPlayer)) {
-				e.setKickMessage(ConfigManager.getConfig("mensagens").getString("Nick-Similar").replace("&", "§").replace("%antigo%", OldPlayer).replace("%novo%", NewPlayer));
-				e.setResult(Result.KICK_OTHER);
+				e.setKickMessage(Mensagens.Nick_Similar.replace("%antigo%", OldPlayer).replace("%novo%", NewPlayer));
+				e.setLoginResult(Result.KICK_OTHER);
         	}
         } else {
         	DataManager.createFile(file);
@@ -33,7 +34,7 @@ public class Playerdata implements Listener {
 			try {
 				config.save(file);
 			} catch (IOException ex) {
-				Bukkit.getConsoleSender().sendMessage(ConfigManager.getConfig("mensagens").getString("Falha-Ao-Salvar").replace("&", "§").replace("%arquivo%", file.getName()));
+				Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
 			}
         }
 	}

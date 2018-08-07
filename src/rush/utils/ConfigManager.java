@@ -9,8 +9,8 @@ import org.bukkit.event.Listener;
 import rush.Main;
 
 public class ConfigManager implements Listener {
-	
-	public static void createNewConfig(String file) {
+
+	public static void createConfig(String file) {
 		if (!new File(Main.aqui.getDataFolder(), file + ".yml").exists()) {
 			Main.aqui.saveResource(file + ".yml", false); 
 		}

@@ -1,37 +1,33 @@
 package rush.sistemas.comandos;
 
-import java.util.concurrent.ConcurrentHashMap;
+import java.util.HashMap;
 
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
 
 public class BackListener implements Listener {
-	
-	public static ConcurrentHashMap<Player, Location> backList = new ConcurrentHashMap<Player, Location>();
-	
-	@EventHandler
+
+	public static HashMap<String, Location> backList = new HashMap<String, Location>();
+
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void aoTeleportar(PlayerTeleportEvent e) {
-		Player p = e.getPlayer();
-		Location l = e.getFrom();
-		if (backList.containsKey(p)) backList.replace(p, l);
-		else backList.put(p, l);
+		backList.put(e.getPlayer().getName(), e.getFrom());
 	}
-	
+
 	@EventHandler
 	public void aoMorrer(PlayerDeathEvent e) {
-		Player p = e.getEntity();
-		Location l = p.getLocation();
-		if (backList.containsKey(p)) backList.replace(p, l);
-		else backList.put(p, l);
+		backList.put(e.getEntity().getName(), e.getEntity().getLocation());
 	}
-	
+
+	@EventHandler
 	public void aoSair(PlayerQuitEvent e) {
 		Player p = e.getPlayer();
-		if (backList.containsKey(p)) backList.remove(p);
+		if (backList.containsKey(p.getName())) backList.remove(p.getName());
 	}
 }

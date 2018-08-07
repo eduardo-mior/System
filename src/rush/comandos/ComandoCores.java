@@ -3,17 +3,15 @@ package rush.comandos;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.event.Listener;
 
-import rush.utils.ConfigManager;
+import rush.configuracoes.Mensagens;
 
-public class ComandoCores implements Listener, CommandExecutor {
+public class ComandoCores implements CommandExecutor {
 	
+	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("cores")) {
-			for (String list : ConfigManager.getConfig("mensagens").getStringList("Tabela-De-Cores")) {
-				s.sendMessage(list);
-			}
+			s.sendMessage(Mensagens.Tabela_De_Cores);
 		}
 		return false;
 	}

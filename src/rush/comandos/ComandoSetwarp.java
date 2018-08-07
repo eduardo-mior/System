@@ -10,31 +10,36 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 
-import rush.utils.ConfigManager;
+import rush.configuracoes.Mensagens;
 import rush.utils.DataManager;
 
-public class ComandoSetwarp implements Listener, CommandExecutor {
+public class ComandoSetwarp implements CommandExecutor {
 	
+	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("setwarp")) {
 			
+			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
-				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Console-Nao-Pode").replace("&", "§"));
+				s.sendMessage(Mensagens.Console_Nao_Pode); 
 				return false;
 			}	 
-					 
+				
+			// Verificando se o player digitou o número de argumentos corretos
 			if (args.length != 1) {
-				s.sendMessage(ConfigManager.getConfig("mensagens").getString("SetWarp-Comando-Incorreto").replace("&", "§"));
+				s.sendMessage(Mensagens.SetWarp_Comando_Incorreto);
 				return false;
 			}
 				     
+			// Pegando o argumento, o file e a config
 			String warp = args[0];
 			File file = DataManager.getFile(warp, "warps");
 			FileConfiguration config = DataManager.getConfiguration(file);
+			
+			// Verificando se a já warp existe
 			if (file.exists()) {
-				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Warp-Ja-Existe").replace("&", "§").replace("%warp%", warp));
+				s.sendMessage(Mensagens.Warp_Ja_Existe.replace("%warp%", warp));
 				return false;
 			}
 			
@@ -54,9 +59,9 @@ public class ComandoSetwarp implements Listener, CommandExecutor {
 			config.set("SubTitle" , "&ePARA A WARP " + warp.toUpperCase());
 			try {
 				config.save(file);
-				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Warp-Definida").replace("&", "§").replace("%warp%", warp));
+				s.sendMessage(Mensagens.Warp_Definida.replace("%warp%", warp));
 			} catch (IOException e) {
-				Bukkit.getConsoleSender().sendMessage(ConfigManager.getConfig("mensagens").getString("Falha-Ao-Salvar").replace("&", "§").replace("%arquivo%", file.getName()));
+				Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
 			}
 		}
 		return false;

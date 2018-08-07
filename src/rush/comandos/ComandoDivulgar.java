@@ -5,77 +5,84 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 
-import rush.utils.ConfigManager;
+import rush.configuracoes.Mensagens;
 
-public class ComandoDivulgar implements Listener, CommandExecutor {
+public class ComandoDivulgar implements CommandExecutor {
 		
-	@SuppressWarnings("deprecation")
+	@SuppressWarnings("deprecation")	
+	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 	    if (cmd.getName().equalsIgnoreCase("divulgar")) {
-	        	        
-	        if (args.length != 2) { 
-	        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Divulgar-Comando-Incorreto").replace("&", "§"));
-		        return false;
-	        }
-	        
-		    for (Player todos : Bukkit.getOnlinePlayers()) {
-	        String nome = s.getName();
-	        if (args[0].equalsIgnoreCase("live") || args[0].equalsIgnoreCase("video") || args[0].equalsIgnoreCase("outro")) {
-	        
-		        if 
-		        (args[1].contains("http") || 
-		        (args[1].contains("www")  || 
-		        (args[1].contains("com")) || 
-		        (args[1].contains("br"))  || 
-		        (args[1].contains("net")) ||
-		        (args[1].contains("org")) ||
-		        (args[1].contains("ly"))  ||
-		        (args[1].contains("sc"))  ||
-		        (args[1].contains("me"))  || 
-		        (args[1].contains("tk")))) {
 	        	
-			        if (args[0].equalsIgnoreCase("live")) {
-			            todos.sendTitle(
-			            ConfigManager.getConfig("mensagens").getString("Divulgando-Title").replace("&", "§").replace("%link%", args[1]).replace("_", " ").replace("%player%", nome),
-			            ConfigManager.getConfig("mensagens").getString("Divulgando-SubTitle").replace("&", "§").replace("%link%", args[1]).replace("_", " ").replace("%player%", nome));
-			            Bukkit.broadcastMessage("");
-				        Bukkit.broadcastMessage(ConfigManager.getConfig("mensagens").getString("Divulgando-Live").replace("&", "§").replace("%player%", nome));
-			            Bukkit.broadcastMessage(ConfigManager.getConfig("mensagens").getString("Link").replace("&", "§").replace("%link%", args[1]).replaceFirst("live", ""));
-			            Bukkit.broadcastMessage("");
-			       		return false;
-			        }
-			        
-			        if (args[0].equalsIgnoreCase("video")) {
-			            todos.sendTitle(
-			            ConfigManager.getConfig("mensagens").getString("Divulgando-Title").replace("&", "§").replace("%link%", args[1]).replace("_", " ").replace("%player%", nome),
-			            ConfigManager.getConfig("mensagens").getString("Divulgando-SubTitle").replace("&", "§").replace("%link%", args[1]).replace("_", " ").replace("%player%", nome));
-			            Bukkit.broadcastMessage("");
-			            Bukkit.broadcastMessage(ConfigManager.getConfig("mensagens").getString("Divulgando-Video").replace("&", "§").replace("%player%", nome));
-			            Bukkit.broadcastMessage(ConfigManager.getConfig("mensagens").getString("Link").replace("&", "§").replace("%link%", args[1]).replaceFirst("video", ""));
-			            Bukkit.broadcastMessage("");
-		       			return false;
-			        }
-			        
-			        if (args[0].equalsIgnoreCase("outro")) {
-			            todos.sendTitle(
-			            ConfigManager.getConfig("mensagens").getString("Divulgando-Title").replace("&", "§").replace("%link%", args[1]).replace("_", " ").replace("%player%", nome),
-			            ConfigManager.getConfig("mensagens").getString("Divulgando-SubTitle").replace("&", "§").replace("%link%", args[1]).replace("_", " ").replace("%player%", nome));
-			            Bukkit.broadcastMessage("");
-			            Bukkit.broadcastMessage(ConfigManager.getConfig("mensagens").getString("Divulgando-Outro").replace("&", "§").replace("%player%", nome));
-			            Bukkit.broadcastMessage(ConfigManager.getConfig("mensagens").getString("Link").replace("&", "§").replace("%link%", args[1]).replaceFirst("outro", ""));
-			            Bukkit.broadcastMessage("");
-		       			return false;
-			        }
-		        }
-		        s.sendMessage(ConfigManager.getConfig("mensagens").getString("Link-Invalido").replace("&", "§").replace("%link%", args[1]));
+			// Verificando se o player digitou o número de argumentos corretos
+	        if (args.length != 2) { 
+	        	s.sendMessage(Mensagens.Divulgar_Comando_Incorreto);
 		        return false;
 	        }
-        	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Divulgar-Comando-Incorreto").replace("&", "§"));
-	        return false;
-	    }
+	        
+	        // Verificando se o player esta divulgando algo valido
+	        if (!args[0].equalsIgnoreCase("live") && !args[0].equalsIgnoreCase("video") && !args[0].equalsIgnoreCase("outro")) {
+		        s.sendMessage(Mensagens.Divulgar_Comando_Incorreto);
+		        return false;
+	        }
+	        
+	        // Verificando se o link é valido
+	        if (!isValidLink(args[1])) {
+		        s.sendMessage(Mensagens.Link_Invalido.replace("%link%", args[1]));
+		        return false;
+	        }
+		        	
+	        // Enviando um title para de aviso para todos os players do server
+	        for (Player todos : Bukkit.getOnlinePlayers()) {
+	        	todos.sendTitle(
+	                Mensagens.Divulgando_Title.replace("%link%", args[1]).replace("%player%", s.getName()),
+			        Mensagens.Divulgando_SubTitle.replace("%link%", args[1]).replace("%player%", s.getName()));
+	        }
+		        	
+	        // Caso a divulgação seja de uma live
+	        if (args[0].equalsIgnoreCase("live")) {
+	        	Bukkit.broadcastMessage("");
+	        	Bukkit.broadcastMessage(Mensagens.Divulgando_Live.replace("%player%", s.getName()));
+	        	Bukkit.broadcastMessage(Mensagens.Link.replace("%link%", args[1]));
+	        	Bukkit.broadcastMessage("");
+	        	return false;
+	        }
+			 
+	        // Caso a divulgação seja de um vídeo
+	        if (args[0].equalsIgnoreCase("video")) {
+	        	Bukkit.broadcastMessage("");
+	        	Bukkit.broadcastMessage(Mensagens.Divulgando_Video.replace("%player%", s.getName()));
+	        	Bukkit.broadcastMessage(Mensagens.Link.replace("%link%", args[1]));
+	        	Bukkit.broadcastMessage("");
+	        	return false;
+	        }
+			        
+	        // Caso a divulgação seja de um outro link
+	        if (args[0].equalsIgnoreCase("outro")) {
+	        	Bukkit.broadcastMessage("");
+	        	Bukkit.broadcastMessage(Mensagens.Divulgando_Outro.replace("%player%", s.getName()));
+	        	Bukkit.broadcastMessage(Mensagens.Link.replace("%link%", args[1]));
+	        	Bukkit.broadcastMessage("");
+	        	return false;
+	        }
 	    }
 	    return false;
 	}
-}
+	
+	// Método para verificar se o link é valido
+	private boolean isValidLink(String link) {
+		if (link.contains("http") || 
+		   (link.contains("www")  || 
+       	   (link.contains(".com")) || 
+	       (link.contains(".br"))  || 
+	       (link.contains(".net")) ||
+	       (link.contains(".org")) ||
+	       (link.contains(".ly"))  ||
+	       (link.contains(".sc"))  ||
+	       (link.contains(".me"))  || 
+	       (link.contains(".tk"))))
+		   return true;
+		   else return false;
+	}
+}	

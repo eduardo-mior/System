@@ -7,13 +7,13 @@ import java.util.List;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.event.Listener;
 
-import rush.utils.ConfigManager;
+import rush.configuracoes.Mensagens;
 import rush.utils.DataManager;
 
-public class ComandoWarps implements Listener, CommandExecutor {
+public class ComandoWarps implements CommandExecutor {
 	
+	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("warps")) {
 			ListWarps(s);
@@ -26,7 +26,7 @@ public class ComandoWarps implements Listener, CommandExecutor {
 		File[] file = folder.listFiles();
   	  	List<String> warps = new ArrayList<String>();
   	  	if (file.length == 0) {
-  	  		s.sendMessage(ConfigManager.getConfig("mensagens").getString("Nenhuma-Warp-Definida").replace("&", "§"));
+  	  		s.sendMessage(Mensagens.Nenhuma_Warp_Definida);
   	  		return;
   	  	} 
   	  	
@@ -40,13 +40,14 @@ public class ComandoWarps implements Listener, CommandExecutor {
   	  			}
   	  		}
   	  	}
+  	  	
   	  	if (cont == 0) {
-  	  		s.sendMessage(ConfigManager.getConfig("mensagens").getString("Nenhuma-Warp-Definida").replace("&", "§"));
+  	  		s.sendMessage(Mensagens.Nenhuma_Warp_Definida);
   	  		return;
   	  	} 
   	  	
-  	  	String separador = ConfigManager.getConfig("mensagens").getString("Separador-De-Listas").replace("&", "§");
+  	  	String separador = Mensagens.Separador_De_Listas;
   	  	String warplist = warps.toString();
-  	  	s.sendMessage(ConfigManager.getConfig("mensagens").getString("Warps-Lista").replace("&", "§").replace("%warps%", warplist.substring(1,warplist.length() -1)).replace("%n%", String.valueOf(cont)).replace(",", separador));
+  	  	s.sendMessage(Mensagens.Warps_Lista.replace("%warps%", warplist.substring(1,warplist.length() -1)).replace("%n%", String.valueOf(cont)).replace(",", separador));
 	}
 }

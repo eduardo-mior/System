@@ -11,56 +11,63 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
-import org.bukkit.event.Listener;
 
-import rush.utils.ConfigManager;
+import rush.configuracoes.Mensagens;
 import rush.utils.DataManager;
 
-public class ComandoSethome implements Listener, CommandExecutor {
+public class ComandoSethome implements CommandExecutor {
 	
+	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("sethome")) {
 			
+			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
-				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Console-Nao-Pode").replace("&", "§"));
+				s.sendMessage(Mensagens.Console_Nao_Pode); 
 				return false;
 			}
-					 
+					
+			// Verificando se o player digitou o número de argumentos corretos
 			if (args.length != 1) {
-				s.sendMessage(ConfigManager.getConfig("mensagens").getString("SetHome-Comando-Incorreto").replace("&", "§"));
+				s.sendMessage(Mensagens.SetHome_Comando_Incorreto);
 				return false;
 			}
 				     
+			// Pegando o player, a home a ser deleta, o arquivo do player a config e alista de homes
 			Player p = (Player) s;
-			String home = args[0];
+			String home = args[0].replace(":", "");
 			File file = DataManager.getFile(p.getName().toLowerCase(), "playerdata");
 			FileConfiguration config = DataManager.getConfiguration(file);
-			Set<String> KEYS = config.getConfigurationSection("Homes").getKeys(false);
-			int homes = KEYS.size();
+			Set<String> HOMES = config.getConfigurationSection("Homes").getKeys(false);
+			int homes = HOMES.size();
+			
+			// Verificando se o player já atingiu o limite máximo de homes permitidas
 			int limite = getHomesLimit(p);
-			if (homes < limite) {
-				Location location = p.getLocation();
-				String locationSerialized = location.getWorld().getName() + "," + location.getX() + "," + location.getY() + "," + location.getZ() + "," + location.getYaw() + "," + location.getPitch();
-				config.set("Homes." + home + ".Localizacao" , locationSerialized);
-				config.set("Homes." + home + ".Publica" , false);
-				try {
-					config.save(file);
-					s.sendMessage(ConfigManager.getConfig("mensagens").getString("Home-Definida").replace("&", "§").replace("%home%", home));
-				} catch (IOException e) {
-					Bukkit.getConsoleSender().sendMessage(ConfigManager.getConfig("mensagens").getString("Falha-Ao-Salvar").replace("&", "§").replace("%arquivo%", file.getName()));
-				}
-			} else {
-				s.sendMessage(ConfigManager.getConfig("mensagens").getString("Limite-De-Homes-Atingido").replace("&", "§").replace("%limite%", String.valueOf(limite)));
+			if (homes >= limite) {
+				s.sendMessage(Mensagens.Limite_De_Homes_Atingido.replace("%limite%", String.valueOf(limite)));
+				return false;
+			} 
+			
+			// Pegando a localização do player, serializando e salvando no arquivo
+			Location location = p.getLocation();
+			String locationSerialized = location.getWorld().getName() + "," + location.getX() + "," + location.getY() + "," + location.getZ() + "," + location.getYaw() + "," + location.getPitch();
+			config.set("Homes." + home + ".Localizacao" , locationSerialized);
+			config.set("Homes." + home + ".Publica" , false);
+			try {
+				config.save(file);
+				s.sendMessage(Mensagens.Home_Definida.replace("%home%", home));
+			} catch (IOException e) {
+				Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
 			}
 		}
 		return false;
 	}
 	
-	/*
+	/**
 	 * Powered by kickpost;
 	 */
 	
-    public static int getHomesLimit(Player p) {
+    private int getHomesLimit(Player p) {
     	try {
     		return Integer.parseInt(p.getEffectivePermissions().stream()
     			   .filter(r -> r.getPermission().toLowerCase().startsWith("system.homes."))

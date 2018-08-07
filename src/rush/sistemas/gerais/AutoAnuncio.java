@@ -11,36 +11,35 @@ import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
 import rush.Main;
-import rush.utils.ConfigManager;
+import rush.configuracoes.Settings;
 
 public class AutoAnuncio implements Listener {
 	
 	public static BukkitTask XTask;
 	private static int ultimo = 0;
-	private static List<String> mensagens = ConfigManager.getConfig("settings").getStringList("Lista-De-Anuncios");
+	private static List<String> mensagens = Settings.Lista_De_Anuncios;
 	
 	public static void runMensagens() {
 		XTask = (new BukkitRunnable() {
 		public void run() {
-			for(Player todos: Bukkit.getOnlinePlayers()){
-				if(!mensagens.isEmpty()){
+			for (Player todos: Bukkit.getOnlinePlayers()) {
+				if(!mensagens.isEmpty()) {
+					
 					int nmsg = mensagens.size();
 					Random rn = new Random();
 					int intmsg = rn.nextInt(nmsg);
 					while(intmsg == ultimo) {
 					intmsg = rn.nextInt(nmsg); }
 					ultimo  = intmsg;
-						if (ConfigManager.getConfig("settings").getBoolean("Destacar-Anuncio")){
-							todos.sendMessage("");}
-							todos.sendMessage(mensagens.get(intmsg).replace("&", "§"));
-						if (ConfigManager.getConfig("settings").getBoolean("Destacar-Anuncio")){
-							todos.sendMessage("");}
-						if (ConfigManager.getConfig("settings").getBoolean("Reproduzir-Som-No-Anuncio")){
-							todos.playSound(todos.getLocation(), Sound.valueOf(ConfigManager.getConfig("settings").getString("Som-Do-Anuncio")), 1, 1);
-						}	
+					
+					if (Settings.Destacar_Anuncio) todos.sendMessage(" ");
+					todos.sendMessage(mensagens.get(intmsg).replaceAll("&", "§"));
+					if (Settings.Destacar_Anuncio) todos.sendMessage(" ");
+					if (Settings.Reproduzir_Som_No_Anuncio)	todos.playSound(todos.getLocation(), Sound.valueOf(Settings.Som_Do_Anuncio), 1, 1);
+					
 				}
 			}
 		}
-		}).runTaskTimerAsynchronously((Plugin) Main.aqui, 60L, (long)ConfigManager.getConfig("settings").getInt("Delay-Entre-Anuncios") * 20L);
+		}).runTaskTimerAsynchronously((Plugin) Main.aqui, 60L, (long)Settings.Delay_Entre_Anuncios * 20L);
 	}
 }

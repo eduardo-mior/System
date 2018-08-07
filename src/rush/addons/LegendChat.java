@@ -7,7 +7,7 @@ import org.bukkit.event.Listener;
 import br.com.devpaulo.legendchat.api.Legendchat;
 import br.com.devpaulo.legendchat.api.events.ChatMessageEvent;
 import br.com.devpaulo.legendchat.channels.types.Channel;
-import rush.utils.ConfigManager;
+import rush.configuracoes.Settings;
 
 public class LegendChat implements Listener {
 
@@ -21,34 +21,34 @@ public class LegendChat implements Listener {
           e.setFormat("\n§6" + e.getFormat() + "\n§6 "); }
        
        if (p.hasPermission("system.chat.cor1")) {
-           e.setMessage(ConfigManager.getConfig("settings").getString("CorAutomatica.Cor1") + msg ); 
+           e.setMessage(Settings.CorAutomatica_Cor1 + msg ); 
        
        } else if (p.hasPermission("system.chat.cor2")) {
-           e.setMessage(ConfigManager.getConfig("settings").getString("CorAutomatica.Cor2") + msg ); 
+           e.setMessage(Settings.CorAutomatica_Cor2 + msg ); 
        
        } else if (p.hasPermission("system.chat.cor3")) {
-           e.setMessage(ConfigManager.getConfig("settings").getString("CorAutomatica.Cor3") + msg ); 
+           e.setMessage(Settings.CorAutomatica_Cor3 + msg ); 
        
        } else if (p.hasPermission("system.chat.cor4")) {
-           e.setMessage(ConfigManager.getConfig("settings").getString("CorAutomatica.Cor4") + msg ); 
+           e.setMessage(Settings.CorAutomatica_Cor4 + msg ); 
        
        } else if (p.hasPermission("system.chat.cor5")) {
-           e.setMessage(ConfigManager.getConfig("settings").getString("CorAutomatica.Cor5") + msg ); 
+           e.setMessage(Settings.CorAutomatica_Cor5 + msg ); 
        
        } else if (p.hasPermission("system.chat.cor6")) {
-           e.setMessage(ConfigManager.getConfig("settings").getString("CorAutomatica.Cor6") + msg ); 
+           e.setMessage(Settings.CorAutomatica_Cor6 + msg ); 
        
        } else if (p.hasPermission("system.chat.cor7")) {
-           e.setMessage(ConfigManager.getConfig("settings").getString("CorAutomatica.Cor7") + msg ); 
+           e.setMessage(Settings.CorAutomatica_Cor7 + msg ); 
        
        } else if (p.hasPermission("system.chat.cor8")) {
-           e.setMessage(ConfigManager.getConfig("settings").getString("CorAutomatica.Cor8") + msg ); 
+           e.setMessage(Settings.CorAutomatica_Cor8 + msg ); 
        
        } else if (p.hasPermission("system.chat.cor9")) {
-           e.setMessage(ConfigManager.getConfig("settings").getString("CorAutomatica.Cor9") + msg ); 
+           e.setMessage(Settings.CorAutomatica_Cor9 + msg ); 
        
        } else if (p.hasPermission("system.chat.cor10")) {
-           e.setMessage(ConfigManager.getConfig("settings").getString("CorAutomatica.Cor10") + msg ); 
+           e.setMessage(Settings.CorAutomatica_Cor10 + msg ); 
        }
     }
 }

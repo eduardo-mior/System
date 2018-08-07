@@ -4,15 +4,15 @@ import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.event.Listener;
 
-import rush.utils.ConfigManager;
+import rush.configuracoes.Mensagens;
 
-public class ComandoOnline implements Listener, CommandExecutor {
+public class ComandoOnline implements CommandExecutor {
 	
+	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("online")) {
-			s.sendMessage(ConfigManager.getConfig("mensagens").getString("Players-Online").replace("&", "§").replace("%online%", String.valueOf(Bukkit.getOnlinePlayers().size())));
+			s.sendMessage(Mensagens.Players_Online.replace("%online%", String.valueOf(Bukkit.getOnlinePlayers().size())));
 		}
 		return false;
 	}
