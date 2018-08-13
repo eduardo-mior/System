@@ -45,10 +45,10 @@ public class ComandoSGive implements CommandExecutor {
             int quantia = 1;
 	        if (args.length == 3) {
 	            try {
-	                quantia = Integer.valueOf(args[2]);
+	                quantia = Integer.parseInt(args[2]);
 	            }
 	            catch (NumberFormatException e) {
-	                s.sendMessage(Mensagens.Numero_Invalido);
+	                s.sendMessage(Mensagens.Numero_Invalido.replace("%numero%", e.getMessage().split("\"")[1]));
 	                return false;
 	            }
 	        }

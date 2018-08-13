@@ -1,6 +1,7 @@
-package rush.api;
+package rush.apis;
 
 import java.lang.reflect.Constructor;
+import java.lang.reflect.InvocationTargetException;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.Listener;
@@ -32,8 +33,8 @@ public class TitleAPI extends JavaPlugin implements Listener {
 			Object subtitlePacket = subtitleConstructor.newInstance(enumSUBTITLE, chatSubtitle);
 			ReflectionUtils.sendPacket(player, subtitlePacket);
 
-		} catch (Exception var11) {
-			var11.printStackTrace();
+		} catch (IllegalArgumentException | IllegalAccessException | NoSuchFieldException | SecurityException | InvocationTargetException | NoSuchMethodException | InstantiationException e) {
+			e.printStackTrace();
 		}
 	}
 }

@@ -26,12 +26,12 @@ public class EnderPearlCooldown implements Listener {
 		Player p = (Player) e.getEntity().getShooter();
 		if (cooldown.containsKey(p) && cooldown.get(p).after(new Timestamp(System.currentTimeMillis()))) {
 			e.setCancelled(true);
-			p.sendMessage(Mensagens.Aguarde_EnderPearl_Cooldown.replace("%tempo%", String.valueOf(Settings.EnderPearl_Cooldown_Cooldown)));
+			p.sendMessage(Mensagens.Aguarde_EnderPearl_Cooldown);
 			p.getInventory().addItem(new ItemStack(Material.ENDER_PEARL));
 			return;
 		} else {
 			cooldown.remove(p);
 		}
-		cooldown.put(p, new Timestamp(System.currentTimeMillis() + 1000 * Settings.EnderPearl_Cooldown_Cooldown));
+		cooldown.put(p, new Timestamp(System.currentTimeMillis() + (1000 * Settings.EnderPearl_Cooldown_Cooldown)));
 	}
 }

@@ -35,7 +35,7 @@ public class Locations {
 	}
 
 	public static void areaVip() {
-         areaVip = new Location(Main.aqui.getServer().getWorld
+         areaVip = new Location(Main.get().getServer().getWorld
            (ConfigManager.getConfig("locations").getString("AreaVip.world")), 
            ConfigManager.getConfig("locations").getDouble("AreaVip.x"), 
            ConfigManager.getConfig("locations").getDouble("AreaVip.y"), 
@@ -45,7 +45,7 @@ public class Locations {
 	}
 	
 	public static void areaNaoVip() {
-        areaNaoVip = new Location(Main.aqui.getServer().getWorld
+        areaNaoVip = new Location(Main.get().getServer().getWorld
            (ConfigManager.getConfig("locations").getString("AreaNaoVip.world")), 
            ConfigManager.getConfig("locations").getDouble("AreaNaoVip.x"), 
            ConfigManager.getConfig("locations").getDouble("AreaNaoVip.y"), 
@@ -55,7 +55,7 @@ public class Locations {
 	}
 	
 	public static void spawn() {
-	    spawn = new Location(Main.aqui.getServer().getWorld
+	    spawn = new Location(Main.get().getServer().getWorld
 	       (ConfigManager.getConfig("locations").getString("Spawn.world")), 
 	       ConfigManager.getConfig("locations").getDouble("Spawn.x"), 
 	       ConfigManager.getConfig("locations").getDouble("Spawn.y"), 

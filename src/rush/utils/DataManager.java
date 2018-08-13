@@ -14,7 +14,7 @@ public class DataManager {
 
 	public static void createFolder(String folder) {
 		try {
-			File pasta = new File(Main.aqui.getDataFolder() + File.separator + folder);
+			File pasta = new File(Main.get().getDataFolder() + File.separator + folder);
 			if (!pasta.exists()) {
 				pasta.mkdirs();
 			}
@@ -32,17 +32,17 @@ public class DataManager {
 	}
 
 	public static File getFolder(String folder) {
-		File Arquivo = new File(Main.aqui.getDataFolder() + File.separator + folder);
+		File Arquivo = new File(Main.get().getDataFolder() + File.separator + folder);
 		return Arquivo;
 	}
 
 	public static File getFile(String file, String folder) {
-		File Arquivo = new File(Main.aqui.getDataFolder() + File.separator + folder, file + ".yml");
+		File Arquivo = new File(Main.get().getDataFolder() + File.separator + folder, file + ".yml");
 		return Arquivo;
 	}
 
 	public static File getFile(String file) {
-		File Arquivo = new File(Main.aqui.getDataFolder() + "/" + file + ".yml");
+		File Arquivo = new File(Main.get().getDataFolder() + "/" + file + ".yml");
 		return Arquivo;
 	}
 

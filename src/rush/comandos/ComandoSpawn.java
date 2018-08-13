@@ -26,14 +26,14 @@ public class ComandoSpawn implements CommandExecutor {
 			// Pegando o player e verificando se ele possui permissão para se teleportar sem precisar esperar
 			Player p = (Player) s;
 			if (!s.hasPermission("system.semdelay")) {
-				s.sendMessage(Mensagens.Iniciando_Teleporte_Spawn.replace("%tempo%", String.valueOf(Settings.Delay_Para_Teleportar_Comandos)));
+				s.sendMessage(Mensagens.Iniciando_Teleporte_Spawn);
 				new BukkitRunnable() {
 					@Override
 					public void run() {
 						p.teleport(Locations.spawn);
 						s.sendMessage(Mensagens.Teleportado_Com_Sucesso_Spawn);
 					}
-				}.runTaskLater(Main.aqui, 20 * Settings.Delay_Para_Teleportar_Comandos);
+				}.runTaskLater(Main.get(), 20 * Settings.Delay_Para_Teleportar_Comandos);
 				return false;
 			}
 			

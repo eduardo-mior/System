@@ -1,7 +1,6 @@
 package rush.comandos;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,7 +13,7 @@ import rush.configuracoes.Mensagens;
 
 public class ComandoLuz implements CommandExecutor {
 	
-	private List<String> luz = new ArrayList<>();
+	private HashSet<String> luz = new HashSet<>();
 	
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {

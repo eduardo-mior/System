@@ -20,7 +20,7 @@ import com.gmail.nossr50.util.player.UserManager;
 
 import br.com.devpaulo.legendchat.api.events.ChatMessageEvent;
 import rush.Main;
-import rush.api.ActionBarAPI;
+import rush.apis.ActionBarAPI;
 import rush.configuracoes.Mensagens;
 import rush.configuracoes.Settings;
 
@@ -44,7 +44,7 @@ public class McMMO implements Listener {
 					playerTopOne = ((PlayerStat)tops.get(0)).name;
 				}
 			}
-		}).runTaskTimerAsynchronously((Plugin) Main.aqui, 60L, (long)Settings.mcTopTag_Tempo_De_Checagem * 20L);
+		}).runTaskTimerAsynchronously((Plugin) Main.get(), 60L, (long)Settings.mcTopTag_Tempo_De_Checagem * 20L);
 	}
 	   
 	@EventHandler
@@ -67,7 +67,7 @@ public class McMMO implements Listener {
             	.replace("WOODCUTTING", "Lenhador")
             	.replace("%player%", p.getName())
             	.replace("%level%", String.valueOf(e.getSkillLevel()))
-            	.replace("&", "§"));
+            	.replace('&', '§'));
             p.getWorld().strikeLightningEffect(p.getLocation());
             p.getWorld().strikeLightningEffect(p.getLocation());
 		}

@@ -13,11 +13,12 @@ import rush.configuracoes.Settings;
 
 public class LimiteDePlayers implements Listener {
 
-	@EventHandler(priority = EventPriority.MONITOR)
+	@EventHandler(priority = EventPriority.LOWEST)
 	public void aoEntrar(PlayerLoginEvent e) {
 		int playersOnline = Bukkit.getOnlinePlayers().size();
 		int limite = Settings.Limite_De_Players;
 		if (playersOnline >= limite) {
+			e.setResult(Result.KICK_FULL);
 			e.disallow(Result.KICK_FULL, Mensagens.Servidor_Lotado);
 		}
 	}

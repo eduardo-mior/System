@@ -49,8 +49,8 @@ public class ComandoEditaritem implements CommandExecutor {
 			// Verificando se o player quer renomear o item
 			if (args[0].equalsIgnoreCase("renomear")) {
 				String nome = "";
-				for (int i = 1; i < args.length; i++) { nome += args[i] + " "; }
-				meta.setDisplayName(nome.replace("&", "§"));
+				for (int i = 1; i < args.length; i++) {nome += args[i] + " ";}
+				meta.setDisplayName(nome.replace('&', '§'));
 				item.setItemMeta(meta);
 				s.sendMessage(Mensagens.Editar_Item_Com_Sucesso);
 				return false;
@@ -104,8 +104,8 @@ public class ComandoEditaritem implements CommandExecutor {
 				List<String> lore = new ArrayList<>();
 				if (meta.hasLore()) lore.addAll(meta.getLore());
 				String novaLinha = "";
-				for (int i=1; i < args.length; i++) { novaLinha += args[i] + " "; }
-				lore.add(novaLinha.replace("&", "§"));
+				for (int i = 1; i < args.length; i++) {novaLinha  += args[i] + " ";}
+				lore.add(novaLinha.replace('&', '§'));
 				meta.setLore(lore);
 				item.setItemMeta(meta);
 				s.sendMessage(Mensagens.Editar_Item_Com_Sucesso);

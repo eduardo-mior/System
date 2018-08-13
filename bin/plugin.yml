@@ -1,7 +1,7 @@
 main: rush.Main
 version: 1.0
 name: System
-softdepend: [Legendchat, mcMMO]
+softdepend: [Legendchat, mcMMO, MassiveCore]
 
 commands:
   alerta:
@@ -26,7 +26,7 @@ commands:
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   clearchat:
     description: Limpa o chat do servidor.
-    aliases: [cc]
+    aliases: []
     permission: system.clearchat
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   compactar:
@@ -99,6 +99,11 @@ commands:
     aliases: [playsound, som]
     permission: system.executarsom
     permission-message: "§cVocê não tem permissão para utilizar este comando."
+  feed:
+    description: Regenera toda sua fome.
+    aliases: [fome, comer]
+    permission: system.feed
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
   fly:
     description: Ativa ou desativa o modo fly.
     aliases: [voar]
@@ -108,6 +113,16 @@ commands:
     description: Altera o seu modo de jogo.
     aliases: [gm]
     permission: system.gamemode
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  god:
+    description: Ativa ou desativa o modo god.
+    aliases: [deus]
+    permission: system.god
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  heal:
+    description: Regenera toda sua vida.
+    aliases: [heal, curar]
+    permission: system.heal
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   home:
     description: Teleporta até uma home.
@@ -156,7 +171,7 @@ commands:
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   particular:
     description: Define uma home como particular.
-    aliases: []
+    aliases: [privada]
     permission: system.particular
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   ping:
@@ -209,10 +224,60 @@ commands:
     aliases: []
     permission: system.spawn
     permission-message: "§cVocê não tem permissão para utilizar este comando."
+  speed:
+    description: Altera a velocidade do andar e do voar.
+    aliases: []
+    permission: system.speed
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  sudo:
+    description: Executa um comando para um player.
+    aliases: []
+    permission: system.sudo
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
   title:
     description: Envia um title para um player ou para todo servidor.
     aliases: [tm]
     permission: system.title
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  tp:
+    description: Executa teleportes.
+    aliases: []
+    permission: system.tp
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  tpa:
+    description: Envia uma solicitação de teleporte.
+    aliases: []
+    permission: system.tpa
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  tpaccept:
+    description: Aceita uma solicitação de teleporte.
+    aliases: [tpaceitar]
+    permission: system.tpaccept
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  tpall:
+    description: Teleporta todos os players.
+    aliases: []
+    permission: system.tpall
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  tpcancel:
+    description: Cancela uma solicitação de teleporte enviada.
+    aliases: [tpcancelar]
+    permission: system.tpcancel
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  tpdeny:
+    description: Cancela uma solicitação de teleporte enviada.
+    aliases: [tpnegar]
+    permission: system.tpdeny
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  tphere:
+    description: Teleporta um player até você.
+    aliases: [puxar]
+    permission: system.tphere
+    permission-message: "§cVocê não tem permissão para utilizar este comando."
+  tptoggle:
+    description: Desativa o recebimento de solicitações de teleporte.
+    aliases: [tpdesativar]
+    permission: system.tptoggle
     permission-message: "§cVocê não tem permissão para utilizar este comando."
   warp:
     description: Teleporta até uma warp.
@@ -298,8 +363,14 @@ permissions:
   system.executarsom:
     description: Permissão para enviar um som para um player ou para todo servidor.
     default: op
+  system.feed:
+    description: Permissão para regenerar sua fome usando o comando /feed.
+    default: op
   system.fly:
     description: Permissão para ativar ou desativar o seu modo fly.
+    default: op
+  system.fly.staff:
+    description: Permissão para poder usar o fly em qualquer mundo.
     default: op
   system.fly.outros:
     description: Permissão para ativar ou desativar o fly de outras pessoas.
@@ -321,6 +392,15 @@ permissions:
     default: op
   system.gamemode.spectator: 
     description: Permissão para alterar o seu modo de jogo para espectador.
+    default: op
+  system.god:
+    description: Permissão para ativar ou desativar o seu modo god.
+    default: op
+  system.god.outros:
+    description: Permissão para ativar ou desativar o god de outras pessoas.
+    default: op
+  system.heal:
+    description: Permissão para regenerar sua fome usando o comando /heal.
     default: op
   system.home:
     description: Permissão para se teleportar até uma home.
@@ -394,8 +474,41 @@ permissions:
   system.spawn:
     description: Permissão para se teleportar até o spawn.
     default: op
+  system.speed:
+    description: Permissão para alterar a sua velocidade.
+    default: op
+  system.speed.outros:
+    description: Permissão para alterar a sua velocidade de outros players.
+    default: op
+  system.sudo:
+    description: Permissão para executar um comando para outro player.
+    default: op
   system.title:
     description: Permissão para enviar um title para todo servidor.
+    default: op
+  system.tp:
+    description: Permissão para executar teleportes.
+    default: op
+  system.tpa:
+    description: Permissão para enviar uma solicitação de teleporte.
+    default: op
+  system.tpaccept:
+    description: Permissão para aceitar uma solicitação de teleporte.
+    default: op
+  system.tpall:
+    description: Permissão para teleportar todos os players do servidor.
+    default: op
+  system.tpcancel:
+    description: Permissão para cancelar uma solicitação de teleporte enviada.
+    default: op
+  system.tpdeny:
+    description: Permissão para negar uma solicitação de teleporte.
+    default: op
+  system.tphere:
+    description: Permissão para puxar um player até você.
+    default: op
+  system.tptoggle:
+    description: Permissão para desabilitar o recebimento de solicitações de teleporte.
     default: op
   system.vip:
     description: Permissão para se teleportar até a area vip.
@@ -490,8 +603,8 @@ permissions:
       system.alerta: true
       system.back: true
       system.chapeu: true
-      system.clear: true
       system.clear.outros: true
+      system.clear: true
       system.clearchat: true
       system.compactar: true
       system.cores: true
@@ -505,25 +618,29 @@ permissions:
       system.delwarp: true
       system.derreter: true
       system.divulgar: true
-      system.echest: true
-      system.echest.mod: true
       system.echest.admin: true
+      system.echest.mod: true
+      system.echest: true
       system.editaritem: true
       system.editarkit: true
       system.executarsom: true
-      system.fly: true
+      system.feed: true
       system.fly.outros: true
       system.fly.staff: true
-      system.gamemode: true
-      system.gamemode.outros: true
+      system.fly: true
       system.gamemode.all: true
-      system.home: true
+      system.gamemode.outros: true
+      system.gamemode: true
+      system.god.outros: true
+      system.god: true
+      system.heal: true
       system.home.admin: true
+      system.home: true
       system.homes: true
-      system.invsee: true
       system.invsee.admin: true
-      system.kit: true
+      system.invsee: true
       system.kit.all: true
+      system.kit: true
       system.kits: true
       system.lixo: true
       system.luz: true
@@ -542,7 +659,18 @@ permissions:
       system.skull: true
       system.slime: true
       system.spawn: true
+      system.speed.outros: true
+      system.speed: true
+      system.sudo: true
       system.title: true
+      system.tp: true
+      system.tpa: true
+      system.tpaccept: true
+      system.tpall: true
+      system.tpcancel: true
+      system.tpdeny: true
+      system.tphere: true
+      system.tptoggle: true
       system.vip: true
       system.warp: true
       system.warps: true

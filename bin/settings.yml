@@ -92,6 +92,9 @@ Bloquear-Teleport-Por-Portal:
 ############################################################
 Delay-Para-Teleportar-Comandos: 5
 
+Tempo-Para-Expirar-Solicitacao-Tpa: 60
+Tempo-Para-Poder-Enviar-Outra-Solicitacao-Tpa: 30
+
 Limitador-De-Players:
   Ativar: true
   Limite-De-Players: 340
@@ -104,15 +107,11 @@ Dropar-Cabeca-Ao-Morrer:
   Ativar: true
   Chance-De-Dropar-Cabeca-Ao-Morrer: 15
 
-############################################################
-# +------------------------------------------------------+ #
-# |                    Sistema de Fly                    | #
-# +------------------------------------------------------+ #
-############################################################
 Sistema-De-Fly-Para-Players: true
 Mundos-Onde-Pode-Usar-Fly:
   - 'world'
   - 'world_nether'
+
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -214,6 +213,15 @@ Nicks-Bloqueados:
   # O bloqueador verifica se o nick contem tal palavra.
   # Ou seja se o nick do player contem a palavra "puta" o player é bloqueado de entrar.
 
+############################################################
+# +------------------------------------------------------+ #
+# |                  Comando /slime                      | #
+# +------------------------------------------------------+ #
+############################################################
+Commando-Slime:
+  Esta-Em-SlimeChunk: SLIME_WALK2
+  Nao-Esta-Em-SlimeChunk: VILLAGER_NO
+  
 ############################################################
 # +------------------------------------------------------+ #
 # |                         mcMMO                        | #

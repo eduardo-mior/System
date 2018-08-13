@@ -32,7 +32,7 @@ public class ComandoMundoVip implements CommandExecutor {
 				
 				// Verificando se o camarote para os sem vip esta habilitado e teleportando o palyer
 		   	    if (Settings.Ativar_Camarote_Para_Os_Sem_Vip) {
-		   	    	s.sendMessage(Mensagens.Iniciando_Teleporte_Vip.replace("%tempo%", String.valueOf(Settings.Delay_Para_Teleportar_Comandos)));
+		   	    	s.sendMessage(Mensagens.Iniciando_Teleporte_Vip);
 		   	    	new BukkitRunnable() {
 		   	    		@Override
 		   	    		public void run() {
@@ -40,10 +40,13 @@ public class ComandoMundoVip implements CommandExecutor {
 		   	    			s.sendMessage(Mensagens.Teleportado_Com_Sucesso_Sem_Vip);
 		   	    			s.sendMessage("§f ");
 		   	    			p.teleport(Locations.areaNaoVip);
+		   	    			
 		   	    		}
-		   	    	}.runTaskLaterAsynchronously(Main.aqui, 20 * delay);
+		   	    	}.runTaskLaterAsynchronously(Main.get(), 20 * delay);
 		   	    	return false;
 		   	    }
+		   	    
+		   	    // Caso o camarote para os sem vips não esteja habilitado então um erro é exibido
 		   	    s.sendMessage(Mensagens.Sem_Permissao);
 		   	    return false;
 			} 

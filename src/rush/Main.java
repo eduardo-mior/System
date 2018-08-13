@@ -27,8 +27,11 @@ import rush.comandos.ComandoEchest;
 import rush.comandos.ComandoEditaritem;
 import rush.comandos.ComandoEditarkit;
 import rush.comandos.ComandoExecutarSom;
+import rush.comandos.ComandoFeed;
 import rush.comandos.ComandoFly;
 import rush.comandos.ComandoGamemode;
+import rush.comandos.ComandoGod;
+import rush.comandos.ComandoHeal;
 import rush.comandos.ComandoHome;
 import rush.comandos.ComandoHomes;
 import rush.comandos.ComandoInvsee;
@@ -49,7 +52,17 @@ import rush.comandos.ComandoSetwarp;
 import rush.comandos.ComandoSkull;
 import rush.comandos.ComandoSlime;
 import rush.comandos.ComandoSpawn;
+import rush.comandos.ComandoSpeed;
+import rush.comandos.ComandoSudo;
 import rush.comandos.ComandoTitle;
+import rush.comandos.ComandoTp;
+import rush.comandos.ComandoTpa;
+import rush.comandos.ComandoTpaccept;
+import rush.comandos.ComandoTpall;
+import rush.comandos.ComandoTpcancel;
+import rush.comandos.ComandoTpdeny;
+import rush.comandos.ComandoTphere;
+import rush.comandos.ComandoTptoggle;
 import rush.comandos.ComandoWarp;
 import rush.comandos.ComandoWarps;
 import rush.configuracoes.Locations;
@@ -107,6 +120,7 @@ import rush.sistemas.gerais.AnunciarMorte;
 import rush.sistemas.gerais.AutoAnuncio;
 import rush.sistemas.gerais.DroparCabecaAoMorrer;
 import rush.sistemas.gerais.Motd;
+import rush.sistemas.gerais.PlayerData;
 import rush.sistemas.gerais.ScoreBoard;
 import rush.sistemas.gerais.Tablist;
 import rush.sistemas.spawners.BloquearTrocarTipoDoSpawnerComOvo;
@@ -114,11 +128,10 @@ import rush.sistemas.spawners.DroparSpawnerAoExplodir;
 import rush.sistemas.spawners.SistemaDeSpawners;
 import rush.utils.ConfigManager;
 import rush.utils.DataManager;
-import rush.utils.PlayerData;
 
 public class Main extends JavaPlugin implements Listener {
 
-   public static Main aqui;
+   private static Main main;
 
    @Override
    public void onEnable() {
@@ -135,24 +148,24 @@ public class Main extends JavaPlugin implements Listener {
    }
    
    private void enablePlugin() {
-	   aqui = this;
+	   main = this;
    }
    
    private void gerarConfigs() {
 	   DataManager.createFolder("kits");
 	   DataManager.createFolder("warps");
 	   DataManager.createFolder("playerdata");
-	   ConfigManager.createConfig("mensagens");
 	   ConfigManager.createConfig("settings");
+	   ConfigManager.createConfig("mensagens");
 	   ConfigManager.createConfig("permissions");
 	   ConfigManager.createConfig("locations");
    }
    
    private void carregarConfigs() {
+	   Kits.loadKits();
+	   Settings.loadSettings();
 	   Locations.loadLocations();
 	   Mensagens.loadMensagens();
-	   Settings.loadSettings();
-	   Kits.loadKits();
    }
    
    private void registrarComandos() {
@@ -175,8 +188,11 @@ public class Main extends JavaPlugin implements Listener {
 	   getCommand("editaritem").setExecutor(new ComandoEditaritem());
 	   getCommand("editarkit").setExecutor(new ComandoEditarkit());
 	   getCommand("executarsom").setExecutor(new ComandoExecutarSom());
+	   getCommand("feed").setExecutor(new ComandoFeed());
 	   getCommand("fly").setExecutor(new ComandoFly());
 	   getCommand("gamemode").setExecutor(new ComandoGamemode());
+	   getCommand("god").setExecutor(new ComandoGod());
+	   getCommand("heal").setExecutor(new ComandoHeal());
 	   getCommand("home").setExecutor(new ComandoHome());
 	   getCommand("homes").setExecutor(new ComandoHomes());
 	   getCommand("invsee").setExecutor(new ComandoInvsee());
@@ -193,11 +209,21 @@ public class Main extends JavaPlugin implements Listener {
 	   getCommand("setmundovip").setExecutor(new ComandoSetmundovip()); 
 	   getCommand("setspawn").setExecutor(new ComandoSetspawn()); 
 	   getCommand("setwarp").setExecutor(new ComandoSetwarp()); 
-	   getCommand("sgive").setExecutor(new ComandoSGive()); 
+	   getCommand("sgive").setExecutor(new ComandoSGive());
 	   getCommand("skull").setExecutor(new ComandoSkull()); 
 	   getCommand("slime").setExecutor(new ComandoSlime());
-	   getCommand("spawn").setExecutor(new ComandoSpawn()); 
+	   getCommand("spawn").setExecutor(new ComandoSpawn());
+	   getCommand("speed").setExecutor(new ComandoSpeed()); 
+	   getCommand("sudo").setExecutor(new ComandoSudo()); 
 	   getCommand("title").setExecutor(new ComandoTitle()); 
+	   getCommand("tp").setExecutor(new ComandoTp());
+	   getCommand("tpa").setExecutor(new ComandoTpa());
+	   getCommand("tpaccept").setExecutor(new ComandoTpaccept());
+	   getCommand("tpall").setExecutor(new ComandoTpall());
+	   getCommand("tpcancel").setExecutor(new ComandoTpcancel());
+	   getCommand("tpdeny").setExecutor(new ComandoTpdeny());
+	   getCommand("tphere").setExecutor(new ComandoTphere()); 
+	   getCommand("tptoggle").setExecutor(new ComandoTptoggle()); 
 	   getCommand("warp").setExecutor(new ComandoWarp()); 
 	   getCommand("warps").setExecutor(new ComandoWarps());
    }
@@ -389,4 +415,9 @@ public class Main extends JavaPlugin implements Listener {
 	   if (Settings.Auto_Anuncio){
 	   AutoAnuncio.XTask.cancel();}
    }
+   
+   public static Main get() {
+	   return main;
+   }
+   
 }

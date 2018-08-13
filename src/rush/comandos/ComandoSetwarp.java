@@ -13,6 +13,7 @@ import org.bukkit.entity.Player;
 
 import rush.configuracoes.Mensagens;
 import rush.utils.DataManager;
+import rush.utils.Serializer;
 
 public class ComandoSetwarp implements CommandExecutor {
 	
@@ -46,7 +47,7 @@ public class ComandoSetwarp implements CommandExecutor {
 			Player p = (Player) s;
 			DataManager.createFile(file);
 			Location location = p.getLocation();
-			String locationSerialized = location.getWorld().getName() + "," + location.getX() + "," + location.getY() + "," + location.getZ() + "," + location.getYaw() + "," + location.getPitch();
+			String locationSerialized = Serializer.serializeLocation(location);
 			config.set("Localizacao" , locationSerialized);
 			config.set("Permissao" , "system.warp." + warp.toLowerCase());
 			config.set("MensagemSemPermissao", "&cVocê não tem permissão para se teleportar para a warp " + warp + "!");

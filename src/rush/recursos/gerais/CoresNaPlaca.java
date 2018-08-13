@@ -11,7 +11,7 @@ public class CoresNaPlaca implements Listener {
 	public void aoUsarPlaca(SignChangeEvent e) {
 		if (e.getPlayer().hasPermission("system.cornaplaca")) {
 			for (int i = 0; i < e.getLines().length; i++) {
-				e.setLine(i, e.getLine(i).replace("&", "§"));
+				e.setLine(i, e.getLine(i).replace('&', '§'));
 			}
 		}
 	}

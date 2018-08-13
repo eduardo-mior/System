@@ -8,7 +8,7 @@ public class DesativarFomeNosMundos implements Listener {
 
 	@EventHandler
 	public void aoAlterarNivelDaFome(FoodLevelChangeEvent e) {
-		e.setFoodLevel(40);
+		e.setFoodLevel(20);
 		e.setCancelled(true);
 	}
 }

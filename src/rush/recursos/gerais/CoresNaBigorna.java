@@ -36,7 +36,7 @@ public class CoresNaBigorna implements Listener {
 	            }
 
 	            // Setando o novo nome colorido no item
-	            meta.setDisplayName(name.replace("&", "§"));
+	            meta.setDisplayName(name.replace('&', '§'));
 	            item.setItemMeta(meta);
 	            e.setCurrentItem(item);
 	        }

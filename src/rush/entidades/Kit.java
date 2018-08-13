@@ -10,12 +10,15 @@ public class Kit {
 	private String permissao;
 	private long delay;
 	private ItemStack[] itens;
+	private int amountItens;
 	
 	public Kit(String nome, String permissao, long delay, String itens) {
+		ItemStack[] itensStack = Serializer.deserializeListItemStack(itens);
 		this.nome = nome;
 		this.permissao = permissao;
 		this.delay = delay;
-		this.itens = Serializer.deserializeListItemStack(itens);
+		this.itens = itensStack;
+		this.amountItens = calcule(itensStack);
 	}
 	
 	public String getName() {
@@ -48,6 +51,19 @@ public class Kit {
 
 	public void setItens(ItemStack[] itens) {
 		this.itens = itens;
+		this.amountItens = calcule(itens);
+	}
+	
+	public int getAmountItens() {
+		return amountItens;
+	}
+	
+	private int calcule(ItemStack[] itens) {
+		int amount = 0;
+		for (ItemStack item : itens) {
+			if (item != null) amount++;
+		}
+		return amount;
 	}
 
 	@Override
@@ -78,6 +94,5 @@ public class Kit {
 		} else if (!nome.equals(other.nome))
 			return false;
 		return true;
-	}
-	
+	}	
 }

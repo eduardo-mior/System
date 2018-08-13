@@ -161,6 +161,16 @@ public class ComandoFly implements CommandExecutor {
 							}
 							return false;
 						}
+			    		  
+						// Se o segundo argumento não for 'on' ou 'off'
+						if (p.getAllowFlight()) {
+							s.sendMessage(Mensagens.Fly_Desabilitado_Outro.replace("%player%", p.getName()));
+							p.setAllowFlight(false);
+						} else {
+							s.sendMessage(Mensagens.Fly_Habilitado_Outro.replace("%player%", p.getName()));
+							p.setAllowFlight(true);
+						}
+						return false;
 					}
 		    		  
 					// Se o player não informar 2 argumentos, ou se o segundo argumento não for 'on' ou 'off'
@@ -171,6 +181,13 @@ public class ComandoFly implements CommandExecutor {
 						s.sendMessage(Mensagens.Fly_Habilitado_Outro.replace("%player%", p.getName()));
 						p.setAllowFlight(true);
 					}
+					return false;
+				}
+				
+				// Se o player tem a permissão de staff mas não tem a permissão para alterar o fly de
+				// outros players então a mensagem abaixo é exibida, caso contrar segue o código
+				if (s.hasPermission("system.fly.staff")) {
+					s.sendMessage(Mensagens.Fly_Sem_Permissao_Outro);
 					return false;
 				}
 			}

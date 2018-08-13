@@ -5,6 +5,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -27,7 +28,7 @@ public class ComandoCrashar implements CommandExecutor {
 			}
 			
 			// Pegando o player e verificando se ele esta online
-			Player p = s.getServer().getPlayer(args[0]);
+			Player p = Bukkit.getPlayer(args[0]);
 			if (p == null) {
 				s.sendMessage(Mensagens.Player_Offline);
 				return false;
@@ -35,7 +36,7 @@ public class ComandoCrashar implements CommandExecutor {
 			
 			// Chamando o metodo que crasha o player e enviando a mensagem.
 			crashPlayer(p);
-			s.sendMessage(Mensagens.Crashado_Com_Sucesso.replace("%player%", args[0]).replace("&", "§"));			
+			s.sendMessage(Mensagens.Crashado_Com_Sucesso.replace("%player%", args[0]).replace('&', '§'));			
 		}
 		return false;
 	}
@@ -51,7 +52,6 @@ public class ComandoCrashar implements CommandExecutor {
 		    Object packet = PacketPlayOutExplosionConstructor.newInstance(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE, Float.MAX_VALUE, Collections.emptyList(), Vec3D);
 		    ReflectionUtils.sendPacket(player, packet);
 		} catch (NoSuchMethodException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | InstantiationException e) {
-			System.err.println("Erro ao tentar crashar o player " + player.getName() + "!");
 			e.printStackTrace();
 		}
 	}

@@ -13,7 +13,7 @@ public class MensagemDeBoasVindas implements Listener {
 	public void aoEntrar(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
 		for (String mensagem : Settings.Mensagem_De_Boas_Vindas_Mensagem) {
-			p.sendMessage(mensagem.replace("&", "§").replace("%player%", p.getName()));
+			p.sendMessage(mensagem.replace('&', '§').replace("%player%", p.getName()));
 		}
 	}
 }

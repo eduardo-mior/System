@@ -5,6 +5,8 @@
 	<classpathentry kind="src" path="resources"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Mior/Documents/depends/LegendChat.jar"/>
 	<classpathentry exported="true" kind="lib" path="C:/Users/Mior/Documents/depends/mcMMO.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mior/Documents/depends/MambaFactions.jar"/>
+	<classpathentry kind="lib" path="C:/Users/Mior/Documents/depends/MambaMassiveCore.jar"/>
 	<classpathentry kind="lib" path="C:/Users/Mior/Documents/depends/craftbukkit-1.8.8-R0.1-SNAPSHOT-latest.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

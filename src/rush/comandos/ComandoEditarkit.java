@@ -51,11 +51,10 @@ public class ComandoEditarkit implements CommandExecutor {
 				    return false;
 				}
 				
+				// Pegando o player e abrindo um inventarios com os itens, o resto é feito pela classe KitsListener
 				Player p = (Player)s;
-		    	ItemStack[] ITENS = kit.getItens();
-				Inventory inv = Bukkit.getServer().createInventory(p, 36, "§0Editar Kit §n" + kit);
-		    	for (int i = 0; ITENS.length > i; i++) {
-		    		 ItemStack item = ITENS[i];
+				Inventory inv = Bukkit.getServer().createInventory(p, 36, "§1Kit §n" + nome);
+		    	for (ItemStack item : kit.getItens()) {
 		    		 if (item != null) inv.addItem(item);
 		    	}
 		    	p.openInventory(inv);
@@ -64,20 +63,23 @@ public class ComandoEditarkit implements CommandExecutor {
 			
 			// Verificando se o player quer editar o delay do kit
 			if (args[1].equalsIgnoreCase("delay")) {
+				
+				// Verificando se o player digitou o número de argumentos correto
 				if (args.length != 3) {
 			        s.sendMessage(Mensagens.EditarKit_Comando_Incorreto_Delay);
 			        return false;
 				}
 				
+				// Verificando se o número é um número valido
 	            long delay;
 	            try {
-	                delay = Long.valueOf(args[2]);
-	            }
-	            catch (NumberFormatException e) {
-	                s.sendMessage(Mensagens.Numero_Invalido);
+	                delay = Long.parseLong(args[2]);
+	            } catch (NumberFormatException e) {
+	                s.sendMessage(Mensagens.Numero_Invalido.replace("%numero%", e.getMessage().split("\"")[1]));
 	                return false;
 	            }
 	            
+	            // Salvando os arquivos na config
 	            kit.setDelay(delay);
 	            config.set("Delay", delay);
 				try {
@@ -91,11 +93,14 @@ public class ComandoEditarkit implements CommandExecutor {
 			
 			// Verificando se o player quer editar a permissão para pegar o kit
 			if (args[1].equalsIgnoreCase("perm")) {
+				
+				// Verificando se o player digitou o número de argumentos correto
 				if (args.length != 3) {
 			        s.sendMessage(Mensagens.EditarKit_Comando_Incorreto_Perm);
 			        return false;
 				}
 				
+	            // Salvando os arquivos na config
 				kit.setPermissao(args[2]);
 				config.set("Permissao", args[2]);
 				try {

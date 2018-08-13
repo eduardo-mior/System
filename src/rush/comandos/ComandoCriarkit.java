@@ -35,9 +35,15 @@ public class ComandoCriarkit implements CommandExecutor {
 		        return false;
 			}
 			
+			// Verificando se o nome do kit não é maior que o permitido
+			if (args[0].length() > 24) {
+				s.sendMessage("§cO nome do item não pode conter mais de 24 caracteres.");
+				return false;
+			}
+			
 			// Pegando o player abrindo um inventario... o resto do processo é feito pela classe KitsListener
 			Player p = (Player)s;
-			Inventory inv = Bukkit.getServer().createInventory(p, 36, "§0Criar Kit §n" + kit);
+			Inventory inv = Bukkit.getServer().createInventory(p, 36, "§0Kit §n" + kit);
 	        p.openInventory(inv);
 		}
 		return false;

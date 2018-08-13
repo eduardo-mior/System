@@ -33,8 +33,8 @@ public class ComandoExecutarSom implements CommandExecutor {
             	}
             	
             	// Executando o som para todos os players
-            	for (Player todos : Bukkit.getOnlinePlayers()) {
-            		todos.playSound(todos.getLocation(), Sound.valueOf(args[0].toUpperCase()), 1, 1);
+            	for (Player p : Bukkit.getOnlinePlayers()) {
+            		p.playSound(p.getLocation(), Sound.valueOf(args[0].toUpperCase()), 1, 1);
             	}
             	s.sendMessage(Mensagens.Som_Executado_Todos.replace("%som%", args[0]));
             	return false;

@@ -11,7 +11,8 @@ public class BloquearSubirEmVeiculos implements Listener {
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void aoEntrarNoVeiculo(VehicleEnterEvent e) {
 		if (e.getEntered() instanceof Player) {
-			if (!(e.getEntered().hasPermission("system.bypass.entraremveiculos"))) {
+			Player p = (Player) e.getEntered();
+			if (!(p.hasPermission("system.bypass.entraremveiculos"))) {
 				e.setCancelled(true);
 			}
 		}

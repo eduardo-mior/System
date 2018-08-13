@@ -37,7 +37,7 @@ public class ReflectionUtils {
    		try {
    			Object entityPlayer = player.getClass().getMethod("getHandle").invoke(player);
    			Object playerConnection = entityPlayer.getClass().getField("playerConnection").get(entityPlayer);
-   			playerConnection.getClass().getMethod("sendPacket", ReflectionUtils.getNMSClass("Packet")).invoke(playerConnection, packet);
+   			playerConnection.getClass().getMethod("sendPacket", getNMSClass("Packet")).invoke(playerConnection, packet);
    		} catch (SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | NoSuchFieldException var4) {
    			var4.printStackTrace();
    		}

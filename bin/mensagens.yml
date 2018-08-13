@@ -7,10 +7,11 @@ Separador-De-Listas: "&8,&7"
 Console-Nao-Pode: "&cO console nao pode usar este comando."
 Sem-Permissao: "&cVocê não tem permissão para utilizar este comando."
 Spawn-Nao-Configurado: "&cO spawn do servidor ainda não foi configurado!"
-Numero-Invalido: "&cEste número não é um número valido."
+Numero-Invalido: "&cO número '%numero%' não é um número valido."
 Money-Null: "&cA palavra 'null' e a palavra 'nan' foram bloqueadas de serem usadas em comandos que envolvem dinheiro!"
 Player-Offline: "&cEste player não esta online no momento ou não existe."
 Player-Nao-Existe: "&cO player '%player%' não existe!"
+Mundo-Nao-Existe: "&cO mundo '%mundo%' não foi encontrado!"
 Falha-Ao-Criar-Arquivo: "&c[ERRO] Nao foi possivel criar o arquivo %arquivo%!"
 Falha-Ao-Criar-Pasta: "&c[ERRO] Nao foi possivel criar a pasta %pasta%!"
 Falha-Ao-Salvar: "&c[ERRO] Nao foi possivel salvar o arquivo %arquivo%!"
@@ -34,31 +35,67 @@ Placas:
 
 ############################################################
 # +------------------------------------------------------+ #
-# |                Sistema de MobSpawners                | #
+# |                  Sistema de TP/TPA                   | #
 # +------------------------------------------------------+ #
 ############################################################
-Inventario-Cheio-Quebrou: "&cVocê esta com seu inventário cheio! O gerador foi dropado no chão."
-Spawner-Bugado: "&cEste gerador esta com defeitos! Contate um staff do seu servidor para que ele poça lhe resolver este problema."
-Spawner-Givado: "&aSpawner de %tipo% givado com sucesso."
-Inventario-Cheio-Give: "&cVocê esta com seu inventário cheio! Libera mais espaço para poder pegar geradores."
-Sgive-Comando-Incorreto: "&cComando incorreto, use /sgive <player> <tipo> <quantia>"
-Spawner-Desconhecido: "&cTipo de Spawner desconhecido!\n&eLista de Spawners: %lista%."
-Nome-Do-MobSpawner: "&bGerador de Monstros"
-
-############################################################
-# +------------------------------------------------------+ #
-# |                   Sistema de Warps                   | #
-# +------------------------------------------------------+ #
-############################################################
-SetWarp-Comando-Incorreto: "&cComando incorreto, use /setwarp <warp>"
-DelWarp-Comando-Incorreto: "&cComando incorreto, use /delwarp <warp>"
-Warp-Comando-Incorreto: "&cComando incorreto, use /warp <warp>"
-Warp-Definida: "&aWarp '%warp%' definida com sucesso!"
-Warp-Deletada: "&aWarp '%warp%' deletada com sucesso!"
-Warp-Ja-Existe: "&cA warp '%warp%' já existe!"
-Warp-Nao-Existe: "&cA warp '%warp%' não existe!"
-Nenhuma-Warp-Definida: "&cNão há warps disponíveis."
-Warps-Lista: "&eWarps disponíveis(%n%): &7%warps%"
+Tp-Comando-Incorreto: | 
+  &cComando incorreto, use:
+  &c/tp <player> &8-&7 Se teleporta até um player.
+  &c/tp <world> <x> <y> <z> &8-&7 Se teleporta até uma cordenada.
+  &c/tp <player> <player-alvo> &8-&7 Teleporta um player até outro.
+  &c/tp <world> <x> <y> <z> <player> &8-&7 Teleporta um player até uma cordenada.
+Tp-Erro-Voce-Mesmo: "&cVocê não pode se teleportar até você mesmo!"
+Tp-Erro-Player-Mesmo: "&cVocê não pode teleportar um player até ele mesmo!"
+Tp-Teleportado-Com-Sucesso-Player: "&aTeleportado com sucesso até %player%."
+Tp-Teleportado-Com-Sucesso-Cords: "&aTeleportado com sucesso até <x> <y> <z>."
+Tp-Voce-Teleportou-Player-Ate-Player: "&a%player% teleportado com sucesso até %alvo%."
+Tp-Voce-Teleportou-Player-Ate-Cords: "&a%player% teleportado com sucesso até <x> <y> <z>."
+Tphere-Comando-Incorreto: "&cComando incorreto, use /puxar <player>"
+Tphere-Erro-Voce-Mesmo: "&cVocê não pode puxar você mesmo!"
+Tphere-Puxou-Com-Sucesso: "&aVocê teleportou %player% até você."
+Tphere-Puxado-Com-Sucesso: "&aVocê foi puxado até %player%."
+Tpall-Comando-Incorreto: |
+  &cComando incorreto, use:
+  &c/tpall <player> &8-&7 Teleporta todos os players até um player.
+  &c/tpall <world> <x> <y> <z> &8-&7 Teleporta todos os players até uma cordenada.
+Tpall-Puxou-Com-Sucesso-Player: "&aVocê teleportou todos os players do servidor até %player%."
+Tpall-Puxou-Com-Sucesso-Cords: "&aVocê teleportou todos os players do servidor até as cordenadas <world> <x> <y> <z>."
+Tpa-Comando-Incorreto: "&cComando incorreto, use /tpa <player>"
+Tpa-Aguarde-Cooldown: "&cAguarde %tempo% para pode enviar outro tpa."
+Tpa-Desligado-Tptoggle: "&c%player% desativou o recebimento de tpa."
+Tpa-Ja-Possui-Solicitacao: "&cVocê já possui uma solicitação de teleporte pendente com %player%."
+Tpa-Solicitcao-Expirada-Player: "&cSolicitação de teleporte para %player% expirada."
+Tpa-Solicitcao-Expirada-Alvo: "&cSolicitação de teleporte de %player% expirada."
+Tpa-Solicitacao-Enviada-Sucesso: "&aSolicitiação de teleporte enviada para %player%."
+Tpa-Solicitacao-Recebida: |
+  &c  
+  &eVocê recebeu uma solicitação de teleporte de %player%.
+  &eUse &a/tpaccept&e para aceitar a solicitação.
+  &eUse &c/tpdeny&e para rejeitar a solicitação.
+  &c  
+Tpa-Pendente-Nao-Possui: "&cVocê não possui solicitações de tpa pendentes."
+Tpa-Pendente-Player-Nao-Possui: "&cVocê não possui nenhuma tpa pendente com %player%."
+Tpaccept-Comando-Incorreto: "&cComando incorreto, use /tpaccept <player>"
+Tpaccept-Player-Offline: "&cO player %player% que lhe enviou um tpa não está mais online."
+Tpaccept-Erro-Voce-Mesmo: "&cVocê não pode aceitar um tpa de você mesmo."
+Tpaccept-Solicitacao-Aceita-Sucesso: "&aSolicitiação de teleporte de %player% aceita."
+Tpaccept-Iniciando-Teleporte: |
+  &e%player% aceitou seu pedido de teleporte.
+  Iniciando teleporte em %tempo% segundos.
+Tpaccept-Teleportado-Com-sucesso: "&eTeleportado até %player%."
+Tpdeny-Comando-Incorreto: "&cComando incorreto, use /tpadeny <player>"
+Tpdeny-Erro-Voce-Mesmo: "&cVocê não poode negar um tpa de você mesmo."
+Tpdeny-Recusado-Com-Sucesso: "&cSolicitação de teleporta de %player% negada."
+Tpdeny-Recusou-Seu-Pedido: "&c%player% rejeitou sua solicitação de teleporte."
+Tpcancel-Comando-Incorreto: "&cComando incorreto, use /tpcancel <player>"
+Tpcancel-Erro-Voce-Mesmo: "&cVocê não poode cancelar um tpa para você mesmo."
+Tpcancel-Cancelado-Com-Sucesso: "&cSolicitação de teleporte cancelada com sucesso."
+Tpcancel-Cancelou-Pedido: "&c%player% cancelou a solicitação de teleporte."
+Tptoggle-Comando-Incorreto: "&cComando incorreto, use /tptoggle [on/off]"
+Tptoggle-Desativado-Com-Sucesso: "&aRecebimento de tpas habilitado."
+Tptoggle-Ja-Desativado: "&eSeu recebimento de tpas já esta &ahabilitado&e."
+Tptoggle-Ativado-Com-Sucesso: "&cRecebimento de tpas desabilitado."
+Tptoggle-Ja-Ativado: "&eSeu recebimento de tpas já esta &cdesabilitado&e."
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -110,10 +147,40 @@ Kit-Sem-Permissao: "&cVocê não tem permissão para pegar este kit."
 Kit-Criado: "&aKit '%kit%' criado com sucesso."
 Kit-Editado: "&aKit '%kit%' editado com sucesso."
 Kit-Deletado: "&aKit '%kit%' deletado com sucesso."
+Kit-Sem-Espaco-Pra-Pegar: "&cVocê não possui espaço suficiente no inventário para poder pegar este kit, por favor libere mais espaço e tente novamente."
 Kit-Pego: "&aKit '%kit%' adquirido com sucesso."
 Kit-Aguarde: "&cAguarde mais %tempo% para poder pegar este kit novamente."
 Nenhum-Kit-Criado: "&cNão há kits disponíveis."
 Kits-Lista: "&eKits disponíveis(%n%): &7%kits%"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                Sistema de MobSpawners                | #
+# +------------------------------------------------------+ #
+############################################################
+Inventario-Cheio-Quebrou: "&cVocê esta com seu inventário cheio! O gerador foi dropado no chão."
+Spawner-Bugado: "&cEste gerador esta com defeitos! Contate um staff do seu servidor para que ele poça lhe resolver este problema."
+Spawner-Givado: "&aSpawner de %tipo% givado com sucesso."
+Inventario-Cheio-Give: "&cVocê esta com seu inventário cheio! Libera mais espaço para poder pegar geradores."
+Sgive-Comando-Incorreto: "&cComando incorreto, use /sgive <player> <tipo> <quantia>"
+Spawner-Desconhecido: "&cTipo de Spawner desconhecido!\n&eLista de Spawners: %lista%."
+Nome-Do-MobSpawner: "&bGerador de Monstros"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   Sistema de Warps                   | #
+# +------------------------------------------------------+ #
+############################################################
+SetWarp-Comando-Incorreto: "&cComando incorreto, use /setwarp <warp>"
+DelWarp-Comando-Incorreto: "&cComando incorreto, use /delwarp <warp>"
+Warp-Comando-Incorreto: "&cComando incorreto, use /warp <warp>"
+Warp-Definida: "&aWarp '%warp%' definida com sucesso!"
+Warp-Deletada: "&aWarp '%warp%' deletada  com sucesso!"
+Warp-Ja-Existe: "&cA warp '%warp%' já existe!"
+Warp-Nao-Existe: "&cA warp '%warp%' não existe!"
+Nenhuma-Warp-Definida: "&cNão há warps disponíveis."
+Warps-Lista: "&eWarps disponíveis(%n%): &7%warps%"
+# O resto das mensagens do sistema de Warps esta dentro do arquivo da WARP.
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -144,6 +211,23 @@ Fly-Ja-Habilitado-Outro: "&eO modo fly de %player% já esta &ahabilitado&e!"
 Fly-Ja-Desabilitado-Voce: "&eO seu modo fly já esta &cdesabilitado&e!"
 Fly-Ja-Desabilitado-Outro: "&eO modo fly de %player% já esta &cdesabilitado&e!"
 Fly-Desabilitado-Neste-Mundo: "&cO modo fly não é permitido neste mundo!"
+Fly-Sem-Permissao-Outro: "&cVocê não tem permissão para alternar o fly de outros players."
+
+############################################################
+# +------------------------------------------------------+ #
+# |                     Comando /god                     | #
+# +------------------------------------------------------+ #
+############################################################
+God-Comando-Incorreto: "&cComando incorreto, use /god <player> [on/off]"
+God-Desabilitado-Voce: "&cModo god desabilitado com sucesso."
+God-Desabilitado-Outro: "&cModo god desabilitado com sucesso para %player%."
+God-Habilitado-Voce: "&aModo god habilitado com sucesso."
+God-Habilitado-Outro: "&aModo god habilitado com sucesso para %player%."
+God-Ja-Habilitado-Voce: "&eO seu modo god já esta &ahabilitado&e!"
+God-Ja-Habilitado-Outro: "&eO modo god de %player% já esta &ahabilitado&e!"
+God-Ja-Desabilitado-Voce: "&eO seu modo god já esta &cdesabilitado&e!"
+God-Ja-Desabilitado-Outro: "&eO modo god de %player% já esta &cdesabilitado&e!"
+God-Sem-Permissao-Outro: "&cVocê não tem permissão para alternar o god de outros players."
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -188,6 +272,28 @@ Editar-Item-Comando-Incorreto: |
   &c/editaritem addlore <frase> &8-&7 Adiciona uma linha de lore.
   &c/editaritem bugar &8-&7 Transforma o item no bloco quadriculado.
   &c/editaritem negativo &8-&7 Define a quantia do item para &c-1&7.
+
+
+############################################################
+# +------------------------------------------------------+ #
+# |                 Comando /feed e /heal                | #
+# +------------------------------------------------------+ #
+############################################################
+Fome-Level-Maximo: "&cVocê já está com seu nível máximo de fome."
+Vida-Level-Maximo: "&cVocê já está com seu nível máximo de vida."
+Fome-Regenerada-Com-Sucesso: "&aFome regenerada com sucesso."
+Vida-Regenerada-Com-Sucesso: "&aVida regenerada com sucesso."
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   Comando /speed                     | #
+# +------------------------------------------------------+ #
+############################################################
+Speed-Comando-Incorreto: "&cComando incorreto, use /speed <velocidade> [player]"
+Speed-Outro-Sem-Permissao: "&cVocê não tem permissão para alterar a velocidade de outros players."
+Speed-Alterado-Voce: "&aVelocidade alterada com sucesso para %speed%."
+Speed-Alterado-Outro: "&aVelocidade de %player% alterada com sucesso pada %speed%."
+Speed-Valor-Invalido: "&cVelocidade inválida! Você deve usar um valor entre &70 &ce &71 &ccomo por exemplo &70,5&c."
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -239,6 +345,16 @@ Skull-Enviada-Voce: "&aSkull de %dono% enviada para o seu inventário."
 Iniciando-Teleporte-Vip: "&eEm %tempo% segundos você ira para o mundo VIP."
 Teleportado-Com-Sucesso-Sem-Vip: "&cOpa, este é o mundo VIP. Para acessá-lo por completo adquira um VIP em nosso site: &ewww.gamersboard.com.br"
 Teleportado-Com-Sucesso-Vip: "&aBem vindo ao mundo VIP."
+
+############################################################
+# +------------------------------------------------------+ #
+# |                    Comando /sudo                     | #
+# +------------------------------------------------------+ #
+############################################################
+Sudo-Comando-Incorreto: "&cComando incorreto, use /sudo <player> /<comando>"
+Sudo-Executado-Com-Sucesso: |
+  &aSudo enviado com sucesso para %player%.
+  &aComando executado: %comando%
 
 ############################################################
 # +------------------------------------------------------+ #

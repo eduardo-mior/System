@@ -23,6 +23,7 @@
 #    | system.editaritem         - Permissão para utilizar o comando /editaritem                   |
 #    | system.editarkit          - Permissão para utilizar o comando /editarkit                    |
 #    | system.executarsom        - Permissão para utilizar o comando /executarsom                  |
+#    | system.feed               - Permissão para utilizar o comando /feed                         |
 #    | system.fly                - Permissão para utilizar o comando /fly                          |
 #    | system.fly.outros         - Permissão para ativar ou desativar o fly de outras pessoas      |
 #    | system.fly.staff          - Permissão para poder usar o fly em qualquer mundo               |
@@ -33,6 +34,9 @@
 #    | system.gamemode.adventure - Permissão para alterar o gamemode para adventure                |
 #    | system.gamemode.spectator - Permissão para alterar o gamemode para spectator                |
 #    | system.gamemode.all       - Permissão para poder entrar em qualquer gamemode                |
+#    | system.god                - Permissão para utilizar o comando /god                          |
+#    | system.god.outros         - Permissão para ativar ou desativar o god de outras pessoas      |
+#    | system.heal               - Permissão para utilizar o comando /heal                         |
 #    | system.home               - Permissão para utilizar o comando /home                         |
 #    | system.home.admin         - Permissão para ver e para se teleportar para homes privadas     |
 #    | system.homes.<quantia>    - Permissão para salvar uma quantia especificade homes            |
@@ -58,7 +62,18 @@
 #    | system.skull              - Permissão para utilizar o comando /skull                        |
 #    | system.slime              - Permissão para utilizar o comando /slime                        |
 #    | system.spawn              - Permissão para utilizar o comando /spawn                        |
+#    | system.speed              - Permissão para utilizar o comando /speed                        |
+#    | system.speed.outos        - Permissão para alterar a velocidade de outros players           |
+#    | system.sudo               - Permissão para utilizar o comando /sudo                         |
 #    | system.title              - Permissão para utilizar o comando /title                        |
+#    | system.tp                 - Permissão para utilizar o comando /tp                           |
+#    | system.tpa                - Permissão para utilizar o comando /tpa                          |
+#    | system.tpaccept           - Permissão para utilizar o comando /tpaccept                     |
+#    | system.tpall              - Permissão para utilizar o comando /tpall                        |
+#    | system.tpcancel           - Permissão para utilizar o comando /tpcancel                     |
+#    | system.tpdeny             - Permissão para utilizar o comando /tpdeny                       |
+#    | system.tphere             - Permissão para utilizar o comando /tphere                       |
+#    | system.tptoggle           - Permissão para utilizar o comando /tptoggle                     |
 #    | system.vip                - Permissão para acessar a Area VIP do comando /vip               |
 #    | system.warp               - Permissão para utilizar o comando /warp                         |
 #    | system.warps              - Permissão para utilizar o comando /warps                        |

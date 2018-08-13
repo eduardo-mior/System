@@ -1,7 +1,6 @@
 package rush.recursos.gerais;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashSet;
 
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,7 +16,7 @@ import rush.configuracoes.Settings;
 
 public class InvencibilidadeAoTeleportar implements Listener {
 
-	private List<String> protegidos = new ArrayList<>();
+	private HashSet<String> protegidos = new HashSet<>();
 
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void aoTeleportar(PlayerTeleportEvent e) {
@@ -28,7 +27,7 @@ public class InvencibilidadeAoTeleportar implements Listener {
 				public void run() {
 					protegidos.remove(e.getPlayer().getName());
 				}
-			}.runTaskLater(Main.aqui, 20 * Settings.Tempo_De_Invencibilidade_Ao_Teleportar);
+			}.runTaskLater(Main.get(), 20 * Settings.Tempo_De_Invencibilidade_Ao_Teleportar);
 		}
 	}
 

@@ -10,6 +10,8 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigInteger;
 
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.util.io.BukkitObjectInputStream;
@@ -53,9 +55,11 @@ public class Serializer {
 
             dataInput.close();
             return list;
-        } catch (Exception e) {
-            throw new IllegalStateException("Unable to load item stacks.", e);
+        } catch (ClassNotFoundException | IOException e) {
+        	e.printStackTrace();
         }
+    	
+		return null;
     }
 	
 	public static String serializeItemStack(ItemStack item) {
@@ -69,7 +73,6 @@ public class Serializer {
             Object nmsItemStack = ReflectionUtils.getOBClass("inventory.CraftItemStack").getMethod("asNMSCopy", ItemStack.class).invoke(null, item);
             ReflectionUtils.getNMSClass("ItemStack").getMethod("save", nbtTagCompoundClass).invoke(nmsItemStack, nbtTagCompound);
             ReflectionUtils.getNMSClass("NBTCompressedStreamTools").getMethod("a", nbtTagCompoundClass, DataOutput.class).invoke(null, nbtTagCompound, (DataOutput) dataOutput);
-
         } catch (SecurityException | NoSuchMethodException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException e) {
          	e.printStackTrace();
         }
@@ -97,9 +100,25 @@ public class Serializer {
             }
             
             dataOutput.close();
-            return Base64Coder.encodeLines(outputStream.toByteArray());
         } catch (IOException e) {
-            throw new IllegalStateException("Nao foi possivel salvar a lista de itens tack.", e);
+        	e.printStackTrace();
         }
-    } 	
+        
+        return Base64Coder.encodeLines(outputStream.toByteArray());
+    }
+    
+    public static String serializeLocation(Location l) {
+    	return l.getWorld().getName()+","+l.getX()+","+l.getY()+","+l.getZ()+","+l.getYaw()+","+l.getPitch();
+    }
+    
+    public static Location deserializeLocation(String s) {
+    	String[] locationSplitted = s.split(",");
+		return new Location(
+			   Bukkit.getWorld(locationSplitted[0]),
+			   Double.parseDouble(locationSplitted[1]),
+			   Double.parseDouble(locationSplitted[2]),
+			   Double.parseDouble(locationSplitted[3]),
+			   Float.parseFloat(locationSplitted[4]),
+			   Float.parseFloat(locationSplitted[5]));
+    }
 }

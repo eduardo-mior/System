@@ -44,7 +44,7 @@ public class ComandoDelhome implements CommandExecutor {
 		   	try {
 		   		config.save(file);
 		   	} catch (IOException e) {
-		   		Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("&", "§").replace("%arquivo%", file.getName()));
+		   		Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace('&', '§').replace("%arquivo%", file.getName()));
 		   	}
 		}
 		return false;

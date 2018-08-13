@@ -1,4 +1,4 @@
-package rush.api;
+package rush.apis;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
@@ -20,8 +20,8 @@ public class TablistAPI {
 			field.setAccessible(true);
 			field.set(packet, tabFooter);
 			ReflectionUtils.sendPacket(player, packet);
-		} catch (NoSuchMethodException | IllegalAccessException | NoSuchFieldException | InstantiationException | InvocationTargetException | SecurityException var8) {
-			var8.printStackTrace();
+		} catch (NoSuchMethodException | IllegalAccessException | NoSuchFieldException | InstantiationException | InvocationTargetException | SecurityException e) {
+			e.printStackTrace();
 		}
 	}	
 }

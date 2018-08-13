@@ -6,11 +6,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import rush.apis.TitleAPI;
 import rush.configuracoes.Mensagens;
 
 public class ComandoAlerta implements CommandExecutor {
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("alerta")) {	
@@ -23,21 +23,20 @@ public class ComandoAlerta implements CommandExecutor {
 
 			// Obtendo a mensagem digitada
 			String alerta = "";
-			for (int i = 0; i < args.length; i++) {	
-				alerta += args[i] + " ";
-			}
+			for (String str : args) {alerta += str + " ";}
+
 			
 			// Colocando cores na mensagem digitada
-			alerta = alerta.replaceAll("&", "§");
+			alerta = alerta.replace('&', '§');
 			
 			// Enviando a mensagem digita
-		    for (Player todos : Bukkit.getOnlinePlayers()) {	
-		    	todos.sendTitle(
+		    for (Player p : Bukkit.getOnlinePlayers()) {	
+		    	TitleAPI.sendTitle(p, 20, 60, 20,
     			Mensagens.Alerta_Title.replace("%alerta%", alerta).replace("%player%", s.getName()),
     			Mensagens.Alerta_SubTitle.replace("%alerta%", alerta).replace("%player%", s.getName()));
-    			todos.sendMessage("");
-    			todos.sendMessage(Mensagens.Alerta_Chat.replace("%alerta%", alerta).replace("%player%", s.getName()));
-    			todos.sendMessage("");
+    			p.sendMessage("");
+    			p.sendMessage(Mensagens.Alerta_Chat.replace("%alerta%", alerta).replace("%player%", s.getName()));
+    			p.sendMessage("");
 	    	}
 		}
 		return false;

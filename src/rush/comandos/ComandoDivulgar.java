@@ -6,11 +6,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import rush.apis.TitleAPI;
 import rush.configuracoes.Mensagens;
 
 public class ComandoDivulgar implements CommandExecutor {
 		
-	@SuppressWarnings("deprecation")	
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 	    if (cmd.getName().equalsIgnoreCase("divulgar")) {
@@ -34,10 +34,10 @@ public class ComandoDivulgar implements CommandExecutor {
 	        }
 		        	
 	        // Enviando um title para de aviso para todos os players do server
-	        for (Player todos : Bukkit.getOnlinePlayers()) {
-	        	todos.sendTitle(
-	                Mensagens.Divulgando_Title.replace("%link%", args[1]).replace("%player%", s.getName()),
-			        Mensagens.Divulgando_SubTitle.replace("%link%", args[1]).replace("%player%", s.getName()));
+	        for (Player p : Bukkit.getOnlinePlayers()) {
+	        	TitleAPI.sendTitle(p, 20, 60, 20,
+	            Mensagens.Divulgando_Title.replace("%link%", args[1]).replace("%player%", s.getName()),
+			    Mensagens.Divulgando_SubTitle.replace("%link%", args[1]).replace("%player%", s.getName()));
 	        }
 		        	
 	        // Caso a divulgação seja de uma live

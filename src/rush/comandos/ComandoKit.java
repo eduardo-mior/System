@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.Set;
 
 import org.bukkit.Bukkit;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -63,6 +64,14 @@ public class ComandoKit implements CommandExecutor {
 
 			// Verificando se o player já pegou este kit alguma vez na vida
 			if (!KITS.contains(nomeKit)) {
+				
+				// Verificando se o player tem espaço no inventario para pegar o kit
+				if (getFreeSpaceInInventory(p) < kit.getAmountItens()) {
+					s.sendMessage(Mensagens.Kit_Sem_Espaco_Pra_Pegar);
+					return false;
+				}
+				
+				// Adicionando os itens no inventario do player e salvando na config
 				configPlayer.set("Kits." + nomeKit, millisKit);
 				addItensToInventory(p, ITENS);
 				try {
@@ -83,6 +92,12 @@ public class ComandoKit implements CommandExecutor {
 				return false;
 			}
 
+			// Verificando se o player tem espaço no inventario para pegar o kit
+			if (getFreeSpaceInInventory(p) < kit.getAmountItens()) {
+				s.sendMessage(Mensagens.Kit_Sem_Espaco_Pra_Pegar);
+				return false;
+			}
+			
 			// Caso ele já possa pegar o kit novamente então o delay é setado e os itens são enviados para o player
 			configPlayer.set("Kits." + nomeKit, millisKit);
 			addItensToInventory(p, ITENS);
@@ -92,16 +107,25 @@ public class ComandoKit implements CommandExecutor {
 			} catch (IOException e) {
 				Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", filePlayer.getName()));
 			}
-			
 		}
 		return false;
 	}
 
-	private void addItensToInventory(Player p, ItemStack[] ITENS) {
+	// Método para adicionar os itens no inv do player
+	private void addItensToInventory(Player p, ItemStack[] itens) {
 		PlayerInventory inv = p.getInventory();
-		for (int i = 0; ITENS.length > i; i++) {
-			ItemStack item = ITENS[i];
+		for (ItemStack item : itens) {
 			if (item != null) inv.addItem(item);
 		}
+	}
+	
+	// Método para pegar o número de slots livres no inv do player
+	private int getFreeSpaceInInventory(Player p) {
+		int free = 0;
+		ItemStack[] itens = p.getInventory().getContents();
+		for (ItemStack item : itens) {
+			if (item == null || item.getType() == Material.AIR) free++;
+		}
+		return free;
 	}
 }

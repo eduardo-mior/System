@@ -21,14 +21,14 @@ public class KitsListener implements Listener {
 
 	@EventHandler
 	public void InventoryClose(InventoryCloseEvent e) {
-		if (e.getInventory().getName().contains("§0Criar Kit §n")) {
+		if (e.getInventory().getName().startsWith("§0Kit §n")) {
 			Inventory inv = e.getInventory();
 			Player p = (Player) e.getPlayer();
 			createKit(inv, p);
 			return;
 		}
 
-		if (e.getInventory().getName().contains("§0Editar Kit §n")) {
+		if (e.getInventory().getName().startsWith("§1Kit §n")) {
 			Inventory inv = e.getInventory();
 			Player p = (Player) e.getPlayer();
 			editKit(inv, p);
@@ -37,7 +37,7 @@ public class KitsListener implements Listener {
 	}
 
 	private void createKit(Inventory inv, Player p) {
-		String nome = inv.getName().substring(14, inv.getName().length());
+		String nome = inv.getName().substring(8, inv.getName().length());
 		String permissao = "system.kit." + nome;
 		String itens = Serializer.serializeListItemStack(inv.getContents());
 		Kit kit = new Kit(nome, permissao, 5, itens);
@@ -58,7 +58,7 @@ public class KitsListener implements Listener {
 	
 	private void editKit(Inventory inv, Player p) {
 		String itens = Serializer.serializeListItemStack(inv.getContents());
-		String nome = inv.getName().substring(15, inv.getName().length());
+		String nome = inv.getName().substring(8, inv.getName().length());
 		Kit kit = Kits.get(nome);
 		File file = DataManager.getFile(nome, "kits");
 		FileConfiguration config = DataManager.getConfiguration(file);

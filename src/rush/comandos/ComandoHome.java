@@ -3,7 +3,6 @@ package rush.comandos;
 import java.io.File;
 import java.util.Set;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -16,6 +15,7 @@ import rush.Main;
 import rush.configuracoes.Mensagens;
 import rush.configuracoes.Settings;
 import rush.utils.DataManager;
+import rush.utils.Serializer;
 
 public class ComandoHome implements CommandExecutor {
 	
@@ -82,32 +82,26 @@ public class ComandoHome implements CommandExecutor {
 		       	}
 		        
 		        // Pegando a localização da home
-				String[] locationSplitted = config.getString("Homes." + homeSplit[1] + ".Localizacao").split(",");
-			    Location location = new Location(
-			    		Bukkit.getWorld(locationSplitted[0]),
-			    		Double.parseDouble(locationSplitted[1]),
-			    		Double.parseDouble(locationSplitted[2]),
-			    		Double.parseDouble(locationSplitted[3]),
-			    		Float.parseFloat(locationSplitted[4]),
-			    		Float.parseFloat(locationSplitted[5]));
+				String locationSplitted = config.getString("Homes." + homeSplit[1] + ".Localizacao");
+			    Location location = Serializer.deserializeLocation(locationSplitted);
 				  
 			    // Teleportando o player para a home
 		    	if (!s.hasPermission("system.semdelay")) {
-		        	s.sendMessage(Mensagens.Home_Publica_Iniciando_Teleporte.replace("%home%", homeSplit[1]).replace("%tempo%", String.valueOf(delay)).replace("%player%", player));
+		        	s.sendMessage(Mensagens.Home_Publica_Iniciando_Teleporte.replace("%home%", homeSplit[1]).replace("%player%", player));
 		    		new BukkitRunnable() {
 		    			@Override
 		    			public void run() {
-				        	s.sendMessage(Mensagens.Home_Publica_Teleportado_Sucesso.replace("%home%", homeSplit[1]).replace("%player%", player));
-		    				p.teleport(location);
+		    				s.sendMessage(Mensagens.Home_Publica_Teleportado_Sucesso.replace("%home%", homeSplit[1]).replace("%player%", player));
+		    				p.teleport(location);		
 		    			}
-		    		}.runTaskLater(Main.aqui, 20 * delay);
+		    		}.runTaskLater(Main.get(), 20 * delay);
 		    		return false;
 		    	}
 			    	
+		    	// Caso o player não precise esperar o delay então...
 		    	s.sendMessage(Mensagens.Home_Publica_Teleportado_Sucesso.replace("%home%", homeSplit[1]).replace("%player%", player));
 		    	p.teleport(location);
 		    	return false;
-		    	
 		   	}
 		   	
 		   	/** Caso o argumento digitado não contenha ':' então significa que o player que se teleportar uma home privada */
@@ -126,25 +120,19 @@ public class ComandoHome implements CommandExecutor {
 		   	}
 		   		
 		   	// Pegando a localização da home
-		   	String[] locationSplitted = config.getString("Homes." + home + ".Localizacao").split(",");
-		   	Location location = new Location(
-		   			Bukkit.getWorld(locationSplitted[0]),
-		   			Double.parseDouble(locationSplitted[1]),
-		   			Double.parseDouble(locationSplitted[2]),
-		   			Double.parseDouble(locationSplitted[3]),
-		   			Float.parseFloat(locationSplitted[4]),
-		   			Float.parseFloat(locationSplitted[5]));
+		   	String locationSplitted = config.getString("Homes." + home + ".Localizacao");
+		    Location location = Serializer.deserializeLocation(locationSplitted);
 		   	
 		   	// Teleportando o player para a home
 		   	if (!s.hasPermission("system.semdelay")) {
-		   		s.sendMessage(Mensagens.Home_Privada_Iniciando_Teleporte.replace("%home%", home).replace("%tempo%", String.valueOf(delay)));
+		   		s.sendMessage(Mensagens.Home_Privada_Iniciando_Teleporte.replace("%home%", home));
 		   		new BukkitRunnable() {
 		   			@Override
 		   			public void run() {
 		   				s.sendMessage(Mensagens.Home_Privada_Teleportado_Sucesso.replace("%home%", home));
-		   				p.teleport(location);
+		   				p.teleport(location);	
 		   			}
-		   		}.runTaskLater(Main.aqui, 20 * delay);
+		   		}.runTaskLater(Main.get(), 20 * delay);
 		   		return false;
 		   	}
 			    	

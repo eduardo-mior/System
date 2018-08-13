@@ -77,7 +77,7 @@ public class ComandoClear implements CommandExecutor {
 				// Limpando o inventario do player
 				clearInventory(p);
 				s.sendMessage(
-						Mensagens.Clear_Inventario_Limpado_Outro.replace("&", "§").replace("%player%", p.getName()));
+						Mensagens.Clear_Inventario_Limpado_Outro.replace('&', '§').replace("%player%", p.getName()));
 				return false;
 			}
 
@@ -122,9 +122,8 @@ public class ComandoClear implements CommandExecutor {
 
 	// Método para limpar o inventario do player
 	/*
-	 * Nós poderiamos simplesmente usar inv.clear(), mas isto não limpa a armadura
-	 * e, também não limpa o item na mão do player caso ele estiver segundo no
-	 * inventario
+	 * Nós poderiamos simplesmente usar inv.clear(), mas isto não limpa a armadura e
+	 * também não limpa o item no cursor do player caso ele estiver segundo no inventario
 	 */
 	private void clearInventory(Player p) {
 		PlayerInventory inv = p.getInventory();

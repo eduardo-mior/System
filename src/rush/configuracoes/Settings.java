@@ -111,6 +111,10 @@ public class Settings {
 	public static boolean Ativar_Tablist;
 	public static String Parte_De_Cima;
 	public static String Parte_De_Baixo;
+	public static int Tempo_Para_Expirar_Solicitacao_Tpa;
+	public static int Tempo_Para_Poder_Enviar_Outra_Solicitacao_Tpa;
+	public static String Commando_Slime_Esta;
+	public static String Commando_Slime_Nao_esta;
 
 	public static void loadSettings() {
 		FileConfiguration config = ConfigManager.getConfig("settings");
@@ -171,12 +175,12 @@ public class Settings {
 		Mensagem_De_Boas_Vindas_Ativar = config.getBoolean("Mensagem-De-Boas-Vindas.Ativar");
 		Mensagem_De_Boas_Vindas_Mensagem = config.getStringList("Mensagem-De-Boas-Vindas.Mensagem");
 		Title_De_Boas_Vindas_Ativar = config.getBoolean("Title-De-Boas-Vindas.Ativar");
-		Title_De_Boas_Vindas_Titulo = config.getString("Title-De-Boas-Vindas.Titulo").replaceAll("&", "§");
-		Title_De_Boas_Vindas_Subtitulo = config.getString("Title-De-Boas-Vindas.Subtitulo").replaceAll("&", "§");
+		Title_De_Boas_Vindas_Titulo = config.getString("Title-De-Boas-Vindas.Titulo").replace('&', '§');
+		Title_De_Boas_Vindas_Subtitulo = config.getString("Title-De-Boas-Vindas.Subtitulo").replace('&', '§');
 		Ativar_Camarote_Para_Os_Sem_Vip = config.getBoolean("Ativar-Camarote-Para-Os-Sem-Vip");
 		Motd_Ativar = config.getBoolean("Motd.Ativar");
-		Motd_Linha1 = config.getString("Motd.Linha1").replaceAll("&", "§");
-		Motd_Linha2 = config.getString("Motd.Linha2").replaceAll("&", "§");
+		Motd_Linha1 = config.getString("Motd.Linha1").replace('&', '§');
+		Motd_Linha2 = config.getString("Motd.Linha2").replace('&', '§');
 		Bloquear_Comandos = config.getBoolean("Bloquear-Comandos");
 		Lista_Dos_Comandos_Bloqueados = config.getStringList("Lista-Dos-Comandos-Bloqueados");
 		Bloquear_Crafts = config.getBoolean("Bloquear-Crafts");
@@ -188,7 +192,7 @@ public class Settings {
 		Bloquear_Nicks_Improprios = config.getBoolean("Bloquear-Nicks-Improprios");
 		Nicks_Bloqueados = config.getStringList("Nicks-Bloqueados");
 		mcTopTag_Tempo_De_Checagem = config.getInt("mcTopTag.Tempo-De-Checagem");
-		mcTopTag_Tag = config.getString("mcTopTag.Tag").replaceAll("&", "§");
+		mcTopTag_Tag = config.getString("mcTopTag.Tag").replace('&', '§');
 		CorAutomatica_Cor1 = config.getString("CorAutomatica.Cor1");
 		CorAutomatica_Cor2 = config.getString("CorAutomatica.Cor2");
 		CorAutomatica_Cor3 = config.getString("CorAutomatica.Cor3");
@@ -207,16 +211,20 @@ public class Settings {
 		Lista_De_Anuncios = config.getStringList("Lista-De-Anuncios");
 		Anunciar_Morte = config.getBoolean("Anunciar-Morte");
 		Anuncios_Mostrar_Para_Quem_Morreu = config.getBoolean("Anuncios.Mostrar-Para-Quem-Morreu");
-		Anuncios_Mensagem_Para_Defunto = config.getString("Anuncios.Mensagem-Para-Defunto").replaceAll("&", "§");
+		Anuncios_Mensagem_Para_Defunto = config.getString("Anuncios.Mensagem-Para-Defunto").replace('&', '§');
 		Anuncios_Mostrar_Para_Quem_Matou = config.getBoolean("Anuncios.Mostrar-Para-Quem-Matou");
-		Anuncios_Mensagem_Para_Matador = config.getString("Anuncios.Mensagem-Para-Matador").replaceAll("&", "§");
+		Anuncios_Mensagem_Para_Matador = config.getString("Anuncios.Mensagem-Para-Matador").replace('&', '§');
 		Anuncios_Mostrar_Para_Todo_Servidor = config.getBoolean("Anuncios.Mostrar-Para-Todo-Servidor");
-		Anuncios_Mensagem_Para_Todos = config.getString("Anuncios.Mensagem-Para-Todos").replaceAll("&", "§");
+		Anuncios_Mensagem_Para_Todos = config.getString("Anuncios.Mensagem-Para-Todos").replace('&', '§');
 		ScoreBoard_Ativar = config.getBoolean("ScoreBoard.Ativar");
-		ScoreBoard_Titulo = config.getString("ScoreBoard.Titulo").replaceAll("&", "§");
+		ScoreBoard_Titulo = config.getString("ScoreBoard.Titulo").replace('&', '§');
 		ScoreBoard_Linhas = config.getStringList("ScoreBoard.Linhas");
 		Ativar_Tablist = config.getBoolean("Ativar-Tablist");
-		Parte_De_Cima = config.getString("Parte-De-Cima").replaceAll("&", "§");
-		Parte_De_Baixo = config.getString("Parte-De-Baixo").replaceAll("&", "§");
+		Parte_De_Cima = config.getString("Parte-De-Cima").replace('&', '§');
+		Parte_De_Baixo = config.getString("Parte-De-Baixo").replace('&', '§');
+		Tempo_Para_Expirar_Solicitacao_Tpa = config.getInt("Tempo-Para-Expirar-Solicitacao-Tpa");
+		Tempo_Para_Poder_Enviar_Outra_Solicitacao_Tpa = config.getInt("Tempo-Para-Poder-Enviar-Outra-Solicitacao-Tpa");
+		Commando_Slime_Esta = config.getString("Commando-Slime.Esta-Em-SlimeChunk");
+		Commando_Slime_Nao_esta = config.getString("Commando-Slime.Nao-Esta-Em-SlimeChunk");
 	}
 }
