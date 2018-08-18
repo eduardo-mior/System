@@ -8,7 +8,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockFromToEvent;
 
 public class DesativarFlowDaAguaELava implements Listener {
-
+	
+	/**
+	 * Powered by kickpost;
+	 */
+	
 	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	public void onWater(BlockFromToEvent e) {
 		if (   !e.getBlock().getType().equals(Material.WATER) 

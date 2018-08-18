@@ -18,13 +18,14 @@ public class ComandoLixo implements CommandExecutor {
 			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
 				s.sendMessage(Mensagens.Console_Nao_Pode); 
-				return false;
+				return true;
             }
 			
 			// Pegando o player, criando o inventario e abrindo o mesmo
 			Player p = (Player)s;
 			Inventory inv = Bukkit.getServer().createInventory(p, 36, Mensagens.Titulo_Da_Lixeira);
             p.openInventory(inv);
+			return true;
 		}
 		return false;
 	}

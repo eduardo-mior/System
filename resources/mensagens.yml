@@ -15,6 +15,7 @@ Mundo-Nao-Existe: "&cO mundo '%mundo%' não foi encontrado!"
 Falha-Ao-Criar-Arquivo: "&c[ERRO] Nao foi possivel criar o arquivo %arquivo%!"
 Falha-Ao-Criar-Pasta: "&c[ERRO] Nao foi possivel criar a pasta %pasta%!"
 Falha-Ao-Salvar: "&c[ERRO] Nao foi possivel salvar o arquivo %arquivo%!"
+Erro-Versao-Nao-Suportada: "&cDesculpe mas este recurso que você esta tentando usar não esta disponível na sua versão do minecraft."
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -231,10 +232,26 @@ God-Sem-Permissao-Outro: "&cVocê não tem permissão para alternar o god de out
 
 ############################################################
 # +------------------------------------------------------+ #
+# |                    Comando /vanish                   | #
+# +------------------------------------------------------+ #
+############################################################
+Vanish-Comando-Incorreto: "&cComando incorreto, use /vanish <player> [on/off]"
+Vanish-Desabilitado-Voce: "&cModo vanish desabilitado com sucesso."
+Vanish-Desabilitado-Outro: "&cModo vanish desabilitado com sucesso para %player%."
+Vanish-Habilitado-Voce: "&aModo vanish habilitado com sucesso."
+Vanish-Habilitado-Outro: "&aModo vanish habilitado com sucesso para %player%."
+Vanish-Ja-Habilitado-Voce: "&eO seu modo vanish já esta &ahabilitado&e!"
+Vanish-Ja-Habilitado-Outro: "&eO modo vanish de %player% já esta &ahabilitado&e!"
+Vanish-Ja-Desabilitado-Voce: "&eO seu modo vanish já esta &cdesabilitado&e!"
+Vanish-Ja-Desabilitado-Outro: "&eO modo vanish de %player% já esta &cdesabilitado&e!"
+Vanish-Sem-Permissao-Outro: "&cVocê não tem permissão para alternar o vanish de outros players."
+
+############################################################
+# +------------------------------------------------------+ #
 # |                  Comando /gamemode                   | #
 # +------------------------------------------------------+ #
 ############################################################
-Gamemode-Comando-Incorreto: "&cComando incorreto use, /gamemode <modo> [player]"
+Gamemode-Comando-Incorreto: "&cComando incorreto, use /gamemode <modo> [player]"
 Gamemode-Invalido: "&cO gamemode '%gm%' não é um gamemode valido."
 Gamemode-Ja-Esta-Outro: "&c%player% já esta no gamemode %gm%."
 Gamemode-Ja-Esta-Voce: "&cVocê já esta no gamemode %gm%."
@@ -283,6 +300,26 @@ Fome-Level-Maximo: "&cVocê já está com seu nível máximo de fome."
 Vida-Level-Maximo: "&cVocê já está com seu nível máximo de vida."
 Fome-Regenerada-Com-Sucesso: "&aFome regenerada com sucesso."
 Vida-Regenerada-Com-Sucesso: "&aVida regenerada com sucesso."
+
+############################################################
+# +------------------------------------------------------+ #
+# |                    Comando /potion                   | #
+# +------------------------------------------------------+ #
+############################################################
+Potion-Comando-Incorreto: "&cComando incorreto, use /potion <efeito> <duração> <nivel>"
+Potion-Efeito-Invalido: "&cO efeito '%effect%' não é um efeito valido.\n&eLista de efeitos: %lista%"
+Potion-Item-Invalido: "&cVocê deve estar segurando uma poção na mão para poder fazer isto."
+Potion-Editada-Sucesso: "&aPoção editada com sucesso."
+
+############################################################
+# +------------------------------------------------------+ #
+# |                  Comando /enchant                    | #
+# +------------------------------------------------------+ #
+############################################################
+Enchant-Comando-Incorreto: "&cComando incorreto, use /enchant <encantamento> <level>"
+Enchant-Encantamento-Invalido: "&cO encantamento '%enchant%' não é um encantamento valido.\n&eLista de encantamentos: %lista%"
+Enchant-Item-Invalido: "&cO item que você esta tentando encantar não é um item valido."
+Enchant-Encantado-Com-Sucesso: "&aItem encantado com sucesso."
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -517,3 +554,27 @@ Aviso-Que-O-Chat-Limpo-Global: "&aO chat foi limpo por %player%!"
 # +------------------------------------------------------+ #
 ############################################################
 mcMMO-Upou-100-Niveis: "&6&lHABILIDADES: &e%player% atingiu o &6nível %level% &ena habilidade de &6%skill%&e!"
+
+############################################################
+# +------------------------------------------------------+ #
+# |        Mensagem do Sistema de Homes Factions         | #
+# +------------------------------------------------------+ #
+############################################################
+Sem-Permissao-Teleportar: "&cVocê não pode se teleportar para este local pois ele esta protegido pela facção &f%faction%&c."
+Sem-Permissao-Sethome: "&cVocê não tem permissão para definir uma home neste local."
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   Comando /system                    | #
+# +------------------------------------------------------+ #
+############################################################
+System-Comando-Incorreto: |
+  &cComando incorreto, use:
+  &c/system reload &8-&7 Recarrega as configurações do plugin.
+  &c/system contato &8-&7 Mostra os contatos do desenvolvedor.
+  &c/system backup &8-&7 Faz um backup dos arquivos do plugin.
+  &c/system help <pag> &8-&7 Mostra a lista de comandos do plugin.
+Plugin-Recarregado-Sucesso: |
+  &aMensagens e configurações recarregadas com sucesso!
+  &7OBS: Algumas alterações só terão efeito quando o servidor for reinicializado.
+Backup-Com-Sucesso: "&aBackup realizado com sucesso! O backup foi criado dentro da pasta 'backups' na pasta principal do plugin."

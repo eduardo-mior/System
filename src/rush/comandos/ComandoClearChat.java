@@ -22,6 +22,7 @@ public class ComandoClearChat implements CommandExecutor {
 			if (Mensagens.Avisar_Que_O_Chat_Foi_Limpo) {
 				Bukkit.broadcastMessage(Mensagens.Aviso_Que_O_Chat_Limpo_Global.replace("%player%", s.getName()));
 			}
+			return true;
 		}
 		return false;
 	}

@@ -1,294 +1,7 @@
 main: rush.Main
 version: 1.0
 name: System
-softdepend: [Legendchat, mcMMO, MassiveCore]
-
-commands:
-  alerta:
-    description: Limpa o chat do servidor.
-    aliases: []
-    permission: system.alerta
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  back:
-    description: Volta ao local anterior do seu teleporte.
-    aliases: []
-    permission: system.back
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  chapeu:
-    description: Veste um chapeu.
-    aliases: [hat]
-    permission: system.chapeu
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  clear:
-    description: Limpa o seu inventario.
-    aliases: []
-    permission: system.clear
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  clearchat:
-    description: Limpa o chat do servidor.
-    aliases: []
-    permission: system.clearchat
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  compactar:
-    description: Compactar todos os itens do inventario.
-    aliases: [block, condense]
-    permission: system.compactar
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  cores:
-    description: Mostra a lista de cores do minecraft.
-    aliases: [colors]
-    permission: system.cores
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  craft:
-    description: Abre uma bancada de trabalho virtual.
-    aliases: [workbench]
-    permission: system.craft
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  crashar:
-    description: Crasha o minecraft de um player.
-    aliases: []
-    permission: system.crashar
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  criarkit:
-    description: Cria um kit.
-    aliases: [createkit]
-    permission: system.criarkit
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  delhome:
-    description: Deleta uma home.
-    aliases: []
-    permission: system.delhome
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  delkit:
-    description: Deleta um kit.
-    aliases: [apagarkit]
-    permission: system.delkit
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  delwarp:
-    description: Deleta uma warp.
-    aliases: []
-    permission: system.delwarp
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  derreter:
-    description: Derrete todos os minérios do inventario.
-    aliases: []
-    permission: system.derreter
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  divulgar:
-    description: Divulga um link no chat.
-    aliases: []
-    permission: system.divulgar
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  echest:
-    description: Abre o enderchest virtual.
-    aliases: [ec, enderchest]
-    permission: system.echest
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  editaritem:
-    description: Edita o item que esta na mão.
-    aliases: [renomear, lore]
-    permission: system.editaritem
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  editarkit:
-    description: Edita um kit criado.
-    aliases: [editkit]
-    permission: system.editarkit
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  executarsom:
-    description: Executa um som para um player ou para todo server.
-    aliases: [playsound, som]
-    permission: system.executarsom
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  feed:
-    description: Regenera toda sua fome.
-    aliases: [fome, comer]
-    permission: system.feed
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  fly:
-    description: Ativa ou desativa o modo fly.
-    aliases: [voar]
-    permission: system.fly
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  gamemode:
-    description: Altera o seu modo de jogo.
-    aliases: [gm]
-    permission: system.gamemode
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  god:
-    description: Ativa ou desativa o modo god.
-    aliases: [deus]
-    permission: system.god
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  heal:
-    description: Regenera toda sua vida.
-    aliases: [heal, curar]
-    permission: system.heal
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  home:
-    description: Teleporta até uma home.
-    aliases: []
-    permission: system.home
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  homes:
-    description: Mostra a lista de homes salvas.
-    aliases: []
-    permission: system.home
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  invsee:
-    description: Abre o inventario de um player.
-    aliases: [inv]
-    permission: system.invsee
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  kit:
-    description: Pega um kit.
-    aliases: []
-    permission: system.kit
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  kits:
-    description: Lista todos os kits disponiveis.
-    aliases: []
-    permission: system.kits
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  lixo:
-    description: Abre a lixeira virtual.
-    aliases: [lixeira]
-    permission: system.lixo
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  luz:
-    description: Liga e desliga a lanterna.
-    aliases: [lanterna]
-    permission: system.luz
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  mundovip:
-    description: Teleporta até o mundo vip.
-    aliases: [vip]
-    permission: system.mundovip
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  online:
-    description: Mostra a quantidade de players online no servidor.
-    aliases: []
-    permission: system.online
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  particular:
-    description: Define uma home como particular.
-    aliases: [privada]
-    permission: system.particular
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  ping:
-    description: Mostra o seu ping atual.
-    aliases: []
-    permission: system.ping
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  publica:
-    description: Define uma home como publica.
-    aliases: []
-    permission: system.publica
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  sethome:
-    description: Define uma home.
-    aliases: []
-    permission: system.sethome
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  setmundovip:
-    description: Define a mundo vip e não vip do servidor.
-    aliases: []
-    permission: system.setmundovip
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  setspawn:
-    description: Define o spawn do servidor.
-    aliases: []
-    permission: system.setspawn
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  setwarp:
-    description: Define uma warp.
-    aliases: []
-    permission: system.setwarp
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  sgive:
-    description: Envia geradores para um player.
-    aliases: [spawnergive]
-    permission: system.sgive
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  skull:
-    description: Pega a cabeça de um player.
-    aliases: [head, cabeca]
-    permission: system.skull
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  slime:
-    description: Verifica se você esta em uma slimechunk.
-    aliases: [slimechunk]
-    permission: system.slime
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  spawn:
-    description: Teleporta até o spawn.
-    aliases: []
-    permission: system.spawn
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  speed:
-    description: Altera a velocidade do andar e do voar.
-    aliases: []
-    permission: system.speed
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  sudo:
-    description: Executa um comando para um player.
-    aliases: []
-    permission: system.sudo
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  title:
-    description: Envia um title para um player ou para todo servidor.
-    aliases: [tm]
-    permission: system.title
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  tp:
-    description: Executa teleportes.
-    aliases: []
-    permission: system.tp
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  tpa:
-    description: Envia uma solicitação de teleporte.
-    aliases: []
-    permission: system.tpa
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  tpaccept:
-    description: Aceita uma solicitação de teleporte.
-    aliases: [tpaceitar]
-    permission: system.tpaccept
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  tpall:
-    description: Teleporta todos os players.
-    aliases: []
-    permission: system.tpall
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  tpcancel:
-    description: Cancela uma solicitação de teleporte enviada.
-    aliases: [tpcancelar]
-    permission: system.tpcancel
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  tpdeny:
-    description: Cancela uma solicitação de teleporte enviada.
-    aliases: [tpnegar]
-    permission: system.tpdeny
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  tphere:
-    description: Teleporta um player até você.
-    aliases: [puxar]
-    permission: system.tphere
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  tptoggle:
-    description: Desativa o recebimento de solicitações de teleporte.
-    aliases: [tpdesativar]
-    permission: system.tptoggle
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  warp:
-    description: Teleporta até uma warp.
-    aliases: []
-    permission: system.warp
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
-  warps:
-    description: Lista todas as warps disponiveis.
-    aliases: []
-    permission: system.warps
-    permission-message: "§cVocê não tem permissão para utilizar este comando."
+softdepend: [Legendchat, mcMMO, MassiveCore, Factions]
 
 permissions:
   system.alerta:
@@ -359,6 +72,9 @@ permissions:
     default: op
   system.editarkit: 
     description: Permissão para editar um kit criado.
+    default: op
+  system.enchant: 
+    description: Permissão para encantar um item usando /encantar.
     default: op
   system.executarsom:
     description: Permissão para enviar um som para um player ou para todo servidor.
@@ -447,6 +163,9 @@ permissions:
   system.ping:
     description: Permissão para ver o seu ping ou o ping de outro player.
     default: op
+  system.potion: 
+    description: Permissão para editar uma poção usando /potion.
+    default: op
   system.publica:
     description: Permissão para definir uma home como publica.
     default: op
@@ -483,6 +202,9 @@ permissions:
   system.sudo:
     description: Permissão para executar um comando para outro player.
     default: op
+  system.system:
+    description: Permissão para usar o comando gerenciador do plugin.
+    default: op
   system.title:
     description: Permissão para enviar um title para todo servidor.
     default: op
@@ -510,6 +232,12 @@ permissions:
   system.tptoggle:
     description: Permissão para desabilitar o recebimento de solicitações de teleporte.
     default: op
+  system.vanish:
+    description: Permissão para ativar ou desativar o seu modo vanish.
+    default: op
+  system.vanish.outros:
+    description: Permissão para ativar ou desativar o vanish de outras pessoas.
+    default: op
   system.vip:
     description: Permissão para se teleportar até a area vip.
     default: op
@@ -519,26 +247,6 @@ permissions:
   system.warps:
     description: Permissão para ver a lista de warps disponiveis.
     default: op
-  system.chat.cor1:
-    default: false
-  system.chat.cor2:
-    default: false
-  system.chat.cor3:
-    default: false
-  system.chat.cor4:
-    default: false
-  system.chat.cor5:
-    default: false
-  system.chat.cor6:
-    default: false
-  system.chat.cor7:
-    default: false
-  system.chat.cor8:
-    default: false
-  system.chat.cor9:
-    default: false
-  system.chat.cor10:
-    default: false
   system.chat.destaque:
     default: false
   system.bypass.comandobloqueado:
@@ -623,6 +331,7 @@ permissions:
       system.echest: true
       system.editaritem: true
       system.editarkit: true
+      system.enchant: true
       system.executarsom: true
       system.feed: true
       system.fly.outros: true
@@ -649,6 +358,7 @@ permissions:
       system.online: true
       system.particular: true
       system.ping: true
+      system.potion: true
       system.publica: true
       system.semdelay: true
       system.sethome: true
@@ -662,6 +372,7 @@ permissions:
       system.speed.outros: true
       system.speed: true
       system.sudo: true
+      system.system: true
       system.title: true
       system.tp: true
       system.tpa: true
@@ -671,6 +382,8 @@ permissions:
       system.tpdeny: true
       system.tphere: true
       system.tptoggle: true
+      system.vanish.outros: true
+      system.vanish: true
       system.vip: true
       system.warp: true
       system.warps: true

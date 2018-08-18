@@ -26,7 +26,7 @@ public class ComandoEditarkit implements CommandExecutor {
 			// Verificando se o player digitou o número de argumentos correto
 			if (args.length > 3  || args.length < 2) {
 		        s.sendMessage(Mensagens.EditarKit_Comando_Incorreto);
-		        return false;
+				return true;
 			}
 			
 			// Pegando o argumento e verificando se o kit existe
@@ -34,7 +34,7 @@ public class ComandoEditarkit implements CommandExecutor {
 			if (!Kits.contains(nome)) {
 		        s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit%", nome));
 		        ComandoKits.ListKits(s);
-		        return false;
+				return true;
 			}
 			
 			// Pegando o kit e a config do Kit
@@ -48,7 +48,7 @@ public class ComandoEditarkit implements CommandExecutor {
 				// Verificando se o sender não é o console
 				if (!(s instanceof Player)) {
 				    s.sendMessage(Mensagens.Console_Nao_Pode);
-				    return false;
+					return true;
 				}
 				
 				// Pegando o player e abrindo um inventarios com os itens, o resto é feito pela classe KitsListener
@@ -58,7 +58,7 @@ public class ComandoEditarkit implements CommandExecutor {
 		    		 if (item != null) inv.addItem(item);
 		    	}
 		    	p.openInventory(inv);
-		    	return false;
+				return true;
 			}
 			
 			// Verificando se o player quer editar o delay do kit
@@ -67,7 +67,7 @@ public class ComandoEditarkit implements CommandExecutor {
 				// Verificando se o player digitou o número de argumentos correto
 				if (args.length != 3) {
 			        s.sendMessage(Mensagens.EditarKit_Comando_Incorreto_Delay);
-			        return false;
+					return true;
 				}
 				
 				// Verificando se o número é um número valido
@@ -76,7 +76,7 @@ public class ComandoEditarkit implements CommandExecutor {
 	                delay = Long.parseLong(args[2]);
 	            } catch (NumberFormatException e) {
 	                s.sendMessage(Mensagens.Numero_Invalido.replace("%numero%", e.getMessage().split("\"")[1]));
-	                return false;
+	    			return true;
 	            }
 	            
 	            // Salvando os arquivos na config
@@ -88,7 +88,7 @@ public class ComandoEditarkit implements CommandExecutor {
 				} catch (IOException e) {
 					Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
 				}
-				return false;
+				return true;
 			}
 			
 			// Verificando se o player quer editar a permissão para pegar o kit
@@ -97,7 +97,7 @@ public class ComandoEditarkit implements CommandExecutor {
 				// Verificando se o player digitou o número de argumentos correto
 				if (args.length != 3) {
 			        s.sendMessage(Mensagens.EditarKit_Comando_Incorreto_Perm);
-			        return false;
+					return true;
 				}
 				
 	            // Salvando os arquivos na config
@@ -109,11 +109,12 @@ public class ComandoEditarkit implements CommandExecutor {
 				} catch (IOException e) {
 					Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
 				}
-				return false;
+				return true;
 			}
 			
 			// Caso nenhuma das opção acima for aceita sera dado como comando incorreto
 	        s.sendMessage(Mensagens.EditarKit_Comando_Incorreto);
+			return true;
 		}
 		return false;
 	}

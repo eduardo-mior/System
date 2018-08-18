@@ -8,9 +8,9 @@ import org.bukkit.entity.Player;
 
 import rush.configuracoes.Mensagens;
 
+@SuppressWarnings("all")
 public class ComandoSpeed implements CommandExecutor {
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("speed")) {
@@ -21,14 +21,14 @@ public class ComandoSpeed implements CommandExecutor {
 				// Verificando se o sender digitou o número de argumentos correto
 				if (args.length != 2) {
 					s.sendMessage(Mensagens.Speed_Comando_Incorreto);
-					return false;
+					return true;
 				}
 				
 				// Pegando o player e verificando se ele esta online
 				Player p = Bukkit.getPlayer(args[1]);
 				if (p == null) {
 					s.sendMessage(Mensagens.Player_Offline);
-					return false;
+					return true;
 				}
 
 				// Verificando se o número é um número valido
@@ -37,26 +37,26 @@ public class ComandoSpeed implements CommandExecutor {
 					speed = Float.parseFloat(args[0]);
 				} catch (NumberFormatException e) {
 					s.sendMessage(Mensagens.Numero_Invalido.replace("%numero%", e.getMessage().split("\"")[1]));
-					return false;
+					return true;
 				}
 
 				// Verificando se a velocidade é valida (necessario bukkit)
 				if (speed > 1.0f || speed < -1.0f) {
 					s.sendMessage(Mensagens.Speed_Valor_Invalido);
-					return false;
+					return true;
 				}
 				
 				// Setando o speed no player e informando
 				p.setFlySpeed(speed);
 				p.setWalkSpeed(speed);
 				p.sendMessage(Mensagens.Speed_Alterado_Outro.replace("%speed%", args[0]).replace("%player%", args[1]));
-			
+				return true;
 			}
 
 			// Verificando se o player digitou o número de argumentos correto
 			if (args.length < 1 || args.length > 2) {
 				s.sendMessage(Mensagens.Speed_Comando_Incorreto);
-				return false;
+				return true;
 			}
 
 			// Se o número de argumentos é 0 então a velocidade do sender é alterada
@@ -69,19 +69,20 @@ public class ComandoSpeed implements CommandExecutor {
 					speed = Float.parseFloat(args[0]);
 				} catch (NumberFormatException e) {
 					s.sendMessage(Mensagens.Numero_Invalido.replace("%numero%", e.getMessage().split("\"")[1]));
-					return false;
+					return true;
 				}
 
 				// Verificando se a velocidade é valida (necessario bukkit)
 				if (speed > 1.0f || speed < -1.0f) {
 					s.sendMessage(Mensagens.Speed_Valor_Invalido);
-					return false;
+					return true;
 				}
 				
 				// Setando o speed no player e informando
 				p.setFlySpeed(speed);
 				p.setWalkSpeed(speed);
 				p.sendMessage(Mensagens.Speed_Alterado_Voce.replace("%speed%", args[0]));
+				return true;
 			}
 
 			// Se o número de argumentos é 0 então a velocidade do sender é alterada
@@ -90,14 +91,14 @@ public class ComandoSpeed implements CommandExecutor {
 				// Verificando se o sender tem permisssão
 				if (!s.hasPermission("system.speed.outros")) {
 					s.sendMessage(Mensagens.Speed_Outro_Sem_Permissao);
-					return false;
+					return true;
 				}
 				
 				// Pegando o player e verificando se ele esta online
 				Player p = Bukkit.getPlayer(args[1]);
 				if (p == null) {
 					s.sendMessage(Mensagens.Player_Offline);
-					return false;
+					return true;
 				}
 
 				// Verificando se o número é um número valido
@@ -106,19 +107,20 @@ public class ComandoSpeed implements CommandExecutor {
 					speed = Float.parseFloat(args[0]);
 				} catch (NumberFormatException e) {
 					s.sendMessage(Mensagens.Numero_Invalido.replace("%numero%", e.getMessage().split("\"")[1]));
-					return false;
+					return true;
 				}
 
 				// Verificando se a velocidade é valida (necessario bukkit)
 				if (speed > 1.0f || speed < -1.0f) {
 					s.sendMessage(Mensagens.Speed_Valor_Invalido);
-					return false;
+					return true;
 				}
 				
 				// Setando o speed no player e informando
 				p.setFlySpeed(speed);
 				p.setWalkSpeed(speed);
 				p.sendMessage(Mensagens.Speed_Alterado_Outro.replace("%speed%", args[0]).replace("%player%", args[1]));
+				return true;
 			}
 		}
 		return false;

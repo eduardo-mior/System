@@ -4,6 +4,7 @@
 # +------------------------------------------------------+ #
 ############################################################
 AtivarAddons:
+  massiveFactions: true
   Legendchat: true
   mcMMO: true
 
@@ -237,18 +238,14 @@ mcTopTag:
 # +------------------------------------------------------+ #
 ############################################################
 CorAutomatica:
-  Cor1: "§6"
-  Cor2: "§4"
-  Cor3: "§c"
-  Cor4: "§2"
-  Cor5: "§e"
-  Cor6: "§a"
-  Cor7: "§b"
-  Cor8: "§3"
-  Cor9: "§d"
-  Cor10: "§f"
-  #Permissão para usar a cor automatica nas frases: system.chat.cor1 // system.chat.cor2 // etc...
+  master: "§6"
+  gerente: "§4"
+  admin: "§c"
+  vip1: "§2"
+  vip2: "§e"
   #Permissão para escrever em destaque no /g: system.chat.destaque
+  #Permissão para usar a cor automatica nas frases: system.chat.cor.<cor> 
+  #Exemplo: system.chat.cor.master system.chat.cor.vip1
 
 ############################################################
 # +------------------------------------------------------+ #

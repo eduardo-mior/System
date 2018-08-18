@@ -1,6 +1,5 @@
 package rush.apis;
 
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 
@@ -12,16 +11,23 @@ public class TablistAPI {
 
 	public static void sendTabList(Player player, String header, String footer) {
 		try {
-			Constructor<?> titleConstructor = ReflectionUtils.getNMSClass("PacketPlayOutPlayerListHeaderFooter").getConstructor(ReflectionUtils.getNMSClass("IChatBaseComponent"));
-			Object tabHeader = ReflectionUtils.getNMSClass("IChatBaseComponent").getDeclaredClasses()[0].getMethod("a", String.class).invoke(null, "{\"text\":\"" + header + "\"}");
-			Object tabFooter = ReflectionUtils.getNMSClass("IChatBaseComponent").getDeclaredClasses()[0].getMethod("a", String.class).invoke(null, "{\"text\":\"" + footer + "\"}");
-			Object packet = titleConstructor.newInstance(tabHeader);
-			Field field = packet.getClass().getDeclaredField("b");
-			field.setAccessible(true);
-			field.set(packet, tabFooter);
+			Class<?> icbc = ReflectionUtils.getNMSClass("IChatBaseComponent");
+			
+			Object packet = ReflectionUtils.getNMSClass("PacketPlayOutPlayerListHeaderFooter").newInstance();
+			Object tabHeader = icbc.getDeclaredClasses()[0].getMethod("a", String.class).invoke(null, "{\"text\":\"" + header + "\"}");
+			Object tabFooter = icbc.getDeclaredClasses()[0].getMethod("a", String.class).invoke(null, "{\"text\":\"" + footer + "\"}");
+			
+			Field headerField = packet.getClass().getDeclaredField("a");
+			headerField.setAccessible(true);
+			headerField.set(packet, tabHeader);
+	        
+			Field footerField = packet.getClass().getDeclaredField("b");
+			footerField.setAccessible(true);
+			footerField.set(packet, tabFooter);
+	        
 			ReflectionUtils.sendPacket(player, packet);
 		} catch (NoSuchMethodException | IllegalAccessException | NoSuchFieldException | InstantiationException | InvocationTargetException | SecurityException e) {
 			e.printStackTrace();
 		}
-	}	
+	}
 }

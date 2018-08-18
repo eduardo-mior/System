@@ -9,9 +9,9 @@ import org.bukkit.inventory.Inventory;
 
 import rush.configuracoes.Mensagens;
 
+@SuppressWarnings("all")
 public class ComandoEchest implements CommandExecutor {
 
-	@SuppressWarnings("deprecation")	
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("echest")) {
@@ -19,7 +19,7 @@ public class ComandoEchest implements CommandExecutor {
 			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
 				s.sendMessage(Mensagens.Console_Nao_Pode);
-				return false;
+				return true;
 			}
 			 
 			// Pegando o player
@@ -32,18 +32,19 @@ public class ComandoEchest implements CommandExecutor {
 				Player target = Bukkit.getPlayer(args[0]);
 				if (target == null) {
 					s.sendMessage(Mensagens.Player_Offline);
-					return false;
+					return true;
 				}
 				 
 				// Pegando o enderchest do player e abrindo
 				Inventory i = target.getEnderChest();
 				sender.openInventory(i);
-				return false;
+				return true;
 			}
 				 
 			// Caso a verificação acima não for valida o enderchest do player sera aberto
 			Inventory i = sender.getEnderChest();
 			sender.openInventory(i);
+			return true;
 		}
 		return false;
 	}

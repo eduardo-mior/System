@@ -21,7 +21,7 @@ public class ComandoSlime implements CommandExecutor {
 			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
 				s.sendMessage(Mensagens.Console_Nao_Pode); 
-				return false;
+				return true;
 			}
 		       
 			// Pegando o player e executando o arlgoritmo para verificar se é uma slime chunk
@@ -38,6 +38,7 @@ public class ComandoSlime implements CommandExecutor {
 				p.sendMessage(Mensagens.SlimeChunk_NaoEsta);
 				p.playSound(p.getLocation(), Sound.valueOf(Settings.Commando_Slime_Nao_esta), 1, 1);
 			}
+			return true;
 		}
 		return false;
 	}

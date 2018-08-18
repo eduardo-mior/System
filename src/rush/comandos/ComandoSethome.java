@@ -12,9 +12,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
+import rush.Main;
+import rush.addons.MassiveFactions;
 import rush.configuracoes.Mensagens;
 import rush.utils.DataManager;
-import rush.utils.Serializer;
 
 public class ComandoSethome implements CommandExecutor {
 	
@@ -25,13 +26,13 @@ public class ComandoSethome implements CommandExecutor {
 			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
 				s.sendMessage(Mensagens.Console_Nao_Pode); 
-				return false;
+				return true;
 			}
 					
 			// Verificando se o player digitou o número de argumentos corretos
 			if (args.length != 1) {
 				s.sendMessage(Mensagens.SetHome_Comando_Incorreto);
-				return false;
+				return true;
 			}
 				     
 			// Pegando o player, a home a ser deleta, o arquivo do player a config e alista de homes
@@ -46,12 +47,20 @@ public class ComandoSethome implements CommandExecutor {
 			int limite = getHomesLimit(p);
 			if (homes >= limite) {
 				s.sendMessage(Mensagens.Limite_De_Homes_Atingido.replace("%limite%", String.valueOf(limite)));
-				return false;
+				return true;
 			} 
 			
 			// Pegando a localização do player, serializando e salvando no arquivo
 			Location location = p.getLocation();
-			String locationSerialized = Serializer.serializeLocation(location);
+			
+			// Verificando se a compatibilidade com o factions
+			if (Main.setupFactions) {
+				if (!MassiveFactions.isValidSetHome(location, p)) {
+					return true;
+				}
+			}
+			
+			String locationSerialized = serializeLocation(location);
 			config.set("Homes." + home + ".Localizacao" , locationSerialized);
 			config.set("Homes." + home + ".Publica" , false);
 			try {
@@ -60,6 +69,7 @@ public class ComandoSethome implements CommandExecutor {
 			} catch (IOException e) {
 				Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
 			}
+			return true;
 		}
 		return false;
 	}
@@ -77,4 +87,8 @@ public class ComandoSethome implements CommandExecutor {
     		return 1;
     	}
 	}
+    
+    private String serializeLocation(Location l) {
+    	return l.getWorld().getName()+","+l.getX()+","+l.getY()+","+l.getZ()+","+l.getYaw()+","+l.getPitch();
+    }
 }

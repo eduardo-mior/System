@@ -22,7 +22,7 @@ public class ComandoDelhome implements CommandExecutor {
 			// Verificando se o player digitou o número de argumentos corretos
 			if (args.length != 1) {
 				s.sendMessage(Mensagens.DelHome_Comando_Incorreto);
-				return false;
+				return true;
 			} 
 		     
 			// Pegando a home, o arquivo da database do player e a lista de homes
@@ -35,7 +35,7 @@ public class ComandoDelhome implements CommandExecutor {
 		   	if (!HOMES.contains(home)) {
 		   		s.sendMessage(Mensagens.Home_Nao_Existe.replace("%home%", home));
 		   		ComandoHomes.ListHomes(s, s.getName());
-		   		return false;
+				return true;
 		   	}
 		   	
 		   	// Deletando a home e salvando e salvando a config
@@ -46,6 +46,7 @@ public class ComandoDelhome implements CommandExecutor {
 		   	} catch (IOException e) {
 		   		Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace('&', '§').replace("%arquivo%", file.getName()));
 		   	}
+			return true;
 		}
 		return false;
 	}

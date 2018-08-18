@@ -16,7 +16,7 @@ public class ComandoTptoggle extends Tpa implements CommandExecutor{
 			// Verificando se o player digitou o número de argumentos corretos
 			if (args.length > 1) {
 				s.sendMessage(Mensagens.Tptoggle_Comando_Incorreto);
-				return false;
+				return true;
 			}
 			
 			// Caso o número de argumentos for 0 então nós ligamos e desligamos automatico
@@ -32,7 +32,7 @@ public class ComandoTptoggle extends Tpa implements CommandExecutor{
 					toggles.add(s.getName());
 					s.sendMessage(Mensagens.Tptoggle_Ativado_Com_Sucesso);
 				}
-				return false;
+				return true;
 			}
 			
 			// Caso o número de argumentos for 0 então significa que ele quer ligar ou desligar
@@ -48,7 +48,7 @@ public class ComandoTptoggle extends Tpa implements CommandExecutor{
 						toggles.add(s.getName());
 						s.sendMessage(Mensagens.Tptoggle_Ativado_Com_Sucesso);
 					}
-					return false;
+					return true;
 				}
 				
 				// Caso o argumento for 'off' então verificamos se já esta desligado, caso contrario desligamos
@@ -59,12 +59,12 @@ public class ComandoTptoggle extends Tpa implements CommandExecutor{
 					} else {
 						s.sendMessage(Mensagens.Tptoggle_Ja_Desativado);
 					}
-					return false;
+					return true;
 				}	
 				
 				// Caso o argumento não for 'on' nem 'off' então é dado como comando incorreto
 				s.sendMessage(Mensagens.Tptoggle_Comando_Incorreto);
-				return false;
+				return true;
 			}
 		}
 		return false;

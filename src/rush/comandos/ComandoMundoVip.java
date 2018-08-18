@@ -20,7 +20,7 @@ public class ComandoMundoVip implements CommandExecutor {
 			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
 				s.sendMessage(Mensagens.Console_Nao_Pode); 
-				return false; 
+				return true;
 			}
 			
 			// Pegando o player e o delay para se teleportar
@@ -43,17 +43,18 @@ public class ComandoMundoVip implements CommandExecutor {
 		   	    			
 		   	    		}
 		   	    	}.runTaskLaterAsynchronously(Main.get(), 20 * delay);
-		   	    	return false;
+					return true;
 		   	    }
 		   	    
 		   	    // Caso o camarote para os sem vips não esteja habilitado então um erro é exibido
 		   	    s.sendMessage(Mensagens.Sem_Permissao);
-		   	    return false;
+				return true;
 			} 
 			
 			// Caso o player possua a permissão 'system.vip' este código sera executado
 		    s.sendMessage(Mensagens.Teleportado_Com_Sucesso_Vip);
-		    p.teleport(Locations.areaVip);     
+		    p.teleport(Locations.areaVip);    
+			return true;
 		}
 		return false;
 	}

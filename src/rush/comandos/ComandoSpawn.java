@@ -20,7 +20,7 @@ public class ComandoSpawn implements CommandExecutor {
 			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
 				s.sendMessage(Mensagens.Console_Nao_Pode); 
-				return false; 
+				return true;
 			}
 		       
 			// Pegando o player e verificando se ele possui permissão para se teleportar sem precisar esperar
@@ -34,12 +34,13 @@ public class ComandoSpawn implements CommandExecutor {
 						s.sendMessage(Mensagens.Teleportado_Com_Sucesso_Spawn);
 					}
 				}.runTaskLater(Main.get(), 20 * Settings.Delay_Para_Teleportar_Comandos);
-				return false;
+				return true;
 			}
 			
 			// Caso o player possui a permissão para se teleportar sem delay o código acima é ignorado
 			s.sendMessage(Mensagens.Teleportado_Com_Sucesso_Spawn);
 			p.teleport(Locations.spawn);
+			return true;
 		}
 		return false;
 	}

@@ -24,13 +24,13 @@ public class ComandoSetmundovip implements CommandExecutor {
 			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
 				s.sendMessage(Mensagens.Console_Nao_Pode); 
-				return false;
+				return true;
 			}
 					 
 			// Verificando se o player digitou o número de argumentos corretos
 			if (args.length != 1) {
 				s.sendMessage(Mensagens.Setmundovip_Comando_Incorreto);
-				return false;
+				return true;
 			}
 				     
 			// Pegando o player, a sua localização, o arquivo das locations e a config
@@ -58,7 +58,7 @@ public class ComandoSetmundovip implements CommandExecutor {
 				} catch (IOException e) {
 					Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", "locations.yml"));
 				}
-				return false;
+				return true;
 			}
 			 
 			// Verificando se o player quer definir a dos sem vips (areanaovip)
@@ -81,11 +81,12 @@ public class ComandoSetmundovip implements CommandExecutor {
 				} catch (IOException e) {
 					Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", "locations.yml"));
 				}
-				return false;
+				return true;
 			}
 			
 			// Caso o argumento digitado não for 'areavip' ou 'areanaovip' sera dado como comando incorreto
 			s.sendMessage(Mensagens.Setmundovip_Comando_Incorreto);
+			return true;
 		}
 		return false;
 	}

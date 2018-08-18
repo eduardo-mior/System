@@ -10,9 +10,9 @@ import org.bukkit.inventory.ItemStack;
 
 import rush.configuracoes.Settings;
 
+@SuppressWarnings("all")
 public class BloquearCrafts implements Listener {
 
-	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void aoPrepararCraft(PrepareItemCraftEvent e) {
 		Player p = (Player) e.getView().getPlayer();

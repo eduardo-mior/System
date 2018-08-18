@@ -10,9 +10,9 @@ import org.bukkit.entity.Player;
 
 import rush.configuracoes.Mensagens;
 
+@SuppressWarnings("all")
 public class ComandoTpall implements CommandExecutor {
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("tpall")) {
@@ -20,7 +20,7 @@ public class ComandoTpall implements CommandExecutor {
 			// Verificando se o player digitou o número de argumentos corretos
 			if (args.length != 1 && args.length != 4) {
 				s.sendMessage(Mensagens.Tpall_Comando_Incorreto);
-				return false;
+				return true;
 			}
 			
 			// Se os argumentos forem 1 então o sender quer teleportar todos até um player
@@ -30,7 +30,7 @@ public class ComandoTpall implements CommandExecutor {
 				Player p = Bukkit.getPlayer(args[0]);
 				if (p == null) {
 					s.sendMessage(Mensagens.Player_Offline);
-					return false;
+					return true;
 				}
 
 				//Teleportando todos os players e informando
@@ -39,9 +39,8 @@ public class ComandoTpall implements CommandExecutor {
 					target.sendMessage(Mensagens.Tphere_Puxado_Com_Sucesso.replace("%player%", s.getName()));
 				}
 				s.sendMessage(Mensagens.Tpall_Puxou_Com_Sucesso_Player);
-				return false;
+				return true;
 			}
-			
 			
 			// Se os argumentos foram 4 então o sender quer teleportar todos até uma cordenada
 			if (args.length == 4) {
@@ -50,7 +49,7 @@ public class ComandoTpall implements CommandExecutor {
 				World w = Bukkit.getWorld(args[0]);
 				if (w == null) {
 					s.sendMessage(Mensagens.Mundo_Nao_Existe.replace("%mundo%", args[1]));
-					return false;
+					return true;
 				}
 
 				// Verificando se os números digitados são validos
@@ -61,7 +60,7 @@ public class ComandoTpall implements CommandExecutor {
 					z = Double.parseDouble(args[3]);
 				} catch (NumberFormatException e) {
 					s.sendMessage(Mensagens.Numero_Invalido.replace("%numero%", e.getMessage().split("\"")[1]));
-					return false;
+					return true;
 				}
 
 				//Teleportando todos os players e informando
@@ -71,7 +70,7 @@ public class ComandoTpall implements CommandExecutor {
 					target.sendMessage(Mensagens.Tphere_Puxado_Com_Sucesso.replace("%player%", s.getName()));
 				}
 				s.sendMessage(Mensagens.Tpall_Puxou_Com_Sucesso_Player);
-				return false;
+				return true;
 			}
 		}
 		return false;

@@ -16,12 +16,13 @@ public class ComandoCraft implements CommandExecutor {
 			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
 				s.sendMessage(Mensagens.Console_Nao_Pode);
-				return false;
+				return true;
 			}
 
 			// Pegando o player abrindo a bancada de trabalho
 			Player p = (Player) s;
 			p.openWorkbench(p.getLocation(), true);
+			return true;
 		}
 		return false;
 	}

@@ -17,8 +17,8 @@ public class ReflectionUtils {
    		String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
    		try {
    			return Class.forName("net.minecraft.server." + version + "." + name);
-   		} catch (ClassNotFoundException var3) {
-   			var3.printStackTrace();
+   		} catch (ClassNotFoundException e) {
+   			e.printStackTrace();
    			return null;
    		}
    	}
@@ -27,8 +27,8 @@ public class ReflectionUtils {
    		String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
    		try {
    			return Class.forName("org.bukkit.craftbukkit." + version + "." + name);
-   		} catch (ClassNotFoundException var3) {
-   			var3.printStackTrace();
+   		} catch (ClassNotFoundException e) {
+   			e.printStackTrace();
    			return null;
    		}
    	}
@@ -38,8 +38,8 @@ public class ReflectionUtils {
    			Object entityPlayer = player.getClass().getMethod("getHandle").invoke(player);
    			Object playerConnection = entityPlayer.getClass().getField("playerConnection").get(entityPlayer);
    			playerConnection.getClass().getMethod("sendPacket", getNMSClass("Packet")).invoke(playerConnection, packet);
-   		} catch (SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | NoSuchFieldException var4) {
-   			var4.printStackTrace();
+   		} catch (SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | NoSuchFieldException e) {
+   			e.printStackTrace();
    		}
    	}
 }

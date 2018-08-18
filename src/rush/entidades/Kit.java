@@ -2,7 +2,9 @@ package rush.entidades;
 
 import org.bukkit.inventory.ItemStack;
 
+import rush.Main;
 import rush.utils.Serializer;
+import rush.utils.SerializerOLD;
 
 public class Kit {
 
@@ -13,7 +15,7 @@ public class Kit {
 	private int amountItens;
 	
 	public Kit(String nome, String permissao, long delay, String itens) {
-		ItemStack[] itensStack = Serializer.deserializeListItemStack(itens);
+		ItemStack[] itensStack = getItensByData(itens);
 		this.nome = nome;
 		this.permissao = permissao;
 		this.delay = delay;
@@ -64,6 +66,11 @@ public class Kit {
 			if (item != null) amount++;
 		}
 		return amount;
+	}
+	
+	private ItemStack[] getItensByData(String data) {
+		if (!Main.isOldVersion()) return Serializer.deserializeListItemStack(data);
+		else return SerializerOLD.deserializeListItemStack(data);
 	}
 
 	@Override

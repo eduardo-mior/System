@@ -18,6 +18,7 @@ public class ComandoKits implements CommandExecutor {
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("kits")) {
 			ListKits(s);
+			return true;
 		}
 		return false;
 	}

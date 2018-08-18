@@ -14,9 +14,9 @@ import org.bukkit.entity.Player;
 import rush.configuracoes.Mensagens;
 import rush.utils.ReflectionUtils;
 
+@SuppressWarnings("all")
 public class ComandoCrashar implements CommandExecutor {
 
-	@SuppressWarnings("deprecation")	
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("crashar")) {
@@ -31,12 +31,13 @@ public class ComandoCrashar implements CommandExecutor {
 			Player p = Bukkit.getPlayer(args[0]);
 			if (p == null) {
 				s.sendMessage(Mensagens.Player_Offline);
-				return false;
+				return true;
 			}
 			
 			// Chamando o metodo que crasha o player e enviando a mensagem.
 			crashPlayer(p);
-			s.sendMessage(Mensagens.Crashado_Com_Sucesso.replace("%player%", args[0]).replace('&', '§'));			
+			s.sendMessage(Mensagens.Crashado_Com_Sucesso.replace("%player%", args[0]).replace('&', '§'));
+			return true;
 		}
 		return false;
 	}

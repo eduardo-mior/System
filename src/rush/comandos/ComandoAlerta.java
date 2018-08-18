@@ -13,18 +13,17 @@ public class ComandoAlerta implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("alerta")) {	
+		if (cmd.getName().equalsIgnoreCase("alerta")) {
 			
 			// Verificando se o player digitou uma mensagem
 			if (args.length < 1) { 
 				s.sendMessage(Mensagens.Alerta_Comando_Incorreto);
-				return false;
+				return true;
 			}
 
 			// Obtendo a mensagem digitada
 			String alerta = "";
 			for (String str : args) {alerta += str + " ";}
-
 			
 			// Colocando cores na mensagem digitada
 			alerta = alerta.replace('&', '§');
@@ -38,6 +37,7 @@ public class ComandoAlerta implements CommandExecutor {
     			p.sendMessage(Mensagens.Alerta_Chat.replace("%alerta%", alerta).replace("%player%", s.getName()));
     			p.sendMessage("");
 	    	}
+			return true;
 		}
 		return false;
 	}

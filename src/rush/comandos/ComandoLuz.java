@@ -13,7 +13,7 @@ import rush.configuracoes.Mensagens;
 
 public class ComandoLuz implements CommandExecutor {
 	
-	private HashSet<String> luz = new HashSet<>();
+	private HashSet<Player> luz = new HashSet<>();
 	
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
@@ -22,20 +22,21 @@ public class ComandoLuz implements CommandExecutor {
 			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
 				s.sendMessage(Mensagens.Console_Nao_Pode); 
-				return false;
+				return true;
 			}
 	       
 			// Pegando o player e verificando se ele já esta com a luz ativada
 			Player p = (Player)s;
-			if (luz.contains(p.getName())) {
-				luz.remove(p.getName());
+			if (luz.contains(p)) {
+				luz.remove(p);
 				p.removePotionEffect(PotionEffectType.NIGHT_VISION);
 				p.sendMessage(Mensagens.Luz_Desativada);
 			} else {
-				luz.add(p.getName());
+				luz.add(p);
 				p.addPotionEffect(new PotionEffect(PotionEffectType.NIGHT_VISION, 99999, 5, true));
 				p.sendMessage(Mensagens.Luz_Ativada);	
 			}
+			return true;
 		}
 		return false;
 	}

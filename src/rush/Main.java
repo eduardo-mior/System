@@ -9,11 +9,13 @@ import org.bukkit.plugin.java.JavaPlugin;
 import rush.addons.LegendChat;
 import rush.addons.McMMO;
 import rush.comandos.ComandoAlerta;
+import rush.comandos.ComandoAlertaOLD;
 import rush.comandos.ComandoBack;
 import rush.comandos.ComandoChapeu;
 import rush.comandos.ComandoClear;
 import rush.comandos.ComandoClearChat;
 import rush.comandos.ComandoCompactar;
+import rush.comandos.ComandoCompactarOLD;
 import rush.comandos.ComandoCores;
 import rush.comandos.ComandoCraft;
 import rush.comandos.ComandoCrashar;
@@ -23,9 +25,12 @@ import rush.comandos.ComandoDelkit;
 import rush.comandos.ComandoDelwarp;
 import rush.comandos.ComandoDerreter;
 import rush.comandos.ComandoDivulgar;
+import rush.comandos.ComandoDivulgarOLD;
 import rush.comandos.ComandoEchest;
 import rush.comandos.ComandoEditaritem;
+import rush.comandos.ComandoEditaritemOLD;
 import rush.comandos.ComandoEditarkit;
+import rush.comandos.ComandoEnchant;
 import rush.comandos.ComandoExecutarSom;
 import rush.comandos.ComandoFeed;
 import rush.comandos.ComandoFly;
@@ -43,6 +48,7 @@ import rush.comandos.ComandoMundoVip;
 import rush.comandos.ComandoOnline;
 import rush.comandos.ComandoParticular;
 import rush.comandos.ComandoPing;
+import rush.comandos.ComandoPotion;
 import rush.comandos.ComandoPublica;
 import rush.comandos.ComandoSGive;
 import rush.comandos.ComandoSethome;
@@ -54,6 +60,7 @@ import rush.comandos.ComandoSlime;
 import rush.comandos.ComandoSpawn;
 import rush.comandos.ComandoSpeed;
 import rush.comandos.ComandoSudo;
+import rush.comandos.ComandoSystem;
 import rush.comandos.ComandoTitle;
 import rush.comandos.ComandoTp;
 import rush.comandos.ComandoTpa;
@@ -63,11 +70,14 @@ import rush.comandos.ComandoTpcancel;
 import rush.comandos.ComandoTpdeny;
 import rush.comandos.ComandoTphere;
 import rush.comandos.ComandoTptoggle;
+import rush.comandos.ComandoVanish;
 import rush.comandos.ComandoWarp;
+import rush.comandos.ComandoWarpOLD;
 import rush.comandos.ComandoWarps;
 import rush.configuracoes.Locations;
 import rush.configuracoes.Mensagens;
 import rush.configuracoes.Settings;
+import rush.entidades.Command;
 import rush.entidades.Kits;
 import rush.recursos.bloqueadores.BloquearAbrirContainers;
 import rush.recursos.bloqueadores.BloquearCairNoVoid;
@@ -116,8 +126,11 @@ import rush.sistemas.comandos.EnderChestListener;
 import rush.sistemas.comandos.FlyListener;
 import rush.sistemas.comandos.InvseeListener;
 import rush.sistemas.comandos.KitsListener;
+import rush.sistemas.comandos.KitsListenerOLD;
+import rush.sistemas.comandos.VanishListener;
 import rush.sistemas.gerais.AnunciarMorte;
 import rush.sistemas.gerais.AutoAnuncio;
+import rush.sistemas.gerais.AutoAnuncioOLD;
 import rush.sistemas.gerais.DroparCabecaAoMorrer;
 import rush.sistemas.gerais.Motd;
 import rush.sistemas.gerais.PlayerData;
@@ -132,7 +145,11 @@ import rush.utils.DataManager;
 public class Main extends JavaPlugin implements Listener {
 
    private static Main main;
-
+   private boolean serverIs_1_7 = false;
+   private boolean serverIs_1_5 = false;
+   private boolean serverIs_1_13 = false;
+   public static boolean setupFactions;
+   
    @Override
    public void onEnable() {
 	   enablePlugin();
@@ -145,19 +162,22 @@ public class Main extends JavaPlugin implements Listener {
    @Override
    public void onDisable() {
 	   desativarRecursos();
+	   desativarComandos();
    }
    
    private void enablePlugin() {
 	   main = this;
+	   checkServerVersion();
    }
    
    private void gerarConfigs() {
 	   DataManager.createFolder("kits");
 	   DataManager.createFolder("warps");
 	   DataManager.createFolder("playerdata");
+	   ConfigManager.createConfig("comandos");
 	   ConfigManager.createConfig("settings");
 	   ConfigManager.createConfig("mensagens");
-	   ConfigManager.createConfig("permissions");
+	   ConfigManager.createConfig("ajuda");
 	   ConfigManager.createConfig("locations");
    }
    
@@ -169,63 +189,76 @@ public class Main extends JavaPlugin implements Listener {
    }
    
    private void registrarComandos() {
-	   getCommand("alerta").setExecutor(new ComandoAlerta());
-	   getCommand("back").setExecutor(new ComandoBack());
-	   getCommand("chapeu").setExecutor(new ComandoChapeu()); 
-	   getCommand("clear").setExecutor(new ComandoClear()); 
-	   getCommand("clearchat").setExecutor(new ComandoClearChat()); 
-	   getCommand("compactar").setExecutor(new ComandoCompactar());
-	   getCommand("cores").setExecutor(new ComandoCores());
-	   getCommand("craft").setExecutor(new ComandoCraft());
-	   getCommand("crashar").setExecutor(new ComandoCrashar());
-	   getCommand("criarkit").setExecutor(new ComandoCriarkit());
-	   getCommand("delhome").setExecutor(new ComandoDelhome());
-	   getCommand("delkit").setExecutor(new ComandoDelkit()); 
-	   getCommand("delwarp").setExecutor(new ComandoDelwarp()); 
-	   getCommand("derreter").setExecutor(new ComandoDerreter());
-	   getCommand("divulgar").setExecutor(new ComandoDivulgar()); 
-	   getCommand("echest").setExecutor(new ComandoEchest());
-	   getCommand("editaritem").setExecutor(new ComandoEditaritem());
-	   getCommand("editarkit").setExecutor(new ComandoEditarkit());
-	   getCommand("executarsom").setExecutor(new ComandoExecutarSom());
-	   getCommand("feed").setExecutor(new ComandoFeed());
-	   getCommand("fly").setExecutor(new ComandoFly());
-	   getCommand("gamemode").setExecutor(new ComandoGamemode());
-	   getCommand("god").setExecutor(new ComandoGod());
-	   getCommand("heal").setExecutor(new ComandoHeal());
-	   getCommand("home").setExecutor(new ComandoHome());
-	   getCommand("homes").setExecutor(new ComandoHomes());
-	   getCommand("invsee").setExecutor(new ComandoInvsee());
-	   getCommand("kit").setExecutor(new ComandoKit());
-	   getCommand("kits").setExecutor(new ComandoKits());
-	   getCommand("lixo").setExecutor(new ComandoLixo());
-	   getCommand("luz").setExecutor(new ComandoLuz());
-	   getCommand("mundovip").setExecutor(new ComandoMundoVip()); 
-	   getCommand("online").setExecutor(new ComandoOnline()); 
-	   getCommand("particular").setExecutor(new ComandoParticular());
-	   getCommand("ping").setExecutor(new ComandoPing());
-	   getCommand("publica").setExecutor(new ComandoPublica());
-	   getCommand("sethome").setExecutor(new ComandoSethome()); 
-	   getCommand("setmundovip").setExecutor(new ComandoSetmundovip()); 
-	   getCommand("setspawn").setExecutor(new ComandoSetspawn()); 
-	   getCommand("setwarp").setExecutor(new ComandoSetwarp()); 
-	   getCommand("sgive").setExecutor(new ComandoSGive());
-	   getCommand("skull").setExecutor(new ComandoSkull()); 
-	   getCommand("slime").setExecutor(new ComandoSlime());
-	   getCommand("spawn").setExecutor(new ComandoSpawn());
-	   getCommand("speed").setExecutor(new ComandoSpeed()); 
-	   getCommand("sudo").setExecutor(new ComandoSudo()); 
-	   getCommand("title").setExecutor(new ComandoTitle()); 
-	   getCommand("tp").setExecutor(new ComandoTp());
-	   getCommand("tpa").setExecutor(new ComandoTpa());
-	   getCommand("tpaccept").setExecutor(new ComandoTpaccept());
-	   getCommand("tpall").setExecutor(new ComandoTpall());
-	   getCommand("tpcancel").setExecutor(new ComandoTpcancel());
-	   getCommand("tpdeny").setExecutor(new ComandoTpdeny());
-	   getCommand("tphere").setExecutor(new ComandoTphere()); 
-	   getCommand("tptoggle").setExecutor(new ComandoTptoggle()); 
-	   getCommand("warp").setExecutor(new ComandoWarp()); 
-	   getCommand("warps").setExecutor(new ComandoWarps());
+	   new Command("back", "system.back", new ComandoBack());
+	   new Command("chapeu", "system.chapeu", new ComandoChapeu());
+	   new Command("clear", "system.clear", new ComandoClear());
+	   new Command("clearchat", "system.clearchat", new ComandoClearChat());
+	   new Command("cores", "system.cores", new ComandoCores());
+	   new Command("craft", "system.craft", new ComandoCraft());
+	   new Command("crashar", "system.crashar", new ComandoCrashar());
+	   new Command("criarkit", "system.criarkit", new ComandoCriarkit());
+	   new Command("delhome", "system.delhome", new ComandoDelhome());
+	   new Command("delkit", "system.delkit", new ComandoDelkit());
+	   new Command("delwarp", "system.delwarp", new ComandoDelwarp());
+	   new Command("derreter", "system.derreter" , new ComandoDerreter());
+	   new Command("echest", "system.echest" , new ComandoEchest());
+	   new Command("editarkit", "system.editarkit", new ComandoEditarkit());
+	   new Command("enchant", "system.enchant", new ComandoEnchant());
+	   new Command("feed", "system.feed", new ComandoFeed());
+	   new Command("fly", "system.fly", new ComandoFly());
+	   new Command("gamemode", "system.gamemode", new ComandoGamemode());
+	   new Command("god", "system.god", new ComandoGod());
+	   new Command("heal", "system.heal", new ComandoHeal());
+	   new Command("home", "system.home", new ComandoHome());
+	   new Command("homes", "system.home", new ComandoHomes());
+	   new Command("invsee", "system.invsee", new ComandoInvsee());
+	   new Command("kit", "system.kit", new ComandoKit());
+	   new Command("kits", "system.kits", new ComandoKits());
+	   new Command("lixo", "system.lixo", new ComandoLixo());
+	   new Command("luz", "system.luz", new ComandoLuz());
+	   new Command("mundovip", "system.mundovip", new ComandoMundoVip()); 
+	   new Command("particular", "system.particular", new ComandoParticular());
+	   new Command("ping", "system.ping", new ComandoPing());
+	   new Command("potion", "system.potion", new ComandoPotion());
+	   new Command("publica", "system.publica", new ComandoPublica());
+	   new Command("sethome", "system.sethome", new ComandoSethome()); 
+	   new Command("setmundovip", "system.setmundovip", new ComandoSetmundovip()); 
+	   new Command("setspawn", "system.setspawn", new ComandoSetspawn()); 
+	   new Command("setwarp", "system.setwarp", new ComandoSetwarp()); 
+	   new Command("sgive", "system.sgive", new ComandoSGive());
+	   new Command("skull", "system.skull", new ComandoSkull()); 
+	   new Command("slime", "system.slime", new ComandoSlime());
+	   new Command("spawn", "system.spawn", new ComandoSpawn());
+	   new Command("speed", "system.speed", new ComandoSpeed()); 
+	   new Command("sudo", "system.sudo", new ComandoSudo()); 
+	   new Command("system", "system.system", new ComandoSystem()); 
+	   new Command("tp", "system.tp", new ComandoTp());
+	   new Command("tpa", "system.tpa", new ComandoTpa());
+	   new Command("tpaccept", "system.tpaccept", new ComandoTpaccept());
+	   new Command("tpall", "system.tpall", new ComandoTpall());
+	   new Command("tpcancel", "system.tpcancel", new ComandoTpcancel());
+	   new Command("tpdeny", "system.tpdeny", new ComandoTpdeny());
+	   new Command("tphere", "system.tphere", new ComandoTphere()); 
+	   new Command("tptoggle", "system.tptoggle", new ComandoTptoggle()); 
+	   new Command("warps", "system.warps", new ComandoWarps());
+	   
+	   if (serverIs_1_5 || serverIs_1_7) {
+	   new Command("alerta", "system.alerta", new ComandoAlertaOLD());
+	   new Command("compactar", "system.compactar", new ComandoCompactarOLD());
+	   new Command("divulgar", "system.divulgar", new ComandoDivulgarOLD()); 
+	   new Command("editaritem", "system.editaritem", new ComandoEditaritemOLD());
+	   new Command("warp", "system.warp", new ComandoWarpOLD()); 
+	   } else {
+	   new Command("alerta", "system.alerta", new ComandoAlerta());
+	   new Command("compactar", "system.compactar", new ComandoCompactar());
+	   new Command("divulgar", "system.divulgar", new ComandoDivulgar()); 
+	   new Command("editaritem", "system.editaritem", new ComandoEditaritem());
+	   new Command("executarsom", "system.executarsom", new ComandoExecutarSom());
+	   new Command("online", "system.online", new ComandoOnline()); 
+	   new Command("title", "system.title", new ComandoTitle());
+	   new Command("vanish", "system.vanish", new ComandoVanish());
+	   new Command("warp", "system.warp", new ComandoWarp()); 
+	   }
    }
 	
    private void registrarEventos() {
@@ -241,7 +274,8 @@ public class Main extends JavaPlugin implements Listener {
 	   pm.registerEvents(new CoresNaPlaca(), this);}
 	   
 	   if (Settings.Auto_Anuncio){
-	   AutoAnuncio.runMensagens();}
+	   if (serverIs_1_5 || serverIs_1_7) AutoAnuncioOLD.runMensagens();
+	   else AutoAnuncio.runMensagens();}
 	   	
 	   if (Settings.Bigorna_Infinita){
 	   pm.registerEvents(new BigornaInfinita(), this);}
@@ -271,7 +305,8 @@ public class Main extends JavaPlugin implements Listener {
 	   pm.registerEvents(new BloquearDerreterGeloENeve(), this);}
 	   
 	   if (Settings.Bloquear_NameTag){
-	   pm.registerEvents(new BloquearNameTag(), this);}
+	   if (!serverIs_1_5) {
+	   pm.registerEvents(new BloquearNameTag(), this);}}
 	   
 	   if (Settings.Bloquear_Nicks_Improprios){
 	   pm.registerEvents(new BloquearNicksImproprios(), this);}
@@ -283,7 +318,8 @@ public class Main extends JavaPlugin implements Listener {
 	   pm.registerEvents(new BloquearMoneyInvalido(), this);}
 	   
 	   if (Settings.Bloquear_Passar_Da_Borda){
-	   pm.registerEvents(new BloquearPassarDaBorda(), this);}
+	   if (!serverIs_1_5 && !serverIs_1_7) {
+	   pm.registerEvents(new BloquearPassarDaBorda(), this);}}
 	   
 	   if (Settings.Bloquear_Palavras_Em_Placas_Ativar){
 	   pm.registerEvents(new BloquearPlacas(), this);}
@@ -301,13 +337,14 @@ public class Main extends JavaPlugin implements Listener {
 	   pm.registerEvents(new BloquearTeleportPorPortal(), this);}
 	   
 	   if (Settings.Bloquear_Trocar_Tipo_Do_Spawner_Com_Ovo){
-	   pm.registerEvents(new BloquearTrocarTipoDoSpawnerComOvo(), this);}
+	   if (!serverIs_1_13){
+	   pm.registerEvents(new BloquearTrocarTipoDoSpawnerComOvo(), this);}}
 	   
 	   if (Settings.Desativar_Chuva){
 	   pm.registerEvents(new DesativarChuva(), this);}
 	   
 	   if (Settings.Desativar_Ciclo_Do_Dia){
-	   DesativarCicloDoDia.stopDaylightCycle() ;}
+	   DesativarCicloDoDia.stopDaylightCycle();}
 	   
 	   if (Settings.Desativar_Dano_Do_EnderDragon){
 	   pm.registerEvents(new DesativarDanoDoEnderDragon(), this);}
@@ -346,10 +383,12 @@ public class Main extends JavaPlugin implements Listener {
 	   pm.registerEvents(new DroparCabecaAoMorrer(), this);}
 	   
 	   if (Settings.Dropar_Spawner_Ao_Explodir){
-	   pm.registerEvents(new DroparSpawnerAoExplodir(), this);}
+	   if (!serverIs_1_13){
+	   pm.registerEvents(new DroparSpawnerAoExplodir(), this);}}
 	   
 	   if (Settings.EnderPearl_Cooldown_Ativar){
-	   pm.registerEvents(new EnderPearlCooldown(), this);}
+	   if (!serverIs_1_5) {
+	   pm.registerEvents(new EnderPearlCooldown(), this);}}
 	   
 	   if (Settings.Entrar_No_Spawn_Ao_Logar){
 	   pm.registerEvents(new EntrarNoSpawnAoLogar(), this);}
@@ -358,48 +397,65 @@ public class Main extends JavaPlugin implements Listener {
 	   pm.registerEvents(new InvencibilidadeAoTeleportar(), this);}
 	   
 	   if (Settings.Limitador_De_Players){
-	   pm.registerEvents(new LimiteDePlayers(), this);}
+	   if (!serverIs_1_5 && !serverIs_1_7){
+	   pm.registerEvents(new LimiteDePlayers(), this);}}
 	   
 	   if (Settings.Mensagem_De_Boas_Vindas_Ativar){
 	   pm.registerEvents(new MensagemDeBoasVindas(), this);}
 	    
 	   if (Settings.Motd_Ativar){
 	   pm.registerEvents(new Motd(), this);}
-	    
+	   
 	   if (Settings.ScoreBoard_Ativar){
-	   pm.registerEvents(new ScoreBoard(), this);}
+	   if (!serverIs_1_5 && !serverIs_1_7){
+	   pm.registerEvents(new ScoreBoard(), this);}}
 	   
 	   if (Settings.Sistema_De_Fly_Para_Players) {
 	   pm.registerEvents(new FlyListener(), this);}
 	    
 	   if (Settings.Sistema_De_Spawners){
-	   pm.registerEvents(new SistemaDeSpawners(), this);}
+	   if (!serverIs_1_13){
+	   pm.registerEvents(new SistemaDeSpawners(), this);}}
 	   
 	   if (Settings.Title_De_Boas_Vindas_Ativar){
-	   pm.registerEvents(new TitleDeBoasVindas(), this);}
+	   if (!serverIs_1_5 && !serverIs_1_7){
+	   pm.registerEvents(new TitleDeBoasVindas(), this);}}
 
 	   if (Settings.Ativar_Tablist){
-	   pm.registerEvents(new Tablist(), this);}
+	   if (!serverIs_1_5 && !serverIs_1_7){
+	   pm.registerEvents(new Tablist(), this);}}
 	     
 	   if (Settings.AtivarAddons_Legendchat){
 	   if (pm.getPlugin("Legendchat") == null) {
 	   getServer().getConsoleSender().sendMessage("§c[System] Legendchat nao encontrado, desativando addons!");
 	   } else { 
-	   pm.registerEvents(new LegendChat(), this);
-	   getServer().getConsoleSender().sendMessage("§a[System] Legendchat encontrado, ativando addons!");}}
+	   pm.registerEvents(new LegendChat(), this);}}
 
 	   if (Settings.AtivarAddons_mcMMO){
-	   if (pm.getPlugin("mcMMO") == null) {
+	   if (!serverIs_1_5 && !serverIs_1_7){
+	   if (pm.getPlugin("mcMMO") == null){
 	   getServer().getConsoleSender().sendMessage("§c[System] mcMMO nao encontrado, desativando addons!");
 	   } else { 
 	   pm.registerEvents(new McMMO(), this);
-	   McMMO.checkMCTop();
-	   getServer().getConsoleSender().sendMessage("§a[System] mcMMO encontrado, ativando addons!");}}
+	   McMMO.checkMCTop();}}}
+	   
+	   if (Settings.AtivarAddons_massiveFactions){
+	   if (pm.getPlugin("MassiveCore") == null || pm.getPlugin("Factions") == null){
+	   getServer().getConsoleSender().sendMessage("§c[System] Factions nao encontrado, desativando addons!");
+	   } else {
+	   setupFactions = true;}}
+	   
+	   if (serverIs_1_5 || serverIs_1_7) {
+	   pm.registerEvents(new KitsListenerOLD(), this); 
+	   } else { 
+	   pm.registerEvents(new KitsListener(), this);}
+	  
+	   if (!serverIs_1_5 && !serverIs_1_7){
+	   pm.registerEvents(new VanishListener(), this);}
 	   
 	   pm.registerEvents(new PlayerData(), this);
 	   pm.registerEvents(new EnderChestListener(), this);
 	   pm.registerEvents(new InvseeListener(), this);
-	   pm.registerEvents(new KitsListener(), this); 
 	   pm.registerEvents(new BackListener(), this);
 	   pm.registerEvents(new ManterXpAoMorrer(), this);
 	   pm.registerEvents(new Outros(), this);
@@ -413,7 +469,33 @@ public class Main extends JavaPlugin implements Listener {
 	   McMMO.TTask.cancel();}
 	   
 	   if (Settings.Auto_Anuncio){
-	   AutoAnuncio.XTask.cancel();}
+	   if (serverIs_1_5 || serverIs_1_7) AutoAnuncioOLD.XTask.cancel();
+	   else AutoAnuncio.XTask.cancel();}
+   }
+   
+   private void desativarComandos() {
+	  
+   }
+   
+   private void checkServerVersion() {
+	   String version = Bukkit.getVersion();
+	   if (version.contains("1.13")) serverIs_1_13 = true;
+	   if (version.contains("1.12")) return;
+	   if (version.contains("1.11")) return;
+	   if (version.contains("1.10")) return;
+	   if (version.contains("1.9"))  return;
+	   if (version.contains("1.8"))  return;
+	   if (version.contains("1.7"))  serverIs_1_7 = true;
+	   if (version.contains("1.6"))  serverIs_1_7 = true;
+	   if (version.contains("1.5"))  serverIs_1_5 = true;
+   }
+   
+   public static boolean isOldVersion() {
+	   String version = Bukkit.getVersion();
+	   if (version.contains("1.7")) return true;
+	   if (version.contains("1.6")) return true;
+	   if (version.contains("1.5")) return true;
+	   return false;
    }
    
    public static Main get() {

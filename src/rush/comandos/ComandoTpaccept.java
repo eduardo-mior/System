@@ -14,9 +14,9 @@ import rush.configuracoes.Mensagens;
 import rush.configuracoes.Settings;
 import rush.entidades.Tpa;
 
+@SuppressWarnings("all")
 public class ComandoTpaccept extends Tpa implements CommandExecutor {
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("tpaccept")) {
@@ -24,13 +24,13 @@ public class ComandoTpaccept extends Tpa implements CommandExecutor {
 			// Verificando se o player digitou o número de argumentos corretos
 			if (args.length > 1) {
 				s.sendMessage(Mensagens.Tpaccept_Comando_Incorreto);
-				return false;
+				return true;
 			}
 			
 			// Verificando se o player recebeu algum tpa para poder aceita-lo
 			if (!TPs_recebidos.containsKey(s.getName())) {
 				s.sendMessage(Mensagens.Tpa_Pendente_Nao_Possui);
-				return false;
+				return true;
 			}
 			
 			// Pegando a lista de tpas que o player recebeu
@@ -39,7 +39,7 @@ public class ComandoTpaccept extends Tpa implements CommandExecutor {
 			// Verificando se o player possui tpas para aceita-los
 			if (tpas.size() == 0) {
 				s.sendMessage(Mensagens.Tpa_Pendente_Nao_Possui);
-				return false;
+				return true;
 			}
 			
 			// Caso o player não informe argumentos então significa que ele quer aceitar o ultimo TPA recebido
@@ -57,7 +57,7 @@ public class ComandoTpaccept extends Tpa implements CommandExecutor {
 				Player p = Bukkit.getPlayer(ultimoTpa);
 				if (p == null) {
 					s.sendMessage(Mensagens.Tpaccept_Player_Offline.replace("%player%", ultimoTpa));
-					return false;
+					return true;
 				}
 				
 				// Pegando o player sender (alvo) e informando que o TPA foi aceito
@@ -75,13 +75,13 @@ public class ComandoTpaccept extends Tpa implements CommandExecutor {
 							p.sendMessage(Mensagens.Tpaccept_Teleportado_Com_sucesso.replace("%player%", s.getName()));
 						}
 					}.runTaskLater(Main.get(), 20 * Settings.Delay_Para_Teleportar_Comandos);
-					return false;
+					return true;
 				}
 				
 				// Caso o player possui a permissão para se teleportar sem delay o código acima é ignorado
 				p.teleport(target);
 				p.sendMessage(Mensagens.Tpaccept_Teleportado_Com_sucesso.replace("%player%", s.getName()));
-				return false;
+				return true;
 			}
 			
 			// Caso o player informe um argumento então significa que ele quer aceitar um TPA especifico
@@ -90,13 +90,13 @@ public class ComandoTpaccept extends Tpa implements CommandExecutor {
 				// Verificando se o sender e o player target são a mesma pessoa
 				if (s.getName().equals(args[0])) {
 					s.sendMessage(Mensagens.Tpaccept_Erro_Voce_Mesmo);
-					return false;
+					return true;
 				}
 					
 				// Verificando se o player target informado realmente enviou TPA para o sender
 				if (!tpas.contains(args[0])) {
 					s.sendMessage(Mensagens.Tpa_Pendente_Player_Nao_Possui.replace("%player%", args[0]));
-					return false;
+					return true;
 				}
 				
 				// Removendo o TPA da HashMap
@@ -107,7 +107,7 @@ public class ComandoTpaccept extends Tpa implements CommandExecutor {
 				Player p = Bukkit.getPlayer(args[0]);
 				if (p == null) {
 					s.sendMessage(Mensagens.Tpaccept_Player_Offline.replace("%player%", args[0]));
-					return false;
+					return true;
 				}
 				
 				// Pegando o player sender (alvo) e informando que o TPA foi aceito
@@ -125,13 +125,13 @@ public class ComandoTpaccept extends Tpa implements CommandExecutor {
 							p.sendMessage(Mensagens.Tpaccept_Teleportado_Com_sucesso.replace("%player%", s.getName()));	
 						}
 					}.runTaskLater(Main.get(), 20 * Settings.Delay_Para_Teleportar_Comandos);
-					return false;
+					return true;
 				}
 				
 				// Caso o player possui a permissão para se teleportar sem delay o código acima é ignorado
 				p.teleport(target);
 				p.sendMessage(Mensagens.Tpaccept_Teleportado_Com_sucesso.replace("%player%", s.getName()));
-				return false;
+				return true;
 			}
 		}
 		return false;

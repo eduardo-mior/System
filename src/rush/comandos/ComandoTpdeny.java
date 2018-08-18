@@ -11,9 +11,9 @@ import org.bukkit.entity.Player;
 import rush.configuracoes.Mensagens;
 import rush.entidades.Tpa;
 
+@SuppressWarnings("all")
 public class ComandoTpdeny extends Tpa implements CommandExecutor {
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("tpdeny")) {
@@ -21,13 +21,13 @@ public class ComandoTpdeny extends Tpa implements CommandExecutor {
 			// Verificando se o player digitou o número de argumentos corretos
 			if (args.length > 1) {
 				s.sendMessage(Mensagens.Tpdeny_Comando_Incorreto);
-				return false;
+				return true;
 			}
 			
 			// Verificando se o player recebeu algum tpa para poder aceita-lo
 			if (!TPs_recebidos.containsKey(s.getName())) {
 				s.sendMessage(Mensagens.Tpa_Pendente_Nao_Possui);
-				return false;
+				return true;
 			}
 			
 			// Pegando a lista de tpas que o player recebeu
@@ -36,7 +36,7 @@ public class ComandoTpdeny extends Tpa implements CommandExecutor {
 			// Verificando se o player possui tpas para aceita-los
 			if (tpas.size() == 0) {
 				s.sendMessage(Mensagens.Tpa_Pendente_Nao_Possui);
-				return false;
+				return true;
 			}
 			
 			// Caso o player não informe argumentos então significa que ele quer aceitar o ultimo TPA recebido
@@ -54,6 +54,7 @@ public class ComandoTpdeny extends Tpa implements CommandExecutor {
 				Player p = Bukkit.getPlayer(ultimoTpa);
 				s.sendMessage(Mensagens.Tpdeny_Recusado_Com_Sucesso.replace("%player%", ultimoTpa));
 				if (p != null) p.sendMessage(Mensagens.Tpdeny_Recusou_Seu_Pedido.replace("%player%", s.getName()));
+				return true;
 			}
 			
 			// Caso o player informe um argumento então significa que ele quer negar um TPA especifico
@@ -62,13 +63,13 @@ public class ComandoTpdeny extends Tpa implements CommandExecutor {
 				// Verificando se o sender e o player target são a mesma pessoa
 				if (s.getName().equals(args[0])) {
 					s.sendMessage(Mensagens.Tpdeny_Erro_Voce_Mesmo);
-					return false;
+					return true;
 				}
 					
 				// Verificando se o player informado realmente enviou TPA para o sender
 				if (!tpas.contains(args[0])) {
 					s.sendMessage(Mensagens.Tpa_Pendente_Player_Nao_Possui.replace("%player%", args[0]));
-					return false;
+					return true;
 				}
 				
 				// Removendo o TPA da HashMap
@@ -79,7 +80,7 @@ public class ComandoTpdeny extends Tpa implements CommandExecutor {
 				Player p = Bukkit.getPlayer(args[0]);
 				s.sendMessage(Mensagens.Tpdeny_Recusado_Com_Sucesso.replace("%player%", args[0]));
 				if (p != null) p.sendMessage(Mensagens.Tpdeny_Recusou_Seu_Pedido.replace("%player%", s.getName()));
-				return false;
+				return true;
 			}
 		}
 		return false;

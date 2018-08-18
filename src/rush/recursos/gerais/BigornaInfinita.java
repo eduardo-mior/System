@@ -7,9 +7,9 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.Action;
 import org.bukkit.event.player.PlayerInteractEvent;
 
+@SuppressWarnings("all")
 public class BigornaInfinita implements Listener {
 
-	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void aoUsarBigorna(PlayerInteractEvent e) {
 		if (e.getAction() == Action.RIGHT_CLICK_BLOCK && e.getClickedBlock().getType() == Material.ANVIL) {

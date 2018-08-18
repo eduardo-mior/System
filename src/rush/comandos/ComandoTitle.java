@@ -18,7 +18,7 @@ public class ComandoTitle implements CommandExecutor {
 			// Verificando se o player digitou o número de argumentos corretos
 			if (args.length < 1) {
 				s.sendMessage(Mensagens.Title_Comando_Incorreto);
-				return false;
+				return true;
 			}
 
 			// Pegando a mensagem do title
@@ -45,6 +45,7 @@ public class ComandoTitle implements CommandExecutor {
 
 			// Informando que o title foi enviado
 			s.sendMessage(Mensagens.Title_Enviado);
+			return true;
 		}
 		return false;
 	}

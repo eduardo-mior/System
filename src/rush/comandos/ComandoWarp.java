@@ -2,6 +2,7 @@ package rush.comandos;
 
 import java.io.File;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,7 +15,6 @@ import rush.Main;
 import rush.apis.TitleAPI;
 import rush.configuracoes.Mensagens;
 import rush.utils.DataManager;
-import rush.utils.Serializer;
 
 public class ComandoWarp implements CommandExecutor {
 	
@@ -25,13 +25,13 @@ public class ComandoWarp implements CommandExecutor {
 			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
 				s.sendMessage(Mensagens.Console_Nao_Pode); 
-				return false;
+				return true;
 			}
 				     
 			// Verificando se o sender digitou o número de argumentos correto
 			if (args.length != 1) {
 				s.sendMessage(Mensagens.Warp_Comando_Incorreto);
-				return false;
+				return true;
 			}
 				     
 			// Pegando a warp e verificando se ela existe
@@ -40,19 +40,19 @@ public class ComandoWarp implements CommandExecutor {
 			if (!file.exists()) {
 				s.sendMessage(Mensagens.Warp_Nao_Existe.replace("%warp%", warp));
 				ComandoWarps.ListWarps(s);
-				return false;
+				return true;
 			}
 			
 			// Pegando o player e a localização
 			Player p = (Player) s;
 			FileConfiguration config = DataManager.getConfiguration(file);
 			String locationSplitted = config.getString("Localizacao");
-			Location location = Serializer.deserializeLocation(locationSplitted);
+			Location location = deserializeLocation(locationSplitted);
 			
 			// Verificando se o player tem permissão para se teleportar a warp
 			if (!s.hasPermission(config.getString("Permissao"))) {
 				s.sendMessage(config.getString("MensagemSemPermissao").replace('&', '§'));
-				return false;
+				return true;
 			} 
 				    	
 			// Verificando se o player tem permissão para se teleportar sem delay
@@ -68,7 +68,7 @@ public class ComandoWarp implements CommandExecutor {
 						}
 					}
 				}.runTaskLater(Main.get(), 20 * config.getInt("Delay"));
-				return false;
+				return true;
 			}
 				    	
 			// Caso o player tiver permissão para se teleportar sem delay então
@@ -77,7 +77,20 @@ public class ComandoWarp implements CommandExecutor {
 			if (config.getBoolean("EnviarTitle")) {
 				TitleAPI.sendTitle(p, 20, 60, 20, config.getString("Title").replace('&', '§'), config.getString("SubTitle").replace('&', '§'));
 			}
+			return true;
 		}
 		return false;
 	}
+    
+	// Método para deserialziar uma localização
+    private Location deserializeLocation(String s) {
+    	String[] locationSplitted = s.split(",");
+		return new Location(
+			   Bukkit.getWorld(locationSplitted[0]),
+			   Double.parseDouble(locationSplitted[1]),
+			   Double.parseDouble(locationSplitted[2]),
+			   Double.parseDouble(locationSplitted[3]),
+			   Float.parseFloat(locationSplitted[4]),
+			   Float.parseFloat(locationSplitted[5]));
+    }
 }

@@ -10,9 +10,9 @@ import org.bukkit.entity.Player;
 
 import rush.configuracoes.Mensagens;
 
+@SuppressWarnings("all")
 public class ComandoGod implements CommandExecutor {
 	
-	@SuppressWarnings("deprecation")	
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("god")) {
@@ -23,14 +23,14 @@ public class ComandoGod implements CommandExecutor {
 				// Verificando se o sender digitou o número de argumentos correto
 				if (args.length > 2 || args.length < 1) {
 					s.sendMessage(Mensagens.God_Comando_Incorreto);
-		    		return false;
+					return true;
 				}
 	    		  
 				// Pegando o player e verificando se ele esta online
 				Player p = Bukkit.getPlayer(args[0]);
 				if (p == null) {
 					s.sendMessage(Mensagens.Player_Offline);
-					return false;
+					return true;
 				}
 	    		  				
 				// Verificando se o sender informou mais de 1 argumento /god <player> [on/off]
@@ -46,7 +46,7 @@ public class ComandoGod implements CommandExecutor {
 							s.sendMessage(Mensagens.God_Habilitado_Outro.replace("%player%", p.getName()));
 							setGodMode(p, true);
 						}
-						return false;
+						return true;
 					}
 		    		  
 					// Verificando se esse argumento é a palavra 'off'
@@ -59,7 +59,7 @@ public class ComandoGod implements CommandExecutor {
 						} else {
 							s.sendMessage(Mensagens.God_Ja_Desabilitado_Outro.replace("%player%", p.getName()));
 						}
-						return false;
+						return true;
 					}
 				}
 	    		  
@@ -71,7 +71,7 @@ public class ComandoGod implements CommandExecutor {
 					s.sendMessage(Mensagens.God_Habilitado_Outro.replace("%player%", p.getName()));
 					setGodMode(p, true);
 				}
-				return false;
+				return true;
 			}
 						
 			// Verificando se o player informou ao menos 1 argumento /god [on/off/player]
@@ -86,7 +86,7 @@ public class ComandoGod implements CommandExecutor {
 						s.sendMessage(Mensagens.God_Habilitado_Voce);
 						setGodMode(p, true);
 					}
-					return false;
+					return true;
 				}
 	    		  
 				// Verificando se esse argumento é a palavra 'off'
@@ -98,7 +98,7 @@ public class ComandoGod implements CommandExecutor {
 					} else {
 						s.sendMessage(Mensagens.God_Ja_Desabilitado_Voce);
 					}
-					return false;
+					return true;
 				}
 	    		
 				/** Caso o primeiro argumento não for a palavra 'on' ou 'off' entende-se que é o nome de um player */
@@ -109,14 +109,14 @@ public class ComandoGod implements CommandExecutor {
 					// Verificando se o sender digitou o número de argumentos correto
 					if (args.length > 2) {
 						s.sendMessage(Mensagens.God_Comando_Incorreto);
-			    		return false;
+						return true;
 					}
 					
 					// Pegando o player e verificando se ele esta online
 					Player p = Bukkit.getPlayer(args[0]);
 					if (p == null) {
 						s.sendMessage(Mensagens.Player_Offline);
-						return false;
+						return true;
 					}
 					
 					// Verificando se o player informou mais de 1 argumento /god <player> [on/off]
@@ -132,7 +132,7 @@ public class ComandoGod implements CommandExecutor {
 								s.sendMessage(Mensagens.God_Habilitado_Outro.replace("%player%", p.getName()));
 								setGodMode(p, true);
 							}
-							return false;
+							return true;
 						}
 						
 						// Verificando se esse argumento é a palavra 'off'
@@ -145,7 +145,7 @@ public class ComandoGod implements CommandExecutor {
 							} else {
 								s.sendMessage(Mensagens.God_Ja_Desabilitado_Outro.replace("%player%", p.getName()));
 							}
-							return false;
+							return true;
 						}
 					}
 					  
@@ -157,12 +157,12 @@ public class ComandoGod implements CommandExecutor {
 						s.sendMessage(Mensagens.God_Habilitado_Outro.replace("%player%", p.getName()));
 						setGodMode(p, true);
 					}
-					return false;
+					return true;
 				}
 				
 				// Se o player não informar 2 argumentos, ou se o segundo argumento não for 'on' ou 'off'
 				s.sendMessage(Mensagens.God_Sem_Permissao_Outro);
-				return false;
+				return true;
 			}
 			
 			// Se o player não informar nenhum argumento ou se os argumentos informados pelo player
@@ -175,6 +175,7 @@ public class ComandoGod implements CommandExecutor {
 				s.sendMessage(Mensagens.God_Habilitado_Voce);
 				setGodMode(p, true);
 			}
+			return true;
 		}
 	    return false;
 	}

@@ -23,7 +23,7 @@ public class ComandoHomes implements CommandExecutor {
 			// Verificando se o player digitou o número de argumentos corretos
 			if (args.length > 1) {
 				s.sendMessage(Mensagens.Homes_Comando_Incorreto);
-				return false;
+				return true;
 			}
 			 
 			// Verificando se o player que listar as suas homes ou as homes de outras pessoas
@@ -36,6 +36,7 @@ public class ComandoHomes implements CommandExecutor {
 			 
 			// Chamando o método para listar suas homes
 			ListHomes(s, player);
+			return true;
 		}
 		return false;
 	}

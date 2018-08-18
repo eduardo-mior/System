@@ -19,7 +19,7 @@ public class ComandoCompactar implements CommandExecutor {
 			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
 			    s.sendMessage(Mensagens.Console_Nao_Pode);
-				return false; 
+				return true;
 			}
 
 			// Pegando o player, o inventario e os itens do inventario
@@ -30,13 +30,13 @@ public class ComandoCompactar implements CommandExecutor {
 			// Verificando se o player possui itens para compactar
 			if (!possuiItensParaCompactar(i)) {
 		        s.sendMessage(Mensagens.Compactar_Nao_Possui);
-				return false;
+				return true;
 			}
 			
 			// Chamando o método que compacta os itens e enviando mensagem
 			int compactados = compactarItens(itens, i, p);
 		    s.sendMessage(Mensagens.Compactar_Com_Sucesso.replace("%quantia%", String.valueOf(compactados)));
-			
+			return true;
 		}
 		return false;
 	}

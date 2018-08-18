@@ -23,13 +23,13 @@ public class ComandoParticular implements CommandExecutor {
 			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
 				s.sendMessage(Mensagens.Console_Nao_Pode); 
-				return false;
+				return true;
 			}
 			
 			// Verificando se o player digitou o número de argumentos corretos
 			if (args.length != 1) {
 				s.sendMessage(Mensagens.Particular_Comando_Incorreto);
-				return false;
+				return true;
 			}
 		     
 			// Pegando a home, o player o arquivo do player e as homes do player
@@ -43,14 +43,14 @@ public class ComandoParticular implements CommandExecutor {
 	        if (!HOMES.contains(home)) {
 	        	s.sendMessage(Mensagens.Home_Nao_Existe.replace("%home%", home));
 	   			ComandoHomes.ListHomes(s, player);
-	        	return false;
+				return true;
 	   		}
 	   		
 	        // Verificando se a home já é particular
 		    boolean isPublic = config.getBoolean("Homes." + home + ".Publica");
 		    if (!isPublic) {
 		    	s.sendMessage(Mensagens.Home_Ja_Particular.replace("%home%", home));
-		    	return false;
+				return true;
 		    }
 		    
 		    // Setando a home como particular salvando no arquivo
@@ -61,6 +61,7 @@ public class ComandoParticular implements CommandExecutor {
 	    	} catch (IOException e) {
 	    		Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
 	    	}
+			return true;
 		}
 		return false;
 	}

@@ -14,6 +14,7 @@ import org.bukkit.inventory.ItemStack;
 import rush.configuracoes.Mensagens;
 import rush.configuracoes.Settings;
 
+@SuppressWarnings("all")
 public class EnderPearlCooldown implements Listener {
 
 	HashMap<Player, Timestamp> cooldown = new HashMap<Player, Timestamp>();

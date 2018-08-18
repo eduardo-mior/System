@@ -11,9 +11,9 @@ import org.bukkit.entity.Player;
 import rush.configuracoes.Mensagens;
 import rush.configuracoes.Settings;
 
+@SuppressWarnings("all")
 public class ComandoFly implements CommandExecutor {
 	
-	@SuppressWarnings("deprecation")	
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("fly")) {
@@ -24,14 +24,14 @@ public class ComandoFly implements CommandExecutor {
 				// Verificando se o sender digitou o número de argumentos correto
 				if (args.length > 2 || args.length < 1) {
 					s.sendMessage(Mensagens.Fly_Comando_Incorreto);
-		    		return false;
+					return true;
 				}
 	    		  
 				// Pegando o player e verificando se ele esta online
 				Player p = Bukkit.getPlayer(args[0]);
 				if (p == null) {
 					s.sendMessage(Mensagens.Player_Offline);
-					return false;
+					return true;
 				}
 	    		  				
 				// Verificando se o sender informou mais de 1 argumento /fly <player> [on/off]
@@ -47,7 +47,7 @@ public class ComandoFly implements CommandExecutor {
 							s.sendMessage(Mensagens.Fly_Habilitado_Outro.replace("%player%", p.getName()));
 							p.setAllowFlight(true);
 						}
-						return false;
+						return true;
 					}
 		    		  
 					// Verificando se esse argumento é a palavra 'off'
@@ -60,7 +60,7 @@ public class ComandoFly implements CommandExecutor {
 						} else {
 							s.sendMessage(Mensagens.Fly_Ja_Desabilitado_Outro.replace("%player%", p.getName()));
 						}
-						return false;
+						return true;
 					}
 				}
 	    		  
@@ -72,7 +72,7 @@ public class ComandoFly implements CommandExecutor {
 					s.sendMessage(Mensagens.Fly_Habilitado_Outro.replace("%player%", p.getName()));
 					p.setAllowFlight(true);
 				}
-				return false;
+				return true;
 			}
 	    	  
 			// Verificando se o player possui permissão para ativar o fly em qualquer lugar
@@ -84,7 +84,7 @@ public class ComandoFly implements CommandExecutor {
 				// Verificando se o mundo onde ele esta pode ser usado fly
 				if (!worlds.contains(world)) {
 					s.sendMessage(Mensagens.Fly_Desabilitado_Neste_Mundo);
-					return false;
+					return true;
 				}
 			}
 						
@@ -100,7 +100,7 @@ public class ComandoFly implements CommandExecutor {
 						s.sendMessage(Mensagens.Fly_Habilitado_Voce);
 						p.setAllowFlight(true);
 					}
-					return false;
+					return true;
 				}
 	    		  
 				// Verificando se esse argumento é a palavra 'off'
@@ -112,7 +112,7 @@ public class ComandoFly implements CommandExecutor {
 					} else {
 						s.sendMessage(Mensagens.Fly_Ja_Desabilitado_Voce);
 					}
-					return false;
+					return true;
 				}
 	    		
 				/** Caso o primeiro argumento não for a palavra 'on' ou 'off' entende-se que é o nome de um player */
@@ -123,14 +123,14 @@ public class ComandoFly implements CommandExecutor {
 					// Verificando se o sender digitou o número de argumentos correto
 					if (args.length > 2) {
 						s.sendMessage(Mensagens.Fly_Comando_Incorreto);
-			    		return false;
+						return true;
 					}
 					
 					// Pegando o player e verificando se ele esta online
 					Player p = Bukkit.getPlayer(args[0]);
 					if (p == null) {
 						s.sendMessage(Mensagens.Player_Offline);
-						return false;
+						return true;
 					}
 					
 					// Verificando se o player informou mais de 1 argumento /fly <player> [on/off]
@@ -146,7 +146,7 @@ public class ComandoFly implements CommandExecutor {
 								s.sendMessage(Mensagens.Fly_Habilitado_Outro.replace("%player%", p.getName()));
 								p.setAllowFlight(true);
 							}
-							return false;
+							return true;
 						}
 						
 						// Verificando se esse argumento é a palavra 'off'
@@ -159,7 +159,7 @@ public class ComandoFly implements CommandExecutor {
 							} else {
 								s.sendMessage(Mensagens.Fly_Ja_Desabilitado_Outro.replace("%player%", p.getName()));
 							}
-							return false;
+							return true;
 						}
 			    		  
 						// Se o segundo argumento não for 'on' ou 'off'
@@ -170,7 +170,7 @@ public class ComandoFly implements CommandExecutor {
 							s.sendMessage(Mensagens.Fly_Habilitado_Outro.replace("%player%", p.getName()));
 							p.setAllowFlight(true);
 						}
-						return false;
+						return true;
 					}
 		    		  
 					// Se o player não informar 2 argumentos, ou se o segundo argumento não for 'on' ou 'off'
@@ -181,14 +181,14 @@ public class ComandoFly implements CommandExecutor {
 						s.sendMessage(Mensagens.Fly_Habilitado_Outro.replace("%player%", p.getName()));
 						p.setAllowFlight(true);
 					}
-					return false;
+					return true;
 				}
 				
 				// Se o player tem a permissão de staff mas não tem a permissão para alterar o fly de
 				// outros players então a mensagem abaixo é exibida, caso contrar segue o código
 				if (s.hasPermission("system.fly.staff")) {
 					s.sendMessage(Mensagens.Fly_Sem_Permissao_Outro);
-					return false;
+					return true;
 				}
 			}
 			
@@ -202,6 +202,7 @@ public class ComandoFly implements CommandExecutor {
 				s.sendMessage(Mensagens.Fly_Habilitado_Voce);
 				p.setAllowFlight(true);
 			}
+			return true;
 		}
 	    return false;
 	}

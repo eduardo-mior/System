@@ -1,6 +1,7 @@
 package rush.configuracoes;
 
 import java.util.List;
+import java.util.Map;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
@@ -10,6 +11,7 @@ public class Settings {
 
 	public static boolean AtivarAddons_Legendchat;
 	public static boolean AtivarAddons_mcMMO;
+	public static boolean AtivarAddons_massiveFactions;
 	public static boolean Bloquear_Cama;
 	public static boolean Bloquear_Subir_Em_Veiculos;
 	public static boolean Bloquear_NameTag;
@@ -82,16 +84,7 @@ public class Settings {
 	public static List<String> Nicks_Bloqueados;
 	public static int mcTopTag_Tempo_De_Checagem;
 	public static String mcTopTag_Tag;
-	public static String CorAutomatica_Cor1;
-	public static String CorAutomatica_Cor2;
-	public static String CorAutomatica_Cor3;
-	public static String CorAutomatica_Cor4;
-	public static String CorAutomatica_Cor5;
-	public static String CorAutomatica_Cor6;
-	public static String CorAutomatica_Cor7;
-	public static String CorAutomatica_Cor8;
-	public static String CorAutomatica_Cor9;
-	public static String CorAutomatica_Cor10;
+	public static Map<String, Object> CorAutomatica;
 	public static boolean Auto_Anuncio;
 	public static boolean Destacar_Anuncio;
 	public static int Delay_Entre_Anuncios;
@@ -121,6 +114,7 @@ public class Settings {
 
 		AtivarAddons_Legendchat = config.getBoolean("AtivarAddons.Legendchat");
 		AtivarAddons_mcMMO = config.getBoolean("AtivarAddons.mcMMO");
+		AtivarAddons_massiveFactions = config.getBoolean("AtivarAddons.massiveFactions");
 		Bloquear_Cama = config.getBoolean("Bloquear-Cama");
 		Bloquear_Subir_Em_Veiculos = config.getBoolean("Bloquear-Subir-Em-Veiculos");
 		Bloquear_NameTag = config.getBoolean("Bloquear-NameTag");
@@ -193,16 +187,7 @@ public class Settings {
 		Nicks_Bloqueados = config.getStringList("Nicks-Bloqueados");
 		mcTopTag_Tempo_De_Checagem = config.getInt("mcTopTag.Tempo-De-Checagem");
 		mcTopTag_Tag = config.getString("mcTopTag.Tag").replace('&', '§');
-		CorAutomatica_Cor1 = config.getString("CorAutomatica.Cor1");
-		CorAutomatica_Cor2 = config.getString("CorAutomatica.Cor2");
-		CorAutomatica_Cor3 = config.getString("CorAutomatica.Cor3");
-		CorAutomatica_Cor4 = config.getString("CorAutomatica.Cor4");
-		CorAutomatica_Cor5 = config.getString("CorAutomatica.Cor5");
-		CorAutomatica_Cor6 = config.getString("CorAutomatica.Cor6");
-		CorAutomatica_Cor7 = config.getString("CorAutomatica.Cor7");
-		CorAutomatica_Cor8 = config.getString("CorAutomatica.Cor8");
-		CorAutomatica_Cor9 = config.getString("CorAutomatica.Cor9");
-		CorAutomatica_Cor10 = config.getString("CorAutomatica.Cor10");
+		CorAutomatica = config.getConfigurationSection("CorAutomatica").getValues(true);
 		Auto_Anuncio = config.getBoolean("Auto-Anuncio");
 		Destacar_Anuncio = config.getBoolean("Destacar-Anuncio");
 		Delay_Entre_Anuncios = config.getInt("Delay-Entre-Anuncios");

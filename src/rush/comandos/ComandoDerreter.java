@@ -19,23 +19,23 @@ public class ComandoDerreter implements CommandExecutor {
 			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
 				s.sendMessage(Mensagens.Console_Nao_Pode);
-				return false; 
+				return true;
 			}
 			
-			// Pegando o player, o inventario e os itens do inventario
+			// Pegando o player e o inventario
 			Player p = (Player)s;
 			PlayerInventory i = p.getInventory();
-			ItemStack[] itens = i.getContents();
 			
 			// Verificando se o player possui itens para derreter
 			if (!possuiItensParaDerreter(i)) {
 		        s.sendMessage(Mensagens.Derreter_Nao_Possui);
-				return false;
+				return true;
 			}
 			
 			// Chamando o método que derrete os itens e enviando mensagem
-			int derretidos = derreterItens(itens, i);
+			int derretidos = derreterItens(i);
 		    s.sendMessage(Mensagens.Derreter_Com_Sucesso.replace("%quantia%", String.valueOf(derretidos)));
+			return true;
 		}
 		return false;
 	}
@@ -54,9 +54,9 @@ public class ComandoDerreter implements CommandExecutor {
 	}
 	
 	// Método para derreter os itens
-	private int derreterItens(ItemStack[] itens, PlayerInventory inv) {
+	private int derreterItens(PlayerInventory inv) {
 		int derretidos = 0;
-		for (ItemStack item : itens) {
+		for (ItemStack item : inv.getContents()) {
 			
 			// Verificando se o item é valido
 			if(item == null || item.getType().equals(Material.AIR)) continue;

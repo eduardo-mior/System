@@ -24,7 +24,7 @@ public class ComandoSetspawn implements CommandExecutor {
 			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
 				s.sendMessage(Mensagens.Console_Nao_Pode);
-				return false;
+				return true;
 			}
 
 			// Pegando o player, a sua localização, o arquivo das locations e a config
@@ -50,6 +50,7 @@ public class ComandoSetspawn implements CommandExecutor {
 			} catch (IOException e) {
 				Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", "locations.yml"));
 			}
+			return true;
 		}
 		return false;
 	}

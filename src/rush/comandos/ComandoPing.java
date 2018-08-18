@@ -11,9 +11,9 @@ import org.bukkit.entity.Player;
 
 import rush.configuracoes.Mensagens;
 
+@SuppressWarnings("all")
 public class ComandoPing implements CommandExecutor {
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("ping")) {
@@ -21,13 +21,13 @@ public class ComandoPing implements CommandExecutor {
 			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
 				s.sendMessage(Mensagens.Console_Nao_Pode);
-				return false;
+				return true;
 			}
 
 			// Verificando se o player digitou o número de argumentos corretos
 			if (args.length > 1) {
 				s.sendMessage(Mensagens.Ping_Comando_Incorreto);
-				return false;
+				return true;
 			}
 
 			// Caso o número de argumentos for 0 então pegaremos o ping do sender
@@ -35,7 +35,7 @@ public class ComandoPing implements CommandExecutor {
 				Player player = (Player) s;
 				String ping = getPlayerPing(player);
 				s.sendMessage(Mensagens.Seu_Ping.replace("%ping%", ping));
-				return false;
+				return true;
 			}
 
 			// Caso o número de argumentos for 1 então pegaremos o ping do player especificado
@@ -45,12 +45,13 @@ public class ComandoPing implements CommandExecutor {
 				Player player = Bukkit.getPlayer(args[0]);
 				if (player == null) {
 					s.sendMessage(Mensagens.Player_Offline);
-					return false;
+					return true;
 				}
 
+				// Pegando o ping do player e informando
 				String ping = getPlayerPing(player);
 				s.sendMessage(Mensagens.Player_Ping.replace("%ping%", ping).replace("%player%", player.getName()));
-				return false;
+				return true;
 			}
 		}
 		return false;

@@ -18,6 +18,7 @@ public class Mensagens {
 	public static String Falha_Ao_Criar_Arquivo;
 	public static String Falha_Ao_Criar_Pasta;
 	public static String Falha_Ao_Salvar;
+    public static String Erro_Versao_Nao_Suportada;
 	public static String Nick_Similar;
 	public static String Servidor_Lotado;
 	public static String Nick_Bloqueado;
@@ -156,6 +157,16 @@ public class Mensagens {
 	public static String God_Ja_Desabilitado_Voce;
 	public static String God_Ja_Desabilitado_Outro;
 	public static String God_Sem_Permissao_Outro;
+	public static String Vanish_Comando_Incorreto;
+	public static String Vanish_Desabilitado_Voce;
+	public static String Vanish_Desabilitado_Outro;
+	public static String Vanish_Habilitado_Voce;
+	public static String Vanish_Habilitado_Outro;
+	public static String Vanish_Ja_Habilitado_Voce;
+	public static String Vanish_Ja_Habilitado_Outro;
+	public static String Vanish_Ja_Desabilitado_Voce;
+	public static String Vanish_Ja_Desabilitado_Outro;
+	public static String Vanish_Sem_Permissao_Outro;
 	public static String Gamemode_Comando_Incorreto;
 	public static String Gamemode_Invalido;
 	public static String Gamemode_Ja_Esta_Outro;
@@ -231,6 +242,19 @@ public class Mensagens {
 	public static String Speed_Alterado_Voce; 
 	public static String Speed_Alterado_Outro; 
 	public static String Speed_Valor_Invalido;
+	public static String System_Comando_Incorreto;
+	public static String Plugin_Recarregado_Sucesso;
+	public static String Backup_Com_Sucesso;
+	public static String Enchant_Comando_Incorreto;
+	public static String Enchant_Encantamento_Invalido;
+	public static String Enchant_Item_Invalido;
+	public static String Enchant_Encantado_Com_Sucesso;
+	public static String Potion_Comando_Incorreto;
+	public static String Potion_Item_Invalido;
+	public static String Potion_Efeito_Invalido;
+	public static String Potion_Editada_Sucesso;
+	public static String Sem_Permissao_Sethome;
+	public static String Sem_Permissao_Teleportar;
 	
 	public static void loadMensagens() {
 		FileConfiguration config = ConfigManager.getConfig("mensagens");
@@ -247,6 +271,7 @@ public class Mensagens {
 		Falha_Ao_Criar_Arquivo = config.getString("Falha-Ao-Criar-Arquivo").replace('&', '§');
 		Falha_Ao_Criar_Pasta = config.getString("Falha-Ao-Criar-Pasta").replace('&', '§');
 		Falha_Ao_Salvar = config.getString("Falha-Ao-Salvar").replace('&', '§');
+	    Erro_Versao_Nao_Suportada = config.getString("Erro-Versao-Nao-Suportada").replace('&', '§');
 		Nick_Similar = config.getString("Nick-Similar").replace('&', '§');
 		Servidor_Lotado = config.getString("Servidor-Lotado").replace('&', '§');
 		Nick_Bloqueado = config.getString("Nick-Bloqueado").replace('&', '§');
@@ -385,6 +410,16 @@ public class Mensagens {
 		God_Ja_Desabilitado_Voce = config.getString("God-Ja-Desabilitado-Voce").replace('&', '§');
 		God_Ja_Desabilitado_Outro = config.getString("God-Ja-Desabilitado-Outro").replace('&', '§');
 		God_Sem_Permissao_Outro = config.getString("God-Sem-Permissao-Outro").replace('&', '§');
+		Vanish_Comando_Incorreto = config.getString("Vanish-Comando-Incorreto").replace('&', '§');
+		Vanish_Desabilitado_Voce = config.getString("Vanish-Desabilitado-Voce").replace('&', '§');
+		Vanish_Desabilitado_Outro = config.getString("Vanish-Desabilitado-Outro").replace('&', '§');
+		Vanish_Habilitado_Voce = config.getString("Vanish-Habilitado-Voce").replace('&', '§');
+		Vanish_Habilitado_Outro = config.getString("Vanish-Habilitado-Outro").replace('&', '§');
+		Vanish_Ja_Habilitado_Voce = config.getString("Vanish-Ja-Habilitado-Voce").replace('&', '§');
+		Vanish_Ja_Habilitado_Outro = config.getString("Vanish-Ja-Habilitado-Outro").replace('&', '§');
+		Vanish_Ja_Desabilitado_Voce = config.getString("Vanish-Ja-Desabilitado-Voce").replace('&', '§');
+		Vanish_Ja_Desabilitado_Outro = config.getString("Vanish-Ja-Desabilitado-Outro").replace('&', '§');
+		Vanish_Sem_Permissao_Outro = config.getString("Vanish-Sem-Permissao-Outro").replace('&', '§');
 		Gamemode_Comando_Incorreto = config.getString("Gamemode-Comando-Incorreto").replace('&', '§');
 		Gamemode_Invalido = config.getString("Gamemode-Invalido").replace('&', '§');
 		Gamemode_Ja_Esta_Outro = config.getString("Gamemode-Ja-Esta-Outro").replace('&', '§');
@@ -460,5 +495,18 @@ public class Mensagens {
 		Speed_Alterado_Voce = config.getString("Speed-Alterado-Voce").replace('&', '§'); 
 		Speed_Alterado_Outro = config.getString("Speed-Alterado-Outro").replace('&', '§'); 
 		Speed_Valor_Invalido = config.getString("Speed-Valor-Invalido").replace('&', '§'); 
+		System_Comando_Incorreto = config.getString("System-Comando-Incorreto").replace('&', '§'); 
+		Plugin_Recarregado_Sucesso = config.getString("Plugin-Recarregado-Sucesso").replace('&', '§'); 
+		Backup_Com_Sucesso = config.getString("Backup-Com-Sucesso").replace('&', '§'); 
+		Enchant_Comando_Incorreto = config.getString("Enchant-Comando-Incorreto").replace('&', '§'); 
+		Enchant_Encantamento_Invalido = config.getString("Enchant-Encantamento-Invalido").replace('&', '§'); 
+		Enchant_Item_Invalido = config.getString("Enchant-Item-Invalido").replace('&', '§'); 
+		Enchant_Encantado_Com_Sucesso = config.getString("Enchant-Encantado-Com-Sucesso").replace('&', '§'); 
+		Potion_Comando_Incorreto = config.getString("Potion-Comando-Incorreto").replace('&', '§'); 
+		Potion_Item_Invalido = config.getString("Potion-Item-Invalido").replace('&', '§'); 
+		Potion_Efeito_Invalido = config.getString("Potion-Efeito-Invalido").replace('&', '§'); 
+		Potion_Editada_Sucesso = config.getString("Potion-Editada-Sucesso").replace('&', '§'); 
+		Sem_Permissao_Teleportar = config.getString("Sem-Permissao-Teleportar").replace('&', '§'); 
+		Sem_Permissao_Sethome = config.getString("Sem-Permissao-Sethome").replace('&', '§'); 
 	}
 }

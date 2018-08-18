@@ -10,13 +10,12 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.math.BigInteger;
 
-import org.bukkit.Bukkit;
-import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.util.io.BukkitObjectInputStream;
-import org.bukkit.util.io.BukkitObjectOutputStream;
 import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
+
+import rush.utils.objectStream.BukkitObjectInputStream;
+import rush.utils.objectStream.BukkitObjectOutputStream;
 
 public class Serializer {
 
@@ -105,20 +104,5 @@ public class Serializer {
         }
         
         return Base64Coder.encodeLines(outputStream.toByteArray());
-    }
-    
-    public static String serializeLocation(Location l) {
-    	return l.getWorld().getName()+","+l.getX()+","+l.getY()+","+l.getZ()+","+l.getYaw()+","+l.getPitch();
-    }
-    
-    public static Location deserializeLocation(String s) {
-    	String[] locationSplitted = s.split(",");
-		return new Location(
-			   Bukkit.getWorld(locationSplitted[0]),
-			   Double.parseDouble(locationSplitted[1]),
-			   Double.parseDouble(locationSplitted[2]),
-			   Double.parseDouble(locationSplitted[3]),
-			   Float.parseFloat(locationSplitted[4]),
-			   Float.parseFloat(locationSplitted[5]));
     }
 }

@@ -10,6 +10,7 @@ import org.bukkit.inventory.PlayerInventory;
 
 import rush.configuracoes.Mensagens;
 
+@SuppressWarnings("all")
 public class ComandoChapeu implements CommandExecutor {
 	
 	@Override
@@ -19,7 +20,7 @@ public class ComandoChapeu implements CommandExecutor {
 			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
 				s.sendMessage(Mensagens.Console_Nao_Pode);
-				return false;
+				return true;
 			}
 
 			// Pegando o player, o item na mão e o seu capacete atual
@@ -36,6 +37,7 @@ public class ComandoChapeu implements CommandExecutor {
 			} else {
 				s.sendMessage(Mensagens.Chapeu_Invalido);
 			}
+			return true;
 		}
 		return false;
 	}

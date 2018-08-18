@@ -18,19 +18,19 @@ public class ComandoDivulgar implements CommandExecutor {
 			// Verificando se o player digitou o número de argumentos corretos
 	        if (args.length != 2) { 
 	        	s.sendMessage(Mensagens.Divulgar_Comando_Incorreto);
-		        return false;
+				return true;
 	        }
 	        
 	        // Verificando se o player esta divulgando algo valido
 	        if (!args[0].equalsIgnoreCase("live") && !args[0].equalsIgnoreCase("video") && !args[0].equalsIgnoreCase("outro")) {
 		        s.sendMessage(Mensagens.Divulgar_Comando_Incorreto);
-		        return false;
+				return true;
 	        }
 	        
 	        // Verificando se o link é valido
 	        if (!isValidLink(args[1])) {
 		        s.sendMessage(Mensagens.Link_Invalido.replace("%link%", args[1]));
-		        return false;
+				return true;
 	        }
 		        	
 	        // Enviando um title para de aviso para todos os players do server
@@ -46,7 +46,7 @@ public class ComandoDivulgar implements CommandExecutor {
 	        	Bukkit.broadcastMessage(Mensagens.Divulgando_Live.replace("%player%", s.getName()));
 	        	Bukkit.broadcastMessage(Mensagens.Link.replace("%link%", args[1]));
 	        	Bukkit.broadcastMessage("");
-	        	return false;
+				return true;
 	        }
 			 
 	        // Caso a divulgação seja de um vídeo
@@ -55,7 +55,7 @@ public class ComandoDivulgar implements CommandExecutor {
 	        	Bukkit.broadcastMessage(Mensagens.Divulgando_Video.replace("%player%", s.getName()));
 	        	Bukkit.broadcastMessage(Mensagens.Link.replace("%link%", args[1]));
 	        	Bukkit.broadcastMessage("");
-	        	return false;
+				return true;
 	        }
 			        
 	        // Caso a divulgação seja de um outro link
@@ -64,7 +64,7 @@ public class ComandoDivulgar implements CommandExecutor {
 	        	Bukkit.broadcastMessage(Mensagens.Divulgando_Outro.replace("%player%", s.getName()));
 	        	Bukkit.broadcastMessage(Mensagens.Link.replace("%link%", args[1]));
 	        	Bukkit.broadcastMessage("");
-	        	return false;
+				return true;
 	        }
 	    }
 	    return false;

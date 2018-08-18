@@ -13,7 +13,6 @@ import org.bukkit.entity.Player;
 
 import rush.configuracoes.Mensagens;
 import rush.utils.DataManager;
-import rush.utils.Serializer;
 
 public class ComandoSetwarp implements CommandExecutor {
 	
@@ -24,13 +23,13 @@ public class ComandoSetwarp implements CommandExecutor {
 			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
 				s.sendMessage(Mensagens.Console_Nao_Pode); 
-				return false;
+				return true;
 			}	 
 				
 			// Verificando se o player digitou o número de argumentos corretos
 			if (args.length != 1) {
 				s.sendMessage(Mensagens.SetWarp_Comando_Incorreto);
-				return false;
+				return true;
 			}
 				     
 			// Pegando o argumento, o file e a config
@@ -41,13 +40,13 @@ public class ComandoSetwarp implements CommandExecutor {
 			// Verificando se a já warp existe
 			if (file.exists()) {
 				s.sendMessage(Mensagens.Warp_Ja_Existe.replace("%warp%", warp));
-				return false;
+				return true;
 			}
 			
 			Player p = (Player) s;
 			DataManager.createFile(file);
 			Location location = p.getLocation();
-			String locationSerialized = Serializer.serializeLocation(location);
+			String locationSerialized = serializeLocation(location);
 			config.set("Localizacao" , locationSerialized);
 			config.set("Permissao" , "system.warp." + warp.toLowerCase());
 			config.set("MensagemSemPermissao", "&cVocê não tem permissão para se teleportar para a warp " + warp + "!");
@@ -64,7 +63,12 @@ public class ComandoSetwarp implements CommandExecutor {
 			} catch (IOException e) {
 				Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
 			}
+			return true;
 		}
 		return false;
 	}
+
+    private String serializeLocation(Location l) {
+    	return l.getWorld().getName()+","+l.getX()+","+l.getY()+","+l.getZ()+","+l.getYaw()+","+l.getPitch();
+    }
 }

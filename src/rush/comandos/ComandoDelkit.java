@@ -16,7 +16,7 @@ public class ComandoDelkit implements CommandExecutor {
 			// Verificando se o player digitou o número de argumentos corretos
 			if (args.length != 1) {
 				s.sendMessage(Mensagens.DelKit_Comando_Incorreto);
-				return false;
+				return true;
 			}
 
 			// Pegando o argumento e verificando se o kit existe
@@ -24,12 +24,13 @@ public class ComandoDelkit implements CommandExecutor {
 			if (!Kits.contains(kit)) {
 				s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit%", kit));
 				ComandoKits.ListKitsForStaff(s);
-				return false;
+				return true;
 			}
 
 			// Deletando o kit
 			Kits.delete(kit);
 			s.sendMessage(Mensagens.Kit_Deletado.replace("%kit%", kit));
+			return true;
 		}
 		return false;
 	}

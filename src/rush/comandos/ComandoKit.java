@@ -29,13 +29,13 @@ public class ComandoKit implements CommandExecutor {
 			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
 				s.sendMessage(Mensagens.Console_Nao_Pode);
-				return false;
+				return true;
 			}
 
 			// Verificando se o player digitou o número de argumentos corretos
 			if (args.length != 1) {
 				s.sendMessage(Mensagens.Kit_Comando_Incorreto);
-				return false;
+				return true;
 			}
 
 			// Pegando o argumento e verificando se o kit existe
@@ -43,7 +43,7 @@ public class ComandoKit implements CommandExecutor {
 			if (!Kits.contains(nomeKit)) {
 				s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit%", nomeKit));
 				ComandoKits.ListKits(s);
-				return false;
+				return true;
 			}
 			
 			// Pegando o kit e verificando se o player possui permissão para pegar fala
@@ -51,7 +51,7 @@ public class ComandoKit implements CommandExecutor {
 			String perm = kit.getPermissao();
 			if (!s.hasPermission(perm) && !s.hasPermission("system.kit.all")) {
 				s.sendMessage(Mensagens.Kit_Sem_Permissao.replace("%kit%", nomeKit));
-				return false;
+				return true;
 			}
 
 			// Pegando o player, a lista de kits do players, os itens do kit e o delay do kit
@@ -68,19 +68,19 @@ public class ComandoKit implements CommandExecutor {
 				// Verificando se o player tem espaço no inventario para pegar o kit
 				if (getFreeSpaceInInventory(p) < kit.getAmountItens()) {
 					s.sendMessage(Mensagens.Kit_Sem_Espaco_Pra_Pegar);
-					return false;
+					return true;
 				}
 				
 				// Adicionando os itens no inventario do player e salvando na config
 				configPlayer.set("Kits." + nomeKit, millisKit);
-				addItensToInventory(p, ITENS);
 				try {
 					configPlayer.save(filePlayer);
+					addItensToInventory(p, ITENS);
 					s.sendMessage(Mensagens.Kit_Pego.replace("%kit%", nomeKit));
 				} catch (IOException e) {
 					Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", filePlayer.getName()));
 				}
-				return false;
+				return true;
 			}
 
 			// Caso o player nunca tenha pegado o kit verificamos se ele já pode pegar o kit novamente
@@ -89,24 +89,25 @@ public class ComandoKit implements CommandExecutor {
 				long millis = millisPlayer - System.currentTimeMillis();
 				String tempo = TimeFormatter.format(millis);
 				s.sendMessage(Mensagens.Kit_Aguarde.replace("%kit%", nomeKit).replace("%tempo%", tempo));
-				return false;
+				return true;
 			}
 
 			// Verificando se o player tem espaço no inventario para pegar o kit
 			if (getFreeSpaceInInventory(p) < kit.getAmountItens()) {
 				s.sendMessage(Mensagens.Kit_Sem_Espaco_Pra_Pegar);
-				return false;
+				return true;
 			}
 			
 			// Caso ele já possa pegar o kit novamente então o delay é setado e os itens são enviados para o player
 			configPlayer.set("Kits." + nomeKit, millisKit);
-			addItensToInventory(p, ITENS);
 			try {
 				configPlayer.save(filePlayer);
+				addItensToInventory(p, ITENS);
 				s.sendMessage(Mensagens.Kit_Pego.replace("%kit%", nomeKit));
 			} catch (IOException e) {
 				Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", filePlayer.getName()));
 			}
+			return true;
 		}
 		return false;
 	}

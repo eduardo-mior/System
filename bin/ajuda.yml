@@ -1,3 +1,8 @@
+#
+#                            +-------------------------------------------+
+#                            |           LISTA DE PERMISSÕES             | 
+#                            +-------------------------------------------+
+#
 #    +---------------------------------------------------------------------------------------------+
 #    | system.alerta             - Permissão para utilizar o comando /alerta                       |
 #    | system.back               - Permissão para utilizar o comando /back                         |
@@ -22,6 +27,7 @@
 #    | system.echest.admin       - Permissão para modificar o enderchest de outras pessoas         |
 #    | system.editaritem         - Permissão para utilizar o comando /editaritem                   |
 #    | system.editarkit          - Permissão para utilizar o comando /editarkit                    |
+#    | system.enchant            - Permissão para utilizar o comando /enchant                      |
 #    | system.executarsom        - Permissão para utilizar o comando /executarsom                  |
 #    | system.feed               - Permissão para utilizar o comando /feed                         |
 #    | system.fly                - Permissão para utilizar o comando /fly                          |
@@ -52,6 +58,7 @@
 #    | system.online             - Permissão para utilizar o comando /online                       |
 #    | system.particular         - Permissão para utilizar o comando /particular                   |
 #    | system.ping               - Permissão para utilizar o comando /ping                         |
+#    | system.potion             - Permissão para utilizar o comando /potion                       |
 #    | system.publica            - Permissão para utilizar o comando /publica                      |
 #    | system.semdelay           - Permissão para se teleportar sem precisa esperar o delay        |
 #    | system.sethome            - Permissão para utilizar o comando /sehome                       |
@@ -65,6 +72,7 @@
 #    | system.speed              - Permissão para utilizar o comando /speed                        |
 #    | system.speed.outos        - Permissão para alterar a velocidade de outros players           |
 #    | system.sudo               - Permissão para utilizar o comando /sudo                         |
+#    | system.system             - Permissão para utilizar o comando /system                       |
 #    | system.title              - Permissão para utilizar o comando /title                        |
 #    | system.tp                 - Permissão para utilizar o comando /tp                           |
 #    | system.tpa                - Permissão para utilizar o comando /tpa                          |
@@ -74,15 +82,15 @@
 #    | system.tpdeny             - Permissão para utilizar o comando /tpdeny                       |
 #    | system.tphere             - Permissão para utilizar o comando /tphere                       |
 #    | system.tptoggle           - Permissão para utilizar o comando /tptoggle                     |
+#    | system.vanish             - Permissão para utilizar o comando /vanish                       |
+#    | system.vanish.bypass      - Permissão para ver as pessoas que estão de vanish               |
+#    | system.vanish.outros      - Permissão para ativar ou desativar o vanish de outras pessoas   |
 #    | system.vip                - Permissão para acessar a Area VIP do comando /vip               |
 #    | system.warp               - Permissão para utilizar o comando /warp                         |
 #    | system.warps              - Permissão para utilizar o comando /warps                        |
 #    +---------------------------------------------------------------------------------------------+
-#    | system.chat.destaque - Permissão para escrever em destaque no chat.                         |
-#    | system.chat.cor1     - Permissão para escrever com uma cor automatica (definida na config)  |
-#    | system.chat.cor1     - Permissão para escrever com uma cor automatica (definida na config)  |
-#    | system.chat.cor...   - Permissão para escrever com uma cor automatica (definida na config)  |
-#    | system.chat.cor10    - Permissão para escrever com uma cor automatica (definida na config)  |
+#    | system.chat.destaque  - Permissão para escrever em destaque no chat.                        |
+#    | system.chat.cor.<cor> - Permissão para escrever com a cor automatica (definida na config)   |
 #    +---------------------------------------------------------------------------------------------+
 #    | system.bypass.comandobloqueado    - Permissão para utilizar comandos que foram bloqueados   |
 #    | system.bypass.containerbloqueado  - Permissão para abrir containers que foram bloqueados    |

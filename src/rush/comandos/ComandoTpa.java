@@ -14,9 +14,9 @@ import rush.configuracoes.Mensagens;
 import rush.configuracoes.Settings;
 import rush.entidades.Tpa;
 
+@SuppressWarnings("all")
 public class ComandoTpa extends Tpa implements CommandExecutor {
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 		if (cmd.getName().equalsIgnoreCase("tpa")) {
@@ -24,13 +24,13 @@ public class ComandoTpa extends Tpa implements CommandExecutor {
 			// Verificando se o sender é um player
 			if (!(s instanceof Player)) {
 				s.sendMessage(Mensagens.Console_Nao_Pode); 
-				return false;
+				return true;
             }
 			
 			// Verificando se o player digitou o número de argumentos corretos
 			if (args.length != 1) {
 				s.sendMessage(Mensagens.Tpa_Comando_Incorreto);
-				return false;
+				return true;
 			}
 			
 			// Definindo o sender que esta enviando o tpa e o target que esta recebendo
@@ -40,14 +40,14 @@ public class ComandoTpa extends Tpa implements CommandExecutor {
 			// Verificando se o sender e o player alvo são os mesmos
 			if (s.getName().equals(target)) {
 				s.sendMessage(Mensagens.Tp_Erro_Voce_Mesmo);
-				return false;
+				return true;
 			}
 			
 	        // Pegando o player alvo e verificando se ele esta online
             Player pTarget = Bukkit.getPlayer(target);
 			if (pTarget == null) {
 				s.sendMessage(Mensagens.Player_Offline);
-				return false;
+				return true;
 			}
 			
 			// Verificando se o player já enviou algum TPA
@@ -56,7 +56,7 @@ public class ComandoTpa extends Tpa implements CommandExecutor {
 				// Verificando se o player já possui um TPA pendente com o alvo
 				if (TPs_enviados.get(sender).contains(target)) {
 					s.sendMessage(Mensagens.Tpa_Ja_Possui_Solicitacao.replace("%player%", target));
-					return false;
+					return true;
 				}
 				
 			// Caso ele não tenha enviado nenhum TPA então ele adicionado na lista
@@ -68,14 +68,14 @@ public class ComandoTpa extends Tpa implements CommandExecutor {
 			if (cooldown.containsKey(sender)) {
 				if (System.currentTimeMillis() < cooldown.get(sender)) {
 					s.sendMessage(Mensagens.Tpa_Aguarde_Cooldown);
-					return false;
+					return true;
 				}
 			}
 			
 			// Verificando se o alvo esta com o TPA desativado
 			if (toggles.contains(target)) {
 				s.sendMessage(Mensagens.Tpa_Desligado_Tptoggle.replace("%player%", target));
-				return false;
+				return true;
 			}
 			
 			// Adicionando o TPA na HashMap e informando o sender e o target
@@ -104,7 +104,8 @@ public class ComandoTpa extends Tpa implements CommandExecutor {
 						}
 					}
 				}
-			}.runTaskLater(Main.get(), 20 * Settings.Tempo_Para_Expirar_Solicitacao_Tpa);			
+			}.runTaskLater(Main.get(), 20 * Settings.Tempo_Para_Expirar_Solicitacao_Tpa);	
+			return true;
 		}
 		return false;
 	}
