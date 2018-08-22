@@ -12,18 +12,6 @@ import rush.utils.objectStream.BukkitObjectOutputStream;
 
 public class SerializerOLD {
     
-    /**
-     * 
-     * A method to serialize an {@link ItemStack} array to Base64 String.
-     * 
-     * <p />
-     * 
-     * Based off of {@link #toBase64(Inventory)}.
-     * 
-     * @param items to turn into a Base64 String.
-     * @return Base64 string of the items.
-     * @throws IllegalStateException
-     */
     public static String serializeListItemStack(ItemStack[] items) {
     	try {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
@@ -46,17 +34,6 @@ public class SerializerOLD {
 		return null;
     }
     
-    /**
-     * Gets an array of ItemStacks from Base64 string.
-     * 
-     * <p />
-     * 
-     * Base off of {@link #fromBase64(String)}.
-     * 
-     * @param data Base64 string to convert to ItemStack array.
-     * @return ItemStack array created from the Base64 string.
-     * @throws IOException
-     */
     public static ItemStack[] deserializeListItemStack(String data) {
     	try {
             ByteArrayInputStream inputStream = new ByteArrayInputStream(Base64Coder.decodeLines(data));

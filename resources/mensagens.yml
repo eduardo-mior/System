@@ -24,6 +24,8 @@ Erro-Versao-Nao-Suportada: "&cDesculpe mas este recurso que você esta tentando 
 ############################################################
 Nick-Similar: "&cO nick '%novo%' não pode ser usado pois já existe um cadastro com o nick '%antigo%'.\n&c\n&cVocê deve utilizar a mesma configuração de caracteres maiusculos\n&ce minúsculos para poder acessar o servidor com este nick."
 Servidor-Lotado: "&cDesculpe mas o servidor esta cheio!\n&cAdquira já seu VIP em &ewww.gamersboard.com.br"
+Aviso-Dar-Lugar-Ao-Vip: "&e\n&eVocê sera kickado em %tempo% para dar lugar a um vip!\n&e."
+Kick-Dar-Lugar-Ao-Vip: "&cVocê foi kickado para dar lugar a um vip."
 Nick-Bloqueado: "&cA palavra '%nick%' foi bloqueada de ser usada em nicks!"
 Comando-Bloqueado: "&cEste comando foi bloqueado no servidor."
 Tentou-Passar-Da-Borda: "&cVocê não pode se teleportar para o outro lado da borda."
@@ -60,7 +62,7 @@ Tpall-Comando-Incorreto: |
   &c/tpall <player> &8-&7 Teleporta todos os players até um player.
   &c/tpall <world> <x> <y> <z> &8-&7 Teleporta todos os players até uma cordenada.
 Tpall-Puxou-Com-Sucesso-Player: "&aVocê teleportou todos os players do servidor até %player%."
-Tpall-Puxou-Com-Sucesso-Cords: "&aVocê teleportou todos os players do servidor até as cordenadas <world> <x> <y> <z>."
+Tpall-Puxou-Com-Sucesso-Cords: "&aVocê teleportou todos os players do servidor até as cordenadas <x> <y> <z>."
 Tpa-Comando-Incorreto: "&cComando incorreto, use /tpa <player>"
 Tpa-Aguarde-Cooldown: "&cAguarde %tempo% para pode enviar outro tpa."
 Tpa-Desligado-Tptoggle: "&c%player% desativou o recebimento de tpa."

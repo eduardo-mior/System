@@ -145,9 +145,11 @@ import rush.utils.DataManager;
 public class Main extends JavaPlugin implements Listener {
 
    private static Main main;
-   private boolean serverIs_1_7 = false;
-   private boolean serverIs_1_5 = false;
-   private boolean serverIs_1_13 = false;
+   private static boolean serverIs_1_13 = false;
+   private static boolean serverIs_1_12 = false;
+   private static boolean serverIs_1_11 = false;
+   private static boolean serverIs_1_7 = false;
+   private static boolean serverIs_1_5 = false;
    public static boolean setupFactions;
    
    @Override
@@ -162,7 +164,6 @@ public class Main extends JavaPlugin implements Listener {
    @Override
    public void onDisable() {
 	   desativarRecursos();
-	   desativarComandos();
    }
    
    private void enablePlugin() {
@@ -196,13 +197,10 @@ public class Main extends JavaPlugin implements Listener {
 	   new Command("cores", "system.cores", new ComandoCores());
 	   new Command("craft", "system.craft", new ComandoCraft());
 	   new Command("crashar", "system.crashar", new ComandoCrashar());
-	   new Command("criarkit", "system.criarkit", new ComandoCriarkit());
 	   new Command("delhome", "system.delhome", new ComandoDelhome());
-	   new Command("delkit", "system.delkit", new ComandoDelkit());
 	   new Command("delwarp", "system.delwarp", new ComandoDelwarp());
 	   new Command("derreter", "system.derreter" , new ComandoDerreter());
 	   new Command("echest", "system.echest" , new ComandoEchest());
-	   new Command("editarkit", "system.editarkit", new ComandoEditarkit());
 	   new Command("enchant", "system.enchant", new ComandoEnchant());
 	   new Command("feed", "system.feed", new ComandoFeed());
 	   new Command("fly", "system.fly", new ComandoFly());
@@ -212,8 +210,6 @@ public class Main extends JavaPlugin implements Listener {
 	   new Command("home", "system.home", new ComandoHome());
 	   new Command("homes", "system.home", new ComandoHomes());
 	   new Command("invsee", "system.invsee", new ComandoInvsee());
-	   new Command("kit", "system.kit", new ComandoKit());
-	   new Command("kits", "system.kits", new ComandoKits());
 	   new Command("lixo", "system.lixo", new ComandoLixo());
 	   new Command("luz", "system.luz", new ComandoLuz());
 	   new Command("mundovip", "system.mundovip", new ComandoMundoVip()); 
@@ -241,6 +237,14 @@ public class Main extends JavaPlugin implements Listener {
 	   new Command("tphere", "system.tphere", new ComandoTphere()); 
 	   new Command("tptoggle", "system.tptoggle", new ComandoTptoggle()); 
 	   new Command("warps", "system.warps", new ComandoWarps());
+	   
+	   if (!serverIs_1_11 && !serverIs_1_12 && !serverIs_1_13) {
+	   new Command("criarkit", "system.criarkit", new ComandoCriarkit());
+	   new Command("delkit", "system.delkit", new ComandoDelkit());
+	   new Command("editarkit", "system.editarkit", new ComandoEditarkit());
+	   new Command("kit", "system.kit", new ComandoKit());
+	   new Command("kits", "system.kits", new ComandoKits());
+	   }
 	   
 	   if (serverIs_1_5 || serverIs_1_7) {
 	   new Command("alerta", "system.alerta", new ComandoAlertaOLD());
@@ -442,13 +446,13 @@ public class Main extends JavaPlugin implements Listener {
 	   if (Settings.AtivarAddons_massiveFactions){
 	   if (pm.getPlugin("MassiveCore") == null || pm.getPlugin("Factions") == null){
 	   getServer().getConsoleSender().sendMessage("§c[System] Factions nao encontrado, desativando addons!");
-	   } else {
-	   setupFactions = true;}}
+	   } else { setupFactions = true;}}
 	   
+	   if (!serverIs_1_11 && !serverIs_1_12 && !serverIs_1_13) {
 	   if (serverIs_1_5 || serverIs_1_7) {
 	   pm.registerEvents(new KitsListenerOLD(), this); 
-	   } else { 
-	   pm.registerEvents(new KitsListener(), this);}
+	   } else if (!serverIs_1_11 && !serverIs_1_13 && !serverIs_1_12) { 
+	   pm.registerEvents(new KitsListener(), this);}}
 	  
 	   if (!serverIs_1_5 && !serverIs_1_7){
 	   pm.registerEvents(new VanishListener(), this);}
@@ -473,15 +477,11 @@ public class Main extends JavaPlugin implements Listener {
 	   else AutoAnuncio.XTask.cancel();}
    }
    
-   private void desativarComandos() {
-	  
-   }
-   
    private void checkServerVersion() {
 	   String version = Bukkit.getVersion();
 	   if (version.contains("1.13")) serverIs_1_13 = true;
-	   if (version.contains("1.12")) return;
-	   if (version.contains("1.11")) return;
+	   if (version.contains("1.12")) serverIs_1_12 = true;
+	   if (version.contains("1.11")) serverIs_1_11 = true;
 	   if (version.contains("1.10")) return;
 	   if (version.contains("1.9"))  return;
 	   if (version.contains("1.8"))  return;
@@ -490,11 +490,9 @@ public class Main extends JavaPlugin implements Listener {
 	   if (version.contains("1.5"))  serverIs_1_5 = true;
    }
    
-   public static boolean isOldVersion() {
-	   String version = Bukkit.getVersion();
-	   if (version.contains("1.7")) return true;
-	   if (version.contains("1.6")) return true;
-	   if (version.contains("1.5")) return true;
+   public static boolean useOldSerializer() {
+	   if (serverIs_1_7) return true;
+	   if (serverIs_1_5) return true;
 	   return false;
    }
    

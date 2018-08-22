@@ -112,7 +112,7 @@ public class ComandoTpaccept extends Tpa implements CommandExecutor {
 				
 				// Pegando o player sender (alvo) e informando que o TPA foi aceito
 				Player target = (Player) s;
-				s.sendMessage(Mensagens.Tpaccept_Solicitacao_Aceita_Sucesso.replace("%player%", args[0]));
+				s.sendMessage(Mensagens.Tpaccept_Solicitacao_Aceita_Sucesso.replace("%player%", p.getName()));
 				
 				// Verificando se o player possui permissão para se teleportar sem delay
 				if (!p.hasPermission("system.semdelay")) {

@@ -42,7 +42,7 @@ public class ComandoTphere implements CommandExecutor {
 			// Teleportando o player até o alvo e informando
 			Player p = (Player) s;
 			target.teleport(p);
-			s.sendMessage(Mensagens.Tphere_Puxou_Com_Sucesso.replace("%player%", args[0]));
+			s.sendMessage(Mensagens.Tphere_Puxou_Com_Sucesso.replace("%player%", target.getName()));
 			target.sendMessage(Mensagens.Tphere_Puxado_Com_Sucesso.replace("%player%", s.getName()));
 			return true;
 		}

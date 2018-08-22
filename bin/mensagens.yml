@@ -60,7 +60,7 @@ Tpall-Comando-Incorreto: |
   &c/tpall <player> &8-&7 Teleporta todos os players até um player.
   &c/tpall <world> <x> <y> <z> &8-&7 Teleporta todos os players até uma cordenada.
 Tpall-Puxou-Com-Sucesso-Player: "&aVocê teleportou todos os players do servidor até %player%."
-Tpall-Puxou-Com-Sucesso-Cords: "&aVocê teleportou todos os players do servidor até as cordenadas <world> <x> <y> <z>."
+Tpall-Puxou-Com-Sucesso-Cords: "&aVocê teleportou todos os players do servidor até as cordenadas <x> <y> <z>."
 Tpa-Comando-Incorreto: "&cComando incorreto, use /tpa <player>"
 Tpa-Aguarde-Cooldown: "&cAguarde %tempo% para pode enviar outro tpa."
 Tpa-Desligado-Tptoggle: "&c%player% desativou o recebimento de tpa."

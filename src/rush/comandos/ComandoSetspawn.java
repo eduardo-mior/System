@@ -37,6 +37,7 @@ public class ComandoSetspawn implements CommandExecutor {
 			Locations.spawn = spawn;
 			
 			// Serializando a localização e salvando na config
+			p.getWorld().setSpawnLocation(spawn.getBlockX(), spawn.getBlockY(), spawn.getBlockZ());
 			config.set("Spawn", spawn);
 			config.set("Spawn.world", spawn.getWorld().getName());
 			config.set("Spawn.x", Double.valueOf(spawn.getX()));

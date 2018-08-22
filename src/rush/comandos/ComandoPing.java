@@ -32,8 +32,8 @@ public class ComandoPing implements CommandExecutor {
 
 			// Caso o número de argumentos for 0 então pegaremos o ping do sender
 			if (args.length == 0) {
-				Player player = (Player) s;
-				String ping = getPlayerPing(player);
+				Player p = (Player) s;
+				String ping = getPlayerPing(p);
 				s.sendMessage(Mensagens.Seu_Ping.replace("%ping%", ping));
 				return true;
 			}
@@ -42,15 +42,15 @@ public class ComandoPing implements CommandExecutor {
 			if (args.length == 1) {
 
 				// Pegando o player e verificando se ele esta online
-				Player player = Bukkit.getPlayer(args[0]);
-				if (player == null) {
+				Player p = Bukkit.getPlayer(args[0]);
+				if (p == null) {
 					s.sendMessage(Mensagens.Player_Offline);
 					return true;
 				}
 
 				// Pegando o ping do player e informando
-				String ping = getPlayerPing(player);
-				s.sendMessage(Mensagens.Player_Ping.replace("%ping%", ping).replace("%player%", player.getName()));
+				String ping = getPlayerPing(p);
+				s.sendMessage(Mensagens.Player_Ping.replace("%ping%", ping).replace("%player%", p.getName()));
 				return true;
 			}
 		}

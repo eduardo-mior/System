@@ -11,7 +11,7 @@ import rush.configuracoes.Settings;
 
 public class FlyListener implements Listener {
 
-	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
+	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void aoTeleportar(PlayerTeleportEvent e) {
 		if (!e.getPlayer().hasPermission("system.fly.staff")) {
 			String world = e.getFrom().getWorld().getName();

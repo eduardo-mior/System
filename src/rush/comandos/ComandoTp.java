@@ -46,8 +46,8 @@ public class ComandoTp implements CommandExecutor {
 
 				// Teleportando o player até o alvo e informando
 				Player p = (Player) s;
-				p.teleport(target);
-				p.sendMessage(Mensagens.Tp_Teleportado_Com_Sucesso_Player.replace("%player%", args[0]));
+				target.teleport(p);
+				p.sendMessage(Mensagens.Tp_Teleportado_Com_Sucesso_Player.replace("%player%", target.getName()));
 				return true;
 			}
 			
@@ -82,14 +82,39 @@ public class ComandoTp implements CommandExecutor {
 
 				// Teleportando o player até o alvo e informando
 				target.teleport(player);
-				target.sendMessage(Mensagens.Tphere_Puxado_Com_Sucesso.replace("%player%", args[0]));
-				s.sendMessage(Mensagens.Tp_Voce_Teleportou_Player_Ate_Player.replace("%player%", args[1]).replace("%alvo%", args[0]));
+				target.sendMessage(Mensagens.Tphere_Puxado_Com_Sucesso.replace("%player%", player.getName()));
+				s.sendMessage(Mensagens.Tp_Voce_Teleportou_Player_Ate_Player.replace("%player%", target.getName()).replace("%alvo%", player.getName()));
 				return true;
 			}
 
-			// Se os argumentos foram 3 não existe uma possibidade então é dado comando invalido
+			// Se os argumentos foram 3 então o sender quer se teleportar até uma cordenada
 			if (args.length == 3) {
-				s.sendMessage(Mensagens.Tp_Comando_Incorreto);
+
+				// Verificando se o sender é um player
+				if (!(s instanceof Player)) {
+					s.sendMessage(Mensagens.Console_Nao_Pode);
+					return true;
+				}
+
+				// Verificando se os números digitados são validos
+				double x, y, z;
+				try {
+					x = Double.parseDouble(args[1]);
+					y = Double.parseDouble(args[2]);
+					z = Double.parseDouble(args[3]);
+				} catch (NumberFormatException e) {
+					s.sendMessage(Mensagens.Numero_Invalido.replace("%numero%", e.getMessage().split("\"")[1]));
+					return true;
+				}
+
+				// Teleportando o player até o alvo e informando
+				Player p = (Player) s;
+				Location l = new Location(p.getWorld(), x, y, z);
+				p.teleport(l);
+				p.sendMessage(Mensagens.Tp_Teleportado_Com_Sucesso_Cords
+						.replace("<x>", args[1])
+						.replace("<y>", args[2])
+						.replace("<z>", args[3]));
 				return true;
 			}
 			
@@ -164,11 +189,11 @@ public class ComandoTp implements CommandExecutor {
 				Location l = new Location(w, x, y, z);
 				p.teleport(l);
 				s.sendMessage(Mensagens.Tp_Voce_Teleportou_Player_Ate_Cords
-						.replace("%player%", args[4])
 						.replace("<world>", args[0])
 						.replace("<x>", args[1])
 						.replace("<y>", args[2])
-						.replace("<z>", args[3]));
+						.replace("<z>", args[3])
+						.replace("%player%", p.getCustomName()));
 				return true;
 			}
 		}

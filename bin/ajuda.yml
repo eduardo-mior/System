@@ -1,8 +1,45 @@
+#                            +-------------------------------------------+
+#                            |               INFORMAÇÕES                 |
+#                            +-------------------------------------------+
+#    +---------------------------------------------------------------------------------------------+
+#    | 1) Todos os comandos e recursos do plugin podem ser ativados e desativados acessando os     |
+#    |    arquivos de configuração do plugin [comandos.yml & settings.yml].                        | 
+#    |                                                                                             |
+#    | 2) Se você achar algum recurso ou comando inutil, você desativa-lo na sua configuração.     |
+#    |    Isso é muito importante para que o plugin e o seu servidor ganhem mais performance <3    |
+#    |                                                                                             |
+#    | 3) Alguns recursos e comandos do plugin não irão funcionar em determinadas versões do mine. |
+#    |    Todos os recursos e comandos foram criados baseados em servidores da 1.5 até 1.13. Você  |
+#    |    pode usar o plugin tranquilamente nas versões 1.5, 1.6, 1.7 e 1.13 porem alguns dos      |
+#    |    recursos e comandos não estarão disponiveis dependendo da versão (é pouca coisa).        |
+#    |                                                                                             |
+#    | 4) Se você tiver alguma sugestão, ou se você encontrar algum BUG ou ERRO você deve entra    |
+#    |    em contanto comigo por um dos meios de comunicação o mais rapido possível para que o     |
+#    |    problema sejá corrigido o mais rapido possísvel.                                         |
+#    |                                                                                             |
+#    | 5) Você pode encontrar mais informações usando o comando /system                            |
+#    +---------------------------------------------------------------------------------------------+
+#
 #
 #                            +-------------------------------------------+
-#                            |           LISTA DE PERMISSÕES             | 
+#                            |                 CONTATOS                  |
 #                            +-------------------------------------------+
+#    +---------------------------------------------------------------------------------------------+
+#    | WhatsApp: (54) 991343192                                                                    |
+#    | Facebook: http://fb.com/eduardo.mior.3                                                      |
+#    | Twitter: https://twitter.com/CanalDaRUSH                                                    |
+#    | Skype: live:eduardo-mior                                                                    |
+#    | Discord: Eduardo Mior#5793                                                                  |
+#    | E-Mail: eduardo-mior@hotmail.com                                                            |
+#    | TeamSpeak: rush.ts3elite.com                                                                |
+#    | Spigot: https://spigotmc.org/members/mior.344828                                            |
+#    | Gamer'sBoard: https://gamersboard.com.br/profile/23586-rushyoutuber/                        |
+#    +---------------------------------------------------------------------------------------------+
 #
+#
+#                            +-------------------------------------------+
+#                            |            LISTA DE PERMISSÕES            |
+#                            +-------------------------------------------+
 #    +---------------------------------------------------------------------------------------------+
 #    | system.alerta             - Permissão para utilizar o comando /alerta                       |
 #    | system.back               - Permissão para utilizar o comando /back                         |
@@ -52,6 +89,8 @@
 #    | system.kit.all            - Permissão para poder pegar qualquer kit                         |
 #    | system.kits               - Permissão para utilizar o comando /kits                         |
 #    | system.lixo               - Permissão para utilizar o comando /lixo                         |
+#    | system.lotado.entrar      - Permissão para entrar no servidor mesmo estando lotado          |
+#    | system.lotado.antikick    - Permissão para não ser kick pra um vip quando server tive cheio |
 #    | system.luz                - Permissão para utilizar o comando /luz                          |
 #    | system.manterxp           - Permissão para não perder xp ao morrer                          |
 #    | system.mundovip           - Permissão para utilizar o comando /vip                          |

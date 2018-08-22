@@ -22,18 +22,22 @@ public class KitsListener implements Listener {
 	@EventHandler
 	public void InventoryClose(InventoryCloseEvent e) {
 		
-		if (e.getInventory().getName().contains("§0Kit §n")) {
+		if (e.getInventory().getTitle().startsWith("Kit §2§n")) {
 			Inventory inv = e.getInventory();
 			Player p = (Player) e.getPlayer();
-			createKit(inv, p);
-			return;
+			if (p.hasPermission("system.criarkit")) {
+				createKit(inv, p);
+				return;
+			}
 		}
 
-		if (e.getInventory().getName().contains("§1Kit §n")) {
+		if (e.getInventory().getTitle().startsWith("Kit §4§n")) {
 			Inventory inv = e.getInventory();
 			Player p = (Player) e.getPlayer();
-			editKit(inv, p);
-			return;
+			if (p.hasPermission("system.editarkit")) {
+				editKit(inv, p);
+				return;
+			}
 		}
 	}
 

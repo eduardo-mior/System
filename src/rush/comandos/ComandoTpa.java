@@ -35,20 +35,20 @@ public class ComandoTpa extends Tpa implements CommandExecutor {
 			
 			// Definindo o sender que esta enviando o tpa e o target que esta recebendo
 			final String sender = s.getName();
-			final String target = args[0];
 			
 			// Verificando se o sender e o player alvo são os mesmos
-			if (s.getName().equals(target)) {
+			if (s.getName().equals(args[0])) {
 				s.sendMessage(Mensagens.Tp_Erro_Voce_Mesmo);
 				return true;
 			}
 			
 	        // Pegando o player alvo e verificando se ele esta online
-            Player pTarget = Bukkit.getPlayer(target);
+            Player pTarget = Bukkit.getPlayer(args[0]);
 			if (pTarget == null) {
 				s.sendMessage(Mensagens.Player_Offline);
 				return true;
 			}
+			final String target = pTarget.getName();
 			
 			// Verificando se o player já enviou algum TPA
 			if (TPs_enviados.containsKey(sender)) {

@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashSet;
 
-public class Tpa {
+public abstract class Tpa {
 
 	public static HashMap<String, Long> cooldown = new HashMap<>();
 	public static HashMap<String, LinkedHashSet<String>> TPs_enviados = new HashMap<>();

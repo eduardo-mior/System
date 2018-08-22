@@ -14,27 +14,31 @@ public class Locations {
 	public static Location spawn;
 	public static Location areaVip;
 	public static Location areaNaoVip;
-	public static Location padrao;
+	private static Location padrao;
+	
+	static {
+		padrao = new Location(Bukkit.getWorlds().get(0), 1.0, 10.0, 1.0, 1.0F, 1.0F);
+	}
 	
 	public static void loadLocations() {
-		areaVip();
-		areaNaoVip();
-		spawn();
+		setAreaVip();
+		setAreaNaoVip();
+		setSpawn();
+		setDefaultServerSpawn();
 		validarLocations();
 	}
 	
-	public static void validarLocations() {
+	private static void validarLocations() {
 		List<World> worlds = Bukkit.getWorlds();
 		World worldSpawn = spawn.getWorld();
 		World worldVip = areaVip.getWorld();
 		World worldNaoVip = areaNaoVip.getWorld();
-		padrao = new Location(worlds.get(0), 1.0, 10.0, 1.0, 1.0F, 1.0F);
 		if (!worlds.contains(worldSpawn)) spawn = padrao;
 		if (!worlds.contains(worldVip)) areaVip = padrao;
 		if (!worlds.contains(worldNaoVip)) areaNaoVip = padrao;
 	}
 
-	public static void areaVip() {
+	private static void setAreaVip() {
          areaVip = new Location(Main.get().getServer().getWorld
            (ConfigManager.getConfig("locations").getString("AreaVip.world")), 
            ConfigManager.getConfig("locations").getDouble("AreaVip.x"), 
@@ -44,7 +48,7 @@ public class Locations {
            Float.parseFloat(ConfigManager.getConfig("locations").getString("AreaVip.pitch")));
 	}
 	
-	public static void areaNaoVip() {
+	private static void setAreaNaoVip() {
         areaNaoVip = new Location(Main.get().getServer().getWorld
            (ConfigManager.getConfig("locations").getString("AreaNaoVip.world")), 
            ConfigManager.getConfig("locations").getDouble("AreaNaoVip.x"), 
@@ -54,7 +58,7 @@ public class Locations {
            Float.parseFloat(ConfigManager.getConfig("locations").getString("AreaNaoVip.pitch")));
 	}
 	
-	public static void spawn() {
+	private static void setSpawn() {
 	    spawn = new Location(Main.get().getServer().getWorld
 	       (ConfigManager.getConfig("locations").getString("Spawn.world")), 
 	       ConfigManager.getConfig("locations").getDouble("Spawn.x"), 
@@ -62,5 +66,15 @@ public class Locations {
 	       ConfigManager.getConfig("locations").getDouble("Spawn.z"), 
 	       Float.parseFloat(ConfigManager.getConfig("locations").getString("Spawn.yaw")), 
 	       Float.parseFloat(ConfigManager.getConfig("locations").getString("Spawn.pitch")));
-	} 
+	}
+	
+	private static void setDefaultServerSpawn() {
+		List<World> worlds = Bukkit.getWorlds();
+		World worldSpawn = spawn.getWorld();
+		if (!worlds.contains(worldSpawn)) {
+			worlds.get(0).setSpawnLocation(padrao.getBlockX(), padrao.getBlockY(), padrao.getBlockZ());
+		} else {
+			worldSpawn.setSpawnLocation(spawn.getBlockX(), spawn.getBlockY(), spawn.getBlockZ());
+		}
+	}
 }

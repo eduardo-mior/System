@@ -53,18 +53,6 @@ public class McMMO implements Listener {
 		if (e.getSkillLevel() % 100 == 0){
 			Bukkit.broadcastMessage(Mensagens.mcMMO_Upou_100_Niveis
 				.replace("%skill%", e.getSkill().name())
-				.replace("ACROBATICS", "Acrobacia")
-				.replace("ALCHEMY", "Alquimia")
-    	    	.replace("ARCHERY", "Arqueiro")
-    	    	.replace("AXES", "Machados")
-    	    	.replace("EXCAVATION", "Escavação")
-    	    	.replace("HERBALISM", "Herbalismo")
-    	    	.replace("MINING", "Mineração")
-            	.replace("REPAIR", "Reparação")
-            	.replace("SWORDS", "Espadas")
-            	.replace("TAMING", "Domador")
-            	.replace("UNARMED", "Desarmado")
-            	.replace("WOODCUTTING", "Lenhador")
             	.replace("%player%", p.getName())
             	.replace("%level%", String.valueOf(e.getSkillLevel()))
             	.replace('&', '§'));
@@ -79,19 +67,7 @@ public class McMMO implements Listener {
 		PlayerProfile pro = UserManager.getPlayer(e.getPlayer()).getProfile();
 	    
 		Player p = e.getPlayer();
-		String skill = e.getSkill().getName()
-			    .replace("Acrobatics", "Acrobacia")
-		        .replace("Alchemy", "Alquimia")
-		        .replace("Archery", "Arqueiro")
-		        .replace("Axes", "Machados")
-		        .replace("Excavation", "Escavação")
-		        .replace("Herbalism", "Herbalismo")
-		        .replace("Mining", "Mineração")
-		        .replace("Repair", "Reparação")
-		        .replace("Swords", "Espadas")
-		        .replace("Taming", "Domador")
-		        .replace("Unarmed", "Desarmado")
-		        .replace("Woodcutting", "Lenhador");
+		String skill = e.getSkill().getName();
 		int lvl = pro.getSkillLevel(e.getSkill());
 		int xp = pro.getSkillXpLevel(e.getSkill());
 		int dxp = pro.getXpToLevel(e.getSkill());

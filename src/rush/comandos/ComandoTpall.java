@@ -36,9 +36,9 @@ public class ComandoTpall implements CommandExecutor {
 				//Teleportando todos os players e informando
 				for (Player target : Bukkit.getOnlinePlayers()) {
 					target.teleport(p);
-					target.sendMessage(Mensagens.Tphere_Puxado_Com_Sucesso.replace("%player%", s.getName()));
+					target.sendMessage(Mensagens.Tphere_Puxado_Com_Sucesso.replace("%player%", p.getName()));
 				}
-				s.sendMessage(Mensagens.Tpall_Puxou_Com_Sucesso_Player);
+				s.sendMessage(Mensagens.Tpall_Puxou_Com_Sucesso_Player.replace("%player%", p.getName()));
 				return true;
 			}
 			
@@ -67,9 +67,12 @@ public class ComandoTpall implements CommandExecutor {
 				Location l = new Location(w, x, y, z);
 				for (Player target : Bukkit.getOnlinePlayers()) {
 					target.teleport(l);
-					target.sendMessage(Mensagens.Tphere_Puxado_Com_Sucesso.replace("%player%", s.getName()));
 				}
-				s.sendMessage(Mensagens.Tpall_Puxou_Com_Sucesso_Player);
+				s.sendMessage(Mensagens.Tpall_Puxou_Com_Sucesso_Cords
+						.replace("<world>", args[0])
+						.replace("<x>", args[1])
+						.replace("<y>", args[2])
+						.replace("<z>", args[3]));
 				return true;
 			}
 		}

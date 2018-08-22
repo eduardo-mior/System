@@ -32,7 +32,7 @@ public class ComandoSudo implements CommandExecutor {
 			String comando = "";
 			for (int i = 1; i < args.length; i++) {comando += args[i] + " ";}
 			p.chat(comando);
-			s.sendMessage(Mensagens.Sudo_Executado_Com_Sucesso.replace("%player%", args[0]).replace("%comando%", comando));
+			s.sendMessage(Mensagens.Sudo_Executado_Com_Sucesso.replace("%player%", p.getName()).replace("%comando%", comando));
 			return true;
 		}
 		return false;

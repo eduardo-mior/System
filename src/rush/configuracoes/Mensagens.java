@@ -21,6 +21,8 @@ public class Mensagens {
     public static String Erro_Versao_Nao_Suportada;
 	public static String Nick_Similar;
 	public static String Servidor_Lotado;
+	public static String Aviso_Dar_Lugar_Ao_Vip	;
+	public static String Kick_Dar_Lugar_Ao_Vip;
 	public static String Nick_Bloqueado;
 	public static String Comando_Bloqueado;
 	public static String Tentou_Passar_Da_Borda;
@@ -274,6 +276,8 @@ public class Mensagens {
 	    Erro_Versao_Nao_Suportada = config.getString("Erro-Versao-Nao-Suportada").replace('&', '§');
 		Nick_Similar = config.getString("Nick-Similar").replace('&', '§');
 		Servidor_Lotado = config.getString("Servidor-Lotado").replace('&', '§');
+		Aviso_Dar_Lugar_Ao_Vip = config.getString("Aviso-Dar-Lugar-Ao-Vip").replace('&', '§').replace("%tempo%", String.valueOf(Settings.Tempo_Para_Ser_Kick));
+		Kick_Dar_Lugar_Ao_Vip = config.getString("Kick-Dar-Lugar-Ao-Vip").replace('&', '§');
 		Nick_Bloqueado = config.getString("Nick-Bloqueado").replace('&', '§');
 		Comando_Bloqueado = config.getString("Comando-Bloqueado").replace('&', '§');
 		Tentou_Passar_Da_Borda = config.getString("Tentou-Passar-Da-Borda").replace('&', '§');
@@ -357,7 +361,7 @@ public class Mensagens {
 		Tphere_Erro_Voce_Mesmo = config.getString("Tphere-Erro-Voce-Mesmo").replace('&', '§');
 		Tphere_Puxou_Com_Sucesso = config.getString("Tphere-Puxou-Com-Sucesso").replace('&', '§');
 		Tphere_Puxado_Com_Sucesso = config.getString("Tphere-Puxado-Com-Sucesso").replace('&', '§');
-		Tpall_Comando_Incorreto = config.getString("Tpall-Puxou-Com-Sucesso-Player").replace('&', '§');
+		Tpall_Comando_Incorreto = config.getString("Tpall-Comando-Incorreto").replace('&', '§');
 		Tpall_Puxou_Com_Sucesso_Player = config.getString("Tpall-Puxou-Com-Sucesso-Player").replace('&', '§');
 		Tpall_Puxou_Com_Sucesso_Cords = config.getString("Tpall-Puxou-Com-Sucesso-Cords").replace('&', '§');
 		Tpa_Comando_Incorreto = config.getString("Tpa-Comando-Incorreto").replace('&', '§');

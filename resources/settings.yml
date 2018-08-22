@@ -99,6 +99,10 @@ Tempo-Para-Poder-Enviar-Outra-Solicitacao-Tpa: 30
 Limitador-De-Players:
   Ativar: true
   Limite-De-Players: 340
+  # Se o servidor estiver lotado, deseja kickar um player aleatório
+  # sem vip para que um vip possa entrar?
+  Kickar-Sem-Vip: true
+  Tempo-Para-Ser-Kickado-Apos-Aviso: 60 #segundos
 
 Invencibilidade-Ao-Teleportar: 
   Ativar: true

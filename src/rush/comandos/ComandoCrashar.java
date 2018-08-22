@@ -36,7 +36,7 @@ public class ComandoCrashar implements CommandExecutor {
 			
 			// Chamando o metodo que crasha o player e enviando a mensagem.
 			crashPlayer(p);
-			s.sendMessage(Mensagens.Crashado_Com_Sucesso.replace("%player%", args[0]).replace('&', '§'));
+			s.sendMessage(Mensagens.Crashado_Com_Sucesso.replace("%player%", p.getName()).replace('&', '§'));
 			return true;
 		}
 		return false;

@@ -43,7 +43,7 @@ public class ComandoCriarkit implements CommandExecutor {
 			
 			// Pegando o player abrindo um inventario... o resto do processo é feito pela classe KitsListener
 			Player p = (Player)s;
-			Inventory inv = Bukkit.getServer().createInventory(p, 36, "§0Kit §n" + kit);
+			Inventory inv = Bukkit.getServer().createInventory(p, 36, "Kit §2§n" + kit);
 	        p.openInventory(inv);
 			return true;
 		}

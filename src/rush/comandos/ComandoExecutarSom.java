@@ -54,7 +54,7 @@ public class ComandoExecutarSom implements CommandExecutor {
         	
         	// Executando o som para o player
         	p.playSound(p.getLocation(), Sound.valueOf(args[0].toUpperCase()), 1, 1);
-        	s.sendMessage(Mensagens.Som_Executado_Player.replace("%som%", args[0]).replace("%player%", args[1]));
+        	s.sendMessage(Mensagens.Som_Executado_Player.replace("%som%", args[0]).replace("%player%", p.getName()));
 			return true;
 		}
 		return false;

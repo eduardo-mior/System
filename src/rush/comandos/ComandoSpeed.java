@@ -49,7 +49,7 @@ public class ComandoSpeed implements CommandExecutor {
 				// Setando o speed no player e informando
 				p.setFlySpeed(speed);
 				p.setWalkSpeed(speed);
-				p.sendMessage(Mensagens.Speed_Alterado_Outro.replace("%speed%", args[0]).replace("%player%", args[1]));
+				s.sendMessage(Mensagens.Speed_Alterado_Outro.replace("%speed%", args[0]).replace("%player%", p.getName()));
 				return true;
 			}
 
@@ -81,7 +81,7 @@ public class ComandoSpeed implements CommandExecutor {
 				// Setando o speed no player e informando
 				p.setFlySpeed(speed);
 				p.setWalkSpeed(speed);
-				p.sendMessage(Mensagens.Speed_Alterado_Voce.replace("%speed%", args[0]));
+				s.sendMessage(Mensagens.Speed_Alterado_Voce.replace("%speed%", args[0]));
 				return true;
 			}
 
@@ -119,7 +119,7 @@ public class ComandoSpeed implements CommandExecutor {
 				// Setando o speed no player e informando
 				p.setFlySpeed(speed);
 				p.setWalkSpeed(speed);
-				p.sendMessage(Mensagens.Speed_Alterado_Outro.replace("%speed%", args[0]).replace("%player%", args[1]));
+				s.sendMessage(Mensagens.Speed_Alterado_Outro.replace("%speed%", args[0]).replace("%player%", p.getName()));
 				return true;
 			}
 		}

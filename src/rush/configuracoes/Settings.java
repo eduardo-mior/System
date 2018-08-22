@@ -53,6 +53,8 @@ public class Settings {
 	public static boolean Ativar_Cores_Na_Placa;
 	public static boolean Limitador_De_Players;
 	public static int Limite_De_Players;
+	public static boolean Kickar_Sem_Vip;
+	public static int Tempo_Para_Ser_Kick;
 	public static boolean Invencibilidade_Ao_Teleportar;
 	public static int Tempo_De_Invencibilidade_Ao_Teleportar;
 	public static boolean Dropar_Cabeca_Ao_Morrer;
@@ -156,6 +158,8 @@ public class Settings {
 		Ativar_Cores_Na_Placa = config.getBoolean("Ativar-Cores-Na-Placa");
 		Limitador_De_Players = config.getBoolean("Limitador-De-Players.Ativar");
 		Limite_De_Players = config.getInt("Limitador-De-Players.Limite-De-Players");
+		Kickar_Sem_Vip = config.getBoolean("Kickar-Sem-Vip");
+		Tempo_Para_Ser_Kick = config.getInt("Tempo-Para-Ser-Kickado-Apos-Aviso");
 		Invencibilidade_Ao_Teleportar = config.getBoolean("Invencibilidade-Ao-Teleportar.Ativar");
 		Tempo_De_Invencibilidade_Ao_Teleportar = config.getInt("Invencibilidade-Ao-Teleportar.Tempo-De-Invencibilidade-Ao-Teleportar");
 		Dropar_Cabeca_Ao_Morrer = config.getBoolean("Dropar-Cabeca-Ao-Morrer.Ativar");
