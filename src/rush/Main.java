@@ -79,6 +79,7 @@ import rush.configuracoes.Mensagens;
 import rush.configuracoes.Settings;
 import rush.entidades.Command;
 import rush.entidades.Kits;
+import rush.entidades.Warps;
 import rush.recursos.bloqueadores.BloquearAbrirContainers;
 import rush.recursos.bloqueadores.BloquearCairNoVoid;
 import rush.recursos.bloqueadores.BloquearCama;
@@ -126,6 +127,7 @@ import rush.sistemas.comandos.EnderChestListener;
 import rush.sistemas.comandos.FlyListener;
 import rush.sistemas.comandos.InvseeListener;
 import rush.sistemas.comandos.KitsListener;
+import rush.sistemas.comandos.KitsListenerNEW;
 import rush.sistemas.comandos.KitsListenerOLD;
 import rush.sistemas.comandos.VanishListener;
 import rush.sistemas.gerais.AnunciarMorte;
@@ -184,6 +186,7 @@ public class Main extends JavaPlugin implements Listener {
    
    private void carregarConfigs() {
 	   Kits.loadKits();
+	   Warps.loadWarps();
 	   Settings.loadSettings();
 	   Locations.loadLocations();
 	   Mensagens.loadMensagens();
@@ -238,13 +241,11 @@ public class Main extends JavaPlugin implements Listener {
 	   new Command("tptoggle", "system.tptoggle", new ComandoTptoggle()); 
 	   new Command("warps", "system.warps", new ComandoWarps());
 	   
-	   if (!serverIs_1_11 && !serverIs_1_12 && !serverIs_1_13) {
 	   new Command("criarkit", "system.criarkit", new ComandoCriarkit());
 	   new Command("delkit", "system.delkit", new ComandoDelkit());
 	   new Command("editarkit", "system.editarkit", new ComandoEditarkit());
 	   new Command("kit", "system.kit", new ComandoKit());
 	   new Command("kits", "system.kits", new ComandoKits());
-	   }
 	   
 	   if (serverIs_1_5 || serverIs_1_7) {
 	   new Command("alerta", "system.alerta", new ComandoAlertaOLD());
@@ -448,11 +449,12 @@ public class Main extends JavaPlugin implements Listener {
 	   getServer().getConsoleSender().sendMessage("§c[System] Factions nao encontrado, desativando addons!");
 	   } else { setupFactions = true;}}
 	   
-	   if (!serverIs_1_11 && !serverIs_1_12 && !serverIs_1_13) {
 	   if (serverIs_1_5 || serverIs_1_7) {
 	   pm.registerEvents(new KitsListenerOLD(), this); 
-	   } else if (!serverIs_1_11 && !serverIs_1_13 && !serverIs_1_12) { 
-	   pm.registerEvents(new KitsListener(), this);}}
+	   } else if (!serverIs_1_11 && !serverIs_1_12 && !serverIs_1_13) {
+	   pm.registerEvents(new KitsListenerNEW(), this); 
+	   } else {
+	   pm.registerEvents(new KitsListener(), this);}
 	  
 	   if (!serverIs_1_5 && !serverIs_1_7){
 	   pm.registerEvents(new VanishListener(), this);}
@@ -494,6 +496,13 @@ public class Main extends JavaPlugin implements Listener {
 	   if (serverIs_1_7) return true;
 	   if (serverIs_1_5) return true;
 	   return false;
+   }
+   
+   public static boolean useNewSerializer() {
+	  if (serverIs_1_13) return true;
+	  if (serverIs_1_12) return true;
+	  if (serverIs_1_11) return true;
+	  return false;
    }
    
    public static Main get() {

@@ -90,7 +90,6 @@
 #    | system.kits               - Permissão para utilizar o comando /kits                         |
 #    | system.lixo               - Permissão para utilizar o comando /lixo                         |
 #    | system.lotado.entrar      - Permissão para entrar no servidor mesmo estando lotado          |
-#    | system.lotado.antikick    - Permissão para não ser kick pra um vip quando server tive cheio |
 #    | system.luz                - Permissão para utilizar o comando /luz                          |
 #    | system.manterxp           - Permissão para não perder xp ao morrer                          |
 #    | system.mundovip           - Permissão para utilizar o comando /vip                          |

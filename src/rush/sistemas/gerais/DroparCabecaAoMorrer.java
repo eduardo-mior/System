@@ -12,6 +12,7 @@ import org.bukkit.inventory.meta.SkullMeta;
 
 import rush.configuracoes.Settings;
 
+@SuppressWarnings("all")
 public class DroparCabecaAoMorrer implements Listener {
 
 	private static Random rnd = new Random();

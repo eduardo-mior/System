@@ -1,20 +1,17 @@
 package rush.comandos;
 
-import java.io.File;
-
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import rush.Main;
 import rush.apis.TitleAPI;
 import rush.configuracoes.Mensagens;
-import rush.utils.DataManager;
+import rush.entidades.Warp;
+import rush.entidades.Warps;
 
 public class ComandoWarp implements CommandExecutor {
 	
@@ -35,62 +32,47 @@ public class ComandoWarp implements CommandExecutor {
 			}
 				     
 			// Pegando a warp e verificando se ela existe
-			String warp = args[0];
-			File file = DataManager.getFile(warp, "warps");
-			if (!file.exists()) {
-				s.sendMessage(Mensagens.Warp_Nao_Existe.replace("%warp%", warp));
+			if (!Warps.contains(args[0])) {
+				s.sendMessage(Mensagens.Warp_Nao_Existe.replace("%warp%", args[0]));
 				ComandoWarps.ListWarps(s);
 				return true;
 			}
 			
 			// Pegando o player e a localização
 			Player p = (Player) s;
-			FileConfiguration config = DataManager.getConfiguration(file);
-			String locationSplitted = config.getString("Localizacao");
-			Location location = deserializeLocation(locationSplitted);
+			Warp warp = Warps.get(args[0]);
+			Location location = warp.getLocation();
 			
 			// Verificando se o player tem permissão para se teleportar a warp
-			if (!s.hasPermission(config.getString("Permissao"))) {
-				s.sendMessage(config.getString("MensagemSemPermissao").replace('&', '§'));
+			if (!s.hasPermission(warp.getPermissao())) {
+				s.sendMessage(warp.getSemPermissao().replace('&', '§'));
 				return true;
 			} 
 				    	
 			// Verificando se o player tem permissão para se teleportar sem delay
-			if (!s.hasPermission("system.semdelay") || config.getBoolean("DelayParaVips") == true) {
-				s.sendMessage(config.getString("MensagemInicio").replace('&', '§'));
+			if (!s.hasPermission("system.semdelay") || warp.delayParaVips()) {
+				s.sendMessage(warp.getMensagemInicio().replace('&', '§'));
 				new BukkitRunnable() {
 					@Override
 					public void run() {
-						s.sendMessage(config.getString("MensagemFinal").replace('&', '§'));
 						p.teleport(location);
-						if (config.getBoolean("EnviarTitle")) {
-							TitleAPI.sendTitle(p, 20, 60, 20, config.getString("Title").replace('&', '§'), config.getString("SubTitle").replace('&', '§'));		
+						if (warp.enviarTitle()) {
+							TitleAPI.sendTitle(p, 10, 40, 10, warp.getTitle().replace('&', '§'), warp.getSubtitle().replace('&', '§'));		
 						}
+						s.sendMessage(warp.getMensagemFinal().replace('&', '§'));
 					}
-				}.runTaskLater(Main.get(), 20 * config.getInt("Delay"));
+				}.runTaskLater(Main.get(), 20 * warp.getDelay());
 				return true;
 			}
 				    	
 			// Caso o player tiver permissão para se teleportar sem delay então
-			s.sendMessage(config.getString("MensagemFinal").replace('&', '§'));
 			p.teleport(location);
-			if (config.getBoolean("EnviarTitle")) {
-				TitleAPI.sendTitle(p, 20, 60, 20, config.getString("Title").replace('&', '§'), config.getString("SubTitle").replace('&', '§'));
+			if (warp.enviarTitle()) {
+				TitleAPI.sendTitle(p, 10, 40, 10, warp.getTitle().replace('&', '§'), warp.getSubtitle().replace('&', '§'));		
 			}
+			s.sendMessage(warp.getMensagemFinal().replace('&', '§'));
 			return true;
 		}
 		return false;
 	}
-    
-	// Método para deserialziar uma localização
-    private Location deserializeLocation(String s) {
-    	String[] locationSplitted = s.split(",");
-		return new Location(
-			   Bukkit.getWorld(locationSplitted[0]),
-			   Double.parseDouble(locationSplitted[1]),
-			   Double.parseDouble(locationSplitted[2]),
-			   Double.parseDouble(locationSplitted[3]),
-			   Float.parseFloat(locationSplitted[4]),
-			   Float.parseFloat(locationSplitted[5]));
-    }
 }

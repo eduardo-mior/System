@@ -10,28 +10,28 @@ import rush.utils.DataManager;
 
 public class Kits {
 
-	private static HashMap<String, Kit> kits = new HashMap<>();
+	private static HashMap<String, Kit> KITS = new HashMap<>();
 	
 	public static Kit get(String kit) {
-		return kits.get(kit);
+		return KITS.get(kit);
 	}
 	
 	public static Collection<Kit> getAll() {
-		return kits.values();
+		return KITS.values();
 	}
 	
 	public static void create(String nome, Kit kit) {
-		kits.put(nome, kit);
+		KITS.put(nome, kit);
 	}
 	
 	public static void delete(String nome) {
 		File file = DataManager.getFile(nome, "kits");
 		DataManager.deleteFile(file);
-		kits.remove(nome);
+		KITS.remove(nome);
 	}
 	
 	public static boolean contains(String nome) {
-		return kits.containsKey(nome);
+		return KITS.containsKey(nome);
 	}
 	
 	public static void loadKits() {
@@ -46,7 +46,7 @@ public class Kits {
 				long delay = configKit.getLong("Delay");
 				String itens = configKit.getString("Itens");
 				Kit kit = new Kit(nome, permissao, delay, itens);
-				kits.put(nome, kit);
+				KITS.put(nome, kit);
 			}
 		}	
 	}

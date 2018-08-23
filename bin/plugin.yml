@@ -145,6 +145,9 @@ permissions:
   system.lixo:
     description: Permissão para abrir a lixeira virtual.
     default: op
+  system.lotado.entrar:
+    description: Permissão para entrar no servidor mesmo estando lotado.
+    default: op
   system.luz:
     description: Permissão para ligar e desligar a lanterna.
     default: op
@@ -352,6 +355,7 @@ permissions:
       system.kit: true
       system.kits: true
       system.lixo: true
+      system.lotado.entrar: true
       system.luz: true
       system.manterxp: true
       system.mundovip: true

@@ -1,13 +1,11 @@
 package rush.comandos;
 
-import java.io.File;
-
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 
 import rush.configuracoes.Mensagens;
-import rush.utils.DataManager;
+import rush.entidades.Warps;
 
 public class ComandoDelwarp implements CommandExecutor {
 	
@@ -23,17 +21,16 @@ public class ComandoDelwarp implements CommandExecutor {
 
 			// Pegando o argumento e criando/pegando o arquivo (File)
 			String warp = args[0];
-			File file = DataManager.getFile(warp, "warps");
 
 			// Verificando se o file(warp) existe
-			if (!file.exists()) {
+			if (!Warps.contains(warp)) {
 				s.sendMessage(Mensagens.Warp_Nao_Existe.replace("%warp%", warp));
 				ComandoWarps.ListWarpsForStaff(s);
 				return true;
 			}
 
 			// Deletando a warp
-			DataManager.deleteFile(file);
+			Warps.delete(warp);
 			s.sendMessage(Mensagens.Warp_Deletada.replace("%warp%", warp));
 			return true;
 		}

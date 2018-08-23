@@ -4,6 +4,7 @@ import org.bukkit.inventory.ItemStack;
 
 import rush.Main;
 import rush.utils.Serializer;
+import rush.utils.SerializerNEW;
 import rush.utils.SerializerOLD;
 
 public class Kit {
@@ -69,8 +70,18 @@ public class Kit {
 	}
 	
 	private ItemStack[] getItensByData(String data) {
-		if (!Main.useOldSerializer()) return Serializer.deserializeListItemStack(data);
-		else return SerializerOLD.deserializeListItemStack(data);
+		if (Main.useOldSerializer()) 
+		{
+			return SerializerOLD.deserializeListItemStack(data);
+		}
+		else if (Main.useNewSerializer()) 
+		{
+			return SerializerNEW.deserializeListItemStack(data);
+		}
+		else 
+		{
+			return Serializer.deserializeListItemStack(data);
+		}
 	}
 
 	@Override
