@@ -1,4 +1,5 @@
-﻿############################################################
+﻿file-version: 2
+############################################################
 # +------------------------------------------------------+ #
 # |                   Mensagens gerais                   | #
 # +------------------------------------------------------+ #
@@ -6,7 +7,6 @@
 Separador-De-Listas: "&8,&7"
 Console-Nao-Pode: "&cO console nao pode usar este comando."
 Sem-Permissao: "&cVocê não tem permissão para utilizar este comando."
-Spawn-Nao-Configurado: "&cO spawn do servidor ainda não foi configurado!"
 Numero-Invalido: "&cO número '%numero%' não é um número valido."
 Money-Null: "&cA palavra 'null' e a palavra 'nan' foram bloqueadas de serem usadas em comandos que envolvem dinheiro!"
 Player-Offline: "&cEste player não esta online no momento ou não existe."
@@ -136,6 +136,7 @@ Tornou-Home-Particular: "&aA home '%home%' agora é uma home particular, ou seja
 ############################################################
 Kit-Comando-Incorreto: "&cComando incorreto, use /kit <kit>"
 DelKit-Comando-Incorreto: "&cComando incorreto, use /delkit <kit>"
+VerKit-Comando-Incorreto: "&cComando incorreto, use /verkit <kit>"
 CriarKit-Comando-Incorreto: "&cComando incorreto, use /criarkit <kit>"
 EditarKit-Comando-Incorreto-Delay: "&cComando incorreto, use /editarkit <kit> delay <minutos>"
 EditarKit-Comando-Incorreto-Perm: "&cComando incorreto, use /editarkit <kit> perm <permissão>" 

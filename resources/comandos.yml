@@ -1,3 +1,4 @@
+file-version: 2
 comandos:
   alerta:
     ativar-comando: true
@@ -14,7 +15,7 @@ comandos:
   chapeu:
     ativar-comando: true
     aliases: [hat]
-    descricao: Veste o chapeu que esta na sua mao.
+    descricao: Veste o chapéu que esta na sua mão.
     sem-permissao: "§cVocê não tem permissão para utilizar este comando."
 
   clear:
@@ -110,7 +111,7 @@ comandos:
   enchant:
     ativar-comando: true
     aliases: [encantar]
-    descricao: Encanta um item de maneira facil.
+    descricao: Encanta um item de maneira fácil.
     sem-permissao: "§cVocê não tem permissão para utilizar este comando."    
    
   executarsom:
@@ -176,7 +177,7 @@ comandos:
   kits:
     ativar-comando: true
     aliases: []
-    descricao: Lista todos os kits disponiveis.
+    descricao: Lista todos os kits disponíveis.
     sem-permissao: "§cVocê não tem permissão para utilizar este comando."
     
   lixo:
@@ -296,7 +297,7 @@ comandos:
   title:
     ativar-comando: true
     aliases: [tm]
-    descricao: Envia um title para um player ou para todo servidor.
+    descricao: Envia um title para todo servidor.
     sem-permissao: "§cVocê não tem permissão para utilizar este comando."
     
   tp:
@@ -332,7 +333,7 @@ comandos:
   tpdeny:
     ativar-comando: true
     aliases: [tpnegar]
-    descricao: Cancela uma solicitação de teleporte enviada.
+    descricao: Rejeita uma solicitação de teleporte.
     sem-permissao: "§cVocê não tem permissão para utilizar este comando."
     
   tphere:
@@ -350,7 +351,13 @@ comandos:
   vanish:
     ativar-comando: true
     aliases: [v]
-    descricao: Ativa ou desativa o modo invisivel.
+    descricao: Ativa ou desativa o modo invisível.
+    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    
+  verkit:
+    ativar-comando: true
+    aliases: [visualizarkit]
+    descricao: Visualiza os itens de um kit.
     sem-permissao: "§cVocê não tem permissão para utilizar este comando."
     
   warp:
@@ -362,5 +369,5 @@ comandos:
   warps:
     ativar-comando: true
     aliases: []
-    descricao: Lista todas as warps disponiveis.
+    descricao: Lista todas as warps disponíveis.
     sem-permissao: "§cVocê não tem permissão para utilizar este comando."

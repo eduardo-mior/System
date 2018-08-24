@@ -14,30 +14,27 @@ public class ComandoDerreter implements CommandExecutor {
 	
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("derreter")) {
 			
-			// Verificando se o sender é um player
-			if (!(s instanceof Player)) {
-				s.sendMessage(Mensagens.Console_Nao_Pode);
-				return true;
-			}
-			
-			// Pegando o player e o inventario
-			Player p = (Player)s;
-			PlayerInventory i = p.getInventory();
-			
-			// Verificando se o player possui itens para derreter
-			if (!possuiItensParaDerreter(i)) {
-		        s.sendMessage(Mensagens.Derreter_Nao_Possui);
-				return true;
-			}
-			
-			// Chamando o método que derrete os itens e enviando mensagem
-			int derretidos = derreterItens(i);
-		    s.sendMessage(Mensagens.Derreter_Com_Sucesso.replace("%quantia%", String.valueOf(derretidos)));
+		// Verificando se o sender é um player
+		if (!(s instanceof Player)) {
+			s.sendMessage(Mensagens.Console_Nao_Pode);
 			return true;
 		}
-		return false;
+			
+		// Pegando o player e o inventario
+		Player p = (Player)s;
+		PlayerInventory i = p.getInventory();
+			
+		// Verificando se o player possui itens para derreter
+		if (!possuiItensParaDerreter(i)) {
+			s.sendMessage(Mensagens.Derreter_Nao_Possui);
+			return true;
+		}
+			
+		// Chamando o método que derrete os itens e enviando mensagem
+		int derretidos = derreterItens(i);
+		s.sendMessage(Mensagens.Derreter_Com_Sucesso.replace("%quantia%", String.valueOf(derretidos)));
+		return true;
 	}
 	
 	// Método para verificar se o player possui itens para derreter

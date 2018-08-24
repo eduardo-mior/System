@@ -9,7 +9,6 @@ public class Mensagens {
 	public static String Separador_De_Listas;
 	public static String Console_Nao_Pode;
 	public static String Sem_Permissao;
-	public static String Spawn_Nao_Configurado;
 	public static String Numero_Invalido;
 	public static String Money_Null;
 	public static String Player_Offline;
@@ -72,6 +71,7 @@ public class Mensagens {
 	public static String Tornou_Home_Particular;
 	public static String Kit_Comando_Incorreto;
 	public static String DelKit_Comando_Incorreto;
+	public static String VerKit_Comando_Incorreto;
 	public static String CriarKit_Comando_Incorreto;
 	public static String EditarKit_Comando_Incorreto_Delay;
 	public static String EditarKit_Comando_Incorreto_Perm;
@@ -264,7 +264,6 @@ public class Mensagens {
 		Separador_De_Listas = config.getString("Separador-De-Listas").replace('&', '§');
 		Console_Nao_Pode = config.getString("Console-Nao-Pode").replace('&', '§');
 		Sem_Permissao = config.getString("Sem-Permissao").replace('&', '§');
-		Spawn_Nao_Configurado = config.getString("Spawn-Nao-Configurado").replace('&', '§');
 		Numero_Invalido = config.getString("Numero-Invalido").replace('&', '§');
 		Money_Null = config.getString("Money-Null").replace('&', '§');
 		Player_Offline = config.getString("Player-Offline").replace('&', '§');
@@ -327,6 +326,7 @@ public class Mensagens {
 		Tornou_Home_Particular = config.getString("Tornou-Home-Particular").replace('&', '§');
 		Kit_Comando_Incorreto = config.getString("Kit-Comando-Incorreto").replace('&', '§');
 		DelKit_Comando_Incorreto = config.getString("DelKit-Comando-Incorreto").replace('&', '§');
+		VerKit_Comando_Incorreto = config.getString("VerKit-Comando-Incorreto").replace('&', '§');
 		CriarKit_Comando_Incorreto = config.getString("CriarKit-Comando-Incorreto").replace('&', '§');
 		EditarKit_Comando_Incorreto_Delay = config.getString("EditarKit-Comando-Incorreto-Delay").replace('&', '§');
 		EditarKit_Comando_Incorreto_Perm = config.getString("EditarKit-Comando-Incorreto-Perm").replace('&', '§');

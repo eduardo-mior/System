@@ -12,50 +12,48 @@ import rush.configuracoes.Mensagens;
 import rush.configuracoes.Settings;
 
 public class ComandoMundoVip implements CommandExecutor {
-	
+
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("mundovip")) {
-			
-			// Verificando se o sender é um player
-			if (!(s instanceof Player)) {
-				s.sendMessage(Mensagens.Console_Nao_Pode); 
-				return true;
-			}
-			
-			// Pegando o player e o delay para se teleportar
-			Player p = (Player) s;
-			int delay = Settings.Delay_Para_Teleportar_Comandos;
-			
-			// Verificando se o player tem permissão para se teleportar para areavip 
-			if (!s.hasPermission("system.vip")) {
-				
-				// Verificando se o camarote para os sem vip esta habilitado e teleportando o palyer
-		   	    if (Settings.Ativar_Camarote_Para_Os_Sem_Vip) {
-		   	    	s.sendMessage(Mensagens.Iniciando_Teleporte_Vip);
-		   	    	new BukkitRunnable() {
-		   	    		@Override
-		   	    		public void run() {
-		   	    			s.sendMessage("§f ");
-		   	    			s.sendMessage(Mensagens.Teleportado_Com_Sucesso_Sem_Vip);
-		   	    			s.sendMessage("§f ");
-		   	    			p.teleport(Locations.areaNaoVip);
-		   	    			
-		   	    		}
-		   	    	}.runTaskLaterAsynchronously(Main.get(), 20 * delay);
-					return true;
-		   	    }
-		   	    
-		   	    // Caso o camarote para os sem vips não esteja habilitado então um erro é exibido
-		   	    s.sendMessage(Mensagens.Sem_Permissao);
-				return true;
-			} 
-			
-			// Caso o player possua a permissão 'system.vip' este código sera executado
-		    s.sendMessage(Mensagens.Teleportado_Com_Sucesso_Vip);
-		    p.teleport(Locations.areaVip);    
+
+		// Verificando se o sender é um player
+		if (!(s instanceof Player)) {
+			s.sendMessage(Mensagens.Console_Nao_Pode);
 			return true;
 		}
-		return false;
+
+		// Pegando o player e o delay para se teleportar
+		Player p = (Player) s;
+		int delay = Settings.Delay_Para_Teleportar_Comandos;
+
+		// Verificando se o player tem permissão para se teleportar para areavip
+		if (!s.hasPermission("system.vip")) {
+
+			// Verificando se o camarote para os sem vip esta habilitado e teleportando o palyer
+			if (Settings.Ativar_Camarote_Para_Os_Sem_Vip) {
+				s.sendMessage(Mensagens.Iniciando_Teleporte_Vip);
+				new BukkitRunnable() {
+					@Override
+					public void run() {
+						s.sendMessage("§f ");
+						s.sendMessage(Mensagens.Teleportado_Com_Sucesso_Sem_Vip);
+						s.sendMessage("§f ");
+						p.teleport(Locations.areaNaoVip);
+
+					}
+				}.runTaskLater(Main.get(), 20 * delay);
+				return true;
+			}
+
+			// Caso o camarote para os sem vips não esteja habilitado então um erro é exibido
+			s.sendMessage(Mensagens.Sem_Permissao);
+			return true;
+		}
+
+		// Caso o player possua a permissão 'system.vip' este código sera executado
+		s.sendMessage(Mensagens.Teleportado_Com_Sucesso_Vip);
+		p.teleport(Locations.areaVip);
+		return true;
+
 	}
 }

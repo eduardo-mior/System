@@ -14,31 +14,28 @@ public class ComandoCompactarOLD implements CommandExecutor {
 	
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("compactar")) {
 			
-			// Verificando se o sender é um player
-			if (!(s instanceof Player)) {
-			    s.sendMessage(Mensagens.Console_Nao_Pode);
-				return true;
-			}
-
-			// Pegando o player, o inventario e os itens do inventario
-			Player p = (Player)s;
-			PlayerInventory i = p.getInventory();
-			ItemStack[] itens = i.getContents();
-			
-			// Verificando se o player possui itens para compactar
-			if (!possuiItensParaCompactar(i)) {
-		        s.sendMessage(Mensagens.Compactar_Nao_Possui);
-				return true;
-			}
-			
-			// Chamando o método que compacta os itens e enviando mensagem
-			int compactados = compactarItens(itens, i, p);
-		    s.sendMessage(Mensagens.Compactar_Com_Sucesso.replace("%quantia%", String.valueOf(compactados)));
+		// Verificando se o sender é um player
+		if (!(s instanceof Player)) {
+			s.sendMessage(Mensagens.Console_Nao_Pode);
 			return true;
 		}
-		return false;
+
+		// Pegando o player, o inventario e os itens do inventario
+		Player p = (Player)s;
+		PlayerInventory i = p.getInventory();
+		ItemStack[] itens = i.getContents();
+			
+		// Verificando se o player possui itens para compactar
+		if (!possuiItensParaCompactar(i)) {
+			s.sendMessage(Mensagens.Compactar_Nao_Possui);
+			return true;
+		}
+			
+		// Chamando o método que compacta os itens e enviando mensagem
+		int compactados = compactarItens(itens, i, p);
+		s.sendMessage(Mensagens.Compactar_Com_Sucesso.replace("%quantia%", String.valueOf(compactados)));
+		return true;
 	}
 	
 	// Método para verificar se o player possui itens para compactar

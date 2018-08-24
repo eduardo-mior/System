@@ -12,33 +12,30 @@ import rush.configuracoes.Mensagens;
 public class ComandoAlerta implements CommandExecutor {
 
 	@Override
-	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("alerta")) {
-			
-			// Verificando se o player digitou uma mensagem
-			if (args.length < 1) { 
-				s.sendMessage(Mensagens.Alerta_Comando_Incorreto);
-				return true;
-			}
-
-			// Obtendo a mensagem digitada
-			String alerta = "";
-			for (String str : args) {alerta += str + " ";}
-			
-			// Colocando cores na mensagem digitada
-			alerta = alerta.replace('&', '§');
-			
-			// Enviando a mensagem digita
-		    for (Player p : Bukkit.getOnlinePlayers()) {	
-		    	TitleAPI.sendTitle(p, 20, 60, 20,
-    			Mensagens.Alerta_Title.replace("%alerta%", alerta).replace("%player%", s.getName()),
-    			Mensagens.Alerta_SubTitle.replace("%alerta%", alerta).replace("%player%", s.getName()));
-    			p.sendMessage("");
-    			p.sendMessage(Mensagens.Alerta_Chat.replace("%alerta%", alerta).replace("%player%", s.getName()));
-    			p.sendMessage("");
-	    	}
+	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {		
+		
+		// Verificando se o player digitou uma mensagem
+		if (args.length < 1) { 
+			s.sendMessage(Mensagens.Alerta_Comando_Incorreto);
 			return true;
 		}
-		return false;
+
+		// Obtendo a mensagem digitada
+		String alerta = "";
+		for (String str : args) {alerta += str + " ";}
+			
+		// Colocando cores na mensagem digitada
+		alerta = alerta.replace('&', '§');
+			
+		// Enviando a mensagem digita
+		for (Player p : Bukkit.getOnlinePlayers()) {	
+			TitleAPI.sendTitle(p, 20, 60, 20,
+			Mensagens.Alerta_Title.replace("%alerta%", alerta).replace("%player%", s.getName()),
+    		Mensagens.Alerta_SubTitle.replace("%alerta%", alerta).replace("%player%", s.getName()));
+    		p.sendMessage("");
+    		p.sendMessage(Mensagens.Alerta_Chat.replace("%alerta%", alerta).replace("%player%", s.getName()));
+    		p.sendMessage("");
+		}
+		return true;
 	}
 }

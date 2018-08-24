@@ -21,57 +21,54 @@ public class ComandoSethome implements CommandExecutor {
 	
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("sethome")) {
-			
-			// Verificando se o sender é um player
-			if (!(s instanceof Player)) {
-				s.sendMessage(Mensagens.Console_Nao_Pode); 
-				return true;
-			}
-					
-			// Verificando se o player digitou o número de argumentos corretos
-			if (args.length != 1) {
-				s.sendMessage(Mensagens.SetHome_Comando_Incorreto);
-				return true;
-			}
-				     
-			// Pegando o player, a home a ser deleta, o arquivo do player a config e alista de homes
-			Player p = (Player) s;
-			String home = args[0].replace(":", "");
-			File file = DataManager.getFile(p.getName().toLowerCase(), "playerdata");
-			FileConfiguration config = DataManager.getConfiguration(file);
-			Set<String> HOMES = config.getConfigurationSection("Homes").getKeys(false);
-			int homes = HOMES.size();
-			
-			// Verificando se o player já atingiu o limite máximo de homes permitidas
-			int limite = getHomesLimit(p);
-			if (homes >= limite) {
-				s.sendMessage(Mensagens.Limite_De_Homes_Atingido.replace("%limite%", String.valueOf(limite)));
-				return true;
-			} 
-			
-			// Pegando a localização do player, serializando e salvando no arquivo
-			Location location = p.getLocation();
-			
-			// Verificando se a compatibilidade com o factions
-			if (Main.setupFactions) {
-				if (!MassiveFactions.isValidSetHome(location, p)) {
-					return true;
-				}
-			}
-			
-			String locationSerialized = serializeLocation(location);
-			config.set("Homes." + home + ".Localizacao" , locationSerialized);
-			config.set("Homes." + home + ".Publica" , false);
-			try {
-				config.save(file);
-				s.sendMessage(Mensagens.Home_Definida.replace("%home%", home));
-			} catch (IOException e) {
-				Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
-			}
+		
+		// Verificando se o sender é um player
+		if (!(s instanceof Player)) {
+			s.sendMessage(Mensagens.Console_Nao_Pode); 
 			return true;
 		}
-		return false;
+				
+		// Verificando se o player digitou o número de argumentos corretos
+		if (args.length != 1) {
+			s.sendMessage(Mensagens.SetHome_Comando_Incorreto);
+			return true;
+		}
+			     
+		// Pegando o player, a home a ser deleta, o arquivo do player a config e alista de homes
+		Player p = (Player) s;
+		String home = args[0].replace(":", "");
+		File file = DataManager.getFile(p.getName().toLowerCase(), "playerdata");
+		FileConfiguration config = DataManager.getConfiguration(file);
+		Set<String> HOMES = config.getConfigurationSection("Homes").getKeys(false);
+		int homes = HOMES.size();
+		
+		// Verificando se o player já atingiu o limite máximo de homes permitidas
+		int limite = getHomesLimit(p);
+		if (homes >= limite) {
+			s.sendMessage(Mensagens.Limite_De_Homes_Atingido.replace("%limite%", String.valueOf(limite)));
+			return true;
+		} 
+		
+		// Pegando a localização do player, serializando e salvando no arquivo
+		Location location = p.getLocation();
+		
+		// Verificando se a compatibilidade com o factions
+		if (Main.setupFactions) {
+			if (!MassiveFactions.isValidSetHome(location, p)) {
+				return true;
+			}
+		}
+		
+		String locationSerialized = serializeLocation(location);
+		config.set("Homes." + home + ".Localizacao" , locationSerialized);
+		config.set("Homes." + home + ".Publica" , false);
+		try {
+			config.save(file);
+			s.sendMessage(Mensagens.Home_Definida.replace("%home%", home));
+		} catch (IOException e) {
+			Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
+		}
+		return true;
 	}
 	
 	/**

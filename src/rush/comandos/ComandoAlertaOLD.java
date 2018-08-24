@@ -10,28 +10,25 @@ import rush.configuracoes.Mensagens;
 public class ComandoAlertaOLD implements CommandExecutor {
 
 	@Override
-	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("alerta")) {	
-			
-			// Verificando se o player digitou uma mensagem
-			if (args.length < 1) { 
-				s.sendMessage(Mensagens.Alerta_Comando_Incorreto);
-				return true;
-			}
-
-			// Obtendo a mensagem digitada
-			String alerta = "";
-			for (String str : args) {alerta += str + " ";}
-			
-			// Colocando cores na mensagem digitada
-			alerta = alerta.replace('&', '§');
-			
-			// Enviando a mensagem digita
-			Bukkit.broadcastMessage("");
-			Bukkit.broadcastMessage(Mensagens.Alerta_Chat.replace("%alerta%", alerta).replace("%player%", s.getName()));
-			Bukkit.broadcastMessage("");
+	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {		
+		
+		// Verificando se o player digitou uma mensagem
+		if (args.length < 1) { 
+			s.sendMessage(Mensagens.Alerta_Comando_Incorreto);
 			return true;
 		}
-		return false;
+
+		// Obtendo a mensagem digitada
+		String alerta = "";
+		for (String str : args) {alerta += str + " ";}
+			
+		// Colocando cores na mensagem digitada
+		alerta = alerta.replace('&', '§');
+			
+		// Enviando a mensagem digita
+		Bukkit.broadcastMessage("");
+		Bukkit.broadcastMessage(Mensagens.Alerta_Chat.replace("%alerta%", alerta).replace("%player%", s.getName()));
+		Bukkit.broadcastMessage("");
+		return true;
 	}
 }

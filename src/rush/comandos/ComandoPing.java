@@ -16,45 +16,43 @@ public class ComandoPing implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("ping")) {
 
-			// Verificando se o sender é um player
-			if (!(s instanceof Player)) {
-				s.sendMessage(Mensagens.Console_Nao_Pode);
-				return true;
-			}
-
-			// Verificando se o player digitou o número de argumentos corretos
-			if (args.length > 1) {
-				s.sendMessage(Mensagens.Ping_Comando_Incorreto);
-				return true;
-			}
-
-			// Caso o número de argumentos for 0 então pegaremos o ping do sender
-			if (args.length == 0) {
-				Player p = (Player) s;
-				String ping = getPlayerPing(p);
-				s.sendMessage(Mensagens.Seu_Ping.replace("%ping%", ping));
-				return true;
-			}
-
-			// Caso o número de argumentos for 1 então pegaremos o ping do player especificado
-			if (args.length == 1) {
-
-				// Pegando o player e verificando se ele esta online
-				Player p = Bukkit.getPlayer(args[0]);
-				if (p == null) {
-					s.sendMessage(Mensagens.Player_Offline);
-					return true;
-				}
-
-				// Pegando o ping do player e informando
-				String ping = getPlayerPing(p);
-				s.sendMessage(Mensagens.Player_Ping.replace("%ping%", ping).replace("%player%", p.getName()));
-				return true;
-			}
+		// Verificando se o sender é um player
+		if (!(s instanceof Player)) {
+			s.sendMessage(Mensagens.Console_Nao_Pode);
+			return true;
 		}
-		return false;
+
+		// Verificando se o player digitou o número de argumentos corretos
+		if (args.length > 1) {
+			s.sendMessage(Mensagens.Ping_Comando_Incorreto);
+			return true;
+		}
+
+		// Caso o número de argumentos for 0 então pegaremos o ping do sender
+		if (args.length == 0) {
+			Player p = (Player) s;
+			String ping = getPlayerPing(p);
+			s.sendMessage(Mensagens.Seu_Ping.replace("%ping%", ping));
+			return true;
+		}
+
+		// Caso o número de argumentos for 1 então pegaremos o ping do player especificado
+		if (args.length == 1) {
+
+			// Pegando o player e verificando se ele esta online
+			Player p = Bukkit.getPlayer(args[0]);
+			if (p == null) {
+				s.sendMessage(Mensagens.Player_Offline);
+				return true;
+			}
+
+			// Pegando o ping do player e informando
+			String ping = getPlayerPing(p);
+			s.sendMessage(Mensagens.Player_Ping.replace("%ping%", ping).replace("%player%", p.getName()));
+			return true;
+		}
+		return true;
 	}
 
 	// Métoodo para pegar o ping do player
@@ -63,7 +61,7 @@ public class ComandoPing implements CommandExecutor {
 			Object entityPlayer = player.getClass().getMethod("getHandle").invoke(player);
 			Field ping = entityPlayer.getClass().getField("ping");
 			return String.valueOf(ping.get(entityPlayer));
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException | NoSuchFieldException e) {
+		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException	| SecurityException | NoSuchFieldException e) {
 			e.printStackTrace();
 		}
 		return "§cIndisponivel";

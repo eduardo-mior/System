@@ -17,39 +17,36 @@ public class ComandoBack implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("back")) {
 
-			// Verificando se o sender é um player
-			if (!(s instanceof Player)) {
-				s.sendMessage(Mensagens.Console_Nao_Pode);
-				return true;
-			}
-
-			// Obtendo o player e a lista de pessoas que teleportaram
-			Player p = (Player) s;
-			HashMap<String, Location> lista = BackListener.backList;
-
-			// Verificando se o player possui um lugar para se voltar
-			if (!lista.containsKey(p.getName())) {
-				s.sendMessage(Mensagens.Nao_Possui_Back);
-				return true;
-			}
-			
-			// Pegando a ultima localização do player
-			Location l = lista.get(p.getName());
-
-			// Verificando se a compatibilidade com o factions
-			if (Main.setupFactions) {
-				if (!MassiveFactions.isValidTeleport(l, p)) {
-					return true;
-				}
-			}
-			
-			// Obtendo a localização para se teleportar e teleportando o player
-			p.teleport(l);
-			s.sendMessage(Mensagens.Back_Teleportado_Sucesso);
+		// Verificando se o sender é um player
+		if (!(s instanceof Player)) {
+			s.sendMessage(Mensagens.Console_Nao_Pode);
 			return true;
 		}
-		return false;
+
+		// Obtendo o player e a lista de pessoas que teleportaram
+		Player p = (Player) s;
+		HashMap<String, Location> lista = BackListener.backList;
+
+		// Verificando se o player possui um lugar para se voltar
+		if (!lista.containsKey(p.getName())) {
+			s.sendMessage(Mensagens.Nao_Possui_Back);
+			return true;
+		}
+			
+		// Pegando a ultima localização do player
+		Location l = lista.get(p.getName());
+
+		// Verificando se a compatibilidade com o factions
+		if (Main.setupFactions) {
+			if (!MassiveFactions.isValidTeleport(l, p)) {
+				return true;
+			}
+		}
+			
+		// Obtendo a localização para se teleportar e teleportando o player
+		p.teleport(l);
+		s.sendMessage(Mensagens.Back_Teleportado_Sucesso);
+		return true;
 	}
 }

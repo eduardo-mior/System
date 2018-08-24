@@ -16,11 +16,8 @@ public class ComandoKits implements CommandExecutor {
 	
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("kits")) {
-			ListKits(s);
-			return true;
-		}
-		return false;
+		ListKits(s);
+		return true;
 	}
 
 	// Se a lista de kits sera exibida para um player então verificamos se ele tem permissão

@@ -16,11 +16,8 @@ public class ComandoWarps implements CommandExecutor {
 	
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("warps")) {
-			ListWarps(s);
-			return true;
-		}
-		return false;
+		ListWarps(s);
+		return true;
 	}
 	
 	// Se a lista de warps sera exibida para um player então verificamos se ele tem permissão

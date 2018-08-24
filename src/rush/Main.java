@@ -1,6 +1,7 @@
 package rush;
 
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.HandlerList;
 import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
@@ -71,6 +72,7 @@ import rush.comandos.ComandoTpdeny;
 import rush.comandos.ComandoTphere;
 import rush.comandos.ComandoTptoggle;
 import rush.comandos.ComandoVanish;
+import rush.comandos.ComandoVerkit;
 import rush.comandos.ComandoWarp;
 import rush.comandos.ComandoWarpOLD;
 import rush.comandos.ComandoWarps;
@@ -185,6 +187,7 @@ public class Main extends JavaPlugin implements Listener {
    }
    
    private void carregarConfigs() {
+	   checkConfigs();
 	   Kits.loadKits();
 	   Warps.loadWarps();
 	   Settings.loadSettings();
@@ -200,10 +203,13 @@ public class Main extends JavaPlugin implements Listener {
 	   new Command("cores", "system.cores", new ComandoCores());
 	   new Command("craft", "system.craft", new ComandoCraft());
 	   new Command("crashar", "system.crashar", new ComandoCrashar());
+	   new Command("criarkit", "system.criarkit", new ComandoCriarkit());
 	   new Command("delhome", "system.delhome", new ComandoDelhome());
+	   new Command("delkit", "system.delkit", new ComandoDelkit());
 	   new Command("delwarp", "system.delwarp", new ComandoDelwarp());
 	   new Command("derreter", "system.derreter" , new ComandoDerreter());
 	   new Command("echest", "system.echest" , new ComandoEchest());
+	   new Command("editarkit", "system.editarkit", new ComandoEditarkit());
 	   new Command("enchant", "system.enchant", new ComandoEnchant());
 	   new Command("feed", "system.feed", new ComandoFeed());
 	   new Command("fly", "system.fly", new ComandoFly());
@@ -213,6 +219,8 @@ public class Main extends JavaPlugin implements Listener {
 	   new Command("home", "system.home", new ComandoHome());
 	   new Command("homes", "system.home", new ComandoHomes());
 	   new Command("invsee", "system.invsee", new ComandoInvsee());
+	   new Command("kit", "system.kit", new ComandoKit());
+	   new Command("kits", "system.kits", new ComandoKits());
 	   new Command("lixo", "system.lixo", new ComandoLixo());
 	   new Command("luz", "system.luz", new ComandoLuz());
 	   new Command("mundovip", "system.mundovip", new ComandoMundoVip()); 
@@ -239,13 +247,8 @@ public class Main extends JavaPlugin implements Listener {
 	   new Command("tpdeny", "system.tpdeny", new ComandoTpdeny());
 	   new Command("tphere", "system.tphere", new ComandoTphere()); 
 	   new Command("tptoggle", "system.tptoggle", new ComandoTptoggle()); 
+	   new Command("verkit", "system.verkit", new ComandoVerkit());
 	   new Command("warps", "system.warps", new ComandoWarps());
-	   
-	   new Command("criarkit", "system.criarkit", new ComandoCriarkit());
-	   new Command("delkit", "system.delkit", new ComandoDelkit());
-	   new Command("editarkit", "system.editarkit", new ComandoEditarkit());
-	   new Command("kit", "system.kit", new ComandoKit());
-	   new Command("kits", "system.kits", new ComandoKits());
 	   
 	   if (serverIs_1_5 || serverIs_1_7) {
 	   new Command("alerta", "system.alerta", new ComandoAlertaOLD());
@@ -490,6 +493,30 @@ public class Main extends JavaPlugin implements Listener {
 	   if (version.contains("1.7"))  serverIs_1_7 = true;
 	   if (version.contains("1.6"))  serverIs_1_7 = true;
 	   if (version.contains("1.5"))  serverIs_1_5 = true;
+   }
+   
+   private void checkConfigs() {
+		FileConfiguration msg = ConfigManager.getConfig("mensagens");
+		FileConfiguration stt = ConfigManager.getConfig("settings");
+		FileConfiguration cmd = ConfigManager.getConfig("comandos");
+
+		if (msg.getInt("file-version") != 2) {
+			Bukkit.getLogger().severe("[System] O seu arquivo mensagens.yml esta desatualizado!");
+			Bukkit.getLogger().severe("[System] Por favor entre em contato com o desenvolvedor ou apague "
+					+ "o arquivo mensagens.yml e reincie o servidor.");
+		}
+		
+		if (stt.getInt("file-version") != 1) {
+			Bukkit.getLogger().severe("[System] O seu arquivo settings.yml esta desatualizado!");
+			Bukkit.getLogger().severe("[System] Por favor entre em contato com o desenvolvedor ou apague "
+					+ "o arquivo settings.yml e reincie o servidor.");
+		}
+		
+		if (cmd.getInt("file-version") != 2) {
+			Bukkit.getLogger().severe("[System] O seu arquivo comandos.yml esta desatualizado!");
+			Bukkit.getLogger().severe("[System] Por favor entre em contato com o desenvolvedor ou apague "
+					+ "o arquivo comandos.yml e reincie o servidor.");
+		}
    }
    
    public static boolean useOldSerializer() {

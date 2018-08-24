@@ -14,116 +14,113 @@ public class ComandoGamemode implements CommandExecutor {
 	
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("gamemode")) {
 	    	
-			// Verificando se o sender é um player
-	    	if (!(s instanceof Player)) {
-	    		
-				// Verificando se o sender digitou o número de argumentos correto
-	    		if(args.length != 2) {
-	    	       s.sendMessage(Mensagens.Gamemode_Comando_Incorreto);
-	    	       return true;
-	    		}
-	    		  
-				// Pegando o player e verificando se ele esta online
-	    		Player p = Bukkit.getPlayer(args[1]);
-	    		if (p == null) {
-	    			s.sendMessage(Mensagens.Player_Offline);
-	    			return true;
-	    		}
-	    		  
-	    		// Pegando o novo gamemode a partir do argumento digitado e verificando se é valido
-	    		GameMode novo = getNewGameMode(args[0]);
-	    		if (novo == null) {
-	    			s.sendMessage(Mensagens.Gamemode_Invalido.replace("%gm%", args[0]));
-	    			return true;
-	    		}	
-	    		  
-	    		// Pegando o gamemode atual do player e verificando se o gamemode atual é o mesmo que o gamemode novo
-	    		GameMode esta = p.getGameMode();
-	    		if (esta.equals(novo)) {
-	    			s.sendMessage(Mensagens.Gamemode_Ja_Esta_Outro.replace("%gm%", novo.name()).replace("%player%", p.getName()));
-	    			return true;
-	    		}
-	    		
-	    		// Setando o gamemode novo para o player
-	    		p.setGameMode(novo);
-	    		s.sendMessage(Mensagens.Gamemode_Definido_Outro.replace("%gm%", novo.name()).replace("%player%", p.getName()));
-				return true;
-	    	}
-	    	  
-			// Verificando se o player digitou o número de argumentos correto
-	    	if(args.length > 2 || args.length < 1) {
-	    	   s.sendMessage(Mensagens.Gamemode_Comando_Incorreto);
-				return true;
-	    	}
-	    	
-	    	// Caso ele digite dois argumentos entende-se que ele quer alterar o gamemode de outro player
-	    	if (args.length == 2) {
-	    		
-	    		// Verificando se o player possui permissão para isso
-	    		if(!s.hasPermission("system.gamemode.outros")) {
-	    		   s.sendMessage(Mensagens.Gamemode_Outro_Sem_Permissao);
-	    		   return true;
-	    		}
-	    		
-	    		// Pegando o novo gamemode a partir do argumento digitado e verificando se é valido
-	    		GameMode novo = getNewGameMode(args[0]);
-	    		if (novo == null) {
-	    			s.sendMessage(Mensagens.Gamemode_Invalido.replace("%gm%", args[0]));
-	    			return true;
-	    		}	
-	    		
-	    		// Pegando o player e verificando se ele esta online
-	    		Player p = Bukkit.getPlayer(args[1]);
-	    		if (p == null) {
-	    			s.sendMessage(Mensagens.Player_Offline);
-	    			return true;
-	    		}
-	    		  
-	    		// Pegando o gamemode atual do player e verificando se o gamemode atual é o mesmo que o gamemode novo
-	    		GameMode esta = p.getGameMode();
-	    		if (esta.equals(novo)) {
-	    			s.sendMessage(Mensagens.Gamemode_Ja_Esta_Outro.replace("%gm%", novo.name()).replace("%player%", p.getName()));
-	    			return true;
-	    		}
-	    		
-	    		// Setando o gamemode novo para o player
-	    		p.setGameMode(novo);
-	    		s.sendMessage(Mensagens.Gamemode_Definido_Outro.replace("%gm%", novo.name()).replace("%player%", p.getName()));
-				return true;
-	    	}
-	    	
-	    	/** Caso o player informe a penas um argumento o código abaixo sera executado */
-	    	
+		// Verificando se o sender é um player
+    	if (!(s instanceof Player)) {
+    		
+			// Verificando se o sender digitou o número de argumentos correto
+    		if(args.length != 2) {
+    	       s.sendMessage(Mensagens.Gamemode_Comando_Incorreto);
+    	       return true;
+    		}
+    		  
+			// Pegando o player e verificando se ele esta online
+    		Player p = Bukkit.getPlayer(args[1]);
+    		if (p == null) {
+    			s.sendMessage(Mensagens.Player_Offline);
+    			return true;
+    		}
+    		  
     		// Pegando o novo gamemode a partir do argumento digitado e verificando se é valido
-	    	GameMode novo = getNewGameMode(args[0]);
-	    	if (novo == null) {
-	    		s.sendMessage(Mensagens.Gamemode_Invalido.replace("%gm%", args[0]));
-				return true;
-	    	}
-	    	
-    		// Pegando o player, o gamemode atual do player e verificando se o gamemode atual é o mesmo que o gamemode novo
-	    	Player p = (Player)s;
-	    	GameMode esta = p.getGameMode();
-	    	if (esta.equals(novo)) {
-	    		s.sendMessage(Mensagens.Gamemode_Ja_Esta_Voce.replace("%gm%", novo.name()));
-				return true;
-	    	}
-	    	
-    		// Verificando se o player possui permissão para entrar nesse gamemode
-	    	boolean possuiPerm = hasPermission(novo, p);
-	    	if (!possuiPerm) {
-	    		s.sendMessage(Mensagens.Gamemode_Sem_Permissao_Tipo.replace("%gm%", novo.name()));
-				return true;
-	    	}
-
-	    	// Setando o novo gamemode
-	    	p.setGameMode(novo);
-	    	s.sendMessage(Mensagens.Gamemode_Definido_Voce.replace("%gm%", novo.name()));
+    		GameMode novo = getNewGameMode(args[0]);
+    		if (novo == null) {
+    			s.sendMessage(Mensagens.Gamemode_Invalido.replace("%gm%", args[0]));
+    			return true;
+    		}	
+    		  
+    		// Pegando o gamemode atual do player e verificando se o gamemode atual é o mesmo que o gamemode novo
+    		GameMode esta = p.getGameMode();
+    		if (esta.equals(novo)) {
+    			s.sendMessage(Mensagens.Gamemode_Ja_Esta_Outro.replace("%gm%", novo.name()).replace("%player%", p.getName()));
+    			return true;
+    		}
+    		
+    		// Setando o gamemode novo para o player
+    		p.setGameMode(novo);
+    		s.sendMessage(Mensagens.Gamemode_Definido_Outro.replace("%gm%", novo.name()).replace("%player%", p.getName()));
 			return true;
-		}
-		return false;
+    	}
+    	  
+		// Verificando se o player digitou o número de argumentos correto
+    	if(args.length > 2 || args.length < 1) {
+    	   s.sendMessage(Mensagens.Gamemode_Comando_Incorreto);
+			return true;
+    	}
+    	
+    	// Caso ele digite dois argumentos entende-se que ele quer alterar o gamemode de outro player
+    	if (args.length == 2) {
+    		
+    		// Verificando se o player possui permissão para isso
+    		if(!s.hasPermission("system.gamemode.outros")) {
+    		   s.sendMessage(Mensagens.Gamemode_Outro_Sem_Permissao);
+    		   return true;
+    		}
+    		
+    		// Pegando o novo gamemode a partir do argumento digitado e verificando se é valido
+    		GameMode novo = getNewGameMode(args[0]);
+    		if (novo == null) {
+    			s.sendMessage(Mensagens.Gamemode_Invalido.replace("%gm%", args[0]));
+    			return true;
+    		}	
+    		
+    		// Pegando o player e verificando se ele esta online
+    		Player p = Bukkit.getPlayer(args[1]);
+    		if (p == null) {
+    			s.sendMessage(Mensagens.Player_Offline);
+    			return true;
+    		}
+    		  
+    		// Pegando o gamemode atual do player e verificando se o gamemode atual é o mesmo que o gamemode novo
+    		GameMode esta = p.getGameMode();
+    		if (esta.equals(novo)) {
+    			s.sendMessage(Mensagens.Gamemode_Ja_Esta_Outro.replace("%gm%", novo.name()).replace("%player%", p.getName()));
+    			return true;
+    		}
+    		
+    		// Setando o gamemode novo para o player
+    		p.setGameMode(novo);
+    		s.sendMessage(Mensagens.Gamemode_Definido_Outro.replace("%gm%", novo.name()).replace("%player%", p.getName()));
+			return true;
+    	}
+    	
+    	/** Caso o player informe a penas um argumento o código abaixo sera executado */
+    	
+		// Pegando o novo gamemode a partir do argumento digitado e verificando se é valido
+    	GameMode novo = getNewGameMode(args[0]);
+    	if (novo == null) {
+    		s.sendMessage(Mensagens.Gamemode_Invalido.replace("%gm%", args[0]));
+			return true;
+    	}
+    	
+		// Pegando o player, o gamemode atual do player e verificando se o gamemode atual é o mesmo que o gamemode novo
+    	Player p = (Player)s;
+    	GameMode esta = p.getGameMode();
+    	if (esta.equals(novo)) {
+    		s.sendMessage(Mensagens.Gamemode_Ja_Esta_Voce.replace("%gm%", novo.name()));
+			return true;
+    	}
+    	
+		// Verificando se o player possui permissão para entrar nesse gamemode
+    	boolean possuiPerm = hasPermission(novo, p);
+    	if (!possuiPerm) {
+    		s.sendMessage(Mensagens.Gamemode_Sem_Permissao_Tipo.replace("%gm%", novo.name()));
+			return true;
+    	}
+
+    	// Setando o novo gamemode
+    	p.setGameMode(novo);
+    	s.sendMessage(Mensagens.Gamemode_Definido_Voce.replace("%gm%", novo.name()));
+		return true;
 	}
 	
 	// Método para verificar se o player possui permissão para entrar no gamemode especifico

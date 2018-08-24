@@ -14,39 +14,36 @@ public class ComandoCriarkit implements CommandExecutor {
 	
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("criarkit")) {
 			
-			// Verificando se o sender é um player
-			if (!(s instanceof Player)) {
-				s.sendMessage(Mensagens.Console_Nao_Pode); 
-				return true;
-			}
-			
-			// Verificando se o player digitou o número de argumentos corretos
-			if (args.length != 1) {
-		        s.sendMessage(Mensagens.CriarKit_Comando_Incorreto);
-				return true;
-			}
-			 
-			// Pegando o argumento e verificando se o kit já existe
-			String kit = args[0].toLowerCase();
-			if (Kits.contains(kit)) {
-		        s.sendMessage(Mensagens.Kit_Ja_Existe.replace("%kit%", kit));
-				return true;
-			}
-			
-			// Verificando se o nome do kit não é maior que o permitido
-			if (args[0].length() > 24) {
-				s.sendMessage("§cO nome do item não pode conter mais de 24 caracteres.");
-				return true;
-			}
-			
-			// Pegando o player abrindo um inventario... o resto do processo é feito pela classe KitsListener
-			Player p = (Player)s;
-			Inventory inv = Bukkit.getServer().createInventory(p, 36, "Kit §2§n" + kit);
-	        p.openInventory(inv);
+		// Verificando se o sender é um player
+		if (!(s instanceof Player)) {
+			s.sendMessage(Mensagens.Console_Nao_Pode); 
 			return true;
 		}
-		return false;
+			
+		// Verificando se o player digitou o número de argumentos corretos
+		if (args.length != 1) {
+			s.sendMessage(Mensagens.CriarKit_Comando_Incorreto);
+			return true;
+		}
+			 
+		// Pegando o argumento e verificando se o kit já existe
+		String kit = args[0].toLowerCase();
+		if (Kits.contains(kit)) {
+			s.sendMessage(Mensagens.Kit_Ja_Existe.replace("%kit%", kit));
+			return true;
+		}
+			
+		// Verificando se o nome do kit não é maior que o permitido
+		if (args[0].length() > 20) {
+			s.sendMessage("§cO nome do item não pode conter mais de 20 caracteres.");
+			return true;
+		}
+			
+		// Pegando o player abrindo um inventario... o resto do processo é feito pela classe KitsListener
+		Player p = (Player)s;
+		Inventory inv = Bukkit.getServer().createInventory(p, 36, "Kit §k§r§2§n" + kit);
+		p.openInventory(inv);
+		return true;
 	}
 }

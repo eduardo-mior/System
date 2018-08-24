@@ -13,61 +13,59 @@ public class ComandoDivulgar implements CommandExecutor {
 		
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
-	    if (cmd.getName().equalsIgnoreCase("divulgar")) {
 	        	
-			// Verificando se o player digitou o número de argumentos corretos
-	        if (args.length != 2) { 
-	        	s.sendMessage(Mensagens.Divulgar_Comando_Incorreto);
-				return true;
-	        }
+		// Verificando se o player digitou o número de argumentos corretos
+		if (args.length != 2) { 
+			s.sendMessage(Mensagens.Divulgar_Comando_Incorreto);
+			return true;
+		}
 	        
-	        // Verificando se o player esta divulgando algo valido
-	        if (!args[0].equalsIgnoreCase("live") && !args[0].equalsIgnoreCase("video") && !args[0].equalsIgnoreCase("outro")) {
-		        s.sendMessage(Mensagens.Divulgar_Comando_Incorreto);
-				return true;
-	        }
+		// Verificando se o player esta divulgando algo valido
+		if (!args[0].equalsIgnoreCase("live") && !args[0].equalsIgnoreCase("video") && !args[0].equalsIgnoreCase("outro")) {
+			s.sendMessage(Mensagens.Divulgar_Comando_Incorreto);
+			return true;
+		}
 	        
-	        // Verificando se o link é valido
-	        if (!isValidLink(args[1])) {
-		        s.sendMessage(Mensagens.Link_Invalido.replace("%link%", args[1]));
-				return true;
-	        }
+		// Verificando se o link é valido
+		if (!isValidLink(args[1])) {
+			s.sendMessage(Mensagens.Link_Invalido.replace("%link%", args[1]));
+			return true;
+		}
 		        	
-	        // Enviando um title para de aviso para todos os players do server
-	        for (Player p : Bukkit.getOnlinePlayers()) {
-	        	TitleAPI.sendTitle(p, 20, 60, 20,
-	            Mensagens.Divulgando_Title.replace("%link%", args[1]).replace("%player%", s.getName()),
-			    Mensagens.Divulgando_SubTitle.replace("%link%", args[1]).replace("%player%", s.getName()));
-	        }
+		// Enviando um title para de aviso para todos os players do server
+		for (Player p : Bukkit.getOnlinePlayers()) {
+			TitleAPI.sendTitle(p, 20, 60, 20,
+	        Mensagens.Divulgando_Title.replace("%link%", args[1]).replace("%player%", s.getName()),
+			Mensagens.Divulgando_SubTitle.replace("%link%", args[1]).replace("%player%", s.getName()));
+		}
 		        	
-	        // Caso a divulgação seja de uma live
-	        if (args[0].equalsIgnoreCase("live")) {
-	        	Bukkit.broadcastMessage("");
-	        	Bukkit.broadcastMessage(Mensagens.Divulgando_Live.replace("%player%", s.getName()));
-	        	Bukkit.broadcastMessage(Mensagens.Link.replace("%link%", args[1]));
-	        	Bukkit.broadcastMessage("");
-				return true;
-	        }
+		// Caso a divulgação seja de uma live
+		if (args[0].equalsIgnoreCase("live")) {
+			Bukkit.broadcastMessage("");
+			Bukkit.broadcastMessage(Mensagens.Divulgando_Live.replace("%player%", s.getName()));
+			Bukkit.broadcastMessage(Mensagens.Link.replace("%link%", args[1]));
+			Bukkit.broadcastMessage("");
+			return true;
+		}
 			 
-	        // Caso a divulgação seja de um vídeo
-	        if (args[0].equalsIgnoreCase("video")) {
-	        	Bukkit.broadcastMessage("");
-	        	Bukkit.broadcastMessage(Mensagens.Divulgando_Video.replace("%player%", s.getName()));
-	        	Bukkit.broadcastMessage(Mensagens.Link.replace("%link%", args[1]));
-	        	Bukkit.broadcastMessage("");
-				return true;
-	        }
+		// Caso a divulgação seja de um vídeo
+		if (args[0].equalsIgnoreCase("video")) {
+			Bukkit.broadcastMessage("");
+			Bukkit.broadcastMessage(Mensagens.Divulgando_Video.replace("%player%", s.getName()));
+			Bukkit.broadcastMessage(Mensagens.Link.replace("%link%", args[1]));
+			Bukkit.broadcastMessage("");
+			return true;
+		}
 			        
-	        // Caso a divulgação seja de um outro link
-	        if (args[0].equalsIgnoreCase("outro")) {
-	        	Bukkit.broadcastMessage("");
-	        	Bukkit.broadcastMessage(Mensagens.Divulgando_Outro.replace("%player%", s.getName()));
-	        	Bukkit.broadcastMessage(Mensagens.Link.replace("%link%", args[1]));
-	        	Bukkit.broadcastMessage("");
-				return true;
-	        }
-	    }
-	    return false;
+		// Caso a divulgação seja de um outro link
+		if (args[0].equalsIgnoreCase("outro")) {
+			Bukkit.broadcastMessage("");
+			Bukkit.broadcastMessage(Mensagens.Divulgando_Outro.replace("%player%", s.getName()));
+			Bukkit.broadcastMessage(Mensagens.Link.replace("%link%", args[1]));
+			Bukkit.broadcastMessage("");
+			return true;
+		}
+	    return true;
 	}
 	
 	// Método para verificar se o link é valido

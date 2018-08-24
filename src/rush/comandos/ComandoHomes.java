@@ -18,27 +18,24 @@ public class ComandoHomes implements CommandExecutor {
 	
 	@Override
 	public boolean onCommand(final CommandSender s, Command cmd, String lbl, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("homes")) {
 		     
-			// Verificando se o player digitou o número de argumentos corretos
-			if (args.length > 1) {
-				s.sendMessage(Mensagens.Homes_Comando_Incorreto);
-				return true;
-			}
-			 
-			// Verificando se o player que listar as suas homes ou as homes de outras pessoas
-			String player;
-			if (args.length == 1) {
-				player = args[0].replace(":", "");
-			} else {
-				player = s.getName();
-			}
-			 
-			// Chamando o método para listar suas homes
-			ListHomes(s, player);
+		// Verificando se o player digitou o número de argumentos corretos
+		if (args.length > 1) {
+			s.sendMessage(Mensagens.Homes_Comando_Incorreto);
 			return true;
 		}
-		return false;
+			 
+		// Verificando se o player que listar as suas homes ou as homes de outras pessoas
+		String player;
+		if (args.length == 1) {
+			player = args[0].replace(":", "");
+		} else {
+			player = s.getName();
+		}
+			 
+		// Chamando o método para listar suas homes
+		ListHomes(s, player);
+		return true;
 	}
 	
 	// Método para listar as homes de um player

@@ -123,6 +123,7 @@
 #    | system.vanish             - Permissão para utilizar o comando /vanish                       |
 #    | system.vanish.bypass      - Permissão para ver as pessoas que estão de vanish               |
 #    | system.vanish.outros      - Permissão para ativar ou desativar o vanish de outras pessoas   |
+#    | system.verkit             - Permissão para visualizar um kit                                |
 #    | system.vip                - Permissão para acessar a Area VIP do comando /vip               |
 #    | system.warp               - Permissão para utilizar o comando /warp                         |
 #    | system.warps              - Permissão para utilizar o comando /warps                        |
