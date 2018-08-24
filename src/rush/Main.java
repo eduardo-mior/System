@@ -8,6 +8,7 @@ import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import rush.addons.LegendChat;
+import rush.addons.LegendChatAndMcMMO;
 import rush.addons.McMMO;
 import rush.comandos.ComandoAlerta;
 import rush.comandos.ComandoAlertaOLD;
@@ -129,8 +130,6 @@ import rush.sistemas.comandos.EnderChestListener;
 import rush.sistemas.comandos.FlyListener;
 import rush.sistemas.comandos.InvseeListener;
 import rush.sistemas.comandos.KitsListener;
-import rush.sistemas.comandos.KitsListenerNEW;
-import rush.sistemas.comandos.KitsListenerOLD;
 import rush.sistemas.comandos.VanishListener;
 import rush.sistemas.gerais.AnunciarMorte;
 import rush.sistemas.gerais.AutoAnuncio;
@@ -139,6 +138,7 @@ import rush.sistemas.gerais.DroparCabecaAoMorrer;
 import rush.sistemas.gerais.Motd;
 import rush.sistemas.gerais.PlayerData;
 import rush.sistemas.gerais.ScoreBoard;
+import rush.sistemas.gerais.ScoreBoardOLD;
 import rush.sistemas.gerais.Tablist;
 import rush.sistemas.spawners.BloquearTrocarTipoDoSpawnerComOvo;
 import rush.sistemas.spawners.DroparSpawnerAoExplodir;
@@ -415,8 +415,12 @@ public class Main extends JavaPlugin implements Listener {
 	   pm.registerEvents(new Motd(), this);}
 	   
 	   if (Settings.ScoreBoard_Ativar){
-	   if (!serverIs_1_5 && !serverIs_1_7){
-	   pm.registerEvents(new ScoreBoard(), this);}}
+	   if (serverIs_1_5 || serverIs_1_7){
+	   pm.registerEvents(new ScoreBoardOLD(), this);
+	   ScoreBoardOLD.loadScoreBoard();
+	   } else {
+	   pm.registerEvents(new ScoreBoard(), this);
+	   ScoreBoard.loadScoreBoard();}}
 	   
 	   if (Settings.Sistema_De_Fly_Para_Players) {
 	   pm.registerEvents(new FlyListener(), this);}
@@ -445,26 +449,22 @@ public class Main extends JavaPlugin implements Listener {
 	   getServer().getConsoleSender().sendMessage("§c[System] mcMMO nao encontrado, desativando addons!");
 	   } else { 
 	   pm.registerEvents(new McMMO(), this);
-	   McMMO.checkMCTop();}}}
+	   if (pm.getPlugin("Legendchat") != null) {
+	   pm.registerEvents(new LegendChatAndMcMMO(), this);
+	   LegendChatAndMcMMO.checkMCTop();}}}}
 	   
 	   if (Settings.AtivarAddons_massiveFactions){
 	   if (pm.getPlugin("MassiveCore") == null || pm.getPlugin("Factions") == null){
 	   getServer().getConsoleSender().sendMessage("§c[System] Factions nao encontrado, desativando addons!");
 	   } else { setupFactions = true;}}
-	   
-	   if (serverIs_1_5 || serverIs_1_7) {
-	   pm.registerEvents(new KitsListenerOLD(), this); 
-	   } else if (!serverIs_1_11 && !serverIs_1_12 && !serverIs_1_13) {
-	   pm.registerEvents(new KitsListenerNEW(), this); 
-	   } else {
-	   pm.registerEvents(new KitsListener(), this);}
-	  
+	   	  
 	   if (!serverIs_1_5 && !serverIs_1_7){
 	   pm.registerEvents(new VanishListener(), this);}
 	   
 	   pm.registerEvents(new PlayerData(), this);
 	   pm.registerEvents(new EnderChestListener(), this);
 	   pm.registerEvents(new InvseeListener(), this);
+	   pm.registerEvents(new KitsListener(), this);
 	   pm.registerEvents(new BackListener(), this);
 	   pm.registerEvents(new ManterXpAoMorrer(), this);
 	   pm.registerEvents(new Outros(), this);
@@ -474,8 +474,8 @@ public class Main extends JavaPlugin implements Listener {
 	   PluginManager pm = Bukkit.getServer().getPluginManager();
 	   HandlerList.unregisterAll((Listener) this);
 	   
-	   if (pm.getPlugin("mcMMO") != null){
-	   McMMO.TTask.cancel();}
+	   if (pm.getPlugin("mcMMO") != null && pm.getPlugin("Legendchat") != null) {
+	   LegendChatAndMcMMO.TTask.cancel();}
 	   
 	   if (Settings.Auto_Anuncio){
 	   if (serverIs_1_5 || serverIs_1_7) AutoAnuncioOLD.XTask.cancel();

@@ -17,7 +17,7 @@ public class BloquearPassarDaBorda implements Listener {
 	 * Link: https://www.spigotmc.org/threads/worldborder-enderpearl-block.236808/
 	 */
 
-	@EventHandler
+	@EventHandler(ignoreCancelled = true)
 	public void aoLancarEnderPearl(PlayerTeleportEvent e) {
 		Player p = e.getPlayer();
 		if (e.getCause() == TeleportCause.ENDER_PEARL && p.getWorld().getWorldBorder() != null) {

@@ -7,7 +7,7 @@ import org.bukkit.event.block.BlockFormEvent;
 
 public class BloquearCongelarAgua implements Listener {
 
-	@EventHandler
+	@EventHandler(ignoreCancelled = true)
 	public void aoCongelar(BlockFormEvent e) {
 		if (e.getBlock().getType() == Material.WATER || e.getBlock().getType() == Material.STATIONARY_WATER) {
 			e.setCancelled(true);

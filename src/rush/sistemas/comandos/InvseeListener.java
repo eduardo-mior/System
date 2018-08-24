@@ -11,7 +11,7 @@ import org.bukkit.inventory.Inventory;
 
 public class InvseeListener implements Listener {
 
-	@EventHandler(priority = EventPriority.LOWEST)
+	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void aoClicarInvsee(InventoryClickEvent e) {
 		Inventory i = e.getInventory();
 		if (i.getType() == InventoryType.PLAYER) {

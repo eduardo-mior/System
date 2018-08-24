@@ -10,7 +10,7 @@ import rush.configuracoes.Settings;
 
 public class BloquearComandos implements Listener {
 
-	@EventHandler(priority = EventPriority.LOWEST)
+	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
 	public void aoExecutarComando(PlayerCommandPreprocessEvent e) {
 		String cmd = e.getMessage().toLowerCase();
 		for (String cmds : Settings.Lista_Dos_Comandos_Bloqueados) {

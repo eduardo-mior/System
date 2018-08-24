@@ -10,7 +10,7 @@ import org.bukkit.event.Listener;
 
 public class BloquearAbrirContainers implements Listener {
 
-	@EventHandler
+	@EventHandler(ignoreCancelled = true)
 	public void aoAbrirContainer(InventoryOpenEvent e) {
 		for (String container : Settings.Bloquear_Abrir_Containers_Containers) {
 			if (e.getInventory().getType() == InventoryType.valueOf(container)) {

@@ -7,7 +7,7 @@ import org.bukkit.event.block.BlockFadeEvent;
 
 public class BloquearDerreterGeloENeve implements Listener {
 
-	@EventHandler
+	@EventHandler(ignoreCancelled = true)
 	public void aoDerreterBlock(BlockFadeEvent e) {
 		if (e.getBlock().getType() == Material.ICE || e.getBlock().getType() == Material.SNOW) {
 			e.setCancelled(true);

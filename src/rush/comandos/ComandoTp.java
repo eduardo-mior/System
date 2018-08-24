@@ -45,7 +45,7 @@ public class ComandoTp implements CommandExecutor {
 
 			// Teleportando o player até o alvo e informando
 			Player p = (Player) s;
-			target.teleport(p);
+			p.teleport(target);
 			p.sendMessage(Mensagens.Tp_Teleportado_Com_Sucesso_Player.replace("%player%", target.getName()));
 			return true;
 		}
@@ -98,9 +98,9 @@ public class ComandoTp implements CommandExecutor {
 			// Verificando se os números digitados são validos
 			double x, y, z;
 			try {
-				x = Double.parseDouble(args[1]);
-				y = Double.parseDouble(args[2]);
-				z = Double.parseDouble(args[3]);
+				x = Double.parseDouble(args[0]);
+				y = Double.parseDouble(args[1]);
+				z = Double.parseDouble(args[2]);
 			} catch (NumberFormatException e) {
 				s.sendMessage(Mensagens.Numero_Invalido.replace("%numero%", e.getMessage().split("\"")[1]));
 				return true;
@@ -167,7 +167,7 @@ public class ComandoTp implements CommandExecutor {
 			}
 
 			// Verificando se os números digitados são validos
-			double x = 0, y = 0, z = 0;
+			double x, y, z;
 			try {
 				x = Double.parseDouble(args[1]);
 				y = Double.parseDouble(args[2]);

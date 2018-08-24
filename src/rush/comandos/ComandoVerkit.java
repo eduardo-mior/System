@@ -42,7 +42,7 @@ public class ComandoVerkit implements CommandExecutor {
 
 		// Pegando o player e abrindo um inventarios com os itens, o resto é feito pela classe KitsListener
 		Player p = (Player) s;
-		Inventory inv = Bukkit.getServer().createInventory(p, 36, "Kit §k§r§1§n" + nome);
+		Inventory inv = Bukkit.getServer().createInventory(p, 36, "Visualizando Kit§f§o §1");
 		for (ItemStack item : kit.getItens()) {
 			if (item != null) inv.addItem(item);
 		}

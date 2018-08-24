@@ -9,12 +9,12 @@ import org.bukkit.event.Listener;
 
 public class DesativarPropagacaoDoFogo implements Listener {
 
-	@EventHandler(priority = EventPriority.LOWEST)
+	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
 	public void aoPegarFogo(BlockBurnEvent e) {
 		e.setCancelled(true);
 	}
 
-	@EventHandler(priority = EventPriority.LOWEST)
+	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
 	public void aoEspalharFogo(BlockIgniteEvent e) {
 		if (e.getCause() == IgniteCause.LAVA || e.getCause() == IgniteCause.SPREAD) {
 			e.setCancelled(true);

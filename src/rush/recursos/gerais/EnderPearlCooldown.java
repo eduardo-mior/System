@@ -19,7 +19,7 @@ public class EnderPearlCooldown implements Listener {
 
 	HashMap<Player, Timestamp> cooldown = new HashMap<Player, Timestamp>();
 
-	@EventHandler
+	@EventHandler(ignoreCancelled = true)
 	public void aoJogarEnder(ProjectileLaunchEvent e) {
 		if (!(e.getEntity().getShooter() instanceof Player)) return;
 		if (e.getEntityType() != EntityType.ENDER_PEARL) return;

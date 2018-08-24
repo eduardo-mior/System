@@ -556,6 +556,7 @@ Aviso-Que-O-Chat-Limpo-Global: "&aO chat foi limpo por %player%!"
 # |                 Mensagem de UP mcMMO                 | #
 # +------------------------------------------------------+ #
 ############################################################
+#Para os nomes das skills ficarem em BR vc precisa estar usando um mcMMO traduzido
 mcMMO-Upou-100-Niveis: "&6&lHABILIDADES: &e%player% atingiu o &6nível %level% &ena habilidade de &6%skill%&e!"
 
 ############################################################

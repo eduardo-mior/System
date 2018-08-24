@@ -233,6 +233,8 @@ Commando-Slime:
 # |                         mcMMO                        | #
 # +------------------------------------------------------+ #
 ############################################################
+#Tag no legendchat {mctop}
+#Para os nomes das skills ficarem em BR vc precisa estar usando um mcMMO traduzido
 mcTopTag:
   Tempo-De-Checagem: 300
   Tag: '&9[⚒] '
@@ -294,7 +296,7 @@ ScoreBoard:
   Ativar: true
   Titulo: "  &6&lHypixel  "
   Linhas:
-  - '&eSeja Bem Vindo %player%!'
+  - '&eSeja Bem Vindo!'
   - '&r'
   - '&aAdquira VIP e Cash:'
   - '&7store.hypixel.net'

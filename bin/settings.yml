@@ -233,6 +233,8 @@ Commando-Slime:
 # |                         mcMMO                        | #
 # +------------------------------------------------------+ #
 ############################################################
+#Tag no legendchat {mctop}
+#Para os nomes das skills ficarem em BR vc precisa estar usando um mcMMO traduzido
 mcTopTag:
   Tempo-De-Checagem: 300
   Tag: '&9[⚒] '

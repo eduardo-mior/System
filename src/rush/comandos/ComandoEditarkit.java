@@ -50,7 +50,7 @@ public class ComandoEditarkit implements CommandExecutor {
 				
 				// Pegando o player e abrindo um inventarios com os itens, o resto é feito pela classe KitsListener
 			Player p = (Player)s;
-			Inventory inv = Bukkit.getServer().createInventory(p, 36, "Kit §k§r§4§n" + nome);
+			Inventory inv = Bukkit.getServer().createInventory(p, 36, "Kit §4§n" + nome);
 			for (ItemStack item : kit.getItens()) {
 				if (item != null) inv.addItem(item);
 			}

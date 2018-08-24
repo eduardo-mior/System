@@ -3,6 +3,7 @@ package rush.recursos.bloqueadores;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.InventoryType.SlotType;
@@ -14,7 +15,7 @@ import rush.configuracoes.Settings;
 
 public class BloquearShiftEmContainers implements Listener {
 
-	@EventHandler
+	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void aoUsarShift(InventoryClickEvent e) {
 		if (e.getSlotType() == SlotType.OUTSIDE || e.getCurrentItem().getType() == Material.AIR	|| e.getCurrentItem() == null) {
 			return;
