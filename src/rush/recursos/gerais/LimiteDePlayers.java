@@ -30,7 +30,7 @@ public class LimiteDePlayers implements Listener {
 		if (playersOnline >= limite) {
 			if (!e.getPlayer().hasPermission("system.lotado.entrar")) {
 				e.setResult(Result.KICK_FULL);
-				e.disallow(Result.KICK_FULL, Mensagens.Servidor_Lotado);
+				e.setKickMessage(Mensagens.Servidor_Lotado);
 			} else if (Settings.Kickar_Sem_Vip) {
 				Player[] players = Bukkit.getOnlinePlayers().toArray(new Player[playersOnline]);
 				int cont = 0;

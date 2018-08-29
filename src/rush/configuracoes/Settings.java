@@ -104,8 +104,8 @@ public class Settings {
 	public static String ScoreBoard_Titulo;
 	public static List<String> ScoreBoard_Linhas;
 	public static boolean Ativar_Tablist;
-	public static String Parte_De_Cima;
-	public static String Parte_De_Baixo;
+	public static String Header;
+	public static String Footer;
 	public static int Tempo_Para_Expirar_Solicitacao_Tpa;
 	public static int Tempo_Para_Poder_Enviar_Outra_Solicitacao_Tpa;
 	public static String Commando_Slime_Esta;
@@ -158,8 +158,8 @@ public class Settings {
 		Ativar_Cores_Na_Placa = config.getBoolean("Ativar-Cores-Na-Placa");
 		Limitador_De_Players = config.getBoolean("Limitador-De-Players.Ativar");
 		Limite_De_Players = config.getInt("Limitador-De-Players.Limite-De-Players");
-		Kickar_Sem_Vip = config.getBoolean("Kickar-Sem-Vip");
-		Tempo_Para_Ser_Kick = config.getInt("Tempo-Para-Ser-Kickado-Apos-Aviso");
+		Kickar_Sem_Vip = config.getBoolean("Limitador-De-Players.Kickar-Sem-Vip");
+		Tempo_Para_Ser_Kick = config.getInt("Limitador-De-Players.Tempo-Para-Ser-Kickado-Apos-Aviso");
 		Invencibilidade_Ao_Teleportar = config.getBoolean("Invencibilidade-Ao-Teleportar.Ativar");
 		Tempo_De_Invencibilidade_Ao_Teleportar = config.getInt("Invencibilidade-Ao-Teleportar.Tempo-De-Invencibilidade-Ao-Teleportar");
 		Dropar_Cabeca_Ao_Morrer = config.getBoolean("Dropar-Cabeca-Ao-Morrer.Ativar");
@@ -209,8 +209,8 @@ public class Settings {
 		ScoreBoard_Titulo = config.getString("ScoreBoard.Titulo").replace('&', '§');
 		ScoreBoard_Linhas = config.getStringList("ScoreBoard.Linhas");
 		Ativar_Tablist = config.getBoolean("Ativar-Tablist");
-		Parte_De_Cima = config.getString("Parte-De-Cima").replace('&', '§');
-		Parte_De_Baixo = config.getString("Parte-De-Baixo").replace('&', '§');
+		Header = config.getString("Parte-De-Cima").replace('&', '§');
+		Footer = config.getString("Parte-De-Baixo").replace('&', '§');
 		Tempo_Para_Expirar_Solicitacao_Tpa = config.getInt("Tempo-Para-Expirar-Solicitacao-Tpa");
 		Tempo_Para_Poder_Enviar_Outra_Solicitacao_Tpa = config.getInt("Tempo-Para-Poder-Enviar-Outra-Solicitacao-Tpa");
 		Commando_Slime_Esta = config.getString("Commando-Slime.Esta-Em-SlimeChunk");

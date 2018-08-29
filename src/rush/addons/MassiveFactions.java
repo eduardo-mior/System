@@ -15,7 +15,6 @@ import rush.configuracoes.Mensagens;
 public class MassiveFactions {
 
 	public static boolean isValidTeleport(Location l, Player p) {
-		
 		MPlayer mp = MPlayer.get(p);
         BoardColl coll = BoardColl.get();
         Faction faction = coll.getFactionAt(PS.valueOf(l));
@@ -31,7 +30,6 @@ public class MassiveFactions {
 	}
 	
 	public static boolean isValidSetHome(Location l, Player p) {
-		
 		MPlayer mp = MPlayer.get(p);
         BoardColl coll = BoardColl.get();
         Faction faction = coll.getFactionAt(PS.valueOf(l));

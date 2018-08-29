@@ -29,6 +29,5 @@ public class ComandoFeed implements CommandExecutor {
 		p.sendMessage(Mensagens.Fome_Regenerada_Com_Sucesso);
 		p.setFoodLevel(20);
 		return true;
-
 	}
 }

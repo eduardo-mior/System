@@ -6,7 +6,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
+import org.bukkit.potion.PotionEffectType;
 
+@SuppressWarnings("all")
 public class VanishListener implements Listener {
 
 	public static HashSet<Player> VANISH = new HashSet<>();
@@ -17,6 +20,13 @@ public class VanishListener implements Listener {
 			for (Player p : VANISH) {
 				e.getPlayer().hidePlayer(p);
 			}
+		}
+	}
+	
+	@EventHandler
+	public void onQuit(PlayerQuitEvent e) {
+		if (VANISH.contains(e.getPlayer())) {
+			e.getPlayer().removePotionEffect(PotionEffectType.INVISIBILITY);
 		}
 	}
 }

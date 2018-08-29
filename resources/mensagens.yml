@@ -1,4 +1,4 @@
-﻿file-version: 2
+﻿file-version: 3
 ############################################################
 # +------------------------------------------------------+ #
 # |                   Mensagens gerais                   | #
@@ -24,7 +24,7 @@ Erro-Versao-Nao-Suportada: "&cDesculpe mas este recurso que você esta tentando 
 ############################################################
 Nick-Similar: "&cO nick '%novo%' não pode ser usado pois já existe um cadastro com o nick '%antigo%'.\n&c\n&cVocê deve utilizar a mesma configuração de caracteres maiusculos\n&ce minúsculos para poder acessar o servidor com este nick."
 Servidor-Lotado: "&cDesculpe mas o servidor esta cheio!\n&cAdquira já seu VIP em &ewww.gamersboard.com.br"
-Aviso-Dar-Lugar-Ao-Vip: "&e\n&eVocê sera kickado em %tempo% para dar lugar a um vip!\n&e."
+Aviso-Dar-Lugar-Ao-Vip: "&e &e\n&e&lAVISO: &eVocê sera kickado do servidor em %tempo% segundos para dar lugar a um vip.\n&e &e"
 Kick-Dar-Lugar-Ao-Vip: "&cVocê foi kickado para dar lugar a um vip."
 Nick-Bloqueado: "&cA palavra '%nick%' foi bloqueada de ser usada em nicks!"
 Comando-Bloqueado: "&cEste comando foi bloqueado no servidor."
@@ -326,13 +326,26 @@ Enchant-Encantado-Com-Sucesso: "&aItem encantado com sucesso."
 
 ############################################################
 # +------------------------------------------------------+ #
+# |                   Comando /reparar                   | #
+# +------------------------------------------------------+ #
+############################################################
+Reparar-Comando-Incorreto: "&cComando incorreto, use /reparar [hand/all]"
+Reparar-All-Sem-Permissao: "&cVocê não tem permissão para reparar todos os itens de uma vez."
+Reparar-Nao-Possui: "&cVocê não possui itens para reparar."
+Reparar-Item-Invalido: "&cEste item não pode ser reparado."
+Reparar-Ja-Reparado: "&cEste item já esta com sua durabilidade máxima."
+Reparar-All-Com-Sucesso: "&aItens reparados com sucesso."
+Reparar-Hand-Com-Sucesso: "&aItem reparado com sucesso."
+
+############################################################
+# +------------------------------------------------------+ #
 # |                   Comando /speed                     | #
 # +------------------------------------------------------+ #
 ############################################################
 Speed-Comando-Incorreto: "&cComando incorreto, use /speed <velocidade> [player]"
 Speed-Outro-Sem-Permissao: "&cVocê não tem permissão para alterar a velocidade de outros players."
 Speed-Alterado-Voce: "&aVelocidade alterada com sucesso para %speed%."
-Speed-Alterado-Outro: "&aVelocidade de %player% alterada com sucesso pada %speed%."
+Speed-Alterado-Outro: "&aVelocidade de %player% alterada com sucesso para %speed%."
 Speed-Valor-Invalido: "&cVelocidade inválida! Você deve usar um valor entre &70 &ce &71 &ccomo por exemplo &70,5&c."
 
 ############################################################
@@ -578,6 +591,7 @@ System-Comando-Incorreto: |
   &c/system contato &8-&7 Mostra os contatos do desenvolvedor.
   &c/system backup &8-&7 Faz um backup dos arquivos do plugin.
   &c/system help <pag> &8-&7 Mostra a lista de comandos do plugin.
+  &c/system info &8-&7 Mostra informações sobre o server e o system.
 Plugin-Recarregado-Sucesso: |
   &aMensagens e configurações recarregadas com sucesso!
   &7OBS: Algumas alterações só terão efeito quando o servidor for reinicializado.

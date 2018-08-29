@@ -5,6 +5,8 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.potion.PotionEffect;
+import org.bukkit.potion.PotionEffectType;
 
 import rush.configuracoes.Mensagens;
 import rush.sistemas.comandos.VanishListener;
@@ -178,17 +180,20 @@ public class ComandoVanish implements CommandExecutor {
 	
 	// Método para setar o vanishMode
 	private void setVanishMode(Player player, boolean enable) {
+		PotionEffect effect = new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE , 0);
 		if (enable) {
 			for (Player target : Bukkit.getOnlinePlayers()) {
 				if (!target.hasPermission("system.vanish.bypass")) {
 					target.hidePlayer(player);
 				}
 			}
+			player.addPotionEffect(effect);
 			VanishListener.VANISH.add(player);
 		} else {
 			for (Player target : Bukkit.getOnlinePlayers()) {
 				target.showPlayer(player);
 			}
+			player.removePotionEffect(PotionEffectType.INVISIBILITY);
 			VanishListener.VANISH.remove(player);
 		}
 	}

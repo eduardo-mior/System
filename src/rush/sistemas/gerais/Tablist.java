@@ -9,11 +9,8 @@ import rush.configuracoes.Settings;
 
 public class Tablist implements Listener {
 	
-	private String header = Settings.Parte_De_Cima;
-	private String footer = Settings.Parte_De_Baixo;
-   
 	@EventHandler
    	public void aoEntrarTablist(PlayerJoinEvent e) {
-   		TablistAPI.sendTabList(e.getPlayer(), header, footer);	   
+   		TablistAPI.sendTabList(e.getPlayer(), Settings.Header, Settings.Footer);	   
    	}
 }

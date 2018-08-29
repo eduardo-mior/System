@@ -85,7 +85,7 @@ public class ComandoEditarkit implements CommandExecutor {
 			config.set("Delay", delay);
 			try {
 				config.save(file);
-				s.sendMessage(Mensagens.Kit_Editado.replace("%kit%", args[0]));
+				s.sendMessage(Mensagens.Kit_Editado.replace("%kit%", nome));
 			} catch (IOException e) {
 				Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
 			}
@@ -106,7 +106,7 @@ public class ComandoEditarkit implements CommandExecutor {
 			config.set("Permissao", args[2]);
 			try {
 				config.save(file);
-				s.sendMessage(Mensagens.Kit_Editado.replace("%kit%", args[0]));
+				s.sendMessage(Mensagens.Kit_Editado.replace("%kit%", nome));
 			} catch (IOException e) {
 				Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
 			}

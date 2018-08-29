@@ -14,6 +14,7 @@ import org.bukkit.scoreboard.Scoreboard;
 
 import rush.configuracoes.Settings;
 
+@SuppressWarnings("all")
 public class ScoreBoard implements Listener {
 
     private static Scoreboard scoreboard;
@@ -29,7 +30,7 @@ public class ScoreBoard implements Listener {
 	    List<String> linhas = Settings.ScoreBoard_Linhas;
 		
 	    scoreboard = Bukkit.getServer().getScoreboardManager().getNewScoreboard();
-	    Objective o = scoreboard.registerNewObjective("system.score", "dummy");
+		Objective o = scoreboard.registerNewObjective("system.score", "dummy");
         o.setDisplayName(titulo.length() > 32 ? titulo.substring(0, 32) : titulo);
 	    o.setDisplaySlot(DisplaySlot.SIDEBAR);
 	    

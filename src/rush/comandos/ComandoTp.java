@@ -80,9 +80,9 @@ public class ComandoTp implements CommandExecutor {
 			}
 
 			// Teleportando o player até o alvo e informando
-			target.teleport(player);
-			target.sendMessage(Mensagens.Tphere_Puxado_Com_Sucesso.replace("%player%", player.getName()));
-			s.sendMessage(Mensagens.Tp_Voce_Teleportou_Player_Ate_Player.replace("%player%", target.getName()).replace("%alvo%", player.getName()));
+			player.teleport(target);
+			player.sendMessage(Mensagens.Tphere_Puxado_Com_Sucesso.replace("%player%", target.getName()));
+			s.sendMessage(Mensagens.Tp_Voce_Teleportou_Player_Ate_Player.replace("%player%", player.getName()).replace("%alvo%", target.getName()));
 			return true;
 		}
 

@@ -6,6 +6,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import rush.Main;
 import rush.apis.TitleAPI;
 import rush.configuracoes.Mensagens;
 
@@ -31,12 +32,14 @@ public class ComandoDivulgar implements CommandExecutor {
 			s.sendMessage(Mensagens.Link_Invalido.replace("%link%", args[1]));
 			return true;
 		}
-		        	
-		// Enviando um title para de aviso para todos os players do server
-		for (Player p : Bukkit.getOnlinePlayers()) {
-			TitleAPI.sendTitle(p, 20, 60, 20,
-	        Mensagens.Divulgando_Title.replace("%link%", args[1]).replace("%player%", s.getName()),
-			Mensagens.Divulgando_SubTitle.replace("%link%", args[1]).replace("%player%", s.getName()));
+		
+		// Verificando a versão e enviando um title para de aviso para todos os players do server
+		if (!Main.isOldVersion()) {
+			for (Player p : Bukkit.getOnlinePlayers()) {
+				TitleAPI.sendTitle(p, 20, 60, 20,
+		        Mensagens.Divulgando_Title.replace("%link%", args[1]).replace("%player%", s.getName()),
+				Mensagens.Divulgando_SubTitle.replace("%link%", args[1]).replace("%player%", s.getName()));
+			}
 		}
 		        	
 		// Caso a divulgação seja de uma live

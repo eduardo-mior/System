@@ -2,6 +2,7 @@ package rush.comandos;
 
 import java.util.Set;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -91,7 +92,7 @@ public class ComandoSystem implements CommandExecutor {
 			for (int i = inicio; i < fim && i < cmds.length; i++) {
 				String description = config.getString("comandos." + cmds[i] + ".descricao");
 				String permission = "system." + cmds[i];
-				String sempermission =  config.getString("comandos." + cmds[i] + ".sem-permissao");
+				String sempermission =  config.getString("comandos." + cmds[i] + ".sem-permissao").replace('&', '§');
 				String aliases = config.getStringList("comandos." + cmds[i] + ".aliases").toString();
 				boolean enabled = config.getBoolean("comandos." + cmds[i] + ".ativar-comando");
 				msg.text("§b/" + cmds[i] + " §7-§f " + description + "\n");
@@ -122,9 +123,37 @@ public class ComandoSystem implements CommandExecutor {
 			msg.send(s);
 			return true;
 		}
+		
+		// Caso o argumento seja 'info' então é exibido algumas informações do plugin
+		if (args[0].equalsIgnoreCase("info")) {					
+			s.sendMessage("§e*-=-=-=-=-=-=-=-* §bSystem §e*-=-=-=-=-=-=-=-* ");
+			s.sendMessage("§ePlugin Version: §61.2");
+			s.sendMessage("§eMinecraft Version: §6" + getMinecraftVersion());
+			s.sendMessage("§eServerAPI Vesrion: §6" + getApiVersion());
+			s.sendMessage("§eServer JarType: §6" + getJarType());
+			s.sendMessage("§e*-=-=-=-=-=-=-=-* §bSystem §e*-=-=-=-=-=-=-=-* ");
+			return true;
+		}
 			
 		// Caso nenhum dos argumentos acima for valido é dado com comando incorreto
 		s.sendMessage(Mensagens.System_Comando_Incorreto);
 		return true;
+	}
+	
+	private String getMinecraftVersion() {
+		String info = Bukkit.getVersion();
+		return info.split("MC: ")[1].split("\\)")[0];
+	}
+	
+	private String getApiVersion() {
+		String info = Bukkit.getBukkitVersion();
+		String[] version = info.split("-");
+		return (version[0]+"-"+version[1]);
+	}
+	
+	private String getJarType() {
+		String info = Bukkit.getVersion();
+		String version = info.split("git-")[1];
+		return version.split("-")[0];
 	}
 }

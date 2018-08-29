@@ -16,85 +16,82 @@ public class ComandoClear implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
-		if (cmd.getName().equalsIgnoreCase("clear")) {
 
-			// Verificando se o sender é um player
-			if (!(s instanceof Player)) {
+		// Verificando se o sender é um player
+		if (!(s instanceof Player)) {
 
-				// Se o sender for o console ele precisa especificar um player
-				if (args.length != 1) {
-					s.sendMessage(Mensagens.Clear_Comando_Incorreto);
-					return true;
-				}
-
-				// Pegando o player e verificando se ele esta online
-				Player p = Bukkit.getPlayer(args[0]);
-				if (p == null) {
-					s.sendMessage(Mensagens.Player_Offline);
-					return true;
-				}
-
-				// Verificando se o inventario do player ja esta vazio
-				if (inventoryIsEmpty(p)) {
-					s.sendMessage(Mensagens.Clear_Inventario_Vazio_Outro.replace("%player%", p.getName()));
-					return true;
-				}
-
-				// Limpando o inventario do player
-				clearInventory(p);
-				s.sendMessage(Mensagens.Clear_Inventario_Limpado_Outro.replace("%player%", p.getName()));
-				return true;
-			}
-
-			// Verificando se o player informou mais de 1 argumento
-			if (args.length > 1) {
+			// Se o sender for o console ele precisa especificar um player
+			if (args.length != 1) {
 				s.sendMessage(Mensagens.Clear_Comando_Incorreto);
 				return true;
 			}
 
-			// Caso o player tenha digita 1 argumento...
-			if (args.length == 1) {
-
-				// Verificando se ele tem permissão para limpar outros inventários
-				if (!s.hasPermission("system.clear.outros")) {
-					s.sendMessage(Mensagens.Clear_Outro_Sem_Permissao);
-					return true;
-				}
-
-				// Pegando o player e verificando se ele esta online
-				Player p = Bukkit.getPlayer(args[0]);
-				if (p == null) {
-					s.sendMessage(Mensagens.Player_Offline);
-					return true;
-				}
-
-				// Verificando se o inventario do player ja esta vazio
-				if (inventoryIsEmpty(p)) {
-					s.sendMessage(Mensagens.Clear_Inventario_Vazio_Outro.replace("%player%", p.getName()));
-					return true;
-				}
-
-				// Limpando o inventario do player
-				clearInventory(p);
-				s.sendMessage(Mensagens.Clear_Inventario_Limpado_Outro.replace('&', '§').replace("%player%", p.getName()));
+			// Pegando o player e verificando se ele esta online
+			Player p = Bukkit.getPlayer(args[0]);
+			if (p == null) {
+				s.sendMessage(Mensagens.Player_Offline);
 				return true;
 			}
 
-			// Caso o player não digite nenhum argumento então sabemos que é para limpar o
-			// própio inventario
 			// Verificando se o inventario do player ja esta vazio
-			Player p = (Player) s;
 			if (inventoryIsEmpty(p)) {
-				s.sendMessage(Mensagens.Clear_Inventario_Vazio_Voce);
+				s.sendMessage(Mensagens.Clear_Inventario_Vazio_Outro.replace("%player%", p.getName()));
 				return true;
 			}
 
 			// Limpando o inventario do player
 			clearInventory(p);
-			s.sendMessage(Mensagens.Clear_Inventario_Limpado_Voce);
+			s.sendMessage(Mensagens.Clear_Inventario_Limpado_Outro.replace("%player%", p.getName()));
 			return true;
 		}
-		return false;
+
+		// Verificando se o player informou mais de 1 argumento
+		if (args.length > 1) {
+			s.sendMessage(Mensagens.Clear_Comando_Incorreto);
+			return true;
+		}
+
+		// Caso o player tenha digita 1 argumento...
+		if (args.length == 1) {
+
+			// Verificando se ele tem permissão para limpar outros inventários
+			if (!s.hasPermission("system.clear.outros")) {
+				s.sendMessage(Mensagens.Clear_Outro_Sem_Permissao);
+				return true;
+			}
+
+			// Pegando o player e verificando se ele esta online
+			Player p = Bukkit.getPlayer(args[0]);
+			if (p == null) {
+				s.sendMessage(Mensagens.Player_Offline);
+				return true;
+			}
+
+			// Verificando se o inventario do player ja esta vazio
+			if (inventoryIsEmpty(p)) {
+				s.sendMessage(Mensagens.Clear_Inventario_Vazio_Outro.replace("%player%", p.getName()));
+				return true;
+			}
+
+			// Limpando o inventario do player
+			clearInventory(p);
+			s.sendMessage(Mensagens.Clear_Inventario_Limpado_Outro.replace('&', '§').replace("%player%", p.getName()));
+			return true;
+		}
+
+		// Caso o player não digite nenhum argumento então sabemos que é para limpar o
+		// própio inventario
+		// Verificando se o inventario do player ja esta vazio
+		Player p = (Player) s;
+		if (inventoryIsEmpty(p)) {
+			s.sendMessage(Mensagens.Clear_Inventario_Vazio_Voce);
+			return true;
+		}
+
+		// Limpando o inventario do player
+		clearInventory(p);
+		s.sendMessage(Mensagens.Clear_Inventario_Limpado_Voce);
+		return true;
 	}
 
 	// Método para verificar se o inventario já esta vazio

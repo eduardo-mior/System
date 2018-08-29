@@ -13,7 +13,7 @@ import com.gmail.nossr50.util.player.UserManager;
 import rush.apis.ActionBarAPI;
 import rush.configuracoes.Mensagens;
 
-public class McMMO implements Listener {
+public class Mcmmo implements Listener {
 	   
 	@EventHandler(ignoreCancelled = true)
 	public void onPlayerUp(McMMOPlayerLevelUpEvent e) {
@@ -33,14 +33,11 @@ public class McMMO implements Listener {
 	@EventHandler(ignoreCancelled = true)
 	public static void aoGanharXp(McMMOPlayerXpGainEvent e) {
 		PlayerProfile pro = UserManager.getPlayer(e.getPlayer()).getProfile();
-	    
-		Player p = e.getPlayer();
 		String skill = e.getSkill().getName();
 		int lvl = pro.getSkillLevel(e.getSkill());
 		int xp = pro.getSkillXpLevel(e.getSkill());
 		int dxp = pro.getXpToLevel(e.getSkill());
 		int gn = Math.round(e.getXpGained());
-	    
-		ActionBarAPI.sendActionBar(p, "§a" + skill + ": " + lvl + " (" + xp + "/" + dxp + ") +" + gn + "XP");
+		ActionBarAPI.sendActionBar(e.getPlayer(), "§a" + skill + ": " + lvl + " (" + xp + "/" + dxp + ") +" + gn + "XP");
 	}
 }

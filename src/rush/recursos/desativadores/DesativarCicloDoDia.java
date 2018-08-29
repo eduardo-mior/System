@@ -6,6 +6,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import rush.Main;
 
+@SuppressWarnings("all")
 public class DesativarCicloDoDia {
 
 	public static void stopDaylightCycle() {

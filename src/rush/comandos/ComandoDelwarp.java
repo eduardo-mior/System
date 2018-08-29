@@ -18,10 +18,8 @@ public class ComandoDelwarp implements CommandExecutor {
 			return true;
 		}
 
-		// Pegando o argumento e criando/pegando o arquivo (File)
-		String warp = args[0];
-
 		// Verificando se o file(warp) existe
+		String warp = args[0].toLowerCase();
 		if (!Warps.contains(warp)) {
 			s.sendMessage(Mensagens.Warp_Nao_Existe.replace("%warp%", warp));
 			ComandoWarps.ListWarpsForStaff(s);

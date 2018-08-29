@@ -25,7 +25,7 @@ public class LegendChatAndMcMMO implements Listener {
 	public void aoEnviarMenssagem(ChatMessageEvent e) {
 		if (playerTopOne != null && playerTopOne.equalsIgnoreCase(e.getSender().getName()) && e.getTags().contains("mctop")) {
 			e.setTagValue("mctop", Settings.mcTopTag_Tag);
-	  	  }
+		}
 	}
 
 	public static void checkMCTop() {

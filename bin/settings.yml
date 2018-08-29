@@ -99,7 +99,12 @@ Tempo-Para-Poder-Enviar-Outra-Solicitacao-Tpa: 30
 
 Limitador-De-Players:
   Ativar: true
-  Limite-De-Players: 340
+
+  # Não se esqueça de alterar o limite de players na server.propriets
+  # Se você colocar limite de 300 deixe pelo menos umas 20 vagas para VIPS
+  # Então coloque 320 na server.propriets
+  Limite-De-Players: 320
+
   # Se o servidor estiver lotado, deseja kickar um player aleatório
   # sem vip para que um vip possa entrar?
   Kickar-Sem-Vip: true
@@ -296,7 +301,7 @@ ScoreBoard:
   Ativar: true
   Titulo: "  &6&lHypixel  "
   Linhas:
-  - '&eSeja Bem Vindo %player%!'
+  - '&eSeja Bem Vindo!'
   - '&r'
   - '&aAdquira VIP e Cash:'
   - '&7store.hypixel.net'

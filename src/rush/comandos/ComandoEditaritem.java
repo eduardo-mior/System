@@ -35,7 +35,7 @@ public class ComandoEditaritem implements CommandExecutor {
 			
 		// Pegando o player e o item que esta na sua mão
 		Player p = (Player)s;
-		ItemStack item = p.getInventory().getItemInHand();
+		ItemStack item = p.getItemInHand();
 		
 		// Verificando se o item é valido
 		if (item == null || item.getType() == Material.AIR) {

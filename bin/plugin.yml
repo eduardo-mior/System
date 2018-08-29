@@ -1,5 +1,5 @@
 main: rush.Main
-version: 1.0
+version: 1.2
 name: System
 softdepend: [Legendchat, mcMMO, MassiveCore, Factions]
 
@@ -147,7 +147,7 @@ permissions:
     default: op
   system.lotado.entrar:
     description: Permissão para entrar no servidor mesmo estando lotado.
-    default: op
+    default: false
   system.luz:
     description: Permissão para ligar e desligar a lanterna.
     default: op

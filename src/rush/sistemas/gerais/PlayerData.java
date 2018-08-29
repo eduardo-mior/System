@@ -16,7 +16,7 @@ import rush.utils.DataManager;
 public class PlayerData implements Listener {
 	
 	@EventHandler
-	public void aoEntrar(PlayerLoginEvent e) {
+	public void aoLogar(PlayerLoginEvent e) {
 		String newPlayer = e.getPlayer().getName();
         File file = DataManager.getFile(newPlayer.toLowerCase(), "playerdata");
         FileConfiguration config = DataManager.getConfiguration(file);
@@ -25,7 +25,6 @@ public class PlayerData implements Listener {
         	String oldPlayer = config.getString("Nick");
         	if (!newPlayer.equals(oldPlayer)) {
 				e.setResult(Result.KICK_OTHER);
-				e.disallow(Result.KICK_OTHER, Mensagens.Nick_Similar.replace("%antigo%", oldPlayer).replace("%novo%", newPlayer));
 				e.setKickMessage(Mensagens.Nick_Similar.replace("%antigo%", oldPlayer).replace("%novo%", newPlayer));
         	}
         } else {

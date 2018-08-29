@@ -257,6 +257,13 @@ public class Mensagens {
 	public static String Potion_Editada_Sucesso;
 	public static String Sem_Permissao_Sethome;
 	public static String Sem_Permissao_Teleportar;
+	public static String Reparar_Comando_Incorreto;
+	public static String Reparar_All_Sem_Permissao;
+	public static String Reparar_Nao_Possui;
+	public static String Reparar_Item_Invalido;
+	public static String Reparar_Ja_Reparado;
+	public static String Reparar_All_Com_Sucesso;
+	public static String Reparar_Hand_Com_Sucesso;
 	
 	public static void loadMensagens() {
 		FileConfiguration config = ConfigManager.getConfig("mensagens");
@@ -512,5 +519,12 @@ public class Mensagens {
 		Potion_Editada_Sucesso = config.getString("Potion-Editada-Sucesso").replace('&', '§'); 
 		Sem_Permissao_Teleportar = config.getString("Sem-Permissao-Teleportar").replace('&', '§'); 
 		Sem_Permissao_Sethome = config.getString("Sem-Permissao-Sethome").replace('&', '§'); 
+		Reparar_Comando_Incorreto = config.getString("Reparar-Comando-Incorreto").replace('&', '§'); 
+		Reparar_All_Sem_Permissao = config.getString("Reparar-All-Sem-Permissao").replace('&', '§'); 
+		Reparar_Nao_Possui = config.getString("Reparar-Nao-Possui").replace('&', '§'); 
+		Reparar_Item_Invalido = config.getString("Reparar-Item-Invalido").replace('&', '§'); 
+		Reparar_Ja_Reparado = config.getString("Reparar-Ja-Reparado").replace('&', '§'); 
+		Reparar_All_Com_Sucesso = config.getString("Reparar-All-Com-Sucesso").replace('&', '§'); 
+		Reparar_Hand_Com_Sucesso = config.getString("Reparar-Hand-Com-Sucesso").replace('&', '§'); 
 	}
 }

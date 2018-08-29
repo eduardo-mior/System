@@ -1,373 +1,379 @@
-file-version: 2
+file-version: 3
 comandos:
   alerta:
     ativar-comando: true
     aliases: []
     descricao: Envia uma alerta para todos do servidor.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
 
   back:
     ativar-comando: true
     aliases: []
     descricao: Volta ao local anterior do seu teleporte.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
 
   chapeu:
     ativar-comando: true
     aliases: [hat]
     descricao: Veste o chapéu que esta na sua mão.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
 
   clear:
     ativar-comando: true
     aliases: []
     descricao: Limpa completamente seu inventario.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
 
   clearchat:
     ativar-comando: true
     aliases: []
     descricao: Limpa o chat do servidor.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   compactar:
     ativar-comando: true
     aliases: [block, condense]
     descricao: Compactar todos os itens do inventario.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
 
   cores:
     ativar-comando: true
     aliases: [colors]
     descricao: Mostra a lista de cores do minecraft.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   craft:
     ativar-comando: true
     aliases: [workbench]
     descricao: Abre uma bancada de trabalho virtual.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   crashar:
     ativar-comando: true
     aliases: [derrubar]
     descricao: Crasha o minecraft de um player.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   criarkit:
     ativar-comando: true
     aliases: [createkit]
     descricao: Cria um kit.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   delhome:
     ativar-comando: true
     aliases: []
     descricao: Deleta uma home.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   delkit:
     ativar-comando: true
     aliases: [apagarkit]
     descricao: Deleta um kit.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   delwarp:
     ativar-comando: true
     aliases: []
     descricao: Deleta uma warp.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   derreter:
     ativar-comando: true
     aliases: [aquecer]
     descricao: Derrete todos os minérios do inventario.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   divulgar:
     ativar-comando: true
     aliases: []
     descricao: Divulga um link no chat.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
  
   echest:
     ativar-comando: true
     aliases: [ec, enderchest]
     descricao: Abre o enderchest virtual.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   editaritem:
     ativar-comando: true
     aliases: [renomear, lore]
     descricao: Edita o item que esta na mão.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   editarkit:
     ativar-comando: true
     aliases: [editkit]
     descricao: Edita um kit criado.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
 
   enchant:
     ativar-comando: true
     aliases: [encantar]
     descricao: Encanta um item de maneira fácil.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."    
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."    
    
   executarsom:
     ativar-comando: true
     aliases: [playsound, som]
     descricao: Executa um som para um player ou para todo server.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   feed:
     ativar-comando: true
     aliases: [fome, comer]    
     descricao: Regenera toda sua fome.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   fly:
     ativar-comando: true
     aliases: [voar]
     descricao: Ativa ou desativa o modo fly.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   gamemode:
     ativar-comando: true
     aliases: [gm]
     descricao: Altera o seu modo de jogo.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   god:
     ativar-comando: true
     aliases: [deus]
     descricao: Ativa ou desativa o modo imortal.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   heal:
     ativar-comando: true
     aliases: [curar] 
     descricao: Regenera toda sua vida.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   home:
     ativar-comando: true
     aliases: []
     descricao: Teleporta até uma home.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   homes:
     ativar-comando: true
     aliases: []
     descricao: Mostra a lista de homes salvas.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   invsee:
     ativar-comando: true
     aliases: [inv]
     descricao: Abre o inventario de um player.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   kit:
     ativar-comando: true
     aliases: []
     descricao: Pega um kit.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   kits:
     ativar-comando: true
     aliases: []
     descricao: Lista todos os kits disponíveis.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   lixo:
     ativar-comando: true
     aliases: [lixeira]
     descricao: Abre a lixeira virtual.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   luz:
     ativar-comando: true
     aliases: [lanterna]
     descricao: Liga e desliga a lanterna.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   mundovip:
     ativar-comando: true
     aliases: [vip]
     descricao: Teleporta até o mundo vip.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   online:
     ativar-comando: true
     aliases: []
     descricao: Mostra a numero de players online no servidor.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   particular:
     ativar-comando: true
     aliases: [privar]
     descricao: Define uma home como particular.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   ping:
     ativar-comando: true
     aliases: []
     descricao: Mostra o seu ping atual.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
   
   potion:
     ativar-comando: true
     aliases: [pocao]
     descricao: Edita uma poção.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   publica:
     ativar-comando: true
     aliases: []
     descricao: Define uma home como publica.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
-    
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
+
+  reparar:
+    ativar-comando: true
+    aliases: [repair]
+    descricao: Reparar os seus itens.
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
+
   sethome:
     ativar-comando: true
     aliases: []
     descricao: Define uma home.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   setmundovip:
     ativar-comando: true
     aliases: []
     descricao: Define a mundo vip e não vip do servidor.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   setspawn:
     ativar-comando: true
     aliases: []
     descricao: Define o spawn do servidor.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   setwarp:
     ativar-comando: true
     aliases: []
     descricao: Define uma warp.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   sgive:
     ativar-comando: true
     aliases: [spawnergive, spawner]
     descricao: Envia geradores para um player.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   skull:
     ativar-comando: true
     aliases: [head, cabeca]
     descricao: Pega a cabeça de um player.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   slime:
     ativar-comando: true
     aliases: [slimechunk]
     descricao: Verifica se você esta em uma slimechunk.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   spawn:
     ativar-comando: true
     aliases: []
     descricao: Teleporta até o spawn.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   speed:
     ativar-comando: true
     aliases: [velocidade]
     descricao: Altera a velocidade do andar e do voar.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   sudo:
     ativar-comando: true
     aliases: []
     descricao: Executa um comando para um player.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   system:
     ativar-comando: true
     aliases: [rushyoutuber]
     descricao: Comando gerenciador do plugin.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   title:
     ativar-comando: true
     aliases: [tm]
     descricao: Envia um title para todo servidor.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   tp:
     ativar-comando: true
     aliases: []
     descricao: Executa teleportes.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   tpa:
     ativar-comando: true
     aliases: []
     descricao: Envia uma solicitação de teleporte.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   tpaccept:
     ativar-comando: true
     aliases: [tpaceitar]
     descricao: Aceita uma solicitação de teleporte.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   tpall:
     ativar-comando: true
     aliases: []
     descricao: Teleporta todos os players.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   tpcancel:
     ativar-comando: true
     aliases: [tpcancelar]
     descricao: Cancela uma solicitação de teleporte enviada.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   tpdeny:
     ativar-comando: true
     aliases: [tpnegar]
     descricao: Rejeita uma solicitação de teleporte.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   tphere:
     ativar-comando: true
     aliases: [puxar]
     descricao: Teleporta um player até você.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   tptoggle:
     ativar-comando: true
     aliases: [tpdesativar]
     descricao: Desativa o recebimento de solicitações de teleporte.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   vanish:
     ativar-comando: true
     aliases: [v]
     descricao: Ativa ou desativa o modo invisível.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   verkit:
     ativar-comando: true
     aliases: [visualizarkit]
     descricao: Visualiza os itens de um kit.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   warp:
     ativar-comando: true
     aliases: []
     descricao: Teleporta até uma warp.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   warps:
     ativar-comando: true
     aliases: []
     descricao: Lista todas as warps disponíveis.
-    sem-permissao: "§cVocê não tem permissão para utilizar este comando."
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."

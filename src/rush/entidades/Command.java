@@ -36,7 +36,7 @@ public class Command {
         	this.command = command;
         	this.aliases = CONFIG.getStringList("comandos." + command + ".aliases");
         	this.description = CONFIG.getString("comandos." + command + ".descricao");
-        	this.permissionMessage = CONFIG.getString("comandos." + command + ".sem-permissao");
+        	this.permissionMessage = CONFIG.getString("comandos." + command + ".sem-permissao").replace('&', '§');
         	this.permission = permission;
         	this.pluginCommand = createPluginCommand();
         	registerPluginCommand();

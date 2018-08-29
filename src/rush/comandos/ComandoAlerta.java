@@ -21,11 +21,7 @@ public class ComandoAlerta implements CommandExecutor {
 		}
 
 		// Obtendo a mensagem digitada
-		String alerta = "";
-		for (String str : args) {alerta += str + " ";}
-			
-		// Colocando cores na mensagem digitada
-		alerta = alerta.replace('&', '§');
+		String alerta = String.join(" ", args).replace('&', '§');
 			
 		// Enviando a mensagem digita
 		for (Player p : Bukkit.getOnlinePlayers()) {	

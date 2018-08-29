@@ -70,11 +70,11 @@ public class Kit {
 	}
 	
 	private ItemStack[] getItensByData(String data) {
-		if (Main.useOldSerializer()) 
+		if (Main.isOldVersion()) 
 		{
 			return SerializerOLD.deserializeListItemStack(data);
 		}
-		else if (Main.useNewSerializer()) 
+		else if (Main.isNewVersion()) 
 		{
 			return SerializerNEW.deserializeListItemStack(data);
 		}

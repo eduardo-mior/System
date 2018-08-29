@@ -13,11 +13,15 @@
 #    |    pode usar o plugin tranquilamente nas versões 1.5, 1.6, 1.7 e 1.13 porem alguns dos      |
 #    |    recursos e comandos não estarão disponiveis dependendo da versão (é pouca coisa).        |
 #    |                                                                                             |
-#    | 4) Se você tiver alguma sugestão, ou se você encontrar algum BUG ou ERRO você deve entra    |
+#    | 4) A permissão de cada kit e a permissão de cada warp pode ser editada acessando o arquivo  |
+#    |    da warp ou do kit. Por padrão sempre sera system.kit.<nome> ou system.kit.<warp> então   |
+#    |    caso quiser edita-la basta usar /editarkit ou acessar o arquivo da warp ou do kit        |
+#    |                                                                                             |
+#    | 5) Se você tiver alguma sugestão, ou se você encontrar algum BUG ou ERRO você deve entra    |
 #    |    em contanto comigo por um dos meios de comunicação o mais rapido possível para que o     |
 #    |    problema sejá corrigido o mais rapido possísvel.                                         |
 #    |                                                                                             |
-#    | 5) Você pode encontrar mais informações usando o comando /system                            |
+#    | 6) Você pode encontrar mais informações usando o comando /system                            |
 #    +---------------------------------------------------------------------------------------------+
 #
 #
@@ -98,6 +102,8 @@
 #    | system.ping               - Permissão para utilizar o comando /ping                         |
 #    | system.potion             - Permissão para utilizar o comando /potion                       |
 #    | system.publica            - Permissão para utilizar o comando /publica                      |
+#    | system.reparar            - Permissão para utlizar o comando /reparar                       |
+#    | system.reparar.all        - Permissão para reparar todo o inventario usando /reparar all    |
 #    | system.semdelay           - Permissão para se teleportar sem precisa esperar o delay        |
 #    | system.sethome            - Permissão para utilizar o comando /sehome                       |
 #    | system.setmundovip        - Permissão para utilizar o comando /setmundovip                  |

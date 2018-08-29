@@ -91,11 +91,11 @@ public class KitsListener implements Listener {
 	}
 	
 	private String serializeItens(ItemStack[] itens) {
-		if (Main.useOldSerializer()) 
+		if (Main.isOldVersion()) 
 		{
 			return SerializerOLD.serializeListItemStack(itens);
 		}
-		else if (Main.useNewSerializer()) 
+		else if (Main.isNewVersion()) 
 		{
 			return SerializerNEW.serializeListItemStack(itens);
 		}

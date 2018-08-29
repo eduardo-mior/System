@@ -8,7 +8,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import rush.utils.DataManager;
 
-public class Kits {
+public abstract class Kits {
 
 	private static HashMap<String, Kit> KITS = new HashMap<>();
 	

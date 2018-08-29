@@ -8,7 +8,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 
 import rush.utils.DataManager;
 
-public class Warps {
+public abstract class Warps {
 
 	private static HashMap<String, Warp> WARPS = new HashMap<>();
 	
