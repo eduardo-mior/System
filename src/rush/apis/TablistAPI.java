@@ -4,6 +4,7 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import rush.utils.ReflectionUtils;
@@ -33,12 +34,12 @@ public class TablistAPI {
 			
 			ReflectionUtils.sendPacket(player, packet);
 			
-		} catch (IllegalArgumentException | SecurityException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
-			e.printStackTrace();
+		} catch (IllegalArgumentException | SecurityException | IllegalAccessException | InvocationTargetException | InstantiationException | NullPointerException e) {
+			Bukkit.getConsoleSender().sendMessage("§c[System] Erro ao tentar motrar o tablist para o player " + player.getName() + "!");
 		}
 	}
 	
-	static void loadAPI() {
+	static void load() {
 		try 
 		{
 			Class<?> icbc = ReflectionUtils.getNMSClass("IChatBaseComponent");
@@ -58,6 +59,6 @@ public class TablistAPI {
 				f = 1;
 			}
 		} 
-		catch (SecurityException | IllegalArgumentException | NoSuchMethodException e) {}
+		catch (SecurityException | IllegalArgumentException | NoSuchMethodException | NullPointerException e) {}
 	}	
 }

@@ -31,6 +31,7 @@ import rush.comandos.ComandoEchest;
 import rush.comandos.ComandoEditaritem;
 import rush.comandos.ComandoEditaritemOLD;
 import rush.comandos.ComandoEditarkit;
+import rush.comandos.ComandoEditarplaca;
 import rush.comandos.ComandoEnchant;
 import rush.comandos.ComandoExecutarSom;
 import rush.comandos.ComandoFeed;
@@ -211,12 +212,12 @@ public class Main extends JavaPlugin implements Listener {
 		new Command("divulgar", "system.divulgar", new ComandoDivulgar());
 		new Command("echest", "system.echest", new ComandoEchest());
 		new Command("editarkit", "system.editarkit", new ComandoEditarkit());
+		new Command("editarplaca", "system.editarplaca", new ComandoEditarplaca());
 		new Command("enchant", "system.enchant", new ComandoEnchant());
 		new Command("feed", "system.feed", new ComandoFeed());
 		new Command("fly", "system.fly", new ComandoFly());
 		new Command("gamemode", "system.gamemode", new ComandoGamemode());
 		new Command("god", "system.god", new ComandoGod());
-		new Command("heal", "system.heal", new ComandoHeal());
 		new Command("home", "system.home", new ComandoHome());
 		new Command("homes", "system.home", new ComandoHomes());
 		new Command("invsee", "system.invsee", new ComandoInvsee());
@@ -244,7 +245,6 @@ public class Main extends JavaPlugin implements Listener {
 		new Command("tp", "system.tp", new ComandoTp());
 		new Command("tpa", "system.tpa", new ComandoTpa());
 		new Command("tpaccept", "system.tpaccept", new ComandoTpaccept());
-		new Command("tpall", "system.tpall", new ComandoTpall());
 		new Command("tpcancel", "system.tpcancel", new ComandoTpcancel());
 		new Command("tpdeny", "system.tpdeny", new ComandoTpdeny());
 		new Command("tphere", "system.tphere", new ComandoTphere());
@@ -263,9 +263,14 @@ public class Main extends JavaPlugin implements Listener {
 			new Command("editaritem", "system.editaritem", new ComandoEditaritem());
 			new Command("executarsom", "system.executarsom", new ComandoExecutarSom());
 			new Command("online", "system.online", new ComandoOnline());
+			new Command("tpall", "system.tpall", new ComandoTpall());
 			new Command("title", "system.title", new ComandoTitle());
 			new Command("vanish", "system.vanish", new ComandoVanish());
 			new Command("warp", "system.warp", new ComandoWarp());
+		}
+		
+		if (version != Version.v1_5) {
+			new Command("heal", "system.heal", new ComandoHeal());
 		}
 	}
 
@@ -428,7 +433,7 @@ public class Main extends JavaPlugin implements Listener {
 		}
 
 		if (Settings.EnderPearl_Cooldown_Ativar) {
-			if (version != Version.v1_5) {
+			if (version != Version.v1_5 && version != Version.v1_6) {
 				pm.registerEvents(new EnderPearlCooldown(), this);
 			}
 		}

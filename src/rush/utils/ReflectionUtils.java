@@ -17,8 +17,7 @@ public class ReflectionUtils {
    		String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
    		try {
    			return Class.forName("net.minecraft.server." + version + "." + name);
-   		} catch (ClassNotFoundException e) {
-   			e.printStackTrace();
+   		} catch (ClassNotFoundException | ArrayIndexOutOfBoundsException e) {
    			return null;
    		}
    	}
@@ -27,8 +26,7 @@ public class ReflectionUtils {
    		String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
    		try {
    			return Class.forName("org.bukkit.craftbukkit." + version + "." + name);
-   		} catch (ClassNotFoundException e) {
-   			e.printStackTrace();
+   		} catch (ClassNotFoundException | ArrayIndexOutOfBoundsException e) {
    			return null;
    		}
    	}

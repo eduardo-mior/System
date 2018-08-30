@@ -4,6 +4,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import rush.utils.ReflectionUtils;
@@ -32,8 +33,8 @@ public class TitleAPI {
 			Object subtitlePacket = textTitleConstructor.newInstance(enumSUBTITLE, chatSubtitle);
 			ReflectionUtils.sendPacket(player, subtitlePacket);
 
-		} catch (IllegalArgumentException | IllegalAccessException | SecurityException | InvocationTargetException | InstantiationException e) {
-			e.printStackTrace();
+		} catch (IllegalArgumentException | IllegalAccessException | SecurityException | InvocationTargetException | InstantiationException | NullPointerException e) {
+			Bukkit.getConsoleSender().sendMessage("§c[System] Erro ao tentar enviar o title para o player " + player.getName() + "!");
 		}
 	}
 	
@@ -62,6 +63,6 @@ public class TitleAPI {
 			timeTitleConstructor = ppot.getConstructor(enumClass, icbc, int.class, int.class, int.class);
 			textTitleConstructor = ppot.getConstructor(enumClass, icbc);
 		}
-		catch (SecurityException | IllegalArgumentException | NoSuchMethodException | IllegalAccessException | NoSuchFieldException e) {}
+		catch (SecurityException | IllegalArgumentException | NoSuchMethodException | IllegalAccessException | NoSuchFieldException | NullPointerException e) {}
 	}
 }

@@ -127,7 +127,7 @@ public class ComandoSystem implements CommandExecutor {
 		// Caso o argumento seja 'info' então é exibido algumas informações do plugin
 		if (args[0].equalsIgnoreCase("info")) {					
 			s.sendMessage("§e*-=-=-=-=-=-=-=-* §bSystem §e*-=-=-=-=-=-=-=-* ");
-			s.sendMessage("§ePlugin Version: §61.2");
+			s.sendMessage("§ePlugin Version: §61.3");
 			s.sendMessage("§eMinecraft Version: §6" + getMinecraftVersion());
 			s.sendMessage("§eServerAPI Vesrion: §6" + getApiVersion());
 			s.sendMessage("§eServer JarType: §6" + getJarType());

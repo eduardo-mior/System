@@ -1,5 +1,5 @@
 main: rush.Main
-version: 1.2
+version: 1.3
 name: System
 softdepend: [Legendchat, mcMMO, MassiveCore, Factions]
 
@@ -72,6 +72,9 @@ permissions:
     default: op
   system.editarkit: 
     description: Permissão para editar um kit criado.
+    default: op
+  system.editarplaca:
+    description: Permissão para editar uma placa usando o comando /editarplaca.
     default: op
   system.enchant: 
     description: Permissão para encantar um item usando /encantar.
@@ -172,6 +175,9 @@ permissions:
   system.publica:
     description: Permissão para definir uma home como publica.
     default: op
+  system.reparar:
+    description: Permissão para reparar itens usando o comando /reparar.
+    default: op
   system.semdelay:
     description: Permissão para se teleportar sem ter que esperar o delay.
     default: op
@@ -240,6 +246,9 @@ permissions:
     default: op
   system.vanish.outros:
     description: Permissão para ativar ou desativar o vanish de outras pessoas.
+    default: op
+  system.verkit:
+    description: Permissão para ver os itens de um kit usando /verkit.
     default: op
   system.vip:
     description: Permissão para se teleportar até a area vip.
@@ -334,6 +343,7 @@ permissions:
       system.echest: true
       system.editaritem: true
       system.editarkit: true
+      system.editarplaca: true
       system.enchant: true
       system.executarsom: true
       system.feed: true
@@ -364,6 +374,7 @@ permissions:
       system.ping: true
       system.potion: true
       system.publica: true
+      system.reparar: true
       system.semdelay: true
       system.sethome: true
       system.setmundovip: true
@@ -388,6 +399,7 @@ permissions:
       system.tptoggle: true
       system.vanish.outros: true
       system.vanish: true
+      system.verkit: true
       system.vip: true
       system.warp: true
       system.warps: true

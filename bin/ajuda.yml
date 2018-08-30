@@ -68,6 +68,7 @@
 #    | system.echest.admin       - Permissão para modificar o enderchest de outras pessoas         |
 #    | system.editaritem         - Permissão para utilizar o comando /editaritem                   |
 #    | system.editarkit          - Permissão para utilizar o comando /editarkit                    |
+#    | system.editarplaca        - Permissão para utilizar o comando /editarplaca                  |
 #    | system.enchant            - Permissão para utilizar o comando /enchant                      |
 #    | system.executarsom        - Permissão para utilizar o comando /executarsom                  |
 #    | system.feed               - Permissão para utilizar o comando /feed                         |

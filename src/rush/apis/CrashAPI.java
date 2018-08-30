@@ -6,6 +6,7 @@ import java.lang.reflect.Method;
 import java.util.Collections;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import rush.Main;
@@ -19,8 +20,8 @@ public class CrashAPI {
 	public static void crashPlayer(Player player) {
 		try {
 		    ReflectionUtils.sendPacket(player, packet);
-		} catch (SecurityException | IllegalArgumentException e) {
-			e.printStackTrace();
+		} catch (SecurityException | IllegalArgumentException | NullPointerException e) {
+			Bukkit.getConsoleSender().sendMessage("§c[System] Erro ao tentar crashar o player " + player.getName() + "!");
 		}
 	}
 	
@@ -48,6 +49,6 @@ public class CrashAPI {
 			Constructor<?> explosionConstructor = explosionClass.getConstructor(double.class, double.class, double.class, float.class, List.class, vectorClass);
 			packet = explosionConstructor.newInstance(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE, Float.MAX_VALUE, Collections.emptyList(), Vec3D);
 		} 
-		catch (SecurityException | IllegalArgumentException | NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {}
+		catch (SecurityException | IllegalArgumentException | NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException | NullPointerException e) {}
 	}
 }

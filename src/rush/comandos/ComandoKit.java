@@ -20,6 +20,7 @@ import rush.entidades.Kits;
 import rush.utils.DataManager;
 import rush.utils.TimeFormatter;
 
+@SuppressWarnings("all")
 public class ComandoKit implements CommandExecutor {
 	
 	@Override
@@ -27,7 +28,33 @@ public class ComandoKit implements CommandExecutor {
 
 		// Verificando se o sender é um player
 		if (!(s instanceof Player)) {
-			s.sendMessage(Mensagens.Console_Nao_Pode);
+			
+			// Verificando se o player digitou o número de argumentos corretos
+			if (args.length != 2) {
+				s.sendMessage(Mensagens.Kit_Comando_Incorreto_Console);
+				return true;
+			}
+			
+			// Pegando o argumento e verificando se o kit existe
+			String nomeKit = args[0].toLowerCase();
+			if (!Kits.contains(nomeKit)) {
+				s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit%", nomeKit));
+				ComandoKits.ListKits(s);
+				return true;
+			}
+
+			// Pegando o player e verificando se ele esta online
+			Player p = Bukkit.getPlayer(args[1]);
+			if (p == null) {
+				s.sendMessage(Mensagens.Player_Offline);
+				return true;
+			}
+			
+			// Pegando o kit e adicionando para o player
+			Kit kit = Kits.get(nomeKit);
+			ItemStack[] ITENS = kit.getItens();
+			forceAddItensToInventory(p, ITENS);
+			s.sendMessage(Mensagens.Kit_Enviado.replace("%player%", p.getName()));
 			return true;
 		}
 
@@ -114,6 +141,17 @@ public class ComandoKit implements CommandExecutor {
 		PlayerInventory inv = p.getInventory();
 		for (ItemStack item : itens) {
 			if (item != null) inv.addItem(item);
+		}
+	}
+	
+	// Método para adicionar os itens no inv do player
+	private void forceAddItensToInventory(Player p, ItemStack[] itens) {
+		PlayerInventory inv = p.getInventory();
+		for (ItemStack item : itens) {
+			if (item != null) {
+				if (inv.firstEmpty() != -1) inv.addItem(item);
+				else p.getWorld().dropItem(p.getLocation(), item);
+			}
 		}
 	}
 	

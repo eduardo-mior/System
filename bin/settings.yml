@@ -103,7 +103,7 @@ Limitador-De-Players:
   # Não se esqueça de alterar o limite de players na server.propriets
   # Se você colocar limite de 300 deixe pelo menos umas 20 vagas para VIPS
   # Então coloque 320 na server.propriets
-  Limite-De-Players: 320
+  Limite-De-Players: 300
 
   # Se o servidor estiver lotado, deseja kickar um player aleatório
   # sem vip para que um vip possa entrar?

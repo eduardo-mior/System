@@ -70,6 +70,7 @@ public class Mensagens {
 	public static String Tornou_Home_Publica;
 	public static String Tornou_Home_Particular;
 	public static String Kit_Comando_Incorreto;
+	public static String Kit_Comando_Incorreto_Console;
 	public static String DelKit_Comando_Incorreto;
 	public static String VerKit_Comando_Incorreto;
 	public static String CriarKit_Comando_Incorreto;
@@ -84,6 +85,7 @@ public class Mensagens {
 	public static String Kit_Deletado;
 	public static String Kit_Sem_Espaco_Pra_Pegar;
 	public static String Kit_Pego;
+	public static String Kit_Enviado;
 	public static String Kit_Aguarde;
 	public static String Nenhum_Kit_Criado;
 	public static String Kits_Lista;
@@ -264,6 +266,10 @@ public class Mensagens {
 	public static String Reparar_Ja_Reparado;
 	public static String Reparar_All_Com_Sucesso;
 	public static String Reparar_Hand_Com_Sucesso;
+	public static String Editar_Placa_Comando_Incorreto;
+	public static String Editar_Placa_Linha_Invalida;
+	public static String Editar_Placa_Nao_Esta_Olhando;
+	public static String Editar_Placa_Com_Sucesso;
 	
 	public static void loadMensagens() {
 		FileConfiguration config = ConfigManager.getConfig("mensagens");
@@ -332,6 +338,7 @@ public class Mensagens {
 		Tornou_Home_Publica = config.getString("Tornou-Home-Publica").replace('&', '§');
 		Tornou_Home_Particular = config.getString("Tornou-Home-Particular").replace('&', '§');
 		Kit_Comando_Incorreto = config.getString("Kit-Comando-Incorreto").replace('&', '§');
+		Kit_Comando_Incorreto_Console = config.getString("Kit-Comando-Incorreto-Console").replace('&', '§');
 		DelKit_Comando_Incorreto = config.getString("DelKit-Comando-Incorreto").replace('&', '§');
 		VerKit_Comando_Incorreto = config.getString("VerKit-Comando-Incorreto").replace('&', '§');
 		CriarKit_Comando_Incorreto = config.getString("CriarKit-Comando-Incorreto").replace('&', '§');
@@ -346,6 +353,7 @@ public class Mensagens {
 		Kit_Deletado = config.getString("Kit-Deletado").replace('&', '§');
 		Kit_Sem_Espaco_Pra_Pegar = config.getString("Kit-Sem-Espaco-Pra-Pegar").replace('&', '§');
 		Kit_Pego = config.getString("Kit-Pego").replace('&', '§');
+		Kit_Enviado =  config.getString("Kit-Enviado").replace('&', '§');
 		Kit_Aguarde = config.getString("Kit-Aguarde").replace('&', '§');
 		Nenhum_Kit_Criado = config.getString("Nenhum-Kit-Criado").replace('&', '§');
 		Kits_Lista = config.getString("Kits-Lista").replace('&', '§');
@@ -526,5 +534,9 @@ public class Mensagens {
 		Reparar_Ja_Reparado = config.getString("Reparar-Ja-Reparado").replace('&', '§'); 
 		Reparar_All_Com_Sucesso = config.getString("Reparar-All-Com-Sucesso").replace('&', '§'); 
 		Reparar_Hand_Com_Sucesso = config.getString("Reparar-Hand-Com-Sucesso").replace('&', '§'); 
+		Editar_Placa_Comando_Incorreto = config.getString("Editar-Placa-Comando-Incorreto").replace('&', '§'); 
+		Editar_Placa_Linha_Invalida = config.getString("Editar-Placa-Linha-Invalida").replace('&', '§'); 
+		Editar_Placa_Nao_Esta_Olhando = config.getString("Editar-Placa-Nao-Esta-Olhando").replace('&', '§'); 
+		Editar_Placa_Com_Sucesso = config.getString("Editar-Placa-Com-Sucesso").replace('&', '§'); 
 	}
 }

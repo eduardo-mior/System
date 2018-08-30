@@ -1,20 +1,17 @@
 package rush.apis;
 
-import rush.Main;
-
 public class APIS {
 
 	public static void load() 
 	{
-	
-		CrashAPI.load();
-		
-		if (!Main.isOldVersion()) 
+		try 
 		{
-			TablistAPI.loadAPI();
+			CrashAPI.load();
+			TablistAPI.load();
 			ActionBarAPI.load();
-			TitleAPI.load();
-		}
+			TitleAPI.load();	
+		} 
+		catch (Exception e) {}
 		
 	}
 	

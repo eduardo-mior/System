@@ -1,4 +1,4 @@
-﻿file-version: 3
+﻿file-version: 4
 ############################################################
 # +------------------------------------------------------+ #
 # |                   Mensagens gerais                   | #
@@ -135,6 +135,7 @@ Tornou-Home-Particular: "&aA home '%home%' agora é uma home particular, ou seja
 # +------------------------------------------------------+ #
 ############################################################
 Kit-Comando-Incorreto: "&cComando incorreto, use /kit <kit>"
+Kit-Comando-Incorreto-Console: "&cComando incorreto, use /kit <kit> <player>"
 DelKit-Comando-Incorreto: "&cComando incorreto, use /delkit <kit>"
 VerKit-Comando-Incorreto: "&cComando incorreto, use /verkit <kit>"
 CriarKit-Comando-Incorreto: "&cComando incorreto, use /criarkit <kit>"
@@ -153,6 +154,7 @@ Kit-Editado: "&aKit '%kit%' editado com sucesso."
 Kit-Deletado: "&aKit '%kit%' deletado com sucesso."
 Kit-Sem-Espaco-Pra-Pegar: "&cVocê não possui espaço suficiente no inventário para poder pegar este kit, por favor libere mais espaço e tente novamente."
 Kit-Pego: "&aKit '%kit%' adquirido com sucesso."
+Kit-Enviado: "&aKit enviado com sucesso para %player%."
 Kit-Aguarde: "&cAguarde mais %tempo% para poder pegar este kit novamente."
 Nenhum-Kit-Criado: "&cNão há kits disponíveis."
 Kits-Lista: "&eKits disponíveis(%n%): &7%kits%"
@@ -265,6 +267,16 @@ Gamemode-Sem-Permissao-Tipo: "&cVocê não tem permissão para entrar no gamemod
 
 ############################################################
 # +------------------------------------------------------+ #
+# |                 Comando /editarplaca                 | #
+# +------------------------------------------------------+ #
+############################################################
+Editar-Placa-Comando-Incorreto: "&cComando incorreto, use /editarplaca <linha> <mensagem>"
+Editar-Placa-Linha-Invalida: "&cLinha inválida! O número da linha deve ser de 1 a 4."
+Editar-Placa-Nao-Esta-Olhando: "&cVocê deve estar olhando diretamente para uma placa para poder edita-la."
+Editar-Placa-Com-Sucesso: "&aPlaca editada com sucesso."
+
+############################################################
+# +------------------------------------------------------+ #
 # |                    Comando /clear                    | #
 # +------------------------------------------------------+ #
 ############################################################
@@ -346,7 +358,7 @@ Speed-Comando-Incorreto: "&cComando incorreto, use /speed <velocidade> [player]"
 Speed-Outro-Sem-Permissao: "&cVocê não tem permissão para alterar a velocidade de outros players."
 Speed-Alterado-Voce: "&aVelocidade alterada com sucesso para %speed%."
 Speed-Alterado-Outro: "&aVelocidade de %player% alterada com sucesso para %speed%."
-Speed-Valor-Invalido: "&cVelocidade inválida! Você deve usar um valor entre &70 &ce &71 &ccomo por exemplo &70,5&c."
+Speed-Valor-Invalido: "&cVelocidade inválida! Você deve usar um valor entre &70 &ce &71 &ccomo por exemplo &70.5&c."
 
 ############################################################
 # +------------------------------------------------------+ #

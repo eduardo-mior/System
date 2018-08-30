@@ -1,4 +1,4 @@
-file-version: 3
+file-version: 4
 comandos:
   alerta:
     ativar-comando: true
@@ -107,7 +107,13 @@ comandos:
     aliases: [editkit]
     descricao: Edita um kit criado.
     sem-permissao: "&cVocê não tem permissão para utilizar este comando."
-
+    
+  editarplaca:
+    ativar-comando: true
+    aliases: [signedit]
+    descricao: Edita uma placa sem precisar quebra-la.
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
+    
   enchant:
     ativar-comando: true
     aliases: [encantar]
