@@ -1,6 +1,7 @@
 main: rush.Main
 version: 1.3
 name: System
+load: POSTWORLD
 softdepend: [Legendchat, mcMMO, MassiveCore, Factions]
 
 permissions:
@@ -78,6 +79,9 @@ permissions:
     default: op
   system.enchant: 
     description: Permissão para encantar um item usando /encantar.
+    default: op
+  system.estatisticas:
+    description: Permissão para ver as estatisticas de um player usando /estatisticas.
     default: op
   system.executarsom:
     description: Permissão para enviar um som para um player ou para todo servidor.
@@ -247,6 +251,9 @@ permissions:
   system.vanish.outros:
     description: Permissão para ativar ou desativar o vanish de outras pessoas.
     default: op
+  system.verinfo:
+    description: Permissão para ver as informações de um player.
+    default: op
   system.verkit:
     description: Permissão para ver os itens de um kit usando /verkit.
     default: op
@@ -345,6 +352,7 @@ permissions:
       system.editarkit: true
       system.editarplaca: true
       system.enchant: true
+      system.estatisticas: true
       system.executarsom: true
       system.feed: true
       system.fly.outros: true
@@ -399,6 +407,7 @@ permissions:
       system.tptoggle: true
       system.vanish.outros: true
       system.vanish: true
+      system.verinfo: true
       system.verkit: true
       system.vip: true
       system.warp: true

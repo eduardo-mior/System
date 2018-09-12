@@ -59,8 +59,8 @@ public class ComandoSethome implements CommandExecutor {
 			}
 		}
 		
-		String locationSerialized = serializeLocation(location);
-		config.set("Homes." + home + ".Localizacao" , locationSerialized);
+		String loc = serializeLocation(location);
+		config.set("Homes." + home + ".Localizacao" , loc);
 		config.set("Homes." + home + ".Publica" , false);
 		try {
 			config.save(file);

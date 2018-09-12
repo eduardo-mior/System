@@ -33,6 +33,7 @@ import rush.comandos.ComandoEditaritemOLD;
 import rush.comandos.ComandoEditarkit;
 import rush.comandos.ComandoEditarplaca;
 import rush.comandos.ComandoEnchant;
+import rush.comandos.ComandoEstatisticas;
 import rush.comandos.ComandoExecutarSom;
 import rush.comandos.ComandoFeed;
 import rush.comandos.ComandoFly;
@@ -74,6 +75,7 @@ import rush.comandos.ComandoTpdeny;
 import rush.comandos.ComandoTphere;
 import rush.comandos.ComandoTptoggle;
 import rush.comandos.ComandoVanish;
+import rush.comandos.ComandoVerinfo;
 import rush.comandos.ComandoVerkit;
 import rush.comandos.ComandoWarp;
 import rush.comandos.ComandoWarpOLD;
@@ -189,11 +191,11 @@ public class Main extends JavaPlugin implements Listener {
 	}
 
 	private void carregarConfigs() {
-		Kits.loadKits();
-		Warps.loadWarps();
-		Settings.loadSettings();
-		Locations.loadLocations();
 		Mensagens.loadMensagens();
+		Locations.loadLocations();
+		Settings.loadSettings();
+		Warps.loadWarps();
+		Kits.loadKits();
 	}
 
 	private void registrarComandos() {
@@ -218,6 +220,7 @@ public class Main extends JavaPlugin implements Listener {
 		new Command("fly", "system.fly", new ComandoFly());
 		new Command("gamemode", "system.gamemode", new ComandoGamemode());
 		new Command("god", "system.god", new ComandoGod());
+		new Command("heal", "system.heal", new ComandoHeal());
 		new Command("home", "system.home", new ComandoHome());
 		new Command("homes", "system.home", new ComandoHomes());
 		new Command("invsee", "system.invsee", new ComandoInvsee());
@@ -250,6 +253,7 @@ public class Main extends JavaPlugin implements Listener {
 		new Command("tphere", "system.tphere", new ComandoTphere());
 		new Command("tptoggle", "system.tptoggle", new ComandoTptoggle());
 		new Command("verkit", "system.verkit", new ComandoVerkit());
+		new Command("verinfo", "system.verinfo", new ComandoVerinfo());
 		new Command("warps", "system.warps", new ComandoWarps());
 
 		if (isOldVersion()) {
@@ -269,8 +273,8 @@ public class Main extends JavaPlugin implements Listener {
 			new Command("warp", "system.warp", new ComandoWarp());
 		}
 		
-		if (version != Version.v1_5) {
-			new Command("heal", "system.heal", new ComandoHeal());
+		if (version != Version.v1_5 && version != Version.v1_6) {
+			new Command("estatisticas", "system.estatisticas", new ComandoEstatisticas());
 		}
 	}
 

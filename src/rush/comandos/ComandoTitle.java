@@ -37,8 +37,9 @@ public class ComandoTitle implements CommandExecutor {
 		// Caso a mensagem conter "<nl>" então o title e o subtitle é enviado
 		} else {
 			// Enviando o title para todos os players do serivdor
-				TitleAPI.sendTitle((Player)s, 20, 60, 20, txt[0], txt[1]);
-			
+			for (Player p : Bukkit.getOnlinePlayers()) {
+				TitleAPI.sendTitle(p, 20, 60, 20, txt[0], txt[1]);
+			}
 		}
 
 		// Informando que o title foi enviado

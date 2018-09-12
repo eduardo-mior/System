@@ -15,7 +15,7 @@ Mundo-Nao-Existe: "&cO mundo '%mundo%' não foi encontrado!"
 Falha-Ao-Criar-Arquivo: "&c[ERRO] Nao foi possivel criar o arquivo %arquivo%!"
 Falha-Ao-Criar-Pasta: "&c[ERRO] Nao foi possivel criar a pasta %pasta%!"
 Falha-Ao-Salvar: "&c[ERRO] Nao foi possivel salvar o arquivo %arquivo%!"
-Erro-Versao-Nao-Suportada: "&cDesculpe mas este recurso que você esta tentando usar não esta disponível na sua versão do minecraft."
+Erro-Versao-Nao-Suportada: "&cDesculpe mas este recurso que você esta tentando usar não esta disponível nesta versão do minecraft."
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -116,17 +116,17 @@ Home-Definida: "&aHome '%home%' definida com sucesso!"
 Home-Deletada: "&aHome '%home%' deletada com sucesso!"
 Home-Nao-Existe: "&cA home '%home%' não existe!"
 Player-Home-Nao-Existe: "&cA home '%home%' do player %player% não existe!"
-Player-Home-Nao-Publica: "&cA home '%home%' do player %player% não é publica!"
+Player-Home-Nao-Publica: "&cA home '%home%' do player %player% não é pública!"
 Home-Privada-Iniciando-Teleporte: "&eIniciando teleporte para a home '%home%' em %tempo% segundos."
 Home-Publica-Iniciando-Teleporte: "&eIniciando teleporte para a home '%home%' do player %player% em %tempo% segundos."
 Home-Privada-Teleportado-Sucesso: "&aTeleportado com sucesso para a home '%home%'!"
 Home-Publica-Teleportado-Sucesso: "&aTeleportado com sucesso para a home '%home%' do player %player%."
-Homes-Publicas: "&eHomes publicas: &7%homes%"
+Homes-Publicas: "&eHomes públicas: &7%homes%"
 Homes-Particulares: "&eHomes particulares: &7%homes%"
 Limite-De-Homes-Atingido: "&cVocê antingiu o seu limite máximo de homes (%limite%)!"
-Home-Ja-Publica: "&cA home '%home%' já é publica!"
+Home-Ja-Publica: "&cA home '%home%' já é pública!"
 Home-Ja-Particular: "&cA home '%home%' já é particular!"
-Tornou-Home-Publica: "&aA home '%home%' agora é uma home publica, ou seja, qualquer pessoa pode acessa-la!"
+Tornou-Home-Publica: "&aA home '%home%' agora é uma home pública, ou seja, qualquer pessoa pode acessa-la!"
 Tornou-Home-Particular: "&aA home '%home%' agora é uma home particular, ou seja, só você pode acessa-la!"
 
 ############################################################
@@ -294,6 +294,8 @@ Clear-Outro-Sem-Permissao: "&cVocê não tem permissão para limpar o inventári
 ############################################################
 Editar-Item-Invalido: "&cEste item não é um item valido!"
 Editar-Item-Com-Sucesso: "&aItem editado com sucesso."
+Editar-Item-Numero-Operacao-Invalido: "&cNúmero de operação invalido! O número da operação deve ser &70&c, &71&c ou &72&c."
+Editar-Item-Atributo-Invalido: "&cAtributo desconheceido!\n&eLista de Atributos: %lista%"
 Editar-Item-Comando-Incorreto: |
   &cComando incorreto, use:
   &c/editaritem renomear <nome> &8-&7 Renomeia o nome do item.
@@ -304,7 +306,8 @@ Editar-Item-Comando-Incorreto: |
   &c/editaritem addlore <frase> &8-&7 Adiciona uma linha de lore.
   &c/editaritem bugar &8-&7 Transforma o item no bloco quadriculado.
   &c/editaritem negativo &8-&7 Define a quantia do item para &c-1&7.
-
+  &c/editaritem inquebravel &8-&7 Define o item como Inquebravel.
+  &c/editaritem atributo <atributo> <quantia> <operacao> &8-&7 Adiciona um atributo especial do minecraft ao item.
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -608,3 +611,57 @@ Plugin-Recarregado-Sucesso: |
   &aMensagens e configurações recarregadas com sucesso!
   &7OBS: Algumas alterações só terão efeito quando o servidor for reinicializado.
 Backup-Com-Sucesso: "&aBackup realizado com sucesso! O backup foi criado dentro da pasta 'backups' na pasta principal do plugin."
+
+############################################################
+# +------------------------------------------------------+ #
+# |                 Comando /estatisticas                | #
+# +------------------------------------------------------+ #
+############################################################
+Estatisticas-Comando-Incorreto: "&cComando incorreto, use /estatisticas [player]"
+# Lista completa com todas as variaveis: https://gist.github.com/RUSHyoutuber/d84a926b1ea44db21a0187d578dc4b87
+Estatisticas-Informacoes: |
+   &6&l       Estatísticas
+   &6 
+   &eJogador: &f%player%.
+   &eMatou &f%kill-players% players.
+   &eMatou &f%kill-mobs% mobs.
+   &eMorreu &f%mortes% vezes.
+   &eCausou &f%dano-causado% de dano.
+   &eSofreu &f%dano-sofrido% de dano.
+   &eAndou &f%distancia-caminhada% metros.
+   &eNadou &f%distancia-nadada% metros.
+   &ePulou &f%pulou% vezes.
+   &eTempo jogado &f%tempo-jogado%.
+   &eEntrou pela primeira vez &f%primeiro-login%.
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   Comando /verinfo                   | #
+# +------------------------------------------------------+ #
+############################################################
+Verinfo-Comando-Incorreto: "&cComando incorreto, use /verinfo <player>"
+# Lista completa com todas as variaveis: https://gist.github.com/RUSHyoutuber/6c9dca0ba0edcfef9182db123fec1a5b
+Verinfo-Informacoes: |
+   &e&l       Informações de %player-name%
+   &a
+   &aAr:&2 %ar%&7/&2%max-ar%
+   &aVida:&2 %vida%&7/&2%max-vida%
+   &aFome:&2 %fome%&7/&2%max-fome%
+   &aSaturação:&2 %saturacao%&7/&2%max-saturacao%
+   &aExaustão:&2 %exaustao%&7/&2%max-exaustao%
+   &aEfeitos de poção:&2 %efeitos%
+   &aXP Total:&2 %xp-total%
+   &aXP Level:&2 %xp-level%
+   &aPing:&2 %ping%
+   &aVelocidade voando:&2 %speed-fly%
+   &aVelocidade andando:&2 %speed-walk%
+   &aLocalização:&2 %world% X:%x% Y:%y% Z:%z%
+   &aGamemode:&2 %gamemode%
+   &aEsta de Fly:&2 %fly%
+   &aEsta de God:&2 %god%
+   &aEsta de Vanish:&2 %vanish%
+   &aEsta dormindo:&2 %dormindo%
+   &aEsta de Op:&2 %op%
+   &aEsta na whitelist:&2 %whitelist%
+   &aIp:&2 %ip%
+   &aLinguagem do minecraft:&2 %locale%

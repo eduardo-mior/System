@@ -11,7 +11,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import rush.Main;
+import rush.apis.ItemAPI;
 import rush.configuracoes.Mensagens;
+import rush.entidades.Version;
 
 @SuppressWarnings("all")
 public class ComandoEditaritemOLD implements CommandExecutor {
@@ -104,6 +107,18 @@ public class ComandoEditaritemOLD implements CommandExecutor {
 		if (args[0].equalsIgnoreCase("negativo")) {
 			item.setAmount(Short.MAX_VALUE);
 			s.sendMessage(Mensagens.Editar_Item_Com_Sucesso);
+			return true;
+		}
+		
+		// Verificando se o player quer deixar o item inquebravel
+		if (args[0].equalsIgnoreCase("inquebravel")) {
+			s.sendMessage(Mensagens.Erro_Versao_Nao_Suportada);
+			return true;
+		}
+		
+		// Verificando se o player que adicionar algum atributo ao item
+		if (args[0].equalsIgnoreCase("atributo")) {
+			s.sendMessage(Mensagens.Erro_Versao_Nao_Suportada);
 			return true;
 		}
 			

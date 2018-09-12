@@ -1,8 +1,12 @@
 package rush.comandos;
 
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -13,7 +17,9 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import rush.apis.ItemAPI;
 import rush.configuracoes.Mensagens;
+import rush.utils.ReflectionUtils;
 
 @SuppressWarnings("all")
 public class ComandoEditaritem implements CommandExecutor {
@@ -50,7 +56,7 @@ public class ComandoEditaritem implements CommandExecutor {
 		if (args[0].equalsIgnoreCase("renomear")) {
 			String nome = "";
 			for (int i = 1; i < args.length; i++) {nome += args[i] + " ";}
-			meta.setDisplayName(nome.substring(0, nome.length()).replace('&', '§'));
+			meta.setDisplayName(nome.substring(0, nome.length()-1).replace('&', '§'));
 			item.setItemMeta(meta);
 			s.sendMessage(Mensagens.Editar_Item_Com_Sucesso);
 			return true;
@@ -58,12 +64,7 @@ public class ComandoEditaritem implements CommandExecutor {
 			
 		// Verificando se o player quer adicionar flags no item
 		if (args[0].equalsIgnoreCase("addflags")) {
-			meta.addItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-			meta.addItemFlags(ItemFlag.HIDE_DESTROYS);
-			meta.addItemFlags(ItemFlag.HIDE_ENCHANTS);
-			meta.addItemFlags(ItemFlag.HIDE_PLACED_ON);
-			meta.addItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
-			meta.addItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+			meta.addItemFlags(ItemFlag.values());
 			item.setItemMeta(meta);
 			s.sendMessage(Mensagens.Editar_Item_Com_Sucesso);
 			return true;
@@ -71,12 +72,7 @@ public class ComandoEditaritem implements CommandExecutor {
 			
 		// Verificando se o player quer remover flags no item
 		if (args[0].equalsIgnoreCase("removeflags")) {
-			meta.removeItemFlags(ItemFlag.HIDE_ATTRIBUTES);
-			meta.removeItemFlags(ItemFlag.HIDE_DESTROYS);
-			meta.removeItemFlags(ItemFlag.HIDE_ENCHANTS);
-			meta.removeItemFlags(ItemFlag.HIDE_PLACED_ON);
-			meta.removeItemFlags(ItemFlag.HIDE_POTION_EFFECTS);
-			meta.removeItemFlags(ItemFlag.HIDE_UNBREAKABLE);
+			meta.removeItemFlags(ItemFlag.values());
 			item.setItemMeta(meta);
 			s.sendMessage(Mensagens.Editar_Item_Com_Sucesso);
 			return true;
@@ -125,9 +121,75 @@ public class ComandoEditaritem implements CommandExecutor {
 			s.sendMessage(Mensagens.Editar_Item_Com_Sucesso);
 			return true;
 		}
+		
+		// Verificando se o player quer deixar o item inquebravel
+		if (args[0].equalsIgnoreCase("inquebravel")) {
+			// Setando o item como inquebravel e setando o item na mão do player
+			p.setItemInHand(ItemAPI.setUnbreakable(item, true));
+			s.sendMessage(Mensagens.Editar_Item_Com_Sucesso);
+			return true;
+		}
+		
+		// Verificando se o player que adicionar algum atributo ao item
+		if (args[0].equalsIgnoreCase("atributo")) {
 			
+			// Pegando o atributo que o player quer setar
+			double value;
+			int operation;
+			String attribute;
+			try {
+				attribute = Attribute.valueOf(args[1].toUpperCase()).getAttribute();
+				value = Double.parseDouble(args[2]);
+				operation = Integer.parseInt(args[3]);
+			} catch (NumberFormatException e) {
+				s.sendMessage(Mensagens.Numero_Invalido.replace("%numero%", e.getMessage().split("\"")[1]));
+				return true;
+			} catch (ArrayIndexOutOfBoundsException e) {
+				s.sendMessage(Mensagens.Editar_Item_Comando_Incorreto);
+				return true;
+			} catch (IllegalArgumentException e) {
+				s.sendMessage(Mensagens.Editar_Item_Atributo_Invalido.replace("%lista%", getEnumList(Attribute.class).toString()));
+				return true;
+			}			
+			
+			// Verificando se a operação é uma operação valida
+			if (operation < 0 || operation > 2) {
+				s.sendMessage(Mensagens.Editar_Item_Numero_Operacao_Invalido);
+				return true;
+			}
+			
+			// Setando o atributo no item e setando o item na mão do player
+			p.setItemInHand(ItemAPI.setAttributeNBT(item, attribute, value, operation));
+			s.sendMessage(Mensagens.Editar_Item_Com_Sucesso);
+			return true;
+		}
+		
 		// Caso nenhuma das opção acima for aceita sera dado como comando incorreto
 		s.sendMessage(Mensagens.Editar_Item_Comando_Incorreto);
 		return true;
+	}
+	
+	private <E extends Enum<E>> List<E> getEnumList(Class<E> enumClass) {
+		return new ArrayList<E>(Arrays.asList(enumClass.getEnumConstants()));
+	}
+	
+}
+
+enum Attribute {
+	
+	DAMAGE("generic.attackDamage"),
+	KNOCKBACKRESISTANCE("generic.knockbackResistance"),
+	FOLLOWRANGE("generic.followRange"),
+	MAXHEALTH("generic.maxHealth"),
+	SPEED("generic.movementSpeed");
+	
+	private String attribute;
+	
+	Attribute(String attribute) {
+		this.attribute = attribute;
+	}
+	
+	public String getAttribute() {
+		return this.attribute;
 	}
 }

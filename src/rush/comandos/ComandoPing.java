@@ -1,14 +1,12 @@
 package rush.comandos;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import rush.apis.PingAPI;
 import rush.configuracoes.Mensagens;
 
 @SuppressWarnings("all")
@@ -32,7 +30,7 @@ public class ComandoPing implements CommandExecutor {
 		// Caso o número de argumentos for 0 então pegaremos o ping do sender
 		if (args.length == 0) {
 			Player p = (Player) s;
-			String ping = getPlayerPing(p);
+			String ping = PingAPI.getPlayerPing(p);
 			s.sendMessage(Mensagens.Seu_Ping.replace("%ping%", ping));
 			return true;
 		}
@@ -48,22 +46,10 @@ public class ComandoPing implements CommandExecutor {
 			}
 
 			// Pegando o ping do player e informando
-			String ping = getPlayerPing(p);
+			String ping = PingAPI.getPlayerPing(p);
 			s.sendMessage(Mensagens.Player_Ping.replace("%ping%", ping).replace("%player%", p.getName()));
 			return true;
 		}
 		return true;
-	}
-
-	// Métoodo para pegar o ping do player
-	private String getPlayerPing(Player player) {
-		try {
-			Object entityPlayer = player.getClass().getMethod("getHandle").invoke(player);
-			Field ping = entityPlayer.getClass().getField("ping");
-			return String.valueOf(ping.get(entityPlayer));
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException	| SecurityException | NoSuchFieldException e) {
-			e.printStackTrace();
-		}
-		return "§cIndisponivel";
 	}
 }

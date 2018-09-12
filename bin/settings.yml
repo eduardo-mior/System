@@ -298,6 +298,7 @@ Anuncios:
 # +------------------------------------------------------+ #
 ############################################################
 ScoreBoard:
+  # A scoreboard não possui variaveis.
   Ativar: true
   Titulo: "  &6&lHypixel  "
   Linhas:

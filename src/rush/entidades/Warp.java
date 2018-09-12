@@ -25,11 +25,11 @@ public class Warp {
 		this.semPermissao = semPermissao;
 		this.delay = delay;
 		this.delayParaVips = delayVip;
-		this.mensagemInicio = mensagemInicio;
-		this.mensagemFinal = mensagemFinal;
+		this.mensagemInicio = mensagemInicio.replace('&', '§');
+		this.mensagemFinal = mensagemFinal.replace('&', '§');
 		this.enviarTitle = enviarTitle;
-		this.title = title;
-		this.subtitle = subtitle;
+		this.title = title.replace('&', '§');
+		this.subtitle = subtitle.replace('&', '§');
 	}
 
     

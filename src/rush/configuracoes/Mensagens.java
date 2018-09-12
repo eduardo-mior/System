@@ -17,7 +17,7 @@ public class Mensagens {
 	public static String Falha_Ao_Criar_Arquivo;
 	public static String Falha_Ao_Criar_Pasta;
 	public static String Falha_Ao_Salvar;
-    public static String Erro_Versao_Nao_Suportada;
+	public static String Erro_Versao_Nao_Suportada;
 	public static String Nick_Similar;
 	public static String Servidor_Lotado;
 	public static String Aviso_Dar_Lugar_Ao_Vip	;
@@ -186,6 +186,8 @@ public class Mensagens {
 	public static String Clear_Inventario_Limpado_Voce;
 	public static String Clear_Outro_Sem_Permissao;
 	public static String Editar_Item_Invalido;
+	public static String Editar_Item_Atributo_Invalido;
+	public static String Editar_Item_Numero_Operacao_Invalido;
 	public static String Editar_Item_Com_Sucesso;
 	public static String Editar_Item_Comando_Incorreto;
 	public static String Area_Vip_Definida;
@@ -270,6 +272,10 @@ public class Mensagens {
 	public static String Editar_Placa_Linha_Invalida;
 	public static String Editar_Placa_Nao_Esta_Olhando;
 	public static String Editar_Placa_Com_Sucesso;
+	public static String Verinfo_Comando_Incorreto;
+	public static String Verinfo_Informacoes;
+	public static String Estatisticas_Comando_Incorreto;
+	public static String Estatisticas_Informacoes;
 	
 	public static void loadMensagens() {
 		FileConfiguration config = ConfigManager.getConfig("mensagens");
@@ -285,7 +291,7 @@ public class Mensagens {
 		Falha_Ao_Criar_Arquivo = config.getString("Falha-Ao-Criar-Arquivo").replace('&', '§');
 		Falha_Ao_Criar_Pasta = config.getString("Falha-Ao-Criar-Pasta").replace('&', '§');
 		Falha_Ao_Salvar = config.getString("Falha-Ao-Salvar").replace('&', '§');
-	    Erro_Versao_Nao_Suportada = config.getString("Erro-Versao-Nao-Suportada").replace('&', '§');
+		Erro_Versao_Nao_Suportada = config.getString("Erro-Versao-Nao-Suportada").replace('&', '§');
 		Nick_Similar = config.getString("Nick-Similar").replace('&', '§');
 		Servidor_Lotado = config.getString("Servidor-Lotado").replace('&', '§');
 		Aviso_Dar_Lugar_Ao_Vip = config.getString("Aviso-Dar-Lugar-Ao-Vip").replace('&', '§').replace("%tempo%", String.valueOf(Settings.Tempo_Para_Ser_Kick));
@@ -353,7 +359,7 @@ public class Mensagens {
 		Kit_Deletado = config.getString("Kit-Deletado").replace('&', '§');
 		Kit_Sem_Espaco_Pra_Pegar = config.getString("Kit-Sem-Espaco-Pra-Pegar").replace('&', '§');
 		Kit_Pego = config.getString("Kit-Pego").replace('&', '§');
-		Kit_Enviado =  config.getString("Kit-Enviado").replace('&', '§');
+		Kit_Enviado = config.getString("Kit-Enviado").replace('&', '§');
 		Kit_Aguarde = config.getString("Kit-Aguarde").replace('&', '§');
 		Nenhum_Kit_Criado = config.getString("Nenhum-Kit-Criado").replace('&', '§');
 		Kits_Lista = config.getString("Kits-Lista").replace('&', '§');
@@ -454,6 +460,8 @@ public class Mensagens {
 		Clear_Inventario_Limpado_Voce = config.getString("Clear-Inventario-Limpado-Voce").replace('&', '§');
 		Clear_Outro_Sem_Permissao = config.getString("Clear-Outro-Sem-Permissao").replace('&', '§');
 		Editar_Item_Invalido = config.getString("Editar-Item-Invalido").replace('&', '§');
+		Editar_Item_Atributo_Invalido = config.getString("Editar-Item-Atributo-Invalido").replace('&', '§');
+		Editar_Item_Numero_Operacao_Invalido = config.getString("Editar-Item-Numero-Operacao-Invalido").replace('&', '§');
 		Editar_Item_Com_Sucesso = config.getString("Editar-Item-Com-Sucesso").replace('&', '§');
 		Editar_Item_Comando_Incorreto = config.getString("Editar-Item-Comando-Incorreto").replace('&', '§');
 		Area_Vip_Definida = config.getString("Area-Vip-Definida").replace('&', '§');
@@ -537,6 +545,10 @@ public class Mensagens {
 		Editar_Placa_Comando_Incorreto = config.getString("Editar-Placa-Comando-Incorreto").replace('&', '§'); 
 		Editar_Placa_Linha_Invalida = config.getString("Editar-Placa-Linha-Invalida").replace('&', '§'); 
 		Editar_Placa_Nao_Esta_Olhando = config.getString("Editar-Placa-Nao-Esta-Olhando").replace('&', '§'); 
-		Editar_Placa_Com_Sucesso = config.getString("Editar-Placa-Com-Sucesso").replace('&', '§'); 
+		Editar_Placa_Com_Sucesso = config.getString("Editar-Placa-Com-Sucesso").replace('&', '§');
+		Verinfo_Comando_Incorreto = config.getString("Verinfo-Comando-Incorreto").replace('&', '§');
+		Verinfo_Informacoes = config.getString("Verinfo-Informacoes").replace('&', '§');
+		Estatisticas_Comando_Incorreto = config.getString("Estatisticas-Comando-Incorreto").replace('&', '§');
+		Estatisticas_Informacoes = config.getString("Estatisticas-Informacoes").replace('&', '§');
 	}
 }

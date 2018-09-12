@@ -18,6 +18,6 @@ public class DesativarCicloDoDia {
 					w.setTime(6000);
 				}
 			}
-		}.runTaskLater(Main.get(), 60 * 20);
+		}.runTaskLater(Main.get(), 30 * 20);
 	}
 }

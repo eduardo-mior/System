@@ -31,7 +31,7 @@ public class Mcmmo implements Listener {
 	  
 	@SuppressWarnings("deprecation")
 	@EventHandler(ignoreCancelled = true)
-	public static void aoGanharXp(McMMOPlayerXpGainEvent e) {
+	public void onGainXp(McMMOPlayerXpGainEvent e) {
 		PlayerProfile pro = UserManager.getPlayer(e.getPlayer()).getProfile();
 		String skill = e.getSkill().getName();
 		int lvl = pro.getSkillLevel(e.getSkill());

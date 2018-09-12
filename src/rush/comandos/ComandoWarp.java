@@ -45,21 +45,21 @@ public class ComandoWarp implements CommandExecutor {
 		
 		// Verificando se o player tem permissão para se teleportar a warp
 		if (!s.hasPermission(w.getPermissao())) {
-			s.sendMessage(w.getSemPermissao().replace('&', '§'));
+			s.sendMessage(w.getSemPermissao());
 			return true;
 		} 
 			    	
 		// Verificando se o player tem permissão para se teleportar sem delay
 		if (!s.hasPermission("system.semdelay") || w.delayParaVips()) {
-			s.sendMessage(w.getMensagemInicio().replace('&', '§'));
+			s.sendMessage(w.getMensagemInicio());
 			new BukkitRunnable() {
 				@Override
 				public void run() {
 					p.teleport(location);
 					if (w.enviarTitle()) {
-						TitleAPI.sendTitle(p, 10, 40, 10, w.getTitle().replace('&', '§'), w.getSubtitle().replace('&', '§'));		
+						TitleAPI.sendTitle(p, 10, 40, 10, w.getTitle(), w.getSubtitle());		
 					}
-					s.sendMessage(w.getMensagemFinal().replace('&', '§'));
+					s.sendMessage(w.getMensagemFinal());
 				}
 			}.runTaskLater(Main.get(), 20 * w.getDelay());
 			return true;
@@ -68,9 +68,9 @@ public class ComandoWarp implements CommandExecutor {
 		// Caso o player tiver permissão para se teleportar sem delay então
 		p.teleport(location);
 		if (w.enviarTitle()) {
-			TitleAPI.sendTitle(p, 10, 40, 10, w.getTitle().replace('&', '§'), w.getSubtitle().replace('&', '§'));		
+			TitleAPI.sendTitle(p, 10, 40, 10, w.getTitle(), w.getSubtitle());		
 		}
-		s.sendMessage(w.getMensagemFinal().replace('&', '§'));
+		s.sendMessage(w.getMensagemFinal());
 		return true;
 	}
 }

@@ -10,6 +10,7 @@ public class APIS {
 			TablistAPI.load();
 			ActionBarAPI.load();
 			TitleAPI.load();	
+			ItemAPI.load();
 		} 
 		catch (Exception e) {}
 		

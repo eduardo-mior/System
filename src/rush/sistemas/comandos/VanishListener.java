@@ -22,11 +22,4 @@ public class VanishListener implements Listener {
 			}
 		}
 	}
-	
-	@EventHandler
-	public void onQuit(PlayerQuitEvent e) {
-		if (VANISH.contains(e.getPlayer())) {
-			e.getPlayer().removePotionEffect(PotionEffectType.INVISIBILITY);
-		}
-	}
 }

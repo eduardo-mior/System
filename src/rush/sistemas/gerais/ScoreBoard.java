@@ -14,7 +14,6 @@ import org.bukkit.scoreboard.Scoreboard;
 
 import rush.configuracoes.Settings;
 
-@SuppressWarnings("all")
 public class ScoreBoard implements Listener {
 
     private static Scoreboard scoreboard;

@@ -1,21 +1,13 @@
 package rush.comandos;
 
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
-import java.util.Collections;
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import rush.Main;
 import rush.apis.CrashAPI;
 import rush.configuracoes.Mensagens;
-import rush.entidades.Version;
-import rush.utils.ReflectionUtils;
 
 @SuppressWarnings("all")
 public class ComandoCrashar implements CommandExecutor {

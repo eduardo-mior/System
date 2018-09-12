@@ -119,7 +119,13 @@ comandos:
     aliases: [encantar]
     descricao: Encanta um item de maneira fácil.
     sem-permissao: "&cVocê não tem permissão para utilizar este comando."    
-   
+    
+  estatisticas:
+    ativar-comando: true
+    aliases: []
+    descricao: Mostra as estatisticas de um player.
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."     
+
   executarsom:
     ativar-comando: true
     aliases: [playsound, som]
@@ -370,6 +376,12 @@ comandos:
     ativar-comando: true
     aliases: [visualizarkit]
     descricao: Visualiza os itens de um kit.
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
+    
+  verinfo:
+    ativar-comando: true
+    aliases: [playerinfo, whois]
+    descricao: Visualiza as informações de um player.
     sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   warp:

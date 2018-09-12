@@ -44,17 +44,17 @@ public class ComandoWarpOLD implements CommandExecutor {
 		
 		// Verificando se o player tem permissão para se teleportar a warp
 		if (!s.hasPermission(w.getPermissao())) {
-			s.sendMessage(w.getSemPermissao().replace('&', '§'));
+			s.sendMessage(w.getSemPermissao());
 			return true;
 		} 
 			    	
 		// Verificando se o player tem permissão para se teleportar sem delay
 		if (!s.hasPermission("system.semdelay") || w.delayParaVips()) {
-			s.sendMessage(w.getMensagemInicio().replace('&', '§'));
+			s.sendMessage(w.getMensagemInicio());
 			new BukkitRunnable() {
 				@Override
 				public void run() {
-					s.sendMessage(w.getMensagemFinal().replace('&', '§'));
+					s.sendMessage(w.getMensagemFinal());
 					p.teleport(location);
 				}
 			}.runTaskLater(Main.get(), 20 * w.getDelay());
@@ -62,7 +62,7 @@ public class ComandoWarpOLD implements CommandExecutor {
 		}
 			    	
 		// Caso o player tiver permissão para se teleportar sem delay então
-		s.sendMessage(w.getMensagemFinal().replace('&', '§'));
+		s.sendMessage(w.getMensagemFinal());
 		p.teleport(location);
 		return true;
 	}

@@ -1,10 +1,13 @@
 package rush.comandos;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import rush.apis.HealthAPI;
 import rush.configuracoes.Mensagens;
 
 @SuppressWarnings("all")
@@ -21,14 +24,15 @@ public class ComandoHeal implements CommandExecutor {
 
 		// Pegando o player e verificando se ele ja esta com a vida cheia
 		Player p = (Player) s;
-		if (p.getHealth() >= 20) {
+		if (HealthAPI.getHealth(p) >= 20) {
 			p.sendMessage(Mensagens.Vida_Level_Maximo);
 			return true;
 		}
-
+		
 		// Regerando a vida do player e informando
 		p.sendMessage(Mensagens.Vida_Regenerada_Com_Sucesso);
-		p.setHealth(20);
+		HealthAPI.setHealth(p, 20);
 		return true;
 	}
+
 }

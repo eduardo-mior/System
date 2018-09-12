@@ -10,6 +10,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 
 import rush.configuracoes.Mensagens;
+import rush.utils.PlayerHead;
 
 @SuppressWarnings("all")
 public class ComandoSkull implements CommandExecutor {
@@ -34,7 +35,7 @@ public class ComandoSkull implements CommandExecutor {
 			}
 
 			// Pegando a skull e enviando para o player
-			ItemStack skull = getCabeca(args[0]);
+			ItemStack skull = PlayerHead.get(args[0]);
 			p.getInventory().addItem(skull);
 			s.sendMessage(Mensagens.Skull_Enviada_Outro.replace("%dono%", args[0]).replace("%player%", p.getName()));
 			return true;
@@ -47,7 +48,7 @@ public class ComandoSkull implements CommandExecutor {
 		}
 
 		// Pegando a skull
-		ItemStack skull = getCabeca(args[0]);
+		ItemStack skull = PlayerHead.get(args[0]);
 
 		// Verificando se a skull vai ser enviada para outro player
 		if (args.length == 2) {
@@ -70,13 +71,5 @@ public class ComandoSkull implements CommandExecutor {
 		p.getInventory().addItem(skull);
 		s.sendMessage(Mensagens.Skull_Enviada_Voce.replace("%dono%", args[0]));
 		return true;
-	}
-
-	private ItemStack getCabeca(String dono) {
-		ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
-		SkullMeta meta = (SkullMeta) skull.getItemMeta();
-		meta.setOwner(dono);
-		skull.setItemMeta(meta);
-		return skull;
 	}
 }
