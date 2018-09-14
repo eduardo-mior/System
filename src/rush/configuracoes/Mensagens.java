@@ -230,7 +230,9 @@ public class Mensagens {
 	public static String Title_Enviado;
 	public static String Titulo_Da_Lixeira;
 	public static String Players_Online;
-	public static String Spawn_Definido;
+	public static String SetSpawn_Comando_Incorreto;
+	public static String SetSpawn_Normal_Definido;
+	public static String SetSpawn_Vip_Definido;
 	public static String Tabela_De_Cores;
 	public static boolean Avisar_Que_O_Chat_Foi_Limpo;
 	public static String Aviso_Que_O_Chat_Limpo_Global;
@@ -504,7 +506,9 @@ public class Mensagens {
 		Title_Enviado = config.getString("Title-Enviado").replace('&', '§');
 		Titulo_Da_Lixeira = config.getString("Titulo-Da-Lixeira").replace('&', '§');
 		Players_Online = config.getString("Players-Online").replace('&', '§');
-		Spawn_Definido = config.getString("Spawn-Definido").replace('&', '§');
+		SetSpawn_Comando_Incorreto = config.getString("SetSpawn-Comando-Incorreto").replace('&', '§');
+		SetSpawn_Normal_Definido = config.getString("SetSpawn-Normal-Definido").replace('&', '§');
+		SetSpawn_Vip_Definido = config.getString("SetSpawn-Vip-Definido").replace('&', '§');
 		Tabela_De_Cores = config.getString("Tabela-De-Cores");
 		Avisar_Que_O_Chat_Foi_Limpo = config.getBoolean("Avisar-Que-O-Chat-Foi-Limpo");
 		Aviso_Que_O_Chat_Limpo_Global = config.getString("Aviso-Que-O-Chat-Limpo-Global").replace('&', '§');

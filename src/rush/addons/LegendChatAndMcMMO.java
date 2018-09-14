@@ -4,7 +4,6 @@ import java.util.List;
 
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.plugin.Plugin;
 import org.bukkit.scheduler.BukkitRunnable;
 import org.bukkit.scheduler.BukkitTask;
 
@@ -36,7 +35,7 @@ public class LegendChatAndMcMMO implements Listener {
 					playerTopOne = ((PlayerStat)tops.get(0)).name;
 				}
 			}
-		}).runTaskTimerAsynchronously((Plugin) Main.get(), 60L, (long)Settings.mcTopTag_Tempo_De_Checagem * 20L);
+		}).runTaskTimerAsynchronously(Main.get(), 60L, (long)Settings.mcTopTag_Tempo_De_Checagem * 20L);
 	}
 	
 }

@@ -1,5 +1,5 @@
 main: rush.Main
-version: 1.3
+version: 1.5
 name: System
 load: POSTWORLD
 softdepend: [Legendchat, mcMMO, MassiveCore, Factions]
@@ -206,6 +206,9 @@ permissions:
   system.spawn:
     description: Permissão para se teleportar até o spawn.
     default: op
+  system.spawn.vip:
+    description: Permissão para nascer direto no spawn vip.
+    default: op
   system.speed:
     description: Permissão para alterar a sua velocidade.
     default: op
@@ -392,6 +395,7 @@ permissions:
       system.skull: true
       system.slime: true
       system.spawn: true
+      system.spawn.vip: true
       system.speed.outros: true
       system.speed: true
       system.sudo: true

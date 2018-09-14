@@ -1,6 +1,6 @@
-#                            +-------------------------------------------+
-#                            |               INFORMAÇÕES                 |
-#                            +-------------------------------------------+
+#                              +-------------------------------------------+
+#                              |               INFORMAÇÕES                 |
+#                              +-------------------------------------------+
 #    +---------------------------------------------------------------------------------------------+
 #    | 1) Todos os comandos e recursos do plugin podem ser ativados e desativados acessando os     |
 #    |    arquivos de configuração do plugin [comandos.yml & settings.yml].                        | 
@@ -25,9 +25,9 @@
 #    +---------------------------------------------------------------------------------------------+
 #
 #
-#                            +-------------------------------------------+
-#                            |                 CONTATOS                  |
-#                            +-------------------------------------------+
+#                              +-------------------------------------------+
+#                              |                 CONTATOS                  |
+#                              +-------------------------------------------+
 #    +---------------------------------------------------------------------------------------------+
 #    | WhatsApp: (54) 991343192                                                                    |
 #    | Facebook: http://fb.com/eduardo.mior.3                                                      |
@@ -41,9 +41,9 @@
 #    +---------------------------------------------------------------------------------------------+
 #
 #
-#                            +-------------------------------------------+
-#                            |            LISTA DE PERMISSÕES            |
-#                            +-------------------------------------------+
+#                              +-------------------------------------------+
+#                              |            LISTA DE PERMISSÕES            |
+#                              +-------------------------------------------+
 #    +---------------------------------------------------------------------------------------------+
 #    | system.alerta             - Permissão para utilizar o comando /alerta                       |
 #    | system.back               - Permissão para utilizar o comando /back                         |
@@ -115,6 +115,7 @@
 #    | system.skull              - Permissão para utilizar o comando /skull                        |
 #    | system.slime              - Permissão para utilizar o comando /slime                        |
 #    | system.spawn              - Permissão para utilizar o comando /spawn                        |
+#    | system.spawn.vip          - Permissão para nascer direto no spawn vip                       |
 #    | system.speed              - Permissão para utilizar o comando /speed                        |
 #    | system.speed.outos        - Permissão para alterar a velocidade de outros players           |
 #    | system.sudo               - Permissão para utilizar o comando /sudo                         |

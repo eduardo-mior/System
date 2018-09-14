@@ -1,4 +1,4 @@
-﻿file-version: 4
+﻿file-version: 5
 ############################################################
 # +------------------------------------------------------+ #
 # |                   Mensagens gerais                   | #
@@ -452,6 +452,16 @@ SlimeChunk:
   Esta: "&aVocê está em uma Slime Chunk!"
   NaoEsta: "&cVocê não está em uma Slime Chunk!"
 
+
+############################################################
+# +------------------------------------------------------+ #
+# |                  Comando /setspawn                   | #
+# +------------------------------------------------------+ #
+############################################################
+SetSpawn-Comando-Incorreto: "&cComando incorreto, use /setspawn <normal&8/&cvip>"
+SetSpawn-Normal-Definido: "&aSpawn principal definido com sucesso."
+SetSpawn-Vip-Definido: "&aSpawn &eVip&a definido com sucesso."
+
 ############################################################
 # +------------------------------------------------------+ #
 # |                    Comando /spawn                    | #
@@ -532,13 +542,6 @@ Players-Online: "&2O servidor esta atualmente com &a%online%&2 players online!"
 
 ############################################################
 # +------------------------------------------------------+ #
-# |                  Comando /setspawn                   | #
-# +------------------------------------------------------+ #
-############################################################
-Spawn-Definido: "&aSpawn definido com sucesso!"
-
-############################################################
-# +------------------------------------------------------+ #
 # |                    Comando /cores                    | #
 # +------------------------------------------------------+ #
 ############################################################
@@ -607,6 +610,7 @@ System-Comando-Incorreto: |
   &c/system backup &8-&7 Faz um backup dos arquivos do plugin.
   &c/system help <pag> &8-&7 Mostra a lista de comandos do plugin.
   &c/system info &8-&7 Mostra informações sobre o server e o system.
+  &c/system host &8-&7 Mostra informações sobre a host do server.
 Plugin-Recarregado-Sucesso: |
   &aMensagens e configurações recarregadas com sucesso!
   &7OBS: Algumas alterações só terão efeito quando o servidor for reinicializado.

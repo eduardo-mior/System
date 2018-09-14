@@ -1,4 +1,4 @@
-file-version: 4
+file-version: 5
 comandos:
   alerta:
     ativar-comando: true

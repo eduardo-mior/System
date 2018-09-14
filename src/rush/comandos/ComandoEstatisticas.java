@@ -142,7 +142,7 @@ public class ComandoEstatisticas implements CommandExecutor {
 		try {
 			return p.getStatistic(Statistic.PLAY_ONE_TICK) * 50;
 		} catch (NoSuchFieldError e) {
-			return p.getStatistic(Statistic.valueOf("PLAY_ONE_MINUTE")) * 1000;
+			return p.getStatistic(Statistic.valueOf("PLAY_ONE_MINUTE")) * 50;
 		}
 	}
 

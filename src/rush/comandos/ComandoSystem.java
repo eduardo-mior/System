@@ -1,5 +1,8 @@
 package rush.comandos;
 
+import java.lang.management.ManagementFactory;
+import java.lang.management.OperatingSystemMXBean;
+import java.lang.reflect.Method;
 import java.util.Set;
 
 import org.bukkit.Bukkit;
@@ -126,12 +129,51 @@ public class ComandoSystem implements CommandExecutor {
 		
 		// Caso o argumento seja 'info' então é exibido algumas informações do plugin
 		if (args[0].equalsIgnoreCase("info")) {					
-			s.sendMessage("§e*-=-=-=-=-=-=-=-* §bSystem §e*-=-=-=-=-=-=-=-* ");
-			s.sendMessage("§ePlugin Version: §61.3");
+			s.sendMessage("§e*-=-=-=-=-=-=-* §bServer Info §e*-=-=-=-=-=-=-* ");
+			s.sendMessage("§ePlugin Version: §61.5");
+			s.sendMessage("§eJava version: §6" + System.getProperty("java.version"));
 			s.sendMessage("§eMinecraft Version: §6" + getMinecraftVersion());
 			s.sendMessage("§eServerAPI Vesrion: §6" + getApiVersion());
 			s.sendMessage("§eServer JarType: §6" + getJarType());
-			s.sendMessage("§e*-=-=-=-=-=-=-=-* §bSystem §e*-=-=-=-=-=-=-=-* ");
+			s.sendMessage("§e*-=-=-=-=-=-=-* §bServer info §e*-=-=-=-=-=-=-* ");
+			return true;
+		}
+		
+		
+		// Caso o argumento seja 'host' então é exibida algumas informações do server
+		if (args[0].equalsIgnoreCase("host")) {
+			
+			// Pegando o runtime onde o programa esta sendo rodado, e pegando o sistema operacional (base)
+			Runtime machine = Runtime.getRuntime();
+			OperatingSystemMXBean system = ManagementFactory.getOperatingSystemMXBean();
+			
+			// Pegando os dados do sistema operacional etc..
+			String so = system.getName();
+			String soVersion = system.getVersion();
+			String availableProcessors = String.valueOf(system.getAvailableProcessors());
+			String freeRuntimeMemory = bytesToLegibleValue(machine.freeMemory());
+			String totalRuntimeMemory = bytesToLegibleValue(machine.maxMemory());
+			String usedRuntimeMemory = bytesToLegibleValue(machine.maxMemory() - machine.freeMemory());
+			String freeComputerMemory = bytesToLegibleValue(getFreeMemoryComputer(system));
+			String totalComputerMemory = bytesToLegibleValue(getTotalMemoryComputer(system));
+			String usedComputerMemory = bytesToLegibleValue(getTotalMemoryComputer(system) - getFreeMemoryComputer(system));
+			String processorArch = System.getProperty("os.arch");
+			String processor = System.getenv("PROCESSOR_IDENTIFIER");
+			
+			// Exibindo os dados
+			s.sendMessage("§e*-=-=-=-=-=-=-=* §bHost Info §e*=-=-=-=-=-=-=-* ");
+			s.sendMessage("§eSistema Operacional: §6" + so + " " + soVersion);
+			s.sendMessage("§eMemória total do servidor: §6" + totalRuntimeMemory);
+			s.sendMessage("§eMemória livre do servidor: §6" + freeRuntimeMemory);
+			s.sendMessage("§eMemória usada no servidor: §6" + usedRuntimeMemory);
+			s.sendMessage("§eMemória total da maquina: §6" + totalComputerMemory);
+			s.sendMessage("§eMemória livre da maquina: §6" + freeComputerMemory);
+			s.sendMessage("§eMemória usada na maquina: §6" + usedComputerMemory);
+			s.sendMessage("§eNúmero de processadores (nucleos): §6" + availableProcessors);
+			s.sendMessage("§eArquitetura do processadore: §6" + processorArch);
+			s.sendMessage("§eModelo do processador: §6" + processor);
+			s.sendMessage("§e*-=-=-=-=-=-=-=* §bHost Info §e*=-=-=-=-=-=-=-* ");
+			
 			return true;
 		}
 			
@@ -147,13 +189,45 @@ public class ComandoSystem implements CommandExecutor {
 	
 	private String getApiVersion() {
 		String info = Bukkit.getBukkitVersion();
-		String[] version = info.split("-");
-		return (version[0]+"-"+version[1]);
+		return info.split("-")[0]+"-"+info.split("-")[1];
 	}
 	
 	private String getJarType() {
 		String info = Bukkit.getVersion();
-		String version = info.split("git-")[1];
-		return version.split("-")[0];
+		return info.split("git-")[1].split("-")[0];
 	}
+	
+	private String bytesToLegibleValue(long bytes) {
+		if (bytes < 1024 * 1024)
+			return String.format("%.2f KB", bytes);
+		else if (bytes < Math.pow(2, 20) * 1024)
+			return String.format("%.2f MB", bytes / Math.pow(2, 20));
+		else if (bytes < Math.pow(2, 30) * 1024 )
+			return String.format("%.2f GB", bytes / Math.pow(2, 30));
+		else if (bytes < Math.pow(2, 40) * 1024)
+			return String.format("%.2f TB", bytes / Math.pow(2, 40));
+		else
+			return "N/A (1TB?)";
+	}
+	
+	private long getFreeMemoryComputer(OperatingSystemMXBean system) {
+		try {
+			Method getFreeMemory = system.getClass().getMethod("getFreePhysicalMemorySize");
+			getFreeMemory.setAccessible(true);
+			return (long) getFreeMemory.invoke(system);
+		} catch (Exception e) {
+			return -1;
+		}
+	}
+	
+	private long getTotalMemoryComputer(OperatingSystemMXBean system) {
+		try {
+			Method getTotalMemory = system.getClass().getMethod("getTotalPhysicalMemorySize");
+			getTotalMemory.setAccessible(true);
+			return (long) getTotalMemory.invoke(system);
+		} catch (Exception e) {
+			return -1;
+		}
+	}
+	
 }

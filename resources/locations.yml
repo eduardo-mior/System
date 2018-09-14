@@ -19,3 +19,10 @@ Spawn:
   z: 0.0
   yaw: 112.50008
   pitch: 2.1000016
+SpawnVip:
+  world: world
+  x: 0.0
+  y: 4.0
+  z: 0.0
+  yaw: 112.50008
+  pitch: 2.1000016

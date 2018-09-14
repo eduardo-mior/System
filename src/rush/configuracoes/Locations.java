@@ -5,6 +5,7 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import rush.Main;
 import rush.utils.ConfigManager;
@@ -12,6 +13,7 @@ import rush.utils.ConfigManager;
 public class Locations {
 
 	public static Location spawn;
+	public static Location spawnVip;
 	public static Location areaVip;
 	public static Location areaNaoVip;
 	private static Location padrao;
@@ -21,11 +23,17 @@ public class Locations {
 	}
 	
 	public static void loadLocations() {
-		setAreaVip();
-		setAreaNaoVip();
-		setSpawn();
-		setDefaultServerSpawn();
-		validarLocations();
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				setAreaVip();
+				setAreaNaoVip();
+				setSpawn();
+				setSpawnVip();
+				setDefaultServerSpawn();
+				validarLocations();
+			}
+		}.runTaskLater(Main.get(), 30 * 20);
 	}
 	
 	private static void validarLocations() {
@@ -66,6 +74,16 @@ public class Locations {
 	       ConfigManager.getConfig("locations").getDouble("Spawn.z"), 
 	       Float.parseFloat(ConfigManager.getConfig("locations").getString("Spawn.yaw")), 
 	       Float.parseFloat(ConfigManager.getConfig("locations").getString("Spawn.pitch")));
+	}
+	
+	private static void setSpawnVip() {
+	    spawn = new Location(Main.get().getServer().getWorld
+	       (ConfigManager.getConfig("locations").getString("SpawnVip.world")), 
+	       ConfigManager.getConfig("locations").getDouble("SpawnVip.x"), 
+	       ConfigManager.getConfig("locations").getDouble("SpawnVip.y"), 
+	       ConfigManager.getConfig("locations").getDouble("SpawnVip.z"), 
+	       Float.parseFloat(ConfigManager.getConfig("locations").getString("SpawnVip.yaw")), 
+	       Float.parseFloat(ConfigManager.getConfig("locations").getString("SpawnVip.pitch")));
 	}
 	
 	private static void setDefaultServerSpawn() {
