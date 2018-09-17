@@ -1,10 +1,11 @@
 package rush;
 
 import org.bukkit.Bukkit;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.HandlerList;
-import org.bukkit.event.Listener;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import rush.addons.LegendChat;
 import rush.addons.LegendChatAndMcMMO;
@@ -151,7 +152,7 @@ import rush.sistemas.spawners.SistemaDeSpawners;
 import rush.utils.ConfigManager;
 import rush.utils.DataManager;
 
-public class Main extends JavaPlugin implements Listener {
+public class Main extends JavaPlugin {
 
 	private static Main main;
 	private static Version version;
@@ -280,6 +281,7 @@ public class Main extends JavaPlugin implements Listener {
 
 	private void registrarEventos() {
 		PluginManager pm = Bukkit.getServer().getPluginManager();
+		FileConfiguration commands = ConfigManager.getConfig("comandos");
 
 		if (Settings.Anunciar_Morte) {
 			pm.registerEvents(new AnunciarMorte(), this);
@@ -443,7 +445,12 @@ public class Main extends JavaPlugin implements Listener {
 		}
 
 		if (Settings.Entrar_No_Spawn_Ao_Logar) {
-			pm.registerEvents(new EntrarNoSpawnAoLogar(), this);
+			new BukkitRunnable() {
+				@Override
+				public void run() {
+					pm.registerEvents(new EntrarNoSpawnAoLogar(), Main.this);
+				}
+			}.runTaskLater(Main.get(), 30 * 20);
 		}
 
 		if (Settings.Invencibilidade_Ao_Teleportar) {
@@ -475,7 +482,9 @@ public class Main extends JavaPlugin implements Listener {
 		}
 
 		if (Settings.Sistema_De_Fly_Para_Players) {
-			pm.registerEvents(new FlyListener(), this);
+			if (commands.getBoolean("comandos.fly.ativar-comando")) {
+				pm.registerEvents(new FlyListener(), this);
+			}
 		}
 
 		if (version != Version.v1_13) {
@@ -533,21 +542,37 @@ public class Main extends JavaPlugin implements Listener {
 		}
 
 		if (!isOldVersion()) {
-			pm.registerEvents(new VanishListener(), this);
+			if (commands.getBoolean("comandos.vanish.ativar-comando")) {
+				pm.registerEvents(new VanishListener(), this);
+			}
 		}
-
+		
+		if (commands.getBoolean("comandos.echest.ativar-comando")) {
+			if (!isOldVersion()) {
+				pm.registerEvents(new EnderChestListener(), this);
+			}
+		}
+		
+		if (commands.getBoolean("comandos.invsee.ativar-comando")) {
+			pm.registerEvents(new InvseeListener(), this);
+		}
+		
+		if (commands.getBoolean("comandos.kit.ativar-comando")) {
+			pm.registerEvents(new KitsListener(), this);
+		}
+		
+		if (commands.getBoolean("comandos.back.ativar-comando")) {
+			pm.registerEvents(new BackListener(), this);
+		}
+		
 		pm.registerEvents(new PlayerData(), this);
-		pm.registerEvents(new EnderChestListener(), this);
-		pm.registerEvents(new InvseeListener(), this);
-		pm.registerEvents(new KitsListener(), this);
-		pm.registerEvents(new BackListener(), this);
 		pm.registerEvents(new ManterXpAoMorrer(), this);
 		pm.registerEvents(new Outros(), this);
 	}
 
 	private void desativarRecursos() {
 		PluginManager pm = Bukkit.getServer().getPluginManager();
-		HandlerList.unregisterAll((Listener) this);
+		HandlerList.unregisterAll(this);
 
 		if (pm.getPlugin("mcMMO") != null && pm.getPlugin("Legendchat") != null) {
 			LegendChatAndMcMMO.TTask.cancel();

@@ -21,15 +21,15 @@ public class ComandoTptoggle extends Tpa implements CommandExecutor {
 		// Caso o número de argumentos for 0 então nós ligamos e desligamos automatico
 		if (args.length == 0) {
 			boolean toggle = false;
-			if (toggles.contains(s.getName()))
+			if (TOGGLE.contains(s.getName()))
 				toggle = true;
 
 			// Caso estiver ligado nós desligamos e vice-versa
 			if (toggle) {
-				toggles.remove(s.getName());
+				TOGGLE.remove(s.getName());
 				s.sendMessage(Mensagens.Tptoggle_Desativado_Com_Sucesso);
 			} else {
-				toggles.add(s.getName());
+				TOGGLE.add(s.getName());
 				s.sendMessage(Mensagens.Tptoggle_Ativado_Com_Sucesso);
 			}
 			return true;
@@ -38,7 +38,7 @@ public class ComandoTptoggle extends Tpa implements CommandExecutor {
 		// Caso o número de argumentos for 0 então significa que ele quer ligar ou desligar
 		if (args.length == 1) {
 			boolean toggle = false;
-			if (toggles.contains(s.getName()))
+			if (TOGGLE.contains(s.getName()))
 				toggle = true;
 
 			// Caso o argumento for 'on' então verificamos se já esta ligado, caso contrario ligamos
@@ -46,7 +46,7 @@ public class ComandoTptoggle extends Tpa implements CommandExecutor {
 				if (toggle) {
 					s.sendMessage(Mensagens.Tptoggle_Ja_Ativado);
 				} else {
-					toggles.add(s.getName());
+					TOGGLE.add(s.getName());
 					s.sendMessage(Mensagens.Tptoggle_Ativado_Com_Sucesso);
 				}
 				return true;
@@ -55,7 +55,7 @@ public class ComandoTptoggle extends Tpa implements CommandExecutor {
 			// Caso o argumento for 'off' então verificamos se já esta desligado, caso contrario desligamos
 			if (args[0].equalsIgnoreCase("off")) {
 				if (toggle) {
-					toggles.remove(s.getName());
+					TOGGLE.remove(s.getName());
 					s.sendMessage(Mensagens.Tptoggle_Desativado_Com_Sucesso);
 				} else {
 					s.sendMessage(Mensagens.Tptoggle_Ja_Desativado);

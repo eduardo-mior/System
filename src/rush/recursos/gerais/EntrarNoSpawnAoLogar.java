@@ -16,9 +16,10 @@ public class EntrarNoSpawnAoLogar implements Listener {
 
 	@EventHandler
 	public void aoLogar(PlayerJoinEvent e) {
-		if (e.getPlayer().hasPermission("system.spawn.vip")) 
+		if (e.getPlayer().hasPermission("system.spawn.vip")) {
+			e.getPlayer().teleport(Locations.spawnVip);
+		} else {
 			e.getPlayer().teleport(Locations.spawn);
-		else 
-			e.getPlayer().teleport(Locations.spawn);
+		}
 	}
 }

@@ -44,7 +44,7 @@ public class ComandoWarp implements CommandExecutor {
 		Location location = w.getLocation();
 		
 		// Verificando se o player tem permissão para se teleportar a warp
-		if (!s.hasPermission(w.getPermissao())) {
+		if (!s.hasPermission(w.getPermissao()) && !s.hasPermission("system.warp.all")) {
 			s.sendMessage(w.getSemPermissao());
 			return true;
 		} 

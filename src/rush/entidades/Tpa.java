@@ -6,9 +6,9 @@ import java.util.LinkedHashSet;
 
 public abstract class Tpa {
 
-	public static HashMap<String, Long> cooldown = new HashMap<>();
-	public static HashMap<String, LinkedHashSet<String>> TPs_enviados = new HashMap<>();
-	public static HashMap<String, LinkedHashSet<String>> TPs_recebidos = new HashMap<>();
-	public static HashSet<String> toggles = new HashSet<>();
+	protected static HashMap<String, Long> COOLDOWN = new HashMap<>();
+	protected static HashMap<String, LinkedHashSet<String>> TP_ENVIADOS = new HashMap<>();
+	protected static HashMap<String, LinkedHashSet<String>> TP_RECEBIDOS = new HashMap<>();
+	protected static HashSet<String> TOGGLE = new HashSet<>();
 
 }

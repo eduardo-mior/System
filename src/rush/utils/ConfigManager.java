@@ -4,11 +4,10 @@ import java.io.File;
 
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
-import org.bukkit.event.Listener;
 
 import rush.Main;
 
-public class ConfigManager implements Listener {
+public class ConfigManager {
 
 	public static void createConfig(String file) {
 		if (!new File(Main.get().getDataFolder(), file + ".yml").exists()) {

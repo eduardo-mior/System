@@ -24,13 +24,13 @@ public class ComandoTpcancel extends Tpa  implements CommandExecutor {
 		}
 		
 		// Verificando se o player recebeu algum tpa para poder aceita-lo
-		if (!TPs_enviados.containsKey(s.getName())) {
+		if (!TP_ENVIADOS.containsKey(s.getName())) {
 			s.sendMessage(Mensagens.Tpa_Pendente_Nao_Possui);
 			return true;
 		}
 		
 		// Pegando a lista de tpas que o player enviou
-		LinkedHashSet<String> tpas = TPs_enviados.get(s.getName());
+		LinkedHashSet<String> tpas = TP_ENVIADOS.get(s.getName());
 	
 		// Verificando se o player possui tpas para cancela-los
 		if (tpas.size() == 0) {
@@ -46,8 +46,8 @@ public class ComandoTpcancel extends Tpa  implements CommandExecutor {
 			for (String player : tpas) { ultimoTpa = player; }
 			
 			// Removendo o TPA da HashMap
-			TPs_enviados.get(s.getName()).remove(ultimoTpa);
-			TPs_recebidos.get(ultimoTpa).remove(s.getName());
+			TP_ENVIADOS.get(s.getName()).remove(ultimoTpa);
+			TP_RECEBIDOS.get(ultimoTpa).remove(s.getName());
 			
 			// Informando o sender e informando o player que solicitou o tpa
 			Player p = Bukkit.getPlayer(ultimoTpa);
@@ -72,8 +72,8 @@ public class ComandoTpcancel extends Tpa  implements CommandExecutor {
 			}
 			
 			// Removendo o TPA da HashMap
-			TPs_enviados.get(s.getName()).remove(args[0]);
-			TPs_recebidos.get(args[0]).remove(s.getName());
+			TP_ENVIADOS.get(s.getName()).remove(args[0]);
+			TP_RECEBIDOS.get(args[0]).remove(s.getName());
 			
 			// Informando o sender e informando o player que solicitou o tpa
 			Player p = Bukkit.getPlayer(args[0]);

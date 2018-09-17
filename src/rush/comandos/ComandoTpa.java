@@ -50,40 +50,40 @@ public class ComandoTpa extends Tpa implements CommandExecutor {
 		final String target = pTarget.getName();
 		
 		// Verificando se o player já enviou algum TPA
-		if (TPs_enviados.containsKey(sender)) {
+		if (TP_ENVIADOS.containsKey(sender)) {
 			
 			// Verificando se o player já possui um TPA pendente com o alvo
-			if (TPs_enviados.get(sender).contains(target)) {
+			if (TP_ENVIADOS.get(sender).contains(target)) {
 				s.sendMessage(Mensagens.Tpa_Ja_Possui_Solicitacao.replace("%player%", target));
 				return true;
 			}
 			
 		// Caso ele não tenha enviado nenhum TPA então ele adicionado na lista
 		} else {
-			TPs_enviados.put(sender, new LinkedHashSet<>());
+			TP_ENVIADOS.put(sender, new LinkedHashSet<>());
 		}
 		
 		// Verificando se o player precisa esperar o cooldown
-		if (cooldown.containsKey(sender)) {
-			if (System.currentTimeMillis() < cooldown.get(sender)) {
+		if (COOLDOWN.containsKey(sender)) {
+			if (System.currentTimeMillis() < COOLDOWN.get(sender)) {
 				s.sendMessage(Mensagens.Tpa_Aguarde_Cooldown);
 				return true;
 			}
 		}
 		
 		// Verificando se o alvo esta com o TPA desativado
-		if (toggles.contains(target)) {
+		if (TOGGLE.contains(target)) {
 			s.sendMessage(Mensagens.Tpa_Desligado_Tptoggle.replace("%player%", target));
 			return true;
 		}
 		
 		// Adicionando o TPA na HashMap e informando o sender e o target
-		if (!TPs_recebidos.containsKey(target)) TPs_recebidos.put(target, new LinkedHashSet<>());
-		TPs_recebidos.get(target).add(sender);
-		TPs_enviados.get(sender).add(target);
+		if (!TP_RECEBIDOS.containsKey(target)) TP_RECEBIDOS.put(target, new LinkedHashSet<>());
+		TP_RECEBIDOS.get(target).add(sender);
+		TP_ENVIADOS.get(sender).add(target);
 		
 		// Adicionando o player na lista de cooldown
-		cooldown.put(sender, (System.currentTimeMillis() + (1000 * Settings.Tempo_Para_Poder_Enviar_Outra_Solicitacao_Tpa)));
+		COOLDOWN.put(sender, (System.currentTimeMillis() + (1000 * Settings.Tempo_Para_Poder_Enviar_Outra_Solicitacao_Tpa)));
 		s.sendMessage(Mensagens.Tpa_Solicitacao_Enviada_Sucesso.replace("%player%", target));
 		pTarget.sendMessage(Mensagens.Tpa_Solicitacao_Recebida.replace("%player%", sender));
 		
@@ -92,10 +92,10 @@ public class ComandoTpa extends Tpa implements CommandExecutor {
 			@Override
 			public void run() {
 				// Caso o TPA ainda não tenha sido aceito então ele é expirado
-				if (TPs_enviados.get(sender).contains(target)) {
+				if (TP_ENVIADOS.get(sender).contains(target)) {
 					// Removendo o TPA da HashMap
-					TPs_enviados.get(sender).remove(target);
-					TPs_recebidos.get(target).remove(sender);
+					TP_ENVIADOS.get(sender).remove(target);
+					TP_RECEBIDOS.get(target).remove(sender);
 					// Verificando se nenhum dos players deslogou do servidor e informando
 					if (s != null && pTarget != null) {
 						s.sendMessage(Mensagens.Tpa_Solicitcao_Expirada_Player.replace("%player%", target));

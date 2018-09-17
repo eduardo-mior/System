@@ -12,15 +12,11 @@ import rush.utils.ConfigManager;
 
 public class Locations {
 
-	public static Location spawn;
-	public static Location spawnVip;
-	public static Location areaVip;
-	public static Location areaNaoVip;
-	private static Location padrao;
-	
-	static {
-		padrao = new Location(Bukkit.getWorlds().get(0), 1.0, 10.0, 1.0, 1.0F, 1.0F);
-	}
+	private static Location padrao = new Location(Bukkit.getWorlds().get(0), 1.0, 10.0, 1.0, 1.0F, 1.0F);
+	public static Location spawn = padrao;
+	public static Location spawnVip = padrao;
+	public static Location areaVip = padrao;
+	public static Location areaNaoVip = padrao;
 	
 	public static void loadLocations() {
 		new BukkitRunnable() {
@@ -39,9 +35,11 @@ public class Locations {
 	private static void validarLocations() {
 		List<World> worlds = Bukkit.getWorlds();
 		World worldSpawn = spawn.getWorld();
+		World worldSpawnVip = spawnVip.getWorld();
 		World worldVip = areaVip.getWorld();
 		World worldNaoVip = areaNaoVip.getWorld();
 		if (!worlds.contains(worldSpawn)) spawn = padrao;
+		if (!worlds.contains(worldSpawnVip)) spawnVip = padrao;
 		if (!worlds.contains(worldVip)) areaVip = padrao;
 		if (!worlds.contains(worldNaoVip)) areaNaoVip = padrao;
 	}
@@ -77,7 +75,7 @@ public class Locations {
 	}
 	
 	private static void setSpawnVip() {
-	    spawn = new Location(Main.get().getServer().getWorld
+	    spawnVip = new Location(Main.get().getServer().getWorld
 	       (ConfigManager.getConfig("locations").getString("SpawnVip.world")), 
 	       ConfigManager.getConfig("locations").getDouble("SpawnVip.x"), 
 	       ConfigManager.getConfig("locations").getDouble("SpawnVip.y"), 

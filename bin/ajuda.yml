@@ -136,6 +136,7 @@
 #    | system.verkit             - Permissão para utilizar o comando /verkit                       |
 #    | system.vip                - Permissão para acessar a Area VIP do comando /vip               |
 #    | system.warp               - Permissão para utilizar o comando /warp                         |
+#    | system.warp.all           - Permissão para poder se teleportar para qualquer warp           |
 #    | system.warps              - Permissão para utilizar o comando /warps                        |
 #    +---------------------------------------------------------------------------------------------+
 #    | system.chat.destaque  - Permissão para escrever em destaque no chat.                        |

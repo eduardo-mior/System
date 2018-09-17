@@ -24,7 +24,6 @@ public class ScoreBoard implements Listener {
 	}
 	
 	public static void loadScoreBoard() {
-	
 		String titulo = Settings.ScoreBoard_Titulo;
 	    List<String> linhas = Settings.ScoreBoard_Linhas;
 		
