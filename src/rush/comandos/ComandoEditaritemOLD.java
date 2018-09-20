@@ -51,7 +51,7 @@ public class ComandoEditaritemOLD implements CommandExecutor {
 		if (args[0].equalsIgnoreCase("renomear")) {
 			String nome = "";
 			for (int i = 1; i < args.length; i++) {nome += args[i] + " ";}
-			meta.setDisplayName(nome.substring(0, nome.length()).replace('&', '§'));
+			meta.setDisplayName(nome.replace('&', '§').trim());
 			item.setItemMeta(meta);
 			s.sendMessage(Mensagens.Editar_Item_Com_Sucesso);
 			return true;

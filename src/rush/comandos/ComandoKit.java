@@ -140,7 +140,7 @@ public class ComandoKit implements CommandExecutor {
 	private void addItensToInventory(Player p, ItemStack[] itens) {
 		PlayerInventory inv = p.getInventory();
 		for (ItemStack item : itens) {
-			if (item != null) inv.addItem(item);
+			if (item != null) inv.addItem(item.clone());
 		}
 	}
 	
@@ -149,7 +149,7 @@ public class ComandoKit implements CommandExecutor {
 		PlayerInventory inv = p.getInventory();
 		for (ItemStack item : itens) {
 			if (item != null) {
-				if (inv.firstEmpty() != -1) inv.addItem(item);
+				if (inv.firstEmpty() != -1) inv.addItem(item.clone());
 				else p.getWorld().dropItem(p.getLocation(), item);
 			}
 		}

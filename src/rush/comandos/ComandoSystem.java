@@ -1,5 +1,6 @@
 package rush.comandos;
 
+import java.io.File;
 import java.lang.management.ManagementFactory;
 import java.lang.management.OperatingSystemMXBean;
 import java.lang.reflect.Method;
@@ -130,7 +131,7 @@ public class ComandoSystem implements CommandExecutor {
 		// Caso o argumento seja 'info' então é exibido algumas informações do plugin
 		if (args[0].equalsIgnoreCase("info")) {					
 			s.sendMessage("§e*-=-=-=-=-=-=-* §bServer Info §e*-=-=-=-=-=-=-* ");
-			s.sendMessage("§ePlugin Version: §61.6");
+			s.sendMessage("§ePlugin Version: §61.6.1");
 			s.sendMessage("§eJava version: §6" + System.getProperty("java.version"));
 			s.sendMessage("§eMinecraft Version: §6" + getMinecraftVersion());
 			s.sendMessage("§eServerAPI Vesrion: §6" + getApiVersion());
@@ -157,18 +158,24 @@ public class ComandoSystem implements CommandExecutor {
 			String freeComputerMemory = bytesToLegibleValue(getFreeMemoryComputer(system));
 			String totalComputerMemory = bytesToLegibleValue(getTotalMemoryComputer(system));
 			String usedComputerMemory = bytesToLegibleValue(getTotalMemoryComputer(system) - getFreeMemoryComputer(system));
+			String freeComputerSpace = bytesToLegibleValue(getFreeSpaceComputer());
+			String totalComputerSpace = bytesToLegibleValue(getTotalSpaceComputer());
+			String usedComputerSpace = bytesToLegibleValue(getTotalSpaceComputer() - getFreeSpaceComputer());
 			String processorArch = System.getProperty("os.arch");
 			String processor = System.getenv("PROCESSOR_IDENTIFIER");
 			
 			// Exibindo os dados
 			s.sendMessage("§e*-=-=-=-=-=-=-=* §bHost Info §e*=-=-=-=-=-=-=-* ");
-			s.sendMessage("§eSistema Operacional: §6" + so + " " + soVersion);
-			s.sendMessage("§eMemória total do servidor: §6" + totalRuntimeMemory);
-			s.sendMessage("§eMemória livre do servidor: §6" + freeRuntimeMemory);
-			s.sendMessage("§eMemória usada no servidor: §6" + usedRuntimeMemory);
-			s.sendMessage("§eMemória total da maquina: §6" + totalComputerMemory);
-			s.sendMessage("§eMemória livre da maquina: §6" + freeComputerMemory);
-			s.sendMessage("§eMemória usada na maquina: §6" + usedComputerMemory);
+			s.sendMessage("§eSistema Operacional: §6" + so + " §8-§6 " + soVersion);
+			s.sendMessage("§eMemória RAM total do servidor: §6" + totalRuntimeMemory);
+			s.sendMessage("§eMemória RAM livre do servidor: §6" + freeRuntimeMemory);
+			s.sendMessage("§eMemória RAM usada no servidor: §6" + usedRuntimeMemory);
+			s.sendMessage("§eMemória RAM total da maquina: §6" + totalComputerMemory);
+			s.sendMessage("§eMemória RAM livre da maquina: §6" + freeComputerMemory);
+			s.sendMessage("§eMemória RAM usada na maquina: §6" + usedComputerMemory);
+			s.sendMessage("§eArmazenamento total do servidor: §6" + totalComputerSpace);
+			s.sendMessage("§eArmazenamento livre do servidor: §6" + freeComputerSpace);
+			s.sendMessage("§eArmazenamento usado no servidor: §6" + usedComputerSpace);
 			s.sendMessage("§eNúmero de processadores (nucleos): §6" + availableProcessors);
 			s.sendMessage("§eArquitetura do processadore: §6" + processorArch);
 			s.sendMessage("§eModelo do processador: §6" + processor);
@@ -230,4 +237,19 @@ public class ComandoSystem implements CommandExecutor {
 		}
 	}
 	
+	private long getFreeSpaceComputer() {
+		long space = 0;
+		for (File f : File.listRoots()) {
+			space += f.getFreeSpace();
+		}
+		return space;
+	}
+	
+	private long getTotalSpaceComputer() {
+		long space = 0;
+		for (File f : File.listRoots()) {
+			space += f.getTotalSpace();
+		}
+		return space;
+	}
 }

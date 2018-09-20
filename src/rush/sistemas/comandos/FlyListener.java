@@ -17,8 +17,8 @@ public class FlyListener implements Listener {
 			String world = e.getFrom().getWorld().getName();
 			List<String> worlds = Settings.Mundos_Onde_Pode_Usar_Fly;
 			if (!worlds.contains(world)) {
-				e.getPlayer().setAllowFlight(false);
 				e.getPlayer().setFlying(false);
+				e.getPlayer().setAllowFlight(false);
 			}
 		}
 	}

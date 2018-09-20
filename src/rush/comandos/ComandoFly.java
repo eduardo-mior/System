@@ -55,6 +55,7 @@ public class ComandoFly implements CommandExecutor {
 					// Verificando se o player esta esta com o fly ligado, caso contrar é exibida uma mensagem
 					if (p.getAllowFlight()) {
 						s.sendMessage(Mensagens.Fly_Desabilitado_Outro.replace("%player%", p.getName()));
+						p.setFlying(false);
 						p.setAllowFlight(false);
 					} else {
 						s.sendMessage(Mensagens.Fly_Ja_Desabilitado_Outro.replace("%player%", p.getName()));
@@ -66,6 +67,7 @@ public class ComandoFly implements CommandExecutor {
 			// Se o player não informar 2 argumentos, ou se o segundo argumento não for 'on' ou 'off'
 			if (p.getAllowFlight()) {
 				s.sendMessage(Mensagens.Fly_Desabilitado_Outro.replace("%player%", p.getName()));
+				p.setFlying(false);
 				p.setAllowFlight(false);
 			} else {
 				s.sendMessage(Mensagens.Fly_Habilitado_Outro.replace("%player%", p.getName()));
@@ -107,6 +109,7 @@ public class ComandoFly implements CommandExecutor {
 				Player p = (Player) s;
 				if (p.getAllowFlight()) {
 					s.sendMessage(Mensagens.Fly_Desabilitado_Voce);
+					p.setFlying(false);
 					p.setAllowFlight(false);
 				} else {
 					s.sendMessage(Mensagens.Fly_Ja_Desabilitado_Voce);
@@ -156,6 +159,7 @@ public class ComandoFly implements CommandExecutor {
 						// Verificando se o player esta esta com o fly ligado, caso contrar é exibida uma mensagem
 						if (p.getAllowFlight()) {
 							s.sendMessage(Mensagens.Fly_Desabilitado_Outro.replace("%player%", p.getName()));
+							p.setFlying(false);
 							p.setAllowFlight(false);
 						} else {
 							s.sendMessage(Mensagens.Fly_Ja_Desabilitado_Outro.replace("%player%", p.getName()));
@@ -166,6 +170,7 @@ public class ComandoFly implements CommandExecutor {
 					// Se o segundo argumento não for 'on' ou 'off'
 					if (p.getAllowFlight()) {
 						s.sendMessage(Mensagens.Fly_Desabilitado_Outro.replace("%player%", p.getName()));
+						p.setFlying(false);
 						p.setAllowFlight(false);
 					} else {
 						s.sendMessage(Mensagens.Fly_Habilitado_Outro.replace("%player%", p.getName()));
@@ -177,6 +182,7 @@ public class ComandoFly implements CommandExecutor {
 				// Se o player não informar 2 argumentos, ou se o segundo argumento não for 'on'ou 'off'
 				if (p.getAllowFlight()) {
 					s.sendMessage(Mensagens.Fly_Desabilitado_Outro.replace("%player%", p.getName()));
+					p.setFlying(false);
 					p.setAllowFlight(false);
 				} else {
 					s.sendMessage(Mensagens.Fly_Habilitado_Outro.replace("%player%", p.getName()));
@@ -198,6 +204,7 @@ public class ComandoFly implements CommandExecutor {
 		Player p = (Player) s;
 		if (p.getAllowFlight()) {
 			s.sendMessage(Mensagens.Fly_Desabilitado_Voce);
+			p.setFlying(false);
 			p.setAllowFlight(false);
 		} else {
 			s.sendMessage(Mensagens.Fly_Habilitado_Voce);
