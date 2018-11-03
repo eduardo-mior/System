@@ -6,7 +6,7 @@ import java.util.HashMap;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
-import rush.utils.DataManager;
+import rush.utils.manager.DataManager;
 
 public abstract class Kits {
 

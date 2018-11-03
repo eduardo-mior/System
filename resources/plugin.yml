@@ -1,5 +1,5 @@
 main: rush.Main
-version: 1.6.1
+version: 1.7
 name: System
 load: POSTWORLD
 softdepend: [Legendchat, mcMMO, MassiveCore, Factions]
@@ -179,7 +179,16 @@ permissions:
   system.publica:
     description: Permissão para definir uma home como publica.
     default: op
+  system.renderizacao:
+    description: Permissão para alterar sua renderização usando o comando /renderizacao.
+    default: op
+  system.renderizacao.staff:
+    description: Permissão para poder usar uma renderização maior que a configurada no bukkit do servidor.
+    default: op
   system.reparar:
+    description: Permissão para reparar itens usando o comando /reparar.
+    default: op
+  system.reparar.all:
     description: Permissão para reparar itens usando o comando /reparar.
     default: op
   system.semdelay:
@@ -220,6 +229,9 @@ permissions:
     default: op
   system.system:
     description: Permissão para usar o comando gerenciador do plugin.
+    default: op
+  system.terminal:
+    description: Permissão para executar um comando no terminal do sistema operacional.
     default: op
   system.title:
     description: Permissão para enviar um title para todo servidor.
@@ -265,6 +277,9 @@ permissions:
     default: op
   system.warp:
     description: Permissão para se teleportar para uma warp.
+    default: op
+  system.warp.all:
+    description: Permissão para se teleportar para qualquer warp.
     default: op
   system.warps:
     description: Permissão para ver a lista de warps disponiveis.
@@ -385,7 +400,9 @@ permissions:
       system.ping: true
       system.potion: true
       system.publica: true
+      system.renderizacao: true
       system.reparar: true
+      system.reparar.all: true
       system.semdelay: true
       system.sethome: true
       system.setmundovip: true
@@ -400,6 +417,7 @@ permissions:
       system.speed: true
       system.sudo: true
       system.system: true
+      system.terminal: true
       system.title: true
       system.tp: true
       system.tpa: true

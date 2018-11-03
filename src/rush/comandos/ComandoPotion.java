@@ -15,7 +15,6 @@ import org.bukkit.potion.PotionEffectType;
 
 import rush.configuracoes.Mensagens;
 
-@SuppressWarnings("all")
 public class ComandoPotion implements CommandExecutor {
 
 	@Override

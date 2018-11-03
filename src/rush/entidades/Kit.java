@@ -3,9 +3,9 @@ package rush.entidades;
 import org.bukkit.inventory.ItemStack;
 
 import rush.Main;
-import rush.utils.Serializer;
-import rush.utils.SerializerNEW;
-import rush.utils.SerializerOLD;
+import rush.utils.serializer.Serializer;
+import rush.utils.serializer.SerializerNEW;
+import rush.utils.serializer.SerializerOLD;
 
 public class Kit {
 

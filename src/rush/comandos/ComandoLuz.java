@@ -13,7 +13,7 @@ import rush.configuracoes.Mensagens;
 
 public class ComandoLuz implements CommandExecutor {
 
-	private HashSet<Player> luz = new HashSet<>();
+	private static HashSet<Player> luz = new HashSet<>();
 
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {

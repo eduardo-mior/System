@@ -9,6 +9,7 @@ import org.bukkit.configuration.serialization.ConfigurationSerialization;
 import com.google.common.collect.ImmutableMap;
 
 class Wrapper<T extends Map<String, ?> & Serializable> implements Serializable {
+	
     private static final long serialVersionUID = -986209235411767547L;
 
     final T map;

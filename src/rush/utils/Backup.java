@@ -10,13 +10,14 @@ import java.util.zip.ZipEntry;
 import java.util.zip.ZipOutputStream;
 
 import rush.Main;
+import rush.utils.manager.DataManager;
 
 public class Backup {
-	
+
 	public static void create() {
 		try {
-			Date d = Calendar.getInstance().getTime();		
-			String data = DateFormat.getDateTimeInstance(3,2).format(d).replace('/', '-').replace(':', ';');	
+			Date d = Calendar.getInstance().getTime();
+			String data = DateFormat.getDateTimeInstance(3, 2).format(d).replace('/', '-').replace(':', ';');
 			DataManager.createFolder("backups");
 			String srcFolder = Main.get().getDataFolder().getAbsolutePath();
 			String destZipFile = DataManager.getFile(data, "backups").getAbsolutePath().replace(".yml", ".zip");
@@ -26,20 +27,15 @@ public class Backup {
 		}
 	}
 
-	static private void zipFolder(String srcFolder, String destZipFile) throws Exception {
-		ZipOutputStream zip = null;
-		FileOutputStream fileWriter = null;
-
-		fileWriter = new FileOutputStream(destZipFile);
-		zip = new ZipOutputStream(fileWriter);
-
+	private static void zipFolder(String srcFolder, String destZipFile) throws Exception {
+		FileOutputStream fileWriter = new FileOutputStream(destZipFile);
+		ZipOutputStream zip = new ZipOutputStream(fileWriter);
 		addFolderToZip("", srcFolder, zip);
 		zip.flush();
 		zip.close();
 	}
 
-	static private void addFileToZip(String path, String srcFile, ZipOutputStream zip) throws Exception {
-
+	private static void addFileToZip(String path, String srcFile, ZipOutputStream zip) throws Exception {
 		File folder = new File(srcFile);
 		if (folder.isDirectory()) {
 			addFolderToZip(path, srcFile, zip);
@@ -55,9 +51,8 @@ public class Backup {
 		}
 	}
 
-	static private void addFolderToZip(String path, String srcFolder, ZipOutputStream zip) throws Exception {
+	private static void addFolderToZip(String path, String srcFolder, ZipOutputStream zip) throws Exception {
 		File folder = new File(srcFolder);
-
 		for (String fileName : folder.list()) {
 			if (fileName.equalsIgnoreCase("backups")) continue;
 			if (path.equals("")) {

@@ -1,4 +1,4 @@
-package rush.utils;
+package rush.utils.serializer;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;

@@ -1,4 +1,4 @@
-package rush.entidades;
+package rush.enums;
 
 public enum JarType {
 	

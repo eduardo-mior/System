@@ -61,11 +61,11 @@ public class ComandoReparar implements CommandExecutor {
 					}
 				}
 				if (reparado) {
-					p.sendMessage(Mensagens.Reparar_All_Com_Sucesso);
+					s.sendMessage(Mensagens.Reparar_All_Com_Sucesso);
 					p.updateInventory();
 					return true;
 				} else {
-					p.sendMessage(Mensagens.Reparar_Nao_Possui);
+					s.sendMessage(Mensagens.Reparar_Nao_Possui);
 					return true;
 				}
 			}

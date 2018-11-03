@@ -14,7 +14,7 @@ import org.bukkit.entity.Player;
 import rush.configuracoes.Mensagens;
 import rush.entidades.Warp;
 import rush.entidades.Warps;
-import rush.utils.DataManager;
+import rush.utils.manager.DataManager;
 
 public class ComandoSetwarp implements CommandExecutor {
 	

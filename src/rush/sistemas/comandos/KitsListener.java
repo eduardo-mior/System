@@ -18,10 +18,10 @@ import rush.Main;
 import rush.configuracoes.Mensagens;
 import rush.entidades.Kit;
 import rush.entidades.Kits;
-import rush.utils.DataManager;
-import rush.utils.Serializer;
-import rush.utils.SerializerNEW;
-import rush.utils.SerializerOLD;
+import rush.utils.manager.DataManager;
+import rush.utils.serializer.Serializer;
+import rush.utils.serializer.SerializerNEW;
+import rush.utils.serializer.SerializerOLD;
 
 public class KitsListener implements Listener {
 

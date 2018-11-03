@@ -1,12 +1,9 @@
 package rush.comandos;
 
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -19,9 +16,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import rush.apis.ItemAPI;
 import rush.configuracoes.Mensagens;
-import rush.utils.ReflectionUtils;
 
-@SuppressWarnings("all")
 public class ComandoEditaritem implements CommandExecutor {
 	
 	@Override

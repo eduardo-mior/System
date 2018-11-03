@@ -14,7 +14,7 @@ public class FlyListener implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void aoTeleportar(PlayerTeleportEvent e) {
 		if (!e.getPlayer().hasPermission("system.fly.staff")) {
-			String world = e.getFrom().getWorld().getName();
+			String world = e.getTo().getWorld().getName();
 			List<String> worlds = Settings.Mundos_Onde_Pode_Usar_Fly;
 			if (!worlds.contains(world)) {
 				e.getPlayer().setFlying(false);

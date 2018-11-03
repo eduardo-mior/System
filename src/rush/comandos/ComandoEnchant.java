@@ -13,7 +13,6 @@ import org.bukkit.inventory.ItemStack;
 
 import rush.configuracoes.Mensagens;
 
-@SuppressWarnings("all")
 public class ComandoEnchant implements CommandExecutor {
 
 	@Override

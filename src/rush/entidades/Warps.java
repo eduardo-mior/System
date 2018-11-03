@@ -8,7 +8,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import rush.Main;
-import rush.utils.DataManager;
+import rush.utils.manager.DataManager;
 
 public abstract class Warps {
 

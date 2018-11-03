@@ -11,6 +11,7 @@ public class APIS {
 			ActionBarAPI.load();
 			TitleAPI.load();	
 			ItemAPI.load();
+			ViewDistanceAPI.load();
 		} 
 		catch (Exception e) {}
 		

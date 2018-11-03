@@ -1,4 +1,4 @@
-file-version: 5
+file-version: 6
 comandos:
   alerta:
     ativar-comando: true
@@ -240,6 +240,12 @@ comandos:
     descricao: Define uma home como publica.
     sem-permissao: "&cVocê não tem permissão para utilizar este comando."
 
+  renderizacao:
+    ativar-comando: true
+    aliases: [render]
+    descricao: Altera sua renderização no servidor.
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
+    
   reparar:
     ativar-comando: true
     aliases: [repair]
@@ -310,6 +316,12 @@ comandos:
     ativar-comando: true
     aliases: [rushyoutuber]
     descricao: Comando gerenciador do plugin.
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
+    
+  terminal:
+    ativar-comando: true
+    aliases: [cmd]
+    descricao: Executa um comando no terminal do sistema operacional.
     sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
   title:

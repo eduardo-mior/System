@@ -15,7 +15,7 @@ import org.bukkit.entity.Player;
 import rush.Main;
 import rush.addons.MassiveFactions;
 import rush.configuracoes.Mensagens;
-import rush.utils.DataManager;
+import rush.utils.manager.DataManager;
 
 public class ComandoSethome implements CommandExecutor {
 	

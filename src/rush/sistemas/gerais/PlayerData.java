@@ -11,7 +11,7 @@ import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
 
 import rush.configuracoes.Mensagens;
-import rush.utils.DataManager;
+import rush.utils.manager.DataManager;
 
 public class PlayerData implements Listener {
 	

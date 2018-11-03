@@ -1,4 +1,4 @@
-package rush.utils;
+package rush.utils.manager;
 
 import java.io.File;
 
@@ -16,7 +16,7 @@ public class ConfigManager {
 	}
 	
 	public static FileConfiguration getConfig(String file) {
-      	File arquivo = new File(Main.get().getDataFolder() + "/" + file + ".yml");
+      	File arquivo = new File(Main.get().getDataFolder() + File.separator + file + ".yml");
       	FileConfiguration config = (FileConfiguration)YamlConfiguration.loadConfiguration(arquivo);
       	return config;
 	}

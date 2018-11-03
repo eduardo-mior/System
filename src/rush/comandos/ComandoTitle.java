@@ -21,8 +21,7 @@ public class ComandoTitle implements CommandExecutor {
 		}
 
 		// Pegando a mensagem do title
-		String msg = "";
-		for (String str : args) {msg += str.replace('&', '§') + " ";}
+		String msg = String.join(" ", args).replace('&', '§');
 
 		// Divindo a mensagem em title e subtitle
 		String[] txt = msg.split("<nl>");

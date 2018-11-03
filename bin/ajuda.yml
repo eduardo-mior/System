@@ -104,6 +104,8 @@
 #    | system.ping               - Permissão para utilizar o comando /ping                         |
 #    | system.potion             - Permissão para utilizar o comando /potion                       |
 #    | system.publica            - Permissão para utilizar o comando /publica                      |
+#    | system.renderizacao       - Permissão para utlizar o comando /renderizacao                  |
+#    | system.renderizacao.staff - Permissão para usar uma renderização maior que a do servidor    |
 #    | system.reparar            - Permissão para utlizar o comando /reparar                       |
 #    | system.reparar.all        - Permissão para reparar todo o inventario usando /reparar all    |
 #    | system.semdelay           - Permissão para se teleportar sem precisa esperar o delay        |
@@ -120,6 +122,7 @@
 #    | system.speed.outos        - Permissão para alterar a velocidade de outros players           |
 #    | system.sudo               - Permissão para utilizar o comando /sudo                         |
 #    | system.system             - Permissão para utilizar o comando /system                       |
+#    | system.terminal           - Permissão para utilizar o comando /terminal                     |
 #    | system.title              - Permissão para utilizar o comando /title                        |
 #    | system.tp                 - Permissão para utilizar o comando /tp                           |
 #    | system.tpa                - Permissão para utilizar o comando /tpa                          |

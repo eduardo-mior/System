@@ -2,7 +2,7 @@ package rush.configuracoes;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
-import rush.utils.ConfigManager;
+import rush.utils.manager.ConfigManager;
 
 public class Mensagens {
 
@@ -278,10 +278,17 @@ public class Mensagens {
 	public static String Verinfo_Informacoes;
 	public static String Estatisticas_Comando_Incorreto;
 	public static String Estatisticas_Informacoes;
+	public static String Terminal_Comando_Incorreto;
+	public static String Terminal_Erro_Comando;
+	public static String Terminal_Erro_Desconhecido;
+	public static String Renderizacao_Comando_Incorreto;
+	public static String Renderizacao_Ja_Definida;
+	public static String Renderizacao_Valor_Invalido_Players;
+	public static String Renderizacao_Valor_Invalido_Staff;
+	public static String Renderizacao_Alterado_Sucesso;
 	
 	public static void loadMensagens() {
 		FileConfiguration config = ConfigManager.getConfig("mensagens");
-
 		Separador_De_Listas = config.getString("Separador-De-Listas").replace('&', '§');
 		Console_Nao_Pode = config.getString("Console-Nao-Pode").replace('&', '§');
 		Sem_Permissao = config.getString("Sem-Permissao").replace('&', '§');
@@ -554,5 +561,13 @@ public class Mensagens {
 		Verinfo_Informacoes = config.getString("Verinfo-Informacoes").replace('&', '§');
 		Estatisticas_Comando_Incorreto = config.getString("Estatisticas-Comando-Incorreto").replace('&', '§');
 		Estatisticas_Informacoes = config.getString("Estatisticas-Informacoes").replace('&', '§');
+		Terminal_Comando_Incorreto = config.getString("Terminal-Comando-Incorreto").replace('&', '§');
+		Terminal_Erro_Comando = config.getString("Terminal-Erro-Comando").replace('&', '§');
+		Terminal_Erro_Desconhecido = config.getString("Terminal-Erro-Desconhecido").replace('&', '§');
+		Renderizacao_Comando_Incorreto = config.getString("Renderizacao-Comando-Incorreto").replace('&', '§');
+		Renderizacao_Ja_Definida = config.getString("Renderizacao-Ja-Definida").replace('&', '§');
+		Renderizacao_Valor_Invalido_Players = config.getString("Renderizacao-Valor-Invalido-Players").replace('&', '§');
+		Renderizacao_Valor_Invalido_Staff = config.getString("Renderizacao-Valor-Invalido-Staff").replace('&', '§');
+		Renderizacao_Alterado_Sucesso = config.getString("Renderizacao-Alterado-Sucesso").replace('&', '§');
 	}
 }

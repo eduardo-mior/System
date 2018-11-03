@@ -13,7 +13,7 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.plugin.Plugin;
 
 import rush.Main;
-import rush.utils.ConfigManager;
+import rush.utils.manager.ConfigManager;
 
 public class Command {
 	

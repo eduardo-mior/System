@@ -1,7 +1,6 @@
 package rush.apis;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Random;
 
@@ -36,7 +35,6 @@ public class ItemAPI {
 		int least = new Random().nextInt(8192);
 		int most = new Random().nextInt(8192);
 		try	{
-			
 			Object NBTTagCompound;
 			Object CraftItemStack = asNMSCopy.invoke(null, item);
 			boolean hasNBT = (boolean) hasNBTTagCompound.invoke(CraftItemStack);
@@ -98,10 +96,10 @@ public class ItemAPI {
 			setNBTTagCompound.invoke(CraftItemStack, NBTTagCompound);
 			
 			return (ItemStack) asCraftMirror.invoke(null, CraftItemStack);
-		} catch (NullPointerException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | InstantiationException | NoSuchFieldException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 	
 	public static ItemStack setUnbreakable(ItemStack item, boolean bool) {
@@ -120,10 +118,10 @@ public class ItemAPI {
 			setBoolean.invoke(NBTTagCompound, "Unbreakable", true);
 			setNBTTagCompound.invoke(CraftItemStack, NBTTagCompound);
 			return (ItemStack) asCraftMirror.invoke(null, CraftItemStack);
-		} catch (NullPointerException | SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | InstantiationException e) {
+		} catch (Exception e) {
 			e.printStackTrace();
+			return null;
 		}
-		return null;
 	}
 	
 	static void load() {
@@ -151,6 +149,6 @@ public class ItemAPI {
 			createTag = NBTBaseClass.getDeclaredMethod("createTag", byte.class);
 			createTag.setAccessible(true);
 		}
-		catch (SecurityException | IllegalArgumentException | NullPointerException | NoSuchMethodException e) {}
+		catch (Exception e) {}
 	}
 }

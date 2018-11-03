@@ -11,7 +11,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 
 import rush.configuracoes.Mensagens;
-import rush.utils.DataManager;
+import rush.utils.manager.DataManager;
 
 public class ComandoDelhome implements CommandExecutor {
 	

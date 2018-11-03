@@ -16,7 +16,7 @@ import rush.Main;
 import rush.addons.MassiveFactions;
 import rush.configuracoes.Mensagens;
 import rush.configuracoes.Settings;
-import rush.utils.DataManager;
+import rush.utils.manager.DataManager;
 
 public class ComandoHome implements CommandExecutor {
 	

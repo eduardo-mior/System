@@ -54,6 +54,7 @@ import rush.comandos.ComandoParticular;
 import rush.comandos.ComandoPing;
 import rush.comandos.ComandoPotion;
 import rush.comandos.ComandoPublica;
+import rush.comandos.ComandoRenderizacao;
 import rush.comandos.ComandoReparar;
 import rush.comandos.ComandoSGive;
 import rush.comandos.ComandoSethome;
@@ -66,6 +67,7 @@ import rush.comandos.ComandoSpawn;
 import rush.comandos.ComandoSpeed;
 import rush.comandos.ComandoSudo;
 import rush.comandos.ComandoSystem;
+import rush.comandos.ComandoTerminal;
 import rush.comandos.ComandoTitle;
 import rush.comandos.ComandoTp;
 import rush.comandos.ComandoTpa;
@@ -85,10 +87,10 @@ import rush.configuracoes.Locations;
 import rush.configuracoes.Mensagens;
 import rush.configuracoes.Settings;
 import rush.entidades.Command;
-import rush.entidades.JarType;
 import rush.entidades.Kits;
-import rush.entidades.Version;
 import rush.entidades.Warps;
+import rush.enums.JarType;
+import rush.enums.Version;
 import rush.recursos.bloqueadores.BloquearAbrirContainers;
 import rush.recursos.bloqueadores.BloquearCairNoVoid;
 import rush.recursos.bloqueadores.BloquearCama;
@@ -149,8 +151,8 @@ import rush.sistemas.gerais.Tablist;
 import rush.sistemas.spawners.BloquearTrocarTipoDoSpawnerComOvo;
 import rush.sistemas.spawners.DroparSpawnerAoExplodir;
 import rush.sistemas.spawners.SistemaDeSpawners;
-import rush.utils.ConfigManager;
-import rush.utils.DataManager;
+import rush.utils.manager.ConfigManager;
+import rush.utils.manager.DataManager;
 
 public class Main extends JavaPlugin {
 
@@ -192,11 +194,11 @@ public class Main extends JavaPlugin {
 	}
 
 	private void carregarConfigs() {
+		Kits.loadKits();
+		Warps.loadWarps();
+		Settings.loadSettings();
 		Mensagens.loadMensagens();
 		Locations.loadLocations();
-		Settings.loadSettings();
-		Warps.loadWarps();
-		Kits.loadKits();
 	}
 
 	private void registrarComandos() {
@@ -246,6 +248,7 @@ public class Main extends JavaPlugin {
 		new Command("speed", "system.speed", new ComandoSpeed());
 		new Command("sudo", "system.sudo", new ComandoSudo());
 		new Command("system", "system.system", new ComandoSystem());
+		new Command("terminal", "system.terminal", new ComandoTerminal());
 		new Command("tp", "system.tp", new ComandoTp());
 		new Command("tpa", "system.tpa", new ComandoTpa());
 		new Command("tpaccept", "system.tpaccept", new ComandoTpaccept());
@@ -268,6 +271,7 @@ public class Main extends JavaPlugin {
 			new Command("editaritem", "system.editaritem", new ComandoEditaritem());
 			new Command("executarsom", "system.executarsom", new ComandoExecutarSom());
 			new Command("online", "system.online", new ComandoOnline());
+			new Command("renderizacao", "system.renderizacao", new ComandoRenderizacao());
 			new Command("tpall", "system.tpall", new ComandoTpall());
 			new Command("title", "system.title", new ComandoTitle());
 			new Command("vanish", "system.vanish", new ComandoVanish());
@@ -488,13 +492,15 @@ public class Main extends JavaPlugin {
 		}
 
 		if (version != Version.v1_13) {
-			if (Settings.Sistema_De_Spawners) {
-				pm.registerEvents(new SistemaDeSpawners(), this);
-				if (Settings.Dropar_Spawner_Ao_Explodir) {
-					pm.registerEvents(new DroparSpawnerAoExplodir(), this);
-				}
-				if (Settings.Bloquear_Trocar_Tipo_Do_Spawner_Com_Ovo) {
-					pm.registerEvents(new BloquearTrocarTipoDoSpawnerComOvo(), this);
+			if (commands.getBoolean("comandos.sgive.ativar-comando")) {
+				if (Settings.Sistema_De_Spawners) {
+					pm.registerEvents(new SistemaDeSpawners(), this);
+					if (Settings.Dropar_Spawner_Ao_Explodir) {
+						pm.registerEvents(new DroparSpawnerAoExplodir(), this);
+					}
+					if (Settings.Bloquear_Trocar_Tipo_Do_Spawner_Com_Ovo) {
+						pm.registerEvents(new BloquearTrocarTipoDoSpawnerComOvo(), this);
+					}
 				}
 			}
 		}

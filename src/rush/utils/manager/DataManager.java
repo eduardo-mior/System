@@ -1,4 +1,4 @@
-package rush.utils;
+package rush.utils.manager;
 
 import java.io.File;
 import java.io.IOException;
@@ -30,7 +30,7 @@ public class DataManager {
 			Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Criar_Arquivo.replace("%arquivo%", file.getName()));
 		}
 	}
-
+	
 	public static File getFolder(String folder) {
 		File Arquivo = new File(Main.get().getDataFolder() + File.separator + folder);
 		return Arquivo;
@@ -42,7 +42,7 @@ public class DataManager {
 	}
 
 	public static File getFile(String file) {
-		File Arquivo = new File(Main.get().getDataFolder() + "/" + file + ".yml");
+		File Arquivo = new File(Main.get().getDataFolder() + File.separator + file + ".yml");
 		return Arquivo;
 	}
 

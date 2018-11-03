@@ -8,7 +8,7 @@ import org.bukkit.World;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import rush.Main;
-import rush.utils.ConfigManager;
+import rush.utils.manager.ConfigManager;
 
 public class Locations {
 

@@ -17,8 +17,8 @@ import org.bukkit.inventory.PlayerInventory;
 import rush.configuracoes.Mensagens;
 import rush.entidades.Kit;
 import rush.entidades.Kits;
-import rush.utils.DataManager;
 import rush.utils.TimeFormatter;
+import rush.utils.manager.DataManager;
 
 @SuppressWarnings("all")
 public class ComandoKit implements CommandExecutor {

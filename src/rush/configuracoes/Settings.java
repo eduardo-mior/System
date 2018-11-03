@@ -5,7 +5,7 @@ import java.util.Map;
 
 import org.bukkit.configuration.file.FileConfiguration;
 
-import rush.utils.ConfigManager;
+import rush.utils.manager.ConfigManager;
 
 public class Settings {
 
@@ -113,7 +113,6 @@ public class Settings {
 
 	public static void loadSettings() {
 		FileConfiguration config = ConfigManager.getConfig("settings");
-
 		AtivarAddons_Legendchat = config.getBoolean("AtivarAddons.Legendchat");
 		AtivarAddons_mcMMO = config.getBoolean("AtivarAddons.mcMMO");
 		AtivarAddons_massiveFactions = config.getBoolean("AtivarAddons.massiveFactions");

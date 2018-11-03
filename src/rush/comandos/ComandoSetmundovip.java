@@ -13,7 +13,7 @@ import org.bukkit.entity.Player;
 
 import rush.configuracoes.Locations;
 import rush.configuracoes.Mensagens;
-import rush.utils.DataManager;
+import rush.utils.manager.DataManager;
 
 public class ComandoSetmundovip implements CommandExecutor {
 	

@@ -20,26 +20,23 @@ public class SistemaDeSpawners implements Listener {
 	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void aoQuebrarSpawner(BlockBreakEvent e) {
-		if (!e.isCancelled()) {
-			Player p = e.getPlayer();
-			Block b = e.getBlock();
-			if (b.getType() == Material.MOB_SPAWNER) {
-				if (p.getItemInHand().getType().name().contains("PICKAXE")) {
-					if (p.getItemInHand().getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
-						String type = ((CreatureSpawner) b.getState()).getSpawnedType().name();
-						ItemStack spawner = MobSpawner.get(type, 1);
-						boolean droped = false;
-						for (ItemStack is : p.getInventory().addItem(spawner).values()) {
-							p.getWorld().dropItem(p.getLocation(), is);
-							droped = true;
-						}
-						p.updateInventory();
-						if (droped) {
-							p.sendMessage(Mensagens.Inventario_Cheio_Quebrou);
-						}
-						b.setType(Material.AIR);
-						e.setExpToDrop(0);
+		Player p = e.getPlayer();
+		Block b = e.getBlock();
+		if (b.getType() == Material.MOB_SPAWNER) {
+			if (p.getItemInHand().getType().name().contains("PICKAXE")) {
+				if (p.getItemInHand().getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
+					String type = ((CreatureSpawner) b.getState()).getSpawnedType().name();
+					ItemStack spawner = MobSpawner.get(type, 1);
+					boolean droped = false;
+					for (ItemStack is : p.getInventory().addItem(spawner).values()) {
+						p.getWorld().dropItem(p.getLocation(), is);
+						droped = true;
 					}
+					p.updateInventory();
+					if (droped)
+						p.sendMessage(Mensagens.Inventario_Cheio_Quebrou);
+					b.setType(Material.AIR);
+					e.setExpToDrop(0);
 				}
 			}
 		}
@@ -51,7 +48,7 @@ public class SistemaDeSpawners implements Listener {
 			try {
 				CreatureSpawner cs = (CreatureSpawner) e.getBlock().getState();
 				cs.setSpawnedType(EntityType.valueOf(e.getItemInHand().getItemMeta().getLore().get(0)));
-			} catch (Exception var) {
+			} catch (Exception ex) {
 				e.setCancelled(true);
 				e.getPlayer().sendMessage(Mensagens.Spawner_Bugado);
 			}

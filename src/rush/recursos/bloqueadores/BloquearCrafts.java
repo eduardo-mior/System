@@ -15,11 +15,12 @@ public class BloquearCrafts implements Listener {
 
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void aoPrepararCraft(PrepareItemCraftEvent e) {
-		Player p = (Player) e.getView().getPlayer();
-		int itemType = e.getRecipe().getResult().getType().getId();
-		if (Settings.Lista_Dos_Crafts_Bloqueados.contains(itemType)) {
-			if (!(p.hasPermission("system.bypass.craftbloqueado"))) {
-				e.getInventory().setResult(new ItemStack(Material.AIR));
+		if (e.getRecipe() != null && e.getRecipe().getResult() != null) {
+			int itemType = e.getRecipe().getResult().getType().getId();
+			if (Settings.Lista_Dos_Crafts_Bloqueados.contains(itemType)) {
+				Player p = (Player) e.getView().getPlayer();
+				if (!(p.hasPermission("system.bypass.craftbloqueado")))
+					e.getInventory().setResult(new ItemStack(Material.AIR));
 			}
 		}
 	}

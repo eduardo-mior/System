@@ -1,4 +1,4 @@
-﻿file-version: 5
+﻿file-version: 6
 ############################################################
 # +------------------------------------------------------+ #
 # |                   Mensagens gerais                   | #
@@ -669,3 +669,23 @@ Verinfo-Informacoes: |
    &aEsta na whitelist:&2 %whitelist%
    &aIp:&2 %ip%
    &aLinguagem do minecraft:&2 %locale%
+
+############################################################
+# +------------------------------------------------------+ #
+# |                  Comando /terminal                   | #
+# +------------------------------------------------------+ #
+############################################################
+Terminal-Comando-Incorreto: "&cComando incorreto, use /terminal <comando>"
+Terminal-Erro-Comando: "&cErro ao tentar executar o comando!\n&cErro: &f%erro%"
+Terminal-Erro-Desconhecido: "&cErro desconhecido ao tentar executar o comando!\n&cErro: &f%erro%"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                Comando /renderizacao                 | #
+# +------------------------------------------------------+ #
+############################################################
+Renderizacao-Comando-Incorreto: "&cComando incorreto, use /renderizacao <distancia>"
+Renderizacao-Ja-Definida: "&cA sua renderiazação já está em %renderizacao%."
+Renderizacao-Valor-Invalido-Players: "&cRenderização inválida! Você deve usar um valor entre &73 &ce &7%limite-servidor%&c."
+Renderizacao-Valor-Invalido-Staff: "&cRenderização inválida! Você deve usar um valor entre &73 &ce &732&c."
+Renderizacao-Alterado-Sucesso: "&aRenderização alterada com sucesso para %renderizacao%."

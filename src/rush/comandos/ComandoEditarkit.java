@@ -15,7 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import rush.configuracoes.Mensagens;
 import rush.entidades.Kit;
 import rush.entidades.Kits;
-import rush.utils.DataManager;
+import rush.utils.manager.DataManager;
 
 public class ComandoEditarkit implements CommandExecutor {
 	

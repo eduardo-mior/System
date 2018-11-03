@@ -1,14 +1,12 @@
 package rush.apis;
 
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
-import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import rush.Main;
-import rush.entidades.Version;
+import rush.enums.Version;
 import rush.utils.ReflectionUtils;
 
 public class ActionBarAPI {
@@ -22,8 +20,8 @@ public class ActionBarAPI {
 			Object chatMessage = a.invoke(null, "{\"text\":\"" + message + "\"}");
 		    Object packet = chatConstructor.newInstance(chatMessage, typeMessage);
 		    ReflectionUtils.sendPacket(player, packet);
-		} catch (SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | InstantiationException | NullPointerException e) {
-			Bukkit.getConsoleSender().sendMessage("§c[System] Erro ao tentar enviar a actionbar para o player " + player.getName() + "!");
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -50,6 +48,6 @@ public class ActionBarAPI {
 			
 			chatConstructor = ppoc.getConstructor(icbc,  typeMessageClass);	
 		}
-		catch (SecurityException | IllegalArgumentException | NoSuchMethodException | NullPointerException e) {}
+		catch (Exception e) {}
 	}
 }

@@ -11,12 +11,8 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
-import rush.Main;
-import rush.apis.ItemAPI;
 import rush.configuracoes.Mensagens;
-import rush.entidades.Version;
 
-@SuppressWarnings("all")
 public class ComandoEditaritemOLD implements CommandExecutor {
 	
 	@Override
