@@ -530,7 +530,7 @@ public class Main extends JavaPlugin {
 				if (pm.getPlugin("mcMMO") == null) {
 					getServer().getConsoleSender().sendMessage("§c[System] mcMMO nao encontrado, desativando addons!");
 				} else {
-						pm.registerEvents(new Mcmmo(), this);
+					pm.registerEvents(new Mcmmo(), this);
 					if (pm.getPlugin("Legendchat") != null) {
 						pm.registerEvents(new LegendChatAndMcMMO(), this);
 						LegendChatAndMcMMO.checkMCTop();
@@ -577,19 +577,20 @@ public class Main extends JavaPlugin {
 	}
 
 	private void desativarRecursos() {
-		PluginManager pm = Bukkit.getServer().getPluginManager();
-		HandlerList.unregisterAll(this);
-
-		if (pm.getPlugin("mcMMO") != null && pm.getPlugin("Legendchat") != null) {
-			LegendChatAndMcMMO.TTask.cancel();
-		}
-
-		if (Settings.Auto_Anuncio) {
-			if (isOldVersion())
-				AutoAnuncioOLD.XTask.cancel();
-			else
-				AutoAnuncio.XTask.cancel();
-		}
+		try {
+			HandlerList.unregisterAll(this);
+	
+			if (Settings.AtivarAddons_mcMMO && LegendChatAndMcMMO.TTask != null) {
+				LegendChatAndMcMMO.TTask.cancel();
+			}
+	
+			if (Settings.Auto_Anuncio) {
+				if (isOldVersion())
+					AutoAnuncioOLD.XTask.cancel();
+				else
+					AutoAnuncio.XTask.cancel();
+			}
+		} catch (Exception e) {}
 	}
 
 	private Version checkServerVersion() {

@@ -56,7 +56,7 @@ public class ComandoDerreter implements CommandExecutor {
 		for (ItemStack item : inv.getContents()) {
 			
 			// Verificando se o item é valido
-			if(item == null || item.getType().equals(Material.AIR)) continue;
+			if (item == null || item.getType().equals(Material.AIR)) continue;
 			
 			// Derrentendo o item
 			try {
@@ -85,6 +85,7 @@ public class ComandoDerreter implements CommandExecutor {
  */
 
 enum Blocks {
+	
 	IRON_ORE(Material.IRON_INGOT), 
 	GOLD_ORE(Material.GOLD_INGOT), 
 	DIAMOND_ORE(Material.DIAMOND), 

@@ -1,5 +1,8 @@
 package rush.comandos;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -23,17 +26,16 @@ public class ComandoCompactar implements CommandExecutor {
 
 		// Pegando o player, o inventario e os itens do inventario
 		Player p = (Player)s;
-		PlayerInventory i = p.getInventory();
-		ItemStack[] itens = i.getContents();
 			
 		// Verificando se o player possui itens para compactar
-		if (!possuiItensParaCompactar(i)) {
+		if (!possuiItensParaCompactar(p.getInventory())) {
 			s.sendMessage(Mensagens.Compactar_Nao_Possui);
 			return true;
 		}
 			
 		// Chamando o método que compacta os itens e enviando mensagem
-		int compactados = compactarItens(itens, i, p);
+		int compactados = compactarItens(p.getInventory().getContents(), p.getInventory(), p);
+		    compactados += compactarItens(p.getInventory().getContents(), p.getInventory(), p);
 		s.sendMessage(Mensagens.Compactar_Com_Sucesso.replace("%quantia%", String.valueOf(compactados)));
 		return true;
 	}
@@ -57,43 +59,48 @@ public class ComandoCompactar implements CommandExecutor {
 	// Método para compactar os itens
 	private int compactarItens(ItemStack[] itens, PlayerInventory inv, Player p) {
 		int compactados = 0;
+		List<ItemStack> devolver = new ArrayList<>();
+		
 		for (ItemStack item : itens) {
 			
 			// Verificando se o item é valido
-			if(item == null || item.getType() == Material.AIR) continue;
+			if (item == null || item.getType() == Material.AIR) continue;
 			
 			// Verificando se o item possui a quantidade minima para ser compactado
-			if(item.getAmount() < 9) continue;
+			if (item.getAmount() < 9) continue;
 			
 			// Verificando se o item é um corante e esse corante não é o LapidAzul
-			if(item.getType() == Material.INK_SACK && item.getDurability() != 4) continue;
+			if (item.getType() == Material.INK_SACK && item.getDurability() != 4) continue;
 			
 			// Compactando o item
 			try {
 				Ores ores = Ores.valueOf(item.getType().name());
 				int quantidade = item.getAmount();
-				int give = (int) Math.ceil(quantidade / 9);
+				int give = (int) quantidade / 9;
 				int resto = quantidade - (give * 9);
 				ItemStack block = new ItemStack(ores.getBlock(), give);
 				inv.remove(item);
 				inv.addItem(block);
 				
 				// Verificando se o item não pode ser compactado por completo
-				if(resto > 0) {
-					ItemStack RestoOre = item.clone();
-					RestoOre.setAmount(resto);
-					
-					/* Verificando se o player possui espaço no inventario para armazenar o item,
-					   caso ele não possuir espaço no inventarios o item sera dropado */
-					if (inv.firstEmpty() != -1) inv.addItem(RestoOre);
-					else p.getWorld().dropItem(p.getLocation(), RestoOre);
+				if (resto > 0) {
+					devolver.add(new ItemStack(item.getType(), resto));
 				}
 				
 				// Adicionando a quantia de itens compactados para exibir na mensagem
-				compactados += quantidade;
+				compactados += give * 9;
 			} catch (Exception e) {
 				continue;
 			}
+		}
+		
+		// Devolvendo as sobras
+		for (ItemStack item : devolver) {
+			
+			/* Verificando se o player possui espaço no inventario para armazenar o item,
+			   caso ele não possuir espaço no inventarios o item sera dropado */
+			if (inv.firstEmpty() != -1) inv.addItem(item);
+			else p.getWorld().dropItem(p.getLocation(), item);	
 		}
 		
 		// Retorna a quantia de itens compactados para exibir na mensagem
@@ -106,6 +113,7 @@ public class ComandoCompactar implements CommandExecutor {
  */
 
 enum Ores {
+	
 	COAL(Material.COAL_BLOCK),
 	IRON_INGOT(Material.IRON_BLOCK), 
 	GOLD_INGOT(Material.GOLD_BLOCK), 

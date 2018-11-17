@@ -2,6 +2,8 @@ package rush.sistemas.comandos;
 
 import java.util.List;
 
+import org.bukkit.GameMode;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -13,12 +15,13 @@ public class FlyListener implements Listener {
 
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void aoTeleportar(PlayerTeleportEvent e) {
-		if (!e.getPlayer().hasPermission("system.fly.staff")) {
+		Player p = e.getPlayer();
+		if (!p.hasPermission("system.fly.staff") && p.getGameMode() != GameMode.CREATIVE) {
 			String world = e.getTo().getWorld().getName();
 			List<String> worlds = Settings.Mundos_Onde_Pode_Usar_Fly;
 			if (!worlds.contains(world)) {
-				e.getPlayer().setFlying(false);
-				e.getPlayer().setAllowFlight(false);
+				p.setFlying(false);
+				p.setAllowFlight(false);
 			}
 		}
 	}

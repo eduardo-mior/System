@@ -46,6 +46,7 @@ public class SystemInfo {
 		    gravador.println("|   Informações Gerais da Maquina  |");
 		    gravador.println("+----------------------------------+");
 			String[] infoCommands  = {"systeminfo", "cmdinfo", "srvinfo" , "lshw", "lscpu", "hwinfo", "lspci", "free -m", "cat /proc/meminfo", "cat /proc/cpuinfo", "df -h"};
+			boolean success = false;
 			for (String command : infoCommands) {
 				try {
 					String line;
@@ -57,9 +58,13 @@ public class SystemInfo {
 						gravador.println(line);
 					}
 					gravador.println("**********************************");
+					success = true;
 				} catch (Exception e) {}
 			}
+			if (!success)
+				gravador.println("Informações não disponíveis!");
 		    
+			success = false;
 		    gravador.println("\n\n+----------------------------------+");
 		    gravador.println("|  Informações de Rede da Maquina  |");
 		    gravador.println("+----------------------------------+");
@@ -75,8 +80,11 @@ public class SystemInfo {
 						gravador.println(line);
 					}
 					gravador.println("**********************************");
+					success = true;
 				} catch (Exception e) {}
 			}
+			if (!success)
+				gravador.println("Informações não disponíveis!");
 			
 		    gravador.close();
 		    arquivo.close();

@@ -1,5 +1,5 @@
 main: rush.Main
-version: 1.7
+version: 1.7.1
 name: System
 load: POSTWORLD
 softdepend: [Legendchat, mcMMO, MassiveCore, Factions]

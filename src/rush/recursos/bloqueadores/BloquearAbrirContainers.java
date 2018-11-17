@@ -1,11 +1,11 @@
 package rush.recursos.bloqueadores;
 
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.inventory.InventoryOpenEvent;
+import org.bukkit.event.inventory.InventoryType;
 
 import rush.configuracoes.Settings;
 
-import org.bukkit.event.inventory.InventoryOpenEvent;
-import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.Listener;
 
 public class BloquearAbrirContainers implements Listener {

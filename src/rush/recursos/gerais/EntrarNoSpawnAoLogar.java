@@ -1,5 +1,6 @@
 package rush.recursos.gerais;
 
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -17,10 +18,11 @@ public class EntrarNoSpawnAoLogar implements Listener {
 
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void aoLogar(PlayerJoinEvent e) {
-		if (e.getPlayer().hasPermission("system.spawn.vip")) {
-			e.getPlayer().teleport(Locations.spawnVip);
+		Player p = e.getPlayer();
+		if (p.hasPermission("system.spawn.vip")) {
+			p.teleport(Locations.spawnVip);
 		} else {
-			e.getPlayer().teleport(Locations.spawn);
+			p.teleport(Locations.spawn);
 		}
 	}
 }

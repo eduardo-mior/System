@@ -4,11 +4,10 @@ import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
-import org.bukkit.event.inventory.ClickType;
+import org.bukkit.event.Listener;
+import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.event.inventory.InventoryType;
 import org.bukkit.event.inventory.InventoryType.SlotType;
-import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.Listener;
 
 import rush.configuracoes.Mensagens;
 import rush.configuracoes.Settings;
@@ -21,7 +20,7 @@ public class BloquearShiftEmContainers implements Listener {
 			return;
 		}
 
-		if ((e.getClick() == ClickType.SHIFT_LEFT || e.getClick() == ClickType.SHIFT_RIGHT)) {
+		if (e.getClick().isShiftClick()) {
 			for (String container : Settings.Bloquear_Shift_Em_Containers_Containers) {
 				if (e.getInventory().getType() == InventoryType.valueOf(container)) {
 					if (!(e.getWhoClicked().hasPermission("system.bypass.shiftemcontainer"))) {
