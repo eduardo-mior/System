@@ -46,6 +46,6 @@ public class CrashAPI {
 
 			Constructor<?> explosionConstructor = explosionClass.getConstructor(double.class, double.class,	double.class, float.class, List.class, vectorClass);
 			packet = explosionConstructor.newInstance(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE,	Float.MAX_VALUE, Collections.emptyList(), Vec3D);
-		} catch (Exception e) {}
+		} catch (Error | Exception e) {}
 	}
 }

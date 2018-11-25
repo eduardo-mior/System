@@ -7,6 +7,6 @@ public enum JarType {
 	SPIGOT,
 	BUKKIT,
 	TORCH,
-	OUTRO
+	DESCONHECIDA
 
 }

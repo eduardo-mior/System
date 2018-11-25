@@ -9,7 +9,7 @@ public class GodModeAPI {
 			Object entityPlayer = player.getClass().getMethod("getHandle").invoke(player);
 			Object abilities = entityPlayer.getClass().getField("abilities").get(entityPlayer);
 			abilities.getClass().getField("isInvulnerable").set(abilities, enabled);
-		} catch (Exception e) {
+		} catch (Error | Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -19,7 +19,7 @@ public class GodModeAPI {
 			Object entityPlayer = player.getClass().getMethod("getHandle").invoke(player);
 			Object abilities = entityPlayer.getClass().getField("abilities").get(entityPlayer);
 			return abilities.getClass().getField("isInvulnerable").getBoolean(abilities);
-		} catch (Exception e) {
+		} catch (Error | Exception e) {
 			e.printStackTrace();
 			return false;
 		}

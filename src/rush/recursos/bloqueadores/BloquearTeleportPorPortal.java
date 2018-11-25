@@ -10,7 +10,7 @@ import rush.configuracoes.Settings;
 
 public class BloquearTeleportPorPortal implements Listener {
 
-	@EventHandler(priority = EventPriority.LOWEST)
+	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public static void aoTeleportaPorPortal(PlayerPortalEvent e) {
 		if (!(e.getPlayer().hasPermission("system.bypass.teleportarporportal"))) {
 

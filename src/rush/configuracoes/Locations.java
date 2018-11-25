@@ -26,10 +26,10 @@ public class Locations {
 				setAreaNaoVip();
 				setSpawn();
 				setSpawnVip();
-				setDefaultServerSpawn();
 				validarLocations();
+				setDefaultServerSpawn();
 			}
-		}.runTaskLater(Main.get(), 30 * 20);
+		}.runTaskLaterAsynchronously(Main.get(), 30 * 20);
 	}
 	
 	private static void validarLocations() {
@@ -45,43 +45,59 @@ public class Locations {
 	}
 
 	private static void setAreaVip() {
-         areaVip = new Location(Main.get().getServer().getWorld
-           (ConfigManager.getConfig("locations").getString("AreaVip.world")), 
+		try {
+         areaVip = new Location(Main.get().getServer().getWorld(
+           ConfigManager.getConfig("locations").getString("AreaVip.world")), 
            ConfigManager.getConfig("locations").getDouble("AreaVip.x"), 
            ConfigManager.getConfig("locations").getDouble("AreaVip.y"), 
            ConfigManager.getConfig("locations").getDouble("AreaVip.z"), 
            Float.parseFloat(ConfigManager.getConfig("locations").getString("AreaVip.yaw")), 
            Float.parseFloat(ConfigManager.getConfig("locations").getString("AreaVip.pitch")));
+		} catch (Exception | Error e) {
+			Bukkit.getServer().getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao da AreaVip!");
+		}
 	}
 	
 	private static void setAreaNaoVip() {
-        areaNaoVip = new Location(Main.get().getServer().getWorld
-           (ConfigManager.getConfig("locations").getString("AreaNaoVip.world")), 
+		try {
+        areaNaoVip = new Location(Main.get().getServer().getWorld(
+           ConfigManager.getConfig("locations").getString("AreaNaoVip.world")), 
            ConfigManager.getConfig("locations").getDouble("AreaNaoVip.x"), 
            ConfigManager.getConfig("locations").getDouble("AreaNaoVip.y"), 
            ConfigManager.getConfig("locations").getDouble("AreaNaoVip.z"), 
            Float.parseFloat(ConfigManager.getConfig("locations").getString("AreaNaoVip.yaw")), 
            Float.parseFloat(ConfigManager.getConfig("locations").getString("AreaNaoVip.pitch")));
+		} catch (Exception | Error e) {
+			Bukkit.getServer().getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao da AreaNaoVip!");
+		}
 	}
 	
 	private static void setSpawn() {
-	    spawn = new Location(Main.get().getServer().getWorld
-	       (ConfigManager.getConfig("locations").getString("Spawn.world")), 
+		try {
+	    spawn = new Location(Main.get().getServer().getWorld(
+	       ConfigManager.getConfig("locations").getString("Spawn.world")), 
 	       ConfigManager.getConfig("locations").getDouble("Spawn.x"), 
 	       ConfigManager.getConfig("locations").getDouble("Spawn.y"), 
 	       ConfigManager.getConfig("locations").getDouble("Spawn.z"), 
 	       Float.parseFloat(ConfigManager.getConfig("locations").getString("Spawn.yaw")), 
 	       Float.parseFloat(ConfigManager.getConfig("locations").getString("Spawn.pitch")));
+		} catch (Exception | Error e) {
+			Bukkit.getServer().getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao da Spawn!");
+		}
 	}
 	
 	private static void setSpawnVip() {
-	    spawnVip = new Location(Main.get().getServer().getWorld
-	       (ConfigManager.getConfig("locations").getString("SpawnVip.world")), 
+		try {
+	    spawnVip = new Location(Main.get().getServer().getWorld(
+	       ConfigManager.getConfig("locations").getString("SpawnVip.world")), 
 	       ConfigManager.getConfig("locations").getDouble("SpawnVip.x"), 
 	       ConfigManager.getConfig("locations").getDouble("SpawnVip.y"), 
 	       ConfigManager.getConfig("locations").getDouble("SpawnVip.z"), 
 	       Float.parseFloat(ConfigManager.getConfig("locations").getString("SpawnVip.yaw")), 
 	       Float.parseFloat(ConfigManager.getConfig("locations").getString("SpawnVip.pitch")));
+		} catch (Exception | Error e) {
+			Bukkit.getServer().getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao da SpawnVip!");
+		}
 	}
 	
 	private static void setDefaultServerSpawn() {

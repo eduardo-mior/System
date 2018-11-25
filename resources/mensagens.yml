@@ -135,7 +135,7 @@ Tornou-Home-Particular: "&aA home '%home%' agora é uma home particular, ou seja
 # +------------------------------------------------------+ #
 ############################################################
 Kit-Comando-Incorreto: "&cComando incorreto, use /kit <kit>"
-Kit-Comando-Incorreto-Console: "&cComando incorreto, use /kit <kit> <player>"
+DarKit-Comando-Incorreto: "&cComando incorreto, use /darkit <kit> <player>"
 DelKit-Comando-Incorreto: "&cComando incorreto, use /delkit <kit>"
 VerKit-Comando-Incorreto: "&cComando incorreto, use /verkit <kit>"
 CriarKit-Comando-Incorreto: "&cComando incorreto, use /criarkit <kit>"
@@ -154,7 +154,7 @@ Kit-Editado: "&aKit '%kit%' editado com sucesso."
 Kit-Deletado: "&aKit '%kit%' deletado com sucesso."
 Kit-Sem-Espaco-Pra-Pegar: "&cVocê não possui espaço suficiente no inventário para poder pegar este kit, por favor libere mais espaço e tente novamente."
 Kit-Pego: "&aKit '%kit%' adquirido com sucesso."
-Kit-Enviado: "&aKit enviado com sucesso para %player%."
+Kit-Enviado: "&aKit '%kit%' enviado com sucesso para %player%."
 Kit-Aguarde: "&cAguarde mais %tempo% para poder pegar este kit novamente."
 Nenhum-Kit-Criado: "&cNão há kits disponíveis."
 Kits-Lista: "&eKits disponíveis(%n%): &7%kits%"
@@ -194,6 +194,7 @@ Warps-Lista: "&eWarps disponíveis(%n%): &7%warps%"
 # +------------------------------------------------------+ #
 ############################################################
 Divulgar-Comando-Incorreto: "&cComando incorreto, use /divulgar <video/live/outro> <link>"
+Divulgar-Aguarde-Delay: "&cAguarde mais %tempo% para poder divulgar novamente."
 Link-Invalido: "&cO link &n%link%&c não é um link valido portanto a divulgação foi cancelada! Verifique o link e tente novamente."
 Divulgando-Live: "&e%player% esta divulgando uma live!"
 Divulgando-Video: "&e%player% esta divulgando um vídeo!"
@@ -304,6 +305,7 @@ Editar-Item-Comando-Incorreto: |
   &c/editaritem glow &8-&7 Adiciona um brilho ao item.
   &c/editaritem removelore &8-&7 Remove toda a lore do item.
   &c/editaritem addlore <frase> &8-&7 Adiciona uma linha de lore.
+  &c/editaritem quantia <quantia> &8-&7 Altera a quantidade do item.
   &c/editaritem bugar &8-&7 Transforma o item no bloco quadriculado.
   &c/editaritem negativo &8-&7 Define a quantia do item para &c-1&7.
   &c/editaritem inquebravel &8-&7 Define o item como Inquebravel.

@@ -61,6 +61,6 @@ public abstract class Warps {
 					}
 				}
 			}
-		}.runTaskLater(Main.get(), 30 * 20);
+		}.runTaskLaterAsynchronously(Main.get(), 30 * 20);
 	}
 }

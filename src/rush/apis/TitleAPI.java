@@ -31,7 +31,7 @@ public class TitleAPI {
 			Object subtitlePacket = textTitleConstructor.newInstance(enumSUBTITLE, chatSubtitle);
 			ReflectionUtils.sendPacket(player, subtitlePacket);
 
-		} catch (Exception e) {
+		} catch (Error | Exception e) {
 			e.printStackTrace();
 		}
 	}
@@ -61,6 +61,6 @@ public class TitleAPI {
 			timeTitleConstructor = ppot.getConstructor(enumClass, icbc, int.class, int.class, int.class);
 			textTitleConstructor = ppot.getConstructor(enumClass, icbc);
 		}
-		catch (Exception e) {}
+		catch (Error | Exception e) {}
 	}
 }

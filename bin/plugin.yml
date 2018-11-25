@@ -1,8 +1,8 @@
 main: rush.Main
-version: 1.7.1
+version: 1.8
 name: System
 load: POSTWORLD
-softdepend: [Legendchat, mcMMO, MassiveCore, Factions]
+softdepend: [Legendchat, mcMMO, MassiveCore, Factions, Vault]
 
 permissions:
   system.alerta:
@@ -43,6 +43,9 @@ permissions:
     default: op
   system.criarkit:
     description: Permissão para criar um kit.
+    default: op
+  system.darkit:
+    description: Permissão para enviar um kit.
     default: op
   system.delhome:
     description: Permissão para definir uma home.
@@ -295,6 +298,9 @@ permissions:
   system.bypass.craftbloqueado:
     description: Permissão para craftar itens que foram bloqueados.
     default: false
+  system.bypass.delaydivulgar:
+    description: Permissão para pegar divulgar esperar o delay.
+    default: false
   system.bypass.delaykit:
     description: Permissão para pegar um kit sem precisar esperar o delay.
     default: false
@@ -333,6 +339,7 @@ permissions:
       system.bypass.comandobloqueado: true
       system.bypass.containerbloqueado: true
       system.bypass.craftbloqueado: true
+      system.bypass.delaydivulgar: true
       system.bypass.delaykit: true
       system.bypass.entraremveiculos: true
       system.bypass.entrarnacama: true
@@ -358,6 +365,7 @@ permissions:
       system.craft: true
       system.crashar: true
       system.criarkit: true
+      system.darkit: true
       system.delhome: true
       system.delkit: true
       system.delwarp: true

@@ -7,7 +7,7 @@ import org.bukkit.event.block.LeavesDecayEvent;
 
 public class DesativarQuedaDasFolhas implements Listener {
 
-	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void aoCairFolha(LeavesDecayEvent e) {
 		e.setCancelled(true);
 	}

@@ -48,6 +48,6 @@ public class ActionBarAPI {
 			
 			chatConstructor = ppoc.getConstructor(icbc,  typeMessageClass);	
 		}
-		catch (Exception e) {}
+		catch (Error | Exception e) {}
 	}
 }

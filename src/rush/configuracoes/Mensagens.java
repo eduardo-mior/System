@@ -70,7 +70,7 @@ public class Mensagens {
 	public static String Tornou_Home_Publica;
 	public static String Tornou_Home_Particular;
 	public static String Kit_Comando_Incorreto;
-	public static String Kit_Comando_Incorreto_Console;
+	public static String DarKit_Comando_Incorreto;
 	public static String DelKit_Comando_Incorreto;
 	public static String VerKit_Comando_Incorreto;
 	public static String CriarKit_Comando_Incorreto;
@@ -90,6 +90,7 @@ public class Mensagens {
 	public static String Nenhum_Kit_Criado;
 	public static String Kits_Lista;
 	public static String Divulgar_Comando_Incorreto;
+	public static String Divulgar_Aguarde_Delay;
 	public static String Link_Invalido;
 	public static String Divulgando_Live;
 	public static String Divulgando_Video;
@@ -353,7 +354,7 @@ public class Mensagens {
 		Tornou_Home_Publica = config.getString("Tornou-Home-Publica").replace('&', '§');
 		Tornou_Home_Particular = config.getString("Tornou-Home-Particular").replace('&', '§');
 		Kit_Comando_Incorreto = config.getString("Kit-Comando-Incorreto").replace('&', '§');
-		Kit_Comando_Incorreto_Console = config.getString("Kit-Comando-Incorreto-Console").replace('&', '§');
+		DarKit_Comando_Incorreto = config.getString("DarKit-Comando-Incorreto").replace('&', '§');
 		DelKit_Comando_Incorreto = config.getString("DelKit-Comando-Incorreto").replace('&', '§');
 		VerKit_Comando_Incorreto = config.getString("VerKit-Comando-Incorreto").replace('&', '§');
 		CriarKit_Comando_Incorreto = config.getString("CriarKit-Comando-Incorreto").replace('&', '§');
@@ -373,6 +374,7 @@ public class Mensagens {
 		Nenhum_Kit_Criado = config.getString("Nenhum-Kit-Criado").replace('&', '§');
 		Kits_Lista = config.getString("Kits-Lista").replace('&', '§');
 		Divulgar_Comando_Incorreto = config.getString("Divulgar-Comando-Incorreto").replace('&', '§');
+		Divulgar_Aguarde_Delay = config.getString("Divulgar-Aguarde-Delay").replace('&', '§');
 		Link_Invalido = config.getString("Link-Invalido").replace('&', '§');
 		Divulgando_Live = config.getString("Divulgando-Live").replace('&', '§');
 		Divulgando_Video = config.getString("Divulgando-Video").replace('&', '§');

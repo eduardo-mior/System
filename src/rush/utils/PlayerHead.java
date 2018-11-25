@@ -16,12 +16,7 @@ public class PlayerHead {
 	}
 	
 	public static ItemStack get(Player player) {
-		String dono = player.getName();
-		ItemStack skull = new ItemStack(Material.SKULL_ITEM, 1, (byte) 3);
-		SkullMeta meta = (SkullMeta) skull.getItemMeta();
-		meta.setOwner(dono);
-		skull.setItemMeta(meta);
-		return skull;
+		return get(player.getName());
 	}
 	
 }

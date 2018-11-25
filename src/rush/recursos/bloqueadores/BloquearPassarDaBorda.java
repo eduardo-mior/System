@@ -4,6 +4,7 @@ import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerTeleportEvent;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
@@ -18,7 +19,7 @@ public class BloquearPassarDaBorda implements Listener {
 	 * Link: https://www.spigotmc.org/threads/worldborder-enderpearl-block.236808/
 	 */
 
-	@EventHandler(ignoreCancelled = true)
+	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void aoLancarEnderPearl(PlayerTeleportEvent e) {
 		Player p = e.getPlayer();
 		if (e.getCause() == TeleportCause.ENDER_PEARL && p.getWorld().getWorldBorder() != null) {

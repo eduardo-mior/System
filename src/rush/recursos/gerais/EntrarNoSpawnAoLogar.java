@@ -11,12 +11,12 @@ import rush.configuracoes.Locations;
 
 public class EntrarNoSpawnAoLogar implements Listener {
 
-	@EventHandler(priority = EventPriority.MONITOR)
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void aoRenascer(PlayerRespawnEvent e) {
 		e.setRespawnLocation(Locations.spawn);
 	}
 
-	@EventHandler(priority = EventPriority.MONITOR)
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void aoLogar(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
 		if (p.hasPermission("system.spawn.vip")) {

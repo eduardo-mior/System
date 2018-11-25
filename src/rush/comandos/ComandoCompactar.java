@@ -27,33 +27,19 @@ public class ComandoCompactar implements CommandExecutor {
 		// Pegando o player, o inventario e os itens do inventario
 		Player p = (Player)s;
 			
-		// Verificando se o player possui itens para compactar
-		if (!possuiItensParaCompactar(p.getInventory())) {
+		// Chamando o método que compacta os itens e enviando mensagem
+		int compactados = compactarItens(p.getInventory().getContents(), p.getInventory(), p);
+		
+		// Verificando se o player compactou algum item
+		if (compactados == 0) {
 			s.sendMessage(Mensagens.Compactar_Nao_Possui);
 			return true;
 		}
-			
-		// Chamando o método que compacta os itens e enviando mensagem
-		int compactados = compactarItens(p.getInventory().getContents(), p.getInventory(), p);
-		    compactados += compactarItens(p.getInventory().getContents(), p.getInventory(), p);
+		
+		// Recompactandos os itens pois podem haver sobras no inventario e informado o player
+		compactados += compactarItens(p.getInventory().getContents(), p.getInventory(), p);
 		s.sendMessage(Mensagens.Compactar_Com_Sucesso.replace("%quantia%", String.valueOf(compactados)));
 		return true;
-	}
-	
-	// Método para verificar se o player possui itens para compactar
-	private boolean possuiItensParaCompactar(PlayerInventory i) {
-		if(	i.contains(Material.IRON_INGOT) ||
-			i.contains(Material.GOLD_INGOT) ||
-		    i.contains(Material.REDSTONE) ||
-		    i.contains(Material.COAL) ||
-		    i.contains(Material.INK_SACK) ||
-		    i.contains(Material.SLIME_BALL) ||
-		    i.contains(Material.GOLD_NUGGET) ||
-		    i.contains(Material.DIAMOND) ||
-		    i.contains(Material.EMERALD) ||
-		    i.contains(Material.MELON))
-			return true;
-			else return false;
 	}
 	
 	// Método para compactar os itens
@@ -67,7 +53,8 @@ public class ComandoCompactar implements CommandExecutor {
 			if (item == null || item.getType() == Material.AIR) continue;
 			
 			// Verificando se o item possui a quantidade minima para ser compactado
-			if (item.getAmount() < 9) continue;
+			// Verificando se o item possui ItemMeta (nome ou lore)
+			if (item.getAmount() < 9 || item.hasItemMeta()) continue;
 			
 			// Verificando se o item é um corante e esse corante não é o LapidAzul
 			if (item.getType() == Material.INK_SACK && item.getDurability() != 4) continue;
@@ -84,7 +71,7 @@ public class ComandoCompactar implements CommandExecutor {
 				
 				// Verificando se o item não pode ser compactado por completo
 				if (resto > 0) {
-					devolver.add(new ItemStack(item.getType(), resto));
+					devolver.add(new ItemStack(item.getType(), resto, item.getDurability()));
 				}
 				
 				// Adicionando a quantia de itens compactados para exibir na mensagem
@@ -100,7 +87,7 @@ public class ComandoCompactar implements CommandExecutor {
 			/* Verificando se o player possui espaço no inventario para armazenar o item,
 			   caso ele não possuir espaço no inventarios o item sera dropado */
 			if (inv.firstEmpty() != -1) inv.addItem(item);
-			else p.getWorld().dropItem(p.getLocation(), item);	
+			else p.getWorld().dropItem(p.getLocation(), item);
 		}
 		
 		// Retorna a quantia de itens compactados para exibir na mensagem

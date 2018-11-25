@@ -27,7 +27,9 @@ public class HealthAPI {
 		} catch (NoSuchMethodError e1) {
 			try {
 				return (int) p.getClass().getMethod("getMaxHealth").invoke(p);
-			} catch (Exception e2) {}
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
 		}
 		return 0;
 	}
@@ -51,7 +53,7 @@ public class HealthAPI {
 			try {
 				p.getClass().getMethod("setMaxHealth", int.class).invoke(p, health);
 			} catch (Exception e2) {
-				e1.printStackTrace();
+				e2.printStackTrace();
 			}
 		}
 	}

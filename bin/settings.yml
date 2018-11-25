@@ -1,13 +1,23 @@
-﻿file-version: 1
+﻿file-version: 2
 ############################################################
 # +------------------------------------------------------+ #
 # |              Recuros Adicionais (Addons)             | #
 # +------------------------------------------------------+ #
 ############################################################
 AtivarAddons:
-  massiveFactions: true
-  Legendchat: true
-  mcMMO: true
+  MassiveFactions: true 
+  #-> O Addon do Massive serve para não setar home nas terras dos inimigos
+  
+  LegendChat: true
+  #-> O Addon do LegendChat serve para as Tags(McTop e Magnata), para o sistema de destacar 
+  #   a mensagem dos master e colocar cor automatica na mensagem.
+  
+  McMMO: true
+  #-> O Addon do McMMO serve para mostra o XP na ActionBar e para anunicar quando upa 100 niveis
+  #   e criar a Tag McTop no LegendChat
+  
+  Vault: true
+  #-> O Addon do Vault serve para a tag criar a Tag Magnata no LegendChat
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -16,12 +26,12 @@ AtivarAddons:
 ############################################################
 Bloquear-Cama: true
 Bloquear-Subir-Em-Veiculos: true
-Bloquear-NameTag: true
+Bloquear-NameTag: false
 Bloquear-Passar-Da-Borda: true
 Bloquear-Subir-No-Teto-Nether: true
 EnderPearl-Cooldown: 
   Ativar: true
-  Cooldown: 5
+  Cooldown: 5 #segundos
 
 Bloquear-Abrir-Containers: 
   Ativar: false
@@ -56,12 +66,15 @@ Comandos-Que-Envolvem-Money:
 ############################################################
 Bloquear-Congelar-Agua: false
 Bloquear-Derreter-Gelo-E-Neve: false
+Bloquear-Quebrar-Plantacoes-Pulando: false
 Desativar-Ciclo-Do-Dia: true
+Desativar-Dano-Do-Blaze: false
 Desativar-Dano-Do-EnderDragon: false
-Desativar-Dano-Do-Whither: true
+Desativar-Dano-Do-Ghast: false
+Desativar-Dano-Do-Wither: true
 Desativar-Mobs-Naturais: true
 Desativar-Propagacao-Do-Fogo: true
-Desativar-Queda-Das-Folhas: false
+Desativar-Queda-Das-Folhas: true
 Desativar-Queda-Da-Areia: false
 Desativar-Flow-Da-Agua-E-Lava: false
 Desativar-Chuva: true
@@ -92,10 +105,12 @@ Bloquear-Teleport-Por-Portal:
 # |                Configurações Diversas                | #
 # +------------------------------------------------------+ #
 ############################################################
-Delay-Para-Teleportar-Comandos: 5
+Delay-Para-Teleportar-Comandos: 5 #segundos
 
-Tempo-Para-Expirar-Solicitacao-Tpa: 60
-Tempo-Para-Poder-Enviar-Outra-Solicitacao-Tpa: 30
+Delay-Para-Divulgar: 15 #minutos
+
+Tempo-Para-Expirar-Solicitacao-Tpa: 60 #segundos
+Tempo-Para-Poder-Enviar-Outra-Solicitacao-Tpa: 30 #segundos
 
 Limitador-De-Players:
   Ativar: true
@@ -112,7 +127,7 @@ Limitador-De-Players:
 
 Invencibilidade-Ao-Teleportar: 
   Ativar: true
-  Tempo-De-Invencibilidade-Ao-Teleportar: 3
+  Tempo-De-Invencibilidade-Ao-Teleportar: 3 #segundos
 
 Dropar-Cabeca-Ao-Morrer: 
   Ativar: true
@@ -241,9 +256,19 @@ Commando-Slime:
 #Tag no legendchat {mctop}
 #Para os nomes das skills ficarem em BR vc precisa estar usando um mcMMO traduzido
 mcTopTag:
-  Tempo-De-Checagem: 300
+  Tempo-De-Checagem: 900 #segundos
   Tag: '&9[⚒] '
-
+  
+############################################################
+# +------------------------------------------------------+ #
+# |                         Vault                        | #
+# +------------------------------------------------------+ #
+############################################################
+#Tag no legendchat {magnata}
+magnataTag:
+  Tempo-De-Checagem: 900 #segundos
+  Tag: '&2[$] '
+  
 ############################################################
 # +------------------------------------------------------+ #
 # |                      LegendChat                      | #
@@ -299,7 +324,7 @@ Anuncios:
 ############################################################
 ScoreBoard:
   # A scoreboard não possui variaveis.
-  Ativar: true
+  Ativar: false
   Titulo: "  &6&lHypixel  "
   Linhas:
   - '&eSeja Bem Vindo!'

@@ -13,7 +13,7 @@ import rush.configuracoes.Settings;
 @SuppressWarnings("all")
 public class BloquearCrafts implements Listener {
 
-	@EventHandler(priority = EventPriority.LOWEST)
+	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void aoPrepararCraft(PrepareItemCraftEvent e) {
 		if (e.getRecipe() != null && e.getRecipe().getResult() != null) {
 			int itemType = e.getRecipe().getResult().getType().getId();

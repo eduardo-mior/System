@@ -3,9 +3,11 @@ package rush.addons;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 
 import com.gmail.nossr50.datatypes.player.PlayerProfile;
+import com.gmail.nossr50.datatypes.skills.SkillType;
 import com.gmail.nossr50.events.experience.McMMOPlayerLevelUpEvent;
 import com.gmail.nossr50.events.experience.McMMOPlayerXpGainEvent;
 import com.gmail.nossr50.util.player.UserManager;
@@ -30,14 +32,15 @@ public class Mcmmo implements Listener {
 	}
 	  
 	@SuppressWarnings("deprecation")
-	@EventHandler(ignoreCancelled = true)
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onGainXp(McMMOPlayerXpGainEvent e) {
 		PlayerProfile pro = UserManager.getPlayer(e.getPlayer()).getProfile();
-		String skill = e.getSkill().getName();
-		int lvl = pro.getSkillLevel(e.getSkill());
-		int xp = pro.getSkillXpLevel(e.getSkill());
-		int dxp = pro.getXpToLevel(e.getSkill());
+		SkillType skillType = e.getSkill();
+		String skillName = skillType.getName();
+		int lvl = pro.getSkillLevel(skillType);
+		int xp = pro.getSkillXpLevel(skillType);
+		int dxp = pro.getXpToLevel(skillType);
 		int gn = Math.round(e.getXpGained());
-		ActionBarAPI.sendActionBar(e.getPlayer(), "§a" + skill + ": " + lvl + " (" + xp + "/" + dxp + ") +" + gn + "XP");
+		ActionBarAPI.sendActionBar(e.getPlayer(), "§a" + skillName + ": " + lvl + " (" + xp + "/" + dxp + ") +" + gn + "XP");
 	}
 }

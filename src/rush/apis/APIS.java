@@ -13,7 +13,7 @@ public class APIS {
 			ItemAPI.load();
 			ViewDistanceAPI.load();
 		} 
-		catch (Exception e) {}
+		catch (Error | Exception e) {}
 		
 	}
 	

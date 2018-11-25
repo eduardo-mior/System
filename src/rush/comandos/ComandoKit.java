@@ -31,7 +31,7 @@ public class ComandoKit implements CommandExecutor {
 			
 			// Verificando se o player digitou o número de argumentos corretos
 			if (args.length != 2) {
-				s.sendMessage(Mensagens.Kit_Comando_Incorreto_Console);
+				s.sendMessage(Mensagens.DarKit_Comando_Incorreto);
 				return true;
 			}
 			

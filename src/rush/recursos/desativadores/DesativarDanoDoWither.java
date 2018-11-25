@@ -7,19 +7,21 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 import org.bukkit.event.entity.ProjectileLaunchEvent;
 
-public class DesativarDanoDoWhiter implements Listener {
+public class DesativarDanoDoWither implements Listener {
 
-	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void aoDestruirOsBlocos(EntityChangeBlockEvent e) {
 		if (e.getEntity().getType() == EntityType.WITHER) {
 			e.setCancelled(true);
 		}
 	}
 
-	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void aoLancarAsCabecas(ProjectileLaunchEvent e) {
 		if (e.getEntityType() == EntityType.WITHER_SKULL) {
-			e.setCancelled(true);
+			if (e.getEntity().getShooter() != null) {
+				e.setCancelled(true);
+			}
 		}
 	}
 }

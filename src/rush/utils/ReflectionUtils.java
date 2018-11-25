@@ -13,9 +13,10 @@ import org.bukkit.entity.Player;
 
 public class ReflectionUtils {
 	
+	private static final String VERSION = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
+	
    	public static Class<?> getNMSClass(String name) throws ClassNotFoundException {
-   		String version = Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
-   		return Class.forName("net.minecraft.server." + version + "." + name);
+   		return Class.forName("net.minecraft.server." + VERSION + "." + name);
    	}
    	
    	public static Class<?> getOBClass(String name) throws ClassNotFoundException {

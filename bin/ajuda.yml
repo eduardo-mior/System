@@ -58,6 +58,7 @@
 #    | system.craft              - Permissão para utilizar o comando /craft                        |
 #    | system.crashar            - Permissão para utilizar o comando /crashar                      |
 #    | system.criarkit           - Permissão para utilizar o comando /criarkit                     |
+#    | system.darkit             - Permissão para utilizar o comando /darkit                       |
 #    | system.delhome            - Permissão para utilizar o comando /delhome                      |
 #    | system.delkit             - Permissão para utilizar o comando /delkit                       |
 #    | system.delwarp            - Permissão para utilizar o comando /delwarp                      |
@@ -148,6 +149,7 @@
 #    | system.bypass.comandobloqueado    - Permissão para utilizar comandos que foram bloqueados   |
 #    | system.bypass.containerbloqueado  - Permissão para abrir containers que foram bloqueados    |
 #    | system.bypass.craftbloqueado      - Permissão para craftar itens que foram bloqueados       |
+#    | system.bypass.delaydivulgar       - Permissão para divulgar sem esperar o delay             |
 #    | system.bypass.delaykit            - Permissão para pegar os kits sem esperar o delay        |
 #    | system.bypass.entraremveiculos    - Permissão para entrar em veiculos que foram bloqueados  |
 #    | system.bypass.entrarnacama        - Permissão para entrar na cama mesmo estando bloqueada   |

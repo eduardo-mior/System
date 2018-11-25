@@ -13,7 +13,7 @@ import rush.configuracoes.Settings;
 
 public class FlyListener implements Listener {
 
-	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
+	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void aoTeleportar(PlayerTeleportEvent e) {
 		Player p = e.getPlayer();
 		if (!p.hasPermission("system.fly.staff") && p.getGameMode() != GameMode.CREATIVE) {

@@ -91,7 +91,24 @@ public class ComandoEditaritemOLD implements CommandExecutor {
 			s.sendMessage(Mensagens.Editar_Item_Com_Sucesso);
 			return true;
 		}
-			
+		
+		// Verificando se o player quer alterar a quantidade do item
+		if (args[0].equalsIgnoreCase("quantia")) {
+			int quantia;
+			try {
+				quantia = Integer.parseInt(args[1]);
+				item.setAmount(quantia);
+				s.sendMessage(Mensagens.Editar_Item_Com_Sucesso);
+				return true;
+			} catch (NumberFormatException e) {
+				s.sendMessage(Mensagens.Numero_Invalido.replace("%numero%", e.getMessage().split("\"")[1]));
+				return true;
+			} catch (ArrayIndexOutOfBoundsException e) {
+				s.sendMessage(Mensagens.Editar_Item_Comando_Incorreto);
+				return true;
+			}
+		}
+		
 		// Verificando se o player quer adiconar 'bugar' o item
 		if (args[0].equalsIgnoreCase("bugar")) {
 			item.setDurability(Short.MAX_VALUE);

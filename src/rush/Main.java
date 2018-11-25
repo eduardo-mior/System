@@ -8,8 +8,10 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import rush.addons.LegendChat;
-import rush.addons.LegendChatAndMcMMO;
 import rush.addons.Mcmmo;
+import rush.addons.Vault;
+import rush.addons.legendchat.MagnataTag;
+import rush.addons.legendchat.McTopTag;
 import rush.apis.APIS;
 import rush.comandos.ComandoAlerta;
 import rush.comandos.ComandoAlertaOLD;
@@ -104,14 +106,17 @@ import rush.recursos.bloqueadores.BloquearNameTag;
 import rush.recursos.bloqueadores.BloquearNicksImproprios;
 import rush.recursos.bloqueadores.BloquearPassarDaBorda;
 import rush.recursos.bloqueadores.BloquearPlacas;
+import rush.recursos.bloqueadores.BloquearQuebrarPlantacoesPulando;
 import rush.recursos.bloqueadores.BloquearShiftEmContainers;
 import rush.recursos.bloqueadores.BloquearSubirEmVeiculos;
 import rush.recursos.bloqueadores.BloquearSubirNoTetoNether;
 import rush.recursos.bloqueadores.BloquearTeleportPorPortal;
 import rush.recursos.desativadores.DesativarChuva;
 import rush.recursos.desativadores.DesativarCicloDoDia;
+import rush.recursos.desativadores.DesativarDanoDoBlaze;
 import rush.recursos.desativadores.DesativarDanoDoEnderDragon;
-import rush.recursos.desativadores.DesativarDanoDoWhiter;
+import rush.recursos.desativadores.DesativarDanoDoGhast;
+import rush.recursos.desativadores.DesativarDanoDoWither;
 import rush.recursos.desativadores.DesativarFlowDaAguaELava;
 import rush.recursos.desativadores.DesativarFomeNosMundos;
 import rush.recursos.desativadores.DesativarMensagemDeEntrada;
@@ -210,6 +215,7 @@ public class Main extends JavaPlugin {
 		new Command("craft", "system.craft", new ComandoCraft());
 		new Command("crashar", "system.crashar", new ComandoCrashar());
 		new Command("criarkit", "system.criarkit", new ComandoCriarkit());
+		new Command("darkit", "system.darkit", new ComandoDelhome());
 		new Command("delhome", "system.delhome", new ComandoDelhome());
 		new Command("delkit", "system.delkit", new ComandoDelkit());
 		new Command("delwarp", "system.delwarp", new ComandoDelwarp());
@@ -370,6 +376,10 @@ public class Main extends JavaPlugin {
 			pm.registerEvents(new BloquearPlacas(), this);
 		}
 
+		if (Settings.Bloquear_Quebrar_Plantacoes_Pulando) {
+			pm.registerEvents(new BloquearQuebrarPlantacoesPulando(), this);
+		}
+		
 		if (Settings.Bloquear_Shift_Em_Containers_Ativar) {
 			pm.registerEvents(new BloquearShiftEmContainers(), this);
 		}
@@ -394,12 +404,20 @@ public class Main extends JavaPlugin {
 			DesativarCicloDoDia.stopDaylightCycle();
 		}
 
+		if (Settings.Desativar_Dano_Do_Blaze) {
+			pm.registerEvents(new DesativarDanoDoBlaze(), this);
+		}
+		
 		if (Settings.Desativar_Dano_Do_EnderDragon) {
 			pm.registerEvents(new DesativarDanoDoEnderDragon(), this);
 		}
 
-		if (Settings.Desativar_Dano_Do_Whither) {
-			pm.registerEvents(new DesativarDanoDoWhiter(), this);
+		if (Settings.Desativar_Dano_Do_Ghast) {
+			pm.registerEvents(new DesativarDanoDoGhast(), this);
+		}
+		
+		if (Settings.Desativar_Dano_Do_Wither) {
+			pm.registerEvents(new DesativarDanoDoWither(), this);
 		}
 
 		if (Settings.Desativar_Flow_Da_Agua_E_Lava) {
@@ -525,25 +543,40 @@ public class Main extends JavaPlugin {
 			}
 		}
 
-		if (Settings.AtivarAddons_mcMMO) {
+		if (Settings.AtivarAddons_McMMO) {
 			if (!isOldVersion()) {
 				if (pm.getPlugin("mcMMO") == null) {
-					getServer().getConsoleSender().sendMessage("§c[System] mcMMO nao encontrado, desativando addons!");
+					getServer().getConsoleSender().sendMessage("§c[System] McMMO nao encontrado, desativando addons!");
 				} else {
 					pm.registerEvents(new Mcmmo(), this);
 					if (pm.getPlugin("Legendchat") != null) {
-						pm.registerEvents(new LegendChatAndMcMMO(), this);
-						LegendChatAndMcMMO.checkMCTop();
+						pm.registerEvents(new McTopTag(), this);
+						McTopTag.checkMCTop();
 					}
 				}
 			}
 		}
 
-		if (Settings.AtivarAddons_massiveFactions) {
+		if (Settings.AtivarAddons_MassiveFactions) {
 			if (pm.getPlugin("MassiveCore") == null || pm.getPlugin("Factions") == null) {
 				getServer().getConsoleSender().sendMessage("§c[System] Factions nao encontrado, desativando addons!");
 			} else {
 				setupFactions = true;
+			}
+		}
+		
+		if (Settings.AtivarAddons_Vault) {
+			if (pm.getPlugin("Vault") == null) {
+				getServer().getConsoleSender().sendMessage("§c[System] Vault nao encontrado, desativando addons!");
+			} else {
+				if (Vault.setupEconomy()) {
+					if (pm.getPlugin("Legendchat") != null) {
+						pm.registerEvents(new MagnataTag(), this);
+						MagnataTag.checkMagnata();
+					}
+				} else {
+					getServer().getConsoleSender().sendMessage("§c[System] Nenhum plugin valido de economia encontrado!");
+				}
 			}
 		}
 
@@ -580,8 +613,12 @@ public class Main extends JavaPlugin {
 		try {
 			HandlerList.unregisterAll(this);
 	
-			if (Settings.AtivarAddons_mcMMO && LegendChatAndMcMMO.TTask != null) {
-				LegendChatAndMcMMO.TTask.cancel();
+			if (Settings.AtivarAddons_McMMO && McTopTag.TTask != null) {
+				McTopTag.TTask.cancel();
+			}
+			
+			if (Settings.AtivarAddons_Vault && MagnataTag.MTask != null) {
+				MagnataTag.MTask.cancel();
 			}
 	
 			if (Settings.Auto_Anuncio) {
@@ -632,7 +669,7 @@ public class Main extends JavaPlugin {
 		else if (ver.contains("git-Bukkit"))
 			return JarType.BUKKIT;
 		else
-			return JarType.OUTRO;
+			return JarType.DESCONHECIDA;
 	}
 
 	public static boolean isOldVersion() {

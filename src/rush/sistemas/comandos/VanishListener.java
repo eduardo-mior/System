@@ -6,8 +6,6 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-import org.bukkit.event.player.PlayerQuitEvent;
-import org.bukkit.potion.PotionEffectType;
 
 @SuppressWarnings("all")
 public class VanishListener implements Listener {
@@ -16,9 +14,10 @@ public class VanishListener implements Listener {
 	
 	@EventHandler
 	public void onLogin(PlayerJoinEvent e) {
-		if (!e.getPlayer().hasPermission("system.vanish.bypass")) {
-			for (Player p : VANISH) {
-				e.getPlayer().hidePlayer(p);
+		Player p = e.getPlayer();
+		if (!p.hasPermission("system.vanish.bypass")) {
+			for (Player vanished : VANISH) {
+				p.hidePlayer(vanished);
 			}
 		}
 	}

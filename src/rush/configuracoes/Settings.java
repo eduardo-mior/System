@@ -9,9 +9,10 @@ import rush.utils.manager.ConfigManager;
 
 public class Settings {
 
+	public static boolean AtivarAddons_MassiveFactions;
 	public static boolean AtivarAddons_Legendchat;
-	public static boolean AtivarAddons_mcMMO;
-	public static boolean AtivarAddons_massiveFactions;
+	public static boolean AtivarAddons_McMMO;
+	public static boolean AtivarAddons_Vault;
 	public static boolean Bloquear_Cama;
 	public static boolean Bloquear_Subir_Em_Veiculos;
 	public static boolean Bloquear_NameTag;
@@ -34,11 +35,14 @@ public class Settings {
 	public static boolean Desativar_Flow_Da_Agua_E_Lava;
 	public static boolean Desativar_Chuva;
 	public static int Delay_Para_Teleportar_Comandos;
+	public static int Delay_Para_Divulgar;
 	public static boolean Bloquear_Mobs_De_Pegarem_Fogo_Para_O_Sol;
 	public static boolean Bloquear_Cair_No_Void;
 	public static boolean Desativar_Ciclo_Do_Dia;
+	public static boolean Desativar_Dano_Do_Blaze;
 	public static boolean Desativar_Dano_Do_EnderDragon;
-	public static boolean Desativar_Dano_Do_Whither;
+	public static boolean Desativar_Dano_Do_Ghast;
+	public static boolean Desativar_Dano_Do_Wither;
 	public static boolean Desativar_Fome_Nos_Mundos;
 	public static boolean Desativar_Mensagem_De_Entrada;
 	public static boolean Desativar_Mensagem_De_Morte;
@@ -84,8 +88,10 @@ public class Settings {
 	public static List<String> Lista_Das_Palavras_Bloqueadas;
 	public static boolean Bloquear_Nicks_Improprios;
 	public static List<String> Nicks_Bloqueados;
-	public static int mcTopTag_Tempo_De_Checagem;
+	public static long mcTopTag_Tempo_De_Checagem;
 	public static String mcTopTag_Tag;
+	public static long magnataTag_Tempo_De_Checagem;
+	public static String magnataTag_Tag;
 	public static Map<String, Object> CorAutomatica;
 	public static boolean Auto_Anuncio;
 	public static boolean Destacar_Anuncio;
@@ -110,12 +116,14 @@ public class Settings {
 	public static int Tempo_Para_Poder_Enviar_Outra_Solicitacao_Tpa;
 	public static String Commando_Slime_Esta;
 	public static String Commando_Slime_Nao_esta;
+	public static boolean Bloquear_Quebrar_Plantacoes_Pulando;
 
 	public static void loadSettings() {
 		FileConfiguration config = ConfigManager.getConfig("settings");
-		AtivarAddons_Legendchat = config.getBoolean("AtivarAddons.Legendchat");
-		AtivarAddons_mcMMO = config.getBoolean("AtivarAddons.mcMMO");
-		AtivarAddons_massiveFactions = config.getBoolean("AtivarAddons.massiveFactions");
+		AtivarAddons_MassiveFactions = config.getBoolean("AtivarAddons.MassiveFactions");
+		AtivarAddons_Legendchat = config.getBoolean("AtivarAddons.LegendChat");
+		AtivarAddons_McMMO = config.getBoolean("AtivarAddons.McMMO");
+		AtivarAddons_Vault = config.getBoolean("AtivarAddons.Vault");
 		Bloquear_Cama = config.getBoolean("Bloquear-Cama");
 		Bloquear_Subir_Em_Veiculos = config.getBoolean("Bloquear-Subir-Em-Veiculos");
 		Bloquear_NameTag = config.getBoolean("Bloquear-NameTag");
@@ -138,11 +146,14 @@ public class Settings {
 		Desativar_Flow_Da_Agua_E_Lava = config.getBoolean("Desativar-Flow-Da-Agua-E-Lava");
 		Desativar_Chuva = config.getBoolean("Desativar-Chuva");
 		Delay_Para_Teleportar_Comandos = config.getInt("Delay-Para-Teleportar-Comandos");
+		Delay_Para_Divulgar = config.getInt("Delay-Para-Divulgar") * 1000 * 60;
 		Bloquear_Mobs_De_Pegarem_Fogo_Para_O_Sol = config.getBoolean("Bloquear-Mobs-De-Pegarem-Fogo-Para-O-Sol");
 		Bloquear_Cair_No_Void = config.getBoolean("Bloquear-Cair-No-Void");
 		Desativar_Ciclo_Do_Dia = config.getBoolean("Desativar-Ciclo-Do-Dia");
+		Desativar_Dano_Do_Blaze = config.getBoolean("Desativar-Dano-Do-Blaze");
 		Desativar_Dano_Do_EnderDragon = config.getBoolean("Desativar-Dano-Do-EnderDragon");
-		Desativar_Dano_Do_Whither = config.getBoolean("Desativar-Dano-Do-Whither");
+		Desativar_Dano_Do_Ghast = config.getBoolean("Desativar-Dano-Do-Ghast");
+		Desativar_Dano_Do_Wither = config.getBoolean("Desativar-Dano-Do-Wither");
 		Desativar_Fome_Nos_Mundos = config.getBoolean("Desativar-Fome-Nos-Mundos");
 		Desativar_Mensagem_De_Entrada = config.getBoolean("Desativar-Mensagem-De-Entrada");
 		Desativar_Mensagem_De_Morte = config.getBoolean("Desativar-Mensagem-De-Morte");
@@ -188,8 +199,10 @@ public class Settings {
 		Lista_Das_Palavras_Bloqueadas = config.getStringList("Bloquear-Palavras-Em-Placas.Lista-Das-Palavras-Bloqueadas");
 		Bloquear_Nicks_Improprios = config.getBoolean("Bloquear-Nicks-Improprios");
 		Nicks_Bloqueados = config.getStringList("Nicks-Bloqueados");
-		mcTopTag_Tempo_De_Checagem = config.getInt("mcTopTag.Tempo-De-Checagem");
+		mcTopTag_Tempo_De_Checagem = config.getLong("mcTopTag.Tempo-De-Checagem");
 		mcTopTag_Tag = config.getString("mcTopTag.Tag").replace('&', '§');
+		magnataTag_Tempo_De_Checagem = config.getLong("magnataTag.Tempo-De-Checagem");
+		magnataTag_Tag = config.getString("magnataTag.Tag").replace('&', '§');
 		CorAutomatica = config.getConfigurationSection("CorAutomatica").getValues(true);
 		Auto_Anuncio = config.getBoolean("Auto-Anuncio");
 		Destacar_Anuncio = config.getBoolean("Destacar-Anuncio");
@@ -214,5 +227,6 @@ public class Settings {
 		Tempo_Para_Poder_Enviar_Outra_Solicitacao_Tpa = config.getInt("Tempo-Para-Poder-Enviar-Outra-Solicitacao-Tpa");
 		Commando_Slime_Esta = config.getString("Commando-Slime.Esta-Em-SlimeChunk");
 		Commando_Slime_Nao_esta = config.getString("Commando-Slime.Nao-Esta-Em-SlimeChunk");
+		Bloquear_Quebrar_Plantacoes_Pulando = config.getBoolean("Bloquear-Quebrar-Plantacoes-Pulando");
 	}
 }

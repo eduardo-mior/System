@@ -60,6 +60,12 @@ comandos:
     descricao: Cria um kit.
     sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
+  darkit:
+    ativar-comando: true
+    aliases: [givekit]
+    descricao: Envia um kit para um player.
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
+    
   delhome:
     ativar-comando: true
     aliases: []
