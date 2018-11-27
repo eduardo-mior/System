@@ -12,7 +12,7 @@ import rush.utils.manager.ConfigManager;
 
 public class Locations {
 
-	private static Location padrao = new Location(Bukkit.getWorlds().get(0), 1.0, 10.0, 1.0, 1.0F, 1.0F);
+	private static Location padrao = new Location(Bukkit.getWorlds().get(0), 1.0, 100.0, 1.0, 1.0F, 1.0F);
 	public static Location spawn = padrao;
 	public static Location spawnVip = padrao;
 	public static Location areaVip = padrao;

@@ -359,7 +359,10 @@ Reparar-Hand-Com-Sucesso: "&aItem reparado com sucesso."
 # |                   Comando /speed                     | #
 # +------------------------------------------------------+ #
 ############################################################
-Speed-Comando-Incorreto: "&cComando incorreto, use /speed <velocidade> [player]"
+Speed-Comando-Incorreto: |
+  &cComando incorreto, use: 
+  &c/speed clear [player] &8-&7 Para resetar a velocidade do player.
+  &c/speed <velocidade> [player] &8-&7 Para alterar a velocidade do player.
 Speed-Outro-Sem-Permissao: "&cVocê não tem permissão para alterar a velocidade de outros players."
 Speed-Alterado-Voce: "&aVelocidade alterada com sucesso para %speed%."
 Speed-Alterado-Outro: "&aVelocidade de %player% alterada com sucesso para %speed%."

@@ -1,13 +1,18 @@
 package rush.comandos;
 
+import java.util.Collection;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
+import org.bukkit.Sound;
 import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import rush.Main;
+import rush.apis.OnlinePlayersAPI;
 import rush.configuracoes.Mensagens;
 
 @SuppressWarnings("all")
@@ -32,11 +37,14 @@ public class ComandoTpall implements CommandExecutor {
 				return true;
 			}
 
-			//Teleportando todos os players e informando
-			for (Player target : Bukkit.getOnlinePlayers()) {
+			// Teleportando todos os players e informando de acordo com a versão do minecraft	
+			Player[] players = OnlinePlayersAPI.getOnlinePlayers();
+			for (Player target : players) {
 				target.teleport(p);
 				target.sendMessage(Mensagens.Tphere_Puxado_Com_Sucesso.replace("%player%", p.getName()));
 			}
+			
+			
 			s.sendMessage(Mensagens.Tpall_Puxou_Com_Sucesso_Player.replace("%player%", p.getName()));
 			return true;
 		}
@@ -47,7 +55,7 @@ public class ComandoTpall implements CommandExecutor {
 			// Verificando se o mundo é 1 mundo valido
 			World w = Bukkit.getWorld(args[0]);
 			if (w == null) {
-				s.sendMessage(Mensagens.Mundo_Nao_Existe.replace("%mundo%", args[1]));
+				s.sendMessage(Mensagens.Mundo_Nao_Existe.replace("%mundo%", args[0]));
 				return true;
 			}
 
@@ -62,11 +70,14 @@ public class ComandoTpall implements CommandExecutor {
 				return true;
 			}
 
-			//Teleportando todos os players e informando
+			// Teleportando todos os players e informando de acordo com sua versão do minecrat
 			Location l = new Location(w, x, y, z);
-			for (Player target : Bukkit.getOnlinePlayers()) {
-				target.teleport(l);
+			Player[] players = OnlinePlayersAPI.getOnlinePlayers();
+			for (Player p : players) {
+				p.teleport(l);
 			}
+			
+			
 			s.sendMessage(Mensagens.Tpall_Puxou_Com_Sucesso_Cords
 					.replace("<world>", args[0])
 					.replace("<x>", args[1])

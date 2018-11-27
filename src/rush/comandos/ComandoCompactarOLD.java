@@ -61,7 +61,7 @@ public class ComandoCompactarOLD implements CommandExecutor {
 			
 			// Compactando o item
 			try {
-				Ores ores = Ores.valueOf(item.getType().name());
+				OldOres ores = OldOres.valueOf(item.getType().name());
 				int quantidade = item.getAmount();
 				int give = (int) quantidade / 9;
 				int resto = quantidade - (give * 9);

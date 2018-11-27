@@ -29,7 +29,15 @@ public class ComandoSpeed implements CommandExecutor {
 				s.sendMessage(Mensagens.Player_Offline);
 				return true;
 			}
-
+			
+			// Verificando se o player não quer resetar o fly
+			if (args[0].equalsIgnoreCase("clear") || args[0].equalsIgnoreCase("reset")) {
+				p.setFlySpeed(0.1f);
+				p.setWalkSpeed(0.2f);
+				s.sendMessage(Mensagens.Speed_Alterado_Outro.replace("%speed%", "PADRAO").replace("%player%", p.getName()));
+				return true;
+			}
+			
 			// Verificando se o número é um número valido
 			float speed;
 			try {
@@ -57,12 +65,19 @@ public class ComandoSpeed implements CommandExecutor {
 			s.sendMessage(Mensagens.Speed_Comando_Incorreto);
 			return true;
 		}
-
-		// Se o número de argumentos é 0 então a velocidade do sender é alterada
+		
 		if (args.length == 1) {
-
-			// Pegando o player e verificando se o número é um número valido
+			
+			// Verificando se o player não quer resetar o fly
 			Player p = (Player) s;
+			if (args[0].equalsIgnoreCase("clear") || args[0].equalsIgnoreCase("reset")) {
+				p.setFlySpeed(0.1f);
+				p.setWalkSpeed(0.2f);
+				s.sendMessage(Mensagens.Speed_Alterado_Voce.replace("%speed%", "PADRAO").replace("%player%", p.getName()));
+				return true;
+			}
+			
+			// Pegando o player e verificando se o número é um número valido
 			float speed;
 			try {
 				speed = Float.parseFloat(args[0]);
@@ -97,6 +112,14 @@ public class ComandoSpeed implements CommandExecutor {
 			Player p = Bukkit.getPlayer(args[1]);
 			if (p == null) {
 				s.sendMessage(Mensagens.Player_Offline);
+				return true;
+			}
+			
+			// Verificando se o player não quer resetar o fly
+			if (args[0].equalsIgnoreCase("clear") || args[0].equalsIgnoreCase("reset")) {
+				p.setFlySpeed(0.1f);
+				p.setWalkSpeed(0.2f);
+				s.sendMessage(Mensagens.Speed_Alterado_Outro.replace("%speed%", "PADRAO").replace("%player%", p.getName()));
 				return true;
 			}
 

@@ -181,17 +181,17 @@ public class ComandoVanish implements CommandExecutor {
 	// Método para setar o vanishMode
 	private void setVanishMode(Player player, boolean enable) {
 		if (enable) {
+			VanishListener.VANISH.add(player);
 			for (Player target : Bukkit.getOnlinePlayers()) {
 				if (!target.hasPermission("system.vanish.bypass")) {
 					target.hidePlayer(player);
 				}
 			}
-			VanishListener.VANISH.add(player);
 		} else {
+			VanishListener.VANISH.remove(player);
 			for (Player target : Bukkit.getOnlinePlayers()) {
 				target.showPlayer(player);
 			}
-			VanishListener.VANISH.remove(player);
 		}
 	}
 

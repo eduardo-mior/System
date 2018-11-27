@@ -25,6 +25,7 @@ import rush.comandos.ComandoCores;
 import rush.comandos.ComandoCraft;
 import rush.comandos.ComandoCrashar;
 import rush.comandos.ComandoCriarkit;
+import rush.comandos.ComandoDarkit;
 import rush.comandos.ComandoDelhome;
 import rush.comandos.ComandoDelkit;
 import rush.comandos.ComandoDelwarp;
@@ -215,7 +216,7 @@ public class Main extends JavaPlugin {
 		new Command("craft", "system.craft", new ComandoCraft());
 		new Command("crashar", "system.crashar", new ComandoCrashar());
 		new Command("criarkit", "system.criarkit", new ComandoCriarkit());
-		new Command("darkit", "system.darkit", new ComandoDelhome());
+		new Command("darkit", "system.darkit", new ComandoDarkit());
 		new Command("delhome", "system.delhome", new ComandoDelhome());
 		new Command("delkit", "system.delkit", new ComandoDelkit());
 		new Command("delwarp", "system.delwarp", new ComandoDelwarp());
@@ -225,6 +226,7 @@ public class Main extends JavaPlugin {
 		new Command("editarkit", "system.editarkit", new ComandoEditarkit());
 		new Command("editarplaca", "system.editarplaca", new ComandoEditarplaca());
 		new Command("enchant", "system.enchant", new ComandoEnchant());
+		new Command("executarsom", "system.executarsom", new ComandoExecutarSom());
 		new Command("feed", "system.feed", new ComandoFeed());
 		new Command("fly", "system.fly", new ComandoFly());
 		new Command("gamemode", "system.gamemode", new ComandoGamemode());
@@ -238,6 +240,7 @@ public class Main extends JavaPlugin {
 		new Command("lixo", "system.lixo", new ComandoLixo());
 		new Command("luz", "system.luz", new ComandoLuz());
 		new Command("mundovip", "system.mundovip", new ComandoMundoVip());
+		new Command("online", "system.online", new ComandoOnline());
 		new Command("particular", "system.particular", new ComandoParticular());
 		new Command("ping", "system.ping", new ComandoPing());
 		new Command("potion", "system.potion", new ComandoPotion());
@@ -258,6 +261,7 @@ public class Main extends JavaPlugin {
 		new Command("tp", "system.tp", new ComandoTp());
 		new Command("tpa", "system.tpa", new ComandoTpa());
 		new Command("tpaccept", "system.tpaccept", new ComandoTpaccept());
+		new Command("tpall", "system.tpall", new ComandoTpall());
 		new Command("tpcancel", "system.tpcancel", new ComandoTpcancel());
 		new Command("tpdeny", "system.tpdeny", new ComandoTpdeny());
 		new Command("tphere", "system.tphere", new ComandoTphere());
@@ -275,10 +279,7 @@ public class Main extends JavaPlugin {
 			new Command("alerta", "system.alerta", new ComandoAlerta());
 			new Command("compactar", "system.compactar", new ComandoCompactar());
 			new Command("editaritem", "system.editaritem", new ComandoEditaritem());
-			new Command("executarsom", "system.executarsom", new ComandoExecutarSom());
-			new Command("online", "system.online", new ComandoOnline());
 			new Command("renderizacao", "system.renderizacao", new ComandoRenderizacao());
-			new Command("tpall", "system.tpall", new ComandoTpall());
 			new Command("title", "system.title", new ComandoTitle());
 			new Command("vanish", "system.vanish", new ComandoVanish());
 			new Command("warp", "system.warp", new ComandoWarp());

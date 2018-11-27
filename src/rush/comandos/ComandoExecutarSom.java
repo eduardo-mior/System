@@ -1,5 +1,7 @@
 package rush.comandos;
 
+import java.util.Collection;
+
 import org.bukkit.Bukkit;
 import org.bukkit.Sound;
 import org.bukkit.command.Command;
@@ -7,6 +9,8 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import rush.Main;
+import rush.apis.OnlinePlayersAPI;
 import rush.configuracoes.Mensagens;
 
 @SuppressWarnings("all")
@@ -23,17 +27,20 @@ public class ComandoExecutarSom implements CommandExecutor {
             
 		// Verificando se o player quer mandar um som para todo o servidor
 		if (args[1].equalsIgnoreCase("all")) {
-           		
+			
 			// Verificando se o som é um som valido
 			if (!isValidEnum(Sound.class, args[0].toUpperCase())) {
 				s.sendMessage(Mensagens.Som_Invalido);
 				return true;
 			}
-            	
+            
 			// Executando o som para todos os players
-			for (Player p : Bukkit.getOnlinePlayers()) {
+			Player[] players = OnlinePlayersAPI.getOnlinePlayers();
+			for (Player p : players) {
 				p.playSound(p.getLocation(), Sound.valueOf(args[0].toUpperCase()), 1, 1);
 			}
+			
+			// Informando o sender // sucesso
 			s.sendMessage(Mensagens.Som_Executado_Todos.replace("%som%", args[0]));
 			return true;
 		}
