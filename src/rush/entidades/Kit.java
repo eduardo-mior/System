@@ -9,27 +9,37 @@ import rush.utils.serializer.SerializerOLD;
 
 public class Kit {
 
+	private String id;
 	private String nome;
 	private String permissao;
 	private long delay;
 	private ItemStack[] itens;
 	private int amountItens;
 	
-	public Kit(String nome, String permissao, long delay, String itens) {
+	public Kit(String id, String permissao, String nome, long delay, String itens) {
 		ItemStack[] itensStack = getItensByData(itens);
-		this.nome = nome;
+		this.id = id;
 		this.permissao = permissao;
+		this.nome = nome;
 		this.delay = delay;
 		this.itens = itensStack;
 		this.amountItens = calcule(itensStack);
 	}
 	
-	public String getName() {
-		return nome;
+	public String getId() {
+		return id;
 	}
 
-	public void setName(String kit) {
-		this.nome = kit;
+	public void setId(String kit) {
+		this.id = kit;
+	}
+	
+	public String getNome() {
+		return nome;
+	}
+	
+	public void setNome(String nome) {
+		this.nome = nome;
 	}
 
 	public String getPermissao() {
@@ -93,7 +103,7 @@ public class Kit {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + ((nome == null) ? 0 : nome.hashCode());
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
 		return result;
 	}
 
@@ -106,10 +116,10 @@ public class Kit {
 		if (getClass() != obj.getClass())
 			return false;
 		Kit other = (Kit) obj;
-		if (nome == null) {
-			if (other.nome != null)
+		if (id == null) {
+			if (other.id != null)
 				return false;
-		} else if (!nome.equals(other.nome))
+		} else if (!id.equals(other.id))
 			return false;
 		return true;
 	}	

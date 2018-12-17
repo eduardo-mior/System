@@ -8,6 +8,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import rush.configuracoes.Mensagens;
+import rush.enums.GameModeName;
 
 @SuppressWarnings("all")
 public class ComandoGamemode implements CommandExecutor {
@@ -41,13 +42,13 @@ public class ComandoGamemode implements CommandExecutor {
     		// Pegando o gamemode atual do player e verificando se o gamemode atual é o mesmo que o gamemode novo
     		GameMode esta = p.getGameMode();
     		if (esta.equals(novo)) {
-    			s.sendMessage(Mensagens.Gamemode_Ja_Esta_Outro.replace("%gm%", novo.name()).replace("%player%", p.getName()));
+    			s.sendMessage(Mensagens.Gamemode_Ja_Esta_Outro.replace("%gm%", GameModeName.valueOf(novo).getName()).replace("%player%", p.getName()));
     			return true;
     		}
     		
     		// Setando o gamemode novo para o player
     		p.setGameMode(novo);
-    		s.sendMessage(Mensagens.Gamemode_Definido_Outro.replace("%gm%", novo.name()).replace("%player%", p.getName()));
+    		s.sendMessage(Mensagens.Gamemode_Definido_Outro.replace("%gm%", GameModeName.valueOf(novo).getName()).replace("%player%", p.getName()));
 			return true;
     	}
     	  
@@ -83,13 +84,13 @@ public class ComandoGamemode implements CommandExecutor {
     		// Pegando o gamemode atual do player e verificando se o gamemode atual é o mesmo que o gamemode novo
     		GameMode esta = p.getGameMode();
     		if (esta.equals(novo)) {
-    			s.sendMessage(Mensagens.Gamemode_Ja_Esta_Outro.replace("%gm%", novo.name()).replace("%player%", p.getName()));
+    			s.sendMessage(Mensagens.Gamemode_Ja_Esta_Outro.replace("%gm%", GameModeName.valueOf(novo).getName()).replace("%player%", p.getName()));
     			return true;
     		}
     		
     		// Setando o gamemode novo para o player
     		p.setGameMode(novo);
-    		s.sendMessage(Mensagens.Gamemode_Definido_Outro.replace("%gm%", novo.name()).replace("%player%", p.getName()));
+    		s.sendMessage(Mensagens.Gamemode_Definido_Outro.replace("%gm%", GameModeName.valueOf(novo).getName()).replace("%player%", p.getName()));
 			return true;
     	}
     	
@@ -106,20 +107,20 @@ public class ComandoGamemode implements CommandExecutor {
     	Player p = (Player)s;
     	GameMode esta = p.getGameMode();
     	if (esta.equals(novo)) {
-    		s.sendMessage(Mensagens.Gamemode_Ja_Esta_Voce.replace("%gm%", novo.name()));
+    		s.sendMessage(Mensagens.Gamemode_Ja_Esta_Voce.replace("%gm%", GameModeName.valueOf(novo).getName()));
 			return true;
     	}
     	
 		// Verificando se o player possui permissão para entrar nesse gamemode
     	boolean possuiPerm = hasPermission(novo, p);
     	if (!possuiPerm) {
-    		s.sendMessage(Mensagens.Gamemode_Sem_Permissao_Tipo.replace("%gm%", novo.name()));
+    		s.sendMessage(Mensagens.Gamemode_Sem_Permissao_Tipo.replace("%gm%", GameModeName.valueOf(novo).getName()));
 			return true;
     	}
 
     	// Setando o novo gamemode
     	p.setGameMode(novo);
-    	s.sendMessage(Mensagens.Gamemode_Definido_Voce.replace("%gm%", novo.name()));
+    	s.sendMessage(Mensagens.Gamemode_Definido_Voce.replace("%gm%", GameModeName.valueOf(novo).getName()));
 		return true;
 	}
 	
@@ -136,13 +137,13 @@ public class ComandoGamemode implements CommandExecutor {
 		// Tentando retornar um gamemode por número
 		try {
 			int gm = Integer.parseInt(gamemode);
-			try {return GameMode.getByValue(gm);} catch (Exception e) {return null;}
+			try {return GameMode.getByValue(gm);} catch (Exception | Error e) {return null;}
 		}
 		
 		// Tentando retornar um gamemode por nome
 		catch (NumberFormatException ex) {
 			String gm = gamemode.toUpperCase();
-			try {return GameMode.valueOf(gm);} catch (Exception e) {return null;}
+			try {return GameMode.valueOf(gm);} catch (Exception | Error e) {return null;}
 		}
 	}
 }

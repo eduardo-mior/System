@@ -14,6 +14,7 @@ import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
 import rush.configuracoes.Mensagens;
+import rush.enums.PotionName;
 
 public class ComandoPotion implements CommandExecutor {
 
@@ -64,7 +65,7 @@ public class ComandoPotion implements CommandExecutor {
 		PotionEffect effect = new PotionEffect(effectType, (duration * 20), (amplifier - 1));
 		meta.addCustomEffect(effect, true);
 		hand.setItemMeta(meta);
-		s.sendMessage(Mensagens.Potion_Editada_Sucesso);
+		s.sendMessage(Mensagens.Potion_Editada_Sucesso.replace("%effect%", PotionName.valueOf(effect).getName()));
 		return true;
 	}
 
@@ -72,7 +73,7 @@ public class ComandoPotion implements CommandExecutor {
 	private PotionEffectType getPotionEffectType(String effect) {
 		try {
 			return PotionEffectType.getByName(effect);
-		} catch (Exception e) {
+		} catch (Exception | Error e) {
 			return null;
 		}
 	}

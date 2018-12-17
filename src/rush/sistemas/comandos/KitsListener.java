@@ -55,20 +55,21 @@ public class KitsListener implements Listener {
 	}
 
 	private void createKit(Inventory inv, Player p) {
-		String nome = inv.getName().substring(8, inv.getName().length());
-		String permissao = "system.kit." + nome;
+		String id = inv.getName().substring(8, inv.getName().length());
+		String permissao = "system.kit." + id;
 		String itens = serializeItens(inv.getContents());
-		Kit kit = new Kit(nome, permissao, 5, itens);
-		File file = DataManager.getFile(nome, "kits");
+		Kit kit = new Kit(id, permissao, "§rKit '" + id + "' sem nome! Use /editarkit!", 5, itens);
+		File file = DataManager.getFile(id, "kits");
 		FileConfiguration config = DataManager.getConfiguration(file);
 		DataManager.createFile(file);
 		config.set("Permissao", permissao);
 		config.set("Delay", 5);
 		config.set("Itens", itens);
+		config.set("Nome", "§rKit '" + id + "' sem nome! Use /editarkit!");
 		try {
-			Kits.create(nome, kit);
+			Kits.create(id, kit);
 			config.save(file);
-			p.sendMessage(Mensagens.Kit_Criado.replace("%kit%", nome));
+			p.sendMessage(Mensagens.Kit_Criado.replace("%kit%", id));
 		} catch (IOException ex) {
 			Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
 		}

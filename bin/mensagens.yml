@@ -134,27 +134,29 @@ Tornou-Home-Particular: "&aA home '%home%' agora é uma home particular, ou seja
 # |                   Sistema de Kits                    | #
 # +------------------------------------------------------+ #
 ############################################################
-Kit-Comando-Incorreto: "&cComando incorreto, use /kit <kit>"
-DarKit-Comando-Incorreto: "&cComando incorreto, use /darkit <kit> <player>"
-DelKit-Comando-Incorreto: "&cComando incorreto, use /delkit <kit>"
-VerKit-Comando-Incorreto: "&cComando incorreto, use /verkit <kit>"
-CriarKit-Comando-Incorreto: "&cComando incorreto, use /criarkit <kit>"
-EditarKit-Comando-Incorreto-Delay: "&cComando incorreto, use /editarkit <kit> delay <minutos>"
-EditarKit-Comando-Incorreto-Perm: "&cComando incorreto, use /editarkit <kit> perm <permissão>" 
+Kit-Comando-Incorreto: "&cComando incorreto, use /kit <kit-id>"
+DarKit-Comando-Incorreto: "&cComando incorreto, use /darkit <kit-id> <player>"
+DelKit-Comando-Incorreto: "&cComando incorreto, use /delkit <kit-id>"
+VerKit-Comando-Incorreto: "&cComando incorreto, use /verkit <kit-id>"
+CriarKit-Comando-Incorreto: "&cComando incorreto, use /criarkit <kit-id>"
+EditarKit-Comando-Incorreto-Delay: "&cComando incorreto, use /editarkit <kit-id> delay <minutos>"
+EditarKit-Comando-Incorreto-Perm: "&cComando incorreto, use /editarkit <kit-id> perm <permissão>"
+EditarKit-Comando-Incorreto-Nome: "&cComando incorreto, use /editarkit <kit-id> nome <novo-nome>"
 EditarKit-Comando-Incorreto: | 
   &cComando incorreto, use:
-  &c/editarkit <kit> itens &8-&7 Edita os itens.
-  &c/editarkit <kit> perm <permissão> &8-&7 Editar a permissão.
-  &c/editarkit <kit> delay <minutos> &8-&7 Edita o delay.
+  &c/editarkit <kit-id> itens &8-&7 Edita os itens.
+  &c/editarkit <kit-id> perm <permissão> &8-&7 Editar a permissão.
+  &c/editarkit <kit-id> delay <minutos> &8-&7 Edita o delay.
+  &c/editarkit <kit-id> nome <nome> &8-&7 Edita o nome do kit.
 Kit-Nao-Existe: "&cO kit '%kit%' não existe."
 Kit-Ja-Existe: "&cO kit '%kit%' já existe."
 Kit-Sem-Permissao: "&cVocê não tem permissão para pegar este kit."
 Kit-Criado: "&aKit '%kit%' criado com sucesso."
-Kit-Editado: "&aKit '%kit%' editado com sucesso."
+Kit-Editado: "&aKit '%kit%' &aeditado com sucesso."
 Kit-Deletado: "&aKit '%kit%' deletado com sucesso."
 Kit-Sem-Espaco-Pra-Pegar: "&cVocê não possui espaço suficiente no inventário para poder pegar este kit, por favor libere mais espaço e tente novamente."
-Kit-Pego: "&aKit '%kit%' adquirido com sucesso."
-Kit-Enviado: "&aKit '%kit%' enviado com sucesso para %player%."
+Kit-Pego: "&aKit '%kit%' &aadquirido com sucesso."
+Kit-Enviado: "&aKit '%kit%' &aenviado com sucesso para %player%."
 Kit-Aguarde: "&cAguarde mais %tempo% para poder pegar este kit novamente."
 Nenhum-Kit-Criado: "&cNão há kits disponíveis."
 Kits-Lista: "&eKits disponíveis(%n%): &7%kits%"
@@ -329,7 +331,7 @@ Vida-Regenerada-Com-Sucesso: "&aVida regenerada com sucesso."
 Potion-Comando-Incorreto: "&cComando incorreto, use /potion <efeito> <duração> <nivel>"
 Potion-Efeito-Invalido: "&cO efeito '%effect%' não é um efeito valido.\n&eLista de efeitos: %lista%"
 Potion-Item-Invalido: "&cVocê deve estar segurando uma poção na mão para poder fazer isto."
-Potion-Editada-Sucesso: "&aPoção editada com sucesso."
+Potion-Editada-Sucesso: "&aEfeito '%effect%' adicionado com sucesso na poção."
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -339,7 +341,7 @@ Potion-Editada-Sucesso: "&aPoção editada com sucesso."
 Enchant-Comando-Incorreto: "&cComando incorreto, use /enchant <encantamento> <level>"
 Enchant-Encantamento-Invalido: "&cO encantamento '%enchant%' não é um encantamento valido.\n&eLista de encantamentos: %lista%"
 Enchant-Item-Invalido: "&cO item que você esta tentando encantar não é um item valido."
-Enchant-Encantado-Com-Sucesso: "&aItem encantado com sucesso."
+Enchant-Encantado-Com-Sucesso: "&aEncantamento '%enchant%' adicionado com sucesso no item."
 
 ############################################################
 # +------------------------------------------------------+ #

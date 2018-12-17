@@ -41,12 +41,13 @@ public abstract class Kits {
 		for (int i = 0; i < file.length; i++) {
 			if (file[i].isFile()) {
 				FileConfiguration configKit = DataManager.getConfiguration(file[i]);
-				String nome = file[i].getName().replace(".yml", "");
+				String id = file[i].getName().replace(".yml", "");
+				String nome = configKit.getString("Nome");
 				String permissao = configKit.getString("Permissao");
 				long delay = configKit.getLong("Delay");
 				String itens = configKit.getString("Itens");
-				Kit kit = new Kit(nome, permissao, delay, itens);
-				KITS.put(nome, kit);
+				Kit kit = new Kit(id, permissao, nome, delay, itens);
+				KITS.put(id, kit);
 			}
 		}	
 	}

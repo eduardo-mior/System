@@ -1,5 +1,5 @@
 main: rush.Main
-version: 1.8.1
+version: 1.8.2
 name: System
 load: POSTWORLD
 softdepend: [Legendchat, mcMMO, MassiveCore, Factions, Vault]
@@ -10,6 +10,9 @@ permissions:
     default: op
   system.back:
     description: Permissão para voltar ao local alterior do seu teleporte.
+    default: op
+  system.bigorna:
+    description: Permissão para abrir uma bigorna virtual.
     default: op
   system.chapeu:
     description: Permissão para vestir um chapeu.
@@ -354,6 +357,7 @@ permissions:
     children:
       system.alerta: true
       system.back: true
+      system.bigorna: true
       system.chapeu: true
       system.clear.outros: true
       system.clear: true

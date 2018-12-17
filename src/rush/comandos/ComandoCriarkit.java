@@ -35,8 +35,8 @@ public class ComandoCriarkit implements CommandExecutor {
 		}
 			
 		// Verificando se o nome do kit não é maior que o permitido
-		if (args[0].length() > 24) {
-			s.sendMessage("§cO nome do item não pode conter mais de 20 caracteres.");
+		if (args[0].length() > 10) {
+			s.sendMessage("§cO id do kit não pode conter mais de 10 caracteres.");
 			return true;
 		}
 			

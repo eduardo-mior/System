@@ -1,7 +1,5 @@
 package rush.utils;
 
-import java.lang.reflect.InvocationTargetException;
-
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
@@ -29,8 +27,9 @@ public class ReflectionUtils {
    			Object entityPlayer = player.getClass().getMethod("getHandle").invoke(player);
    			Object playerConnection = entityPlayer.getClass().getField("playerConnection").get(entityPlayer);
    			playerConnection.getClass().getMethod("sendPacket", getNMSClass("Packet")).invoke(playerConnection, packet);
-   		} catch (SecurityException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | NoSuchFieldException | ClassNotFoundException e) {
+   		} catch (Error | Exception e) {
    			e.printStackTrace();
    		}
    	}
+   	
 }

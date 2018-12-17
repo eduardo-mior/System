@@ -36,9 +36,9 @@ public class ComandoKit implements CommandExecutor {
 			}
 			
 			// Pegando o argumento e verificando se o kit existe
-			String nomeKit = args[0].toLowerCase();
-			if (!Kits.contains(nomeKit)) {
-				s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit%", nomeKit));
+			String idKit = args[0].toLowerCase();
+			if (!Kits.contains(idKit)) {
+				s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit%", idKit));
 				ComandoKits.ListKits(s);
 				return true;
 			}
@@ -51,10 +51,10 @@ public class ComandoKit implements CommandExecutor {
 			}
 			
 			// Pegando o kit e adicionando para o player
-			Kit kit = Kits.get(nomeKit);
+			Kit kit = Kits.get(idKit);
 			ItemStack[] ITENS = kit.getItens();
 			forceAddItensToInventory(p, ITENS);
-			s.sendMessage(Mensagens.Kit_Enviado.replace("%player%", p.getName()));
+			s.sendMessage(Mensagens.Kit_Enviado.replace("%player%", p.getName()).replace("%kit%",  kit.getNome()));
 			return true;
 		}
 
@@ -65,18 +65,19 @@ public class ComandoKit implements CommandExecutor {
 		}
 
 		// Pegando o argumento e verificando se o kit existe
-		String nomeKit = args[0].toLowerCase();
-		if (!Kits.contains(nomeKit)) {
-			s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit%", nomeKit));
+		String idKit = args[0].toLowerCase();
+		if (!Kits.contains(idKit)) {
+			s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit%", idKit));
 			ComandoKits.ListKits(s);
 			return true;
 		}
 		
 		// Pegando o kit e verificando se o player possui permissão para pegar fala
-		Kit kit = Kits.get(nomeKit);
+		Kit kit = Kits.get(idKit);
 		String perm = kit.getPermissao();
+		String nomeKit = kit.getNome();
 		if (!s.hasPermission(perm) && !s.hasPermission("system.kit.all")) {
-			s.sendMessage(Mensagens.Kit_Sem_Permissao.replace("%kit%", nomeKit));
+			s.sendMessage(Mensagens.Kit_Sem_Permissao.replace("%kit%",	nomeKit));
 			return true;
 		}
 
@@ -89,7 +90,7 @@ public class ComandoKit implements CommandExecutor {
 		long millisKit = System.currentTimeMillis() + (kit.getDelay() * 60000);
 
 		// Verificando se o player já pegou este kit alguma vez na vida
-		if (!KITS.contains(nomeKit)) {
+		if (!KITS.contains(idKit)) {
 			
 			// Verificando se o player tem espaço no inventario para pegar o kit
 			if (getFreeSpaceInInventory(p) < kit.getAmountItens()) {
@@ -98,7 +99,7 @@ public class ComandoKit implements CommandExecutor {
 			}
 			
 			// Adicionando os itens no inventario do player e salvando na config
-			configPlayer.set("Kits." + nomeKit, millisKit);
+			configPlayer.set("Kits." + idKit, millisKit);
 			try {
 				configPlayer.save(filePlayer);
 				addItensToInventory(p, ITENS);
@@ -110,7 +111,7 @@ public class ComandoKit implements CommandExecutor {
 		}
 
 		// Caso o player nunca tenha pegado o kit verificamos se ele já pode pegar o kit novamente
-		long millisPlayer = configPlayer.getLong("Kits." + nomeKit);
+		long millisPlayer = configPlayer.getLong("Kits." + idKit);
 		if (millisPlayer > System.currentTimeMillis() && !p.hasPermission("system.bypass.delaykit")) {
 			long millis = millisPlayer - System.currentTimeMillis();
 			String tempo = TimeFormatter.format(millis);
@@ -125,7 +126,7 @@ public class ComandoKit implements CommandExecutor {
 		}
 		
 		// Caso ele já possa pegar o kit novamente então o delay é setado e os itens são enviados para o player
-		configPlayer.set("Kits." + nomeKit, millisKit);
+		configPlayer.set("Kits." + idKit, millisKit);
 		try {
 			configPlayer.save(filePlayer);
 			addItensToInventory(p, ITENS);

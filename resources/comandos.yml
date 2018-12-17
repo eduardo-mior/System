@@ -12,6 +12,12 @@ comandos:
     descricao: Volta ao local anterior do seu teleporte.
     sem-permissao: "&cVocê não tem permissão para utilizar este comando."
 
+  bigorna:
+    ativar-comando: true
+    aliases: []
+    descricao: Abre uma bigorna virtual.
+    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
+    
   chapeu:
     ativar-comando: true
     aliases: [hat]

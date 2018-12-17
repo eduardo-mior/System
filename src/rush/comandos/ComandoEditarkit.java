@@ -29,15 +29,16 @@ public class ComandoEditarkit implements CommandExecutor {
 		}
 			
 		// Pegando o argumento e verificando se o kit existe
-		String nome = args[0].toLowerCase();
-		if (!Kits.contains(nome)) {
-			s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit%", nome));
+		String id = args[0].toLowerCase();
+		if (!Kits.contains(id)) {
+			s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit%", id));
 			ComandoKits.ListKits(s);
 			return true;
 		}
 			
 		// Pegando o kit
-		Kit kit = Kits.get(nome);
+		Kit kit = Kits.get(id);
+		String kitNome = kit.getNome();
 		
 		// Verificando se o player quer editar os itens do kit
 		if (args[1].equalsIgnoreCase("itens")) {
@@ -50,7 +51,7 @@ public class ComandoEditarkit implements CommandExecutor {
 				
 				// Pegando o player e abrindo um inventarios com os itens, o resto é feito pela classe KitsListener
 			Player p = (Player)s;
-			Inventory inv = Bukkit.getServer().createInventory(p, 36, "Kit §4§n" + nome);
+			Inventory inv = Bukkit.getServer().createInventory(p, 36, "Kit §4§n" + id);
 			for (ItemStack item : kit.getItens()) {
 				if (item != null) inv.addItem(item);
 			}
@@ -59,7 +60,7 @@ public class ComandoEditarkit implements CommandExecutor {
 		}
 		
 		// Pegando a config do Kit
-		File file = DataManager.getFile(nome, "kits");
+		File file = DataManager.getFile(id, "kits");
 		FileConfiguration config = DataManager.getConfiguration(file);
 		
 		// Verificando se o player quer editar o delay do kit
@@ -85,7 +86,7 @@ public class ComandoEditarkit implements CommandExecutor {
 			config.set("Delay", delay);
 			try {
 				config.save(file);
-				s.sendMessage(Mensagens.Kit_Editado.replace("%kit%", nome));
+				s.sendMessage(Mensagens.Kit_Editado.replace("%kit%", kitNome));
 			} catch (IOException e) {
 				Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
 			}
@@ -106,7 +107,30 @@ public class ComandoEditarkit implements CommandExecutor {
 			config.set("Permissao", args[2]);
 			try {
 				config.save(file);
-				s.sendMessage(Mensagens.Kit_Editado.replace("%kit%", nome));
+				s.sendMessage(Mensagens.Kit_Editado.replace("%kit%", kitNome));
+			} catch (IOException e) {
+				Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
+			}
+			return true;
+		}
+		
+		// Verificando se o player quer editar o nome do kit
+		if (args[1].equalsIgnoreCase("nome") || args[1].equalsIgnoreCase("name")) {
+			
+			// Verificando se o player digitou o número de argumetnos correto
+			if (args.length < 3) {
+				s.sendMessage(Mensagens.EditarKit_Comando_Incorreto_Nome);
+				return true;
+			}
+			
+			// Salvando os arquivos na config
+			String novoNome = "";
+			for (int i = 2; i < args.length; i++) {novoNome += args[i].replace('&', '§');}
+			kit.setNome(novoNome);
+			config.set("Nome", novoNome);
+			try {
+				config.save(file);
+				s.sendMessage(Mensagens.Kit_Editado.replace("%kit%", novoNome));
 			} catch (IOException e) {
 				Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
 			}

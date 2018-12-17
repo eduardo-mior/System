@@ -16,6 +16,7 @@ import rush.apis.APIS;
 import rush.comandos.ComandoAlerta;
 import rush.comandos.ComandoAlertaOLD;
 import rush.comandos.ComandoBack;
+import rush.comandos.ComandoBigorna;
 import rush.comandos.ComandoChapeu;
 import rush.comandos.ComandoClear;
 import rush.comandos.ComandoClearChat;
@@ -209,6 +210,7 @@ public class Main extends JavaPlugin {
 
 	private void registrarComandos() {
 		new Command("back", "system.back", new ComandoBack());
+		new Command("bigorna", "system.bigorna", new ComandoBigorna());
 		new Command("chapeu", "system.chapeu", new ComandoChapeu());
 		new Command("clear", "system.clear", new ComandoClear());
 		new Command("clearchat", "system.clearchat", new ComandoClearChat());

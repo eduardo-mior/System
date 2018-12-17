@@ -47,6 +47,7 @@
 #    +---------------------------------------------------------------------------------------------+
 #    | system.alerta             - Permissão para utilizar o comando /alerta                       |
 #    | system.back               - Permissão para utilizar o comando /back                         |
+#    | system.bigorna            - Permissão para utilizar o comando /bigorna                      |
 #    | system.chapeu             - Permissão para utilizar o comando /chapeu                       |
 #    | system.clear              - Permissão para utilizar o comando /clear                        |
 #    | system.clear.outros       - Permissão para limpar o inventario de outras pessoas            |

@@ -76,6 +76,7 @@ public class Mensagens {
 	public static String CriarKit_Comando_Incorreto;
 	public static String EditarKit_Comando_Incorreto_Delay;
 	public static String EditarKit_Comando_Incorreto_Perm;
+	public static String EditarKit_Comando_Incorreto_Nome;
 	public static String EditarKit_Comando_Incorreto;
 	public static String Kit_Nao_Existe;
 	public static String Kit_Ja_Existe;
@@ -360,6 +361,7 @@ public class Mensagens {
 		CriarKit_Comando_Incorreto = config.getString("CriarKit-Comando-Incorreto").replace('&', '§');
 		EditarKit_Comando_Incorreto_Delay = config.getString("EditarKit-Comando-Incorreto-Delay").replace('&', '§');
 		EditarKit_Comando_Incorreto_Perm = config.getString("EditarKit-Comando-Incorreto-Perm").replace('&', '§');
+		EditarKit_Comando_Incorreto_Nome = config.getString("EditarKit-Comando-Incorreto-Nome").replace('&', '§');
 		EditarKit_Comando_Incorreto = config.getString("EditarKit-Comando-Incorreto").replace('&', '§');
 		Kit_Nao_Existe = config.getString("Kit-Nao-Existe").replace('&', '§');
 		Kit_Ja_Existe = config.getString("Kit-Ja-Existe").replace('&', '§');

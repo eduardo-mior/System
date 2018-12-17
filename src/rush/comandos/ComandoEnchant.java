@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import rush.configuracoes.Mensagens;
+import rush.enums.EnchantmentName;
 
 public class ComandoEnchant implements CommandExecutor {
 
@@ -57,7 +58,7 @@ public class ComandoEnchant implements CommandExecutor {
 			
 		// Adicionando o encantamento no item
 		hand.addUnsafeEnchantment(ench, level);
-		s.sendMessage(Mensagens.Enchant_Encantado_Com_Sucesso);
+		s.sendMessage(Mensagens.Enchant_Encantado_Com_Sucesso.replace("%enchant%", EnchantmentName.valueOf(ench).getName()));
 		return true;
 	}
 	
@@ -65,7 +66,7 @@ public class ComandoEnchant implements CommandExecutor {
 	private Enchantment getEnchantment(String enchant) {
 		try {
 			return Enchantment.getByName(enchant);
-		} catch (Exception e) {
+		} catch (Exception | Error e) {
 			return null;
 		}
 	}
