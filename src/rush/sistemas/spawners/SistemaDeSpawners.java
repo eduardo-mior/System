@@ -48,7 +48,7 @@ public class SistemaDeSpawners implements Listener {
 			try {
 				CreatureSpawner cs = (CreatureSpawner) e.getBlock().getState();
 				cs.setSpawnedType(EntityType.valueOf(e.getItemInHand().getItemMeta().getLore().get(0)));
-			} catch (Exception ex) {
+			} catch (Throwable ex) {
 				e.setCancelled(true);
 				e.getPlayer().sendMessage(Mensagens.Spawner_Bugado);
 			}

@@ -137,13 +137,13 @@ public class ComandoGamemode implements CommandExecutor {
 		// Tentando retornar um gamemode por número
 		try {
 			int gm = Integer.parseInt(gamemode);
-			try {return GameMode.getByValue(gm);} catch (Exception | Error e) {return null;}
+			try {return GameMode.getByValue(gm);} catch (Throwable e) {return null;}
 		}
 		
 		// Tentando retornar um gamemode por nome
 		catch (NumberFormatException ex) {
 			String gm = gamemode.toUpperCase();
-			try {return GameMode.valueOf(gm);} catch (Exception | Error e) {return null;}
+			try {return GameMode.valueOf(gm);} catch (Throwable e) {return null;}
 		}
 	}
 }

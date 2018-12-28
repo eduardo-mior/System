@@ -1,28 +1,28 @@
 AreaNaoVip:
   world: world
   x: 0.0
-  y: 4.0
+  y: 100.0
   z: 0.0
-  yaw: 112.50008
-  pitch: 2.1000016
+  yaw: 0.0
+  pitch: 0.0
 AreaVip:
   world: world
-  x: 0.0
-  y: 4.0
-  z: 6.0
-  yaw: 112.50008
-  pitch: 2.1000016
+  x: 15.0
+  y: 100.0
+  z: 15.0
+  yaw: 0.0
+  pitch: 0.0
 Spawn:
   world: world
-  x: 0.0
-  y: 4.0
-  z: 0.0
+  x: -15.0
+  y: 100.0
+  z: -15.0
   yaw: 112.50008
   pitch: 2.1000016
 SpawnVip:
   world: world
-  x: 0.0
-  y: 4.0
-  z: 0.0
-  yaw: 112.50008
-  pitch: 2.1000016
+  x: 15.0
+  y: 100.0
+  z: -15.0
+  yaw: 0.0
+  pitch: 0.0

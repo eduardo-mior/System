@@ -34,7 +34,7 @@ public class LegendChat implements Listener {
     		return  p.getEffectivePermissions().stream()
     			   .filter(r -> r.getPermission().toLowerCase().startsWith("system.chat.cor."))
     			   .findFirst().get().getPermission().replace("system.chat.cor.", "").trim();
-    	} catch (Exception e) {
+    	} catch (Throwable e) {
 			return null;
 		}
 	}

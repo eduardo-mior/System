@@ -32,7 +32,7 @@ public class TablistAPI {
 
 			ReflectionUtils.sendPacket(player, packet);
 			
-		} catch (Error | Exception e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}
@@ -56,6 +56,6 @@ public class TablistAPI {
 				h = 0;
 				f = 1;
 			}
-		} catch (Error | Exception e) {}
+		} catch (Throwable e) {}
 	}
 }

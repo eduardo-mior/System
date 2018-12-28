@@ -20,7 +20,7 @@ public class ActionBarAPI {
 			Object chatMessage = a.invoke(null, "{\"text\":\"" + message + "\"}");
 		    Object packet = chatConstructor.newInstance(chatMessage, typeMessage);
 		    ReflectionUtils.sendPacket(player, packet);
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}
@@ -48,6 +48,6 @@ public class ActionBarAPI {
 			
 			chatConstructor = ppoc.getConstructor(icbc,  typeMessageClass);	
 		}
-		catch (Error | Exception e) {}
+		catch (Throwable e) {}
 	}
 }

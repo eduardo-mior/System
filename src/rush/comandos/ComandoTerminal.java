@@ -38,7 +38,7 @@ public class ComandoTerminal implements CommandExecutor {
 					}
 				} catch (IOException e) {
 					s.sendMessage(Mensagens.Terminal_Erro_Comando.replace("%erro%", e.getLocalizedMessage()));
-				} catch (Exception e) {
+				} catch (Throwable e) {
 					s.sendMessage(Mensagens.Terminal_Erro_Desconhecido.replace("%erro%", e.getLocalizedMessage()));
 				}
 			}

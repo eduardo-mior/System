@@ -12,13 +12,65 @@ import rush.utils.manager.ConfigManager;
 
 public class Locations {
 
-	private static Location padrao = new Location(Bukkit.getWorlds().get(0), 1.0, 100.0, 1.0, 1.0F, 1.0F);
+	public static Location padrao = new Location(Bukkit.getWorlds().get(0), 1.0, 250.0, 1.0, 1.0F, 1.0F);
 	public static Location spawn = padrao;
 	public static Location spawnVip = padrao;
 	public static Location areaVip = padrao;
 	public static Location areaNaoVip = padrao;
 	
 	public static void loadLocations() {
+		setSpawn();
+		setAreaVip();
+		setSpawnVip();
+		setAreaNaoVip();
+		validarLocations(true);
+		setDefaultServerSpawn();
+	}
+	
+	private static void validarLocations(boolean reavaliar) {
+		boolean tentarValidarNovamente = false;
+		
+		World worldSpawn = spawn.getWorld();
+		World worldSpawnVip = spawnVip.getWorld();
+		World worldVip = areaVip.getWorld();
+		World worldNaoVip = areaNaoVip.getWorld();
+		
+		if (worldSpawn == null) {
+			tentarValidarNovamente = true;
+			spawn = padrao;
+			if (!reavaliar) {
+				Bukkit.getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao do Spawn! Entre no jogo e use /setspawn normal");
+			}
+		}
+		
+		if (worldSpawnVip  == null) {
+			tentarValidarNovamente = true;
+			spawnVip = padrao;
+			if (!reavaliar) {
+				Bukkit.getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao do Spawn Vip! Entre no jogo e use /setspawn vip");
+			}
+		}
+		
+		if (worldVip == null) {
+			tentarValidarNovamente = true;
+			areaVip = padrao;
+			if (!reavaliar) {
+				Bukkit.getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao da Area Vip! Entre no jogo e use /setmundovip areaVip");
+			}
+		}
+		
+		if (worldNaoVip == null) {
+			tentarValidarNovamente = true;
+			areaNaoVip = padrao;
+			if (!reavaliar) {
+				Bukkit.getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao da Area Vip! Entre no jogo e use /setmundovip areaNaoVip");
+			}
+		}
+		
+		if (tentarValidarNovamente && reavaliar) tentarValidarNovamente();
+	}
+	
+	private static void tentarValidarNovamente() {
 		new BukkitRunnable() {
 			@Override
 			public void run() {
@@ -26,22 +78,9 @@ public class Locations {
 				setAreaNaoVip();
 				setSpawn();
 				setSpawnVip();
-				validarLocations();
-				setDefaultServerSpawn();
+				validarLocations(false);
 			}
-		}.runTaskLaterAsynchronously(Main.get(), 30 * 20);
-	}
-	
-	private static void validarLocations() {
-		List<World> worlds = Bukkit.getWorlds();
-		World worldSpawn = spawn.getWorld();
-		World worldSpawnVip = spawnVip.getWorld();
-		World worldVip = areaVip.getWorld();
-		World worldNaoVip = areaNaoVip.getWorld();
-		if (!worlds.contains(worldSpawn)) spawn = padrao;
-		if (!worlds.contains(worldSpawnVip)) spawnVip = padrao;
-		if (!worlds.contains(worldVip)) areaVip = padrao;
-		if (!worlds.contains(worldNaoVip)) areaNaoVip = padrao;
+		}.runTaskLaterAsynchronously(Main.get(), 10 * 25);
 	}
 
 	private static void setAreaVip() {
@@ -53,8 +92,8 @@ public class Locations {
            ConfigManager.getConfig("locations").getDouble("AreaVip.z"), 
            Float.parseFloat(ConfigManager.getConfig("locations").getString("AreaVip.yaw")), 
            Float.parseFloat(ConfigManager.getConfig("locations").getString("AreaVip.pitch")));
-		} catch (Exception | Error e) {
-			Bukkit.getServer().getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao da AreaVip!");
+		} catch (Throwable e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -67,8 +106,8 @@ public class Locations {
            ConfigManager.getConfig("locations").getDouble("AreaNaoVip.z"), 
            Float.parseFloat(ConfigManager.getConfig("locations").getString("AreaNaoVip.yaw")), 
            Float.parseFloat(ConfigManager.getConfig("locations").getString("AreaNaoVip.pitch")));
-		} catch (Exception | Error e) {
-			Bukkit.getServer().getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao da AreaNaoVip!");
+		} catch (Throwable e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -81,8 +120,8 @@ public class Locations {
 	       ConfigManager.getConfig("locations").getDouble("Spawn.z"), 
 	       Float.parseFloat(ConfigManager.getConfig("locations").getString("Spawn.yaw")), 
 	       Float.parseFloat(ConfigManager.getConfig("locations").getString("Spawn.pitch")));
-		} catch (Exception | Error e) {
-			Bukkit.getServer().getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao da Spawn!");
+		} catch (Throwable e) {
+			e.printStackTrace();
 		}
 	}
 	
@@ -95,15 +134,15 @@ public class Locations {
 	       ConfigManager.getConfig("locations").getDouble("SpawnVip.z"), 
 	       Float.parseFloat(ConfigManager.getConfig("locations").getString("SpawnVip.yaw")), 
 	       Float.parseFloat(ConfigManager.getConfig("locations").getString("SpawnVip.pitch")));
-		} catch (Exception | Error e) {
-			Bukkit.getServer().getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao da SpawnVip!");
+		} catch (Throwable e) {
+			e.printStackTrace();
 		}
 	}
 	
 	private static void setDefaultServerSpawn() {
 		List<World> worlds = Bukkit.getWorlds();
 		World worldSpawn = spawn.getWorld();
-		if (!worlds.contains(worldSpawn)) {
+		if (worldSpawn == null) {
 			worlds.get(0).setSpawnLocation(padrao.getBlockX(), padrao.getBlockY(), padrao.getBlockZ());
 		} else {
 			worldSpawn.setSpawnLocation(spawn.getBlockX(), spawn.getBlockY(), spawn.getBlockZ());

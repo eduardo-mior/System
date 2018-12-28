@@ -76,7 +76,7 @@ public class ComandoCompactarOLD implements CommandExecutor {
 				
 				// Adicionando a quantia de itens compactados para exibir na mensagem
 				compactados += give * 9;
-			} catch (Exception e) {
+			} catch (Throwable e) {
 				continue;
 			}
 		}

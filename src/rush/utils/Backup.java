@@ -22,7 +22,7 @@ public class Backup {
 			String srcFolder = Main.get().getDataFolder().getAbsolutePath();
 			String destZipFile = DataManager.getFile(data, "backups").getAbsolutePath().replace(".yml", ".zip");
 			zipFolder(srcFolder, destZipFile);
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}

@@ -11,7 +11,7 @@ public class PingAPI {
 			Object entityPlayer = player.getClass().getMethod("getHandle").invoke(player);
 			Field ping = entityPlayer.getClass().getField("ping");
 			return String.valueOf(ping.get(entityPlayer));
-		} catch (Error | Exception e) {
+		} catch (Throwable e) {
 			return "Indisponivel";
 		}
 	}

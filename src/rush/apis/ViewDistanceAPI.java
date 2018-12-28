@@ -25,7 +25,7 @@ public class ViewDistanceAPI {
 			Field viewDistance = playerChunkMap.getClass().getDeclaredField(name);
 			viewDistance.setAccessible(true);
 			return (int) viewDistance.get(playerChunkMap);
-		} catch (Error | Exception e) {
+		} catch (Throwable e) {
 			return -1;
 		}
 	}
@@ -37,7 +37,7 @@ public class ViewDistanceAPI {
 			Object worldServer = worldServerClass.cast(world);
 			Object playerChunkMap = getPlayerChunkMap.invoke(worldServer);
 			updateViewDistance.invoke(playerChunkMap, viewDistance);
-		} catch (Error | Exception e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}
@@ -54,6 +54,6 @@ public class ViewDistanceAPI {
 			} else {
 				name = "j";
 			}
-		} catch (Error | Exception e) {}
+		} catch (Throwable e) {}
 	}
 }

@@ -129,7 +129,7 @@ public class ComandoSystem implements CommandExecutor {
 		// Caso o argumento seja 'info' então é exibido algumas informações do plugin
 		if (args[0].equalsIgnoreCase("info")) {					
 			s.sendMessage("§e*-=-=-=-=-=-=-* §bServer Info §e*-=-=-=-=-=-=-* ");
-			s.sendMessage("§ePlugin Version: §61.8.2");
+			s.sendMessage("§ePlugin Version: §61.9");
 			s.sendMessage("§eJava version: §6" + System.getProperty("java.version"));
 			s.sendMessage("§eMinecraft Version: §6" + SystemInfo.getMinecraftVersion());
 			s.sendMessage("§eServerAPI Vesrion: §6" + SystemInfo.getApiVersion());
@@ -160,7 +160,7 @@ public class ComandoSystem implements CommandExecutor {
 				String availableProcessors = String.valueOf(system.getAvailableProcessors());
 				String freeRuntimeMemory = bytesToLegibleValue(machine.freeMemory());
 				String totalRuntimeMemory = bytesToLegibleValue(machine.maxMemory());
-				String usedRuntimeMemory = bytesToLegibleValue(machine.maxMemory() - machine.freeMemory());
+				String usedRuntimeMemory = bytesToLegibleValue(machine.totalMemory() - machine.freeMemory());
 				String freeComputerMemory = bytesToLegibleValue(SystemInfo.getFreeMemoryComputer(system));
 				String totalComputerMemory = bytesToLegibleValue(SystemInfo.getTotalMemoryComputer(system));
 				String usedComputerMemory = bytesToLegibleValue(SystemInfo.getTotalMemoryComputer(system) - SystemInfo.getFreeMemoryComputer(system));
@@ -208,7 +208,7 @@ public class ComandoSystem implements CommandExecutor {
 	}
 	
 	
-	private String bytesToLegibleValue(long bytes) {
+	private String bytesToLegibleValue(double bytes) {
 		if (bytes < 1024 * 1024)
 			return String.format("%.2f KB", bytes);
 		else if (bytes < Math.pow(2, 20) * 1024)

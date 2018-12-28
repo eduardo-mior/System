@@ -66,7 +66,7 @@ public class ComandoEnchant implements CommandExecutor {
 	private Enchantment getEnchantment(String enchant) {
 		try {
 			return Enchantment.getByName(enchant);
-		} catch (Exception | Error e) {
+		} catch (Throwable e) {
 			return null;
 		}
 	}

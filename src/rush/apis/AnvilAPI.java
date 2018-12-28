@@ -57,7 +57,7 @@ public class AnvilAPI {
 			
 			addSlotListener.invoke(activeContainer, entityPlayer);
 		
-		} catch (Error | Exception e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}
@@ -99,7 +99,7 @@ public class AnvilAPI {
 			}
 			
 		}
-		catch (Error | Exception e) {
+		catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}

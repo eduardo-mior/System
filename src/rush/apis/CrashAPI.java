@@ -18,7 +18,7 @@ public class CrashAPI {
 	public static void crashPlayer(Player player) {
 		try {
 			ReflectionUtils.sendPacket(player, packet);
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}
@@ -46,6 +46,6 @@ public class CrashAPI {
 
 			Constructor<?> explosionConstructor = explosionClass.getConstructor(double.class, double.class,	double.class, float.class, List.class, vectorClass);
 			packet = explosionConstructor.newInstance(Double.MAX_VALUE, Double.MAX_VALUE, Double.MAX_VALUE,	Float.MAX_VALUE, Collections.emptyList(), Vec3D);
-		} catch (Error | Exception e) {}
+		} catch (Throwable e) {}
 	}
 }

@@ -70,7 +70,7 @@ public class ComandoDerreter implements CommandExecutor {
 				
 				// Adicionando a quantia de itens derretidos para exibir na mensagem
 				derretidos += quantidade;
-			} catch (Exception e) {
+			} catch (Throwable e) {
 				continue;
 			}
 		}

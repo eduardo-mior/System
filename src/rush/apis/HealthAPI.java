@@ -16,7 +16,7 @@ public class HealthAPI {
 		} catch (NoSuchMethodError e1) {
 			try {
 				return (int) p.getClass().getMethod("getHealth").invoke(p);
-			} catch (Exception e2) {}
+			} catch (Throwable e2) {}
 		}
 		return 0;
 	}
@@ -27,7 +27,7 @@ public class HealthAPI {
 		} catch (NoSuchMethodError e1) {
 			try {
 				return (int) p.getClass().getMethod("getMaxHealth").invoke(p);
-			} catch (Exception e2) {
+			} catch (Throwable e2) {
 				e2.printStackTrace();
 			}
 		}
@@ -37,10 +37,10 @@ public class HealthAPI {
 	public static void setHealth(Player p, int health) {
 		try {
 			p.getClass().getMethod("setHealth", double.class).invoke(p, (double) health);
-		} catch (Exception e1) {
+		} catch (Throwable e1) {
 			try {
 				p.getClass().getMethod("setHealth", int.class).invoke(p, health);
-			} catch (Exception e2) {
+			} catch (Throwable e2) {
 				e1.printStackTrace();
 			}
 		}
@@ -49,10 +49,10 @@ public class HealthAPI {
 	public static void setMaxHealth(Player p, int health) {
 		try {
 			p.getClass().getMethod("setMaxHealth", double.class).invoke(p, (double) health);
-		} catch (Exception e1) {
+		} catch (Throwable e1) {
 			try {
 				p.getClass().getMethod("setMaxHealth", int.class).invoke(p, health);
-			} catch (Exception e2) {
+			} catch (Throwable e2) {
 				e2.printStackTrace();
 			}
 		}

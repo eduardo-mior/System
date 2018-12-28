@@ -59,7 +59,7 @@ public class SystemInfo {
 					}
 					gravador.println("**********************************");
 					success = true;
-				} catch (Exception e) {}
+				} catch (Throwable e) {}
 			}
 			if (!success)
 				gravador.println("Informações não disponíveis!");
@@ -81,14 +81,14 @@ public class SystemInfo {
 					}
 					gravador.println("**********************************");
 					success = true;
-				} catch (Exception e) {}
+				} catch (Throwable e) {}
 			}
 			if (!success)
 				gravador.println("Informações não disponíveis!");
 			
 		    gravador.close();
 		    arquivo.close();
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}
@@ -113,7 +113,7 @@ public class SystemInfo {
 			Method getFreeMemory = system.getClass().getMethod("getFreePhysicalMemorySize");
 			getFreeMemory.setAccessible(true);
 			return (long) getFreeMemory.invoke(system);
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			return -1;
 		}
 	}
@@ -123,7 +123,7 @@ public class SystemInfo {
 			Method getTotalMemory = system.getClass().getMethod("getTotalPhysicalMemorySize");
 			getTotalMemory.setAccessible(true);
 			return (long) getTotalMemory.invoke(system);
-		} catch (Exception e) {
+		} catch (Throwable e) {
 			return -1;
 		}
 	}

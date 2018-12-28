@@ -14,7 +14,7 @@ public class APIS {
 			ActionBarAPI.load();
 			ViewDistanceAPI.load();
 		} 
-		catch (Error | Exception e) {}
+		catch (Throwable e) {}
 	}
 	
 }

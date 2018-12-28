@@ -96,7 +96,7 @@ public class ItemAPI {
 			setNBTTagCompound.invoke(CraftItemStack, NBTTagCompound);
 			
 			return (ItemStack) asCraftMirror.invoke(null, CraftItemStack);
-		} catch (Error | Exception e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -118,7 +118,7 @@ public class ItemAPI {
 			setBoolean.invoke(NBTTagCompound, "Unbreakable", true);
 			setNBTTagCompound.invoke(CraftItemStack, NBTTagCompound);
 			return (ItemStack) asCraftMirror.invoke(null, CraftItemStack);
-		} catch (Error | Exception e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 			return null;
 		}
@@ -149,6 +149,6 @@ public class ItemAPI {
 			createTag = NBTBaseClass.getDeclaredMethod("createTag", byte.class);
 			createTag.setAccessible(true);
 		}
-		catch (Error | Exception e) {}
+		catch (Throwable e) {}
 	}
 }

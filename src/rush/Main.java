@@ -5,7 +5,6 @@ import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.bukkit.scheduler.BukkitRunnable;
 
 import rush.addons.LegendChat;
 import rush.addons.Mcmmo;
@@ -470,12 +469,7 @@ public class Main extends JavaPlugin {
 		}
 
 		if (Settings.Entrar_No_Spawn_Ao_Logar) {
-			new BukkitRunnable() {
-				@Override
-				public void run() {
-					pm.registerEvents(new EntrarNoSpawnAoLogar(), Main.this);
-				}
-			}.runTaskLater(Main.get(), 30 * 20);
+			pm.registerEvents(new EntrarNoSpawnAoLogar(), Main.this);
 		}
 
 		if (Settings.Invencibilidade_Ao_Teleportar) {
@@ -630,7 +624,7 @@ public class Main extends JavaPlugin {
 				else
 					AutoAnuncio.XTask.cancel();
 			}
-		} catch (Exception e) {}
+		} catch (Throwable e) {}
 	}
 
 	private Version checkServerVersion() {

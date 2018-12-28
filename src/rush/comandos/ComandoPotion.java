@@ -73,7 +73,7 @@ public class ComandoPotion implements CommandExecutor {
 	private PotionEffectType getPotionEffectType(String effect) {
 		try {
 			return PotionEffectType.getByName(effect);
-		} catch (Exception | Error e) {
+		} catch (Throwable e) {
 			return null;
 		}
 	}

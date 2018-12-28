@@ -65,7 +65,7 @@ public class ComandoSGive implements CommandExecutor {
 		try {
 			Enum.valueOf(enumClass, enumName);
 			return true;
-		} catch (Exception | Error ex) {
+		} catch (Throwable ex) {
 			return false;
 		}
 	}

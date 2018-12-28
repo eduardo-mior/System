@@ -80,7 +80,7 @@ public class ComandoSethome implements CommandExecutor {
     		return Integer.parseInt(p.getEffectivePermissions().stream()
     			   .filter(r -> r.getPermission().toLowerCase().startsWith("system.homes."))
     			   .findFirst().get().getPermission().replace("system.homes.", "").trim());
-    	} catch (Exception e) {
+    	} catch (Throwable e) {
     		return 1;
     	}
 	}

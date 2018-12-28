@@ -27,7 +27,7 @@ public class ReflectionUtils {
    			Object entityPlayer = player.getClass().getMethod("getHandle").invoke(player);
    			Object playerConnection = entityPlayer.getClass().getField("playerConnection").get(entityPlayer);
    			playerConnection.getClass().getMethod("sendPacket", getNMSClass("Packet")).invoke(playerConnection, packet);
-   		} catch (Error | Exception e) {
+   		} catch (Throwable e) {
    			e.printStackTrace();
    		}
    	}
