@@ -80,7 +80,7 @@ public class Locations {
 				setSpawnVip();
 				validarLocations(false);
 			}
-		}.runTaskLaterAsynchronously(Main.get(), 10 * 25);
+		}.runTaskLaterAsynchronously(Main.get(), 20 * 25);
 	}
 
 	private static void setAreaVip() {

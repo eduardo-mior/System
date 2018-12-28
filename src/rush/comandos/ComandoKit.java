@@ -36,9 +36,9 @@ public class ComandoKit implements CommandExecutor {
 			}
 			
 			// Pegando o argumento e verificando se o kit existe
-			String idKit = args[0].toLowerCase();
-			if (!Kits.contains(idKit)) {
-				s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit%", idKit));
+			String id = args[0].toLowerCase();
+			if (!Kits.contains(id)) {
+				s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit-id%", id));
 				ComandoKits.ListKits(s);
 				return true;
 			}
@@ -51,10 +51,10 @@ public class ComandoKit implements CommandExecutor {
 			}
 			
 			// Pegando o kit e adicionando para o player
-			Kit kit = Kits.get(idKit);
+			Kit kit = Kits.get(id);
 			ItemStack[] ITENS = kit.getItens();
 			forceAddItensToInventory(p, ITENS);
-			s.sendMessage(Mensagens.Kit_Enviado.replace("%player%", p.getName()).replace("%kit%",  kit.getNome()));
+			s.sendMessage(Mensagens.Kit_Enviado.replace("%player%", p.getName()).replace("%kit-id%", id).replace("%kit-nome%", kit.getNome()));
 			return true;
 		}
 
@@ -65,19 +65,19 @@ public class ComandoKit implements CommandExecutor {
 		}
 
 		// Pegando o argumento e verificando se o kit existe
-		String idKit = args[0].toLowerCase();
-		if (!Kits.contains(idKit)) {
-			s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit%", idKit));
+		String id = args[0].toLowerCase();
+		if (!Kits.contains(id)) {
+			s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit-id%", id));
 			ComandoKits.ListKits(s);
 			return true;
 		}
 		
 		// Pegando o kit e verificando se o player possui permissão para pegar fala
-		Kit kit = Kits.get(idKit);
+		Kit kit = Kits.get(id);
 		String perm = kit.getPermissao();
 		String nomeKit = kit.getNome();
 		if (!s.hasPermission(perm) && !s.hasPermission("system.kit.all")) {
-			s.sendMessage(Mensagens.Kit_Sem_Permissao.replace("%kit%",	nomeKit));
+			s.sendMessage(Mensagens.Kit_Sem_Permissao.replace("%kit-id%", id).replace("%kit-nome%",	nomeKit));
 			return true;
 		}
 
@@ -90,7 +90,7 @@ public class ComandoKit implements CommandExecutor {
 		long millisKit = System.currentTimeMillis() + (kit.getDelay() * 60000);
 
 		// Verificando se o player já pegou este kit alguma vez na vida
-		if (!KITS.contains(idKit)) {
+		if (!KITS.contains(id)) {
 			
 			// Verificando se o player tem espaço no inventario para pegar o kit
 			if (getFreeSpaceInInventory(p) < kit.getAmountItens()) {
@@ -99,11 +99,11 @@ public class ComandoKit implements CommandExecutor {
 			}
 			
 			// Adicionando os itens no inventario do player e salvando na config
-			configPlayer.set("Kits." + idKit, millisKit);
+			configPlayer.set("Kits." + id, millisKit);
 			try {
 				configPlayer.save(filePlayer);
 				addItensToInventory(p, ITENS);
-				s.sendMessage(Mensagens.Kit_Pego.replace("%kit%", nomeKit));
+				s.sendMessage(Mensagens.Kit_Pego.replace("%kit-id%", id).replace("%kit-nome%", nomeKit));
 			} catch (IOException e) {
 				Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", filePlayer.getName()));
 			}
@@ -111,11 +111,11 @@ public class ComandoKit implements CommandExecutor {
 		}
 
 		// Caso o player nunca tenha pegado o kit verificamos se ele já pode pegar o kit novamente
-		long millisPlayer = configPlayer.getLong("Kits." + idKit);
+		long millisPlayer = configPlayer.getLong("Kits." + id);
 		if (millisPlayer > System.currentTimeMillis() && !p.hasPermission("system.bypass.delaykit")) {
 			long millis = millisPlayer - System.currentTimeMillis();
 			String tempo = TimeFormatter.format(millis);
-			s.sendMessage(Mensagens.Kit_Aguarde.replace("%kit%", nomeKit).replace("%tempo%", tempo));
+			s.sendMessage(Mensagens.Kit_Aguarde.replace("%kit-id%", id).replace("%kit-nome%", nomeKit).replace("%tempo%", tempo));
 			return true;
 		}
 
@@ -126,11 +126,11 @@ public class ComandoKit implements CommandExecutor {
 		}
 		
 		// Caso ele já possa pegar o kit novamente então o delay é setado e os itens são enviados para o player
-		configPlayer.set("Kits." + idKit, millisKit);
+		configPlayer.set("Kits." + id, millisKit);
 		try {
 			configPlayer.save(filePlayer);
 			addItensToInventory(p, ITENS);
-			s.sendMessage(Mensagens.Kit_Pego.replace("%kit%", nomeKit));
+			s.sendMessage(Mensagens.Kit_Pego.replace("%kit-id%", id).replace("%kit-nome%", nomeKit));
 		} catch (IOException e) {
 			Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", filePlayer.getName()));
 		}

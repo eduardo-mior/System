@@ -69,7 +69,7 @@ public class KitsListener implements Listener {
 		try {
 			Kits.create(id, kit);
 			config.save(file);
-			p.sendMessage(Mensagens.Kit_Criado.replace("%kit%", id));
+			p.sendMessage(Mensagens.Kit_Criado.replace("%kit-id%", id));
 		} catch (IOException ex) {
 			Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
 		}
@@ -85,7 +85,7 @@ public class KitsListener implements Listener {
 		config.set("Itens", itens);
 		try {
 			config.save(file);
-			p.sendMessage(Mensagens.Kit_Editado.replace("%kit%", nome));
+			p.sendMessage(Mensagens.Kit_Editado.replace("%kit-id%", nome));
 		} catch (IOException ex) {
 			Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
 		}

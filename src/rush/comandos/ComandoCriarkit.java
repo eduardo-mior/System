@@ -30,7 +30,7 @@ public class ComandoCriarkit implements CommandExecutor {
 		// Pegando o argumento e verificando se o kit já existe
 		String kit = args[0].toLowerCase();
 		if (Kits.contains(kit)) {
-			s.sendMessage(Mensagens.Kit_Ja_Existe.replace("%kit%", kit));
+			s.sendMessage(Mensagens.Kit_Ja_Existe.replace("%kit-id%", kit));
 			return true;
 		}
 			

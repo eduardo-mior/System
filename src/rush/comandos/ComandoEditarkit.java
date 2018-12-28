@@ -31,7 +31,7 @@ public class ComandoEditarkit implements CommandExecutor {
 		// Pegando o argumento e verificando se o kit existe
 		String id = args[0].toLowerCase();
 		if (!Kits.contains(id)) {
-			s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit%", id));
+			s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit-id%", id));
 			ComandoKits.ListKits(s);
 			return true;
 		}
@@ -86,7 +86,7 @@ public class ComandoEditarkit implements CommandExecutor {
 			config.set("Delay", delay);
 			try {
 				config.save(file);
-				s.sendMessage(Mensagens.Kit_Editado.replace("%kit%", kitNome));
+				s.sendMessage(Mensagens.Kit_Editado.replace("%kit-nome%", kitNome).replace("%kit-id%", id));
 			} catch (IOException e) {
 				Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
 			}
@@ -107,7 +107,7 @@ public class ComandoEditarkit implements CommandExecutor {
 			config.set("Permissao", args[2]);
 			try {
 				config.save(file);
-				s.sendMessage(Mensagens.Kit_Editado.replace("%kit%", kitNome));
+				s.sendMessage(Mensagens.Kit_Editado.replace("%kit-nome%", kitNome).replace("%kit-id%", id));
 			} catch (IOException e) {
 				Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
 			}
@@ -130,7 +130,7 @@ public class ComandoEditarkit implements CommandExecutor {
 			config.set("Nome", novoNome);
 			try {
 				config.save(file);
-				s.sendMessage(Mensagens.Kit_Editado.replace("%kit%", novoNome));
+				s.sendMessage(Mensagens.Kit_Editado.replace("%kit-nome%", novoNome).replace("%kit-id%", id));
 			} catch (IOException e) {
 				Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
 			}

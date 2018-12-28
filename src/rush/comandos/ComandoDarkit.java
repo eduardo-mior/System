@@ -25,9 +25,9 @@ public class ComandoDarkit implements CommandExecutor {
 		}
 			
 		// Pegando o argumento e verificando se o kit existe
-		String idKit = args[0].toLowerCase();
-		if (!Kits.contains(idKit)) {
-			s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit%", idKit));
+		String id = args[0].toLowerCase();
+		if (!Kits.contains(id)) {
+			s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit-id%", id));
 			ComandoKits.ListKits(s);
 			return true;
 		}
@@ -40,10 +40,10 @@ public class ComandoDarkit implements CommandExecutor {
 		}
 		
 		// Pegando o kit e adicionando para o player
-		Kit kit = Kits.get(idKit);
+		Kit kit = Kits.get(id);
 		ItemStack[] ITENS = kit.getItens();
 		forceAddItensToInventory(p, ITENS);
-		s.sendMessage(Mensagens.Kit_Enviado.replace("%player%", p.getName()).replace("%kit%", kit.getNome()));
+		s.sendMessage(Mensagens.Kit_Enviado.replace("%player%", p.getName()).replace("%kit-id%", id).replace("%kit-nome%", kit.getNome()));
 		return true;			
 	}
 	

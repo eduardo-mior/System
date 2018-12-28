@@ -21,14 +21,14 @@ public class ComandoDelkit implements CommandExecutor {
 		// Pegando o argumento e verificando se o kit existe
 		String kit = args[0].toLowerCase();
 		if (!Kits.contains(kit)) {
-			s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit%", kit));
+			s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit-id%", kit));
 			ComandoKits.ListKitsForStaff(s);
 			return true;
 		}
 
 		// Deletando o kit
 		Kits.delete(kit);
-		s.sendMessage(Mensagens.Kit_Deletado.replace("%kit%", kit));
+		s.sendMessage(Mensagens.Kit_Deletado.replace("%kit-id%", kit).replace("%kit-nome%", Kits.get(kit).getNome()));
 		return true;
 	}
 }

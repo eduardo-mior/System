@@ -104,7 +104,7 @@ public class Warp {
 						Bukkit.getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao da Warp \"" + Warp.this.nome + "\".");
 					}
 				}
-			}.runTaskLaterAsynchronously(Main.get(), 10 * 25);
+			}.runTaskLaterAsynchronously(Main.get(), 20 * 25);
 		}
 	}
 

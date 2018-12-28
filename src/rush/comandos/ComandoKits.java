@@ -30,7 +30,7 @@ public class ComandoKits implements CommandExecutor {
 		for (Kit kit : kits) {
 			String permissao = kit.getPermissao();
 			if (s.hasPermission(permissao) || s.hasPermission("system.kit.all")) {
-				listKits.add(kit.getNome());
+				listKits.add(kit.getId());
 				cont++;
 			}
 		}
@@ -54,7 +54,7 @@ public class ComandoKits implements CommandExecutor {
 		// Criando um contador para saber o número de kits e passando por todos os kits
 		int cont = 0;
 		for (Kit kit : kits) {
-			listKits.add(kit.getNome());
+			listKits.add(kit.getId());
 			cont++;	
 		}
 
@@ -68,4 +68,5 @@ public class ComandoKits implements CommandExecutor {
 		String stringKits = listKits.toString().replace(",", Mensagens.Separador_De_Listas);
 		s.sendMessage(Mensagens.Kits_Lista.replace("%kits%", stringKits.substring(1, stringKits.length() - 1)).replace("%n%", String.valueOf(cont)));
 	}
+	
 }

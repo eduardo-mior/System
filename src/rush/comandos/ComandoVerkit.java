@@ -26,7 +26,7 @@ public class ComandoVerkit implements CommandExecutor {
 		// Pegando o argumento e verificando se o kit existe
 		String nome = args[0].toLowerCase();
 		if (!Kits.contains(nome)) {
-			s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit%", nome));
+			s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit-id%", nome));
 			ComandoKits.ListKits(s);
 			return true;
 		}

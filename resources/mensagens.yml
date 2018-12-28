@@ -148,15 +148,15 @@ EditarKit-Comando-Incorreto: |
   &c/editarkit <kit-id> perm <permissão> &8-&7 Editar a permissão.
   &c/editarkit <kit-id> delay <minutos> &8-&7 Edita o delay.
   &c/editarkit <kit-id> nome <nome> &8-&7 Edita o nome do kit.
-Kit-Nao-Existe: "&cO kit '%kit%' não existe."
-Kit-Ja-Existe: "&cO kit '%kit%' já existe."
+Kit-Nao-Existe: "&cO kit '%kit-id%' não existe."
+Kit-Ja-Existe: "&cO kit '%kit-id%' já existe."
 Kit-Sem-Permissao: "&cVocê não tem permissão para pegar este kit."
-Kit-Criado: "&aKit '%kit%' criado com sucesso."
-Kit-Editado: "&aKit '%kit%' &aeditado com sucesso."
-Kit-Deletado: "&aKit '%kit%' deletado com sucesso."
+Kit-Criado: "&aKit '%kit-id%' criado com sucesso."
+Kit-Editado: "&aKit '%kit-nome%' &aeditado com sucesso."
+Kit-Deletado: "&aKit '%kit-id%' deletado com sucesso."
 Kit-Sem-Espaco-Pra-Pegar: "&cVocê não possui espaço suficiente no inventário para poder pegar este kit, por favor libere mais espaço e tente novamente."
-Kit-Pego: "&aKit '%kit%' &aadquirido com sucesso."
-Kit-Enviado: "&aKit '%kit%' &aenviado com sucesso para %player%."
+Kit-Pego: "&aKit '%kit-nome%' &aadquirido com sucesso."
+Kit-Enviado: "&aKit '%kit-nome%' &aenviado com sucesso para %player%."
 Kit-Aguarde: "&cAguarde mais %tempo% para poder pegar este kit novamente."
 Nenhum-Kit-Criado: "&cNão há kits disponíveis."
 Kits-Lista: "&eKits disponíveis(%n%): &7%kits%"
