@@ -12,4 +12,5 @@ public class BloquearQuebrarPlantacoesPulando implements Listener {
 		if (e.getBlock().getType() == Material.SOIL)
 			e.setCancelled(true);
 	}
+	
 }

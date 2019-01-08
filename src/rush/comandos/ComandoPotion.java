@@ -45,8 +45,8 @@ public class ComandoPotion implements CommandExecutor {
 		int duration;
 		int amplifier;
 		try {
-			duration = Integer.parseInt(args[1]);
-			amplifier = Integer.parseInt(args[2]);
+			duration = Integer.parseInt(args[1]) * 20;
+			amplifier = Integer.parseInt(args[2]) - 1;
 		} catch (NumberFormatException e) {
 			s.sendMessage(Mensagens.Numero_Invalido.replace("%numero%", e.getMessage().split("\"")[1]));
 			return true;
@@ -62,10 +62,13 @@ public class ComandoPotion implements CommandExecutor {
 
 		// Adicionando o efeito na poção
 		PotionMeta meta = (PotionMeta) hand.getItemMeta();
-		PotionEffect effect = new PotionEffect(effectType, (duration * 20), (amplifier - 1));
+		PotionEffect effect = new PotionEffect(effectType, (duration), (amplifier - 1));
 		meta.addCustomEffect(effect, true);
 		hand.setItemMeta(meta);
-		s.sendMessage(Mensagens.Potion_Editada_Sucesso.replace("%effect%", PotionName.valueOf(effect).getName()));
+		s.sendMessage(Mensagens.Potion_Editada_Sucesso
+				.replace("%amplificador%", String.valueOf(amplifier))
+				.replace("%duracao%", String.valueOf(duration))
+				.replace("%effect%", PotionName.valueOf(effect).getName()));
 		return true;
 	}
 

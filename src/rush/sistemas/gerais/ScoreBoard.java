@@ -33,8 +33,8 @@ public class ScoreBoard implements Listener {
 	    o.setDisplaySlot(DisplaySlot.SIDEBAR);
 	    
 	    for (int i = 0; i < linhas.size(); i++) {
-	    	String scr = linhas.get(i).length() > 40 ? linhas.get(i).substring(0, 40) : linhas.get(i);
-	    	Score score = o.getScore(scr.replace('&', '§'));
+	    	String linha = linhas.get(i).length() > 40 ? linhas.get(i).substring(0, 40) : linhas.get(i);
+	    	Score score = o.getScore(linha.replace('&', '§'));
 	    	score.setScore(linhas.size() - i);
 	    }
 	}

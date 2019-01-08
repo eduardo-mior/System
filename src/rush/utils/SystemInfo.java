@@ -24,7 +24,7 @@ public class SystemInfo {
 				file.delete();
 		    Runtime runtime = Runtime.getRuntime();
 			FileWriter arquivo = new FileWriter(file);
-		    PrintWriter gravador = new PrintWriter(arquivo);
+		    PrintWriter gravador = new PrintWriter(new FileWriter(file));
 		    
 		    gravador.println("+----------------------------------+");
 		    gravador.println("| Variaveis de Ambiente do Sistema |");

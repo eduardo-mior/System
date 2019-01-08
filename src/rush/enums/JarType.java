@@ -1,5 +1,7 @@
 package rush.enums;
 
+import org.bukkit.Bukkit;
+
 public enum JarType {
 	
 	TACO_SPIGOT,
@@ -7,6 +9,22 @@ public enum JarType {
 	SPIGOT,
 	BUKKIT,
 	TORCH,
-	DESCONHECIDA
+	DESCONHECIDA;
+	
+	public static JarType getJarType() {
+		String ver = Bukkit.getVersion();
+		if (ver.contains("git-Torch"))
+			return JarType.TORCH;
+		else if (ver.contains("git-TacoSpigot"))
+			return JarType.TACO_SPIGOT;
+		else if (ver.contains("git-Paper"))
+			return JarType.PAPE_SPIGOT;
+		else if (ver.contains("git-Spigot"))
+			return JarType.SPIGOT;
+		else if (ver.contains("git-Bukkit"))
+			return JarType.BUKKIT;
+		else
+			return JarType.DESCONHECIDA;
+	}
 
 }

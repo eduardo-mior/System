@@ -1,4 +1,4 @@
-﻿file-version: 2
+﻿file-version: 3
 ############################################################
 # +------------------------------------------------------+ #
 # |              Recuros Adicionais (Addons)             | #
@@ -24,15 +24,31 @@ AtivarAddons:
 # |                  Recursos Anti-BUG                   | #
 # +------------------------------------------------------+ #
 ############################################################
+# Este recurso bloqueia o player de deitar em camas
+# OBS: Para burlar use a permissão: system.bypass.entrarnacama 
 Bloquear-Cama: true
+
+# Este recurso bloqueia o player de subir em veiculos
+# OBS: Para burlar use a permissão: system.bypass.entraremveiculos
 Bloquear-Subir-Em-Veiculos: true
+
+# Este recurso bloqueia o player de renomear mobs com NameTags
+# OBS: Para burlar use a permissão: system.bypass.usarnametag
 Bloquear-NameTag: false
+
+# Este recurso bloqueia o player passadr da borda com EnderPearls
 Bloquear-Passar-Da-Borda: true
+
+# Este recurso bloquia o player de subir a cima 
 Bloquear-Subir-No-Teto-Nether: true
+
+# Este recurso adiciona um delay na EnderPearl
 EnderPearl-Cooldown: 
   Ativar: true
   Cooldown: 5 #segundos
 
+# Este recurso impede o player de abrir containers como baús, bigornas etc.
+# OBS: Para burlar use a permissão: system.bypass.containerbloqueado
 Bloquear-Abrir-Containers: 
   Ativar: false
   Containers:
@@ -41,6 +57,8 @@ Bloquear-Abrir-Containers:
   - 'HOPPER'
   # Lista de containers da 1.8: http://docs.codelanx.com/Bukkit/1.8/org/bukkit/event/inventory/InventoryType.html
 
+# Este recurso impede o player de usar o SHIFT_CLICK em containers.
+# OBS: Para burlar use a permissão: system.bypass.shiftemcontainer
 Bloquear-Shift-Em-Containers:
   Ativar: false
   Containers:
@@ -64,19 +82,46 @@ Comandos-Que-Envolvem-Money:
 # |             Desativar Recursos do Mapa               | #
 # +------------------------------------------------------+ #
 ############################################################
+# Este recurso bloqueia a água de ser congelada.
 Bloquear-Congelar-Agua: false
+
+# Este recurso bloqueia a neve e o gelo de serem deretidos.
 Bloquear-Derreter-Gelo-E-Neve: false
+
+# Este recurso bloqueia as plantações de serem quebradas ao serem pisoteadas.
 Bloquear-Quebrar-Plantacoes-Pulando: false
+
+# Este recurso desativa o tempo do minecraft.
 Desativar-Ciclo-Do-Dia: true
+
+# Este recurso desativa as bolas de fogo dos blazes.
 Desativar-Dano-Do-Blaze: false
+
+# Este recurso desativa o dano do EnderDragon.
 Desativar-Dano-Do-EnderDragon: false
+
+# Este recurso desativa as bolas de fogo dos ghats.
 Desativar-Dano-Do-Ghast: false
+
+# Este recurso desativa o dano do Wither e as cabeças lançadas pelo Wither.
 Desativar-Dano-Do-Wither: true
+
+# Este recurso desativa os mobs que nascem naturalmente pelo mapa.
 Desativar-Mobs-Naturais: true
+
+# Este recurso desativa a propagação das chamas do fogo.
 Desativar-Propagacao-Do-Fogo: true
+
+# Este recurso impede que as folhas caiam quando a arvore for quebrada.
 Desativar-Queda-Das-Folhas: true
+
+# Este recurso remove a fisica da areia e impede que e la caia.
 Desativar-Queda-Da-Areia: false
+
+# Este recurso impede que a água escore para baixo, permitindo apenas escorer para os lados.
 Desativar-Flow-Da-Agua-E-Lava: false
+
+# Este recurso desativa a chuva do servidor.
 Desativar-Chuva: true
 
 ############################################################
@@ -84,17 +129,38 @@ Desativar-Chuva: true
 # |                   Recursos Gerais                    | #
 # +------------------------------------------------------+ #
 ############################################################
+# Este recurso impede que as bigornas quebrem tornando elas infinitas.
 Bigorna-Infinita: true
+
+# Este recurso permite renomear itens usando cores (&). 
+# OBS: Precisa da permissão system.cornabigorna
 Ativar-Cores-Na-Bigorna: true
+
+# Este recurso permite escrever nas placas usando cores (&). 
+# OBS: Precisa da permissão system.cornaplaca
 Ativar-Cores-Na-Placa: true
+
+# Este recurso impede que os players caiam no Void.
 Bloquear-Cair-No-Void: true
+
+# Este recurso impede os Zombies e Esqueletos de pegarem fogo no sol.
 Bloquear-Mobs-De-Pegarem-Fogo-Para-O-Sol: false
+
+# Este recurso desativa a fome do jogo.
 Desativar-Fome-Nos-Mundos: true
+
+# Estes recursos desativa as mensagens que aparecem quando o player entra, sai ou morre.
 Desativar-Mensagem-De-Entrada: true
 Desativar-Mensagem-De-Morte: true
 Desativar-Mensagem-De-Saida: true
+
+# Este recurso teleporta o player para o Spawn (/setpsawn) ao logar.
 Entrar-No-Spawn-Ao-Logar: true
+
+# Este recurso impede o player de criar portais.
 Bloquear-Criar-Portal: true
+
+# Este recurso impede o player de se teleportar usando portais.
 Bloquear-Teleport-Por-Portal:
   Ativar: true
   NetherPortal: true
@@ -105,8 +171,12 @@ Bloquear-Teleport-Por-Portal:
 # |                Configurações Diversas                | #
 # +------------------------------------------------------+ #
 ############################################################
+# Este delay é usando em varios comandos como /home /tpa /spawn etc...
+# OBS: Para burlar use a permissão: system.semdelay
 Delay-Para-Teleportar-Comandos: 5 #segundos
 
+# Este delay é usando no comando /divulgar
+# OBS: Para burlar use a permissão: system.bypass.delaydivulgar
 Delay-Para-Divulgar: 15 #minutos
 
 Tempo-Para-Expirar-Solicitacao-Tpa: 60 #segundos
@@ -116,7 +186,7 @@ Limitador-De-Players:
   Ativar: true
 
   # Não se esqueça de alterar o limite de players na server.propriets
-  # Se você colocar limite de 300 deixe pelo menos umas 20 vagas para VIPS
+  # Se você colocar limite de 300 deixe pelo menos umas 20 vagas para VIPS.
   # Então coloque 320 na server.propriets
   Limite-De-Players: 300
 
@@ -125,14 +195,17 @@ Limitador-De-Players:
   Kickar-Sem-Vip: true
   Tempo-Para-Ser-Kickado-Apos-Aviso: 60 #segundos
 
+# Este recurso impede que o player tome dano por 3 segundos ao se teleportar.
 Invencibilidade-Ao-Teleportar: 
   Ativar: true
   Tempo-De-Invencibilidade-Ao-Teleportar: 3 #segundos
 
+# Este recurso faz com que tenha uma chance da cabeça do player dropar ao morrer.
 Dropar-Cabeca-Ao-Morrer: 
   Ativar: true
   Chance-De-Dropar-Cabeca-Ao-Morrer: 15
 
+# Este recurso permite os players usarem o comando /fly em determinados mundos
 Sistema-De-Fly-Para-Players: true
 Mundos-Onde-Pode-Usar-Fly:
   - 'world'
@@ -188,9 +261,46 @@ Motd:
 
 ############################################################
 # +------------------------------------------------------+ #
+# |                   Deletar Comandos                   | #
+# +------------------------------------------------------+ #
+############################################################
+# Este recurso serve para deletar comandos do minecraft ou de outros plugins!
+
+# Para deletar um comando do servidor como por exemplo o /help use:
+# - "*:help"
+# Isto removeria todos os comandos /help tanto /bukkit:help quanto o /miencraft:help
+
+# Caso você tenha um plugin com o comando /me e quer deletar apenas o /minecraft:me use:
+# - "minecraft:me"
+# Isto removeria apenas o comando /me do minecraft
+
+# Caso você queira deletar todos os comandos duplicados de um plugin use:
+# - "vault:*" 
+# Isto iria remover o comando /vault:convert mas iria manter o comando /convert
+
+Deletar-Comandos: true
+Lista-Dos-Comandos-Deletados:
+   - "*:achievement"
+   - "*:blockdata"
+   - "*:clone"
+   - "*:entitydata"
+   - "*:fill"
+   - "*:help"
+   - "*:me"
+   - "*:say"
+   - "*:replaceitem"
+   - "*:setblock"
+   - "*:testfor"
+   - "*:testforblock"
+   - "*:testforblocks"
+
+############################################################
+# +------------------------------------------------------+ #
 # |                   Bloquear Comandos                  | #
 # +------------------------------------------------------+ #
 ############################################################
+# Este recurso apenas bloqueia os players de usarem os comandos.
+# OBS: Para burlar use a permissão: system.bypass.comandobloqueado
 Bloquear-Comandos: false
 Lista-Dos-Comandos-Bloqueados:
   - '/teste'
@@ -203,6 +313,8 @@ Lista-Dos-Comandos-Bloqueados:
 # |                    Bloquear Crafts                   | #
 # +------------------------------------------------------+ #
 ############################################################
+# Este recurso bloqueia os players de craftarem tais itens.
+# OBS: Para burlar use a permissão: system.bypass.craftbloqueado
 Bloquear-Crafts: true
 Lista-Dos-Crafts-Bloqueados: 
   - '333'
@@ -216,6 +328,13 @@ Lista-Dos-Crafts-Bloqueados:
 # |                    Bloquear Placas                   | #
 # +------------------------------------------------------+ #
 ############################################################
+# Caso você queira bloquear que os players digitem em placas basta colocar
+# Bloquear-Todas-As-Palavras: true
+
+# Caso você queira bloquear apenas algumas palavras das placas use
+# Bloquear-Apenas-Algumas-Palavras: true e depois coloque as palavras na lista
+
+# OBS: Para burlar use a permissão: system.bypass.placabloqueada
 Bloquear-Palavras-Em-Placas:
   Ativar: true
   Bloquear-Todas-As-Palavras: false
@@ -282,7 +401,7 @@ CorAutomatica:
   vip2: "§e"
   #Permissão para escrever em destaque no /g: system.chat.destaque
   #Permissão para usar a cor automatica nas frases: system.chat.cor.<cor> 
-  #Exemplo: system.chat.cor.master system.chat.cor.vip1
+  #Exemplo: system.chat.cor.master  --  system.chat.cor.vip1
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -295,6 +414,7 @@ Delay-Entre-Anuncios: 300
 Reproduzir-Som-No-Anuncio: true
 Som-Do-Anuncio: LEVEL_UP
 # Lista de sons do minecraft 1.8 http://docs.codelanx.com/Bukkit/1.8/org/bukkit/Sound.html
+# Caso queira pular linha use e escrever 2 linhas no mesmo anuncio use: \n 
 Lista-De-Anuncios:
   - '&e&l[Anuncio] &eInscreva-se em nosso canal e fique por dentro de tudo &b&nhttp://bit.ly/hypixel&e!'
   - '&e&l[Anuncio] &eAdquira já seu vip através do nosso site &b&nhttps://hypixel.net/&e!'
@@ -323,7 +443,7 @@ Anuncios:
 # +------------------------------------------------------+ #
 ############################################################
 ScoreBoard:
-  # A scoreboard não possui variaveis.
+  # A scoreboard é estatica e não possui variaveis.
   Ativar: false
   Titulo: "  &6&lHypixel  "
   Linhas:

@@ -11,25 +11,18 @@ import rush.utils.objectStream.BukkitObjectInputStream;
 import rush.utils.objectStream.BukkitObjectOutputStream;
 
 public class SerializerOLD {
-    
-    public static String serializeListItemStack(ItemStack[] items) {
+	
+    public static ItemStack deserializeItemStack(String data) {
     	try {
-            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
-            BukkitObjectOutputStream dataOutput = new BukkitObjectOutputStream(outputStream);
+            ByteArrayInputStream inputStream = new ByteArrayInputStream(Base64Coder.decodeLines(data));
+            BukkitObjectInputStream dataInput = new BukkitObjectInputStream(inputStream);
+            dataInput.readInt();
+            ItemStack item = (ItemStack) dataInput.readObject();
             
-            // Write the size of the inventory
-            dataOutput.writeInt(items.length);
-            
-            // Save every element in the list
-            for (int i = 0; i < items.length; i++) {
-                dataOutput.writeObject(items[i]);
-            }
-            
-            // Serialize that array
-            dataOutput.close();
-            return Base64Coder.encodeLines(outputStream.toByteArray());
-        } catch (IOException e) {
-           e.printStackTrace();
+            dataInput.close();
+            return item;
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
         }
 		return null;
     }
@@ -40,7 +33,6 @@ public class SerializerOLD {
             BukkitObjectInputStream dataInput = new BukkitObjectInputStream(inputStream);
             ItemStack[] items = new ItemStack[dataInput.readInt()];
     
-            // Read the serialized inventory
             for (int i = 0; i < items.length; i++) {
             	items[i] = (ItemStack) dataInput.readObject();
             }
@@ -52,4 +44,44 @@ public class SerializerOLD {
         }
 		return null;
     }
+    
+	public static String serializeItemStack(ItemStack item) {
+    	try {
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            BukkitObjectOutputStream dataOutput = new BukkitObjectOutputStream(outputStream);
+            
+            // Write the size of the inventory
+            dataOutput.writeInt(1);
+            
+            // Save every element in the list
+            dataOutput.writeObject(item);
+            
+            // Serialize that array
+            dataOutput.close();
+            return Base64Coder.encodeLines(outputStream.toByteArray());
+        } catch (IOException e) {
+           e.printStackTrace();
+        }	
+    	return null;
+   	}
+    
+    public static String serializeListItemStack(ItemStack[] items) {
+    	try {
+            ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
+            BukkitObjectOutputStream dataOutput = new BukkitObjectOutputStream(outputStream);
+            
+            dataOutput.writeInt(items.length);
+            
+            for (int i = 0; i < items.length; i++) {
+                dataOutput.writeObject(items[i]);
+            }
+            
+            dataOutput.close();
+            return Base64Coder.encodeLines(outputStream.toByteArray());
+        } catch (IOException e) {
+           e.printStackTrace();
+        }
+		return null;
+    }
+
 }

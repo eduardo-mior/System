@@ -16,7 +16,9 @@ public class HealthAPI {
 		} catch (NoSuchMethodError e1) {
 			try {
 				return (int) p.getClass().getMethod("getHealth").invoke(p);
-			} catch (Throwable e2) {}
+			} catch (Throwable e2) {
+				e2.printStackTrace();
+			}
 		}
 		return 0;
 	}

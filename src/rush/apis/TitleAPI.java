@@ -17,8 +17,8 @@ public class TitleAPI {
 	private static Constructor<?> textTitleConstructor;
 	
 	public static void sendTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String title, String subtitle) {
-		try {
-
+		try 
+		{
 			Object chatTitle = a.invoke(null, "{\"text\":\"" + title + "\"}");
 			Object chatSubtitle = a.invoke(null,"{\"text\":\"" + subtitle + "\"}");
 			
@@ -30,8 +30,8 @@ public class TitleAPI {
 
 			Object subtitlePacket = textTitleConstructor.newInstance(enumSUBTITLE, chatSubtitle);
 			ReflectionUtils.sendPacket(player, subtitlePacket);
-
-		} catch (Throwable e) {
+		} 
+		catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}

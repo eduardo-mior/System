@@ -16,11 +16,13 @@ public class ActionBarAPI {
 	private static Constructor<?> chatConstructor;
 	
 	public static void sendActionBar(Player player, String message) {
-		try {
+		try 
+		{
 			Object chatMessage = a.invoke(null, "{\"text\":\"" + message + "\"}");
 		    Object packet = chatConstructor.newInstance(chatMessage, typeMessage);
 		    ReflectionUtils.sendPacket(player, packet);
-		} catch (Throwable e) {
+		} 
+		catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}

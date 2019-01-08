@@ -332,6 +332,7 @@ Potion-Comando-Incorreto: "&cComando incorreto, use /potion <efeito> <duração>
 Potion-Efeito-Invalido: "&cO efeito '%effect%' não é um efeito valido.\n&eLista de efeitos: %lista%"
 Potion-Item-Invalido: "&cVocê deve estar segurando uma poção na mão para poder fazer isto."
 Potion-Editada-Sucesso: "&aEfeito '%effect%' adicionado com sucesso na poção."
+# %duracao% mostra a duração da poção -- %amplificador% mostra o amplificador da poção
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -342,6 +343,7 @@ Enchant-Comando-Incorreto: "&cComando incorreto, use /enchant <encantamento> <le
 Enchant-Encantamento-Invalido: "&cO encantamento '%enchant%' não é um encantamento valido.\n&eLista de encantamentos: %lista%"
 Enchant-Item-Invalido: "&cO item que você esta tentando encantar não é um item valido."
 Enchant-Encantado-Com-Sucesso: "&aEncantamento '%enchant%' adicionado com sucesso no item."
+# %level% mostra o nível do encantamento adicionado
 
 ############################################################
 # +------------------------------------------------------+ #

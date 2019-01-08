@@ -58,7 +58,9 @@ public class ComandoEnchant implements CommandExecutor {
 			
 		// Adicionando o encantamento no item
 		hand.addUnsafeEnchantment(ench, level);
-		s.sendMessage(Mensagens.Enchant_Encantado_Com_Sucesso.replace("%enchant%", EnchantmentName.valueOf(ench).getName()));
+		s.sendMessage(Mensagens.Enchant_Encantado_Com_Sucesso
+				.replace("%level%", String.valueOf(level))
+				.replace("%enchant%", EnchantmentName.valueOf(ench).getName()));
 		return true;
 	}
 	

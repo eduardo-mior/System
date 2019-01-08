@@ -16,12 +16,19 @@ public class AnvilAPI {
 	private static Constructor<?> containerAnvilConstructor;
 	private static Constructor<?> blockPositionConstructor;
 	private static Constructor<?> packetConstructor;
+	private static Method nextContainerCounter;
 	private static Method addSlotListener;
+	private static Method getHandle;
 	private static Object message;
+	private static Field windowId;
+	private static Field worldField;
+	private static Field inventoryField;
+	private static Field checkReachableField;
+	private static Field activeContainerField;
 	
 	public static void openAnvil(Player p) {
-		try {
-			
+		try 
+		{
 			Location l = p.getLocation();
 			int x = l.getBlockX();
 			int y = l.getBlockY();
@@ -29,10 +36,10 @@ public class AnvilAPI {
 			
 			Object packet;
 			Object container;
-			Object entityPlayer = p.getClass().getMethod("getHandle").invoke(p);
-			Object world = entityPlayer.getClass().getField("world").get(entityPlayer);
-			Object inventory = entityPlayer.getClass().getField("inventory").get(entityPlayer);			
-			Object counter = entityPlayer.getClass().getMethod("nextContainerCounter").invoke(entityPlayer);
+			Object entityPlayer = getHandle.invoke(p);
+			Object world = worldField.get(entityPlayer);
+			Object inventory = inventoryField.get(entityPlayer);			
+			Object counter = nextContainerCounter.invoke(entityPlayer);
 			
 			if (!Main.isOldVersion()) {
 				Object blockPosition = blockPositionConstructor.newInstance(x, y, z);
@@ -45,19 +52,12 @@ public class AnvilAPI {
 			
 			ReflectionUtils.sendPacket(p, packet);
 			
-			Field checkReachable = container.getClass().getField("checkReachable");
-			checkReachable.set(container, false);
-			
-			Field activeContainerField = entityPlayer.getClass().getField("activeContainer");
+			windowId.set(container, counter);
+			checkReachableField.set(container, false);
 			activeContainerField.set(entityPlayer, container);
-			
-			Object activeContainer = entityPlayer.getClass().getField("activeContainer").get(entityPlayer);
-			Field windowId = activeContainer.getClass().getField("windowId");
-			windowId.set(activeContainer, counter);
-			
-			addSlotListener.invoke(activeContainer, entityPlayer);
-		
-		} catch (Throwable e) {
+			addSlotListener.invoke(container, entityPlayer);
+		} 
+		catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}
@@ -65,11 +65,23 @@ public class AnvilAPI {
 	static void load() {
 		try 
 		{
+			Class<?> craftPlayerClass = ReflectionUtils.getOBClass("entity.CraftPlayer");
+			Class<?> entityPlayerClass = ReflectionUtils.getNMSClass("EntityPlayer");
+			Class<?> containerAnvilClass = ReflectionUtils.getNMSClass("ContainerAnvil");
+			
+			getHandle = craftPlayerClass.getMethod("getHandle");
+			nextContainerCounter = entityPlayerClass.getMethod("nextContainerCounter");
+			
+			worldField = entityPlayerClass.getField("world");
+			inventoryField = entityPlayerClass.getField("inventory");
+			activeContainerField = entityPlayerClass.getField("activeContainer");
+			checkReachableField = containerAnvilClass.getField("checkReachable");
+			windowId = containerAnvilClass.getField("windowId");
+
 			Class<?> icraftingClass = ReflectionUtils.getNMSClass("ICrafting");
 			Class<?> containerClass = ReflectionUtils.getNMSClass("Container");
 			addSlotListener = containerClass.getMethod("addSlotListener", icraftingClass);
 			
-			Class<?> containerAnvilClass = ReflectionUtils.getNMSClass("ContainerAnvil");
 			Class<?> playerInventoryClass = ReflectionUtils.getNMSClass("PlayerInventory");
 			Class<?> worldClass = ReflectionUtils.getNMSClass("World");
 			Class<?> entityHumanClass = ReflectionUtils.getNMSClass("EntityHuman");
@@ -97,11 +109,8 @@ public class AnvilAPI {
 			} else {
 				packetConstructor = packetOpenWindowClass.getConstructor(int.class, int.class, String.class, int.class, boolean.class);
 			}
-			
 		}
-		catch (Throwable e) {
-			e.printStackTrace();
-		}
+		catch (Throwable e) {}
 	}
 	
 }

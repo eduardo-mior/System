@@ -291,6 +291,7 @@ public class Mensagens {
 	
 	public static void loadMensagens() {
 		FileConfiguration config = ConfigManager.getConfig("mensagens");
+		FileConfiguration settings = ConfigManager.getConfig("settings");
 		Separador_De_Listas = config.getString("Separador-De-Listas").replace('&', '§');
 		Console_Nao_Pode = config.getString("Console-Nao-Pode").replace('&', '§');
 		Sem_Permissao = config.getString("Sem-Permissao").replace('&', '§');
@@ -305,13 +306,13 @@ public class Mensagens {
 		Erro_Versao_Nao_Suportada = config.getString("Erro-Versao-Nao-Suportada").replace('&', '§');
 		Nick_Similar = config.getString("Nick-Similar").replace('&', '§');
 		Servidor_Lotado = config.getString("Servidor-Lotado").replace('&', '§');
-		Aviso_Dar_Lugar_Ao_Vip = config.getString("Aviso-Dar-Lugar-Ao-Vip").replace('&', '§').replace("%tempo%", String.valueOf(Settings.Tempo_Para_Ser_Kick));
+		Aviso_Dar_Lugar_Ao_Vip = config.getString("Aviso-Dar-Lugar-Ao-Vip").replace('&', '§').replace("%tempo%", String.valueOf(settings.getInt("Limitador-De-Players.Tempo-Para-Ser-Kickado-Apos-Aviso")));
 		Kick_Dar_Lugar_Ao_Vip = config.getString("Kick-Dar-Lugar-Ao-Vip").replace('&', '§');
 		Nick_Bloqueado = config.getString("Nick-Bloqueado").replace('&', '§');
 		Comando_Bloqueado = config.getString("Comando-Bloqueado").replace('&', '§');
 		Tentou_Passar_Da_Borda = config.getString("Tentou-Passar-Da-Borda").replace('&', '§');
 		Tentou_Vender_Com_Valor_Negativo = config.getString("Tentou-Vender-Com-Valor-Negativo").replace('&', '§');
-		Aguarde_EnderPearl_Cooldown = config.getString("Aguarde-EnderPearl-Cooldown").replace('&', '§').replace("%tempo%", String.valueOf(Settings.EnderPearl_Cooldown_Cooldown));
+		Aguarde_EnderPearl_Cooldown = config.getString("Aguarde-EnderPearl-Cooldown").replace('&', '§').replace("%tempo%", String.valueOf(settings.getInt("EnderPearl-Cooldown.Cooldown")));
 		Shift_Bloqueado_No_Container = config.getString("Shift-Bloqueado-No-Container").replace('&', '§');
 		Palavras_Desativadas_Na_Placa = config.getString("Placas.Palavras-Desativadas-Na-Placa").replace('&', '§');
 		Palavra_Bloqueada_Na_Placa = config.getString("Placas.Palavra-Bloqueada-Na-Placa").replace('&', '§');
@@ -343,8 +344,8 @@ public class Mensagens {
 		Home_Nao_Existe = config.getString("Home-Nao-Existe").replace('&', '§');
 		Player_Home_Nao_Existe = config.getString("Player-Home-Nao-Existe").replace('&', '§');
 		Player_Home_Nao_Publica = config.getString("Player-Home-Nao-Publica").replace('&', '§');
-		Home_Privada_Iniciando_Teleporte = config.getString("Home-Privada-Iniciando-Teleporte").replace('&', '§').replace("%tempo%", String.valueOf(Settings.Delay_Para_Teleportar_Comandos));
-		Home_Publica_Iniciando_Teleporte = config.getString("Home-Publica-Iniciando-Teleporte").replace('&', '§').replace("%tempo%", String.valueOf(Settings.Delay_Para_Teleportar_Comandos));
+		Home_Privada_Iniciando_Teleporte = config.getString("Home-Privada-Iniciando-Teleporte").replace('&', '§').replace("%tempo%", String.valueOf(settings.getInt("Delay-Para-Teleportar-Comandos")));
+		Home_Publica_Iniciando_Teleporte = config.getString("Home-Publica-Iniciando-Teleporte").replace('&', '§').replace("%tempo%", String.valueOf(settings.getInt("Delay-Para-Teleportar-Comandos")));
 		Home_Privada_Teleportado_Sucesso = config.getString("Home-Privada-Teleportado-Sucesso").replace('&', '§');
 		Home_Publica_Teleportado_Sucesso = config.getString("Home-Publica-Teleportado-Sucesso").replace('&', '§');
 		Homes_Publicas = config.getString("Homes-Publicas").replace('&', '§');
@@ -399,7 +400,7 @@ public class Mensagens {
 		Tpall_Puxou_Com_Sucesso_Player = config.getString("Tpall-Puxou-Com-Sucesso-Player").replace('&', '§');
 		Tpall_Puxou_Com_Sucesso_Cords = config.getString("Tpall-Puxou-Com-Sucesso-Cords").replace('&', '§');
 		Tpa_Comando_Incorreto = config.getString("Tpa-Comando-Incorreto").replace('&', '§');
-		Tpa_Aguarde_Cooldown = config.getString("Tpa-Aguarde-Cooldown").replace('&', '§').replace("%tempo%", String.valueOf(Settings.Tempo_Para_Poder_Enviar_Outra_Solicitacao_Tpa));;
+		Tpa_Aguarde_Cooldown = config.getString("Tpa-Aguarde-Cooldown").replace('&', '§').replace("%tempo%", String.valueOf(settings.getInt("Tempo-Para-Poder-Enviar-Outra-Solicitacao-Tpa")));
 		Tpa_Desligado_Tptoggle = config.getString("Tpa-Desligado-Tptoggle").replace('&', '§');
 		Tpa_Ja_Possui_Solicitacao = config.getString("Tpa-Ja-Possui-Solicitacao").replace('&', '§');
 		Tpa_Solicitcao_Expirada_Player = config.getString("Tpa-Solicitcao-Expirada-Player").replace('&', '§');
@@ -412,7 +413,7 @@ public class Mensagens {
 		Tpaccept_Player_Offline = config.getString("Tpaccept-Player-Offline").replace('&', '§');
 		Tpaccept_Erro_Voce_Mesmo = config.getString("Tpaccept-Erro-Voce-Mesmo").replace('&', '§');
 		Tpaccept_Solicitacao_Aceita_Sucesso = config.getString("Tpaccept-Solicitacao-Aceita-Sucesso").replace('&', '§');
-		Tpaccept_Iniciando_Teleporte = config.getString("Tpaccept-Iniciando-Teleporte").replace('&', '§').replace("%tempo%", String.valueOf(Settings.Delay_Para_Teleportar_Comandos));
+		Tpaccept_Iniciando_Teleporte = config.getString("Tpaccept-Iniciando-Teleporte").replace('&', '§').replace("%tempo%", String.valueOf(settings.getInt("Delay-Para-Teleportar-Comandos")));
 		Tpaccept_Teleportado_Com_sucesso = config.getString("Tpaccept-Teleportado-Com-sucesso").replace('&', '§');
 		Tpdeny_Comando_Incorreto = config.getString("Tpdeny-Comando-Incorreto").replace('&', '§');
 		Tpdeny_Erro_Voce_Mesmo = config.getString("Tpdeny-Erro-Voce-Mesmo").replace('&', '§');
@@ -493,7 +494,7 @@ public class Mensagens {
 		SlimeChunk_Esta = config.getString("SlimeChunk.Esta").replace('&', '§');
 		SlimeChunk_NaoEsta = config.getString("SlimeChunk.NaoEsta").replace('&', '§');
 		Teleportado_Com_Sucesso_Spawn = config.getString("Teleportado-Com-Sucesso-Spawn").replace('&', '§');
-		Iniciando_Teleporte_Spawn = config.getString("Iniciando-Teleporte-Spawn").replace('&', '§').replace("%tempo%", String.valueOf(Settings.Delay_Para_Teleportar_Comandos));
+		Iniciando_Teleporte_Spawn = config.getString("Iniciando-Teleporte-Spawn").replace('&', '§').replace("%tempo%", String.valueOf(settings.getInt("Delay-Para-Teleportar-Comandos")));
 		Skull_Comando_Incorreto = config.getString("Skull-Comando-Incorreto").replace('&', '§');
 		Skull_Enviada_Outro = config.getString("Skull-Enviada-Outro").replace('&', '§');
 		Skull_Enviada_Voce = config.getString("Skull-Enviada-Voce").replace('&', '§');
@@ -504,7 +505,7 @@ public class Mensagens {
 		Ping_Comando_Incorreto = config.getString("Ping-Comando-Incorreto").replace('&', '§');
 		Seu_Ping = config.getString("Ping.Seu-Ping").replace('&', '§');
 		Player_Ping = config.getString("Ping.Player-Ping").replace('&', '§');
-		Iniciando_Teleporte_Vip = config.getString("Iniciando-Teleporte-Vip").replace('&', '§').replace("%tempo%", String.valueOf(Settings.Delay_Para_Teleportar_Comandos));
+		Iniciando_Teleporte_Vip = config.getString("Iniciando-Teleporte-Vip").replace('&', '§').replace("%tempo%", String.valueOf(settings.getInt("Delay-Para-Teleportar-Comandos")));
 		Teleportado_Com_Sucesso_Sem_Vip = config.getString("Teleportado-Com-Sucesso-Sem-Vip").replace('&', '§');
 		Teleportado_Com_Sucesso_Vip = config.getString("Teleportado-Com-Sucesso-Vip").replace('&', '§');
 		Nao_Possui_Back = config.getString("Nao-Possui-Back").replace('&', '§');

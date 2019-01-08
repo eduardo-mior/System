@@ -117,6 +117,8 @@ public class Settings {
 	public static String Commando_Slime_Esta;
 	public static String Commando_Slime_Nao_esta;
 	public static boolean Bloquear_Quebrar_Plantacoes_Pulando;
+	public static boolean Deletar_Comandos;
+	public static List<String> Lista_Dos_Comandos_Deletados;
 
 	public static void loadSettings() {
 		FileConfiguration config = ConfigManager.getConfig("settings");
@@ -228,5 +230,8 @@ public class Settings {
 		Commando_Slime_Esta = config.getString("Commando-Slime.Esta-Em-SlimeChunk");
 		Commando_Slime_Nao_esta = config.getString("Commando-Slime.Nao-Esta-Em-SlimeChunk");
 		Bloquear_Quebrar_Plantacoes_Pulando = config.getBoolean("Bloquear-Quebrar-Plantacoes-Pulando");
+		Deletar_Comandos = config.getBoolean("Deletar-Comandos");
+		Lista_Dos_Comandos_Deletados = config.getStringList("Lista-Dos-Comandos-Deletados");
+		
 	}
 }

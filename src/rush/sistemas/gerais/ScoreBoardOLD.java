@@ -41,8 +41,8 @@ public class ScoreBoardOLD implements Listener {
 	    o.setDisplaySlot(DisplaySlot.SIDEBAR);
 	    
 	    for (int i = 0; i < linhas.size(); i++) {
-	    	String scr = linhas.get(i).length() > 16 ? linhas.get(i).substring(0, 16) : linhas.get(i);
-			Score score = o.getScore(Bukkit.getOfflinePlayer(scr.replace('&', '§')));
+	    	String linha = linhas.get(i).length() > 16 ? linhas.get(i).substring(0, 16) : linhas.get(i);
+			Score score = o.getScore(Bukkit.getOfflinePlayer(linha.replace('&', '§')));
 	    	score.setScore(linhas.size() - i);
 	    }
 	}

@@ -11,7 +11,9 @@ public class OnlinePlayersAPI {
 		} catch (Throwable e) {
 			try {
 				return (Player[]) Bukkit.class.getMethod("getOnlinePlayers").invoke(null);
-			} catch (Throwable e2) {}
+			} catch (Throwable e2) {
+				e2.printStackTrace();
+			}
 		}
 		return null;
 	}

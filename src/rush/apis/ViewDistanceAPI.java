@@ -14,30 +14,34 @@ public class ViewDistanceAPI {
 	private static Class<?> worldServerClass;
 	private static Method getPlayerChunkMap;
 	private static Method updateViewDistance;
-	private static String name;
+	private static Method getHandle;
+	private static Field worldField;
+	private static Field distanceField;
 	
 	public static int getViewDistance(Player player) {
-		try {
-			Object entityPlayer = player.getClass().getMethod("getHandle").invoke(player);
-			Object world = entityPlayer.getClass().getField("world").get(entityPlayer);
+		try 
+		{
+			Object entityPlayer = getHandle.invoke(player);
+			Object world = worldField.get(entityPlayer);
 			Object worldServer = worldServerClass.cast(world);
 			Object playerChunkMap = getPlayerChunkMap.invoke(worldServer);
-			Field viewDistance = playerChunkMap.getClass().getDeclaredField(name);
-			viewDistance.setAccessible(true);
-			return (int) viewDistance.get(playerChunkMap);
-		} catch (Throwable e) {
+			return (int) distanceField.get(playerChunkMap);
+		} 
+		catch (Throwable e) {
 			return -1;
 		}
 	}
 	
 	public static void setViewDistance(Player player, int viewDistance) {
-		try {
-			Object entityPlayer = player.getClass().getMethod("getHandle").invoke(player);
-			Object world = entityPlayer.getClass().getField("world").get(entityPlayer);
+		try 
+		{
+			Object entityPlayer = getHandle.invoke(player);
+			Object world = worldField.get(entityPlayer);
 			Object worldServer = worldServerClass.cast(world);
 			Object playerChunkMap = getPlayerChunkMap.invoke(worldServer);
 			updateViewDistance.invoke(playerChunkMap, viewDistance);
-		} catch (Throwable e) {
+		} 
+		catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}
@@ -45,15 +49,26 @@ public class ViewDistanceAPI {
 	static void load() {
 		try 
 		{
+			Class<?> craftPlayerClass = ReflectionUtils.getOBClass("entity.CraftPlayer");
 			Class<?> playerChunkMapClass = ReflectionUtils.getNMSClass("PlayerChunkMap");
+			Class<?> entityPlayerClass = ReflectionUtils.getNMSClass("EntityPlayer");
+			
+			worldField = entityPlayerClass.getField("world"); 
+			getHandle = craftPlayerClass.getMethod("getHandle");
 			worldServerClass = ReflectionUtils.getNMSClass("WorldServer");
 			getPlayerChunkMap = worldServerClass.getMethod("getPlayerChunkMap");
 			updateViewDistance =  playerChunkMapClass.getMethod("a", int.class);
+			
+			String fieldName;
 			if (Main.getVersion() == Version.v1_8) {
-				name = "g";
+				fieldName = "g";
 			} else {
-				name = "j";
+				fieldName = "j";
 			}
-		} catch (Throwable e) {}
+			
+			distanceField = playerChunkMapClass.getDeclaredField(fieldName);
+			distanceField.setAccessible(true);
+		} 
+		catch (Throwable e) {}
 	}
 }

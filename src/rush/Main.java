@@ -146,6 +146,7 @@ import rush.sistemas.comandos.InvseeListener;
 import rush.sistemas.comandos.KitsListener;
 import rush.sistemas.comandos.VanishListener;
 import rush.sistemas.gerais.AnunciarMorte;
+import rush.sistemas.gerais.DeletarComandos;
 import rush.sistemas.gerais.AutoAnuncio;
 import rush.sistemas.gerais.AutoAnuncioOLD;
 import rush.sistemas.gerais.DroparCabecaAoMorrer;
@@ -157,6 +158,7 @@ import rush.sistemas.gerais.Tablist;
 import rush.sistemas.spawners.BloquearTrocarTipoDoSpawnerComOvo;
 import rush.sistemas.spawners.DroparSpawnerAoExplodir;
 import rush.sistemas.spawners.SistemaDeSpawners;
+import rush.utils.ReflectionUtils;
 import rush.utils.manager.ConfigManager;
 import rush.utils.manager.DataManager;
 
@@ -178,13 +180,14 @@ public class Main extends JavaPlugin {
 
 	@Override
 	public void onDisable() {
-		desativarRecursos();
+		disablePlugin();
 	}
 
 	private void enablePlugin() {
 		main = this;
-		version = checkServerVersion();
-		jarType = checkServerJarType();
+		version = Version.getServerVersion();
+		jarType = JarType.getJarType();
+		ReflectionUtils.loadUtils();
 		APIS.load();
 	}
 
@@ -297,6 +300,10 @@ public class Main extends JavaPlugin {
 
 		if (Settings.Anunciar_Morte) {
 			pm.registerEvents(new AnunciarMorte(), this);
+		}
+		
+		if (Settings.Deletar_Comandos) {
+			DeletarComandos.deleteCommands();
 		}
 
 		if (Settings.Ativar_Cores_Na_Bigorna) {
@@ -606,7 +613,7 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new Outros(), this);
 	}
 
-	private void desativarRecursos() {
+	private void disablePlugin() {
 		try {
 			HandlerList.unregisterAll(this);
 	
@@ -625,48 +632,6 @@ public class Main extends JavaPlugin {
 					AutoAnuncio.XTask.cancel();
 			}
 		} catch (Throwable e) {}
-	}
-
-	private Version checkServerVersion() {
-		String ver = Bukkit.getVersion();
-
-		if (ver.contains("1.13"))
-			return Version.v1_13;
-		else if (ver.contains("1.12"))
-			return Version.v1_12;
-		else if (ver.contains("1.11"))
-			return Version.v1_11;
-		else if (ver.contains("1.10"))
-			return Version.v1_10;
-		else if (ver.contains("1.9"))
-			return Version.v1_9;
-		else if (ver.contains("1.8"))
-			return Version.v1_8;
-		else if (ver.contains("1.7"))
-			return Version.v1_7;
-		else if (ver.contains("1.6"))
-			return Version.v1_6;
-		else if (ver.contains("1.5"))
-			return Version.v1_5;
-		else
-			return Version.DESCONHECIDA;
-	}
-
-	private JarType checkServerJarType() {
-		String ver = Bukkit.getVersion();
-
-		if (ver.contains("git-Torch"))
-			return JarType.TORCH;
-		else if (ver.contains("git-TacoSpigot"))
-			return JarType.TACO_SPIGOT;
-		else if (ver.contains("git-Paper"))
-			return JarType.PAPE_SPIGOT;
-		else if (ver.contains("git-Spigot"))
-			return JarType.SPIGOT;
-		else if (ver.contains("git-Bukkit"))
-			return JarType.BUKKIT;
-		else
-			return JarType.DESCONHECIDA;
 	}
 
 	public static boolean isOldVersion() {

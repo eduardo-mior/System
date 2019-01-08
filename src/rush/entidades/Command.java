@@ -2,7 +2,6 @@ package rush.entidades;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -56,7 +55,7 @@ public class Command {
             cmd.setExecutor(executor);
 
             return cmd;
-        } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException | InstantiationException e) {
+        } catch (Throwable e) {
             e.printStackTrace();
         }
         
@@ -69,13 +68,9 @@ public class Command {
         try {
             Field f = Bukkit.getPluginManager().getClass().getDeclaredField("commandMap");
             f.setAccessible(true);
-
-            Object commandMapObject = f.get(Bukkit.getPluginManager());
-            if (commandMapObject instanceof CommandMap) {
-                CommandMap commandMap = (CommandMap) commandMapObject;
-                commandMap.register(Main.get().getName().toLowerCase(), pluginCommand);
-            }
-        } catch (NoSuchFieldException | IllegalAccessException e) {
+            CommandMap commandMap = (CommandMap) f.get(Bukkit.getPluginManager());
+            commandMap.register("system", pluginCommand);
+        } catch (Throwable e) {
             e.printStackTrace();
         }
     }
