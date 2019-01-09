@@ -23,7 +23,7 @@ public class ComandoEditarkit implements CommandExecutor {
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 			
 		// Verificando se o player digitou o número de argumentos correto
-		if (args.length > 3  || args.length < 2) {
+		if (args.length < 2) {
 			s.sendMessage(Mensagens.EditarKit_Comando_Incorreto);
 			return true;
 		}
@@ -125,7 +125,8 @@ public class ComandoEditarkit implements CommandExecutor {
 			
 			// Salvando os arquivos na config
 			String novoNome = "";
-			for (int i = 2; i < args.length; i++) {novoNome += args[i].replace('&', '§');}
+			for (int i = 2; i < args.length; i++) {novoNome += args[i] + " ";}
+			novoNome = novoNome.replace('&', '§').trim();
 			kit.setNome(novoNome);
 			config.set("Nome", novoNome);
 			try {
