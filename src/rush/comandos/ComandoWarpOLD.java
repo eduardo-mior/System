@@ -5,6 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import rush.Main;
@@ -55,7 +56,7 @@ public class ComandoWarpOLD implements CommandExecutor {
 				@Override
 				public void run() {
 					s.sendMessage(w.getMensagemFinal());
-					p.teleport(location);
+					p.teleport(location, TeleportCause.COMMAND);
 				}
 			}.runTaskLater(Main.get(), 20 * w.getDelay());
 			return true;
@@ -63,7 +64,7 @@ public class ComandoWarpOLD implements CommandExecutor {
 			    	
 		// Caso o player tiver permissão para se teleportar sem delay então
 		s.sendMessage(w.getMensagemFinal());
-		p.teleport(location);
+		p.teleport(location, TeleportCause.COMMAND);
 		return true;
 	}
 }

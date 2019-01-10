@@ -4,6 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import rush.Main;
@@ -29,7 +30,7 @@ public class ComandoSpawn implements CommandExecutor {
 			new BukkitRunnable() {
 				@Override
 				public void run() {
-					p.teleport(Locations.spawn);
+					p.teleport(Locations.spawn, TeleportCause.COMMAND);
 					s.sendMessage(Mensagens.Teleportado_Com_Sucesso_Spawn);
 				}
 			}.runTaskLater(Main.get(), 20 * Settings.Delay_Para_Teleportar_Comandos);
@@ -38,7 +39,7 @@ public class ComandoSpawn implements CommandExecutor {
 
 		// Caso o player possui a permissão para se teleportar sem delay o código acima é ignorado
 		s.sendMessage(Mensagens.Teleportado_Com_Sucesso_Spawn);
-		p.teleport(Locations.spawn);
+		p.teleport(Locations.spawn, TeleportCause.COMMAND);
 		return true;
 	}
 }

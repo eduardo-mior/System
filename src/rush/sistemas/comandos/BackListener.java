@@ -8,6 +8,7 @@ import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.event.player.PlayerTeleportEvent;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 public class BackListener implements Listener {
 
@@ -15,11 +16,24 @@ public class BackListener implements Listener {
 
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void aoTeleportar(PlayerTeleportEvent e) {
-		backList.put(e.getPlayer().getName(), e.getFrom());
+		if (isValidTeleportCause(e.getCause()) && !isSameBlock(e.getTo(), e.getFrom()))
+			backList.put(e.getPlayer().getName(), e.getFrom());
 	}
 
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void aoMorrer(PlayerDeathEvent e) {
 		backList.put(e.getEntity().getName(), e.getEntity().getLocation());
 	}
+	
+	private boolean isSameBlock(Location one, Location two) {
+		return 	one.getBlockX() == two.getBlockX() && 
+				one.getBlockZ() == two.getBlockZ() && 
+				one.getBlockY() == two.getBlockY() && 
+				one.getWorld().equals(two.getWorld());
+	}
+	
+	private boolean isValidTeleportCause(TeleportCause cause) {
+		return cause == TeleportCause.COMMAND || cause == TeleportCause.PLUGIN;
+	}
+	
 }

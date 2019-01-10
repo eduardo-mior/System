@@ -7,6 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 import rush.Main;
 import rush.addons.MassiveFactions;
@@ -45,7 +46,7 @@ public class ComandoBack implements CommandExecutor {
 		}
 			
 		// Obtendo a localização para se teleportar e teleportando o player
-		p.teleport(l);
+		p.teleport(l, TeleportCause.COMMAND);
 		s.sendMessage(Mensagens.Back_Teleportado_Sucesso);
 		return true;
 	}

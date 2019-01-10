@@ -5,6 +5,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
+import java.lang.management.ManagementFactory;
 import java.lang.management.OperatingSystemMXBean;
 import java.lang.reflect.Method;
 import java.util.Map;
@@ -108,8 +109,9 @@ public class SystemInfo {
 		return info.split("git-")[1].split("-")[0];
 	}
 	
-	public static long getFreeMemoryComputer(OperatingSystemMXBean system) {
+	public static long getFreeMemoryComputer() {
 		try {
+			OperatingSystemMXBean system = ManagementFactory.getOperatingSystemMXBean();
 			Method getFreeMemory = system.getClass().getMethod("getFreePhysicalMemorySize");
 			getFreeMemory.setAccessible(true);
 			return (long) getFreeMemory.invoke(system);
@@ -118,8 +120,9 @@ public class SystemInfo {
 		}
 	}
 	
-	public static long getTotalMemoryComputer(OperatingSystemMXBean system) {
+	public static long getTotalMemoryComputer() {
 		try {
+			OperatingSystemMXBean system = ManagementFactory.getOperatingSystemMXBean();
 			Method getTotalMemory = system.getClass().getMethod("getTotalPhysicalMemorySize");
 			getTotalMemory.setAccessible(true);
 			return (long) getTotalMemory.invoke(system);

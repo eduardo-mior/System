@@ -10,6 +10,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 import rush.Main;
 import rush.apis.OnlinePlayersAPI;
@@ -40,7 +41,7 @@ public class ComandoTpall implements CommandExecutor {
 			// Teleportando todos os players e informando de acordo com a versão do minecraft	
 			Player[] players = OnlinePlayersAPI.getOnlinePlayers();
 			for (Player target : players) {
-				target.teleport(p);
+				target.teleport(p, TeleportCause.COMMAND);
 				target.sendMessage(Mensagens.Tphere_Puxado_Com_Sucesso.replace("%player%", p.getName()));
 			}
 			
@@ -74,7 +75,7 @@ public class ComandoTpall implements CommandExecutor {
 			Location l = new Location(w, x, y, z);
 			Player[] players = OnlinePlayersAPI.getOnlinePlayers();
 			for (Player p : players) {
-				p.teleport(l);
+				p.teleport(l, TeleportCause.COMMAND);
 			}
 			
 			

@@ -37,7 +37,7 @@ public class KitsListener implements Listener {
 			}
 		}
 
-		if (e.getInventory().getTitle().startsWith("Kit §4§n")) {
+		else if (e.getInventory().getTitle().startsWith("Kit §4§n")) {
 			Player p = (Player) e.getPlayer();
 			if (p.hasPermission("system.editarkit")) {
 				Inventory inv = e.getInventory();
@@ -76,16 +76,16 @@ public class KitsListener implements Listener {
 	}
 	
 	private void editKit(Inventory inv, Player p) {
-		String nome = inv.getName().substring(8, inv.getName().length());
+		String id = inv.getName().substring(8, inv.getName().length());
 		String itens = serializeItens(inv.getContents());
-		Kit kit = Kits.get(nome);
-		File file = DataManager.getFile(nome, "kits");
+		Kit kit = Kits.get(id);
+		File file = DataManager.getFile(id, "kits");
 		FileConfiguration config = DataManager.getConfiguration(file);
 		kit.setItens(inv.getContents());
 		config.set("Itens", itens);
 		try {
 			config.save(file);
-			p.sendMessage(Mensagens.Kit_Editado.replace("%kit-id%", nome));
+			p.sendMessage(Mensagens.Kit_Editado.replace("%kit-id%", id).replace("%kit-nome%", kit.getNome()));
 		} catch (IOException ex) {
 			Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
 		}

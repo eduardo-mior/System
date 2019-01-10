@@ -10,6 +10,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import rush.Main;
@@ -99,7 +100,7 @@ public class ComandoHome implements CommandExecutor {
 	    			@Override
 	    			public void run() {
 	    				s.sendMessage(Mensagens.Home_Publica_Teleportado_Sucesso.replace("%home%", homeSplit[1]).replace("%player%", player));
-	    				p.teleport(location);		
+	    				p.teleport(location, TeleportCause.COMMAND);		
 	    			}
 	    		}.runTaskLater(Main.get(), 20 * delay);
 				return true;
@@ -107,7 +108,7 @@ public class ComandoHome implements CommandExecutor {
 		    	
 	    	// Caso o player não precise esperar o delay então...
 	    	s.sendMessage(Mensagens.Home_Publica_Teleportado_Sucesso.replace("%home%", homeSplit[1]).replace("%player%", player));
-	    	p.teleport(location);
+	    	p.teleport(location, TeleportCause.COMMAND);
 			return true;
 	   	}
 	   	
@@ -144,7 +145,7 @@ public class ComandoHome implements CommandExecutor {
 	   			@Override
 	   			public void run() {
 	   				s.sendMessage(Mensagens.Home_Privada_Teleportado_Sucesso.replace("%home%", home));
-	   				p.teleport(location);	
+	   				p.teleport(location, TeleportCause.COMMAND);	
 	   			}
 	   		}.runTaskLater(Main.get(), 20 * delay);
 			return true;
@@ -152,7 +153,7 @@ public class ComandoHome implements CommandExecutor {
 		    	
 	   	// Teteleportando o player e informando 
 	   	s.sendMessage(Mensagens.Home_Privada_Teleportado_Sucesso.replace("%home%", home));
-	   	p.teleport(location);
+	   	p.teleport(location, TeleportCause.COMMAND);
 	   	return true;
 	}
 	

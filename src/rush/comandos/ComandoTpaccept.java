@@ -7,6 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import rush.Main;
@@ -70,7 +71,7 @@ public class ComandoTpaccept extends Tpa implements CommandExecutor {
 					@Override
 					public void run() {
 						// Teleportando e informando
-						p.teleport(target);
+						p.teleport(target, TeleportCause.COMMAND);
 						p.sendMessage(Mensagens.Tpaccept_Teleportado_Com_sucesso.replace("%player%", s.getName()));
 					}
 				}.runTaskLater(Main.get(), 20 * Settings.Delay_Para_Teleportar_Comandos);
@@ -78,7 +79,7 @@ public class ComandoTpaccept extends Tpa implements CommandExecutor {
 			}
 			
 			// Caso o player possui a permissão para se teleportar sem delay o código acima é ignorado
-			p.teleport(target);
+			p.teleport(target, TeleportCause.COMMAND);
 			p.sendMessage(Mensagens.Tpaccept_Teleportado_Com_sucesso.replace("%player%", s.getName()));
 			return true;
 		}
@@ -120,7 +121,7 @@ public class ComandoTpaccept extends Tpa implements CommandExecutor {
 					@Override
 					public void run() {
 						// Teleportando e informando
-						p.teleport(target);
+						p.teleport(target, TeleportCause.COMMAND);
 						p.sendMessage(Mensagens.Tpaccept_Teleportado_Com_sucesso.replace("%player%", s.getName()));	
 					}
 				}.runTaskLater(Main.get(), 20 * Settings.Delay_Para_Teleportar_Comandos);
@@ -128,7 +129,7 @@ public class ComandoTpaccept extends Tpa implements CommandExecutor {
 			}
 			
 			// Caso o player possui a permissão para se teleportar sem delay o código acima é ignorado
-			p.teleport(target);
+			p.teleport(target, TeleportCause.COMMAND);
 			p.sendMessage(Mensagens.Tpaccept_Teleportado_Com_sucesso.replace("%player%", s.getName()));
 			return true;
 		}

@@ -7,6 +7,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 import rush.configuracoes.Mensagens;
 
@@ -45,7 +46,7 @@ public class ComandoTp implements CommandExecutor {
 
 			// Teleportando o player até o alvo e informando
 			Player p = (Player) s;
-			p.teleport(target);
+			p.teleport(target, TeleportCause.COMMAND);
 			p.sendMessage(Mensagens.Tp_Teleportado_Com_Sucesso_Player.replace("%player%", target.getName()));
 			return true;
 		}
@@ -80,7 +81,7 @@ public class ComandoTp implements CommandExecutor {
 			}
 
 			// Teleportando o player até o alvo e informando
-			player.teleport(target);
+			player.teleport(target, TeleportCause.COMMAND);
 			player.sendMessage(Mensagens.Tphere_Puxado_Com_Sucesso.replace("%player%", target.getName()));
 			s.sendMessage(Mensagens.Tp_Voce_Teleportou_Player_Ate_Player.replace("%player%", player.getName()).replace("%alvo%", target.getName()));
 			return true;
@@ -109,7 +110,7 @@ public class ComandoTp implements CommandExecutor {
 			// Teleportando o player até o alvo e informando
 			Player p = (Player) s;
 			Location l = new Location(p.getWorld(), x, y, z);
-			p.teleport(l);
+			p.teleport(l, TeleportCause.COMMAND);
 			p.sendMessage(Mensagens.Tp_Teleportado_Com_Sucesso_Cords
 					.replace("<x>", args[0])
 					.replace("<y>", args[1])
@@ -147,7 +148,7 @@ public class ComandoTp implements CommandExecutor {
 			// Teleportando o player até o alvo e informando
 			Player p = (Player) s;
 			Location l = new Location(w, x, y, z);
-			p.teleport(l);
+			p.teleport(l, TeleportCause.COMMAND);
 			p.sendMessage(Mensagens.Tp_Teleportado_Com_Sucesso_Cords
 					.replace("<world>", args[0])
 					.replace("<x>", args[1])
@@ -186,7 +187,7 @@ public class ComandoTp implements CommandExecutor {
 
 			// Teleportando o player até o alvo e informando
 			Location l = new Location(w, x, y, z);
-			p.teleport(l);
+			p.teleport(l, TeleportCause.COMMAND);
 			s.sendMessage(Mensagens.Tp_Voce_Teleportou_Player_Ate_Cords
 					.replace("<world>", args[0])
 					.replace("<x>", args[1])

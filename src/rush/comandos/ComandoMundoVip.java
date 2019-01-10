@@ -4,6 +4,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import rush.Main;
@@ -38,7 +39,7 @@ public class ComandoMundoVip implements CommandExecutor {
 						s.sendMessage("§f ");
 						s.sendMessage(Mensagens.Teleportado_Com_Sucesso_Sem_Vip);
 						s.sendMessage("§f ");
-						p.teleport(Locations.areaNaoVip);
+						p.teleport(Locations.areaNaoVip, TeleportCause.COMMAND);
 
 					}
 				}.runTaskLater(Main.get(), 20 * delay);
@@ -52,7 +53,7 @@ public class ComandoMundoVip implements CommandExecutor {
 
 		// Caso o player possua a permissão 'system.vip' este código sera executado
 		s.sendMessage(Mensagens.Teleportado_Com_Sucesso_Vip);
-		p.teleport(Locations.areaVip);
+		p.teleport(Locations.areaVip, TeleportCause.COMMAND);
 		return true;
 
 	}

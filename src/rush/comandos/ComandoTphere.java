@@ -5,6 +5,7 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
 
 import rush.configuracoes.Mensagens;
 
@@ -40,7 +41,7 @@ public class ComandoTphere implements CommandExecutor {
 
 		// Teleportando o player até o alvo e informando
 		Player p = (Player) s;
-		target.teleport(p);
+		target.teleport(p, TeleportCause.COMMAND);
 		s.sendMessage(Mensagens.Tphere_Puxou_Com_Sucesso.replace("%player%", target.getName()));
 		target.sendMessage(Mensagens.Tphere_Puxado_Com_Sucesso.replace("%player%", s.getName()));
 		return true;
