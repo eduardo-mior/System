@@ -16,7 +16,7 @@ public class BloquearShiftEmContainers implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void aoUsarShift(InventoryClickEvent e) {
-		if (e.getSlotType() == SlotType.OUTSIDE || e.getCurrentItem().getType() == Material.AIR	|| e.getCurrentItem() == null) {
+		if (e.getSlotType() == SlotType.OUTSIDE || e.getCurrentItem() == null || e.getCurrentItem().getType() == Material.AIR) {
 			return;
 		}
 

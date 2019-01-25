@@ -3,8 +3,10 @@ package rush.configuracoes;
 import java.util.List;
 import java.util.Map;
 
+import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import rush.utils.Utils;
 import rush.utils.manager.ConfigManager;
 
 public class Settings {
@@ -76,8 +78,8 @@ public class Settings {
 	public static String Title_De_Boas_Vindas_Subtitulo;
 	public static boolean Ativar_Camarote_Para_Os_Sem_Vip;
 	public static boolean Motd_Ativar;
-	public static String Motd_Linha1;
-	public static String Motd_Linha2;
+	public static String Motd_Normal;
+	public static String Motd_Manutencao;
 	public static boolean Bloquear_Comandos;
 	public static List<String> Lista_Dos_Comandos_Bloqueados;
 	public static boolean Bloquear_Crafts;
@@ -97,7 +99,7 @@ public class Settings {
 	public static boolean Destacar_Anuncio;
 	public static int Delay_Entre_Anuncios;
 	public static boolean Reproduzir_Som_No_Anuncio;
-	public static String Som_Do_Anuncio;
+	public static Sound Som_Do_Anuncio;
 	public static List<String> Lista_De_Anuncios;
 	public static boolean Anunciar_Morte;
 	public static boolean Anuncios_Mostrar_Para_Quem_Morreu;
@@ -114,8 +116,8 @@ public class Settings {
 	public static String Footer;
 	public static int Tempo_Para_Expirar_Solicitacao_Tpa;
 	public static int Tempo_Para_Poder_Enviar_Outra_Solicitacao_Tpa;
-	public static String Commando_Slime_Esta;
-	public static String Commando_Slime_Nao_esta;
+	public static Sound Commando_Slime_Esta;
+	public static Sound Commando_Slime_Nao_esta;
 	public static boolean Bloquear_Quebrar_Plantacoes_Pulando;
 	public static boolean Deletar_Comandos;
 	public static List<String> Lista_Dos_Comandos_Deletados;
@@ -189,8 +191,8 @@ public class Settings {
 		Title_De_Boas_Vindas_Subtitulo = config.getString("Title-De-Boas-Vindas.Subtitulo").replace('&', '§');
 		Ativar_Camarote_Para_Os_Sem_Vip = config.getBoolean("Ativar-Camarote-Para-Os-Sem-Vip");
 		Motd_Ativar = config.getBoolean("Motd.Ativar");
-		Motd_Linha1 = config.getString("Motd.Linha1").replace('&', '§');
-		Motd_Linha2 = config.getString("Motd.Linha2").replace('&', '§');
+		Motd_Normal = config.getString("Motd.Motd-Normal").replace('&', '§');
+		Motd_Manutencao = config.getString("Motd.Motd-Manutencao").replace('&', '§');
 		Bloquear_Comandos = config.getBoolean("Bloquear-Comandos");
 		Lista_Dos_Comandos_Bloqueados = config.getStringList("Lista-Dos-Comandos-Bloqueados");
 		Bloquear_Crafts = config.getBoolean("Bloquear-Crafts");
@@ -210,7 +212,7 @@ public class Settings {
 		Destacar_Anuncio = config.getBoolean("Destacar-Anuncio");
 		Delay_Entre_Anuncios = config.getInt("Delay-Entre-Anuncios");
 		Reproduzir_Som_No_Anuncio = config.getBoolean("Reproduzir-Som-No-Anuncio");
-		Som_Do_Anuncio = config.getString("Som-Do-Anuncio");
+		Som_Do_Anuncio = Utils.tryLoadSound("LEVEL_UP", "ENTITY_PLAYER_LEVELUP");
 		Lista_De_Anuncios = config.getStringList("Lista-De-Anuncios");
 		Anunciar_Morte = config.getBoolean("Anunciar-Morte");
 		Anuncios_Mostrar_Para_Quem_Morreu = config.getBoolean("Anuncios.Mostrar-Para-Quem-Morreu");
@@ -227,11 +229,12 @@ public class Settings {
 		Footer = config.getString("Parte-De-Baixo").replace('&', '§');
 		Tempo_Para_Expirar_Solicitacao_Tpa = config.getInt("Tempo-Para-Expirar-Solicitacao-Tpa");
 		Tempo_Para_Poder_Enviar_Outra_Solicitacao_Tpa = config.getInt("Tempo-Para-Poder-Enviar-Outra-Solicitacao-Tpa");
-		Commando_Slime_Esta = config.getString("Commando-Slime.Esta-Em-SlimeChunk");
-		Commando_Slime_Nao_esta = config.getString("Commando-Slime.Nao-Esta-Em-SlimeChunk");
+		Commando_Slime_Esta = Utils.tryLoadSound("SLIME_WALK2", "ENTITY_SLIME_SQUISH");
+		Commando_Slime_Nao_esta = Utils.tryLoadSound("SLIME_ATTACK", "ENTITY_SLIME_ATTACK");
 		Bloquear_Quebrar_Plantacoes_Pulando = config.getBoolean("Bloquear-Quebrar-Plantacoes-Pulando");
 		Deletar_Comandos = config.getBoolean("Deletar-Comandos");
 		Lista_Dos_Comandos_Deletados = config.getStringList("Lista-Dos-Comandos-Deletados");
 		
 	}
+	
 }

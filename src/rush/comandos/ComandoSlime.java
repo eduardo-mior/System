@@ -3,7 +3,6 @@ package rush.comandos;
 import java.util.Random;
 
 import org.bukkit.Chunk;
-import org.bukkit.Sound;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -32,10 +31,10 @@ public class ComandoSlime implements CommandExecutor {
 		Random random = new Random(worldSeed + (xChunk = (playerChunk = p.getPlayer().getWorld().getChunkAt(p.getLocation())).getX()) * xChunk * 4987142 + xChunk * 5947611 + (zChunk = playerChunk.getZ()) * zChunk * 4392871L + zChunk * 389711 ^ 0x3AD8025F);
 		if (random.nextInt(10) == 0) {
 			p.sendMessage(Mensagens.SlimeChunk_Esta);
-			p.playSound(p.getLocation(), Sound.valueOf(Settings.Commando_Slime_Esta), 1, 1);
+			p.playSound(p.getLocation(), Settings.Commando_Slime_Esta, 1, 1);
 		} else {
 			p.sendMessage(Mensagens.SlimeChunk_NaoEsta);
-			p.playSound(p.getLocation(), Sound.valueOf(Settings.Commando_Slime_Nao_esta), 1, 1);
+			p.playSound(p.getLocation(), Settings.Commando_Slime_Nao_esta, 1, 1);
 		}
 		return true;
 	}

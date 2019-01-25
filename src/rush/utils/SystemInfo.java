@@ -95,18 +95,30 @@ public class SystemInfo {
 	}
 
 	public static String getMinecraftVersion() {
-		String info = Bukkit.getVersion();
-		return info.split("MC: ")[1].split("\\)")[0];
+		try {
+			String info = Bukkit.getVersion();
+			return info.split("MC: ")[1].split("\\)")[0];
+		} catch (Throwable e) {
+			return "Desconhecida";
+		}
+	}
+
+	public static String getJarType() {
+		try {
+			String info = Bukkit.getVersion();
+			return info.split("git-")[1].split("-")[0];
+		} catch (Throwable e) {
+			return "Desconhecida";
+		}
 	}
 	
 	public static String getApiVersion() {
-		String info = Bukkit.getBukkitVersion();
-		return info.split("-")[0]+"-"+info.split("-")[1];
-	}
-	
-	public static String getJarType() {
-		String info = Bukkit.getVersion();
-		return info.split("git-")[1].split("-")[0];
+		try {
+			String info = Bukkit.getBukkitVersion();
+			return info.split("-")[0] + "-" + info.split("-")[1];
+		} catch (Throwable e) {
+			return "Desconhecida";
+		}
 	}
 	
 	public static long getFreeMemoryComputer() {

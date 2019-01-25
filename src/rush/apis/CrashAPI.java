@@ -8,7 +8,6 @@ import java.util.List;
 import org.bukkit.entity.Player;
 
 import rush.Main;
-import rush.enums.Version;
 import rush.utils.ReflectionUtils;
 
 public class CrashAPI {
@@ -30,7 +29,7 @@ public class CrashAPI {
 			Class<?> explosionClass;
 			Class<?> vectorClass = ReflectionUtils.getNMSClass("Vec3D");
 
-			if (Main.getVersion() == Version.v1_5 || Main.getVersion() == Version.v1_6) {
+			if (Main.isVeryOldVersion()) {
 				explosionClass = ReflectionUtils.getNMSClass("Packet60Explosion");
 			} else {
 				explosionClass = ReflectionUtils.getNMSClass("PacketPlayOutExplosion");

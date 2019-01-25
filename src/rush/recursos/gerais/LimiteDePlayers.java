@@ -59,4 +59,5 @@ public class LimiteDePlayers implements Listener {
 			}
 		}.runTaskLater(Main.get(), 20 * Settings.Tempo_Para_Ser_Kick);
 	}
+	
 }

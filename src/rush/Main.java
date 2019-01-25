@@ -148,7 +148,6 @@ import rush.sistemas.comandos.VanishListener;
 import rush.sistemas.gerais.AnunciarMorte;
 import rush.sistemas.gerais.DeletarComandos;
 import rush.sistemas.gerais.AutoAnuncio;
-import rush.sistemas.gerais.AutoAnuncioOLD;
 import rush.sistemas.gerais.DroparCabecaAoMorrer;
 import rush.sistemas.gerais.Motd;
 import rush.sistemas.gerais.PlayerData;
@@ -289,7 +288,7 @@ public class Main extends JavaPlugin {
 			new Command("warp", "system.warp", new ComandoWarp());
 		}
 		
-		if (version != Version.v1_5 && version != Version.v1_6) {
+		if (!isVeryOldVersion()) {
 			new Command("estatisticas", "system.estatisticas", new ComandoEstatisticas());
 		}
 	}
@@ -315,10 +314,7 @@ public class Main extends JavaPlugin {
 		}
 
 		if (Settings.Auto_Anuncio) {
-			if (isOldVersion())
-				AutoAnuncioOLD.runMensagens();
-			else
-				AutoAnuncio.runMensagens();
+			AutoAnuncio.runMensagens();
 		}
 
 		if (Settings.Bigorna_Infinita) {
@@ -470,7 +466,7 @@ public class Main extends JavaPlugin {
 		}
 
 		if (Settings.EnderPearl_Cooldown_Ativar) {
-			if (version != Version.v1_5 && version != Version.v1_6) {
+			if (!isVeryOldVersion()) {
 				pm.registerEvents(new EnderPearlCooldown(), this);
 			}
 		}
@@ -513,7 +509,7 @@ public class Main extends JavaPlugin {
 			}
 		}
 
-		if (version != Version.v1_13) {
+		if (!isVeryNewVersion()) {
 			if (commands.getBoolean("comandos.sgive.ativar-comando")) {
 				if (Settings.Sistema_De_Spawners) {
 					pm.registerEvents(new SistemaDeSpawners(), this);
@@ -625,11 +621,8 @@ public class Main extends JavaPlugin {
 				MagnataTag.MTask.cancel();
 			}
 	
-			if (Settings.Auto_Anuncio) {
-				if (isOldVersion())
-					AutoAnuncioOLD.XTask.cancel();
-				else
-					AutoAnuncio.XTask.cancel();
+			if (Settings.Auto_Anuncio && AutoAnuncio.XTask != null) {
+				AutoAnuncio.XTask.cancel();
 			}
 		} catch (Throwable e) {}
 	}
@@ -643,13 +636,31 @@ public class Main extends JavaPlugin {
 			return true;
 		return false;
 	}
+	
+	public static boolean isVeryOldVersion() {
+		if (version == Version.v1_5)
+			return true;
+		if (version == Version.v1_6)
+			return true;
+		return false;
+	}
 
 	public static boolean isNewVersion() {
+		if (version == Version.v1_14)
+			return true;
 		if (version == Version.v1_13)
 			return true;
 		if (version == Version.v1_12)
 			return true;
 		if (version == Version.v1_11)
+			return true;
+		return false;
+	}
+	
+	public static boolean isVeryNewVersion() {
+		if (version == Version.v1_14)
+			return true;
+		if (version == Version.v1_13)
 			return true;
 		return false;
 	}

@@ -1,4 +1,4 @@
-﻿file-version: 3
+﻿file-version: 4
 ############################################################
 # +------------------------------------------------------+ #
 # |              Recuros Adicionais (Addons)             | #
@@ -52,9 +52,9 @@ EnderPearl-Cooldown:
 Bloquear-Abrir-Containers: 
   Ativar: false
   Containers:
-  - 'ANVIL'
-  - 'ENCHANTING'
-  - 'HOPPER'
+  - "ANVIL"
+  - "ENCHANTING"
+  - "HOPPER"
   # Lista de containers da 1.8: http://docs.codelanx.com/Bukkit/1.8/org/bukkit/event/inventory/InventoryType.html
 
 # Este recurso impede o player de usar o SHIFT_CLICK em containers.
@@ -62,20 +62,20 @@ Bloquear-Abrir-Containers:
 Bloquear-Shift-Em-Containers:
   Ativar: false
   Containers:
-  - 'ENDER_CHEST'
-  - 'BEACON'
-  - 'BREWING'
+  - "ENDER_CHEST"
+  - "BEACON"
+  - "BREWING"
   # Lista de containers da 1.8: http://docs.codelanx.com/Bukkit/1.8/org/bukkit/event/inventory/InventoryType.html
 
 # É recomedando ativar isto para quem usa o BlackMarket ou BlackEconomy... 
 # Isto previne o bug do valor NaN ou null
 Bloquear-Money-Invalido: false
 Comandos-Que-Envolvem-Money:
-  - 'coins'
-  - 'money'
-  - 'mercado'
-  - 'eco'
-  - 'pay'
+  - "coins"
+  - "money"
+  - "mercado"
+  - "eco"
+  - "pay"
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -143,7 +143,7 @@ Ativar-Cores-Na-Placa: true
 # Este recurso impede que os players caiam no Void.
 Bloquear-Cair-No-Void: true
 
-# Este recurso impede os Zombies e Esqueletos de pegarem fogo no sol.
+# Este recurso impede os Zombies e Esqueletos e outros mobs peguem fogo para o sol.
 Bloquear-Mobs-De-Pegarem-Fogo-Para-O-Sol: false
 
 # Este recurso desativa a fome do jogo.
@@ -208,8 +208,8 @@ Dropar-Cabeca-Ao-Morrer:
 # Este recurso permite os players usarem o comando /fly em determinados mundos
 Sistema-De-Fly-Para-Players: true
 Mundos-Onde-Pode-Usar-Fly:
-  - 'world'
-  - 'world_nether'
+  - "world"
+  - "world_nether"
 
 
 ############################################################
@@ -230,16 +230,16 @@ Chance-De-Dropar-Ao-Explodir: 60
 Mensagem-De-Boas-Vindas:
   Ativar: false
   Mensagem:
-    - '&6-&e=&6-&e=&6-&e=&6-&e=&6-{ &bSeja Bem Vindo ao Hypixel! &6}-&e=&6-&e=&6-&e=&6-&e=&6-'
-    - '&eAdquira CASH e VIP em: &6store.hypixel.net'
-    - '&eNos siga no twiiter: &6twiiter.com/hypixel'
-    - '&eDivirta-se em nosso TS3: &6ts.hypixel.net'
+    - "&6-&e=&6-&e=&6-&e=&6-&e=&6-{ &bSeja Bem Vindo ao Hypixel! &6}-&e=&6-&e=&6-&e=&6-&e=&6-"
+    - "&eAdquira CASH e VIP em: &6store.hypixel.net"
+    - "&eNos siga no twiiter: &6twiiter.com/hypixel"
+    - "&eDivirta-se em nosso TS3: &6ts.hypixel.net"
     # %player% mostra o nome do player.
 
 Title-De-Boas-Vindas:
   Ativar: true
-  Titulo: '&6&lHYPIXEL'
-  Subtitulo: '&eSEJA BEM-VINDO!'
+  Titulo: "&6&lHYPIXEL"
+  Subtitulo: "&eSEJA BEM-VINDO!"
   # %player% mostra o nome do player.
 
 ############################################################
@@ -247,6 +247,8 @@ Title-De-Boas-Vindas:
 # |                 Mundo VIP do Servidor                | #
 # +------------------------------------------------------+ #
 ############################################################
+# Este camarote serve para os players sem a permissão 'system.vip'
+# Eles serão teleportados para area dos não vip definida no /setmundovip
 Ativar-Camarote-Para-Os-Sem-Vip: true
 
 ############################################################
@@ -254,10 +256,13 @@ Ativar-Camarote-Para-Os-Sem-Vip: true
 # |                   Motd do Servidor                   | #
 # +------------------------------------------------------+ #
 ############################################################
+# Para pular linha use \n
+# Em versões antigas (1.5) o \n não ira funcionar!
+# A Motd manutenção é usada quando o server estiver com Whitelist ligada!
 Motd:
   Ativar: true
-  Linha1: "&f&lGamer's&6&lBoard &7www.gamersboard.com.br"
-  Linha2: "&fA sua comunidade gamer!"
+  Motd-Normal: "&f&lGamer's&6&lBoard &7www.gamersboard.com.br\n&fA sua comunidade gamer!"
+  Motd-Manutencao: "&cEstamos em manutenção!\n&fPrevisão para volta hoje as 19:00 horas."
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -303,10 +308,10 @@ Lista-Dos-Comandos-Deletados:
 # OBS: Para burlar use a permissão: system.bypass.comandobloqueado
 Bloquear-Comandos: false
 Lista-Dos-Comandos-Bloqueados:
-  - '/teste'
-  - '/dupar'
-  - '/pl'
-  - '/plugins'
+  - "/teste"
+  - "/dupar"
+  - "/pl"
+  - "/plugins"
  
 ############################################################
 # +------------------------------------------------------+ #
@@ -317,10 +322,10 @@ Lista-Dos-Comandos-Bloqueados:
 # OBS: Para burlar use a permissão: system.bypass.craftbloqueado
 Bloquear-Crafts: true
 Lista-Dos-Crafts-Bloqueados: 
-  - '333'
-  - '321'
-  - '416'
-  - '328'
+  - 333
+  - 321
+  - 416
+  - 328
   # Lista de IDs da 1.8: https://www.minecraftinfo.com/idlist.htm
 
 ############################################################
@@ -340,9 +345,9 @@ Bloquear-Palavras-Em-Placas:
   Bloquear-Todas-As-Palavras: false
   Bloquear-Apenas-Algumas-Palavras: true
   Lista-Das-Palavras-Bloqueadas:
-    - 'AdminShop'
-    - '&0AdminShop'
-    - 'puta'
+    - "AdminShop"
+    - "&0AdminShop"
+    - "puta"
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -351,21 +356,12 @@ Bloquear-Palavras-Em-Placas:
 ############################################################
 Bloquear-Nicks-Improprios: true
 Nicks-Bloqueados:
-  - 'puta'
-  - 'vadia'
-  - 'AdminShop'
-  - 'ServerAdmin'
+  - "puta"
+  - "vadia"
+  - "AdminShop"
+  - "ServerAdmin"
   # O bloqueador verifica se o nick contem tal palavra.
   # Ou seja se o nick do player contem a palavra "puta" o player é bloqueado de entrar.
-
-############################################################
-# +------------------------------------------------------+ #
-# |                  Comando /slime                      | #
-# +------------------------------------------------------+ #
-############################################################
-Commando-Slime:
-  Esta-Em-SlimeChunk: SLIME_WALK2
-  Nao-Esta-Em-SlimeChunk: VILLAGER_NO
   
 ############################################################
 # +------------------------------------------------------+ #
@@ -376,7 +372,7 @@ Commando-Slime:
 #Para os nomes das skills ficarem em BR vc precisa estar usando um mcMMO traduzido
 mcTopTag:
   Tempo-De-Checagem: 900 #segundos
-  Tag: '&9[⚒] '
+  Tag: "&9[⚒] "
   
 ############################################################
 # +------------------------------------------------------+ #
@@ -386,7 +382,7 @@ mcTopTag:
 #Tag no legendchat {magnata}
 magnataTag:
   Tempo-De-Checagem: 900 #segundos
-  Tag: '&2[$] '
+  Tag: "&2[$] "
   
 ############################################################
 # +------------------------------------------------------+ #
@@ -412,14 +408,12 @@ Auto-Anuncio: true
 Destacar-Anuncio: true
 Delay-Entre-Anuncios: 300
 Reproduzir-Som-No-Anuncio: true
-Som-Do-Anuncio: LEVEL_UP
-# Lista de sons do minecraft 1.8 http://docs.codelanx.com/Bukkit/1.8/org/bukkit/Sound.html
 # Caso queira pular linha use e escrever 2 linhas no mesmo anuncio use: \n 
 Lista-De-Anuncios:
-  - '&e&l[Anuncio] &eInscreva-se em nosso canal e fique por dentro de tudo &b&nhttp://bit.ly/hypixel&e!'
-  - '&e&l[Anuncio] &eAdquira já seu vip através do nosso site &b&nhttps://hypixel.net/&e!'
-  - '&e&l[Anuncio] &eAcesse já nosso fórum e fique por dentro de tudo &b&nhttps://hypixel.net/forums/&e!'
-  - '&e&l[Anuncio] &eO evento karaoke ira ocorrer nesta semana! Saiba mais &b&nhttp://bit.ly/karaoke&e!'
+  - "&e&l[Anuncio] &eInscreva-se em nosso canal e fique por dentro de tudo &b&nhttp://bit.ly/hypixel&e!"
+  - "&e&l[Anuncio] &eAdquira já seu vip através do nosso site &b&nhttps://hypixel.net/&e!"
+  - "&e&l[Anuncio] &eAcesse já nosso fórum e fique por dentro de tudo &b&nhttps://hypixel.net/forums/&e!"
+  - "&e&l[Anuncio] &eO evento karaoke ira ocorrer nesta semana! Saiba mais &b&nhttp://bit.ly/karaoke&e!"
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -447,10 +441,10 @@ ScoreBoard:
   Ativar: false
   Titulo: "  &6&lHypixel  "
   Linhas:
-  - '&eSeja Bem Vindo!'
-  - '&r'
-  - '&aAdquira VIP e Cash:'
-  - '&7store.hypixel.net'
+  - "&eSeja Bem Vindo!"
+  - "&r"
+  - "&aAdquira VIP e Cash:"
+  - "&7store.hypixel.net"
 
 ############################################################
 # +------------------------------------------------------+ #

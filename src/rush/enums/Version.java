@@ -4,6 +4,7 @@ import org.bukkit.Bukkit;
 
 public enum Version {
 
+	v1_14,
 	v1_13,
 	v1_12,
 	v1_11,
@@ -17,7 +18,9 @@ public enum Version {
 	
 	public static Version getServerVersion() {
 		String ver = Bukkit.getVersion();
-		if (ver.contains("1.13"))
+		if (ver.contains("1.14")) 
+			return v1_14;
+		else if (ver.contains("1.13"))
 			return v1_13;
 		else if (ver.contains("1.12"))
 			return v1_12;

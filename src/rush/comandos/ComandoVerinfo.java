@@ -1,7 +1,6 @@
 package rush.comandos;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
 
 import org.bukkit.Bukkit;
@@ -16,6 +15,8 @@ import rush.apis.GodModeAPI;
 import rush.apis.HealthAPI;
 import rush.apis.PingAPI;
 import rush.configuracoes.Mensagens;
+import rush.enums.GameModeName;
+import rush.enums.PotionName;
 import rush.sistemas.comandos.VanishListener;
 
 @SuppressWarnings("all")
@@ -65,7 +66,7 @@ public class ComandoVerinfo implements CommandExecutor {
 		String chunk_z = String.format("%d", loc.getChunk().getZ());
 		String chunk_x = String.format("%d", loc.getChunk().getZ());
 		String world = loc.getWorld().getName();
-		String gamemode = p.getGameMode().name();
+		String gamemode = GameModeName.valueOf(p.getGameMode()).getName();
 		String ping = PingAPI.getPlayerPing(p);
 		String hasCustomName = translateBoolean(p.isCustomNameVisible());
 		String dead = translateBoolean(p.isDead());
@@ -135,7 +136,7 @@ public class ComandoVerinfo implements CommandExecutor {
 		if (!effects.isEmpty()) {
 			String str = "";
 			for (PotionEffect effect : effects) {
-				str += effect.getType().getName() + ", ";
+				str += PotionName.valueOf(effect.getType()).getName() + ", ";
 			}
 			return str.substring(0, str.length() -2);
 		} else
@@ -148,7 +149,7 @@ public class ComandoVerinfo implements CommandExecutor {
 			Object entityPlayer = player.getClass().getMethod("getHandle").invoke(player);
 			Field ping = entityPlayer.getClass().getField("locale");
 			return String.valueOf(ping.get(entityPlayer));
-		} catch (IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException	| SecurityException | NoSuchFieldException e) {
+		} catch (Throwable e) {
 			return "§cIndisponivel";
 		}
 	}

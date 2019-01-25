@@ -1,7 +1,6 @@
 package rush.utils.manager;
 
 import java.io.File;
-import java.io.IOException;
 
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
@@ -18,16 +17,18 @@ public class DataManager {
 			if (!pasta.exists()) {
 				pasta.mkdirs();
 			}
-		} catch (SecurityException e) {
+		} catch (Throwable e) {
 			Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Criar_Pasta.replace("%pasta%", folder));
+			e.printStackTrace();
 		}
 	}
 
 	public static void createFile(File file) {
 		try {
 			file.createNewFile();
-		} catch (IOException e) {
+		} catch (Throwable e) {
 			Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Criar_Arquivo.replace("%arquivo%", file.getName()));
+			e.printStackTrace();
 		}
 	}
 	

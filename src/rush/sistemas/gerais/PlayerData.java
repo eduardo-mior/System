@@ -21,7 +21,7 @@ public class PlayerData implements Listener {
         File file = DataManager.getFile(newPlayer.toLowerCase(), "playerdata");
         FileConfiguration config = DataManager.getConfiguration(file);
         
-        if (file.exists()) {
+        if (file.exists() && file.length() > 10) {
         	String oldPlayer = config.getString("Nick");
         	if (!newPlayer.equals(oldPlayer)) {
 				e.setResult(Result.KICK_OTHER);

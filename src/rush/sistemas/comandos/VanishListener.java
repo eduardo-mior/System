@@ -13,7 +13,7 @@ public class VanishListener implements Listener {
 	public static HashSet<Player> VANISH = new HashSet<>();
 	
 	@EventHandler
-	public void onLogin(PlayerJoinEvent e) {
+	public void onJoin(PlayerJoinEvent e) {
 		Player p = e.getPlayer();
 		if (!p.hasPermission("system.vanish.bypass")) {
 			for (Player vanished : VANISH) {

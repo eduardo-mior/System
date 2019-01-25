@@ -8,7 +8,6 @@ import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
 import rush.Main;
-import rush.enums.Version;
 import rush.utils.ReflectionUtils;
 
 public class AnvilAPI {
@@ -94,7 +93,7 @@ public class AnvilAPI {
 			}
 			
 			Class<?> packetOpenWindowClass;
-			if (Main.getVersion() == Version.v1_5 || Main.getVersion() == Version.v1_6) {
+			if (Main.isVeryOldVersion()) {
 				packetOpenWindowClass = ReflectionUtils.getNMSClass("Packet100OpenWindow");
 			} else {
 				packetOpenWindowClass = ReflectionUtils.getNMSClass("PacketPlayOutOpenWindow");
