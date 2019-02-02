@@ -79,6 +79,6 @@ public class ComandoEnchant implements CommandExecutor {
 		for (Enchantment e : Enchantment.values()) {
 			if (e != null) enchants.add(e.getName());
 		}
-		return enchants.toString();
+		return enchants.toString().replace(",", Mensagens.Separador_De_Listas);
 	}
 }

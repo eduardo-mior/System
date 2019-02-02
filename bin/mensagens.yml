@@ -4,7 +4,7 @@
 # |                   Mensagens gerais                   | #
 # +------------------------------------------------------+ #
 ############################################################
-Separador-De-Listas: "&8,&7"
+Separador-De-Listas: "&8,&e"
 Console-Nao-Pode: "&cO console nao pode usar este comando."
 Sem-Permissao: "&cVocê não tem permissão para utilizar este comando."
 Numero-Invalido: "&cO número '%numero%' não é um número valido."
@@ -311,6 +311,7 @@ Editar-Item-Comando-Incorreto: |
   &c/editaritem bugar &8-&7 Transforma o item no bloco quadriculado.
   &c/editaritem negativo &8-&7 Define a quantia do item para &c-1&7.
   &c/editaritem inquebravel &8-&7 Define o item como Inquebravel.
+  &c/editaritem custoReparacao <custo> &8-&7 Altera o custo de reparação do item na bigorna.
   &c/editaritem atributo <atributo> <quantia> <operacao> &8-&7 Adiciona um atributo especial do minecraft ao item.
 
 ############################################################

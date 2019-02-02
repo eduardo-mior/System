@@ -2,7 +2,6 @@ package rush.utils.serializer;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
-import java.io.IOException;
 
 import org.bukkit.inventory.ItemStack;
 import org.yaml.snakeyaml.external.biz.base64Coder.Base64Coder;
@@ -21,7 +20,7 @@ public class SerializerOLD {
             
             dataInput.close();
             return item;
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (Throwable e) {
             e.printStackTrace();
         }
 		return null;
@@ -39,7 +38,7 @@ public class SerializerOLD {
             
             dataInput.close();
             return items;
-        } catch (IOException | ClassNotFoundException e) {
+        } catch (Throwable e) {
             e.printStackTrace();
         }
 		return null;
@@ -59,7 +58,7 @@ public class SerializerOLD {
             // Serialize that array
             dataOutput.close();
             return Base64Coder.encodeLines(outputStream.toByteArray());
-        } catch (IOException e) {
+        } catch (Throwable e) {
            e.printStackTrace();
         }	
     	return null;
@@ -78,7 +77,7 @@ public class SerializerOLD {
             
             dataOutput.close();
             return Base64Coder.encodeLines(outputStream.toByteArray());
-        } catch (IOException e) {
+        } catch (Throwable e) {
            e.printStackTrace();
         }
 		return null;

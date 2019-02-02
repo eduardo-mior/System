@@ -12,7 +12,7 @@ public class BloquearMoneyInvalido implements Listener {
 
 	@EventHandler(priority = EventPriority.LOWEST)
 	public void aoTentarVender(PlayerCommandPreprocessEvent e) {
-		if (e.getMessage().contains("mercado vender -") || e.getMessage().contains("market vender -")) {
+		if (e.getMessage().toLowerCase().contains("mercado vender -") || e.getMessage().toLowerCase().contains("market vender -")) {
 			e.getPlayer().sendMessage(Mensagens.Numero_Invalido.replace("%numero%", "-"));
 			e.setCancelled(true);
 		}

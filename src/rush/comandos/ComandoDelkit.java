@@ -27,8 +27,8 @@ public class ComandoDelkit implements CommandExecutor {
 		}
 
 		// Deletando o kit
-		Kits.delete(kit);
 		s.sendMessage(Mensagens.Kit_Deletado.replace("%kit-id%", kit).replace("%kit-nome%", Kits.get(kit).getNome()));
+		Kits.delete(kit);
 		return true;
 	}
 }

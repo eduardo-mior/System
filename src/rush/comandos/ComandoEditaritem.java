@@ -1,7 +1,6 @@
 package rush.comandos;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.Material;
@@ -16,6 +15,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 
 import rush.apis.ItemAPI;
 import rush.configuracoes.Mensagens;
+import rush.utils.Utils;
 
 public class ComandoEditaritem implements CommandExecutor {
 	
@@ -142,6 +142,23 @@ public class ComandoEditaritem implements CommandExecutor {
 			return true;
 		}
 		
+		// Verificando se o player quer alterar o custo de reparação do item
+		if (args[0].equalsIgnoreCase("custoreparar") || args[0].equalsIgnoreCase("custoreparacao")) {
+			int custo;
+			try {
+				custo = Integer.parseInt(args[1]);
+				p.setItemInHand(ItemAPI.setRepairCost(item, custo == 39 ? 39 : custo - 1));
+				s.sendMessage(Mensagens.Editar_Item_Com_Sucesso);
+				return true;
+			} catch (NumberFormatException e) {
+				s.sendMessage(Mensagens.Numero_Invalido.replace("%numero%", e.getMessage().split("\"")[1]));
+				return true;
+			} catch (ArrayIndexOutOfBoundsException e) {
+				s.sendMessage(Mensagens.Editar_Item_Comando_Incorreto);
+				return true;
+			}
+		}
+		
 		// Verificando se o player que adicionar algum atributo ao item
 		if (args[0].equalsIgnoreCase("atributo")) {
 			
@@ -160,7 +177,8 @@ public class ComandoEditaritem implements CommandExecutor {
 				s.sendMessage(Mensagens.Editar_Item_Comando_Incorreto);
 				return true;
 			} catch (IllegalArgumentException e) {
-				s.sendMessage(Mensagens.Editar_Item_Atributo_Invalido.replace("%lista%", getEnumList(Attribute.class).toString()));
+				String atributos = Utils.getEnumList(Attribute.class).toString().replace(",", Mensagens.Separador_De_Listas);
+				s.sendMessage(Mensagens.Editar_Item_Atributo_Invalido.replace("%lista%", atributos));
 				return true;
 			}			
 			
@@ -179,10 +197,6 @@ public class ComandoEditaritem implements CommandExecutor {
 		// Caso nenhuma das opção acima for aceita sera dado como comando incorreto
 		s.sendMessage(Mensagens.Editar_Item_Comando_Incorreto);
 		return true;
-	}
-	
-	private <E extends Enum<E>> List<E> getEnumList(Class<E> enumClass) {
-		return new ArrayList<E>(Arrays.asList(enumClass.getEnumConstants()));
 	}
 	
 }

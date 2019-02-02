@@ -5,9 +5,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.DataInputStream;
 import java.io.DataOutput;
 import java.io.DataOutputStream;
-import java.io.IOException;
 import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
 import java.math.BigInteger;
 
 import org.bukkit.Material;
@@ -31,7 +29,7 @@ public class Serializer {
         	Object nbtTagCompound = ReflectionUtils.getNMSClass("NBTCompressedStreamTools").getMethod("a", DataInputStream.class).invoke(null, dataInputStream);
         	Object craftItemStack = nmsItemStackClass.getMethod("createStack", nbtTagCompoundClass).invoke(null, nbtTagCompound);
             itemStack = (ItemStack) ReflectionUtils.getOBClass("inventory.CraftItemStack").getMethod("asBukkitCopy", nmsItemStackClass).invoke(null, craftItemStack);
-        } catch(IllegalAccessException | IllegalArgumentException | InvocationTargetException | NoSuchMethodException | SecurityException | ClassNotFoundException e) {
+        } catch (Throwable e) {
         	e.printStackTrace();
         }
        
@@ -55,7 +53,7 @@ public class Serializer {
 
             dataInput.close();
             return list;
-        } catch (ClassNotFoundException | IOException e) {
+        } catch (Throwable e) {
         	e.printStackTrace();
         }
     	
@@ -73,7 +71,7 @@ public class Serializer {
             Object nmsItemStack = ReflectionUtils.getOBClass("inventory.CraftItemStack").getMethod("asNMSCopy", ItemStack.class).invoke(null, item);
             ReflectionUtils.getNMSClass("ItemStack").getMethod("save", nbtTagCompoundClass).invoke(nmsItemStack, nbtTagCompound);
             ReflectionUtils.getNMSClass("NBTCompressedStreamTools").getMethod("a", nbtTagCompoundClass, DataOutput.class).invoke(null, nbtTagCompound, (DataOutput) dataOutput);
-        } catch (SecurityException | NoSuchMethodException | InstantiationException | IllegalAccessException | IllegalArgumentException | InvocationTargetException | ClassNotFoundException e) {
+        } catch (Throwable e) {
          	e.printStackTrace();
         }
        
@@ -100,7 +98,7 @@ public class Serializer {
             }
             
             dataOutput.close();
-        } catch (IOException e) {
+        } catch (Throwable e) {
         	e.printStackTrace();
         }
         

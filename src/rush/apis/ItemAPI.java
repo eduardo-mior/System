@@ -18,6 +18,9 @@ public class ItemAPI {
 	private static Class<?> NBTTagIntClass;
 	private static Class<?> NBTTagDoubleClass;
 	private static Class<?> ItemStackClass;
+	private static Method getRepairCost;
+	private static Method setRepairCost;
+	private static Method asBukkitCopy;
 	private static Method asNMSCopy;
 	private static Method asCraftMirror;
 	private static Method setBoolean;
@@ -124,18 +127,52 @@ public class ItemAPI {
 		}
 	}
 	
+	public static int getRepairCost(ItemStack item) {
+		try {
+			Object CraftItemStack = asNMSCopy.invoke(null, item);
+			int cost = (int) getRepairCost.invoke(CraftItemStack);
+			if (item.getType().getMaxDurability() != 0 || item.getDurability() != 0) {
+				double durability = item.getDurability();
+				double maxDurability = item.getType().getMaxDurability();
+				double durabilityPercent = (durability * 100.0) / maxDurability;
+				     if (durabilityPercent <=  25.0) cost += 1;
+				else if (durabilityPercent <=  50.0) cost += 2;
+				else if (durabilityPercent <=  75.0) cost += 3;
+				else if (durabilityPercent <= 100.0) cost += 4;
+			}
+			return cost;
+		} catch (Throwable e) {
+			e.printStackTrace();
+			return 40;
+		}
+	}
+	
+	public static ItemStack setRepairCost(ItemStack item, int cost) {
+		try {
+			Object CraftItemStack = asNMSCopy.invoke(null, item);
+			setRepairCost.invoke(CraftItemStack, cost);
+			return (ItemStack) asBukkitCopy.invoke(null, CraftItemStack);
+		} catch (Throwable e) {
+			e.printStackTrace();
+			return item;
+		}
+	}
+	
 	static void load() {
 		try 
 		{
+			ItemStackClass = ReflectionUtils.getNMSClass("ItemStack");
 			CraftItemStackClass = ReflectionUtils.getOBClass("inventory.CraftItemStack");
+			getRepairCost = ItemStackClass.getDeclaredMethod("getRepairCost");
+			setRepairCost = ItemStackClass.getMethod("setRepairCost", int.class);
+			asNMSCopy = CraftItemStackClass.getDeclaredMethod("asNMSCopy", ItemStack.class);
+			asBukkitCopy = CraftItemStackClass.getDeclaredMethod("asBukkitCopy", ItemStackClass);
 			NBTTagCompoundClass = ReflectionUtils.getNMSClass("NBTTagCompound");
 			NBTBaseClass = ReflectionUtils.getNMSClass("NBTBase");
 			NBTTagListClass = ReflectionUtils.getNMSClass("NBTTagList");
 			NBTTagStringClass = ReflectionUtils.getNMSClass("NBTTagString");
 			NBTTagIntClass = ReflectionUtils.getNMSClass("NBTTagInt");
 			NBTTagDoubleClass = ReflectionUtils.getNMSClass("NBTTagDouble");
-			ItemStackClass = ReflectionUtils.getNMSClass("ItemStack");
-			asNMSCopy = CraftItemStackClass.getDeclaredMethod("asNMSCopy", ItemStack.class);
 			asCraftMirror = CraftItemStackClass.getDeclaredMethod("asCraftMirror", ItemStackClass);
 			setBoolean = NBTTagCompoundClass.getDeclaredMethod("setBoolean", String.class, boolean.class);
 			setNBTTagCompound = ItemStackClass.getDeclaredMethod("setTag", NBTTagCompoundClass);

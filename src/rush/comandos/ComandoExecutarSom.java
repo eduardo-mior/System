@@ -12,6 +12,7 @@ import org.bukkit.entity.Player;
 import rush.Main;
 import rush.apis.OnlinePlayersAPI;
 import rush.configuracoes.Mensagens;
+import rush.utils.Utils;
 
 @SuppressWarnings("all")
 public class ComandoExecutarSom implements CommandExecutor {
@@ -29,7 +30,7 @@ public class ComandoExecutarSom implements CommandExecutor {
 		if (args[1].equalsIgnoreCase("all")) {
 			
 			// Verificando se o som é um som valido
-			if (!isValidEnum(Sound.class, args[0].toUpperCase())) {
+			if (!Utils.isValidEnum(Sound.class, args[0].toUpperCase())) {
 				s.sendMessage(Mensagens.Som_Invalido);
 				return true;
 			}
@@ -53,7 +54,7 @@ public class ComandoExecutarSom implements CommandExecutor {
 		}
            	
 		// Verificando se o som é um som valido
-		if (!isValidEnum(Sound.class, args[0].toUpperCase())) {
+		if (!Utils.isValidEnum(Sound.class, args[0].toUpperCase())) {
 			s.sendMessage(Mensagens.Som_Invalido);
 			return true;
 		}
@@ -64,12 +65,4 @@ public class ComandoExecutarSom implements CommandExecutor {
 		return true;
 	}
 	
-    private <E extends Enum<E>> boolean isValidEnum(Class<E> enumClass, String enumName) {
-		try {
-            Enum.valueOf(enumClass, enumName);
-            return true;
-        } catch (IllegalArgumentException ex) {
-            return false;
-        }
-	}
 }

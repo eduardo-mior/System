@@ -87,6 +87,6 @@ public class ComandoPotion implements CommandExecutor {
 		for (PotionEffectType e : PotionEffectType.values()) {
 			if (e != null) effects.add(e.getName());
 		}
-		return effects.toString();
+		return effects.toString().replace(",", Mensagens.Separador_De_Listas);
 	}
 }

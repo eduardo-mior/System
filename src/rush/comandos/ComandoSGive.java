@@ -15,6 +15,7 @@ import org.bukkit.inventory.ItemStack;
 
 import rush.configuracoes.Mensagens;
 import rush.sistemas.spawners.MobSpawner;
+import rush.utils.Utils;
 
 @SuppressWarnings("all")
 public class ComandoSGive implements CommandExecutor {
@@ -37,8 +38,8 @@ public class ComandoSGive implements CommandExecutor {
 
 		// Pegando o tipo do spawners e verificando se é 1 tipo ovalido
 		String type = args[1].toUpperCase();
-		if (!isValidEnum(EntityType.class, type)) {
-			String spawners = getEnumList(EntityType.class).toString();
+		if (!Utils.isValidEnum(EntityType.class, type)) {
+			String spawners = Utils.getEnumList(EntityType.class).toString().replace(",", Mensagens.Separador_De_Listas);
 			s.sendMessage(Mensagens.Spawner_Desconhecido.replace("%lista%", spawners));
 			return true;
 		}
@@ -61,16 +62,4 @@ public class ComandoSGive implements CommandExecutor {
 		return true;
 	}
 
-	private <E extends Enum<E>> boolean isValidEnum(Class<E> enumClass, String enumName) {
-		try {
-			Enum.valueOf(enumClass, enumName);
-			return true;
-		} catch (Throwable ex) {
-			return false;
-		}
-	}
-
-	private <E extends Enum<E>> List<E> getEnumList(Class<E> enumClass) {
-		return new ArrayList<E>(Arrays.asList(enumClass.getEnumConstants()));
-	}
 }

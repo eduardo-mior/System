@@ -8,9 +8,11 @@ import org.bukkit.event.entity.CreatureSpawnEvent.SpawnReason;
 
 public class DesativarMobsNaturais implements Listener {
 
-	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+	@EventHandler(priority = EventPriority.LOW, ignoreCancelled = true)
 	public void aoSpawnarMob(CreatureSpawnEvent e) {
-		if (e.getSpawnReason() == SpawnReason.NATURAL) {
+		SpawnReason reason = e.getSpawnReason();
+		if (reason == SpawnReason.SPAWNER) return;
+		if (reason == SpawnReason.NATURAL || reason == SpawnReason.CHUNK_GEN || reason == SpawnReason.JOCKEY) {
 			e.setCancelled(true);
 		}
 	}

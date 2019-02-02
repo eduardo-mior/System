@@ -28,7 +28,7 @@ public class ComandoChapeu implements CommandExecutor {
 		ItemStack helmet = i.getHelmet();
 
 		// Verificando se o item é um capacete valido
-		if (hand.getType() != Material.AIR && hand.getType().getMaxDurability() == 0) {
+		if (hand.getType().name().contains("HELMET") || hand.getType() != Material.AIR && hand.getType().getMaxDurability() == 0) {
 			i.setHelmet(hand);
 			i.setItemInHand(helmet);
 			s.sendMessage(Mensagens.Chapeu_Colocado);

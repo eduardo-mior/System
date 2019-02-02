@@ -11,6 +11,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import rush.apis.ItemAPI;
 import rush.configuracoes.Mensagens;
 
 public class ComandoEditaritemOLD implements CommandExecutor {
@@ -127,6 +128,23 @@ public class ComandoEditaritemOLD implements CommandExecutor {
 		if (args[0].equalsIgnoreCase("inquebravel")) {
 			s.sendMessage(Mensagens.Erro_Versao_Nao_Suportada);
 			return true;
+		}
+		
+		// Verificando se o player quer alterar o custo de reparação do item
+		if (args[0].equalsIgnoreCase("custoreparar")) {
+			int custo;
+			try {
+				custo = Integer.parseInt(args[1]);
+				p.setItemInHand(ItemAPI.setRepairCost(item, custo == 39 ? 39 : custo - 1));
+				s.sendMessage(Mensagens.Editar_Item_Com_Sucesso);
+				return true;
+			} catch (NumberFormatException e) {
+				s.sendMessage(Mensagens.Numero_Invalido.replace("%numero%", e.getMessage().split("\"")[1]));
+				return true;
+			} catch (ArrayIndexOutOfBoundsException e) {
+				s.sendMessage(Mensagens.Editar_Item_Comando_Incorreto);
+				return true;
+			}
 		}
 		
 		// Verificando se o player que adicionar algum atributo ao item
