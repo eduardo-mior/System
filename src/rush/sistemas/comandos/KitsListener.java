@@ -6,6 +6,7 @@ import java.io.IOException;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.event.Event.Result;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -50,6 +51,7 @@ public class KitsListener implements Listener {
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void InvetoryClick(InventoryClickEvent e) {
 		if (e.getInventory().getTitle().startsWith("Visualizando Kit§f§o ")) {
+			e.setResult(Result.DENY);
 			e.setCancelled(true);
 		}
 	}

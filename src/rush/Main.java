@@ -103,6 +103,7 @@ import rush.recursos.bloqueadores.BloquearCrafts;
 import rush.recursos.bloqueadores.BloquearCriarPortal;
 import rush.recursos.bloqueadores.BloquearDerreterGeloENeve;
 import rush.recursos.bloqueadores.BloquearMobsDePegaremFogoParaOSol;
+import rush.recursos.bloqueadores.BloquearMobsDePegaremItensDoChao;
 import rush.recursos.bloqueadores.BloquearNameTag;
 import rush.recursos.bloqueadores.BloquearNicksImproprios;
 import rush.recursos.bloqueadores.BloquearPassarDaBorda;
@@ -366,7 +367,11 @@ public class Main extends JavaPlugin {
 		if (Settings.Bloquear_Mobs_De_Pegarem_Fogo_Para_O_Sol) {
 			pm.registerEvents(new BloquearMobsDePegaremFogoParaOSol(), this);
 		}
-
+		
+		if (Settings.Bloquear_Mobs_De_Pegarem_Fogo_Para_O_Sol) {
+			pm.registerEvents(new BloquearMobsDePegaremItensDoChao(), this);
+		}
+		
 		if (Settings.Bloquear_Money_Invalido) {
 			pm.registerEvents(new BloquearMoneyInvalido(), this);
 		}

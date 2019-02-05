@@ -17,7 +17,7 @@ public class EnderChestListener implements Listener {
 		if (i.getType() == InventoryType.ENDER_CHEST) {
 			Player p = (Player) e.getWhoClicked();
 			Inventory ec = p.getEnderChest();
-			if ((!i.equals(ec)) && (!p.hasPermission("system.echest.admin"))) {
+			if (!(i.equals(ec)) && !(p.hasPermission("system.echest.admin"))) {
 				e.setCancelled(true);
 				e.setResult(Result.DENY);
 			}

@@ -15,7 +15,7 @@ public enum JarType {
 		String ver = Bukkit.getVersion();
 		if (ver.contains("git-Torch"))
 			return JarType.TORCH;
-		else if (ver.contains("git-TacoSpigot"))
+		else if (ver.contains("git-Taco"))
 			return JarType.TACO_SPIGOT;
 		else if (ver.contains("git-Paper"))
 			return JarType.PAPE_SPIGOT;

@@ -39,6 +39,7 @@ public class Settings {
 	public static int Delay_Para_Teleportar_Comandos;
 	public static int Delay_Para_Divulgar;
 	public static boolean Bloquear_Mobs_De_Pegarem_Fogo_Para_O_Sol;
+	public static boolean Bloquear_Mobs_De_Pegarem_Itens_Do_Chao;
 	public static boolean Bloquear_Cair_No_Void;
 	public static boolean Desativar_Ciclo_Do_Dia;
 	public static boolean Desativar_Dano_Do_Blaze;
@@ -152,6 +153,7 @@ public class Settings {
 		Delay_Para_Teleportar_Comandos = config.getInt("Delay-Para-Teleportar-Comandos");
 		Delay_Para_Divulgar = config.getInt("Delay-Para-Divulgar") * 1000 * 60;
 		Bloquear_Mobs_De_Pegarem_Fogo_Para_O_Sol = config.getBoolean("Bloquear-Mobs-De-Pegarem-Fogo-Para-O-Sol");
+		Bloquear_Mobs_De_Pegarem_Itens_Do_Chao = config.getBoolean("Bloquear-Mobs-De-Pegarem-Itens-Do-Chao");
 		Bloquear_Cair_No_Void = config.getBoolean("Bloquear-Cair-No-Void");
 		Desativar_Ciclo_Do_Dia = config.getBoolean("Desativar-Ciclo-Do-Dia");
 		Desativar_Dano_Do_Blaze = config.getBoolean("Desativar-Dano-Do-Blaze");

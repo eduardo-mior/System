@@ -1,7 +1,8 @@
 main: rush.Main
-version: 1.9.4
+version: 1.9.5
 name: System
 load: POSTWORLD
+author: RUSH
 softdepend: [Legendchat, mcMMO, MassiveCore, Factions, Vault]
 
 permissions:

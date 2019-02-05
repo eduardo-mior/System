@@ -9,6 +9,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 
+import rush.Main;
 import rush.apis.UltimateFancy;
 import rush.configuracoes.Mensagens;
 import rush.configuracoes.Settings;
@@ -60,6 +61,12 @@ public class ComandoSystem implements CommandExecutor {
 			
 		// Caso o argumento seja 'help' então é exibido a lista de comandos do plugin
 		if (args[0].equalsIgnoreCase("help")) {
+			
+			// Verificando se a versão suporta JSON
+			if (Main.isVeryOldVersion()) {
+				s.sendMessage(Mensagens.Erro_Versao_Nao_Suportada);
+				return true;
+			}
 			
 			// Verificando se o número da página informada é valido
 			int pag = 1;
@@ -129,7 +136,7 @@ public class ComandoSystem implements CommandExecutor {
 		// Caso o argumento seja 'info' então é exibido algumas informações do plugin
 		if (args[0].equalsIgnoreCase("info")) {					
 			s.sendMessage("§e*-=-=-=-=-=-=-* §bServer Info §e*-=-=-=-=-=-=-* ");
-			s.sendMessage("§ePlugin Version: §61.9.4");
+			s.sendMessage("§ePlugin Version: §61.9.5");
 			s.sendMessage("§eJava version: §6" + System.getProperty("java.version"));
 			s.sendMessage("§eMinecraft Version: §6" + SystemInfo.getMinecraftVersion());
 			s.sendMessage("§eServerAPI Vesrion: §6" + SystemInfo.getApiVersion());

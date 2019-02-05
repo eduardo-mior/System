@@ -36,6 +36,9 @@ Bloquear-Subir-Em-Veiculos: true
 # OBS: Para burlar use a permissão: system.bypass.usarnametag
 Bloquear-NameTag: false
 
+# Este recurso bloqueia que mobs ajuntem itens do chão
+Bloquear-Mobs-De-Pegarem-Itens-Do-Chao: false
+
 # Este recurso bloqueia o player passadr da borda com EnderPearls
 Bloquear-Passar-Da-Borda: true
 

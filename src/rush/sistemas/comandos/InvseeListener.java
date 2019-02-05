@@ -17,7 +17,7 @@ public class InvseeListener implements Listener {
 		if (i.getType() == InventoryType.PLAYER) {
 			Player p = (Player) e.getWhoClicked();
 			Inventory inv = p.getInventory();
-			if ((!i.equals(inv)) && (!p.hasPermission("system.invsee.admin"))) {
+			if (!(i.equals(inv)) && !(p.hasPermission("system.invsee.admin"))) {
 				e.setCancelled(true);
 				e.setResult(Result.DENY);
 			}
