@@ -20,7 +20,7 @@ public class ComandoChapeu implements CommandExecutor {
 			s.sendMessage(Mensagens.Console_Nao_Pode);
 			return true;
 		}
-
+		
 		// Pegando o player, o item na mão e o seu capacete atual
 		Player p = (Player) s;
 		PlayerInventory i = p.getInventory();

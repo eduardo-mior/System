@@ -64,7 +64,7 @@ public class ComandoEditarkit implements CommandExecutor {
 		FileConfiguration config = DataManager.getConfiguration(file);
 		
 		// Verificando se o player quer editar o delay do kit
-		if (args[1].equalsIgnoreCase("delay")) {
+		if (args[1].equalsIgnoreCase("delay") || args[1].equalsIgnoreCase("tempo")) {
 				
 			// Verificando se o player digitou o número de argumentos correto
 			if (args.length != 3) {

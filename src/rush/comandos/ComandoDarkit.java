@@ -52,9 +52,11 @@ public class ComandoDarkit implements CommandExecutor {
 		PlayerInventory inv = p.getInventory();
 		for (ItemStack item : itens) {
 			if (item != null) {
-				if (inv.firstEmpty() != -1) inv.addItem(item.clone());
-				else p.getWorld().dropItem(p.getLocation(), item);
+				for (ItemStack drop : inv.addItem(item.clone()).values()) {
+					p.getWorld().dropItem(p.getLocation(), drop);
+				}
 			}
 		}
 	}
+	
 }

@@ -20,7 +20,12 @@ public enum GameModeName {
 	} 
 	
 	public static GameModeName valueOf(GameMode gamemode) {
-		return GameModeName.valueOf(gamemode.name());
+		return valueOf(gamemode.name());
+	}
+	
+	@Override
+	public String toString() {
+		return this.name;
 	}
 	
 }

@@ -6,7 +6,6 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import rush.Main;
 
-@SuppressWarnings("all")
 public class DesativarCicloDoDia {
 
 	public static void stopDaylightCycle() {
@@ -18,6 +17,19 @@ public class DesativarCicloDoDia {
 					w.setTime(6000);
 				}
 			}
-		}.runTaskLater(Main.get(), 30 * 20);
+		}.runTaskLater(Main.get(), 600L);
 	}
+	
+
+	public static void stopDaylightCycleOLD() {
+		new BukkitRunnable() {
+			@Override
+			public void run() {
+				for (World w : Bukkit.getWorlds()) {
+					w.setTime(6000);
+				}
+			}
+		}.runTaskTimer(Main.get(), 600L, 600L);
+	}
+	
 }

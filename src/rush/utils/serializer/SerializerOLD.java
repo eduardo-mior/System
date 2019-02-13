@@ -49,13 +49,10 @@ public class SerializerOLD {
             ByteArrayOutputStream outputStream = new ByteArrayOutputStream();
             BukkitObjectOutputStream dataOutput = new BukkitObjectOutputStream(outputStream);
             
-            // Write the size of the inventory
             dataOutput.writeInt(1);
             
-            // Save every element in the list
             dataOutput.writeObject(item);
             
-            // Serialize that array
             dataOutput.close();
             return Base64Coder.encodeLines(outputStream.toByteArray());
         } catch (Throwable e) {

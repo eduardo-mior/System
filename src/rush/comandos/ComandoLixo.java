@@ -22,7 +22,7 @@ public class ComandoLixo implements CommandExecutor {
 
 		// Pegando o player, criando o inventario e abrindo o mesmo
 		Player p = (Player) s;
-		Inventory inv = Bukkit.getServer().createInventory(p, 36, Mensagens.Titulo_Da_Lixeira);
+		Inventory inv = Bukkit.createInventory(p, 36, Mensagens.Titulo_Da_Lixeira);
 		p.openInventory(inv);
 		return true;
 

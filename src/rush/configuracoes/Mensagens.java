@@ -33,10 +33,8 @@ public class Mensagens {
 	public static String Inventario_Cheio_Quebrou;
 	public static String Spawner_Bugado;
 	public static String Spawner_Givado;
-	public static String Inventario_Cheio_Give;
 	public static String Sgive_Comando_Incorreto;
 	public static String Spawner_Desconhecido;
-	public static String Nome_Do_MobSpawner;
 	public static String SetWarp_Comando_Incorreto;
 	public static String DelWarp_Comando_Incorreto;
 	public static String Warp_Comando_Incorreto;
@@ -319,10 +317,8 @@ public class Mensagens {
 		Inventario_Cheio_Quebrou = config.getString("Inventario-Cheio-Quebrou").replace('&', '§');
 		Spawner_Bugado = config.getString("Spawner-Bugado").replace('&', '§');
 		Spawner_Givado = config.getString("Spawner-Givado").replace('&', '§');
-		Inventario_Cheio_Give = config.getString("Inventario-Cheio-Give").replace('&', '§');
 		Sgive_Comando_Incorreto = config.getString("Sgive-Comando-Incorreto").replace('&', '§');
 		Spawner_Desconhecido = config.getString("Spawner-Desconhecido").replace('&', '§');
-		Nome_Do_MobSpawner = config.getString("Nome-Do-MobSpawner").replace('&', '§');
 		SetWarp_Comando_Incorreto = config.getString("SetWarp-Comando-Incorreto").replace('&', '§');
 		DelWarp_Comando_Incorreto = config.getString("DelWarp-Comando-Incorreto").replace('&', '§');
 		Warp_Comando_Incorreto = config.getString("Warp-Comando-Incorreto").replace('&', '§');

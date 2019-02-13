@@ -71,7 +71,13 @@ public class Settings {
 	public static boolean Sistema_De_Spawners;
 	public static boolean Bloquear_Trocar_Tipo_Do_Spawner_Com_Ovo;
 	public static boolean Dropar_Spawner_Ao_Explodir;
+	public static boolean Sistema_De_Stack_Mobs;
+	public static int Limite_De_Mobs_Agrupados;
+	public static String Nome_Dos_Mobs; 
+	public static boolean Kill_All;
 	public static int Chance_De_Dropar_Ao_Explodir;
+	public static String Nome_Do_Spawner;
+	public static List<String> Lore_Do_Spawner;
 	public static boolean Mensagem_De_Boas_Vindas_Ativar;
 	public static List<String> Mensagem_De_Boas_Vindas_Mensagem;
 	public static boolean Title_De_Boas_Vindas_Ativar;
@@ -186,8 +192,14 @@ public class Settings {
 		Bloquear_Trocar_Tipo_Do_Spawner_Com_Ovo = config.getBoolean("Bloquear-Trocar-Tipo-Do-Spawner-Com-Ovo");
 		Dropar_Spawner_Ao_Explodir = config.getBoolean("Dropar-Spawner-Ao-Explodir");
 		Chance_De_Dropar_Ao_Explodir = config.getInt("Chance-De-Dropar-Ao-Explodir");
+		Nome_Do_Spawner = config.getString("Nome-Do-Spawner").replace('&', '§');
+		Lore_Do_Spawner = Utils.colorizeListString(config.getStringList("Lore-Do-Spawner"));
+		Sistema_De_Stack_Mobs = config.getBoolean("Sistema-De-Stack-Mobs");
+		Limite_De_Mobs_Agrupados = config.getInt("Limite-De-Mobs-Agrupados");
+		Nome_Dos_Mobs = config.getString("Nome-Dos-Mobs").replace('&', '§'); 
+		Kill_All = config.getBoolean("Kill-All");
 		Mensagem_De_Boas_Vindas_Ativar = config.getBoolean("Mensagem-De-Boas-Vindas.Ativar");
-		Mensagem_De_Boas_Vindas_Mensagem = config.getStringList("Mensagem-De-Boas-Vindas.Mensagem");
+		Mensagem_De_Boas_Vindas_Mensagem = Utils.colorizeListString(config.getStringList("Mensagem-De-Boas-Vindas.Mensagem"));
 		Title_De_Boas_Vindas_Ativar = config.getBoolean("Title-De-Boas-Vindas.Ativar");
 		Title_De_Boas_Vindas_Titulo = config.getString("Title-De-Boas-Vindas.Titulo").replace('&', '§');
 		Title_De_Boas_Vindas_Subtitulo = config.getString("Title-De-Boas-Vindas.Subtitulo").replace('&', '§');
@@ -215,7 +227,7 @@ public class Settings {
 		Delay_Entre_Anuncios = config.getInt("Delay-Entre-Anuncios");
 		Reproduzir_Som_No_Anuncio = config.getBoolean("Reproduzir-Som-No-Anuncio");
 		Som_Do_Anuncio = Utils.tryLoadSound("LEVEL_UP", "ENTITY_PLAYER_LEVELUP");
-		Lista_De_Anuncios = config.getStringList("Lista-De-Anuncios");
+		Lista_De_Anuncios = Utils.colorizeListString(config.getStringList("Lista-De-Anuncios"));
 		Anunciar_Morte = config.getBoolean("Anunciar-Morte");
 		Anuncios_Mostrar_Para_Quem_Morreu = config.getBoolean("Anuncios.Mostrar-Para-Quem-Morreu");
 		Anuncios_Mensagem_Para_Defunto = config.getString("Anuncios.Mensagem-Para-Defunto").replace('&', '§');
@@ -225,7 +237,7 @@ public class Settings {
 		Anuncios_Mensagem_Para_Todos = config.getString("Anuncios.Mensagem-Para-Todos").replace('&', '§');
 		ScoreBoard_Ativar = config.getBoolean("ScoreBoard.Ativar");
 		ScoreBoard_Titulo = config.getString("ScoreBoard.Titulo").replace('&', '§');
-		ScoreBoard_Linhas = config.getStringList("ScoreBoard.Linhas");
+		ScoreBoard_Linhas = Utils.colorizeListString(config.getStringList("ScoreBoard.Linhas"));
 		Ativar_Tablist = config.getBoolean("Ativar-Tablist");
 		Header = config.getString("Parte-De-Cima").replace('&', '§');
 		Footer = config.getString("Parte-De-Baixo").replace('&', '§');

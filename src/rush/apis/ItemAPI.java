@@ -10,28 +10,30 @@ import rush.utils.ReflectionUtils;
 
 public class ItemAPI {
 
+	private static Class<?> ItemStackClass;
 	private static Class<?> CraftItemStackClass;
 	private static Class<?> NBTTagCompoundClass;
-	private static Class<?> NBTBaseClass;
 	private static Class<?> NBTTagListClass;
 	private static Class<?> NBTTagStringClass;
 	private static Class<?> NBTTagIntClass;
 	private static Class<?> NBTTagDoubleClass;
-	private static Class<?> ItemStackClass;
+	private static Method asNMSCopy;
+	private static Method asBukkitCopy;
+	private static Method asCraftMirror;
 	private static Method getRepairCost;
 	private static Method setRepairCost;
-	private static Method asBukkitCopy;
-	private static Method asNMSCopy;
-	private static Method asCraftMirror;
-	private static Method setBoolean;
 	private static Method setNBTTagCompound;
 	private static Method hasNBTTagCompound;
 	private static Method getNBTTagCompound;
-	private static Method getNBTList;
+	private static Method getString;
+	private static Method getBoolean;
+	private static Method setString;
+	private static Method setBoolean;
 	private static Method getNBTBase;
-	private static Method addNBTBaseTag;
-	private static Method setNBTBaseCompound;
+	private static Method getNBTList;
 	private static Method hasTag;
+	private static Method setNBTBaseCompound;
+	private static Method addNBTBaseTag;
 	private static Method createTag;
 	
 	public static ItemStack setAttributeNBT(ItemStack item, String attribute, double value, int operation) {
@@ -40,8 +42,8 @@ public class ItemAPI {
 		try	{
 			Object NBTTagCompound;
 			Object CraftItemStack = asNMSCopy.invoke(null, item);
-			boolean hasNBT = (boolean) hasNBTTagCompound.invoke(CraftItemStack);
-			if (hasNBT) {
+			boolean hasNBTTag = (boolean) hasNBTTagCompound.invoke(CraftItemStack);
+			if (hasNBTTag) {
 				NBTTagCompound = getNBTTagCompound.invoke(CraftItemStack);
 			} else {
 				NBTTagCompound = NBTTagCompoundClass.newInstance();
@@ -105,15 +107,68 @@ public class ItemAPI {
 		}
 	}
 	
+	public static String getInfo(ItemStack item, String key) {
+		try {
+			Object NBTTagCompound;
+			Object CraftItemStack = asNMSCopy.invoke(null, item);
+			boolean hasNBTTag = (boolean) hasNBTTagCompound.invoke(CraftItemStack);
+			if (hasNBTTag) {
+				NBTTagCompound = getNBTTagCompound.invoke(CraftItemStack);
+			} else {
+				return "";
+			}
+			return getString.invoke(NBTTagCompound, key).toString();
+		} catch (Throwable e) {
+			e.printStackTrace();
+			return "";
+		}
+	}
+	
+	public static ItemStack saveInfo(ItemStack item, String key, String value) {
+		try	{
+			Object NBTTagCompound;
+			Object CraftItemStack = asNMSCopy.invoke(null, item);
+			boolean hasNBTTag = (boolean) hasNBTTagCompound.invoke(CraftItemStack);
+			if (hasNBTTag) {
+				NBTTagCompound = getNBTTagCompound.invoke(CraftItemStack);
+			} else {
+				NBTTagCompound = NBTTagCompoundClass.newInstance();
+			}
+			setString.invoke(NBTTagCompound, key, value);
+			setNBTTagCompound.invoke(CraftItemStack, NBTTagCompound);
+			return (ItemStack) asCraftMirror.invoke(null, CraftItemStack);
+		} catch (Throwable e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	public static boolean isUnbreakable(ItemStack item) {
+		try {
+			Object NBTTagCompound;
+			Object CraftItemStack = asNMSCopy.invoke(null, item);
+			boolean hasNBTTag = (boolean) hasNBTTagCompound.invoke(CraftItemStack);
+			if (hasNBTTag) {
+				NBTTagCompound = getNBTTagCompound.invoke(CraftItemStack);
+			} else {
+				return false;
+			}
+			return (boolean) getBoolean.invoke(NBTTagCompound, "Unbreakable");
+		} catch (Throwable e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
+	
 	public static ItemStack setUnbreakable(ItemStack item, boolean bool) {
-		if (item != null && item.getType().getMaxDurability() != 0 && item.getDurability() != 0) {
-			item.setDurability((short)0);
+		if (item.getType().getMaxDurability() != 0 && item.getDurability() != 0) {
+			item.setDurability((short) 0);
 		}
 		try	{
 			Object NBTTagCompound;
 			Object CraftItemStack = asNMSCopy.invoke(null, item);
-			boolean hasNBT = (boolean) hasNBTTagCompound.invoke(CraftItemStack);
-			if (hasNBT) {
+			boolean hasNBTTag = (boolean) hasNBTTagCompound.invoke(CraftItemStack);
+			if (hasNBTTag) {
 				NBTTagCompound = getNBTTagCompound.invoke(CraftItemStack);
 			} else {
 				NBTTagCompound = NBTTagCompoundClass.newInstance();
@@ -131,7 +186,7 @@ public class ItemAPI {
 		try {
 			Object CraftItemStack = asNMSCopy.invoke(null, item);
 			int cost = (int) getRepairCost.invoke(CraftItemStack);
-			if (item.getType().getMaxDurability() != 0 || item.getDurability() != 0) {
+			if (item.getType().getMaxDurability() != 0) {
 				double durability = item.getDurability();
 				double maxDurability = item.getType().getMaxDurability();
 				double durabilityPercent = (durability * 100.0) / maxDurability;
@@ -161,31 +216,48 @@ public class ItemAPI {
 	static void load() {
 		try 
 		{
+			// Item Classes 
 			ItemStackClass = ReflectionUtils.getNMSClass("ItemStack");
 			CraftItemStackClass = ReflectionUtils.getOBClass("inventory.CraftItemStack");
-			getRepairCost = ItemStackClass.getDeclaredMethod("getRepairCost");
-			setRepairCost = ItemStackClass.getMethod("setRepairCost", int.class);
-			asNMSCopy = CraftItemStackClass.getDeclaredMethod("asNMSCopy", ItemStack.class);
-			asBukkitCopy = CraftItemStackClass.getDeclaredMethod("asBukkitCopy", ItemStackClass);
+			
+			// NBTTag Classes
 			NBTTagCompoundClass = ReflectionUtils.getNMSClass("NBTTagCompound");
-			NBTBaseClass = ReflectionUtils.getNMSClass("NBTBase");
 			NBTTagListClass = ReflectionUtils.getNMSClass("NBTTagList");
 			NBTTagStringClass = ReflectionUtils.getNMSClass("NBTTagString");
 			NBTTagIntClass = ReflectionUtils.getNMSClass("NBTTagInt");
 			NBTTagDoubleClass = ReflectionUtils.getNMSClass("NBTTagDouble");
+			Class<?> NBTBaseClass = ReflectionUtils.getNMSClass("NBTBase");
+			
+			// Item Handle Methods
+			asNMSCopy = CraftItemStackClass.getDeclaredMethod("asNMSCopy", ItemStack.class);
+			asBukkitCopy = CraftItemStackClass.getDeclaredMethod("asBukkitCopy", ItemStackClass);
 			asCraftMirror = CraftItemStackClass.getDeclaredMethod("asCraftMirror", ItemStackClass);
-			setBoolean = NBTTagCompoundClass.getDeclaredMethod("setBoolean", String.class, boolean.class);
-			setNBTTagCompound = ItemStackClass.getDeclaredMethod("setTag", NBTTagCompoundClass);
+			
+			// Repair cost Methods
+			getRepairCost = ItemStackClass.getDeclaredMethod("getRepairCost");
+			setRepairCost = ItemStackClass.getMethod("setRepairCost", int.class);
+			
+			// Item NBTTag Methods
+			getNBTTagCompound = ItemStackClass.getDeclaredMethod("getTag");			
 			hasNBTTagCompound = ItemStackClass.getDeclaredMethod("hasTag");
-			getNBTTagCompound = ItemStackClass.getDeclaredMethod("getTag");
-			getNBTList = NBTTagCompoundClass.getDeclaredMethod("getList", String.class, int.class);
+			setNBTTagCompound = ItemStackClass.getDeclaredMethod("setTag", NBTTagCompoundClass);
+
+			// Basic NBTTag Handle Methods
+			getString = NBTTagCompoundClass.getDeclaredMethod("getString", String.class);
+			getBoolean = NBTTagCompoundClass.getDeclaredMethod("getBoolean", String.class);
+			setString = NBTTagCompoundClass.getDeclaredMethod("setString", String.class, String.class);
+			setBoolean = NBTTagCompoundClass.getDeclaredMethod("setBoolean", String.class, boolean.class);
+			
+			// Advance NBTTag Handle
 			getNBTBase = NBTTagCompoundClass.getDeclaredMethod("clone");
-			addNBTBaseTag = NBTTagListClass.getDeclaredMethod("add", NBTBaseClass);
-			setNBTBaseCompound = NBTTagCompoundClass.getDeclaredMethod("set", String.class, NBTBaseClass);
+			getNBTList = NBTTagCompoundClass.getDeclaredMethod("getList", String.class, int.class);
 			hasTag = NBTTagCompoundClass.getDeclaredMethod("hasKey", String.class);
+			setNBTBaseCompound = NBTTagCompoundClass.getDeclaredMethod("set", String.class, NBTBaseClass);
+			addNBTBaseTag = NBTTagListClass.getDeclaredMethod("add", NBTBaseClass);
 			createTag = NBTBaseClass.getDeclaredMethod("createTag", byte.class);
 			createTag.setAccessible(true);
 		}
 		catch (Throwable e) {}
 	}
+	
 }

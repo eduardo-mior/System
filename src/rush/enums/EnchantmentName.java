@@ -53,4 +53,9 @@ public enum EnchantmentName {
 		return EnchantmentName.valueOf(enchantment.getName());
 	}
 	
+	@Override
+	public String toString() {
+		return this.name;
+	}
+	
 }

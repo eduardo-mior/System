@@ -13,7 +13,9 @@ import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
+import rush.Main;
 import rush.configuracoes.Mensagens;
+import rush.enums.EntityName;
 import rush.sistemas.spawners.MobSpawner;
 import rush.utils.Utils;
 
@@ -56,9 +58,11 @@ public class ComandoSGive implements CommandExecutor {
 		}
 
 		// Criando o item do mobspawner e enviando para o player
-		ItemStack spawner = MobSpawner.get(type, quantia);
-		p.getInventory().addItem(spawner);
-		s.sendMessage(Mensagens.Spawner_Givado.replace("%tipo%", args[1].replace("_", " ")));
+		ItemStack spawner = Main.isOldVersion() ? MobSpawner.getOld(type, quantia) : MobSpawner.get(type, quantia);
+		for (ItemStack item : p.getInventory().addItem(spawner).values()) {
+			p.getWorld().dropItem(p.getLocation(), item);
+		}
+		s.sendMessage(Mensagens.Spawner_Givado.replace("%tipo%", EntityName.valueOf(type).getName()));
 		return true;
 	}
 

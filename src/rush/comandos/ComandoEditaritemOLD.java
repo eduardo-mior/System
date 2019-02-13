@@ -131,7 +131,7 @@ public class ComandoEditaritemOLD implements CommandExecutor {
 		}
 		
 		// Verificando se o player quer alterar o custo de reparação do item
-		if (args[0].equalsIgnoreCase("custoreparar")) {
+		if (args[0].equalsIgnoreCase("custoreparar") || args[0].equalsIgnoreCase("custoreparacao")) {
 			int custo;
 			try {
 				custo = Integer.parseInt(args[1]);

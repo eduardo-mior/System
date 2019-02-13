@@ -20,4 +20,5 @@ public class ConfigManager {
       	FileConfiguration config = (FileConfiguration)YamlConfiguration.loadConfiguration(arquivo);
       	return config;
 	}
+	
 }

@@ -154,10 +154,13 @@ import rush.sistemas.gerais.Motd;
 import rush.sistemas.gerais.PlayerData;
 import rush.sistemas.gerais.ScoreBoard;
 import rush.sistemas.gerais.ScoreBoardOLD;
+import rush.sistemas.gerais.StackMobs;
 import rush.sistemas.gerais.Tablist;
 import rush.sistemas.spawners.BloquearTrocarTipoDoSpawnerComOvo;
 import rush.sistemas.spawners.DroparSpawnerAoExplodir;
+import rush.sistemas.spawners.DroparSpawnerAoExplodirOLD;
 import rush.sistemas.spawners.SistemaDeSpawners;
+import rush.sistemas.spawners.SistemaDeSpawnersOLD;
 import rush.utils.ReflectionUtils;
 import rush.utils.manager.ConfigManager;
 import rush.utils.manager.DataManager;
@@ -254,7 +257,6 @@ public class Main extends JavaPlugin {
 		new Command("setmundovip", "system.setmundovip", new ComandoSetmundovip());
 		new Command("setspawn", "system.setspawn", new ComandoSetspawn());
 		new Command("setwarp", "system.setwarp", new ComandoSetwarp());
-		new Command("sgive", "system.sgive", new ComandoSGive());
 		new Command("skull", "system.skull", new ComandoSkull());
 		new Command("slime", "system.slime", new ComandoSlime());
 		new Command("spawn", "system.spawn", new ComandoSpawn());
@@ -292,6 +294,10 @@ public class Main extends JavaPlugin {
 		if (!isVeryOldVersion()) {
 			new Command("estatisticas", "system.estatisticas", new ComandoEstatisticas());
 		}
+		
+		if (!isVeryNewVersion()) {
+			new Command("sgive", "system.sgive", new ComandoSGive());
+		}
 	}
 
 	private void registrarEventos() {
@@ -300,10 +306,6 @@ public class Main extends JavaPlugin {
 
 		if (Settings.Anunciar_Morte) {
 			pm.registerEvents(new AnunciarMorte(), this);
-		}
-		
-		if (Settings.Deletar_Comandos) {
-			DeletarComandos.deleteCommands();
 		}
 
 		if (Settings.Ativar_Cores_Na_Bigorna) {
@@ -405,13 +407,21 @@ public class Main extends JavaPlugin {
 		if (Settings.Bloquear_Teleport_Por_Portal_Ativar) {
 			pm.registerEvents(new BloquearTeleportPorPortal(), this);
 		}
-
+		
+		if (Settings.Deletar_Comandos) {
+			DeletarComandos.deleteCommands();
+		}
+		
 		if (Settings.Desativar_Chuva) {
 			pm.registerEvents(new DesativarChuva(), this);
 		}
 
 		if (Settings.Desativar_Ciclo_Do_Dia) {
-			DesativarCicloDoDia.stopDaylightCycle();
+			if (version == Version.v1_5) {
+				DesativarCicloDoDia.stopDaylightCycleOLD();
+			} else {
+				DesativarCicloDoDia.stopDaylightCycle();
+			}
 		}
 
 		if (Settings.Desativar_Dano_Do_Blaze) {
@@ -513,17 +523,31 @@ public class Main extends JavaPlugin {
 				pm.registerEvents(new FlyListener(), this);
 			}
 		}
+		
+		if (Settings.Sistema_De_Stack_Mobs) {
+			pm.registerEvents(new StackMobs(), this);
+		}
 
 		if (!isVeryNewVersion()) {
 			if (commands.getBoolean("comandos.sgive.ativar-comando")) {
 				if (Settings.Sistema_De_Spawners) {
-					pm.registerEvents(new SistemaDeSpawners(), this);
-					if (Settings.Dropar_Spawner_Ao_Explodir) {
-						pm.registerEvents(new DroparSpawnerAoExplodir(), this);
-					}
+					
 					if (Settings.Bloquear_Trocar_Tipo_Do_Spawner_Com_Ovo) {
 						pm.registerEvents(new BloquearTrocarTipoDoSpawnerComOvo(), this);
 					}
+					
+					if (isOldVersion()) {
+						pm.registerEvents(new SistemaDeSpawnersOLD(), this);
+						if (Settings.Dropar_Spawner_Ao_Explodir) {
+							pm.registerEvents(new DroparSpawnerAoExplodirOLD(), this);
+						}
+					} else {
+						pm.registerEvents(new SistemaDeSpawners(), this);
+						if (Settings.Dropar_Spawner_Ao_Explodir) {
+							pm.registerEvents(new DroparSpawnerAoExplodir(), this);
+						}
+					}
+
 				}
 			}
 		}

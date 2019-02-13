@@ -86,8 +86,9 @@ public class ComandoCompactarOLD implements CommandExecutor {
 			
 			/* Verificando se o player possui espaço no inventario para armazenar o item,
 			   caso ele não possuir espaço no inventarios o item sera dropado */
-			if (inv.firstEmpty() != -1) inv.addItem(item);
-			else p.getWorld().dropItem(p.getLocation(), item);	
+			for (ItemStack rest : inv.addItem(item).values()) {
+				p.getWorld().dropItem(p.getLocation(), rest);
+			}
 		}
 		
 		// Retorna a quantia de itens compactados para exibir na mensagem

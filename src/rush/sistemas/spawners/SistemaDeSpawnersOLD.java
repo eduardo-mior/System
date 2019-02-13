@@ -13,10 +13,9 @@ import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.inventory.ItemStack;
 
-import rush.apis.ItemAPI;
 import rush.configuracoes.Mensagens;
 
-public class SistemaDeSpawners implements Listener {
+public class SistemaDeSpawnersOLD implements Listener {
 
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void aoQuebrarSpawner(BlockBreakEvent e) {
@@ -27,7 +26,7 @@ public class SistemaDeSpawners implements Listener {
 				if (p.getItemInHand().getItemMeta().hasEnchant(Enchantment.SILK_TOUCH)) {
 					CreatureSpawner mobSpawner = (CreatureSpawner) b.getState();
 					String type = mobSpawner.getSpawnedType().name();
-					ItemStack spawner = MobSpawner.get(type, 1);
+					ItemStack spawner = MobSpawner.getOld(type, 1);
 					for (ItemStack is : p.getInventory().addItem(spawner).values()) {
 						b.getWorld().dropItem(b.getLocation(), is);
 						p.sendMessage(Mensagens.Inventario_Cheio_Quebrou);
@@ -38,14 +37,15 @@ public class SistemaDeSpawners implements Listener {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void aoColocarSpawner(BlockPlaceEvent e) {
 		Block b = e.getBlock();
 		if (b.getType() == Material.MOB_SPAWNER) {
 			try {
 				CreatureSpawner mobSpawner = (CreatureSpawner) b.getState();
-				String type = ItemAPI.getInfo(e.getItemInHand(), "Entity");
-				mobSpawner.setSpawnedType(EntityType.valueOf(type));
+				short type = e.getItemInHand().getDurability();
+				mobSpawner.setSpawnedType(EntityType.fromId(type));
 				mobSpawner.update(true);
 			} catch (Throwable ex) {
 				e.getPlayer().sendMessage(Mensagens.Spawner_Bugado);

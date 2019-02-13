@@ -35,14 +35,14 @@ public class ScoreBoardOLD implements Listener {
 		String titulo = Settings.ScoreBoard_Titulo;
 	    List<String> linhas = Settings.ScoreBoard_Linhas;
 		
-	    scoreboard = Bukkit.getServer().getScoreboardManager().getNewScoreboard();
+	    scoreboard = Bukkit.getScoreboardManager().getNewScoreboard();
 	    Objective o = scoreboard.registerNewObjective("system.score", "dummy");
         o.setDisplayName(titulo.length() > 32 ? titulo.substring(0, 32) : titulo);
 	    o.setDisplaySlot(DisplaySlot.SIDEBAR);
 	    
 	    for (int i = 0; i < linhas.size(); i++) {
 	    	String linha = linhas.get(i).length() > 16 ? linhas.get(i).substring(0, 16) : linhas.get(i);
-			Score score = o.getScore(Bukkit.getOfflinePlayer(linha.replace('&', '§')));
+			Score score = o.getScore(Bukkit.getOfflinePlayer(linha));
 	    	score.setScore(linhas.size() - i);
 	    }
 	}

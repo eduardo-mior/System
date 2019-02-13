@@ -47,11 +47,16 @@ public enum PotionName {
 	}
 	
 	public static PotionName valueOf(PotionEffect potionEffect) {
-		return PotionName.valueOf(potionEffect.getType());
+		return valueOf(potionEffect.getType());
 	}
 	
 	public static PotionName valueOf(PotionEffectType potionEffect) {
-		return PotionName.valueOf(potionEffect.getName());
+		return valueOf(potionEffect.getName());
+	}
+	
+	@Override
+	public String toString() {
+		return this.name;
 	}
 	
 }

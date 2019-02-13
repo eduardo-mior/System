@@ -30,7 +30,7 @@ public class MagnataTag implements Listener {
 		MTask = new BukkitRunnable() {
 			@Override
 			public void run() {
-				for (OfflinePlayer off : Bukkit.getServer().getOfflinePlayers()) {
+				for (OfflinePlayer off : Bukkit.getOfflinePlayers()) {
 					double balance = Vault.getBalance(off);
 					if (balance > balanceMagnata) {
 						playerMagnata = off.getName(); 

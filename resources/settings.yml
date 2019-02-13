@@ -1,4 +1,4 @@
-﻿file-version: 4
+﻿file-version: 5
 ############################################################
 # +------------------------------------------------------+ #
 # |              Recuros Adicionais (Addons)             | #
@@ -224,6 +224,25 @@ Sistema-De-Spawners: true
 Bloquear-Trocar-Tipo-Do-Spawner-Com-Ovo: true
 Dropar-Spawner-Ao-Explodir: true
 Chance-De-Dropar-Ao-Explodir: 60
+Nome-Do-Spawner: "&eGerador de Monstros"
+Lore-Do-Spawner:
+   - "&7Tipo: &f%tipo%"
+
+
+############################################################
+# +------------------------------------------------------+ #
+# |              StackMobs - Agrupador Mobs              | #
+# +------------------------------------------------------+ #
+############################################################
+Sistema-De-Stack-Mobs: true
+Limite-De-Mobs-Agrupados: 100
+Nome-Dos-Mobs: "&e%quantia%x %tipo%"
+Kill-All: true
+# Se o Kill-All estiver false os mobs irão morrer 1 por vez.
+
+# Se o Kill-All estiver true todos os mobs serão mortos de uma
+# só vez. Se o player estiver abaixado (segurando shift) os
+# mobs serão mortos 1 por 1. Sem o shift mata todos de uma vez.
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -426,13 +445,13 @@ Lista-De-Anuncios:
 Anunciar-Morte: true
 Anuncios: 
   Mostrar-Para-Quem-Morreu: true
-  Mensagem-Para-Defunto: "&cVocê foi porto por %playerMatou%!"
+  Mensagem-Para-Defunto: "&cVocê foi morto por %playerMatou%!"
 
   Mostrar-Para-Quem-Matou: true
   Mensagem-Para-Matador: "&cVocê matou o player %playerMorreu%!"
 
   Mostrar-Para-Todo-Servidor: false
-  Mensagem-Para-Todos: "&c%playerMorreu% foi morto por %playerMatou%!"
+  Mensagem-Para-Todos: "&c%playerMorreu% foi morto por %playerMatou%&c usando '%item%'&c!"
 
 ############################################################
 # +------------------------------------------------------+ #

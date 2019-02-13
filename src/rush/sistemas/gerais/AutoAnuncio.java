@@ -25,7 +25,7 @@ public class AutoAnuncio {
 			@Override
 			public void run() {
 				int intmsg = rnd.nextInt(size);
-				String msg = (mensagens.get(intmsg).replace('&', '§'));
+				String msg = (mensagens.get(intmsg));
 				for (Player p : OnlinePlayersAPI.getOnlinePlayers()) {
 					if (Settings.Destacar_Anuncio) p.sendMessage(" ");
 					p.sendMessage(msg);

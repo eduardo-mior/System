@@ -12,7 +12,7 @@ import rush.utils.manager.ConfigManager;
 
 public class Locations {
 
-	public static Location padrao = new Location(Bukkit.getWorlds().get(0), 1.0, 250.0, 1.0, 1.0F, 1.0F);
+	public static Location padrao = new Location(Bukkit.getServer().getWorlds().get(0), 1.0, 250.0, 1.0, 1.0F, 1.0F);
 	public static Location spawn = padrao;
 	public static Location spawnVip = padrao;
 	public static Location areaVip = padrao;
@@ -85,7 +85,7 @@ public class Locations {
 
 	private static void setAreaVip() {
 		try {
-         areaVip = new Location(Main.get().getServer().getWorld(
+         areaVip = new Location(Bukkit.getServer().getWorld(
            ConfigManager.getConfig("locations").getString("AreaVip.world")), 
            ConfigManager.getConfig("locations").getDouble("AreaVip.x"), 
            ConfigManager.getConfig("locations").getDouble("AreaVip.y"), 
@@ -99,7 +99,7 @@ public class Locations {
 	
 	private static void setAreaNaoVip() {
 		try {
-        areaNaoVip = new Location(Main.get().getServer().getWorld(
+        areaNaoVip = new Location(Bukkit.getServer().getWorld(
            ConfigManager.getConfig("locations").getString("AreaNaoVip.world")), 
            ConfigManager.getConfig("locations").getDouble("AreaNaoVip.x"), 
            ConfigManager.getConfig("locations").getDouble("AreaNaoVip.y"), 
@@ -113,7 +113,7 @@ public class Locations {
 	
 	private static void setSpawn() {
 		try {
-	    spawn = new Location(Main.get().getServer().getWorld(
+	    spawn = new Location(Bukkit.getServer().getWorld(
 	       ConfigManager.getConfig("locations").getString("Spawn.world")), 
 	       ConfigManager.getConfig("locations").getDouble("Spawn.x"), 
 	       ConfigManager.getConfig("locations").getDouble("Spawn.y"), 
@@ -127,7 +127,7 @@ public class Locations {
 	
 	private static void setSpawnVip() {
 		try {
-	    spawnVip = new Location(Main.get().getServer().getWorld(
+	    spawnVip = new Location(Bukkit.getServer().getWorld(
 	       ConfigManager.getConfig("locations").getString("SpawnVip.world")), 
 	       ConfigManager.getConfig("locations").getDouble("SpawnVip.x"), 
 	       ConfigManager.getConfig("locations").getDouble("SpawnVip.y"), 
@@ -140,7 +140,7 @@ public class Locations {
 	}
 	
 	private static void setDefaultServerSpawn() {
-		List<World> worlds = Bukkit.getWorlds();
+		List<World> worlds = Bukkit.getServer().getWorlds();
 		World worldSpawn = spawn.getWorld();
 		if (worldSpawn == null) {
 			worlds.get(0).setSpawnLocation(padrao.getBlockX(), padrao.getBlockY(), padrao.getBlockZ());

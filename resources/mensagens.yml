@@ -4,7 +4,7 @@
 # |                   Mensagens gerais                   | #
 # +------------------------------------------------------+ #
 ############################################################
-Separador-De-Listas: "&8,&e"
+Separador-De-Listas: "&8,&7"
 Console-Nao-Pode: "&cO console nao pode usar este comando."
 Sem-Permissao: "&cVocê não tem permissão para utilizar este comando."
 Numero-Invalido: "&cO número '%numero%' não é um número valido."
@@ -152,11 +152,11 @@ Kit-Nao-Existe: "&cO kit '%kit-id%' não existe."
 Kit-Ja-Existe: "&cO kit '%kit-id%' já existe."
 Kit-Sem-Permissao: "&cVocê não tem permissão para pegar este kit."
 Kit-Criado: "&aKit '%kit-id%' criado com sucesso."
-Kit-Editado: "&aKit '%kit-nome%' &aeditado com sucesso."
+Kit-Editado: "&aKit '%kit-nome%&a' editado com sucesso."
 Kit-Deletado: "&aKit '%kit-id%' deletado com sucesso."
 Kit-Sem-Espaco-Pra-Pegar: "&cVocê não possui espaço suficiente no inventário para poder pegar este kit, por favor libere mais espaço e tente novamente."
-Kit-Pego: "&aKit '%kit-nome%' &aadquirido com sucesso."
-Kit-Enviado: "&aKit '%kit-nome%' &aenviado com sucesso para %player%."
+Kit-Pego: "&aKit '%kit-nome%&a' adquirido com sucesso."
+Kit-Enviado: "&aKit '%kit-nome%&a' enviado com sucesso para %player%."
 Kit-Aguarde: "&cAguarde mais %tempo% para poder pegar este kit novamente."
 Nenhum-Kit-Criado: "&cNão há kits disponíveis."
 Kits-Lista: "&eKits disponíveis(%n%): &7%kits%"
@@ -168,11 +168,9 @@ Kits-Lista: "&eKits disponíveis(%n%): &7%kits%"
 ############################################################
 Inventario-Cheio-Quebrou: "&cVocê esta com seu inventário cheio! O gerador foi dropado no chão."
 Spawner-Bugado: "&cEste gerador esta com defeitos! Contate um staff do seu servidor para que ele poça lhe resolver este problema."
-Spawner-Givado: "&aSpawner de %tipo% givado com sucesso."
-Inventario-Cheio-Give: "&cVocê esta com seu inventário cheio! Libera mais espaço para poder pegar geradores."
+Spawner-Givado: "&aSpawner de '%tipo%' givado com sucesso."
 Sgive-Comando-Incorreto: "&cComando incorreto, use /sgive <player> <tipo> <quantia>"
-Spawner-Desconhecido: "&cTipo de Spawner desconhecido!\n&eLista de Spawners: %lista%."
-Nome-Do-MobSpawner: "&bGerador de Monstros"
+Spawner-Desconhecido: "&cTipo de Spawner desconhecido!\n&eLista de Spawners: &7%lista%"
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -298,7 +296,7 @@ Clear-Outro-Sem-Permissao: "&cVocê não tem permissão para limpar o inventári
 Editar-Item-Invalido: "&cEste item não é um item valido!"
 Editar-Item-Com-Sucesso: "&aItem editado com sucesso."
 Editar-Item-Numero-Operacao-Invalido: "&cNúmero de operação invalido! O número da operação deve ser &70&c, &71&c ou &72&c."
-Editar-Item-Atributo-Invalido: "&cAtributo desconheceido!\n&eLista de Atributos: %lista%"
+Editar-Item-Atributo-Invalido: "&cAtributo desconheceido!\n&eLista de Atributos: &7%lista%"
 Editar-Item-Comando-Incorreto: |
   &cComando incorreto, use:
   &c/editaritem renomear <nome> &8-&7 Renomeia o nome do item.
@@ -330,7 +328,7 @@ Vida-Regenerada-Com-Sucesso: "&aVida regenerada com sucesso."
 # +------------------------------------------------------+ #
 ############################################################
 Potion-Comando-Incorreto: "&cComando incorreto, use /potion <efeito> <duração> <nivel>"
-Potion-Efeito-Invalido: "&cO efeito '%effect%' não é um efeito valido.\n&eLista de efeitos: %lista%"
+Potion-Efeito-Invalido: "&cO efeito '%effect%' não é um efeito valido.\n&eLista de efeitos: &7%lista%"
 Potion-Item-Invalido: "&cVocê deve estar segurando uma poção na mão para poder fazer isto."
 Potion-Editada-Sucesso: "&aEfeito '%effect%' adicionado com sucesso na poção."
 # %duracao% mostra a duração da poção -- %amplificador% mostra o amplificador da poção
@@ -341,7 +339,7 @@ Potion-Editada-Sucesso: "&aEfeito '%effect%' adicionado com sucesso na poção."
 # +------------------------------------------------------+ #
 ############################################################
 Enchant-Comando-Incorreto: "&cComando incorreto, use /enchant <encantamento> <level>"
-Enchant-Encantamento-Invalido: "&cO encantamento '%enchant%' não é um encantamento valido.\n&eLista de encantamentos: %lista%"
+Enchant-Encantamento-Invalido: "&cO encantamento '%enchant%' não é um encantamento valido.\n&eLista de encantamentos: &7%lista%"
 Enchant-Item-Invalido: "&cO item que você esta tentando encantar não é um item valido."
 Enchant-Encantado-Com-Sucesso: "&aEncantamento '%enchant%' adicionado com sucesso no item."
 # %level% mostra o nível do encantamento adicionado
@@ -432,7 +430,7 @@ Teleportado-Com-Sucesso-Vip: "&aBem vindo ao mundo VIP."
 Sudo-Comando-Incorreto: "&cComando incorreto, use /sudo <player> /<comando>"
 Sudo-Executado-Com-Sucesso: |
   &aSudo enviado com sucesso para %player%.
-  &aComando executado: %comando%
+  &aComando executado: &7%comando%
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -555,7 +553,7 @@ Players-Online: "&2O servidor esta atualmente com &a%online%&2 players online!"
 # |                    Comando /cores                    | #
 # +------------------------------------------------------+ #
 ############################################################
-# Nesta mensagem o '§' não é substituido pelo '&' como nas outras mensagens.
+# Nesta mensagem o '&' não é substituido pelo '§' como nas outras mensagens.
 Tabela-De-Cores: |
    §f 
    §f Tabela de Cores
