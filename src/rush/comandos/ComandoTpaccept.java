@@ -74,7 +74,7 @@ public class ComandoTpaccept extends Tpa implements CommandExecutor {
 						p.teleport(target, TeleportCause.COMMAND);
 						p.sendMessage(Mensagens.Tpaccept_Teleportado_Com_sucesso.replace("%player%", s.getName()));
 					}
-				}.runTaskLater(Main.get(), 20 * Settings.Delay_Para_Teleportar_Comandos);
+				}.runTaskLater(Main.get(), 20L * Settings.Delay_Para_Teleportar_Comandos);
 				return true;
 			}
 			
@@ -124,7 +124,7 @@ public class ComandoTpaccept extends Tpa implements CommandExecutor {
 						p.teleport(target, TeleportCause.COMMAND);
 						p.sendMessage(Mensagens.Tpaccept_Teleportado_Com_sucesso.replace("%player%", s.getName()));	
 					}
-				}.runTaskLater(Main.get(), 20 * Settings.Delay_Para_Teleportar_Comandos);
+				}.runTaskLater(Main.get(), 20L * Settings.Delay_Para_Teleportar_Comandos);
 				return true;
 			}
 			

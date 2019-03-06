@@ -28,7 +28,7 @@ public class ScoreBoardOLD implements Listener {
 			public void run() {
 		    	e.getPlayer().setScoreboard(scoreboard);
 			}
-		}.runTaskLater(Main.get(), 10);
+		}.runTaskLater(Main.get(), 10L);
 	}
 	
 	public static void loadScoreBoard() {

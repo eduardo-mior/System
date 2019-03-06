@@ -17,7 +17,7 @@ import rush.configuracoes.Settings;
 @SuppressWarnings("all")
 public class EnderPearlCooldown implements Listener {
 
-	private static HashMap<Player, Timestamp> cooldown = new HashMap<Player, Timestamp>();
+	private static HashMap<Player, Timestamp> COOLDOWN = new HashMap<Player, Timestamp>();
 
 	@EventHandler(ignoreCancelled = true)
 	public void aoJogarEnder(ProjectileLaunchEvent e) {
@@ -25,15 +25,15 @@ public class EnderPearlCooldown implements Listener {
 		if (e.getEntityType() != EntityType.ENDER_PEARL) return;
 
 		Player p = (Player) e.getEntity().getShooter();
-		if (cooldown.containsKey(p) && cooldown.get(p).after(new Timestamp(System.currentTimeMillis()))) {
+		if (COOLDOWN.containsKey(p) && COOLDOWN.get(p).after(new Timestamp(System.currentTimeMillis()))) {
 			e.setCancelled(true);
 			p.sendMessage(Mensagens.Aguarde_EnderPearl_Cooldown);
 			p.getInventory().addItem(new ItemStack(Material.ENDER_PEARL));
 			return;
 		} else {
-			cooldown.remove(p);
+			COOLDOWN.remove(p);
 		}
-		cooldown.put(p, new Timestamp(System.currentTimeMillis() + (1000 * Settings.EnderPearl_Cooldown_Cooldown)));
+		COOLDOWN.put(p, new Timestamp(System.currentTimeMillis() + (1000L * Settings.EnderPearl_Cooldown_Cooldown)));
 	}
 	
 }

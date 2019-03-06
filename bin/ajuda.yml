@@ -15,13 +15,26 @@
 #    |                                                                                             |
 #    | 4) A permissão de cada kit e a permissão de cada warp pode ser editada acessando o arquivo  |
 #    |    da warp ou do kit. Por padrão sempre sera system.kit.<nome> ou system.kit.<warp> então   |
-#    |    caso quiser edita-la basta usar /editarkit ou acessar o arquivo da warp ou do kit        |
+#    |    caso quiser edita-la basta usar /editarkit ou acessar o arquivo da warp ou do kit.       |
 #    |                                                                                             |
-#    | 5) Se você tiver alguma sugestão, ou se você encontrar algum BUG ou ERRO você deve entra    |
+#    | 5) TODAS AS MENSAGENS do plugin pode ser alteradas dentro do arquivo mensagens.yml. Exceto  |
+#    |    as mensagens das warps. As mensagens das warps estão dentro do arquivo de cada warp.     |
+#    |    Ou seja, cada warp possui suas próprias mensagens, para edita-las basta acessar a pasta  |
+#    |    das warps e depois acessar o arquivo da warp desejada e editar o que você quiser.        |
+#    |                                                                                             |
+#    | 6) Se você tiver alguma sugestão, ou se você encontrar algum BUG ou ERRO você deve entra    |
 #    |    em contanto comigo por um dos meios de comunicação o mais rapido possível para que o     |
 #    |    problema sejá corrigido o mais rapido possísvel.                                         |
 #    |                                                                                             |
-#    | 6) Você pode encontrar mais informações usando o comando /system                            |
+#    | 7) Você pode encontrar mais informações usando o comando /system                            |
+#    +---------------------------------------------------------------------------------------------+
+#
+#
+#                              +-------------------------------------------+
+#                              |             VÍDEOS DO PLUGIN              |
+#                              +-------------------------------------------+
+#    +---------------------------------------------------------------------------------------------+
+#    | #1 Canal BukkitTeamBR: https://www.youtube.com/watch?v=Ipbp5FBbvSk                          |
 #    +---------------------------------------------------------------------------------------------+
 #
 #

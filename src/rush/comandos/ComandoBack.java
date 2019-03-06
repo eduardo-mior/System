@@ -53,7 +53,7 @@ public class ComandoBack implements CommandExecutor {
 					p.teleport(l, TeleportCause.COMMAND);
 					s.sendMessage(Mensagens.Back_Teleportado_Sucesso);
 				}
-			}.runTaskLater(Main.get(), 20 * Settings.Delay_Para_Teleportar_Comandos);
+			}.runTaskLater(Main.get(), 20L * Settings.Delay_Para_Teleportar_Comandos);
 			return true;
 		}
 			

@@ -83,7 +83,7 @@ public class ComandoTpa extends Tpa implements CommandExecutor {
 		TP_ENVIADOS.get(sender).add(target);
 		
 		// Adicionando o player na lista de cooldown
-		COOLDOWN.put(sender, (System.currentTimeMillis() + (1000 * Settings.Tempo_Para_Poder_Enviar_Outra_Solicitacao_Tpa)));
+		COOLDOWN.put(sender, (System.currentTimeMillis() + (1000L * Settings.Tempo_Para_Poder_Enviar_Outra_Solicitacao_Tpa)));
 		s.sendMessage(Mensagens.Tpa_Solicitacao_Enviada_Sucesso.replace("%player%", target));
 		pTarget.sendMessage(Mensagens.Tpa_Solicitacao_Recebida.replace("%player%", sender));
 		
@@ -103,7 +103,7 @@ public class ComandoTpa extends Tpa implements CommandExecutor {
 					}
 				}
 			}
-		}.runTaskLater(Main.get(), 20 * Settings.Tempo_Para_Expirar_Solicitacao_Tpa);	
+		}.runTaskLater(Main.get(), 20L * Settings.Tempo_Para_Expirar_Solicitacao_Tpa);	
 		return true;
 	}
 }

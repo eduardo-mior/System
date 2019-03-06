@@ -35,7 +35,7 @@ public class Warp {
 		this.enviarTitle = enviarTitle;
 		this.title = title.replace('&', '§');
 		this.subtitle = subtitle.replace('&', '§');
-		validWarp(location);
+		this.validWarp(location);
 	}
 
 	public Location getLocation() {
@@ -94,7 +94,7 @@ public class Warp {
 						Bukkit.getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao da Warp \"" + Warp.this.nome + "\".");
 					}
 				}
-			}.runTaskLaterAsynchronously(Main.get(), 20 * 25);
+			}.runTaskLaterAsynchronously(Main.get(), 20L * 25L);
 		}
 	}
 

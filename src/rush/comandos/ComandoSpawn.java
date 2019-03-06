@@ -33,7 +33,7 @@ public class ComandoSpawn implements CommandExecutor {
 					p.teleport(Locations.spawn, TeleportCause.COMMAND);
 					s.sendMessage(Mensagens.Teleportado_Com_Sucesso_Spawn);
 				}
-			}.runTaskLater(Main.get(), 20 * Settings.Delay_Para_Teleportar_Comandos);
+			}.runTaskLater(Main.get(), 20L * Settings.Delay_Para_Teleportar_Comandos);
 			return true;
 		}
 

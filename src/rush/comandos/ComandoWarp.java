@@ -62,7 +62,7 @@ public class ComandoWarp implements CommandExecutor {
 					}
 					s.sendMessage(w.getMensagemFinal());
 				}
-			}.runTaskLater(Main.get(), 20 * w.getDelay());
+			}.runTaskLater(Main.get(), 20L * w.getDelay());
 			return true;
 		}
 			    	

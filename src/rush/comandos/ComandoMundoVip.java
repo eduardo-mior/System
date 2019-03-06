@@ -23,9 +23,8 @@ public class ComandoMundoVip implements CommandExecutor {
 			return true;
 		}
 
-		// Pegando o player e o delay para se teleportar
+		// Pegando o player
 		Player p = (Player) s;
-		int delay = Settings.Delay_Para_Teleportar_Comandos;
 
 		// Verificando se o player tem permissão para se teleportar para areavip
 		if (!s.hasPermission("system.vip")) {
@@ -42,7 +41,7 @@ public class ComandoMundoVip implements CommandExecutor {
 						s.sendMessage("§f ");
 
 					}
-				}.runTaskLater(Main.get(), 20 * delay);
+				}.runTaskLater(Main.get(), 20L * Settings.Delay_Para_Teleportar_Comandos);
 				return true;
 			}
 

@@ -26,7 +26,8 @@ AtivarAddons:
 ############################################################
 # Este recurso bloqueia que você seja kickado caso alguem tente entrar na sua conta
 # Ative isto caso os players estejam sendo kickados por "You logged in from another location"
-# Se você usa um plugin de Login provavelmente ele previne este bug. Assita: 
+# Se você usa um plugin de Login provavelmente ele previne este bug. 
+# ASSISTA: https://youtu.be/g2w57QIVDxs
 Bloquear-Kick-Por-Duplo-Login: false
 
 # Caso o Bloquear-Kick-Por-Duplo-Login não funcionar ative este recurso.

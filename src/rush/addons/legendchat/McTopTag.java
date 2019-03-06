@@ -38,7 +38,7 @@ public class McTopTag implements Listener {
 					playerTopOne = ((PlayerStat) tops.get(0)).name;
 				}
 			}
-		}.runTaskTimerAsynchronously(Main.get(), 60L, (long) Settings.mcTopTag_Tempo_De_Checagem * 20L);
+		}.runTaskTimerAsynchronously(Main.get(), 60L, Settings.mcTopTag_Tempo_De_Checagem * 20L);
 	}
 
 }

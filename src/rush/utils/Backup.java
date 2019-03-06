@@ -16,11 +16,12 @@ public class Backup {
 
 	public static void create() {
 		try {
-			Date d = Calendar.getInstance().getTime();
-			String data = DateFormat.getDateTimeInstance(3, 2).format(d).replace('/', '-').replace(':', ';');
 			DataManager.createFolder("backups");
+			Date d = Calendar.getInstance().getTime();
+			String data = DateFormat.getDateTimeInstance(2, 3).format(d).replace('/', '-').replace(':', ';');
+			String nome = "Dia " + data.split(" ")[0] + " Hora " + data.split(" ")[1];
 			String srcFolder = Main.get().getDataFolder().getAbsolutePath();
-			String destZipFile = DataManager.getFile(data, "backups").getAbsolutePath().replace(".yml", ".zip");
+			String destZipFile = DataManager.getFile(nome, "backups").getAbsolutePath().replace(".yml", ".zip");
 			zipFolder(srcFolder, destZipFile);
 		} catch (Throwable e) {
 			e.printStackTrace();
@@ -53,8 +54,8 @@ public class Backup {
 
 	private static void addFolderToZip(String path, String srcFolder, ZipOutputStream zip) throws Exception {
 		File folder = new File(srcFolder);
+		if (folder.getName().equals("backups")) return;
 		for (String fileName : folder.list()) {
-			if (fileName.equalsIgnoreCase("backups")) continue;
 			if (path.equals("")) {
 				addFileToZip(folder.getName(), srcFolder + "/" + fileName, zip);
 			} else {

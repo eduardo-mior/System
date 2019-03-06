@@ -8,9 +8,11 @@ import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.Player;
 
 import rush.Main;
 import rush.apis.UltimateFancy;
+import rush.configuracoes.Locations;
 import rush.configuracoes.Mensagens;
 import rush.configuracoes.Settings;
 import rush.utils.Backup;
@@ -32,14 +34,21 @@ public class ComandoSystem implements CommandExecutor {
 		if (args[0].equalsIgnoreCase("reload")) {
 			Settings.loadSettings();
 			Mensagens.loadMensagens();
+			Locations.loadLocations();
 			s.sendMessage(Mensagens.Plugin_Recarregado_Sucesso);
 			return true;
 		}
 			
 		// Caso o argumento seja 'backup' então criamos 1 backup dos arquivos do plugin
 		if (args[0].equalsIgnoreCase("backup")) {
-			Backup.create();
-			s.sendMessage(Mensagens.Backup_Com_Sucesso);
+			// Criando uma nova Theard para não rodar na principal
+			new Thread() {
+				@Override
+				public void run() {
+					Backup.create();
+					s.sendMessage(Mensagens.Backup_Com_Sucesso);
+				}
+			}.start();
 			return true;
 		}
 			
@@ -65,6 +74,12 @@ public class ComandoSystem implements CommandExecutor {
 			// Verificando se a versão suporta JSON
 			if (Main.isVeryOldVersion()) {
 				s.sendMessage(Mensagens.Erro_Versao_Nao_Suportada);
+				return true;
+			}
+			
+			// Verificando se o player é o console
+			if (!(s instanceof Player)) {
+				s.sendMessage(Mensagens.Console_Nao_Pode);
 				return true;
 			}
 			
@@ -101,13 +116,15 @@ public class ComandoSystem implements CommandExecutor {
 			for (int i = inicio; i < fim && i < cmds.length; i++) {
 				String description = config.getString("comandos." + cmds[i] + ".descricao");
 				String permission = "system." + cmds[i];
-				String sempermission =  config.getString("comandos." + cmds[i] + ".sem-permissao").replace('&', '§');
+				String sempermission = config.getString("comandos." + cmds[i] + ".sem-permissao").replace('&', '§');
 				String aliases = config.getStringList("comandos." + cmds[i] + ".aliases").toString();
 				boolean enabled = config.getBoolean("comandos." + cmds[i] + ".ativar-comando");
 				msg.text("§b/" + cmds[i] + " §7-§f " + description + "\n");
 				msg.hoverShowText(
-						"§eComando ativado: §f" + enabled +
+						"§eComando: §f/" + cmds[i] +
+						"\n§eComando ativado: §f" + enabled +
 						"\n§eAliases: §f" + aliases +
+						"\n§eDescrição: §f" + description +
 						"\n§ePermissão: §f" + permission +
 						"\n§eMensagem de erro: " + sempermission
 						);
@@ -197,9 +214,15 @@ public class ComandoSystem implements CommandExecutor {
 			}
 			
 			if (args[1].equalsIgnoreCase("avancado")) {
-				s.sendMessage("§aObtendo informações do sistema e da host...");
-				SystemInfo.createFullLog();
-				s.sendMessage("§aSucesso! O arquivo com todas as informações sobre o sistema e a host foram criados dentro da pasta principal do plugin.");
+				// Criando uma nova Theard para não rodar na principal
+				new Thread() {
+					@Override
+					public void run() {
+						s.sendMessage("§aObtendo informações do sistema e da host...");
+						SystemInfo.createFullLog();
+						s.sendMessage("§aSucesso! O arquivo com todas as informações sobre o sistema e a host foram criados dentro da pasta principal do plugin.");
+					}
+				}.start();
 				return true;
 			}
 

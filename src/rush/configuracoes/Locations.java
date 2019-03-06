@@ -5,6 +5,7 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.World;
+import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.scheduler.BukkitRunnable;
 
 import rush.Main;
@@ -26,6 +27,77 @@ public class Locations {
 		validarLocations(true);
 		setDefaultServerSpawn();
 	}
+
+	private static void setAreaVip() {
+		try {
+			FileConfiguration config = ConfigManager.getConfig("locations");
+			areaVip = new Location(Bukkit.getServer().getWorld(
+	           config.getString("AreaVip.world")), 
+	           config.getDouble("AreaVip.x"), 
+	           config.getDouble("AreaVip.y"), 
+	           config.getDouble("AreaVip.z"), 
+	           Float.parseFloat(config.getString("AreaVip.yaw")), 
+	           Float.parseFloat(config.getString("AreaVip.pitch")));
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static void setAreaNaoVip() {
+		try {
+			FileConfiguration config = ConfigManager.getConfig("locations");
+			areaNaoVip = new Location(Bukkit.getServer().getWorld(
+	           config.getString("AreaNaoVip.world")), 
+	           config.getDouble("AreaNaoVip.x"), 
+	           config.getDouble("AreaNaoVip.y"), 
+	           config.getDouble("AreaNaoVip.z"), 
+	           Float.parseFloat(config.getString("AreaNaoVip.yaw")), 
+	           Float.parseFloat(config.getString("AreaNaoVip.pitch")));
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static void setSpawn() {
+		try {
+			FileConfiguration config = ConfigManager.getConfig("locations");
+		    spawn = new Location(Bukkit.getServer().getWorld(
+		       config.getString("Spawn.world")), 
+		       config.getDouble("Spawn.x"), 
+		       config.getDouble("Spawn.y"), 
+		       config.getDouble("Spawn.z"), 
+		       Float.parseFloat(config.getString("Spawn.yaw")), 
+		       Float.parseFloat(config.getString("Spawn.pitch")));
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static void setSpawnVip() {
+		try {
+			FileConfiguration config = ConfigManager.getConfig("locations");
+		    spawnVip = new Location(Bukkit.getServer().getWorld(
+		       config.getString("SpawnVip.world")), 
+		       config.getDouble("SpawnVip.x"), 
+		       config.getDouble("SpawnVip.y"), 
+		       config.getDouble("SpawnVip.z"), 
+		       Float.parseFloat(config.getString("SpawnVip.yaw")), 
+		       Float.parseFloat(config.getString("SpawnVip.pitch")));
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+	}
+	
+	private static void setDefaultServerSpawn() {
+		List<World> worlds = Bukkit.getServer().getWorlds();
+		World worldSpawn = spawn.getWorld();
+		if (worldSpawn == null) {
+			worlds.get(0).setSpawnLocation(padrao.getBlockX(), padrao.getBlockY(), padrao.getBlockZ());
+		} else {
+			worldSpawn.setSpawnLocation(spawn.getBlockX(), spawn.getBlockY(), spawn.getBlockZ());
+		}
+	}
+	
 	
 	private static void validarLocations(boolean reavaliar) {
 		boolean tentarValidarNovamente = false;
@@ -74,78 +146,14 @@ public class Locations {
 		new BukkitRunnable() {
 			@Override
 			public void run() {
-				setAreaVip();
-				setAreaNaoVip();
 				setSpawn();
+				setAreaVip();
 				setSpawnVip();
+				setAreaNaoVip();
 				validarLocations(false);
+				setDefaultServerSpawn();
 			}
-		}.runTaskLaterAsynchronously(Main.get(), 20 * 25);
-	}
-
-	private static void setAreaVip() {
-		try {
-         areaVip = new Location(Bukkit.getServer().getWorld(
-           ConfigManager.getConfig("locations").getString("AreaVip.world")), 
-           ConfigManager.getConfig("locations").getDouble("AreaVip.x"), 
-           ConfigManager.getConfig("locations").getDouble("AreaVip.y"), 
-           ConfigManager.getConfig("locations").getDouble("AreaVip.z"), 
-           Float.parseFloat(ConfigManager.getConfig("locations").getString("AreaVip.yaw")), 
-           Float.parseFloat(ConfigManager.getConfig("locations").getString("AreaVip.pitch")));
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
+		}.runTaskLaterAsynchronously(Main.get(), 20L * 25L);
 	}
 	
-	private static void setAreaNaoVip() {
-		try {
-        areaNaoVip = new Location(Bukkit.getServer().getWorld(
-           ConfigManager.getConfig("locations").getString("AreaNaoVip.world")), 
-           ConfigManager.getConfig("locations").getDouble("AreaNaoVip.x"), 
-           ConfigManager.getConfig("locations").getDouble("AreaNaoVip.y"), 
-           ConfigManager.getConfig("locations").getDouble("AreaNaoVip.z"), 
-           Float.parseFloat(ConfigManager.getConfig("locations").getString("AreaNaoVip.yaw")), 
-           Float.parseFloat(ConfigManager.getConfig("locations").getString("AreaNaoVip.pitch")));
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private static void setSpawn() {
-		try {
-	    spawn = new Location(Bukkit.getServer().getWorld(
-	       ConfigManager.getConfig("locations").getString("Spawn.world")), 
-	       ConfigManager.getConfig("locations").getDouble("Spawn.x"), 
-	       ConfigManager.getConfig("locations").getDouble("Spawn.y"), 
-	       ConfigManager.getConfig("locations").getDouble("Spawn.z"), 
-	       Float.parseFloat(ConfigManager.getConfig("locations").getString("Spawn.yaw")), 
-	       Float.parseFloat(ConfigManager.getConfig("locations").getString("Spawn.pitch")));
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private static void setSpawnVip() {
-		try {
-	    spawnVip = new Location(Bukkit.getServer().getWorld(
-	       ConfigManager.getConfig("locations").getString("SpawnVip.world")), 
-	       ConfigManager.getConfig("locations").getDouble("SpawnVip.x"), 
-	       ConfigManager.getConfig("locations").getDouble("SpawnVip.y"), 
-	       ConfigManager.getConfig("locations").getDouble("SpawnVip.z"), 
-	       Float.parseFloat(ConfigManager.getConfig("locations").getString("SpawnVip.yaw")), 
-	       Float.parseFloat(ConfigManager.getConfig("locations").getString("SpawnVip.pitch")));
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
-	}
-	
-	private static void setDefaultServerSpawn() {
-		List<World> worlds = Bukkit.getServer().getWorlds();
-		World worldSpawn = spawn.getWorld();
-		if (worldSpawn == null) {
-			worlds.get(0).setSpawnLocation(padrao.getBlockX(), padrao.getBlockY(), padrao.getBlockZ());
-		} else {
-			worldSpawn.setSpawnLocation(spawn.getBlockX(), spawn.getBlockY(), spawn.getBlockZ());
-		}
-	}
 }

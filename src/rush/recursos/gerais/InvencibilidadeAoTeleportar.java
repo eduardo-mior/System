@@ -27,15 +27,14 @@ public class InvencibilidadeAoTeleportar implements Listener {
 				public void run() {
 					protegidos.remove(e.getPlayer().getName());
 				}
-			}.runTaskLater(Main.get(), 20 * Settings.Tempo_De_Invencibilidade_Ao_Teleportar);
+			}.runTaskLater(Main.get(), 20L * Settings.Tempo_De_Invencibilidade_Ao_Teleportar);
 		}
 	}
 
 	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void aoTomarDano(EntityDamageEvent e) {
 		if (e.getEntity() instanceof Player) {
-			Player p = (Player) e.getEntity();
-			if (protegidos.contains(p.getName())) {
+			if (protegidos.contains(e.getEntity().getName())) {
 				e.setCancelled(true);
 			}
 		}

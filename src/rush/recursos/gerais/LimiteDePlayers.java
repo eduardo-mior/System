@@ -57,7 +57,7 @@ public class LimiteDePlayers implements Listener {
 				if (p != null)
 					p.kickPlayer(Mensagens.Kick_Dar_Lugar_Ao_Vip);	
 			}
-		}.runTaskLater(Main.get(), 20 * Settings.Tempo_Para_Ser_Kick);
+		}.runTaskLater(Main.get(), 20L * Settings.Tempo_Para_Ser_Kick);
 	}
 	
 }

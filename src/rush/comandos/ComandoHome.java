@@ -36,8 +36,7 @@ public class ComandoHome implements CommandExecutor {
 			return true;
 		}
 	     
-		// Pegando o delay para se teleportar, o nome da home e o Player
-		int delay = Settings.Delay_Para_Teleportar_Comandos;
+		// Pegando o nome da home e o Player
 		String home = args[0];
 	    Player p = (Player)s;
 	    
@@ -102,7 +101,7 @@ public class ComandoHome implements CommandExecutor {
 	    				s.sendMessage(Mensagens.Home_Publica_Teleportado_Sucesso.replace("%home%", homeSplit[1]).replace("%player%", player));
 	    				p.teleport(location, TeleportCause.COMMAND);		
 	    			}
-	    		}.runTaskLater(Main.get(), 20 * delay);
+	    		}.runTaskLater(Main.get(), 20L * Settings.Delay_Para_Teleportar_Comandos);
 				return true;
 	    	}
 		    	
@@ -147,7 +146,7 @@ public class ComandoHome implements CommandExecutor {
 	   				p.teleport(location, TeleportCause.COMMAND);	
 	   				s.sendMessage(Mensagens.Home_Privada_Teleportado_Sucesso.replace("%home%", home));
 	   			}
-	   		}.runTaskLater(Main.get(), 20 * delay);
+	   		}.runTaskLater(Main.get(), 20L * Settings.Delay_Para_Teleportar_Comandos);
 			return true;
 	   	}
 		    	
