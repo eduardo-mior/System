@@ -32,10 +32,11 @@ public class ScoreBoard implements Listener {
         o.setDisplayName(titulo.length() > 32 ? titulo.substring(0, 32) : titulo);
 	    o.setDisplaySlot(DisplaySlot.SIDEBAR);
 	    
-	    for (int i = 0; i < linhas.size(); i++) {
-	    	String linha = linhas.get(i).length() > 40 ? linhas.get(i).substring(0, 40) : linhas.get(i);
-	    	Score score = o.getScore(linha);
-	    	score.setScore(linhas.size() - i);
+	    int i = linhas.size();
+	    for (String linha : linhas) {
+	    	Score score = o.getScore(linha.length() > 40 ? linha.substring(0, 40) : linha);
+	    	score.setScore(--i);
 	    }
 	}
+	
 }

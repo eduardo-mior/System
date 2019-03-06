@@ -3,7 +3,6 @@ package rush.comandos;
 import java.io.File;
 import java.util.Set;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -17,6 +16,7 @@ import rush.Main;
 import rush.addons.MassiveFactions;
 import rush.configuracoes.Mensagens;
 import rush.configuracoes.Settings;
+import rush.utils.Utils;
 import rush.utils.manager.DataManager;
 
 public class ComandoHome implements CommandExecutor {
@@ -84,7 +84,7 @@ public class ComandoHome implements CommandExecutor {
 	        
 	        // Pegando a localização da home
 			String locationSplitted = config.getString("Homes." + homeSplit[1] + ".Localizacao");
-		    Location location = deserializeLocation(locationSplitted);
+		    Location location = Utils.deserializeLocation(locationSplitted);
 			
 			// Verificando se a compatibilidade com o factions
 			if (Main.setupFactions) {
@@ -129,7 +129,7 @@ public class ComandoHome implements CommandExecutor {
 	   		
 	   	// Pegando a localização da home
 	   	String locationSplitted = config.getString("Homes." + home + ".Localizacao");
-	    Location location = deserializeLocation(locationSplitted);
+	    Location location = Utils.deserializeLocation(locationSplitted);
 		
 		// Verificando se a compatibilidade com o factions
 		if (Main.setupFactions) {
@@ -144,27 +144,17 @@ public class ComandoHome implements CommandExecutor {
 	   		new BukkitRunnable() {
 	   			@Override
 	   			public void run() {
-	   				s.sendMessage(Mensagens.Home_Privada_Teleportado_Sucesso.replace("%home%", home));
 	   				p.teleport(location, TeleportCause.COMMAND);	
+	   				s.sendMessage(Mensagens.Home_Privada_Teleportado_Sucesso.replace("%home%", home));
 	   			}
 	   		}.runTaskLater(Main.get(), 20 * delay);
 			return true;
 	   	}
 		    	
 	   	// Teteleportando o player e informando 
-	   	s.sendMessage(Mensagens.Home_Privada_Teleportado_Sucesso.replace("%home%", home));
 	   	p.teleport(location, TeleportCause.COMMAND);
+	   	s.sendMessage(Mensagens.Home_Privada_Teleportado_Sucesso.replace("%home%", home));
 	   	return true;
 	}
 	
-    private Location deserializeLocation(String s) {
-    	String[] locationSplitted = s.split(",");
-		return new Location(
-			   Bukkit.getWorld(locationSplitted[0]),
-			   Double.parseDouble(locationSplitted[1]),
-			   Double.parseDouble(locationSplitted[2]),
-			   Double.parseDouble(locationSplitted[3]),
-			   Float.parseFloat(locationSplitted[4]),
-			   Float.parseFloat(locationSplitted[5]));
-    }
 }

@@ -26,4 +26,5 @@ public class EntrarNoSpawnAoLogar implements Listener {
 			p.teleport(Locations.spawn, TeleportCause.PLUGIN);
 		}
 	}
+	
 }

@@ -10,22 +10,22 @@ import rush.configuracoes.Settings;
 
 public class BloquearMoneyInvalido implements Listener {
 
-	@EventHandler(priority = EventPriority.LOWEST)
+	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void aoTentarVender(PlayerCommandPreprocessEvent e) {
-		if (e.getMessage().toLowerCase().contains("mercado vender -") || e.getMessage().toLowerCase().contains("market vender -")) {
+		String fullCmd = e.getMessage().toLowerCase();
+		if (fullCmd.contains("mercado vender -") || fullCmd.contains("market vender -")) {
 			e.getPlayer().sendMessage(Mensagens.Numero_Invalido.replace("%numero%", "-"));
 			e.setCancelled(true);
 		}
 	}
 
-	@EventHandler(priority = EventPriority.LOWEST)
-	public void onCommandEvent(PlayerCommandPreprocessEvent e) {
-		String cmd = e.getMessage().toLowerCase();
-		String[] args = cmd.split(" ");
-
-		for (String cmdmoney : Settings.Comandos_Que_Envolvem_Money) {
-			if (args[0].contains(cmdmoney)) {
-				if (cmd.contains(" null") || cmd.contains(" nan") || cmd.contains(" -nan") || cmd.contains(" -null")) {
+	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
+	public void aoTentarBugar(PlayerCommandPreprocessEvent e) {
+		String fullCmd = e.getMessage().toLowerCase();
+		String cmd = fullCmd.split(" ")[0];
+		for (String moneyCmd : Settings.Comandos_Que_Envolvem_Money) {
+			if (moneyCmd.equals(cmd) || (cmd.split(":").length > 1 && moneyCmd.equals("/" + cmd.split(":")[1]))) {
+				if (fullCmd.contains(" null") || fullCmd.contains(" nan") || fullCmd.contains(" -nan") || fullCmd.contains(" -null")) {
 					e.getPlayer().sendMessage(Mensagens.Money_Null);
 					e.setCancelled(true);
 					return;
@@ -33,4 +33,5 @@ public class BloquearMoneyInvalido implements Listener {
 			}
 		}
 	}
+	
 }

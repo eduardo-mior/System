@@ -1,4 +1,4 @@
-﻿file-version: 6
+﻿file-version: 7
 ############################################################
 # +------------------------------------------------------+ #
 # |                   Mensagens gerais                   | #
@@ -8,7 +8,7 @@ Separador-De-Listas: "&8,&7"
 Console-Nao-Pode: "&cO console nao pode usar este comando."
 Sem-Permissao: "&cVocê não tem permissão para utilizar este comando."
 Numero-Invalido: "&cO número '%numero%' não é um número valido."
-Money-Null: "&cA palavra 'null' e a palavra 'nan' foram bloqueadas de serem usadas em comandos que envolvem dinheiro!"
+Money-Null: "&cO número informado não é um número valido."
 Player-Offline: "&cEste player não esta online no momento ou não existe."
 Player-Nao-Existe: "&cO player '%player%' não existe!"
 Mundo-Nao-Existe: "&cO mundo '%mundo%' não foi encontrado!"
@@ -22,6 +22,7 @@ Erro-Versao-Nao-Suportada: "&cDesculpe mas este recurso que você esta tentando 
 # |                Mensagens dos Recursos                | #
 # +------------------------------------------------------+ #
 ############################################################
+Nick-Ja-Logado: "&cJá existe um jogador online utilizando o nick '%nome%'"
 Nick-Similar: "&cO nick '%novo%' não pode ser usado pois já existe um cadastro com o nick '%antigo%'.\n&c\n&cVocê deve utilizar a mesma configuração de caracteres maiusculos\n&ce minúsculos para poder acessar o servidor com este nick."
 Servidor-Lotado: "&cDesculpe mas o servidor esta cheio!\n&cAdquira já seu VIP em &ewww.gamersboard.com.br"
 Aviso-Dar-Lugar-Ao-Vip: "&e &e\n&e&lAVISO: &eVocê sera kickado do servidor em %tempo% segundos para dar lugar a um vip.\n&e &e"
@@ -509,6 +510,7 @@ Compactar-Com-Sucesso: "&a%quantia% itens compactados com sucesso."
 ############################################################
 Nao-Possui-Back: "&cVocê não possui nenhuma localização para voltar."
 Back-Teleportado-Sucesso: "&aVocê foi teleportado para a sua ultima localização."
+Iniciando-Teleporte-Back: "&eEm %tempo% segundos você ira voltar para sua ultima localização."
 
 ############################################################
 # +------------------------------------------------------+ #

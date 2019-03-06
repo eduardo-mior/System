@@ -11,4 +11,5 @@ public class BloquearCriarPortal implements Listener {
 	public void aoCriarPortal(PortalCreateEvent e) {
 		e.setCancelled(true);
 	}
+	
 }

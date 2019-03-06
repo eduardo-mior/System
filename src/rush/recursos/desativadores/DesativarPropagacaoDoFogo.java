@@ -20,4 +20,5 @@ public class DesativarPropagacaoDoFogo implements Listener {
 			e.setCancelled(true);
 		}
 	}
+	
 }

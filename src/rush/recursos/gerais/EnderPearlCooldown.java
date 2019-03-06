@@ -17,7 +17,7 @@ import rush.configuracoes.Settings;
 @SuppressWarnings("all")
 public class EnderPearlCooldown implements Listener {
 
-	HashMap<Player, Timestamp> cooldown = new HashMap<Player, Timestamp>();
+	private static HashMap<Player, Timestamp> cooldown = new HashMap<Player, Timestamp>();
 
 	@EventHandler(ignoreCancelled = true)
 	public void aoJogarEnder(ProjectileLaunchEvent e) {
@@ -35,4 +35,5 @@ public class EnderPearlCooldown implements Listener {
 		}
 		cooldown.put(p, new Timestamp(System.currentTimeMillis() + (1000 * Settings.EnderPearl_Cooldown_Cooldown)));
 	}
+	
 }

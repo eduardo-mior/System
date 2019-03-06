@@ -18,6 +18,7 @@ public class Mensagens {
 	public static String Falha_Ao_Criar_Pasta;
 	public static String Falha_Ao_Salvar;
 	public static String Erro_Versao_Nao_Suportada;
+	public static String Nick_Ja_Logado;
 	public static String Nick_Similar;
 	public static String Servidor_Lotado;
 	public static String Aviso_Dar_Lugar_Ao_Vip	;
@@ -222,6 +223,7 @@ public class Mensagens {
 	public static String Teleportado_Com_Sucesso_Vip;
 	public static String Nao_Possui_Back;
 	public static String Back_Teleportado_Sucesso;
+	public static String Iniciando_Teleporte_Back;
 	public static String Chapeu_Colocado;
 	public static String Chapeu_Invalido;
 	public static String Invsee_Comando_Incorreto;
@@ -302,6 +304,7 @@ public class Mensagens {
 		Falha_Ao_Criar_Pasta = config.getString("Falha-Ao-Criar-Pasta").replace('&', '§');
 		Falha_Ao_Salvar = config.getString("Falha-Ao-Salvar").replace('&', '§');
 		Erro_Versao_Nao_Suportada = config.getString("Erro-Versao-Nao-Suportada").replace('&', '§');
+		Nick_Ja_Logado = config.getString("Nick-Ja-Logado").replace('&', '§');
 		Nick_Similar = config.getString("Nick-Similar").replace('&', '§');
 		Servidor_Lotado = config.getString("Servidor-Lotado").replace('&', '§');
 		Aviso_Dar_Lugar_Ao_Vip = config.getString("Aviso-Dar-Lugar-Ao-Vip").replace('&', '§').replace("%tempo%", String.valueOf(settings.getInt("Limitador-De-Players.Tempo-Para-Ser-Kickado-Apos-Aviso")));
@@ -506,6 +509,7 @@ public class Mensagens {
 		Teleportado_Com_Sucesso_Vip = config.getString("Teleportado-Com-Sucesso-Vip").replace('&', '§');
 		Nao_Possui_Back = config.getString("Nao-Possui-Back").replace('&', '§');
 		Back_Teleportado_Sucesso = config.getString("Back-Teleportado-Sucesso").replace('&', '§');
+		Iniciando_Teleporte_Back = config.getString("Iniciando-Teleporte-Back").replace('&', '§').replace("%tempo%", String.valueOf(settings.getInt("Delay-Para-Teleportar-Comandos")));;
 		Chapeu_Colocado = config.getString("Chapeu-Colocado").replace('&', '§');
 		Chapeu_Invalido = config.getString("Chapeu-Invalido").replace('&', '§');
 		Invsee_Comando_Incorreto = config.getString("Invsee-Comando-Incorreto").replace('&', '§');

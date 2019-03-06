@@ -1,4 +1,4 @@
-﻿file-version: 5
+﻿file-version: 6
 ############################################################
 # +------------------------------------------------------+ #
 # |              Recuros Adicionais (Addons)             | #
@@ -24,6 +24,15 @@ AtivarAddons:
 # |                  Recursos Anti-BUG                   | #
 # +------------------------------------------------------+ #
 ############################################################
+# Este recurso bloqueia que você seja kickado caso alguem tente entrar na sua conta
+# Ative isto caso os players estejam sendo kickados por "You logged in from another location"
+# Se você usa um plugin de Login provavelmente ele previne este bug. Assita: 
+Bloquear-Kick-Por-Duplo-Login: false
+
+# Caso o Bloquear-Kick-Por-Duplo-Login não funcionar ative este recurso.
+# Caso o seu server use JARs do CraftBukkit ative este recurso.
+Super-Bloquear-Kick-Por-Duplo-Login: false
+
 # Este recurso bloqueia o player de deitar em camas
 # OBS: Para burlar use a permissão: system.bypass.entrarnacama 
 Bloquear-Cama: true
@@ -58,6 +67,7 @@ Bloquear-Abrir-Containers:
   - "ANVIL"
   - "ENCHANTING"
   - "HOPPER"
+  # OBS: Se você quiser bloquear a ANVIL você precisa desativar o recurso Bigorna-Infinita
   # Lista de containers da 1.8: http://docs.codelanx.com/Bukkit/1.8/org/bukkit/event/inventory/InventoryType.html
 
 # Este recurso impede o player de usar o SHIFT_CLICK em containers.
@@ -74,17 +84,20 @@ Bloquear-Shift-Em-Containers:
 # Isto previne o bug do valor NaN ou null
 Bloquear-Money-Invalido: false
 Comandos-Que-Envolvem-Money:
-  - "coins"
-  - "money"
-  - "mercado"
-  - "eco"
-  - "pay"
+  - "/coins"
+  - "/money"
+  - "/mercado"
+  - "/eco"
+  - "/pay"
 
 ############################################################
 # +------------------------------------------------------+ #
 # |             Desativar Recursos do Mapa               | #
 # +------------------------------------------------------+ #
 ############################################################
+# Este recurso impede que a explosão remova os itens dropados no chão.
+Bloquear-Explodir-Itens: true
+
 # Este recurso bloqueia a água de ser congelada.
 Bloquear-Congelar-Agua: false
 
@@ -116,7 +129,7 @@ Desativar-Mobs-Naturais: true
 Desativar-Propagacao-Do-Fogo: true
 
 # Este recurso impede que as folhas caiam quando a arvore for quebrada.
-Desativar-Queda-Das-Folhas: true
+Desativar-Queda-Das-Folhas: false
 
 # Este recurso remove a fisica da areia e impede que e la caia.
 Desativar-Queda-Da-Areia: false
@@ -214,7 +227,6 @@ Mundos-Onde-Pode-Usar-Fly:
   - "world"
   - "world_nether"
 
-
 ############################################################
 # +------------------------------------------------------+ #
 # |                 Sistemas de Spawners                 | #
@@ -227,7 +239,6 @@ Chance-De-Dropar-Ao-Explodir: 60
 Nome-Do-Spawner: "&eGerador de Monstros"
 Lore-Do-Spawner:
    - "&7Tipo: &f%tipo%"
-
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -271,6 +282,7 @@ Title-De-Boas-Vindas:
 ############################################################
 # Este camarote serve para os players sem a permissão 'system.vip'
 # Eles serão teleportados para area dos não vip definida no /setmundovip
+# OBS: precisa da permissão system.mundovip para usar o comando /vip
 Ativar-Camarote-Para-Os-Sem-Vip: true
 
 ############################################################
@@ -327,10 +339,11 @@ Lista-Dos-Comandos-Deletados:
 # +------------------------------------------------------+ #
 ############################################################
 # Este recurso apenas bloqueia os players de usarem os comandos.
+# Este recurso bloqueia tanto o comando /exemplo quanto o comando /plugin:exemplo
 # OBS: Para burlar use a permissão: system.bypass.comandobloqueado
 Bloquear-Comandos: false
 Lista-Dos-Comandos-Bloqueados:
-  - "/teste"
+  - "/exemplo"
   - "/dupar"
   - "/pl"
   - "/plugins"
@@ -340,7 +353,7 @@ Lista-Dos-Comandos-Bloqueados:
 # |                    Bloquear Crafts                   | #
 # +------------------------------------------------------+ #
 ############################################################
-# Este recurso bloqueia os players de craftarem tais itens.
+# Este recurso bloqueia os players de craftarem certos itens.
 # OBS: Para burlar use a permissão: system.bypass.craftbloqueado
 Bloquear-Crafts: true
 Lista-Dos-Crafts-Bloqueados: 
@@ -363,7 +376,7 @@ Lista-Dos-Crafts-Bloqueados:
 
 # OBS: Para burlar use a permissão: system.bypass.placabloqueada
 Bloquear-Palavras-Em-Placas:
-  Ativar: true
+  Ativar: false
   Bloquear-Todas-As-Palavras: false
   Bloquear-Apenas-Algumas-Palavras: true
   Lista-Das-Palavras-Bloqueadas:
@@ -376,7 +389,7 @@ Bloquear-Palavras-Em-Placas:
 # |               Bloquear Nicks Impróprios              | #
 # +------------------------------------------------------+ #
 ############################################################
-Bloquear-Nicks-Improprios: true
+Bloquear-Nicks-Improprios: false
 Nicks-Bloqueados:
   - "puta"
   - "vadia"
@@ -430,7 +443,7 @@ Auto-Anuncio: true
 Destacar-Anuncio: true
 Delay-Entre-Anuncios: 300
 Reproduzir-Som-No-Anuncio: true
-# Caso queira pular linha use e escrever 2 linhas no mesmo anuncio use: \n 
+# Caso queira pular linha ou escrever mais de 1 linha no mesmo anuncio use: \n 
 Lista-De-Anuncios:
   - "&e&l[Anuncio] &eInscreva-se em nosso canal e fique por dentro de tudo &b&nhttp://bit.ly/hypixel&e!"
   - "&e&l[Anuncio] &eAdquira já seu vip através do nosso site &b&nhttps://hypixel.net/&e!"
@@ -442,7 +455,7 @@ Lista-De-Anuncios:
 # |                     Anunciar Morte                   | #
 # +------------------------------------------------------+ #
 ############################################################
-Anunciar-Morte: true
+Anunciar-Morte: false
 Anuncios: 
   Mostrar-Para-Quem-Morreu: true
   Mensagem-Para-Defunto: "&cVocê foi morto por %playerMatou%!"

@@ -104,4 +104,5 @@ public class Serializer {
         
         return Base64Coder.encodeLines(outputStream.toByteArray());
     }
+    
 }

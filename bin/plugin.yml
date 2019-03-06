@@ -1,5 +1,5 @@
 main: rush.Main
-version: 1.10
+version: 1.11
 name: System
 load: POSTWORLD
 author: RUSH
@@ -270,6 +270,9 @@ permissions:
   system.vanish:
     description: Permissão para ativar ou desativar o seu modo vanish.
     default: op
+  system.vanish.bypass:
+    description: Permissão para ver as pessoas que estão vanish.
+    default: op
   system.vanish.outros:
     description: Permissão para ativar ou desativar o vanish de outras pessoas.
     default: op
@@ -440,6 +443,7 @@ permissions:
       system.tpdeny: true
       system.tphere: true
       system.tptoggle: true
+      system.vanish.bypass: true
       system.vanish.outros: true
       system.vanish: true
       system.verinfo: true

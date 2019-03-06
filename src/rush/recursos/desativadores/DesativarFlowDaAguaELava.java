@@ -15,10 +15,11 @@ public class DesativarFlowDaAguaELava implements Listener {
 	
 	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	public void onWater(BlockFromToEvent e) {
-		if (   !e.getBlock().getType().equals(Material.WATER) 
-			&& !e.getBlock().getType().equals(Material.STATIONARY_WATER)
-			&& !e.getBlock().getType().equals(Material.LAVA)
-			&& !e.getBlock().getType().equals(Material.STATIONARY_LAVA))
+		Material type = e.getBlock().getType();
+		if (   type != Material.WATER
+			&& type != Material.STATIONARY_WATER
+			&& type != Material.LAVA
+			&& type != Material.STATIONARY_LAVA)
 			return;
 
 		Location partidaLoc = e.getBlock().getLocation();
@@ -28,4 +29,5 @@ public class DesativarFlowDaAguaELava implements Listener {
 			e.setCancelled(true);
 		}
 	}
+	
 }

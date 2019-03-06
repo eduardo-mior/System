@@ -24,4 +24,5 @@ public class BloquearCrafts implements Listener {
 			}
 		}
 	}
+	
 }

@@ -20,7 +20,7 @@ public class InvencibilidadeAoTeleportar implements Listener {
 
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void aoTeleportar(PlayerTeleportEvent e) {
-		if (e.getCause() == TeleportCause.COMMAND || e.getCause() == TeleportCause.PLUGIN || e.getCause() == TeleportCause.UNKNOWN) {
+		if (e.getCause() == TeleportCause.COMMAND || e.getCause() == TeleportCause.PLUGIN) {
 			protegidos.add(e.getPlayer().getName());
 			new BukkitRunnable() {
 				@Override
@@ -40,4 +40,5 @@ public class InvencibilidadeAoTeleportar implements Listener {
 			}
 		}
 	}
+	
 }

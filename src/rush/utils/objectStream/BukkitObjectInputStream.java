@@ -60,4 +60,5 @@ public class BukkitObjectInputStream extends ObjectInputStream {
         exception.initCause(cause);
         return exception;
     }
+    
 }

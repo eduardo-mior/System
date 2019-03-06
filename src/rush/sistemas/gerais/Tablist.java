@@ -13,4 +13,5 @@ public class Tablist implements Listener {
    	public void aoEntrarTablist(PlayerJoinEvent e) {
    		TablistAPI.sendTabList(e.getPlayer(), Settings.Header, Settings.Footer);	   
    	}
+	
 }

@@ -11,4 +11,5 @@ public class DesativarMensagemDeMorte implements Listener {
 	public void aoMorrer(PlayerDeathEvent e) {
 		e.setDeathMessage(null);
 	}
+	
 }

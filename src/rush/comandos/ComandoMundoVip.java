@@ -36,10 +36,10 @@ public class ComandoMundoVip implements CommandExecutor {
 				new BukkitRunnable() {
 					@Override
 					public void run() {
+						p.teleport(Locations.areaNaoVip, TeleportCause.COMMAND);
 						s.sendMessage("§f ");
 						s.sendMessage(Mensagens.Teleportado_Com_Sucesso_Sem_Vip);
 						s.sendMessage("§f ");
-						p.teleport(Locations.areaNaoVip, TeleportCause.COMMAND);
 
 					}
 				}.runTaskLater(Main.get(), 20 * delay);
@@ -52,8 +52,8 @@ public class ComandoMundoVip implements CommandExecutor {
 		}
 
 		// Caso o player possua a permissão 'system.vip' este código sera executado
-		s.sendMessage(Mensagens.Teleportado_Com_Sucesso_Vip);
 		p.teleport(Locations.areaVip, TeleportCause.COMMAND);
+		s.sendMessage(Mensagens.Teleportado_Com_Sucesso_Vip);
 		return true;
 
 	}

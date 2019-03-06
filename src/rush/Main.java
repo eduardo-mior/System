@@ -102,6 +102,9 @@ import rush.recursos.bloqueadores.BloquearCongelarAgua;
 import rush.recursos.bloqueadores.BloquearCrafts;
 import rush.recursos.bloqueadores.BloquearCriarPortal;
 import rush.recursos.bloqueadores.BloquearDerreterGeloENeve;
+import rush.recursos.bloqueadores.BloquearExplodirItens;
+import rush.recursos.bloqueadores.BloquearKickPorDuploLogin;
+import rush.recursos.bloqueadores.BloquearKickPorDuploLoginSuper;
 import rush.recursos.bloqueadores.BloquearMobsDePegaremFogoParaOSol;
 import rush.recursos.bloqueadores.BloquearMobsDePegaremItensDoChao;
 import rush.recursos.bloqueadores.BloquearNameTag;
@@ -272,6 +275,7 @@ public class Main extends JavaPlugin {
 		new Command("tpdeny", "system.tpdeny", new ComandoTpdeny());
 		new Command("tphere", "system.tphere", new ComandoTphere());
 		new Command("tptoggle", "system.tptoggle", new ComandoTptoggle());
+		new Command("vanish", "system.vanish", new ComandoVanish());
 		new Command("verkit", "system.verkit", new ComandoVerkit());
 		new Command("verinfo", "system.verinfo", new ComandoVerinfo());
 		new Command("warps", "system.warps", new ComandoWarps());
@@ -287,7 +291,6 @@ public class Main extends JavaPlugin {
 			new Command("editaritem", "system.editaritem", new ComandoEditaritem());
 			new Command("renderizacao", "system.renderizacao", new ComandoRenderizacao());
 			new Command("title", "system.title", new ComandoTitle());
-			new Command("vanish", "system.vanish", new ComandoVanish());
 			new Command("warp", "system.warp", new ComandoWarp());
 		}
 		
@@ -303,7 +306,7 @@ public class Main extends JavaPlugin {
 	private void registrarEventos() {
 		PluginManager pm = Bukkit.getServer().getPluginManager();
 		FileConfiguration commands = ConfigManager.getConfig("comandos");
-
+				
 		if (Settings.Anunciar_Morte) {
 			pm.registerEvents(new AnunciarMorte(), this);
 		}
@@ -355,6 +358,20 @@ public class Main extends JavaPlugin {
 		if (Settings.Bloquear_Derreter_Gelo_E_Neve) {
 			pm.registerEvents(new BloquearDerreterGeloENeve(), this);
 		}
+		
+		if (Settings.Bloquear_Explodir_Itens) {
+			pm.registerEvents(new BloquearExplodirItens(), this);
+		}
+		
+		if (Settings.Bloquear_Kick_Por_Duplo_Login_Super) {
+			pm.registerEvents(new BloquearKickPorDuploLoginSuper(), this);
+		} else if (Settings.Bloquear_Kick_Por_Duplo_Login) {
+			if (jarType == JarType.BUKKIT) {
+				pm.registerEvents(new BloquearKickPorDuploLoginSuper(), this);
+			} else {
+				pm.registerEvents(new BloquearKickPorDuploLogin(), this);
+			}
+		}
 
 		if (Settings.Bloquear_NameTag) {
 			if (!isOldVersion()) {
@@ -370,7 +387,7 @@ public class Main extends JavaPlugin {
 			pm.registerEvents(new BloquearMobsDePegaremFogoParaOSol(), this);
 		}
 		
-		if (Settings.Bloquear_Mobs_De_Pegarem_Fogo_Para_O_Sol) {
+		if (Settings.Bloquear_Mobs_De_Pegarem_Itens_Do_Chao) {
 			pm.registerEvents(new BloquearMobsDePegaremItensDoChao(), this);
 		}
 		
@@ -378,14 +395,14 @@ public class Main extends JavaPlugin {
 			pm.registerEvents(new BloquearMoneyInvalido(), this);
 		}
 
+		if (Settings.Bloquear_Palavras_Em_Placas_Ativar) {
+			pm.registerEvents(new BloquearPlacas(), this);
+		}
+
 		if (Settings.Bloquear_Passar_Da_Borda) {
 			if (!isOldVersion()) {
 				pm.registerEvents(new BloquearPassarDaBorda(), this);
 			}
-		}
-
-		if (Settings.Bloquear_Palavras_Em_Placas_Ativar) {
-			pm.registerEvents(new BloquearPlacas(), this);
 		}
 
 		if (Settings.Bloquear_Quebrar_Plantacoes_Pulando) {
@@ -528,9 +545,9 @@ public class Main extends JavaPlugin {
 			pm.registerEvents(new StackMobs(), this);
 		}
 
-		if (!isVeryNewVersion()) {
+		if (Settings.Sistema_De_Spawners) {
 			if (commands.getBoolean("comandos.sgive.ativar-comando")) {
-				if (Settings.Sistema_De_Spawners) {
+				if (!isVeryNewVersion()) {
 					
 					if (Settings.Bloquear_Trocar_Tipo_Do_Spawner_Com_Ovo) {
 						pm.registerEvents(new BloquearTrocarTipoDoSpawnerComOvo(), this);
@@ -609,10 +626,8 @@ public class Main extends JavaPlugin {
 			}
 		}
 
-		if (!isOldVersion()) {
-			if (commands.getBoolean("comandos.vanish.ativar-comando")) {
-				pm.registerEvents(new VanishListener(), this);
-			}
+		if (commands.getBoolean("comandos.vanish.ativar-comando")) {
+			pm.registerEvents(new VanishListener(), this);
 		}
 		
 		if (commands.getBoolean("comandos.echest.ativar-comando")) {

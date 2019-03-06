@@ -25,4 +25,5 @@ public class DroparCabecaAoMorrer implements Listener {
 			p.getWorld().dropItem(p.getLocation(), skull);
 		}
 	}
+	
 }

@@ -78,13 +78,12 @@ public class ComandoTpall implements CommandExecutor {
 				p.teleport(l, TeleportCause.COMMAND);
 			}
 			
-			
+			// Informando o sender que todos foram puxados
 			s.sendMessage(Mensagens.Tpall_Puxou_Com_Sucesso_Cords
 					.replace("<world>", args[0])
 					.replace("<x>", args[1])
 					.replace("<y>", args[2])
 					.replace("<z>", args[3]));
-			return true;
 		}
 		return true;
 	}

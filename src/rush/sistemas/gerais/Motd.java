@@ -17,4 +17,5 @@ public class Motd implements Listener {
 			e.setMotd(Settings.Motd_Normal);
 		}
 	}
+	
 }

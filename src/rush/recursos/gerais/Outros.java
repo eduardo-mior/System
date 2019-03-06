@@ -15,9 +15,10 @@ public class Outros implements Listener {
 	}
 
 	@EventHandler
-	public void mooreuAoSair(EntityPortalExitEvent e) {
+	public void morreuAoSair(EntityPortalExitEvent e) {
 		if (e.getEntity().isDead()) {
 			e.getEntity().remove();
 		}
 	}
+	
 }

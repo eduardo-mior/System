@@ -34,5 +34,4 @@ public class ComandoSudo implements CommandExecutor {
 		s.sendMessage(Mensagens.Sudo_Executado_Com_Sucesso.replace("%player%", p.getName()).replace("%comando%", comando));
 		return true;
 	}
-
 }

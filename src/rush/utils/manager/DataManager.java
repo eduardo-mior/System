@@ -55,4 +55,5 @@ public class DataManager {
 	public static void deleteFile(File file) {
 		file.delete();
 	}
+	
 }

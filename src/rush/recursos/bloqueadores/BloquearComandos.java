@@ -10,11 +10,11 @@ import rush.configuracoes.Settings;
 
 public class BloquearComandos implements Listener {
 
-	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void aoExecutarComando(PlayerCommandPreprocessEvent e) {
-		String cmd = e.getMessage().toLowerCase();
-		for (String cmds : Settings.Lista_Dos_Comandos_Bloqueados) {
-			if (cmd.equalsIgnoreCase(cmds) || cmd.startsWith(cmds.toLowerCase() + " ")) {
+		String cmd = e.getMessage().toLowerCase().split(" ")[0];
+		for (String blockedCmd : Settings.Lista_Dos_Comandos_Bloqueados) {
+			if (blockedCmd.equals(cmd) || (cmd.split(":").length > 1 && blockedCmd.equals("/" + cmd.split(":")[1]))) {
 				if (!(e.getPlayer().hasPermission("system.bypass.comandobloqueado"))) {
 					e.getPlayer().sendMessage(Mensagens.Comando_Bloqueado);
 					e.setCancelled(true);
@@ -23,4 +23,5 @@ public class BloquearComandos implements Listener {
 			}
 		}
 	}
+	
 }

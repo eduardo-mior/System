@@ -50,4 +50,5 @@ public class BukkitObjectOutputStream extends ObjectOutputStream {
 
         return super.replaceObject(obj);
     }
+    
 }

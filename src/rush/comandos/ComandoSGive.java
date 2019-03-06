@@ -65,5 +65,4 @@ public class ComandoSGive implements CommandExecutor {
 		s.sendMessage(Mensagens.Spawner_Givado.replace("%tipo%", EntityName.valueOf(type).getName()));
 		return true;
 	}
-
 }

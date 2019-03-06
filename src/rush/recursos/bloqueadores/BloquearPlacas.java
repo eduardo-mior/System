@@ -23,9 +23,9 @@ public class BloquearPlacas implements Listener {
 			if (Settings.Bloquear_Apenas_Algumas_Palavras) {
 				String[] linhas = e.getLines();
 				for (int i = 0; i < linhas.length; i++) {
-					String s = linhas[i];
+					String linha = linhas[i].toLowerCase();
 					for (String palavra : Settings.Lista_Das_Palavras_Bloqueadas) {
-						if (s.toLowerCase().contains(palavra.toLowerCase())) {
+						if (linha.contains(palavra)) {
 							e.setCancelled(true);
 							e.getPlayer().sendMessage(Mensagens.Palavra_Bloqueada_Na_Placa.replace("%palavra%", palavra));
 							e.getBlock().breakNaturally();
@@ -36,4 +36,5 @@ public class BloquearPlacas implements Listener {
 			}
 		}
 	}
+	
 }

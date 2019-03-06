@@ -8,7 +8,7 @@ import org.bukkit.event.entity.EntityChangeBlockEvent;
 public class BloquearQuebrarPlantacoesPulando implements Listener {
 	
 	@EventHandler(ignoreCancelled = true)
-	public void onChangeBlock(EntityChangeBlockEvent e) {
+	public void aoQuebrarPlantacao(EntityChangeBlockEvent e) {
 		if (e.getBlock().getType() == Material.SOIL)
 			e.setCancelled(true);
 	}

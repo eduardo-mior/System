@@ -15,4 +15,5 @@ public class BloquearTrocarTipoDoSpawnerComOvo implements Listener {
 			e.setCancelled(true);
 		}
     }
+	
 }

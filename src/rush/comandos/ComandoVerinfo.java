@@ -71,7 +71,7 @@ public class ComandoVerinfo implements CommandExecutor {
 		String hasCustomName = translateBoolean(p.isCustomNameVisible());
 		String dead = translateBoolean(p.isDead());
 		String fly = translateBoolean(p.getAllowFlight());
-		String vanish = translateBoolean(VanishListener.VANISH.contains(p));
+		String vanish = translateBoolean(VanishListener.VANISHEDS.contains(p));
 		String god = translateBoolean(GodModeAPI.getGodMode(p));
 		String vehicle = translateBoolean(p.isInsideVehicle());
 		String vehicleType = p.getVehicle() == null ? "Nenhum" : p.getVehicle().getType().name();

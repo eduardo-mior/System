@@ -22,7 +22,7 @@ public class AnunciarMorte implements Listener {
 			
 			Player k = (Player) p.getKiller();
 			ItemStack item = k.getItemInHand();
-			String itemName = "Maozinha";
+			String itemName = "mão livre";
 			if (item != null && item.getType() != Material.AIR) {
 				if (item.hasItemMeta() && item.getItemMeta().hasDisplayName()) {
 					itemName = item.getItemMeta().getDisplayName();
@@ -44,4 +44,5 @@ public class AnunciarMorte implements Listener {
             }
 		}
 	}
+	
 }

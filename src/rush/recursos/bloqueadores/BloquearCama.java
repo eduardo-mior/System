@@ -13,4 +13,5 @@ public class BloquearCama implements Listener {
 			e.setCancelled(true);
 		}
 	}
+	
 }

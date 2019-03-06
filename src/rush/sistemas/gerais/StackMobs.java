@@ -18,7 +18,6 @@ import rush.enums.EntityName;
 
 public class StackMobs implements Listener {
 	
-	
 	private static int MAX_STACK = Settings.Limite_De_Mobs_Agrupados;
 	private static String NAME = Settings.Nome_Dos_Mobs;
 	private static boolean KILL_ALL = Settings.Kill_All;

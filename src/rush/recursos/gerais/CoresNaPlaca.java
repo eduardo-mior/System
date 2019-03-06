@@ -7,7 +7,7 @@ import org.bukkit.event.block.SignChangeEvent;
 
 public class CoresNaPlaca implements Listener {
 
-	@EventHandler(priority = EventPriority.LOWEST, ignoreCancelled = true)
+	@EventHandler(priority = EventPriority.HIGHEST, ignoreCancelled = true)
 	public void aoUsarPlaca(SignChangeEvent e) {
 		if (e.getPlayer().hasPermission("system.cornaplaca")) {
 			for (int i = 0; i < e.getLines().length; i++) {
@@ -15,4 +15,5 @@ public class CoresNaPlaca implements Listener {
 			}
 		}
 	}
+	
 }

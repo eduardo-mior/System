@@ -106,4 +106,5 @@ public class SerializerNEW {
         
         return Base64Coder.encodeLines(outputStream.toByteArray());
     }
+    
 }

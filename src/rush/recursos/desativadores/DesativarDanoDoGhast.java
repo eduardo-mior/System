@@ -16,4 +16,5 @@ public class DesativarDanoDoGhast implements Listener {
 			}
 		}
 	}
+	
 }

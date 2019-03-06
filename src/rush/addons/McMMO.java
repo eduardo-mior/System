@@ -17,7 +17,7 @@ import rush.configuracoes.Mensagens;
 
 public class Mcmmo implements Listener {
 	   
-	@EventHandler(ignoreCancelled = true)
+	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void onPlayerUp(McMMOPlayerLevelUpEvent e) {
 		Player p = e.getPlayer();
 		if (e.getSkillLevel() % 100 == 0){
@@ -25,7 +25,6 @@ public class Mcmmo implements Listener {
             	.replace("%level%", String.valueOf(e.getSkillLevel()))
 				.replace("%skill%", e.getSkill().getName())
             	.replace("%player%", p.getName()));
-
             p.getWorld().strikeLightningEffect(p.getLocation());
             p.getWorld().strikeLightningEffect(p.getLocation());
 		}
@@ -43,4 +42,5 @@ public class Mcmmo implements Listener {
 		int gn = Math.round(e.getXpGained());
 		ActionBarAPI.sendActionBar(e.getPlayer(), "§a" + skillName + ": " + lvl + " (" + xp + "/" + dxp + ") +" + gn + "XP");
 	}
+	
 }

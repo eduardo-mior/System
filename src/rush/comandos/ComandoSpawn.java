@@ -38,8 +38,8 @@ public class ComandoSpawn implements CommandExecutor {
 		}
 
 		// Caso o player possui a permissão para se teleportar sem delay o código acima é ignorado
-		s.sendMessage(Mensagens.Teleportado_Com_Sucesso_Spawn);
 		p.teleport(Locations.spawn, TeleportCause.COMMAND);
+		s.sendMessage(Mensagens.Teleportado_Com_Sucesso_Spawn);
 		return true;
 	}
 }

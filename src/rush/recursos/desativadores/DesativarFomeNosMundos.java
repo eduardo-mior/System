@@ -11,4 +11,5 @@ public class DesativarFomeNosMundos implements Listener {
 		e.setFoodLevel(20);
 		e.setCancelled(true);
 	}
+	
 }

@@ -16,4 +16,5 @@ public class MensagemDeBoasVindas implements Listener {
 			p.sendMessage(mensagem.replace("%player%", p.getName()));
 		}
 	}
+	
 }

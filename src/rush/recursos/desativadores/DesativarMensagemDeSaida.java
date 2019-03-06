@@ -17,4 +17,5 @@ public class DesativarMensagemDeSaida implements Listener {
 	public void aoSerKickado(PlayerKickEvent e) {
 		e.setLeaveMessage(null);
 	}
+	
 }

@@ -114,8 +114,7 @@ public class SystemInfo {
 	
 	public static String getApiVersion() {
 		try {
-			String info = Bukkit.getBukkitVersion();
-			return info.split("-")[0] + "-" + info.split("-")[1];
+			return Bukkit.getServer().getClass().getPackage().getName().split("\\.")[3];
 		} catch (Throwable e) {
 			return "Desconhecida";
 		}

@@ -56,6 +56,7 @@ public class KitsListener implements Listener {
 		}
 	}
 
+	// Método para criar o kit
 	private void createKit(Inventory inv, Player p) {
 		String id = inv.getName().substring(8, inv.getName().length());
 		String permissao = "system.kit." + id;
@@ -77,6 +78,7 @@ public class KitsListener implements Listener {
 		}
 	}
 	
+	// Método para ediar o kit
 	private void editKit(Inventory inv, Player p) {
 		String id = inv.getName().substring(8, inv.getName().length());
 		String itens = serializeItens(inv.getContents());
@@ -93,6 +95,7 @@ public class KitsListener implements Listener {
 		}
 	}
 	
+	// Método para serializar os itens de acordo com a versão
 	private String serializeItens(ItemStack[] itens) {
 		if (Main.isOldVersion()) 
 		{
@@ -107,4 +110,5 @@ public class KitsListener implements Listener {
 			return Serializer.serializeListItemStack(itens);
 		}
 	}
+	
 }

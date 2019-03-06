@@ -15,4 +15,5 @@ public class ManterXpAoMorrer implements Listener {
 			e.setDroppedExp(0);
 		}
 	}
+	
 }

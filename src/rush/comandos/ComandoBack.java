@@ -1,17 +1,17 @@
 package rush.comandos;
 
-import java.util.HashMap;
-
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.event.player.PlayerTeleportEvent.TeleportCause;
+import org.bukkit.scheduler.BukkitRunnable;
 
 import rush.Main;
 import rush.addons.MassiveFactions;
 import rush.configuracoes.Mensagens;
+import rush.configuracoes.Settings;
 import rush.sistemas.comandos.BackListener;
 
 public class ComandoBack implements CommandExecutor {
@@ -25,18 +25,17 @@ public class ComandoBack implements CommandExecutor {
 			return true;
 		}
 
-		// Obtendo o player e a lista de pessoas que teleportaram
+		// Pegando o player
 		Player p = (Player) s;
-		HashMap<String, Location> lista = BackListener.backList;
 
 		// Verificando se o player possui um lugar para se voltar
-		if (!lista.containsKey(p.getName())) {
+		if (!BackListener.backList.containsKey(p.getName())) {
 			s.sendMessage(Mensagens.Nao_Possui_Back);
 			return true;
 		}
 			
 		// Pegando a ultima localização do player
-		Location l = lista.get(p.getName());
+		Location l = BackListener.backList.get(p.getName());
 
 		// Verificando se a compatibilidade com o factions
 		if (Main.setupFactions) {
@@ -44,8 +43,21 @@ public class ComandoBack implements CommandExecutor {
 				return true;
 			}
 		}
+
+		// Verificando se ele possui permissão para se teleportar sem precisar esperar
+		if (!s.hasPermission("system.semdelay")) {
+			s.sendMessage(Mensagens.Iniciando_Teleporte_Back);
+			new BukkitRunnable() {
+				@Override
+				public void run() {
+					p.teleport(l, TeleportCause.COMMAND);
+					s.sendMessage(Mensagens.Back_Teleportado_Sucesso);
+				}
+			}.runTaskLater(Main.get(), 20 * Settings.Delay_Para_Teleportar_Comandos);
+			return true;
+		}
 			
-		// Obtendo a localização para se teleportar e teleportando o player
+		// Caso o player possui a permissão para se teleportar sem delay o código acima é ignorado
 		p.teleport(l, TeleportCause.COMMAND);
 		s.sendMessage(Mensagens.Back_Teleportado_Sucesso);
 		return true;

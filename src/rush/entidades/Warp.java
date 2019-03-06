@@ -6,6 +6,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import rush.Main;
 import rush.configuracoes.Locations;
+import rush.utils.Utils;
 
 public class Warp {
 
@@ -23,7 +24,7 @@ public class Warp {
 
 	public Warp(String nome, String location, String permissao, String semPermissao, int delay, boolean delayVip,
 				String mensagemInicio, String mensagemFinal, boolean enviarTitle, String title, String subtitle) {
-		this.location = deserializeLocation(location);
+		this.location = Utils.deserializeLocation(location);
 		this.nome = nome;
 		this.permissao = permissao;
 		this.semPermissao = semPermissao;
@@ -36,17 +37,6 @@ public class Warp {
 		this.subtitle = subtitle.replace('&', '§');
 		validWarp(location);
 	}
-
-    private Location deserializeLocation(String s) {
-    	String[] locationSplitted = s.split(",");
-		return new Location(
-			   Bukkit.getWorld(locationSplitted[0]),
-			   Double.parseDouble(locationSplitted[1]),
-			   Double.parseDouble(locationSplitted[2]),
-			   Double.parseDouble(locationSplitted[3]),
-			   Float.parseFloat(locationSplitted[4]),
-			   Float.parseFloat(locationSplitted[5]));
-    }
 
 	public Location getLocation() {
 		return location;
@@ -98,7 +88,7 @@ public class Warp {
 			new BukkitRunnable() {
 				@Override
 				public void run() {
-					Warp.this.location = deserializeLocation(location);
+					Warp.this.location = Utils.deserializeLocation(location);
 					if (Warp.this.location.getWorld() == null) {
 						Warp.this.location = Locations.padrao;
 						Bukkit.getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao da Warp \"" + Warp.this.nome + "\".");

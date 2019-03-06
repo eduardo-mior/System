@@ -25,6 +25,7 @@ public class BackListener implements Listener {
 		backList.put(e.getEntity().getName(), e.getEntity().getLocation());
 	}
 	
+	// Método para verificar se o bloco é o mesmo
 	private boolean isSameBlock(Location one, Location two) {
 		return 	one.getBlockX() == two.getBlockX() && 
 				one.getBlockZ() == two.getBlockZ() && 
@@ -32,6 +33,7 @@ public class BackListener implements Listener {
 				one.getWorld().equals(two.getWorld());
 	}
 	
+	// Método para verificar se a causa do teleporte é valida
 	private boolean isValidTeleportCause(TeleportCause cause) {
 		return cause == TeleportCause.COMMAND || cause == TeleportCause.PLUGIN;
 	}

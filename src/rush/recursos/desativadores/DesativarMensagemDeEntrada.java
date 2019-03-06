@@ -11,4 +11,5 @@ public class DesativarMensagemDeEntrada implements Listener {
 	public void aoEntrar(PlayerJoinEvent e) {
 		e.setJoinMessage(null);
 	}
+	
 }

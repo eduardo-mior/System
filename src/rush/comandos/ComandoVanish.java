@@ -8,7 +8,9 @@ import org.bukkit.entity.Player;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import rush.apis.OnlinePlayersAPI;
 import rush.configuracoes.Mensagens;
+import rush.configuracoes.Settings;
 import rush.sistemas.comandos.VanishListener;
 
 @SuppressWarnings("all")
@@ -179,17 +181,34 @@ public class ComandoVanish implements CommandExecutor {
 	}
 	
 	// Método para setar o vanishMode
-	private void setVanishMode(Player player, boolean enable) {
-		if (enable) {
-			VanishListener.VANISH.add(player);
-			for (Player target : Bukkit.getOnlinePlayers()) {
+	private void setVanishMode(Player player, boolean enabled) {
+		
+		// Verificando se o vanish esta sendo ativado, se sim ativando
+		if (enabled) {
+			
+			// Adicionado efeito de invisibilidade e adicionando o player na lista
+			player.addPotionEffect(new PotionEffect(PotionEffectType.INVISIBILITY, Integer.MAX_VALUE, 50), true);
+			VanishListener.VANISHEDS.add(player);
+			
+			// Fazendo um loop por todos os players do server
+			for (Player target : OnlinePlayersAPI.getOnlinePlayers()) {
+				
+				// Verificando se o player não tem permissão de bypass
 				if (!target.hasPermission("system.vanish.bypass")) {
 					target.hidePlayer(player);
 				}
 			}
+			return;
+			
+		// Caso contrario desativando o vanish
 		} else {
-			VanishListener.VANISH.remove(player);
-			for (Player target : Bukkit.getOnlinePlayers()) {
+			
+			// Removendo efeito de invisibilidade e remove o player da lista
+			player.removePotionEffect(PotionEffectType.INVISIBILITY);
+			VanishListener.VANISHEDS.remove(player);
+			
+			// Fazendo um loop por todos os players do servidor e removendo o vanish
+			for (Player target : OnlinePlayersAPI.getOnlinePlayers()) {
 				target.showPlayer(player);
 			}
 		}
@@ -197,7 +216,7 @@ public class ComandoVanish implements CommandExecutor {
 
 	// Método para pegar o vanishMode
 	private boolean getVanishMode(Player player) {
-		if (VanishListener.VANISH.contains(player)) return true;
-		else return false;
+		return VanishListener.VANISHEDS.contains(player);
 	}
+	
 }

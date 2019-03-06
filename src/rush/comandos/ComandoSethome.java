@@ -11,10 +11,12 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
+import org.bukkit.permissions.PermissionAttachmentInfo;
 
 import rush.Main;
 import rush.addons.MassiveFactions;
 import rush.configuracoes.Mensagens;
+import rush.utils.Utils;
 import rush.utils.manager.DataManager;
 
 public class ComandoSethome implements CommandExecutor {
@@ -59,7 +61,7 @@ public class ComandoSethome implements CommandExecutor {
 			}
 		}
 		
-		String loc = serializeLocation(location);
+		String loc = Utils.serializeLocation(location);
 		config.set("Homes." + home + ".Localizacao" , loc);
 		config.set("Homes." + home + ".Publica" , false);
 		try {
@@ -71,21 +73,17 @@ public class ComandoSethome implements CommandExecutor {
 		return true;
 	}
 	
-	/**
-	 * Powered by kickpost;
-	 */
-	
-    private int getHomesLimit(Player p) {
-    	try {
-    		return Integer.parseInt(p.getEffectivePermissions().stream()
-    			   .filter(r -> r.getPermission().toLowerCase().startsWith("system.homes."))
-    			   .findFirst().get().getPermission().replace("system.homes.", "").trim());
-    	} catch (Throwable e) {
-    		return 1;
-    	}
+	private int getHomesLimit(Player p) {
+		int limit = 1;
+		for (PermissionAttachmentInfo perm : p.getEffectivePermissions()) {
+			if (perm.getPermission().startsWith("system.homes.")) {
+				int newLimit = Integer.parseInt(perm.getPermission().replace("system.homes.", ""));
+				if (newLimit > limit) {
+					limit = newLimit;
+				}
+			}
+		}
+		return limit;
 	}
     
-    private String serializeLocation(Location l) {
-    	return l.getWorld().getName()+","+l.getX()+","+l.getY()+","+l.getZ()+","+l.getYaw()+","+l.getPitch();
-    }
 }

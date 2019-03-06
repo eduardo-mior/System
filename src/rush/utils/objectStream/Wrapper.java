@@ -21,4 +21,5 @@ class Wrapper<T extends Map<String, ?> & Serializable> implements Serializable {
     private Wrapper(T map) {
         this.map = map;
     }
+    
 }

@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.event.inventory.InventoryType;
 
 import rush.utils.Utils;
 import rush.utils.manager.ConfigManager;
@@ -23,9 +24,9 @@ public class Settings {
 	public static boolean EnderPearl_Cooldown_Ativar;
 	public static int EnderPearl_Cooldown_Cooldown;
 	public static boolean Bloquear_Abrir_Containers_Ativar;
-	public static List<String> Bloquear_Abrir_Containers_Containers;
+	public static List<InventoryType> Bloquear_Abrir_Containers_Containers;
 	public static boolean Bloquear_Shift_Em_Containers_Ativar;
-	public static List<String> Bloquear_Shift_Em_Containers_Containers;
+	public static List<InventoryType> Bloquear_Shift_Em_Containers_Containers;
 	public static boolean Bloquear_Money_Invalido;
 	public static List<String> Comandos_Que_Envolvem_Money;
 	public static boolean Bloquear_Congelar_Agua;
@@ -101,7 +102,7 @@ public class Settings {
 	public static String mcTopTag_Tag;
 	public static long magnataTag_Tempo_De_Checagem;
 	public static String magnataTag_Tag;
-	public static Map<String, Object> CorAutomatica;
+	public static Map<String, String> CorAutomatica;
 	public static boolean Auto_Anuncio;
 	public static boolean Destacar_Anuncio;
 	public static int Delay_Entre_Anuncios;
@@ -128,6 +129,9 @@ public class Settings {
 	public static boolean Bloquear_Quebrar_Plantacoes_Pulando;
 	public static boolean Deletar_Comandos;
 	public static List<String> Lista_Dos_Comandos_Deletados;
+	public static boolean Bloquear_Explodir_Itens;
+	public static boolean Bloquear_Kick_Por_Duplo_Login;
+	public static boolean Bloquear_Kick_Por_Duplo_Login_Super;
 
 	public static void loadSettings() {
 		FileConfiguration config = ConfigManager.getConfig("settings");
@@ -143,11 +147,11 @@ public class Settings {
 		EnderPearl_Cooldown_Ativar = config.getBoolean("EnderPearl-Cooldown.Ativar");
 		EnderPearl_Cooldown_Cooldown = config.getInt("EnderPearl-Cooldown.Cooldown");
 		Bloquear_Abrir_Containers_Ativar = config.getBoolean("Bloquear-Abrir-Containers.Ativar");
-		Bloquear_Abrir_Containers_Containers = config.getStringList("Bloquear-Abrir-Containers.Containers");
+		Bloquear_Abrir_Containers_Containers = Utils.listToListEnum(InventoryType.class, config.getStringList("Bloquear-Abrir-Containers.Containers"));
 		Bloquear_Shift_Em_Containers_Ativar = config.getBoolean("Bloquear-Shift-Em-Containers.Ativar");
-		Bloquear_Shift_Em_Containers_Containers = config.getStringList("Bloquear-Shift-Em-Containers.Containers");
+		Bloquear_Shift_Em_Containers_Containers = Utils.listToListEnum(InventoryType.class, config.getStringList("Bloquear-Shift-Em-Containers.Containers"));
 		Bloquear_Money_Invalido = config.getBoolean("Bloquear-Money-Invalido");
-		Comandos_Que_Envolvem_Money = config.getStringList("Comandos-Que-Envolvem-Money");
+		Comandos_Que_Envolvem_Money = Utils.listToLowerCase(config.getStringList("Comandos-Que-Envolvem-Money"));
 		Bloquear_Congelar_Agua = config.getBoolean("Bloquear-Congelar-Agua");
 		Bloquear_Derreter_Gelo_E_Neve = config.getBoolean("Bloquear-Derreter-Gelo-E-Neve");
 		Desativar_Mobs_Naturais = config.getBoolean("Desativar-Mobs-Naturais");
@@ -208,20 +212,20 @@ public class Settings {
 		Motd_Normal = config.getString("Motd.Motd-Normal").replace('&', '§');
 		Motd_Manutencao = config.getString("Motd.Motd-Manutencao").replace('&', '§');
 		Bloquear_Comandos = config.getBoolean("Bloquear-Comandos");
-		Lista_Dos_Comandos_Bloqueados = config.getStringList("Lista-Dos-Comandos-Bloqueados");
+		Lista_Dos_Comandos_Bloqueados = Utils.listToLowerCase(config.getStringList("Lista-Dos-Comandos-Bloqueados"));
 		Bloquear_Crafts = config.getBoolean("Bloquear-Crafts");
 		Lista_Dos_Crafts_Bloqueados = config.getIntegerList("Lista-Dos-Crafts-Bloqueados");
 		Bloquear_Palavras_Em_Placas_Ativar = config.getBoolean("Bloquear-Palavras-Em-Placas.Ativar");
 		Bloquear_Todas_As_Palavras = config.getBoolean("Bloquear-Palavras-Em-Placas.Bloquear-Todas-As-Palavras");
 		Bloquear_Apenas_Algumas_Palavras = config.getBoolean("Bloquear-Palavras-Em-Placas.Bloquear-Apenas-Algumas-Palavras");
-		Lista_Das_Palavras_Bloqueadas = config.getStringList("Bloquear-Palavras-Em-Placas.Lista-Das-Palavras-Bloqueadas");
+		Lista_Das_Palavras_Bloqueadas = Utils.listToLowerCase(config.getStringList("Bloquear-Palavras-Em-Placas.Lista-Das-Palavras-Bloqueadas"));
 		Bloquear_Nicks_Improprios = config.getBoolean("Bloquear-Nicks-Improprios");
-		Nicks_Bloqueados = config.getStringList("Nicks-Bloqueados");
+		Nicks_Bloqueados = Utils.listToLowerCase(config.getStringList("Nicks-Bloqueados"));
 		mcTopTag_Tempo_De_Checagem = config.getLong("mcTopTag.Tempo-De-Checagem");
 		mcTopTag_Tag = config.getString("mcTopTag.Tag").replace('&', '§');
 		magnataTag_Tempo_De_Checagem = config.getLong("magnataTag.Tempo-De-Checagem");
 		magnataTag_Tag = config.getString("magnataTag.Tag").replace('&', '§');
-		CorAutomatica = config.getConfigurationSection("CorAutomatica").getValues(true);
+		CorAutomatica = Utils.mapToMapString(config.getConfigurationSection("CorAutomatica").getValues(true));
 		Auto_Anuncio = config.getBoolean("Auto-Anuncio");
 		Destacar_Anuncio = config.getBoolean("Destacar-Anuncio");
 		Delay_Entre_Anuncios = config.getInt("Delay-Entre-Anuncios");
@@ -248,7 +252,9 @@ public class Settings {
 		Bloquear_Quebrar_Plantacoes_Pulando = config.getBoolean("Bloquear-Quebrar-Plantacoes-Pulando");
 		Deletar_Comandos = config.getBoolean("Deletar-Comandos");
 		Lista_Dos_Comandos_Deletados = config.getStringList("Lista-Dos-Comandos-Deletados");
-		
+		Bloquear_Explodir_Itens = config.getBoolean("Bloquear-Explodir-Itens");
+		Bloquear_Kick_Por_Duplo_Login = config.getBoolean("Bloquear-Kick-Por-Duplo-Login");
+		Bloquear_Kick_Por_Duplo_Login_Super = config.getBoolean("Super-Bloquear-Kick-Por-Duplo-Login");
 	}
 	
 }
