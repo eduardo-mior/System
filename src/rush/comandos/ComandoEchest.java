@@ -24,8 +24,7 @@ public class ComandoEchest implements CommandExecutor {
 		// Pegando o player
 		Player sender = (Player) s;
 
-		// Verificando se o player quer abrir o inventario de outra pessoa e possui
-		// permissão
+		// Verificando se o player quer abrir o inventario de outra pessoa e possui permissão
 		if (args.length != 0 && (s.hasPermission("system.echest.mod") || s.hasPermission("system.echest.admin"))) {
 
 			// Pegando o player e verificando se ele esta online

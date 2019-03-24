@@ -3,6 +3,7 @@ package rush.apis;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import rush.Main;
@@ -16,11 +17,23 @@ public class ActionBarAPI {
 	private static Constructor<?> chatConstructor;
 	
 	public static void sendActionBar(Player player, String message) {
+		try {
+			Object chatMessage = a.invoke(null, "{\"text\":\"" + message + "\"}");
+		    Object packet = chatConstructor.newInstance(chatMessage, typeMessage);
+		    ReflectionUtils.sendPacket(player, packet);
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void broadcastActionBar(String message) {
 		try 
 		{
 			Object chatMessage = a.invoke(null, "{\"text\":\"" + message + "\"}");
 		    Object packet = chatConstructor.newInstance(chatMessage, typeMessage);
-		    ReflectionUtils.sendPacket(player, packet);
+		    for (Player player : Bukkit.getOnlinePlayers()) {
+		    	ReflectionUtils.sendPacket(player, packet);
+		    }
 		} 
 		catch (Throwable e) {
 			e.printStackTrace();
@@ -45,7 +58,7 @@ public class ActionBarAPI {
 				typeMessage = typeMessageClass.getEnumConstants()[2];
 			} else {
 				typeMessageClass = byte.class;
-				typeMessage = (byte)2;
+				typeMessage = (byte) 2;
 			}
 			
 			chatConstructor = ppoc.getConstructor(icbc,  typeMessageClass);	

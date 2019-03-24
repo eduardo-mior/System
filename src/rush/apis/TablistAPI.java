@@ -15,8 +15,7 @@ public class TablistAPI {
 	private static Field footerField;
 
 	public static void sendTabList(Player player, String header, String footer) {
-		try 
-		{
+		try {
 			Object tabHeader = a.invoke(null, "{\"text\":\"" + header + "\"}");
 			Object tabFooter = a.invoke(null, "{\"text\":\"" + footer + "\"}");
 			Object packet = ppop.newInstance();
@@ -25,8 +24,7 @@ public class TablistAPI {
 			footerField.set(packet, tabFooter);
 
 			ReflectionUtils.sendPacket(player, packet);
-		} 
-		catch (Throwable e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}

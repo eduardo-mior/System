@@ -38,9 +38,7 @@ public class Locations {
 	           config.getDouble("AreaVip.z"), 
 	           Float.parseFloat(config.getString("AreaVip.yaw")), 
 	           Float.parseFloat(config.getString("AreaVip.pitch")));
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
+		} catch (Throwable e) {}
 	}
 	
 	private static void setAreaNaoVip() {
@@ -53,9 +51,7 @@ public class Locations {
 	           config.getDouble("AreaNaoVip.z"), 
 	           Float.parseFloat(config.getString("AreaNaoVip.yaw")), 
 	           Float.parseFloat(config.getString("AreaNaoVip.pitch")));
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
+		} catch (Throwable e) {}
 	}
 	
 	private static void setSpawn() {
@@ -68,9 +64,7 @@ public class Locations {
 		       config.getDouble("Spawn.z"), 
 		       Float.parseFloat(config.getString("Spawn.yaw")), 
 		       Float.parseFloat(config.getString("Spawn.pitch")));
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
+		} catch (Throwable e) {}
 	}
 	
 	private static void setSpawnVip() {
@@ -83,9 +77,7 @@ public class Locations {
 		       config.getDouble("SpawnVip.z"), 
 		       Float.parseFloat(config.getString("SpawnVip.yaw")), 
 		       Float.parseFloat(config.getString("SpawnVip.pitch")));
-		} catch (Throwable e) {
-			e.printStackTrace();
-		}
+		} catch (Throwable e) {}
 	}
 	
 	private static void setDefaultServerSpawn() {
@@ -98,44 +90,38 @@ public class Locations {
 		}
 	}
 	
-	
 	private static void validarLocations(boolean reavaliar) {
 		boolean tentarValidarNovamente = false;
 		
-		World worldSpawn = spawn.getWorld();
-		World worldSpawnVip = spawnVip.getWorld();
-		World worldVip = areaVip.getWorld();
-		World worldNaoVip = areaNaoVip.getWorld();
-		
-		if (worldSpawn == null) {
+		if (spawn == null || spawn.getWorld() == null) {
 			tentarValidarNovamente = true;
 			spawn = padrao;
 			if (!reavaliar) {
-				Bukkit.getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao do Spawn! Entre no jogo e use /setspawn normal");
+				Bukkit.getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao do Spawn! Entre no jogo e use §e/setspawn normal");
 			}
 		}
 		
-		if (worldSpawnVip  == null) {
+		if (spawnVip  == null || spawnVip.getWorld() == null) {
 			tentarValidarNovamente = true;
 			spawnVip = padrao;
 			if (!reavaliar) {
-				Bukkit.getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao do Spawn Vip! Entre no jogo e use /setspawn vip");
+				Bukkit.getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao do Spawn Vip! Entre no jogo e use §e/setspawn vip§c caso queira usar o spawn vip!");
 			}
 		}
 		
-		if (worldVip == null) {
+		if (areaVip == null || areaVip.getWorld() == null) {
 			tentarValidarNovamente = true;
 			areaVip = padrao;
 			if (!reavaliar) {
-				Bukkit.getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao da Area Vip! Entre no jogo e use /setmundovip areaVip");
+				Bukkit.getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao da Area Vip! Entre no jogo e use §e/setmundovip areaVip§c caso queira usar a area vip!");
 			}
 		}
 		
-		if (worldNaoVip == null) {
+		if (areaNaoVip == null || areaNaoVip.getWorld() == null) {
 			tentarValidarNovamente = true;
 			areaNaoVip = padrao;
 			if (!reavaliar) {
-				Bukkit.getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao da Area Vip! Entre no jogo e use /setmundovip areaNaoVip");
+				Bukkit.getConsoleSender().sendMessage("§c[System] Nao foi possivel carregar a localizacao da Area Vip! Entre no jogo e use §e/setmundovip areaNaoVip§c caso queira usar a area nao vip.");
 			}
 		}
 		
@@ -151,7 +137,12 @@ public class Locations {
 				setSpawnVip();
 				setAreaNaoVip();
 				validarLocations(false);
-				setDefaultServerSpawn();
+				setDefaultServerSpawn(); 
+				if (spawn != null && spawn.getWorld() != null) {
+					if (spawnVip.equals(padrao)) spawnVip = spawn;
+					if (areaVip.equals(padrao)) areaVip = spawn;
+					if (areaNaoVip.equals(padrao)) areaNaoVip = spawn;
+				}
 			}
 		}.runTaskLaterAsynchronously(Main.get(), 20L * 25L);
 	}

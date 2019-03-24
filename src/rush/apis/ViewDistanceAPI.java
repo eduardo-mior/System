@@ -19,29 +19,25 @@ public class ViewDistanceAPI {
 	private static Field distanceField;
 	
 	public static int getViewDistance(Player player) {
-		try 
-		{
+		try {
 			Object entityPlayer = getHandle.invoke(player);
 			Object world = worldField.get(entityPlayer);
 			Object worldServer = worldServerClass.cast(world);
 			Object playerChunkMap = getPlayerChunkMap.invoke(worldServer);
 			return (int) distanceField.get(playerChunkMap);
-		} 
-		catch (Throwable e) {
+		} catch (Throwable e) {
 			return -1;
 		}
 	}
 	
 	public static void setViewDistance(Player player, int viewDistance) {
-		try 
-		{
+		try {
 			Object entityPlayer = getHandle.invoke(player);
 			Object world = worldField.get(entityPlayer);
 			Object worldServer = worldServerClass.cast(world);
 			Object playerChunkMap = getPlayerChunkMap.invoke(worldServer);
 			updateViewDistance.invoke(playerChunkMap, viewDistance);
-		} 
-		catch (Throwable e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}

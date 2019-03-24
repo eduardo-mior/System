@@ -42,7 +42,7 @@ public abstract class Kits {
 			if (file[i].isFile()) {
 				FileConfiguration configKit = DataManager.getConfiguration(file[i]);
 				String id = file[i].getName().replace(".yml", "");
-				String nome = configKit.getString("Nome");
+				String nome = configKit.getString("Nome", "§rKit '" + id + "' sem nome! Use /editarkit!");
 				String permissao = configKit.getString("Permissao");
 				long delay = configKit.getLong("Delay");
 				String itens = configKit.getString("Itens");

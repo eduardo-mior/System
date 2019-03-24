@@ -12,6 +12,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import rush.apis.OfflinePlayerAPI;
 import rush.configuracoes.Mensagens;
 import rush.utils.TimeFormatter;
 
@@ -34,7 +35,7 @@ public class ComandoEstatisticas implements CommandExecutor {
 		if (args.length == 1) {
 
 			// Pegando o player e verificando se ele esta online
-			p = Bukkit.getPlayer(args[0]);
+			p = OfflinePlayerAPI.getPlayer(args[0]);
 			if (p == null) {
 				s.sendMessage(Mensagens.Player_Offline);
 				return true;
@@ -56,7 +57,7 @@ public class ComandoEstatisticas implements CommandExecutor {
 		// Pegando o formatador de números e datas e configurando
 		Locale brasil = new Locale("pt", "BR");
 		NumberFormat nf = NumberFormat.getNumberInstance(brasil);
-		DateFormat df = DateFormat.getDateTimeInstance(0, 1, brasil);
+		DateFormat df = DateFormat.getDateTimeInstance(0, 0, brasil);
 		nf.setMaximumFractionDigits(2);
 		
 		// Pegando as informações do player
@@ -96,7 +97,7 @@ public class ComandoEstatisticas implements CommandExecutor {
 				.replace("%distancia-total%", distanciaTotal)
 				.replace("%tempo-jogado%", tempoJogado)
 				.replace("%tempo-sem-morrer%", tempoSemMorrer)
-				.replace("%primeiro-login%", primeiroLogin.substring(0, primeiroLogin.length()-4)));
+				.replace("%primeiro-login%", primeiroLogin.substring(0, primeiroLogin.length() - 4)));
 		return true;
 	}
 

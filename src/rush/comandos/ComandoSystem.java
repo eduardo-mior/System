@@ -100,7 +100,7 @@ public class ComandoSystem implements CommandExecutor {
 			String[] cmds = keys.toArray(new String[keys.size()]);
 				
 			// Pegando o total de páginas, e administrando as paginas
-			int maxPag =  (int) Math.ceil((double) cmds.length / 10);
+			int maxPag =  (int) Math.ceil((double) cmds.length / 10.0);
 			int inicio = (pag - 1) * 10;
 			int fim = ((pag - 1) * 10) + 10;
 				
@@ -153,7 +153,7 @@ public class ComandoSystem implements CommandExecutor {
 		// Caso o argumento seja 'info' então é exibido algumas informações do plugin
 		if (args[0].equalsIgnoreCase("info")) {					
 			s.sendMessage("§e*-=-=-=-=-=-=-* §bServer Info §e*-=-=-=-=-=-=-* ");
-			s.sendMessage("§ePlugin Version: §61.11");
+			s.sendMessage("§ePlugin Version: §61.12");
 			s.sendMessage("§eJava version: §6" + System.getProperty("java.version"));
 			s.sendMessage("§eMinecraft Version: §6" + SystemInfo.getMinecraftVersion());
 			s.sendMessage("§eServerAPI Vesrion: §6" + SystemInfo.getApiVersion());
@@ -161,7 +161,6 @@ public class ComandoSystem implements CommandExecutor {
 			s.sendMessage("§e*-=-=-=-=-=-=-* §bServer Info §e*-=-=-=-=-=-=-* ");
 			return true;
 		}
-		
 		
 		// Caso o argumento seja 'host' então é exibida algumas informações do server
 		if (args[0].equalsIgnoreCase("host")) {
@@ -225,7 +224,7 @@ public class ComandoSystem implements CommandExecutor {
 				}.start();
 				return true;
 			}
-
+			
 			s.sendMessage("§cComando incorreto, use:");
 			s.sendMessage("§c/system host basico §8-§7 Para ver as informações basicas da host.");
 			s.sendMessage("§c/system host avancado §8-§7 Para relatório um arquivo com TODAS as informações sobre a host.");

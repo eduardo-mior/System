@@ -32,7 +32,7 @@ public class ComandoVerinfo implements CommandExecutor {
 		}
 
 		// Pegando o player e verificando se ele esta online
-		Player p = Bukkit.getPlayer(args[0]);
+		Player p = Bukkit.getPlayerExact(args[0]);
 		if (p == null) {
 			s.sendMessage(Mensagens.Player_Offline);
 			return true;

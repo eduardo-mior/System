@@ -14,7 +14,7 @@
 #    |    recursos e comandos não estarão disponiveis dependendo da versão (é pouca coisa).        |
 #    |                                                                                             |
 #    | 4) A permissão de cada kit e a permissão de cada warp pode ser editada acessando o arquivo  |
-#    |    da warp ou do kit. Por padrão sempre sera system.kit.<nome> ou system.kit.<warp> então   |
+#    |    da warp ou do kit. Por padrão sempre sera system.kit.<id> ou system.kit.<warp> então     |
 #    |    caso quiser edita-la basta usar /editarkit ou acessar o arquivo da warp ou do kit.       |
 #    |                                                                                             |
 #    | 5) TODAS AS MENSAGENS do plugin pode ser alteradas dentro do arquivo mensagens.yml. Exceto  |
@@ -35,6 +35,7 @@
 #                              +-------------------------------------------+
 #    +---------------------------------------------------------------------------------------------+
 #    | #1 Canal BukkitTeamBR: https://www.youtube.com/watch?v=Ipbp5FBbvSk                          |
+#    | #2 Canal ZappyCraft: https://www.youtube.com/watch?v=55HSigP2-2M                            |
 #    +---------------------------------------------------------------------------------------------+
 #
 #

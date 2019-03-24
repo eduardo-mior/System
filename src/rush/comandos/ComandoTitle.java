@@ -1,10 +1,8 @@
 package rush.comandos;
 
-import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Player;
 
 import rush.apis.TitleAPI;
 import rush.configuracoes.Mensagens;
@@ -29,16 +27,12 @@ public class ComandoTitle implements CommandExecutor {
 		// Caso a mensagem não contenha "<nl>" então apenas o title é enviado
 		if (!(msg.contains("<nl>"))) {
 			// Enviando o title para todos os players do serivdor
-			for (Player p : Bukkit.getOnlinePlayers()) {
-				TitleAPI.sendTitle(p, 20, 60, 20, msg, "");
-			}
+			TitleAPI.broadcastTitle(20, 60, 20, msg, "");
 
 		// Caso a mensagem conter "<nl>" então o title e o subtitle é enviado
 		} else {
 			// Enviando o title para todos os players do serivdor
-			for (Player p : Bukkit.getOnlinePlayers()) {
-				TitleAPI.sendTitle(p, 20, 60, 20, txt[0], txt[1]);
-			}
+			TitleAPI.broadcastTitle(20, 60, 20, txt[0], txt[1]);
 		}
 
 		// Informando que o title foi enviado

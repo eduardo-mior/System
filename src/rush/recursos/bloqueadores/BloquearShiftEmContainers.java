@@ -1,6 +1,7 @@
 package rush.recursos.bloqueadores;
 
 import org.bukkit.Material;
+import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
@@ -22,7 +23,8 @@ public class BloquearShiftEmContainers implements Listener {
 			if (Settings.Bloquear_Shift_Em_Containers_Containers.contains(e.getInventory().getType())) {
 				if (!(e.getWhoClicked().hasPermission("system.bypass.shiftemcontainer"))) {
 					String tipo = InventoryName.valueOf(e.getInventory()).getName();
-					e.getWhoClicked().sendMessage(Mensagens.Shift_Bloqueado_No_Container.replace("%tipo%", tipo));
+					Player player = (Player) e.getWhoClicked();
+					player.sendMessage(Mensagens.Shift_Bloqueado_No_Container.replace("%tipo%", tipo));
 					e.setCancelled(true);
 					return;
 				}

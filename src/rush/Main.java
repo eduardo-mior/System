@@ -656,6 +656,7 @@ public class Main extends JavaPlugin {
 	private void disablePlugin() {
 		try {
 			HandlerList.unregisterAll(this);
+			Bukkit.getScheduler().cancelTasks(this);
 	
 			if (Settings.AtivarAddons_McMMO && McTopTag.TTask != null) {
 				McTopTag.TTask.cancel();

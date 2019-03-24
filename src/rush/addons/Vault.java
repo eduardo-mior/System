@@ -23,8 +23,12 @@ public class Vault {
 	public static double getBalance(OfflinePlayer off) {
 		try {
 			return economy.getBalance(off);
-		} catch (Throwable e) {
-			return economy.getBalance(off.getName());
+		} catch (Throwable e1) {
+			try {
+				return economy.getBalance(off.getName());
+			} catch (Throwable e2) {
+				return 0D;
+			}
 		}
 	}
 

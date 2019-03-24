@@ -16,16 +16,16 @@ import rush.configuracoes.Settings;
 
 public class InvencibilidadeAoTeleportar implements Listener {
 
-	private HashSet<String> protegidos = new HashSet<>();
+	private HashSet<Player> protegidos = new HashSet<>();
 
 	@EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = true)
 	public void aoTeleportar(PlayerTeleportEvent e) {
 		if (e.getCause() == TeleportCause.COMMAND || e.getCause() == TeleportCause.PLUGIN) {
-			protegidos.add(e.getPlayer().getName());
+			protegidos.add(e.getPlayer());
 			new BukkitRunnable() {
 				@Override
 				public void run() {
-					protegidos.remove(e.getPlayer().getName());
+					protegidos.remove(e.getPlayer());
 				}
 			}.runTaskLater(Main.get(), 20L * Settings.Tempo_De_Invencibilidade_Ao_Teleportar);
 		}
@@ -34,7 +34,7 @@ public class InvencibilidadeAoTeleportar implements Listener {
 	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void aoTomarDano(EntityDamageEvent e) {
 		if (e.getEntity() instanceof Player) {
-			if (protegidos.contains(e.getEntity().getName())) {
+			if (protegidos.contains(e.getEntity())) {
 				e.setCancelled(true);
 			}
 		}

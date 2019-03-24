@@ -9,7 +9,6 @@ import org.bukkit.scheduler.BukkitTask;
 
 import com.gmail.nossr50.database.DatabaseManagerFactory;
 import com.gmail.nossr50.datatypes.database.PlayerStat;
-import com.gmail.nossr50.datatypes.skills.SkillType;
 
 import br.com.devpaulo.legendchat.api.events.ChatMessageEvent;
 
@@ -33,9 +32,9 @@ public class McTopTag implements Listener {
 		TTask = new BukkitRunnable() {
 			@Override
 			public void run() {
-				List<PlayerStat> tops = DatabaseManagerFactory.getDatabaseManager().readLeaderboard((SkillType) null, 1, 1);
+				List<PlayerStat> tops = DatabaseManagerFactory.getDatabaseManager().readLeaderboard(null, 1, 1);
 				if (!tops.isEmpty()) {
-					playerTopOne = ((PlayerStat) tops.get(0)).name;
+					playerTopOne = tops.get(0).name;
 				}
 			}
 		}.runTaskTimerAsynchronously(Main.get(), 60L, Settings.mcTopTag_Tempo_De_Checagem * 20L);

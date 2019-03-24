@@ -132,6 +132,7 @@ public class Settings {
 	public static boolean Bloquear_Explodir_Itens;
 	public static boolean Bloquear_Kick_Por_Duplo_Login;
 	public static boolean Bloquear_Kick_Por_Duplo_Login_Super;
+	public static List<String> Mundos_Sem_Sistema_De_Back;
 
 	public static void loadSettings() {
 		FileConfiguration config = ConfigManager.getConfig("settings");
@@ -196,21 +197,21 @@ public class Settings {
 		Bloquear_Trocar_Tipo_Do_Spawner_Com_Ovo = config.getBoolean("Bloquear-Trocar-Tipo-Do-Spawner-Com-Ovo");
 		Dropar_Spawner_Ao_Explodir = config.getBoolean("Dropar-Spawner-Ao-Explodir");
 		Chance_De_Dropar_Ao_Explodir = config.getInt("Chance-De-Dropar-Ao-Explodir");
-		Nome_Do_Spawner = config.getString("Nome-Do-Spawner").replace('&', '§');
+		Nome_Do_Spawner = config.getString("Nome-Do-Spawner", "§fGerador de Monstros").replace('&', '§');
 		Lore_Do_Spawner = Utils.colorizeListString(config.getStringList("Lore-Do-Spawner"));
 		Sistema_De_Stack_Mobs = config.getBoolean("Sistema-De-Stack-Mobs");
 		Limite_De_Mobs_Agrupados = config.getInt("Limite-De-Mobs-Agrupados");
-		Nome_Dos_Mobs = config.getString("Nome-Dos-Mobs").replace('&', '§'); 
+		Nome_Dos_Mobs = config.getString("Nome-Dos-Mobs", "§e%quantia%x %tipo%").replace('&', '§'); 
 		Kill_All = config.getBoolean("Kill-All");
 		Mensagem_De_Boas_Vindas_Ativar = config.getBoolean("Mensagem-De-Boas-Vindas.Ativar");
 		Mensagem_De_Boas_Vindas_Mensagem = Utils.colorizeListString(config.getStringList("Mensagem-De-Boas-Vindas.Mensagem"));
 		Title_De_Boas_Vindas_Ativar = config.getBoolean("Title-De-Boas-Vindas.Ativar");
-		Title_De_Boas_Vindas_Titulo = config.getString("Title-De-Boas-Vindas.Titulo").replace('&', '§');
-		Title_De_Boas_Vindas_Subtitulo = config.getString("Title-De-Boas-Vindas.Subtitulo").replace('&', '§');
+		Title_De_Boas_Vindas_Titulo = getString(config, "Title-De-Boas-Vindas.Titulo");
+		Title_De_Boas_Vindas_Subtitulo = getString(config, "Title-De-Boas-Vindas.Subtitulo");
 		Ativar_Camarote_Para_Os_Sem_Vip = config.getBoolean("Ativar-Camarote-Para-Os-Sem-Vip");
 		Motd_Ativar = config.getBoolean("Motd.Ativar");
-		Motd_Normal = config.getString("Motd.Motd-Normal").replace('&', '§');
-		Motd_Manutencao = config.getString("Motd.Motd-Manutencao").replace('&', '§');
+		Motd_Normal = getString(config, "Motd.Motd-Normal");
+		Motd_Manutencao = getString(config, "Motd.Motd-Manutencao");
 		Bloquear_Comandos = config.getBoolean("Bloquear-Comandos");
 		Lista_Dos_Comandos_Bloqueados = Utils.listToLowerCase(config.getStringList("Lista-Dos-Comandos-Bloqueados"));
 		Bloquear_Crafts = config.getBoolean("Bloquear-Crafts");
@@ -222,9 +223,9 @@ public class Settings {
 		Bloquear_Nicks_Improprios = config.getBoolean("Bloquear-Nicks-Improprios");
 		Nicks_Bloqueados = Utils.listToLowerCase(config.getStringList("Nicks-Bloqueados"));
 		mcTopTag_Tempo_De_Checagem = config.getLong("mcTopTag.Tempo-De-Checagem");
-		mcTopTag_Tag = config.getString("mcTopTag.Tag").replace('&', '§');
+		mcTopTag_Tag = config.getString("mcTopTag.Tag", "§9[*] ").replace('&', '§');
 		magnataTag_Tempo_De_Checagem = config.getLong("magnataTag.Tempo-De-Checagem");
-		magnataTag_Tag = config.getString("magnataTag.Tag").replace('&', '§');
+		magnataTag_Tag = config.getString("magnataTag.Tag", "§2[$] ").replace('&', '§');
 		CorAutomatica = Utils.mapToMapString(config.getConfigurationSection("CorAutomatica").getValues(true));
 		Auto_Anuncio = config.getBoolean("Auto-Anuncio");
 		Destacar_Anuncio = config.getBoolean("Destacar-Anuncio");
@@ -234,17 +235,17 @@ public class Settings {
 		Lista_De_Anuncios = Utils.colorizeListString(config.getStringList("Lista-De-Anuncios"));
 		Anunciar_Morte = config.getBoolean("Anunciar-Morte");
 		Anuncios_Mostrar_Para_Quem_Morreu = config.getBoolean("Anuncios.Mostrar-Para-Quem-Morreu");
-		Anuncios_Mensagem_Para_Defunto = config.getString("Anuncios.Mensagem-Para-Defunto").replace('&', '§');
+		Anuncios_Mensagem_Para_Defunto = getString(config, "Anuncios.Mensagem-Para-Defunto");
 		Anuncios_Mostrar_Para_Quem_Matou = config.getBoolean("Anuncios.Mostrar-Para-Quem-Matou");
-		Anuncios_Mensagem_Para_Matador = config.getString("Anuncios.Mensagem-Para-Matador").replace('&', '§');
+		Anuncios_Mensagem_Para_Matador = getString(config, "Anuncios.Mensagem-Para-Matador");
 		Anuncios_Mostrar_Para_Todo_Servidor = config.getBoolean("Anuncios.Mostrar-Para-Todo-Servidor");
-		Anuncios_Mensagem_Para_Todos = config.getString("Anuncios.Mensagem-Para-Todos").replace('&', '§');
+		Anuncios_Mensagem_Para_Todos = getString(config, "Anuncios.Mensagem-Para-Todos");
 		ScoreBoard_Ativar = config.getBoolean("ScoreBoard.Ativar");
-		ScoreBoard_Titulo = config.getString("ScoreBoard.Titulo").replace('&', '§');
+		ScoreBoard_Titulo = config.getString("ScoreBoard.Titulo", "§cSem titulo").replace('&', '§');
 		ScoreBoard_Linhas = Utils.colorizeListString(config.getStringList("ScoreBoard.Linhas"));
 		Ativar_Tablist = config.getBoolean("Ativar-Tablist");
-		Header = config.getString("Parte-De-Cima").replace('&', '§');
-		Footer = config.getString("Parte-De-Baixo").replace('&', '§');
+		Header = getString(config, "Parte-De-Cima");
+		Footer = getString(config, "Parte-De-Baixo");
 		Tempo_Para_Expirar_Solicitacao_Tpa = config.getLong("Tempo-Para-Expirar-Solicitacao-Tpa");
 		Tempo_Para_Poder_Enviar_Outra_Solicitacao_Tpa = config.getLong("Tempo-Para-Poder-Enviar-Outra-Solicitacao-Tpa");
 		Commando_Slime_Esta = Utils.tryLoadSound("SLIME_WALK2", "ENTITY_SLIME_SQUISH");
@@ -255,6 +256,11 @@ public class Settings {
 		Bloquear_Explodir_Itens = config.getBoolean("Bloquear-Explodir-Itens");
 		Bloquear_Kick_Por_Duplo_Login = config.getBoolean("Bloquear-Kick-Por-Duplo-Login");
 		Bloquear_Kick_Por_Duplo_Login_Super = config.getBoolean("Super-Bloquear-Kick-Por-Duplo-Login");
+		Mundos_Sem_Sistema_De_Back = config.getStringList("Mundos-Sem-Sistema-De-Back");
+	}
+	
+	private static String getString(FileConfiguration config, String path) {
+		return config.getString(path, "§cNão foi possivel localizar a mensagem '§e" + path + "§c' do arquivo §nsettings.yml§c.").replace('&', '§');
 	}
 	
 }

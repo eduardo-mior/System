@@ -26,8 +26,7 @@ public class AnvilAPI {
 	private static Field activeContainerField;
 	
 	public static void openAnvil(Player p) {
-		try 
-		{
+		try {
 			Location l = p.getLocation();
 			int x = l.getBlockX();
 			int y = l.getBlockY();
@@ -55,8 +54,7 @@ public class AnvilAPI {
 			checkReachableField.set(container, false);
 			activeContainerField.set(entityPlayer, container);
 			addSlotListener.invoke(container, entityPlayer);
-		} 
-		catch (Throwable e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}

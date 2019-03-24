@@ -130,7 +130,7 @@ public class ComandoTp implements CommandExecutor {
 			// Verificando se o mundo é 1 mundo valido
 			World w = Bukkit.getWorld(args[0]);
 			if (w == null) {	
-				s.sendMessage(Mensagens.Mundo_Nao_Existe.replace("%mundo%", args[1]));
+				s.sendMessage(Mensagens.Mundo_Nao_Existe.replace("%mundo%", args[0]));
 				return true;
 			}
 

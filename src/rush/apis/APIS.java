@@ -14,6 +14,7 @@ public class APIS {
 			TablistAPI.load();
 			ActionBarAPI.load();
 			ViewDistanceAPI.load();
+			OfflinePlayerAPI.load();
 		} 
 		catch (Throwable e) {}
 	}

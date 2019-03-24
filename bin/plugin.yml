@@ -1,5 +1,5 @@
 main: rush.Main
-version: 1.11
+version: 1.12
 name: System
 load: POSTWORLD
 author: RUSH
@@ -101,7 +101,7 @@ permissions:
     default: op
   system.fly.staff:
     description: Permissão para poder usar o fly em qualquer mundo.
-    default: op
+    default: false
   system.fly.outros:
     description: Permissão para ativar ou desativar o fly de outras pessoas.
     default: op
@@ -390,7 +390,6 @@ permissions:
       system.executarsom: true
       system.feed: true
       system.fly.outros: true
-      system.fly.staff: true
       system.fly: true
       system.gamemode.all: true
       system.gamemode.outros: true

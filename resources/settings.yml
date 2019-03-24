@@ -16,7 +16,7 @@ AtivarAddons:
   #-> O Addon do McMMO serve para mostra o XP na ActionBar e para anunicar quando upa 100 niveis
   #   e criar a Tag McTop no LegendChat
   
-  Vault: true
+  Vault: false
   #-> O Addon do Vault serve para a tag criar a Tag Magnata no LegendChat
 
 ############################################################
@@ -227,6 +227,12 @@ Sistema-De-Fly-Para-Players: true
 Mundos-Onde-Pode-Usar-Fly:
   - "world"
   - "world_nether"
+
+# Este recurso serve para impedir que os players voltem para arena ou para guerra com /back
+# Se o player morrer no mundo "guerra" ou "arena" sua localização NÃO ficara salva no /back
+Mundos-Sem-Sistema-De-Back:
+  - "guerra"
+  - "arena"
 
 ############################################################
 # +------------------------------------------------------+ #

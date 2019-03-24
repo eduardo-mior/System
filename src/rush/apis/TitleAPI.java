@@ -3,6 +3,7 @@ package rush.apis;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Method;
 
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
 import rush.utils.ReflectionUtils;
@@ -17,25 +18,43 @@ public class TitleAPI {
 	private static Constructor<?> textTitleConstructor;
 	
 	public static void sendTitle(Player player, Integer fadeIn, Integer stay, Integer fadeOut, String title, String subtitle) {
+		try {
+			Object chatTitle = a.invoke(null, "{\"text\":\"" + title + "\"}");
+			Object chatSubtitle = a.invoke(null,"{\"text\":\"" + subtitle + "\"}");
+			
+			Object timeTitlePacket = timeTitleConstructor.newInstance(enumTIMES, null, fadeIn, stay, fadeOut);
+			Object titlePacket = textTitleConstructor.newInstance(enumTITLE, chatTitle);
+			Object subtitlePacket = textTitleConstructor.newInstance(enumSUBTITLE, chatSubtitle);
+
+			ReflectionUtils.sendPacket(player, timeTitlePacket);
+			ReflectionUtils.sendPacket(player, titlePacket);
+			ReflectionUtils.sendPacket(player, subtitlePacket);
+		} catch (Throwable e) {
+			e.printStackTrace();
+		}
+	}
+	
+	public static void broadcastTitle(Integer fadeIn, Integer stay, Integer fadeOut, String title, String subtitle) {
 		try 
 		{
 			Object chatTitle = a.invoke(null, "{\"text\":\"" + title + "\"}");
 			Object chatSubtitle = a.invoke(null,"{\"text\":\"" + subtitle + "\"}");
 			
 			Object timeTitlePacket = timeTitleConstructor.newInstance(enumTIMES, null, fadeIn, stay, fadeOut);
-			ReflectionUtils.sendPacket(player, timeTitlePacket);
-
 			Object titlePacket = textTitleConstructor.newInstance(enumTITLE, chatTitle);
-			ReflectionUtils.sendPacket(player, titlePacket);
-
 			Object subtitlePacket = textTitleConstructor.newInstance(enumSUBTITLE, chatSubtitle);
-			ReflectionUtils.sendPacket(player, subtitlePacket);
+
+			for (Player player : Bukkit.getOnlinePlayers()) {
+				ReflectionUtils.sendPacket(player, timeTitlePacket);
+				ReflectionUtils.sendPacket(player, titlePacket);
+				ReflectionUtils.sendPacket(player, subtitlePacket);
+			}
 		} 
 		catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}
-	
+		
 	static void load() {
 		try 
 		{

@@ -25,6 +25,7 @@ public class ItemAPI {
 	private static Method setNBTTagCompound;
 	private static Method hasNBTTagCompound;
 	private static Method getNBTTagCompound;
+	private static Method hasKey;
 	private static Method getString;
 	private static Method getBoolean;
 	private static Method setString;
@@ -107,20 +108,33 @@ public class ItemAPI {
 		}
 	}
 	
-	public static String getInfo(ItemStack item, String key) {
+	public static boolean hasInfo(ItemStack item, String key) {
 		try {
-			Object NBTTagCompound;
 			Object CraftItemStack = asNMSCopy.invoke(null, item);
 			boolean hasNBTTag = (boolean) hasNBTTagCompound.invoke(CraftItemStack);
 			if (hasNBTTag) {
-				NBTTagCompound = getNBTTagCompound.invoke(CraftItemStack);
-			} else {
-				return "";
+				Object NBTTagCompound = getNBTTagCompound.invoke(CraftItemStack);
+				return (boolean) hasKey.invoke(NBTTagCompound, key);
 			}
-			return getString.invoke(NBTTagCompound, key).toString();
+			return false;
 		} catch (Throwable e) {
 			e.printStackTrace();
-			return "";
+			return false;
+		}
+	}
+	
+	public static String getInfo(ItemStack item, String key) {
+		try {
+			Object CraftItemStack = asNMSCopy.invoke(null, item);
+			boolean hasNBTTag = (boolean) hasNBTTagCompound.invoke(CraftItemStack);
+			if (hasNBTTag) {
+				Object NBTTagCompound = getNBTTagCompound.invoke(CraftItemStack);
+				return getString.invoke(NBTTagCompound, key).toString();
+			}
+			return null;
+		} catch (Throwable e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 	
@@ -243,6 +257,7 @@ public class ItemAPI {
 			setNBTTagCompound = ItemStackClass.getDeclaredMethod("setTag", NBTTagCompoundClass);
 
 			// Basic NBTTag Handle Methods
+			hasKey = NBTTagCompoundClass.getDeclaredMethod("hasKey", String.class);
 			getString = NBTTagCompoundClass.getDeclaredMethod("getString", String.class);
 			getBoolean = NBTTagCompoundClass.getDeclaredMethod("getBoolean", String.class);
 			setString = NBTTagCompoundClass.getDeclaredMethod("setString", String.class, String.class);
