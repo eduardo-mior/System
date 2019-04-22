@@ -65,6 +65,7 @@ public class DeletarComandos {
 					}
 					
 					for (Entry<String, Command> entry : removes) {
+						entry.getValue().unregister(commandMap);
 						commands.remove(entry.getKey(), entry.getValue());
 					}
 					

@@ -29,7 +29,7 @@ public class ComandoKits implements CommandExecutor {
 		int cont = 0;
 		for (Kit kit : kits) {
 			String permissao = kit.getPermissao();
-			if (s.hasPermission(permissao) || s.hasPermission("system.kit.all")) {
+			if (s.hasPermission(permissao)) {
 				listKits.add(kit.getId());
 				cont++;
 			}

@@ -8,7 +8,7 @@ import org.bukkit.event.entity.EntityChangeBlockEvent;
 
 public class DesativarQuedaDaAreia implements Listener {
 
-	/*
+	/**
 	 * Código criado por iPyronic
 	 * Link: https://www.spigotmc.org/threads/prevent-sand-from-falling-upon-placing-sand.133386/
 	 */

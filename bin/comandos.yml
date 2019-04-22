@@ -330,12 +330,6 @@ comandos:
     descricao: "Comando gerenciador do plugin."
     sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     
-  terminal:
-    ativar-comando: true
-    aliases: [cmd]
-    descricao: "Executa um comando no terminal do sistema operacional."
-    sem-permissao: "&cVocê não tem permissão para utilizar este comando."
-    
   title:
     ativar-comando: true
     aliases: [tm]

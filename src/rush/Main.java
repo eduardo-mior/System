@@ -70,7 +70,6 @@ import rush.comandos.ComandoSpawn;
 import rush.comandos.ComandoSpeed;
 import rush.comandos.ComandoSudo;
 import rush.comandos.ComandoSystem;
-import rush.comandos.ComandoTerminal;
 import rush.comandos.ComandoTitle;
 import rush.comandos.ComandoTp;
 import rush.comandos.ComandoTpa;
@@ -266,7 +265,6 @@ public class Main extends JavaPlugin {
 		new Command("speed", "system.speed", new ComandoSpeed());
 		new Command("sudo", "system.sudo", new ComandoSudo());
 		new Command("system", "system.system", new ComandoSystem());
-		new Command("terminal", "system.terminal", new ComandoTerminal());
 		new Command("tp", "system.tp", new ComandoTp());
 		new Command("tpa", "system.tpa", new ComandoTpa());
 		new Command("tpaccept", "system.tpaccept", new ComandoTpaccept());

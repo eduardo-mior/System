@@ -22,30 +22,6 @@ public class StackMobs implements Listener {
 	private static String NAME = Settings.Nome_Dos_Mobs;
 	private static boolean KILL_ALL = Settings.Kill_All;
 	
-	@EventHandler(priority = EventPriority.LOWEST)
-	public void onDeath(EntityDeathEvent e) {
-		LivingEntity entity = e.getEntity();
-		if (entity.hasMetadata("stack")) {
-			int cont = entity.getMetadata("stack").isEmpty() ? 0 : entity.getMetadata("stack").get(0).asInt();
-			if (cont > 1) {
-				if (KILL_ALL && entity.getKiller() != null && !entity.getKiller().isSneaking()) {
-					e.setDroppedExp(e.getDroppedExp() * cont);
-					for (ItemStack drop : e.getDrops()) {
-						if (drop.getType().getMaxDurability() == 0) {
-							drop.setAmount(drop.getAmount() * cont);
-						}
-					}
-				} else {
-					String type = EntityName.valueOf(e.getEntityType()).getName();
-					LivingEntity spawned = (LivingEntity) entity.getWorld().spawnEntity(entity.getLocation(), e.getEntityType());
-					spawned.setCustomName(NAME.replace("%tipo%", type).replace("%quantia%", String.valueOf(--cont)));
-					spawned.setCustomNameVisible(true);
-					spawned.setMetadata("stack", new FixedMetadataValue(Main.get(), cont));
-				}
-			}
-		}
-	}
-	
 	@EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
 	public void onSpawn(CreatureSpawnEvent e) {
 		
@@ -88,5 +64,29 @@ public class StackMobs implements Listener {
 			spawned.setMetadata("stack",  new FixedMetadataValue(Main.get(), 1));
 		}
 	}
-
+	
+	@EventHandler(priority = EventPriority.MONITOR)
+	public void onDeath(EntityDeathEvent e) {
+		LivingEntity entity = e.getEntity();
+		if (entity.hasMetadata("stack")) {
+			int cont = entity.getMetadata("stack").isEmpty() ? 0 : entity.getMetadata("stack").get(0).asInt();
+			if (cont > 1) {
+				if (KILL_ALL && entity.getKiller() != null && !entity.getKiller().isSneaking()) {
+					e.setDroppedExp(e.getDroppedExp() * cont);
+					for (ItemStack drop : e.getDrops()) {
+						if (drop.getType().getMaxDurability() == 0) {
+							drop.setAmount(drop.getAmount() * cont);
+						}
+					}
+				} else {
+					String type = EntityName.valueOf(e.getEntityType()).getName();
+					LivingEntity spawned = (LivingEntity) entity.getWorld().spawnEntity(entity.getLocation(), e.getEntityType());
+					spawned.setCustomName(NAME.replace("%tipo%", type).replace("%quantia%", String.valueOf(--cont)));
+					spawned.setCustomNameVisible(true);
+					spawned.setMetadata("stack", new FixedMetadataValue(Main.get(), cont));
+				}
+			}
+		}
+	}
+	
 }

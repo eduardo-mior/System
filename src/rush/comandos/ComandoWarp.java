@@ -35,7 +35,11 @@ public class ComandoWarp implements CommandExecutor {
 		String warp = args[0].toLowerCase();
 		if (!Warps.contains(warp)) {
 			s.sendMessage(Mensagens.Warp_Nao_Existe.replace("%warp%", warp));
-			ComandoWarps.ListWarps(s);
+			if (!s.hasPermission("system.warp.all")) {
+				ComandoWarps.ListWarps(s);
+			} else {
+				ComandoWarps.ListWarpsForStaff(s);
+			}
 			return true;
 		}
 		

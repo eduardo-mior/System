@@ -14,7 +14,7 @@ import rush.configuracoes.Mensagens;
 
 public class BloquearPassarDaBorda implements Listener {
 
-	/*
+	/**
 	 * Código criado por Oscazz
 	 * Link: https://www.spigotmc.org/threads/worldborder-enderpearl-block.236808/
 	 */

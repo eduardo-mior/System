@@ -1,5 +1,5 @@
 main: rush.Main
-version: 1.12
+version: 1.13
 name: System
 load: POSTWORLD
 author: RUSH
@@ -237,9 +237,6 @@ permissions:
   system.system:
     description: Permissão para usar o comando gerenciador do plugin.
     default: op
-  system.terminal:
-    description: Permissão para executar um comando no terminal do sistema operacional.
-    default: op
   system.title:
     description: Permissão para enviar um title para todo servidor.
     default: op
@@ -432,7 +429,6 @@ permissions:
       system.speed: true
       system.sudo: true
       system.system: true
-      system.terminal: true
       system.title: true
       system.tp: true
       system.tpa: true

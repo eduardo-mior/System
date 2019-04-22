@@ -209,6 +209,7 @@ public class Mensagens {
 	public static String Teleportado_Com_Sucesso_Spawn;
 	public static String Iniciando_Teleporte_Spawn;
 	public static String Skull_Comando_Incorreto;
+	public static String Skull_Url_Incorreta;
 	public static String Skull_Enviada_Outro;
 	public static String Skull_Enviada_Voce;
 	public static String Derreter_Nao_Possui;
@@ -253,7 +254,7 @@ public class Mensagens {
 	public static String Speed_Alterado_Outro; 
 	public static String Speed_Valor_Invalido;
 	public static String System_Comando_Incorreto;
-	public static String Plugin_Recarregado_Sucesso;
+	public static String System_Recarregado_Sucesso;
 	public static String Backup_Com_Sucesso;
 	public static String Enchant_Comando_Incorreto;
 	public static String Enchant_Encantamento_Invalido;
@@ -288,6 +289,21 @@ public class Mensagens {
 	public static String Renderizacao_Valor_Invalido_Players;
 	public static String Renderizacao_Valor_Invalido_Staff;
 	public static String Renderizacao_Alterado_Sucesso;
+	public static String Plugin_Comando_Incorreto;
+	public static String Plugin_Sintaxe_Incorreto;
+	public static String Plugin_Nao_Encontrado;
+	public static String Plugin_Ja_Ligado;
+	public static String Plugin_Ligado_Com_Sucesso;
+	public static String Plugin_Ja_Desligado;
+	public static String Plugin_Desligado_Com_Sucesso;
+	public static String Plugin_Ja_Carregado;
+	public static String Plugin_Ou_Arquivo_Nao_Encontrado;
+	public static String Plugin_Erro_Ao_Carregar;
+	public static String Plugin_Carregado_Com_Sucesso;
+	public static String Plugin_Descarregado_Com_Sucesso;
+	public static String Plugin_Nao_Ligado;
+	public static String Plugin_Religado_Com_Sucesso;
+	public static String Plugin_Recarregado_Com_Sucesso;
 	
 	public static void loadMensagens() {
 		FileConfiguration config = ConfigManager.getConfig("mensagens");
@@ -495,6 +511,7 @@ public class Mensagens {
 		Teleportado_Com_Sucesso_Spawn = getString(config, "Teleportado-Com-Sucesso-Spawn");
 		Iniciando_Teleporte_Spawn = getString(config, "Iniciando-Teleporte-Spawn").replace("%tempo%", String.valueOf(settings.getInt("Delay-Para-Teleportar-Comandos")));
 		Skull_Comando_Incorreto = getString(config, "Skull-Comando-Incorreto");
+		Skull_Url_Incorreta = getString(config, "Skull-Url-Incorreta");
 		Skull_Enviada_Outro = getString(config, "Skull-Enviada-Outro");
 		Skull_Enviada_Voce = getString(config, "Skull-Enviada-Voce");
 		Derreter_Nao_Possui = getString(config, "Derreter-Nao-Possui");
@@ -539,7 +556,7 @@ public class Mensagens {
 		Speed_Alterado_Outro = getString(config, "Speed-Alterado-Outro"); 
 		Speed_Valor_Invalido = getString(config, "Speed-Valor-Invalido"); 
 		System_Comando_Incorreto = getString(config, "System-Comando-Incorreto"); 
-		Plugin_Recarregado_Sucesso = getString(config, "Plugin-Recarregado-Sucesso"); 
+		System_Recarregado_Sucesso = getString(config, "System-Recarregado-Sucesso"); 
 		Backup_Com_Sucesso = getString(config, "Backup-Com-Sucesso"); 
 		Enchant_Comando_Incorreto = getString(config, "Enchant-Comando-Incorreto"); 
 		Enchant_Encantamento_Invalido = getString(config, "Enchant-Encantamento-Invalido"); 
@@ -574,6 +591,21 @@ public class Mensagens {
 		Renderizacao_Valor_Invalido_Players = getString(config, "Renderizacao-Valor-Invalido-Players");
 		Renderizacao_Valor_Invalido_Staff = getString(config, "Renderizacao-Valor-Invalido-Staff");
 		Renderizacao_Alterado_Sucesso = getString(config, "Renderizacao-Alterado-Sucesso");
+		Plugin_Comando_Incorreto = getString(config, "Plugin-Comando-Incorreto");
+		Plugin_Sintaxe_Incorreto = getString(config, "Plugin-Sintaxe-Incorreto");
+		Plugin_Nao_Encontrado = getString(config, "Plugin-Nao-Encontrado");
+		Plugin_Ja_Ligado = getString(config, "Plugin-Ja-Ligado");
+		Plugin_Ligado_Com_Sucesso = getString(config, "Plugin-Ligado-Com-Sucesso");
+		Plugin_Ja_Desligado = getString(config, "Plugin-Ja-Desligado");
+		Plugin_Desligado_Com_Sucesso = getString(config, "Plugin-Desligado-Com-Sucesso");
+		Plugin_Ja_Carregado = getString(config, "Plugin-Ja-Carregado");
+		Plugin_Ou_Arquivo_Nao_Encontrado = getString(config, "Plugin-Ou-Arquivo-Nao-Encontrado");
+		Plugin_Erro_Ao_Carregar = getString(config, "Plugin-Erro-Ao-Carregar");
+		Plugin_Carregado_Com_Sucesso = getString(config, "Plugin-Carregado-Com-Sucesso");
+		Plugin_Descarregado_Com_Sucesso = getString(config, "Plugin-Descarregado-Com-Sucesso");
+		Plugin_Nao_Ligado = getString(config, "Plugin-Nao-Ligado");
+		Plugin_Religado_Com_Sucesso = getString(config, "Plugin-Religado-Com-Sucesso");
+		Plugin_Recarregado_Com_Sucesso = getString(config, "Plugin-Recarregado-Com-Sucesso");
 	}
 	
 	private static String getString(FileConfiguration config, String path) {

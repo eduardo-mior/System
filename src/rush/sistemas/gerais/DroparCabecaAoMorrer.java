@@ -8,8 +8,8 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
 import org.bukkit.inventory.ItemStack;
 
+import rush.apis.SkullAPI;
 import rush.configuracoes.Settings;
-import rush.utils.PlayerHead;
 
 public class DroparCabecaAoMorrer implements Listener {
 
@@ -21,7 +21,7 @@ public class DroparCabecaAoMorrer implements Listener {
 		int chance = Settings.Chance_De_Dropar_Cabeca_Ao_Morrer;
 		if (aleatorio < chance) {
 			Player p = e.getEntity();
-			ItemStack skull = PlayerHead.get(p);
+			ItemStack skull = SkullAPI.getByName(p.getName());
 			p.getWorld().dropItem(p.getLocation(), skull);
 		}
 	}

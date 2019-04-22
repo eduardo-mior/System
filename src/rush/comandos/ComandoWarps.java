@@ -16,7 +16,11 @@ public class ComandoWarps implements CommandExecutor {
 	
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
-		ListWarps(s);
+		if (!s.hasPermission("system.warp.all")) {
+			ComandoWarps.ListWarps(s);
+		} else {
+			ComandoWarps.ListWarpsForStaff(s);
+		}
 		return true;
 	}
 	

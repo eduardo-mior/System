@@ -410,7 +410,8 @@ Som-Executado-Todos: "&aO som '%som%' foi executado para todos os players do ser
 # |                    Comando /skull                    | #
 # +------------------------------------------------------+ #
 ############################################################
-Skull-Comando-Incorreto: "&cComando incorreto, use /skull <nome> [player]"
+Skull-Comando-Incorreto: "&cComando incorreto, use /skull <nome &8ou&c url> [player]"
+Skull-Url-Incorreta: "&cURL inválida! Por favor, remova o inicio do link http://textures.minecraft.net/texture/ e mantenha apenas o código depois da bara.\n&cExemplo: /skull 967a2f218a6e6e38f2b545f6c17733f4ef9bbb288e75402949c052189ee"
 Skull-Enviada-Outro: "&aSkull de %dono% enviada com sucesso para %player%."
 Skull-Enviada-Voce: "&aSkull de %dono% enviada para o seu inventário."
 
@@ -610,24 +611,6 @@ Sem-Permissao-Sethome: "&cVocê não tem permissão para definir uma home neste 
 
 ############################################################
 # +------------------------------------------------------+ #
-# |                   Comando /system                    | #
-# +------------------------------------------------------+ #
-############################################################
-System-Comando-Incorreto: |
-  &cComando incorreto, use:
-  &c/system reload &8-&7 Recarrega as configurações do plugin.
-  &c/system contato &8-&7 Mostra os contatos do desenvolvedor.
-  &c/system backup &8-&7 Faz um backup dos arquivos do plugin.
-  &c/system help <pag> &8-&7 Mostra a lista de comandos do plugin.
-  &c/system info &8-&7 Mostra informações sobre o server e o system.
-  &c/system host &8-&7 Mostra informações sobre a host do server.
-Plugin-Recarregado-Sucesso: |
-  &aMensagens e configurações recarregadas com sucesso!
-  &7OBS: Algumas alterações só terão efeito quando o servidor for reinicializado.
-Backup-Com-Sucesso: "&aBackup realizado com sucesso! O backup foi criado dentro da pasta 'backups' na pasta principal do plugin."
-
-############################################################
-# +------------------------------------------------------+ #
 # |                 Comando /estatisticas                | #
 # +------------------------------------------------------+ #
 ############################################################
@@ -682,15 +665,6 @@ Verinfo-Informacoes: |
 
 ############################################################
 # +------------------------------------------------------+ #
-# |                  Comando /terminal                   | #
-# +------------------------------------------------------+ #
-############################################################
-Terminal-Comando-Incorreto: "&cComando incorreto, use /terminal <comando>"
-Terminal-Erro-Comando: "&cErro ao tentar executar o comando!\n&cErro: &f%erro%"
-Terminal-Erro-Desconhecido: "&cErro desconhecido ao tentar executar o comando!\n&cErro: &f%erro%"
-
-############################################################
-# +------------------------------------------------------+ #
 # |                Comando /renderizacao                 | #
 # +------------------------------------------------------+ #
 ############################################################
@@ -699,3 +673,64 @@ Renderizacao-Ja-Definida: "&cA sua renderiazação já está em %renderizacao%."
 Renderizacao-Valor-Invalido-Players: "&cRenderização inválida! Você deve usar um valor entre &73 &ce &7%limite-servidor%&c."
 Renderizacao-Valor-Invalido-Staff: "&cRenderização inválida! Você deve usar um valor entre &73 &ce &732&c."
 Renderizacao-Alterado-Sucesso: "&aRenderização alterada com sucesso para %renderizacao%."
+
+############################################################
+# +------------------------------------------------------+ #
+# |              Comando /system terminal                | #
+# +------------------------------------------------------+ #
+############################################################
+Terminal-Comando-Incorreto: "&cComando incorreto, use /system terminal <comando>"
+Terminal-Erro-Comando: "&cErro ao tentar executar o comando!\n&cErro: &f%erro%"
+Terminal-Erro-Desconhecido: "&cErro desconhecido ao tentar executar o comando!\n&cErro: &f%erro%"
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   Comando /system                    | #
+# +------------------------------------------------------+ #
+############################################################
+System-Comando-Incorreto: |
+  &cComando incorreto, use:
+  &c/system reload &8-&7 Recarrega as configurações do plugin.
+  &c/system contato &8-&7 Exibe os contatos do desenvolvedor.
+  &c/system backup &8-&7 Faz um backup dos arquivos do plugin.
+  &c/system help <pag> &8-&7 Exibe a lista de comandos do plugin.
+  &c/system info &8-&7 Exibe informações sobre o server e o system.
+  &c/system host &8-&7 Exibe informações sobre a host do server.
+  &c/system plugin &8-&7 Administra os plugins do servidor.
+  &c/system stop &8-&7 Desliga o servidor instantaneamente (Kill).
+  &c/system terminal <comando> &8-&7 Executa um comando no terminal (cmd) da host do server.
+System-Recarregado-Sucesso: |
+  &aMensagens e configurações recarregadas com sucesso!
+  &7OBS: Algumas alterações só terão efeito quando o servidor for reinicializado.
+Backup-Com-Sucesso: "&aBackup realizado com sucesso! O backup foi criado dentro da pasta 'backups' na pasta principal do plugin."
+
+############################################################
+# +------------------------------------------------------+ #
+# |           (Plugman) Comando /system plugin           | #
+# +------------------------------------------------------+ #
+############################################################
+Plugin-Comando-Incorreto: |
+  &cComando incorreto, use:
+  &c/system plugin list &8-&7 Lista todos os plugins.
+  &c/system plugin enable <plugin> &8-&7 Liga um plugin.
+  &c/system plugin disable <plugin> &8-&7 Desliga um plugin.
+  &c/system plugin re-enable <plugin> &8-&7 Religa um plugin.
+  &c/system plugin load <plugin> &8-&7 Carrega um plugin.
+  &c/system plugin unload <plugin> &8-&7 Descarrega um plugin.
+  &c/system plugin re-load <plugin> &8-&7 Recarrega um plugin.
+  &c/system plugin info <plugin> &8-&7 Exibe informações do plugin.
+  &e/system plugin help &8-&7 Exibe o menu de ajuda completo.
+Plugin-Sintaxe-Incorreto: "&cComando incorreto, use /system plugin %comando% <plugin>"
+Plugin-Nao-Encontrado: "&cNenhum plugin encontrado com o nome '%plugin%'."
+Plugin-Ou-Arquivo-Nao-Encontrado: "&cNenhum plugin ou arquivo econtrado com o nome '%plugin%'."
+Plugin-Nao-Ligado: "&cO plugin precisa estar ligado para que você possa fazer isso!"
+Plugin-Ja-Ligado: "&cO plugin '%plugin%' já esta ligado no servidor."
+Plugin-Ja-Desligado: "&cO plugin '%plugin%' já esta desligado do servidor."
+Plugin-Ja-Carregado: "&cO plugin '%plugin%' já esta carregado no servidor."
+Plugin-Erro-Ao-Carregar: "&cNão foi possível carregar o plugin '%plugin%'! \n&cMotivo: &7%motivo%"
+Plugin-Ligado-Com-Sucesso: "&aPlugin '%plugin%' ligado com sucesso!"
+Plugin-Desligado-Com-Sucesso: "&aPlugin '%plugin%' desligado com sucesso!"
+Plugin-Religado-Com-Sucesso: "&ePlugin religado com sucesso!"
+Plugin-Carregado-Com-Sucesso: "&aPlugin '%plugin%' carregado com sucesso!"
+Plugin-Descarregado-Com-Sucesso: "&aPlugin '%plugin%' descarregado com sucesso!"
+Plugin-Recarregado-Com-Sucesso: "&ePlugin recarregado com sucesso!"

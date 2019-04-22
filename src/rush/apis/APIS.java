@@ -1,4 +1,5 @@
 package rush.apis;
+
 public class APIS {
 
 	public static void load() 
@@ -15,6 +16,7 @@ public class APIS {
 			ActionBarAPI.load();
 			ViewDistanceAPI.load();
 			OfflinePlayerAPI.load();
+			SkullAPI.load();
 		} 
 		catch (Throwable e) {}
 	}

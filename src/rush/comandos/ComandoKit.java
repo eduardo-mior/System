@@ -39,7 +39,7 @@ public class ComandoKit implements CommandExecutor {
 			String id = args[0].toLowerCase();
 			if (!Kits.contains(id)) {
 				s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit-id%", id));
-				ComandoKits.ListKits(s);
+				ComandoKits.ListKitsForStaff(s);
 				return true;
 			}
 
@@ -68,11 +68,15 @@ public class ComandoKit implements CommandExecutor {
 		String id = args[0].toLowerCase();
 		if (!Kits.contains(id)) {
 			s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit-id%", id));
-			ComandoKits.ListKits(s);
+			if (!s.hasPermission("system.kit.all")) {
+				ComandoKits.ListKits(s);
+			} else {
+				ComandoKits.ListKitsForStaff(s);
+			}
 			return true;
 		}
 		
-		// Pegando o kit e verificando se o player possui permissão para pegar fala
+		// Pegando o kit e verificando se o player possui permissão para pegar
 		Kit kit = Kits.get(id);
 		String perm = kit.getPermissao();
 		String nomeKit = kit.getNome();

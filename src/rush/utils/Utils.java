@@ -1,5 +1,6 @@
 package rush.utils;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,14 +12,32 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
+import org.bukkit.plugin.Plugin;
+import org.bukkit.plugin.PluginLoader;
+import org.bukkit.plugin.PluginManager;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
+
+import rush.Main;
 
 public class Utils {
 	
 	// ------------------------------
 	// JAVA UTILS
 	// ------------------------------
+	
+	public static String bytesToLegibleValue(double bytes) {
+		if (bytes < 1024 * 1024)
+			return String.format("%.2f KB", bytes);
+		else if (bytes < Math.pow(2, 20) * 1024)
+			return String.format("%.2f MB", bytes / Math.pow(2, 20));
+		else if (bytes < Math.pow(2, 30) * 1024 )
+			return String.format("%.2f GB", bytes / Math.pow(2, 30));
+		else if (bytes < Math.pow(2, 40) * 1024)
+			return String.format("%.2f TB", bytes / Math.pow(2, 40));
+		else
+			return "N/A (1TB?)";
+	}
 	
 	public static <E extends Enum<E>> boolean isValidEnum(Class<E> enumClass, String enumName) {
 		try {
@@ -114,6 +133,53 @@ public class Utils {
 			   Float.parseFloat(  location[5]))
 		;
     }
+    
+	public static Plugin getPluginByName(String name) {
+		PluginManager pm = Bukkit.getPluginManager();
+		Plugin pl = pm.getPlugin(name);
+		if (pl != null) 
+			return pl;
+		for (Plugin plugin : pm.getPlugins()) 
+			if (plugin.getName().equalsIgnoreCase(name)) return plugin;
+		return null;
+	}
+
+	public static File getPluginJar(String name) {
+		for (File file : folder.listFiles())
+		{
+			if (file.getName().endsWith(".jar"))
+			{
+				try
+				{
+					String fileName = file.getName().replace(".jar", "");
+					if (fileName.equalsIgnoreCase(name)) return file;
+					
+					String pluginName = loader.getPluginDescription(file).getName();
+					if (pluginName.equalsIgnoreCase(name)) return file;
+				}
+				catch (Throwable e) {continue;}
+			}
+		}
+		return null;
+	}
 	
+	public static List<File> getAllPluginsJar() {
+		List<File> jars = new ArrayList<>();
+		for (File file : folder.listFiles())
+		{
+			if (file.getName().endsWith(".jar"))
+			{
+				jars.add(file);
+			}
+		}
+		return jars;
+	}
+	
+	// ------------------------------
+	// STATIC FINAL FIELDS
+	// ------------------------------
+	
+	private static final File folder = new File("plugins");
+	private static final PluginLoader loader = Main.get().getPluginLoader();
 	
 }

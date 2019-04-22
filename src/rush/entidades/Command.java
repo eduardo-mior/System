@@ -27,9 +27,7 @@ public class Command {
     private PluginCommand pluginCommand;
     
     public Command(String command, String permission, CommandExecutor executor) {
-    	
     	boolean enable = CONFIG.getBoolean("comandos." + command + ".ativar-comando");
-    	
     	if (enable) {
         	this.executor = executor;
         	this.command = command;
@@ -46,7 +44,7 @@ public class Command {
         try {
             Constructor<PluginCommand> c = PluginCommand.class.getDeclaredConstructor(String.class, Plugin.class);
             c.setAccessible(true);
-
+            
             PluginCommand cmd = c.newInstance(command, Main.get());
             cmd.setAliases(aliases);
             cmd.setPermission(permission);
@@ -64,7 +62,6 @@ public class Command {
     
     private void registerPluginCommand() {
         if (pluginCommand == null) return;
-
         try {
             Field f = Bukkit.getPluginManager().getClass().getDeclaredField("commandMap");
             f.setAccessible(true);
