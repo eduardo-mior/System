@@ -68,7 +68,7 @@ public class ComandoKit implements CommandExecutor {
 		String id = args[0].toLowerCase();
 		if (!Kits.contains(id)) {
 			s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit-id%", id));
-			if (!s.hasPermission("system.kit.all")) {
+			if (!s.hasPermission("system.kit.all") && !s.isOp()) {
 				ComandoKits.ListKits(s);
 			} else {
 				ComandoKits.ListKitsForStaff(s);
@@ -80,7 +80,7 @@ public class ComandoKit implements CommandExecutor {
 		Kit kit = Kits.get(id);
 		String perm = kit.getPermissao();
 		String nomeKit = kit.getNome();
-		if (!s.hasPermission(perm) && !s.hasPermission("system.kit.all")) {
+		if (!s.hasPermission(perm) && !s.hasPermission("system.kit.all") && !s.isOp()) {
 			s.sendMessage(Mensagens.Kit_Sem_Permissao.replace("%kit-id%", id).replace("%kit-nome%",	nomeKit));
 			return true;
 		}

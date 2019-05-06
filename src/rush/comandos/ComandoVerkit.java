@@ -11,6 +11,7 @@ import org.bukkit.inventory.ItemStack;
 import rush.configuracoes.Mensagens;
 import rush.entidades.Kit;
 import rush.entidades.Kits;
+import rush.utils.GuiHolder;
 
 public class ComandoVerkit implements CommandExecutor {
 
@@ -27,7 +28,11 @@ public class ComandoVerkit implements CommandExecutor {
 		String nome = args[0].toLowerCase();
 		if (!Kits.contains(nome)) {
 			s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit-id%", nome));
-			ComandoKits.ListKits(s);
+			if (!s.hasPermission("system.kit.all") && !s.isOp()) {
+				ComandoKits.ListKits(s);
+			} else {
+				ComandoKits.ListKitsForStaff(s);
+			}
 			return true;
 		}
 
@@ -42,7 +47,7 @@ public class ComandoVerkit implements CommandExecutor {
 
 		// Pegando o player e abrindo um inventarios com os itens, o resto é feito pela classe KitsListener
 		Player p = (Player) s;
-		Inventory inv = Bukkit.getServer().createInventory(p, 36, "Visualizando Kit§f§o §1");
+		Inventory inv = Bukkit.getServer().createInventory(new GuiHolder(-990), 36, "Visualizando Kit");
 		for (ItemStack item : kit.getItens()) {
 			if (item != null) inv.addItem(item);
 		}

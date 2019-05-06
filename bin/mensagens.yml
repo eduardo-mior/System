@@ -615,7 +615,7 @@ Sem-Permissao-Sethome: "&cVocê não tem permissão para definir uma home neste 
 # +------------------------------------------------------+ #
 ############################################################
 Estatisticas-Comando-Incorreto: "&cComando incorreto, use /estatisticas [player]"
-# Lista completa com todas as variaveis: https://gist.github.com/RUSHyoutuber/d84a926b1ea44db21a0187d578dc4b87
+# Lista completa com todas as variaveis: https://pastebin.com/raw/JKrCGWzv
 Estatisticas-Informacoes: |
    &6&l       Estatísticas
    &6 
@@ -637,7 +637,7 @@ Estatisticas-Informacoes: |
 # +------------------------------------------------------+ #
 ############################################################
 Verinfo-Comando-Incorreto: "&cComando incorreto, use /verinfo <player>"
-# Lista completa com todas as variaveis: https://gist.github.com/RUSHyoutuber/6c9dca0ba0edcfef9182db123fec1a5b
+# Lista completa com todas as variaveis: https://pastebin.com/raw/kCM62v7W
 Verinfo-Informacoes: |
    &e&l       Informações de %player-name%
    &a

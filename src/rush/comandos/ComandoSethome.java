@@ -46,7 +46,7 @@ public class ComandoSethome implements CommandExecutor {
 		
 		// Verificando se o player já atingiu o limite máximo de homes permitidas
 		int limite = getHomesLimit(p);
-		if (homes >= limite) {
+		if (homes >= limite && !s.hasPermission("system.home.admin") && !s.isOp()) {
 			s.sendMessage(Mensagens.Limite_De_Homes_Atingido.replace("%limite%", String.valueOf(limite)));
 			return true;
 		} 

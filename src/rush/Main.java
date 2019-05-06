@@ -259,7 +259,6 @@ public class Main extends JavaPlugin {
 		new Command("setmundovip", "system.setmundovip", new ComandoSetmundovip());
 		new Command("setspawn", "system.setspawn", new ComandoSetspawn());
 		new Command("setwarp", "system.setwarp", new ComandoSetwarp());
-		new Command("skull", "system.skull", new ComandoSkull());
 		new Command("slime", "system.slime", new ComandoSlime());
 		new Command("spawn", "system.spawn", new ComandoSpawn());
 		new Command("speed", "system.speed", new ComandoSpeed());
@@ -288,6 +287,7 @@ public class Main extends JavaPlugin {
 			new Command("compactar", "system.compactar", new ComandoCompactar());
 			new Command("editaritem", "system.editaritem", new ComandoEditaritem());
 			new Command("renderizacao", "system.renderizacao", new ComandoRenderizacao());
+			new Command("skull", "system.skull", new ComandoSkull());
 			new Command("title", "system.title", new ComandoTitle());
 			new Command("warp", "system.warp", new ComandoWarp());
 		}

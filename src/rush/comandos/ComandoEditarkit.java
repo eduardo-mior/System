@@ -2,6 +2,8 @@ package rush.comandos;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -15,6 +17,7 @@ import org.bukkit.inventory.ItemStack;
 import rush.configuracoes.Mensagens;
 import rush.entidades.Kit;
 import rush.entidades.Kits;
+import rush.utils.GuiHolder;
 import rush.utils.manager.DataManager;
 
 public class ComandoEditarkit implements CommandExecutor {
@@ -32,7 +35,7 @@ public class ComandoEditarkit implements CommandExecutor {
 		String id = args[0].toLowerCase();
 		if (!Kits.contains(id)) {
 			s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit-id%", id));
-			ComandoKits.ListKits(s);
+			ComandoKits.ListKitsForStaff(s);
 			return true;
 		}
 			
@@ -48,10 +51,15 @@ public class ComandoEditarkit implements CommandExecutor {
 				s.sendMessage(Mensagens.Console_Nao_Pode);
 				return true;
 			}
-				
-				// Pegando o player e abrindo um inventarios com os itens, o resto é feito pela classe KitsListener
+			
+			// Criando as propriedades do inventario o holder do inventario
+			Map<String, Object> propriedades = new HashMap<>();
+			propriedades.put("kit", id);
+			GuiHolder holder = new GuiHolder(995, propriedades);
+			
+			// Pegando o player e abrindo um inventarios com os itens, o resto é feito pela classe KitsListener
 			Player p = (Player)s;
-			Inventory inv = Bukkit.getServer().createInventory(p, 36, "Kit §4§n" + id);
+			Inventory inv = Bukkit.getServer().createInventory(holder, 36, "Editando Kit: " + id);
 			for (ItemStack item : kit.getItens()) {
 				if (item != null) inv.addItem(item);
 			}

@@ -6,6 +6,7 @@ import org.bukkit.potion.PotionEffectType;
 public enum PotionName {
 
 	ABSORPTION("Absorção"),
+	BAD_OMEN("Mau presságio"),
 	BLINDNESS("Cegueira"),
 	CONDUIT_POWER("Proteção do mar"),
 	CONFUSION("Náusea"),
@@ -17,6 +18,7 @@ public enum PotionName {
 	HARM("Dano instantâneo"),
 	HEAL("Vida instantânea"),
 	HEALTH_BOOST("Vida extra"),
+	HERO_OF_THE_VILLAGE("Herói da vila"),
 	HUNGER("Fome"),
 	INCREASE_DAMAGE("Força"),
 	INVISIBILITY("Invisibilidade"),

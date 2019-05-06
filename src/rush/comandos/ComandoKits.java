@@ -16,7 +16,11 @@ public class ComandoKits implements CommandExecutor {
 	
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
-		ListKits(s);
+		if (!s.hasPermission("system.kit.all") && !s.isOp()) {
+			ComandoKits.ListKits(s);
+		} else {
+			ComandoKits.ListKitsForStaff(s);
+		}
 		return true;
 	}
 

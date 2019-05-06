@@ -19,6 +19,7 @@ import rush.Main;
 import rush.configuracoes.Mensagens;
 import rush.entidades.Kit;
 import rush.entidades.Kits;
+import rush.utils.GuiHolder;
 import rush.utils.manager.DataManager;
 import rush.utils.serializer.Serializer;
 import rush.utils.serializer.SerializerNEW;
@@ -28,37 +29,43 @@ public class KitsListener implements Listener {
 
 	@EventHandler
 	public void InventoryClose(InventoryCloseEvent e) {
-		
-		if (e.getInventory().getTitle().startsWith("Kit §2§n")) {
+		if (e.getInventory().getHolder() instanceof GuiHolder) {
+			
 			Player p = (Player) e.getPlayer();
-			if (p.hasPermission("system.criarkit")) {
-				Inventory inv = e.getInventory();
-				createKit(inv, p);
-				return;
+			GuiHolder holder = (GuiHolder) e.getInventory().getHolder();
+			int guiID = holder.getId();
+			
+			if (guiID == 997) {
+				String kit = (String) holder.getProperty("kit");
+				if (p.hasPermission("system.criarkit")) {
+					createKit(e.getInventory(), p, kit);
+					return;
+				}
 			}
-		}
-
-		else if (e.getInventory().getTitle().startsWith("Kit §4§n")) {
-			Player p = (Player) e.getPlayer();
-			if (p.hasPermission("system.editarkit")) {
-				Inventory inv = e.getInventory();
-				editKit(inv, p);
-				return;
+		
+			else if (guiID == 995) {
+				String kit = (String) holder.getProperty("kit");
+				if (p.hasPermission("system.editarkit")) {
+					editKit(e.getInventory(), p, kit);
+					return;
+				}
 			}
 		}
 	}
 	
 	@EventHandler(priority = EventPriority.NORMAL, ignoreCancelled = true)
 	public void InvetoryClick(InventoryClickEvent e) {
-		if (e.getInventory().getTitle().startsWith("Visualizando Kit§f§o ")) {
-			e.setResult(Result.DENY);
-			e.setCancelled(true);
+		if (e.getInventory().getHolder() instanceof GuiHolder) {
+			int guiID = ((GuiHolder) e.getInventory().getHolder()).getId();
+			if (guiID == -990) {
+				e.setResult(Result.DENY);
+				e.setCancelled(true);
+			}
 		}
 	}
 
 	// Método para criar o kit
-	private void createKit(Inventory inv, Player p) {
-		String id = inv.getName().substring(8, inv.getName().length());
+	private void createKit(Inventory inv, Player p, String id) {
 		String permissao = "system.kit." + id;
 		String itens = serializeItens(inv.getContents());
 		Kit kit = new Kit(id, permissao, "§rKit '" + id + "' sem nome! Use /editarkit!", 5, itens);
@@ -79,8 +86,7 @@ public class KitsListener implements Listener {
 	}
 	
 	// Método para ediar o kit
-	private void editKit(Inventory inv, Player p) {
-		String id = inv.getName().substring(8, inv.getName().length());
+	private void editKit(Inventory inv, Player p, String id) {
 		String itens = serializeItens(inv.getContents());
 		Kit kit = Kits.get(id);
 		File file = DataManager.getFile(id, "kits");

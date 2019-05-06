@@ -1,9 +1,10 @@
 package rush.apis;
 
 import java.lang.reflect.Field;
+import java.util.Base64;
+import java.util.Base64.Encoder;
 import java.util.UUID;
 
-import org.apache.commons.codec.binary.Base64;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
@@ -15,6 +16,7 @@ import rush.utils.ReflectionUtils;
 
 public class SkullAPI {
 	
+	private static Encoder encoder;
 	private static ItemStack base;
 	private static Field profileField;
 	
@@ -23,7 +25,7 @@ public class SkullAPI {
 		try {
 			SkullMeta skullMeta = (SkullMeta) skull.getItemMeta();
 			GameProfile profile = new GameProfile(UUID.randomUUID(), null);
-			byte[] encodedData = Base64.encodeBase64(String.format("{textures:{SKIN:{url:\"%s\"}}}", url).getBytes());
+			byte[] encodedData = encoder.encode(String.format("{textures:{SKIN:{url:\"%s\"}}}", url).getBytes());
 			profile.getProperties().put("textures", new Property("textures", new String(encodedData)));
 			profileField.set(skullMeta, profile);
 			skull.setItemMeta(skullMeta);
@@ -44,11 +46,12 @@ public class SkullAPI {
 	static void load() {
 		try 
 		{
-			Class<?> skullMetaClass = ReflectionUtils.getOBClass("inventory.CraftMetaSkull");			
+			Class<?> skullMetaClass = ReflectionUtils.getOBClass("inventory.CraftMetaSkull");		
 			profileField = skullMetaClass.getDeclaredField("profile");
 			profileField.setAccessible(true);
 			base = new ItemStack(Material.SKULL_ITEM);
 			base.setDurability((short) 3);
+			encoder = Base64.getEncoder();
 		}
 		catch (Throwable e) {}
 	}

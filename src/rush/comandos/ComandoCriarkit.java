@@ -1,5 +1,8 @@
 package rush.comandos;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -9,6 +12,7 @@ import org.bukkit.inventory.Inventory;
 
 import rush.configuracoes.Mensagens;
 import rush.entidades.Kits;
+import rush.utils.GuiHolder;
 
 public class ComandoCriarkit implements CommandExecutor {
 	
@@ -39,10 +43,15 @@ public class ComandoCriarkit implements CommandExecutor {
 			s.sendMessage("§cO id do kit não pode conter mais de 10 caracteres.");
 			return true;
 		}
-			
+		
+		// Criando as propriedades do inventario o holder do inventario
+		Map<String, Object> propriedades = new HashMap<>();
+		propriedades.put("kit", kit);
+		GuiHolder holder = new GuiHolder(997, propriedades);
+		
 		// Pegando o player abrindo um inventario... o resto do processo é feito pela classe KitsListener
-		Player p = (Player)s;
-		Inventory inv = Bukkit.getServer().createInventory(p, 36, "Kit §2§n" + kit);
+		Player p = (Player) s;
+		Inventory inv = Bukkit.getServer().createInventory(holder, 36, "Criando kit: " + kit);
 		p.openInventory(inv);
 		return true;
 	}
