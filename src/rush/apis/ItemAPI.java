@@ -2,6 +2,7 @@ package rush.apis;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.Map;
 import java.util.Random;
 
 import org.bukkit.inventory.ItemStack;
@@ -26,6 +27,7 @@ public class ItemAPI {
 	private static Method hasNBTTagCompound;
 	private static Method getNBTTagCompound;
 	private static Method hasKey;
+	private static Method removeKey;
 	private static Method getString;
 	private static Method getBoolean;
 	private static Method setString;
@@ -36,7 +38,8 @@ public class ItemAPI {
 	private static Method setNBTBaseCompound;
 	private static Method addNBTBaseTag;
 	private static Method createTag;
-	
+	private static Field map;
+
 	public static ItemStack setAttributeNBT(ItemStack item, String attribute, double value, int operation) {
 		int least = new Random().nextInt(8192);
 		int most = new Random().nextInt(8192);
@@ -157,6 +160,40 @@ public class ItemAPI {
 		}
 	}
 	
+	public static ItemStack removeInfo(ItemStack item, String key) {
+		try	{
+			Object NBTTagCompound;
+			Object CraftItemStack = asNMSCopy.invoke(null, item);
+			boolean hasNBTTag = (boolean) hasNBTTagCompound.invoke(CraftItemStack);
+			if (hasNBTTag) {
+				NBTTagCompound = getNBTTagCompound.invoke(CraftItemStack);
+			} else {
+				NBTTagCompound = NBTTagCompoundClass.newInstance();
+			}
+			removeKey.invoke(NBTTagCompound, key);
+			setNBTTagCompound.invoke(CraftItemStack, NBTTagCompound);
+			return (ItemStack) asCraftMirror.invoke(null, CraftItemStack);
+		} catch (Throwable e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
+	@SuppressWarnings("unchecked")
+	public static Map<String, Object> getInfos(ItemStack item) {
+		try {
+			Object CraftItemStack = asNMSCopy.invoke(null, item);
+			boolean hasNBTTag = (boolean) hasNBTTagCompound.invoke(CraftItemStack);
+			if (hasNBTTag) {
+				Object NBTTagCompound = getNBTTagCompound.invoke(CraftItemStack);
+				return (Map<String, Object>) map.get(NBTTagCompound);
+			}
+			return null;
+		} catch (Throwable e) {
+			e.printStackTrace();
+			return null;
+		}		
+	}
 	public static boolean isUnbreakable(ItemStack item) {
 		try {
 			Object NBTTagCompound;
@@ -258,10 +295,15 @@ public class ItemAPI {
 
 			// Basic NBTTag Handle Methods
 			hasKey = NBTTagCompoundClass.getDeclaredMethod("hasKey", String.class);
+			removeKey = NBTTagCompoundClass.getDeclaredMethod("remove", String.class);
 			getString = NBTTagCompoundClass.getDeclaredMethod("getString", String.class);
 			getBoolean = NBTTagCompoundClass.getDeclaredMethod("getBoolean", String.class);
 			setString = NBTTagCompoundClass.getDeclaredMethod("setString", String.class, String.class);
 			setBoolean = NBTTagCompoundClass.getDeclaredMethod("setBoolean", String.class, boolean.class);
+			
+			// Item NBTTagCompound Field
+			map = NBTTagCompoundClass.getDeclaredField("map");
+			map.setAccessible(true);
 			
 			// Advance NBTTag Handle
 			getNBTBase = NBTTagCompoundClass.getDeclaredMethod("clone");

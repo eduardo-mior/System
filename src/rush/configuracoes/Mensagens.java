@@ -264,6 +264,7 @@ public class Mensagens {
 	public static String Potion_Item_Invalido;
 	public static String Potion_Efeito_Invalido;
 	public static String Potion_Editada_Sucesso;
+	public static String Potion_Limpada_Sucesso;
 	public static String Sem_Permissao_Sethome;
 	public static String Sem_Permissao_Teleportar;
 	public static String Reparar_Comando_Incorreto;
@@ -566,6 +567,7 @@ public class Mensagens {
 		Potion_Item_Invalido = getString(config, "Potion-Item-Invalido"); 
 		Potion_Efeito_Invalido = getString(config, "Potion-Efeito-Invalido"); 
 		Potion_Editada_Sucesso = getString(config, "Potion-Editada-Sucesso"); 
+		Potion_Limpada_Sucesso = getString(config, "Potion-Limpada-Sucesso"); 
 		Sem_Permissao_Teleportar = getString(config, "Sem-Permissao-Teleportar"); 
 		Sem_Permissao_Sethome = getString(config, "Sem-Permissao-Sethome"); 
 		Reparar_Comando_Incorreto = getString(config, "Reparar-Comando-Incorreto"); 

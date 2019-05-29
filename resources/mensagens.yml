@@ -328,10 +328,14 @@ Vida-Regenerada-Com-Sucesso: "&aVida regenerada com sucesso."
 # |                    Comando /potion                   | #
 # +------------------------------------------------------+ #
 ############################################################
-Potion-Comando-Incorreto: "&cComando incorreto, use /potion <efeito> <duração> <nivel>"
+Potion-Comando-Incorreto: |
+  &cComando incorreto, use:
+  &c/potion clear &8-&7 Para remover todos os efeitos da poção.
+  &c/potion <efeito> <duração> <nivel> &8-&7 Para adicionar um efeito na poção.
 Potion-Efeito-Invalido: "&cO efeito '%effect%' não é um efeito valido.\n&eLista de efeitos: &7%lista%"
 Potion-Item-Invalido: "&cVocê deve estar segurando uma poção na mão para poder fazer isto."
 Potion-Editada-Sucesso: "&aEfeito '%effect%' adicionado com sucesso na poção."
+Potion-Limpada-Sucesso: "&aPoção limpada com sucesso." 
 # %duracao% mostra a duração da poção -- %amplificador% mostra o amplificador da poção
 
 ############################################################

@@ -13,6 +13,7 @@ import org.bukkit.inventory.meta.PotionMeta;
 import org.bukkit.potion.PotionEffect;
 import org.bukkit.potion.PotionEffectType;
 
+import rush.apis.ItemAPI;
 import rush.configuracoes.Mensagens;
 import rush.enums.PotionName;
 
@@ -28,11 +29,34 @@ public class ComandoPotion implements CommandExecutor {
 		}
 
 		// Se o sender for o console ele precisa especificar um player
-		if (args.length != 3) {
+		if (args.length < 1) {
 			s.sendMessage(Mensagens.Potion_Comando_Incorreto);
 			return true;
 		}
 
+		// Pegando o player o item na sua mão e verificando se é valido
+		Player p = (Player) s;
+		ItemStack hand = p.getItemInHand();
+		if (hand.getType() != Material.POTION) {
+			s.sendMessage(Mensagens.Potion_Item_Invalido);
+			return true;
+		}
+		
+		// Verificando se o player quer limpar a poção
+		if (args[0].equalsIgnoreCase("clear") || args[0].equalsIgnoreCase("reset") || args[0].equalsIgnoreCase("limpar")) {
+			hand = ItemAPI.saveInfo(hand, "CustomPotionEffects", "null");
+			hand = ItemAPI.saveInfo(hand, "Potion", "null");
+			p.setItemInHand(hand);
+			s.sendMessage(Mensagens.Potion_Limpada_Sucesso);
+			return true;
+		}
+
+		// Se o sender for o console ele precisa especificar um player
+		if (args.length < 3) {
+			s.sendMessage(Mensagens.Potion_Comando_Incorreto);
+			return true;
+		}
+		
 		// Pegando o tipo do efeito e verificando se é 1 efeito valido
 		String ef = args[0].toUpperCase();
 		PotionEffectType effectType = getPotionEffectType(ef);
@@ -49,14 +73,6 @@ public class ComandoPotion implements CommandExecutor {
 			amplifier = Integer.parseInt(args[2]) - 1;
 		} catch (NumberFormatException e) {
 			s.sendMessage(Mensagens.Numero_Invalido.replace("%numero%", e.getMessage().split("\"")[1]));
-			return true;
-		}
-
-		// Pegando o player o item na sua mão e verificando se é valido
-		Player p = (Player) s;
-		ItemStack hand = p.getItemInHand();
-		if (hand.getType() != Material.POTION) {
-			s.sendMessage(Mensagens.Potion_Item_Invalido);
 			return true;
 		}
 
@@ -89,4 +105,5 @@ public class ComandoPotion implements CommandExecutor {
 		}
 		return effects.toString().replace(",", Mensagens.Separador_De_Listas);
 	}
+	
 }
