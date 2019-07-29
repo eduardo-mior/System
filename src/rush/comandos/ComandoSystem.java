@@ -194,7 +194,7 @@ public class ComandoSystem implements CommandExecutor {
 		// Caso o argumento seja 'info' então é exibido algumas informações do plugin
 		if (cmd.equals("info")) {					
 			s.sendMessage("§e*-=-=-=-=-=-=-* §bServer Info §e*-=-=-=-=-=-=-* ");
-			s.sendMessage("§ePlugin Version: §61.14");
+			s.sendMessage("§ePlugin Version: §61.14.1");
 			s.sendMessage("§eJava version: §6" + System.getProperty("java.version"));
 			s.sendMessage("§eMinecraft Version: §6" + SystemInfo.getMinecraftVersion());
 			s.sendMessage("§eServerAPI Vesrion: §6" + SystemInfo.getApiVersion());
@@ -296,7 +296,7 @@ public class ComandoSystem implements CommandExecutor {
 				s.sendMessage("§e§lImportante: §eOs plugins desligados aparece em §cvermelho §ena lista do /plugins, os plugins não carregados não aparecem na lista do /plugins.");
 				s.sendMessage(" ");
 				s.sendMessage("§bQual a diferença entre §nDisable §be §nUnload§b?");
-				s.sendMessage("§eA função §6disable§e serve para desligar um plugin do servidor. O plugin continuara carregado no serivdor, porém ele estara desligado.");
+				s.sendMessage("§eA função §6disable§e serve para desligar um plugin do servidor. O plugin continuara carregado no servidor, porém ele estara desligado.");
 				s.sendMessage("§eA função §6unload§e serve para descarregar totalmente um plugin do servidor. O plugin não continuara carregado no servidor, ele sera desligado e removido.");
 				s.sendMessage(" ");
 				s.sendMessage("§bQual a diferença entre §nEnable §be §nLoad§b?");

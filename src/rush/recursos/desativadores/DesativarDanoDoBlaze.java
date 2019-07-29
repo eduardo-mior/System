@@ -9,7 +9,7 @@ import org.bukkit.event.entity.ProjectileLaunchEvent;
 public class DesativarDanoDoBlaze implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
-	public void aoLancarAsCabecas(ProjectileLaunchEvent e) {
+	public void aoLancarAsBolasDeFogo(ProjectileLaunchEvent e) {
 		if (e.getEntityType() == EntityType.SMALL_FIREBALL) {
 			if (e.getEntity().getShooter() != null) {
 				e.setCancelled(true);

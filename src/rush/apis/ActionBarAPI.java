@@ -53,7 +53,7 @@ public class ActionBarAPI {
 				a = ReflectionUtils.getNMSClass("ChatSerializer").getMethod("a", String.class);
 			}
 			
-			if (Main.getVersion() == Version.v1_12 || Main.getVersion() == Version.v1_13 || Main.getVersion() == Version.v1_14) {
+			if (Main.getVersion() == Version.v1_12 || Main.isVeryNewVersion()) {
 				typeMessageClass = ReflectionUtils.getNMSClass("ChatMessageType");
 				typeMessage = typeMessageClass.getEnumConstants()[2];
 			} else {

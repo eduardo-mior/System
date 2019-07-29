@@ -2,6 +2,7 @@
 #                              |               INFORMAÇÕES                 |
 #                              +-------------------------------------------+
 #    +---------------------------------------------------------------------------------------------+
+#    |                                                                                             |
 #    | 1) Todos os comandos e recursos do plugin podem ser ativados e desativados acessando os     |
 #    |    arquivos de configuração do plugin [comandos.yml & settings.yml].                        | 
 #    |                                                                                             |
@@ -27,6 +28,10 @@
 #    |    problema sejá corrigido o mais rapido possísvel.                                         |
 #    |                                                                                             |
 #    | 7) Você pode encontrar mais informações usando o comando /system                            |
+#    |                                                                                             |
+#    | 8) Você pode encontrar os nomes dos tipos de inventarios, nomes das entidades, nomes do     |
+#    |    sons, nome dos encantamentos e muito mais neste link: https://pastebin.com/raw/x0eEJJpw  |
+#    |                                                                                             |
 #    +---------------------------------------------------------------------------------------------+
 #
 #
@@ -39,6 +44,7 @@
 #    | #3 Canal BukkitTeamBR: https://www.youtube.com/watch?v=Pi2b3jQpKC8                          |
 #    | #4 Canal ZappyCraft: https://www.youtube.com/watch?v=55HSigP2-2M                            |
 #    | #5 Canal ZappyCraft: https://www.youtube.com/watch?v=EPhHSKwpc2Y                            |
+#    | #6 Canal PluginX: https://www.youtube.com/watch?v=Yt9wAv66j9w                               |
 #    +---------------------------------------------------------------------------------------------+
 #
 #

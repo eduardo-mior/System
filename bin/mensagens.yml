@@ -405,7 +405,7 @@ ExecutarSom-Comando-Incorreto: |
   &cComando incorreto, use:
   &c/executarsom <som> <player> &8-&7 Envia o som para um player.
   &c/executarsom <som> all &8-&7 Envia o som para todos os players.
-Som-Invalido: "&cEste SOM não é um som valido."
+Som-Invalido: "&cEste SOM não é um som valido. Veja a lista completa de sons aqui: https://pastebin.com/raw/x0eEJJpw"
 Som-Executado-Player: "&aO som '%som%' foi executado para o player %player%."
 Som-Executado-Todos: "&aO som '%som%' foi executado para todos os players do servidor."
 
@@ -680,15 +680,6 @@ Renderizacao-Alterado-Sucesso: "&aRenderização alterada com sucesso para %rend
 
 ############################################################
 # +------------------------------------------------------+ #
-# |              Comando /system terminal                | #
-# +------------------------------------------------------+ #
-############################################################
-Terminal-Comando-Incorreto: "&cComando incorreto, use /system terminal <comando>"
-Terminal-Erro-Comando: "&cErro ao tentar executar o comando!\n&cErro: &f%erro%"
-Terminal-Erro-Desconhecido: "&cErro desconhecido ao tentar executar o comando!\n&cErro: &f%erro%"
-
-############################################################
-# +------------------------------------------------------+ #
 # |                   Comando /system                    | #
 # +------------------------------------------------------+ #
 ############################################################
@@ -738,3 +729,12 @@ Plugin-Religado-Com-Sucesso: "&ePlugin religado com sucesso!"
 Plugin-Carregado-Com-Sucesso: "&aPlugin '%plugin%' carregado com sucesso!"
 Plugin-Descarregado-Com-Sucesso: "&aPlugin '%plugin%' descarregado com sucesso!"
 Plugin-Recarregado-Com-Sucesso: "&ePlugin recarregado com sucesso!"
+
+############################################################
+# +------------------------------------------------------+ #
+# |              Comando /system terminal                | #
+# +------------------------------------------------------+ #
+############################################################
+Terminal-Comando-Incorreto: "&cComando incorreto, use /system terminal <comando>"
+Terminal-Erro-Comando: "&cErro ao tentar executar o comando!\n&cErro: &f%erro%"
+Terminal-Erro-Desconhecido: "&cErro desconhecido ao tentar executar o comando!\n&cErro: &f%erro%"

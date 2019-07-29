@@ -118,6 +118,7 @@ import rush.recursos.bloqueadores.BloquearTeleportPorPortal;
 import rush.recursos.desativadores.DesativarChuva;
 import rush.recursos.desativadores.DesativarCicloDoDia;
 import rush.recursos.desativadores.DesativarDanoDoBlaze;
+import rush.recursos.desativadores.DesativarDanoDoCacto;
 import rush.recursos.desativadores.DesativarDanoDoEnderDragon;
 import rush.recursos.desativadores.DesativarDanoDoGhast;
 import rush.recursos.desativadores.DesativarDanoDoWither;
@@ -440,7 +441,13 @@ public class Main extends JavaPlugin {
 		}
 
 		if (Settings.Desativar_Dano_Do_Blaze) {
-			pm.registerEvents(new DesativarDanoDoBlaze(), this);
+			if (!isVeryOldVersion()) {
+				pm.registerEvents(new DesativarDanoDoBlaze(), this);
+			}
+		}
+		
+		if (Settings.Desativar_Dano_Do_Cacto) {
+			pm.registerEvents(new DesativarDanoDoCacto(), this);
 		}
 		
 		if (Settings.Desativar_Dano_Do_EnderDragon) {
@@ -448,7 +455,9 @@ public class Main extends JavaPlugin {
 		}
 
 		if (Settings.Desativar_Dano_Do_Ghast) {
-			pm.registerEvents(new DesativarDanoDoGhast(), this);
+			if (!isVeryOldVersion()) {
+				pm.registerEvents(new DesativarDanoDoGhast(), this);
+			}
 		}
 		
 		if (Settings.Desativar_Dano_Do_Wither) {
@@ -582,7 +591,7 @@ public class Main extends JavaPlugin {
 		if (Settings.AtivarAddons_Legendchat) {
 			if (pm.getPlugin("Legendchat") == null) {
 				getServer().getConsoleSender().sendMessage("§c[System] Legendchat nao encontrado, desativando addons!");
-			} else {
+			} else if (Settings.CorAutomatica != null) {
 				pm.registerEvents(new LegendChat(), this);
 			}
 		}
@@ -689,6 +698,8 @@ public class Main extends JavaPlugin {
 	}
 
 	public static boolean isNewVersion() {
+		if (version == Version.v1_15)
+			return true;
 		if (version == Version.v1_14)
 			return true;
 		if (version == Version.v1_13)
@@ -701,6 +712,8 @@ public class Main extends JavaPlugin {
 	}
 	
 	public static boolean isVeryNewVersion() {
+		if (version == Version.v1_15)
+			return true;
 		if (version == Version.v1_14)
 			return true;
 		if (version == Version.v1_13)

@@ -133,6 +133,7 @@ public class Settings {
 	public static boolean Bloquear_Kick_Por_Duplo_Login;
 	public static boolean Bloquear_Kick_Por_Duplo_Login_Super;
 	public static List<String> Mundos_Sem_Sistema_De_Back;
+	public static boolean Desativar_Dano_Do_Cacto;
 
 	public static void loadSettings() {
 		FileConfiguration config = ConfigManager.getConfig("settings");
@@ -226,7 +227,7 @@ public class Settings {
 		mcTopTag_Tag = config.getString("mcTopTag.Tag", "§9[*] ").replace('&', '§');
 		magnataTag_Tempo_De_Checagem = config.getLong("magnataTag.Tempo-De-Checagem");
 		magnataTag_Tag = config.getString("magnataTag.Tag", "§2[$] ").replace('&', '§');
-		CorAutomatica = Utils.mapToMapString(config.getConfigurationSection("CorAutomatica").getValues(true));
+		try { CorAutomatica = Utils.mapToMapString(config.getConfigurationSection("CorAutomatica").getValues(true)); } catch (Throwable e) {} ;
 		Auto_Anuncio = config.getBoolean("Auto-Anuncio");
 		Destacar_Anuncio = config.getBoolean("Destacar-Anuncio");
 		Delay_Entre_Anuncios = config.getLong("Delay-Entre-Anuncios");
@@ -257,6 +258,7 @@ public class Settings {
 		Bloquear_Kick_Por_Duplo_Login = config.getBoolean("Bloquear-Kick-Por-Duplo-Login");
 		Bloquear_Kick_Por_Duplo_Login_Super = config.getBoolean("Super-Bloquear-Kick-Por-Duplo-Login");
 		Mundos_Sem_Sistema_De_Back = config.getStringList("Mundos-Sem-Sistema-De-Back");
+		Desativar_Dano_Do_Cacto = config.getBoolean("Desativar-Dano-Do-Cacto");
 	}
 	
 	private static String getString(FileConfiguration config, String path) {

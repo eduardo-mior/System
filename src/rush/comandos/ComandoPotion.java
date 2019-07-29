@@ -78,7 +78,7 @@ public class ComandoPotion implements CommandExecutor {
 
 		// Adicionando o efeito na poção
 		PotionMeta meta = (PotionMeta) hand.getItemMeta();
-		PotionEffect effect = new PotionEffect(effectType, (duration), (amplifier - 1));
+		PotionEffect effect = new PotionEffect(effectType, duration, amplifier);
 		meta.addCustomEffect(effect, true);
 		hand.setItemMeta(meta);
 		s.sendMessage(Mensagens.Potion_Editada_Sucesso

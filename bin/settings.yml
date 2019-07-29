@@ -69,7 +69,7 @@ Bloquear-Abrir-Containers:
   - "ENCHANTING"
   - "HOPPER"
   # OBS: Se você quiser bloquear a ANVIL você precisa desativar o recurso Bigorna-Infinita
-  # Lista de containers da 1.8: http://docs.codelanx.com/Bukkit/1.8/org/bukkit/event/inventory/InventoryType.html
+  # Lista de containers (tipos de inventarios) : https://pastebin.com/raw/x0eEJJpw
 
 # Este recurso impede o player de usar o SHIFT_CLICK em containers.
 # OBS: Para burlar use a permissão: system.bypass.shiftemcontainer
@@ -79,7 +79,7 @@ Bloquear-Shift-Em-Containers:
   - "ENDER_CHEST"
   - "BEACON"
   - "BREWING"
-  # Lista de containers da 1.8: http://docs.codelanx.com/Bukkit/1.8/org/bukkit/event/inventory/InventoryType.html
+  # Lista de containers (tipos de inventarios) : https://pastebin.com/raw/x0eEJJpw
 
 # É recomedando ativar isto para quem usa o BlackMarket ou BlackEconomy... 
 # Isto previne o bug do valor NaN ou null
@@ -107,6 +107,9 @@ Bloquear-Derreter-Gelo-E-Neve: false
 
 # Este recurso bloqueia as plantações de serem quebradas ao serem pisoteadas.
 Bloquear-Quebrar-Plantacoes-Pulando: false
+
+# Este recurso desativa o dando do cacto.
+Desativar-Dano-Do-Cacto: false
 
 # Este recurso desativa o tempo do minecraft.
 Desativar-Ciclo-Do-Dia: true

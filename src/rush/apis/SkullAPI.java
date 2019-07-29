@@ -46,11 +46,11 @@ public class SkullAPI {
 	static void load() {
 		try 
 		{
-			Class<?> skullMetaClass = ReflectionUtils.getOBClass("inventory.CraftMetaSkull");		
-			profileField = skullMetaClass.getDeclaredField("profile");
-			profileField.setAccessible(true);
 			base = new ItemStack(Material.SKULL_ITEM);
 			base.setDurability((short) 3);
+			Class<?> skullMetaClass = ReflectionUtils.getOBClass("inventory.CraftMetaSkull");
+			profileField = skullMetaClass.getDeclaredField("profile");
+			profileField.setAccessible(true);
 			encoder = Base64.getEncoder();
 		}
 		catch (Throwable e) {}
