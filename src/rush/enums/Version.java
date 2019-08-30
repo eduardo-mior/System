@@ -4,24 +4,24 @@ import org.bukkit.Bukkit;
 
 public enum Version {
 
-	v1_15,
-	v1_14,
-	v1_13,
-	v1_12,
-	v1_11,
-	v1_10,
-	v1_9,
-	v1_8,
-	v1_7,
-	v1_6,
-	v1_5,
-	DESCONHECIDA;
+	v1_15 (15),
+	v1_14 (14),
+	v1_13 (13),
+	v1_12 (12),
+	v1_11 (11),
+	v1_10 (10),
+	v1_9  (9),
+	v1_8  (8),
+	v1_7  (7),
+	v1_6  (6),
+	v1_5  (5),
+	DESCONHECIDA (999);
 	
 	public static Version getServerVersion() {
 		String ver = Bukkit.getVersion();
 		if (ver.contains("1.15")) 
 			return v1_15;
-		else if (ver.contains("1.15")) 
+		else if (ver.contains("1.14")) 
 			return v1_14;
 		else if (ver.contains("1.13"))
 			return v1_13;
@@ -43,6 +43,12 @@ public enum Version {
 			return v1_5;
 		else
 			return DESCONHECIDA;
+	}
+	
+	public int value;
+	
+	Version(int value) {
+		this.value = value;
 	}
 	
 }

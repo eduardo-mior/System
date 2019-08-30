@@ -96,7 +96,7 @@ public class Kit {
 
 	@Override
 	public String toString() {
-		return "Kit [permissao=" + permissao + ", delay=" + delay + ", itens=" + itens + "]";
+		return nome;
 	}
 
 	@Override

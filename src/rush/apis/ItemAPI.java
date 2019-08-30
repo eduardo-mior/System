@@ -7,6 +7,8 @@ import java.util.Random;
 
 import org.bukkit.inventory.ItemStack;
 
+import rush.Main;
+import rush.enums.Version;
 import rush.utils.ReflectionUtils;
 
 public class ItemAPI {
@@ -100,7 +102,11 @@ public class ItemAPI {
 			setNBTBaseCompound.invoke(Modifier, "UUIDMost", UUIDMost);
 
 			Object NBTBase = getNBTBase.invoke(Modifier);
-			addNBTBaseTag.invoke(AttributeModifiers, NBTBase);
+			if (Main.getVersion() == Version.v1_14 || Main.getVersion() == Version.v1_15) {
+				addNBTBaseTag.invoke(AttributeModifiers, 0, NBTBase);
+			} else {
+				addNBTBaseTag.invoke(AttributeModifiers, NBTBase);
+			}
 			setNBTBaseCompound.invoke(NBTTagCompound, "AttributeModifiers", AttributeModifiers);
 			setNBTTagCompound.invoke(CraftItemStack, NBTTagCompound);
 			
@@ -310,9 +316,14 @@ public class ItemAPI {
 			getNBTList = NBTTagCompoundClass.getDeclaredMethod("getList", String.class, int.class);
 			hasTag = NBTTagCompoundClass.getDeclaredMethod("hasKey", String.class);
 			setNBTBaseCompound = NBTTagCompoundClass.getDeclaredMethod("set", String.class, NBTBaseClass);
-			addNBTBaseTag = NBTTagListClass.getDeclaredMethod("add", NBTBaseClass);
 			createTag = NBTBaseClass.getDeclaredMethod("createTag", byte.class);
 			createTag.setAccessible(true);
+			if (Main.getVersion() == Version.v1_14 || Main.getVersion() == Version.v1_15) {
+				addNBTBaseTag = NBTTagListClass.getDeclaredMethod("b", int.class, NBTBaseClass);
+			} else {
+				addNBTBaseTag = NBTTagListClass.getDeclaredMethod("add", NBTBaseClass);
+			}
+			
 		}
 		catch (Throwable e) {}
 	}
