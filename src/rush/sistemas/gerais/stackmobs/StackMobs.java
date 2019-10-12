@@ -1,5 +1,7 @@
-package rush.sistemas.gerais;
+package rush.sistemas.gerais.stackmobs;
 
+import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -17,38 +19,44 @@ import rush.configuracoes.Settings;
 import rush.enums.EntityName;
 
 public class StackMobs implements Listener {
-	
 	private static int MAX_STACK = Settings.Limite_De_Mobs_Agrupados;
 	private static String NAME = Settings.Nome_Dos_Mobs;
 	private static boolean KILL_ALL = Settings.Kill_All;
-	
+
+	public StackMobs() {
+		if (Bukkit.getPluginManager().isPluginEnabled("HeroSpawners")) {
+			Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "[System] HeroSpawners encontrado, ativando suporte!");
+			Bukkit.getPluginManager().registerEvents(new HeroSpawnersListener(), Main.get());
+		}
+	}
+
 	@EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
 	public void onSpawn(CreatureSpawnEvent e) {
-		
+
 		LivingEntity spawned = e.getEntity();
 		boolean stack = spawned.hasMetadata("stack");
 		SpawnReason reason = e.getSpawnReason();
-		
+
 		if ((reason == SpawnReason.EGG) || (reason == SpawnReason.CUSTOM && !stack)) return;
-		
+
 		EntityType spawnedType = e.getEntityType();
 		for (Entity entity : spawned.getNearbyEntities(15D, 15D, 15D)) {
 			if (entity.getType() == spawnedType && !entity.isDead()) {
 				e.setCancelled(true);
 				int amount = 1;
 				LivingEntity living = (LivingEntity) entity;
-				
-				if (entity.hasMetadata("stack")) 
+
+				if (entity.hasMetadata("stack"))
 					amount += entity.getMetadata("stack").isEmpty() ? 0 : entity.getMetadata("stack").get(0).asInt();
-				
-				if (stack) 
+
+				if (stack)
 					amount += living.getMetadata("stack").isEmpty() ? 0 : living.getMetadata("stack").get(0).asInt();
-				
+
 				if (amount > MAX_STACK) {
 					e.setCancelled(true);
 					return;
 				}
-				
+
 				String type = EntityName.valueOf(e.getEntityType()).getName();
 				living.setCustomName(NAME.replace("%tipo%", type).replace("%quantia%", String.valueOf(amount)));
 				living.setCustomNameVisible(true);
@@ -56,7 +64,7 @@ public class StackMobs implements Listener {
 				return;
 			}
 		}
-		
+
 		if (!spawned.hasMetadata("stack")) {
 			String type = EntityName.valueOf(e.getEntityType()).getName();
 			spawned.setCustomName(NAME.replace("%tipo%", type).replace("%quantia%", String.valueOf(1)));
@@ -64,7 +72,7 @@ public class StackMobs implements Listener {
 			spawned.setMetadata("stack",  new FixedMetadataValue(Main.get(), 1));
 		}
 	}
-	
+
 	@EventHandler(priority = EventPriority.MONITOR)
 	public void onDeath(EntityDeathEvent e) {
 		LivingEntity entity = e.getEntity();
@@ -88,5 +96,4 @@ public class StackMobs implements Listener {
 			}
 		}
 	}
-	
 }
