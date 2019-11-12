@@ -50,7 +50,7 @@ public class StackMobs implements Listener {
 					amount += entity.getMetadata("stack").isEmpty() ? 0 : entity.getMetadata("stack").get(0).asInt();
 
 				if (stack)
-					amount += living.getMetadata("stack").isEmpty() ? 0 : living.getMetadata("stack").get(0).asInt();
+					amount += spawned.getMetadata("stack").isEmpty() ? 0 : spawned.getMetadata("stack").get(0).asInt();
 
 				if (amount > MAX_STACK) {
 					e.setCancelled(true);
