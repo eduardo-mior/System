@@ -3,7 +3,7 @@ version: 1.14.2
 name: System
 load: POSTWORLD
 author: RUSH
-softdepend: [Legendchat, mcMMO, MassiveCore, Factions, Vault]
+softdepend: [Legendchat, mcMMO, MassiveCore, Factions, Vault, HeroSpawners]
 
 permissions:
   system.alerta:
