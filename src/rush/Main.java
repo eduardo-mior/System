@@ -1,6 +1,7 @@
 package rush;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.event.HandlerList;
 import org.bukkit.plugin.PluginManager;
@@ -590,7 +591,7 @@ public class Main extends JavaPlugin {
 
 		if (Settings.AtivarAddons_Legendchat) {
 			if (pm.getPlugin("Legendchat") == null) {
-				getServer().getConsoleSender().sendMessage("�c[System] Legendchat nao encontrado, desativando addons!");
+				getServer().getConsoleSender().sendMessage(ChatColor.RED + "[System] Legendchat nao encontrado, desativando addons!");
 			} else if (Settings.CorAutomatica != null) {
 				pm.registerEvents(new LegendChat(), this);
 			}
@@ -599,7 +600,7 @@ public class Main extends JavaPlugin {
 		if (Settings.AtivarAddons_McMMO) {
 			if (!isOldVersion()) {
 				if (pm.getPlugin("mcMMO") == null) {
-					getServer().getConsoleSender().sendMessage("�c[System] McMMO nao encontrado, desativando addons!");
+					getServer().getConsoleSender().sendMessage(ChatColor.RED + "[System] McMMO nao encontrado, desativando addons!");
 				} else {
 					pm.registerEvents(new Mcmmo(), this);
 					if (pm.getPlugin("Legendchat") != null) {
@@ -612,7 +613,7 @@ public class Main extends JavaPlugin {
 
 		if (Settings.AtivarAddons_MassiveFactions) {
 			if (pm.getPlugin("MassiveCore") == null || pm.getPlugin("Factions") == null) {
-				getServer().getConsoleSender().sendMessage("�c[System] Factions nao encontrado, desativando addons!");
+				getServer().getConsoleSender().sendMessage(ChatColor.RED + "[System] Factions nao encontrado, desativando addons!");
 			} else {
 				setupFactions = true;
 			}
@@ -620,7 +621,7 @@ public class Main extends JavaPlugin {
 		
 		if (Settings.AtivarAddons_Vault) {
 			if (pm.getPlugin("Vault") == null) {
-				getServer().getConsoleSender().sendMessage("�c[System] Vault nao encontrado, desativando addons!");
+				getServer().getConsoleSender().sendMessage(ChatColor.RED + "[System] Vault nao encontrado, desativando addons!");
 			} else {
 				if (Vault.setupEconomy()) {
 					if (pm.getPlugin("Legendchat") != null) {
@@ -628,7 +629,7 @@ public class Main extends JavaPlugin {
 						MagnataTag.checkMagnata();
 					}
 				} else {
-					getServer().getConsoleSender().sendMessage("�c[System] Nenhum plugin valido de economia encontrado!");
+					getServer().getConsoleSender().sendMessage(ChatColor.RED + "[System] Nenhum plugin valido de economia encontrado!");
 				}
 			}
 		}
