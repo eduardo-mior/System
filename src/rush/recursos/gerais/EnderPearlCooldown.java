@@ -30,9 +30,8 @@ public class EnderPearlCooldown implements Listener {
 			p.sendMessage(Mensagens.Aguarde_EnderPearl_Cooldown);
 			p.getInventory().addItem(new ItemStack(Material.ENDER_PEARL));
 			return;
-		} else {
-			COOLDOWN.remove(p);
 		}
+		COOLDOWN.remove(p);
 		COOLDOWN.put(p, new Timestamp(System.currentTimeMillis() + (1000L * Settings.EnderPearl_Cooldown_Cooldown)));
 	}
 	
