@@ -16,7 +16,7 @@ Falha-Ao-Criar-Arquivo: "&c[ERRO] Nao foi possivel criar o arquivo %arquivo%!"
 Falha-Ao-Criar-Pasta: "&c[ERRO] Nao foi possivel criar a pasta %pasta%!"
 Falha-Ao-Salvar: "&c[ERRO] Nao foi possivel salvar o arquivo %arquivo%!"
 Erro-Versao-Nao-Suportada: "&cDesculpe mas este recurso que você esta tentando usar não esta disponível nesta versão do minecraft."
-Erro-Nome-Com-Caracteres-Especiais: "&cO caractere '&e%caractere%&c' não pode ser utilizado no nome %nome%.'
+Erro-Nome-Com-Caracteres-Especiais: "&cO caractere '&e%caractere%&c' não pode ser utilizado no nome %nome%."
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -694,6 +694,7 @@ System-Comando-Incorreto: |
   &c/system host &8-&7 Exibe informações sobre a host do server.
   &c/system plugin &8-&7 Administra os plugins do servidor.
   &c/system stop &8-&7 Desliga o servidor instantaneamente (Kill).
+  &c/system console <comando> &8-&7 Executa um comando no console do server.
   &c/system terminal <comando> &8-&7 Executa um comando no terminal (cmd) da host do server.
 System-Recarregado-Sucesso: |
   &aMensagens e configurações recarregadas com sucesso!
@@ -733,9 +734,17 @@ Plugin-Recarregado-Com-Sucesso: "&ePlugin recarregado com sucesso!"
 
 ############################################################
 # +------------------------------------------------------+ #
-# |              Comando /system terminal                | #
+# |               Comando /system terminal               | #
 # +------------------------------------------------------+ #
 ############################################################
 Terminal-Comando-Incorreto: "&cComando incorreto, use /system terminal <comando>"
 Terminal-Erro-Comando: "&cErro ao tentar executar o comando!\n&cErro: &f%erro%"
 Terminal-Erro-Desconhecido: "&cErro desconhecido ao tentar executar o comando!\n&cErro: &f%erro%"
+
+############################################################
+# +------------------------------------------------------+ #
+# |               Comando /system console                | #
+# +------------------------------------------------------+ #
+############################################################
+Console-Comando-Incorreto: "&cComando incorreto, use /system console <comando>"
+Console-Comando-Executado: "&aComando &7%comando%&a executado com sucesso no console."

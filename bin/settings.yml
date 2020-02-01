@@ -269,7 +269,7 @@ Kill-All: true
 # Lista dos tipos mobs que não serão agrupados pelo StkackMobs.
 # Lista de EntityType (entidades) : https://pastebin.com/raw/x0eEJJpw
 Lista-De-Mobs-Que-Nao-Agrupam:
-   - "CREEPER
+   - "CREEPER"
 
 ############################################################
 # +------------------------------------------------------+ #

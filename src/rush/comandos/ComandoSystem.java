@@ -194,7 +194,7 @@ public class ComandoSystem implements CommandExecutor {
 		// Caso o argumento seja 'info' então é exibido algumas informações do plugin
 		if (cmd.equals("info")) {					
 			s.sendMessage("§e*-=-=-=-=-=-=-* §bServer Info §e*-=-=-=-=-=-=-* ");
-			s.sendMessage("§ePlugin Version: §61.14.2");
+			s.sendMessage("§ePlugin Version: §61.14.3");
 			s.sendMessage("§eJava version: §6" + System.getProperty("java.version"));
 			s.sendMessage("§eMinecraft Version: §6" + SystemInfo.getMinecraftVersion());
 			s.sendMessage("§eServerAPI Vesrion: §6" + SystemInfo.getApiVersion());
@@ -736,7 +736,7 @@ public class ComandoSystem implements CommandExecutor {
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 
 		// Caso o argumento seja 'terminal' então é executado um comando no terminal
-		if (cmd.equals("terminal") || cmd.equals("cmd")) {
+		if (cmd.equals("terminal") || cmd.equals("cmd") || cmd.equals("prompt")) {
 			
 			// Verificando se o player digitou o número de argumentos corretos
 			if (args.length < 2) {
@@ -766,6 +766,26 @@ public class ComandoSystem implements CommandExecutor {
 					}
 				}	
 			}.start();
+			return true;
+		}
+		
+		//////////////////////////////////////////////////////////////////////////////////////////////////////
+		
+		// Caso o argumento seja 'console' então executamos um comando no console do servidor
+		if (cmd.equals("console") || cmd.equals("@console")) {
+			
+			// Verificando se o player digitou o número de argumentos corretos
+			if (args.length < 2) {
+				s.sendMessage(Mensagens.Terminal_Comando_Incorreto);
+				return true;
+			}
+			
+			// Pegando o comando a ser executado
+			String command = String.join(" ",  Arrays.copyOfRange(args, 1, args.length));
+		
+			// Executando o comando e informando o sender
+			Bukkit.dispatchCommand(Bukkit.getConsoleSender(), command);
+			s.sendMessage(Mensagens.Console_Comando_Executado.replace("%comando%", command));
 			return true;
 		}
 		

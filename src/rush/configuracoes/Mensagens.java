@@ -285,6 +285,8 @@ public class Mensagens {
 	public static String Terminal_Comando_Incorreto;
 	public static String Terminal_Erro_Comando;
 	public static String Terminal_Erro_Desconhecido;
+	public static String Console_Comando_Incorreto;
+	public static String Console_Comando_Executado;
 	public static String Renderizacao_Comando_Incorreto;
 	public static String Renderizacao_Ja_Definida;
 	public static String Renderizacao_Valor_Invalido_Players;
@@ -589,6 +591,8 @@ public class Mensagens {
 		Terminal_Comando_Incorreto = getString(config, "Terminal-Comando-Incorreto");
 		Terminal_Erro_Comando = getString(config, "Terminal-Erro-Comando");
 		Terminal_Erro_Desconhecido = getString(config, "Terminal-Erro-Desconhecido");
+		Console_Comando_Incorreto = getString(config, "Console-Comando-Incorreto");
+		Console_Comando_Executado = getString(config, "Console-Comando-Executado");
 		Renderizacao_Comando_Incorreto = getString(config, "Renderizacao-Comando-Incorreto");
 		Renderizacao_Ja_Definida = getString(config, "Renderizacao-Ja-Definida");
 		Renderizacao_Valor_Invalido_Players = getString(config, "Renderizacao-Valor-Invalido-Players");
