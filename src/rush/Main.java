@@ -303,7 +303,7 @@ public class Main extends JavaPlugin {
 			new Command("sgive", "system.sgive", new ComandoSGive());
 		}
 		
-		if (version != Version.v1_14) {
+		if (version != Version.v1_14 && version != Version.v1_15) {
 			new Command("bigorna", "system.bigorna", new ComandoBigorna());
 		}
 		
@@ -329,7 +329,7 @@ public class Main extends JavaPlugin {
 			AutoAnuncio.runMensagens();
 		}
 
-		if (Settings.Bigorna_Infinita && version != Version.v1_14) {
+		if (Settings.Bigorna_Infinita && version != Version.v1_14 && version != Version.v1_15) {
 			pm.registerEvents(new BigornaInfinita(), this);
 		}
 
