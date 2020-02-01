@@ -35,8 +35,14 @@ public class ComandoSethome implements CommandExecutor {
 			s.sendMessage(Mensagens.SetHome_Comando_Incorreto);
 			return true;
 		}
+		
+		// Verificando se o nome da Home contem caracteres especiais
+		if (Utils.stringContainsSpecialCharacters(args[0])) {
+			s.sendMessage(Mensagens.Erro_Nome_Com_Caracteres_Especiais.replace("%nome%", "da home").replace("%caractere%", Utils.getSpecialCharacters(args[0])));
+			return true;
+		}
 			     
-		// Pegando o player, a home a ser deleta, o arquivo do player a config e alista de homes
+		// Pegando o player, a home a ser setada, o arquivo do player a config e alista de homes
 		Player p = (Player) s;
 		String home = args[0].replace(":", "");
 		File file = DataManager.getFile(p.getName().toLowerCase(), "playerdata");
@@ -46,7 +52,7 @@ public class ComandoSethome implements CommandExecutor {
 		
 		// Verificando se o player já atingiu o limite máximo de homes permitidas
 		int limite = getHomesLimit(p);
-		if (homes >= limite && !s.hasPermission("system.home.admin") && !s.isOp()) {
+		if (homes >= limite && !s.hasPermission("system.home.admin") && !s.isOp() && !HOMES.contains(home)) {
 			s.sendMessage(Mensagens.Limite_De_Homes_Atingido.replace("%limite%", String.valueOf(limite)));
 			return true;
 		} 

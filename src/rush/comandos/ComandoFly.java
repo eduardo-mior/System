@@ -80,10 +80,11 @@ public class ComandoFly implements CommandExecutor {
 		if (!s.hasPermission("system.fly.staff")) {
 			Player p = (Player) s;
 			String world = p.getWorld().getName();
+			String perm = "system.fly." + world;
 			List<String> worlds = Settings.Mundos_Onde_Pode_Usar_Fly;
-
+			
 			// Verificando se o mundo onde ele esta pode ser usado fly
-			if (!worlds.contains(world)) {
+			if (!worlds.contains(world) && !p.hasPermission(perm)) {
 				s.sendMessage(Mensagens.Fly_Desabilitado_Neste_Mundo);
 				return true;
 			}

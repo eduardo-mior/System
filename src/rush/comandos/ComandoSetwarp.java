@@ -33,6 +33,12 @@ public class ComandoSetwarp implements CommandExecutor {
 			s.sendMessage(Mensagens.SetWarp_Comando_Incorreto);
 			return true;
 		}
+		
+		// Verificando se o nome da Warp contem caracteres especiais
+		if (Utils.stringContainsSpecialCharacters(args[0])) {
+			s.sendMessage(Mensagens.Erro_Nome_Com_Caracteres_Especiais.replace("%nome%", "da warp").replace("%caractere%", Utils.getSpecialCharacters(args[0])));
+			return true;
+		}
 			     
 		// Pegando o argumento, o file e a config
 		String warp = args[0].toLowerCase();

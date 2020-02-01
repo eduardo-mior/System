@@ -170,7 +170,7 @@ comandos:
     
   heal:
     ativar-comando: true
-    aliases: [curar] 
+    aliases: [curar, health] 
     descricao: "Regenera toda sua vida."
     sem-permissao: "&cVocê não tem permissão para utilizar este comando."
     

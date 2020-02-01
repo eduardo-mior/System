@@ -257,6 +257,7 @@ Lore-Do-Spawner:
 ############################################################
 Sistema-De-Stack-Mobs: true
 Limite-De-Mobs-Agrupados: 100
+Raio-De-Distancia: 16.0
 Nome-Dos-Mobs: "&e%quantia%x %tipo%"
 Kill-All: true
 # Se o Kill-All estiver false os mobs irão morrer 1 por vez.
@@ -264,6 +265,11 @@ Kill-All: true
 # Se o Kill-All estiver true todos os mobs serão mortos de uma
 # só vez. Se o player estiver abaixado (segurando shift) os
 # mobs serão mortos 1 por 1. Sem o shift mata todos de uma vez.
+
+# Lista dos tipos mobs que não serão agrupados pelo StkackMobs.
+# Lista de EntityType (entidades) : https://pastebin.com/raw/x0eEJJpw
+Lista-De-Mobs-Que-Nao-Agrupam:
+   - "CREEPER
 
 ############################################################
 # +------------------------------------------------------+ #

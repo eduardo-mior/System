@@ -1,5 +1,7 @@
 package rush.sistemas.gerais;
 
+import java.util.List;
+
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.LivingEntity;
@@ -21,6 +23,8 @@ public class StackMobs implements Listener {
 	private static int MAX_STACK = Settings.Limite_De_Mobs_Agrupados;
 	private static String NAME = Settings.Nome_Dos_Mobs;
 	private static boolean KILL_ALL = Settings.Kill_All;
+	private static double RANGE = Settings.Raio_De_Distancia;
+	private static List<EntityType> WHITE_LIST = Settings.Lista_De_Mobs_Que_Nao_Agrupam;
 	
 	@EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
 	public void onSpawn(CreatureSpawnEvent e) {
@@ -28,11 +32,12 @@ public class StackMobs implements Listener {
 		LivingEntity spawned = e.getEntity();
 		boolean stack = spawned.hasMetadata("stack");
 		SpawnReason reason = e.getSpawnReason();
-		
-		if ((reason == SpawnReason.EGG) || (reason == SpawnReason.CUSTOM && !stack)) return;
-		
 		EntityType spawnedType = e.getEntityType();
-		for (Entity entity : spawned.getNearbyEntities(15D, 15D, 15D)) {
+
+		if ((reason == SpawnReason.EGG) || (reason == SpawnReason.CUSTOM && !stack) || (WHITE_LIST.contains(spawnedType))) return;
+		
+		
+		for (Entity entity : spawned.getNearbyEntities(RANGE, RANGE, RANGE)) {
 			if (entity.getType() == spawnedType && !entity.isDead()) {
 				e.setCancelled(true);
 				int amount = 1;

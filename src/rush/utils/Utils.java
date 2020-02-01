@@ -7,6 +7,8 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -92,6 +94,19 @@ public class Utils {
 		return output;
 	}
 	
+	public static boolean stringContainsSpecialCharacters(String input) {
+		return pattern.matcher(input).find();
+	}
+	
+	public static String getSpecialCharacters(String input) {
+		Matcher matcher = pattern.matcher(input);
+		if (matcher.find()) {
+			return matcher.group();
+		} else {
+			return "";
+		}
+	}
+	
 	// ------------------------------
 	// BUKKIT UTILS
 	// ------------------------------
@@ -125,12 +140,12 @@ public class Utils {
     public static Location deserializeLocation(String s) {
     	String[] location = s.split(",");
 		return new Location(
-			   Bukkit.getWorld(   location[0]),
+			   Bukkit.getWorld   (location[0]),
 			   Double.parseDouble(location[1]),
 			   Double.parseDouble(location[2]),
 			   Double.parseDouble(location[3]),
-			   Float.parseFloat(  location[4]),
-			   Float.parseFloat(  location[5]))
+			   Float .parseFloat (location[4]),
+			   Float .parseFloat (location[5]))
 		;
     }
     
@@ -181,5 +196,6 @@ public class Utils {
 	
 	private static final File folder = new File("plugins");
 	private static final PluginLoader loader = Main.get().getPluginLoader();
+	private static final Pattern pattern = Pattern.compile("[^A-zÀ-ü0-9@$]");
 	
 }

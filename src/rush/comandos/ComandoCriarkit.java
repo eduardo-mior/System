@@ -13,6 +13,7 @@ import org.bukkit.inventory.Inventory;
 import rush.configuracoes.Mensagens;
 import rush.entidades.Kits;
 import rush.utils.GuiHolder;
+import rush.utils.Utils;
 
 public class ComandoCriarkit implements CommandExecutor {
 	
@@ -35,6 +36,12 @@ public class ComandoCriarkit implements CommandExecutor {
 		String kit = args[0].toLowerCase();
 		if (Kits.contains(kit)) {
 			s.sendMessage(Mensagens.Kit_Ja_Existe.replace("%kit-id%", kit));
+			return true;
+		}
+		
+		// Verificando se o nome do Kit contem caracteres especiais
+		if (Utils.stringContainsSpecialCharacters(args[0])) {
+			s.sendMessage(Mensagens.Erro_Nome_Com_Caracteres_Especiais.replace("%nome%", "do kit").replace("%caractere%", Utils.getSpecialCharacters(args[0])));
 			return true;
 		}
 			

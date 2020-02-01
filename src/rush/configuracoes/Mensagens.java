@@ -305,6 +305,7 @@ public class Mensagens {
 	public static String Plugin_Nao_Ligado;
 	public static String Plugin_Religado_Com_Sucesso;
 	public static String Plugin_Recarregado_Com_Sucesso;
+	public static String Erro_Nome_Com_Caracteres_Especiais;
 	
 	public static void loadMensagens() {
 		FileConfiguration config = ConfigManager.getConfig("mensagens");
@@ -608,6 +609,7 @@ public class Mensagens {
 		Plugin_Nao_Ligado = getString(config, "Plugin-Nao-Ligado");
 		Plugin_Religado_Com_Sucesso = getString(config, "Plugin-Religado-Com-Sucesso");
 		Plugin_Recarregado_Com_Sucesso = getString(config, "Plugin-Recarregado-Com-Sucesso");
+		Erro_Nome_Com_Caracteres_Especiais = getString(config, "Erro-Nome-Com-Caracteres-Especiais");
 	}
 	
 	private static String getString(FileConfiguration config, String path) {

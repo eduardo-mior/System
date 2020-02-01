@@ -218,7 +218,6 @@ public class Main extends JavaPlugin {
 
 	private void registrarComandos() {
 		new Command("back", "system.back", new ComandoBack());
-		new Command("bigorna", "system.bigorna", new ComandoBigorna());
 		new Command("chapeu", "system.chapeu", new ComandoChapeu());
 		new Command("clear", "system.clear", new ComandoClear());
 		new Command("clearchat", "system.clearchat", new ComandoClearChat());
@@ -287,10 +286,13 @@ public class Main extends JavaPlugin {
 			new Command("alerta", "system.alerta", new ComandoAlerta());
 			new Command("compactar", "system.compactar", new ComandoCompactar());
 			new Command("editaritem", "system.editaritem", new ComandoEditaritem());
-			new Command("renderizacao", "system.renderizacao", new ComandoRenderizacao());
 			new Command("skull", "system.skull", new ComandoSkull());
 			new Command("title", "system.title", new ComandoTitle());
 			new Command("warp", "system.warp", new ComandoWarp());
+		}
+		
+		if (!isOldVersion() && version != Version.v1_15 && version != Version.v1_14) {
+			new Command("renderizacao", "system.renderizacao", new ComandoRenderizacao());
 		}
 		
 		if (!isVeryOldVersion()) {
@@ -300,6 +302,11 @@ public class Main extends JavaPlugin {
 		if (!isVeryNewVersion()) {
 			new Command("sgive", "system.sgive", new ComandoSGive());
 		}
+		
+		if (version != Version.v1_14) {
+			new Command("bigorna", "system.bigorna", new ComandoBigorna());
+		}
+		
 	}
 
 	private void registrarEventos() {
@@ -322,7 +329,7 @@ public class Main extends JavaPlugin {
 			AutoAnuncio.runMensagens();
 		}
 
-		if (Settings.Bigorna_Infinita) {
+		if (Settings.Bigorna_Infinita && version != Version.v1_14) {
 			pm.registerEvents(new BigornaInfinita(), this);
 		}
 

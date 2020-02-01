@@ -9,6 +9,7 @@ public enum EntityName {
 	ARMOR_STAND("Suporte para Armaduras"),
 	ARROW("Flecha"),
 	BAT("Morcego"),
+	BEE("Abelha"),
 	BLAZE("Blaze"),
 	BOAT("Barco"),
 	CAT("Gato"),

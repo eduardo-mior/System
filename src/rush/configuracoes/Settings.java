@@ -5,6 +5,7 @@ import java.util.Map;
 
 import org.bukkit.Sound;
 import org.bukkit.configuration.file.FileConfiguration;
+import org.bukkit.entity.EntityType;
 import org.bukkit.event.inventory.InventoryType;
 
 import rush.utils.Utils;
@@ -75,7 +76,9 @@ public class Settings {
 	public static boolean Sistema_De_Stack_Mobs;
 	public static int Limite_De_Mobs_Agrupados;
 	public static String Nome_Dos_Mobs; 
+	public static double Raio_De_Distancia;
 	public static boolean Kill_All;
+	public static List<EntityType> Lista_De_Mobs_Que_Nao_Agrupam;
 	public static int Chance_De_Dropar_Ao_Explodir;
 	public static String Nome_Do_Spawner;
 	public static List<String> Lore_Do_Spawner;
@@ -203,7 +206,9 @@ public class Settings {
 		Sistema_De_Stack_Mobs = config.getBoolean("Sistema-De-Stack-Mobs");
 		Limite_De_Mobs_Agrupados = config.getInt("Limite-De-Mobs-Agrupados");
 		Nome_Dos_Mobs = config.getString("Nome-Dos-Mobs", "§e%quantia%x %tipo%").replace('&', '§'); 
+		Raio_De_Distancia = config.getDouble("Raio-De-Distancia", 15);
 		Kill_All = config.getBoolean("Kill-All");
+		Lista_De_Mobs_Que_Nao_Agrupam = Utils.listToListEnum(EntityType.class, config.getStringList("Lista-De-Mobs-Que-Nao-Agrupam"));
 		Mensagem_De_Boas_Vindas_Ativar = config.getBoolean("Mensagem-De-Boas-Vindas.Ativar");
 		Mensagem_De_Boas_Vindas_Mensagem = Utils.colorizeListString(config.getStringList("Mensagem-De-Boas-Vindas.Mensagem"));
 		Title_De_Boas_Vindas_Ativar = config.getBoolean("Title-De-Boas-Vindas.Ativar");

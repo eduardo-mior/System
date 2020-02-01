@@ -1,4 +1,4 @@
-﻿file-version: 7
+﻿file-version: 8
 ############################################################
 # +------------------------------------------------------+ #
 # |                   Mensagens gerais                   | #
@@ -16,6 +16,7 @@ Falha-Ao-Criar-Arquivo: "&c[ERRO] Nao foi possivel criar o arquivo %arquivo%!"
 Falha-Ao-Criar-Pasta: "&c[ERRO] Nao foi possivel criar a pasta %pasta%!"
 Falha-Ao-Salvar: "&c[ERRO] Nao foi possivel salvar o arquivo %arquivo%!"
 Erro-Versao-Nao-Suportada: "&cDesculpe mas este recurso que você esta tentando usar não esta disponível nesta versão do minecraft."
+Erro-Nome-Com-Caracteres-Especiais: "&cO caractere '&e%caractere%&c' não pode ser utilizado no nome %nome%.'
 
 ############################################################
 # +------------------------------------------------------+ #

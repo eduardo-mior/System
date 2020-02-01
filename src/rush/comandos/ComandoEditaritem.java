@@ -13,8 +13,10 @@ import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import rush.Main;
 import rush.apis.ItemAPI;
 import rush.configuracoes.Mensagens;
+import rush.enums.Version;
 import rush.utils.Utils;
 
 public class ComandoEditaritem implements CommandExecutor {
@@ -144,6 +146,7 @@ public class ComandoEditaritem implements CommandExecutor {
 		
 		// Verificando se o player quer alterar o custo de reparação do item
 		if (args[0].equalsIgnoreCase("custoreparar") || args[0].equalsIgnoreCase("custoreparacao")) {
+			
 			int custo;
 			try {
 				custo = Integer.parseInt(args[1]);
@@ -161,6 +164,12 @@ public class ComandoEditaritem implements CommandExecutor {
 		
 		// Verificando se o player que adicionar algum atributo ao item
 		if (args[0].equalsIgnoreCase("atributo")) {
+			
+			// Verificando se a versão do player suporta a operação
+			if (Main.getVersion() == Version.v1_15) {
+				s.sendMessage(Mensagens.Erro_Versao_Nao_Suportada);
+				return true;
+			}
 			
 			// Pegando o atributo que o player quer setar
 			double value;

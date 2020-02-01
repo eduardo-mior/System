@@ -101,6 +101,7 @@
 #    | system.fly                - Permissão para utilizar o comando /fly                          |
 #    | system.fly.outros         - Permissão para ativar ou desativar o fly de outras pessoas      |
 #    | system.fly.staff          - Permissão para poder usar o fly em qualquer mundo               |
+#    | system.fly.<world>        - Permissão para utilizar o comando /fly naquele mundo especifico |
 #    | system.gamemode           - Permissão para utilizar o comando /gamemode                     |
 #    | system.gamemode.outros    - Permissão para alterar o gamemode de outras pessoas             |
 #    | system.gamemode.survival  - Permissão para alterar o gamemode para survival                 |
