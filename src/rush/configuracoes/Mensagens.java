@@ -229,6 +229,7 @@ public class Mensagens {
 	public static String Chapeu_Invalido;
 	public static String Invsee_Comando_Incorreto;
 	public static String Invsee_Abrindo_Inventario;
+	public static String Invsee_Erro_Voce_Mesmo;
 	public static String Title_Comando_Incorreto;
 	public static String Title_Enviado;
 	public static String Titulo_Da_Lixeira;
@@ -535,6 +536,7 @@ public class Mensagens {
 		Chapeu_Invalido = getString(config, "Chapeu-Invalido");
 		Invsee_Comando_Incorreto = getString(config, "Invsee-Comando-Incorreto");
 		Invsee_Abrindo_Inventario = getString(config, "Invsee-Abrindo-Inventario");
+		Invsee_Erro_Voce_Mesmo = getString(config, "Invsee-Erro-Voce-Mesmo");
 		Title_Comando_Incorreto = getString(config, "Title-Comando-Incorreto");
 		Title_Enviado = getString(config, "Title-Enviado");
 		Titulo_Da_Lixeira = getString(config, "Titulo-Da-Lixeira");

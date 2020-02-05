@@ -533,6 +533,7 @@ Chapeu-Invalido: "&cEste item não pode ser usado como chapéu!"
 ############################################################
 Invsee-Comando-Incorreto: "&cComando incorreto, use /invsee <player>"
 Invsee-Abrindo-Inventario: "&aAbrindo inventário de %player%."
+Invsee-Erro-Voce-Mesmo: "&cVocê não pode espionar o seu próprio inventário!"
 
 ############################################################
 # +------------------------------------------------------+ #

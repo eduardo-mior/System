@@ -31,10 +31,16 @@ public class ComandoInvsee implements CommandExecutor {
 		if (target == null) {
 			s.sendMessage(Mensagens.Player_Offline);
 			return true;
-		}
-
-		// Pegando o player sender abrindo o inventario do target
+		}		
+		
+		// Pegando o player e, verificando se o target e o sender são a mesma pessoa
 		Player p = (Player) s;
+		if (target.getName().equals(s.getName())) {
+			s.sendMessage(Mensagens.Invsee_Erro_Voce_Mesmo);
+			return true;
+		}
+		
+		// Abrindo o inventario e avisando
 		p.openInventory(target.getInventory());
 		s.sendMessage(Mensagens.Invsee_Abrindo_Inventario.replaceAll("%player%", target.getName()));
 		return true;
