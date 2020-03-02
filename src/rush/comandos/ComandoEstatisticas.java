@@ -37,7 +37,7 @@ public class ComandoEstatisticas implements CommandExecutor {
 		if (args.length == 1) {
 
 			// Pegando o player e verificando se ele esta online
-			p = Main.getVersion() == Version.v1_14 || Main.getVersion() == Version.v1_15 ? Bukkit.getPlayer(args[0]) : OfflinePlayerAPI.getPlayer(args[0]);
+			p = Main.getVersion() == Version.v1_14 || Main.getVersion() == Version.v1_15 || Main.getVersion() == Version.v1_16 ? Bukkit.getPlayer(args[0]) : OfflinePlayerAPI.getPlayer(args[0]);
 			if (p == null) {
 				s.sendMessage(Mensagens.Player_Offline);
 				return true;

@@ -102,7 +102,7 @@ public class ItemAPI {
 			setNBTBaseCompound.invoke(Modifier, "UUIDMost", UUIDMost);
 
 			Object NBTBase = getNBTBase.invoke(Modifier);
-			if (Main.getVersion() == Version.v1_14 || Main.getVersion() == Version.v1_15) {
+			if (Main.getVersion() == Version.v1_14 || Main.getVersion() == Version.v1_15 || Main.getVersion() == Version.v1_16) {
 				addNBTBaseTag.invoke(AttributeModifiers, 0, NBTBase);
 			} else {
 				addNBTBaseTag.invoke(AttributeModifiers, NBTBase);
@@ -318,7 +318,7 @@ public class ItemAPI {
 			setNBTBaseCompound = NBTTagCompoundClass.getDeclaredMethod("set", String.class, NBTBaseClass);
 			createTag = NBTBaseClass.getDeclaredMethod("createTag", byte.class);
 			createTag.setAccessible(true);
-			if (Main.getVersion() == Version.v1_14 || Main.getVersion() == Version.v1_15) {
+			if (Main.getVersion() == Version.v1_14 || Main.getVersion() == Version.v1_15 || Main.getVersion() == Version.v1_16) {
 				addNBTBaseTag = NBTTagListClass.getDeclaredMethod("b", int.class, NBTBaseClass);
 			} else {
 				addNBTBaseTag = NBTTagListClass.getDeclaredMethod("add", NBTBaseClass);

@@ -166,7 +166,7 @@ public class ComandoEditaritem implements CommandExecutor {
 		if (args[0].equalsIgnoreCase("atributo")) {
 			
 			// Verificando se a versão do player suporta a operação
-			if (Main.getVersion() == Version.v1_15) {
+			if (Main.getVersion() == Version.v1_15 || Main.getVersion() == Version.v1_16) {
 				s.sendMessage(Mensagens.Erro_Versao_Nao_Suportada);
 				return true;
 			}
