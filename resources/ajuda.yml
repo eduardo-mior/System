@@ -18,18 +18,26 @@
 #    |    da warp ou do kit. Por padrão sempre sera system.kit.<id> ou system.kit.<warp> então     |
 #    |    caso quiser edita-la basta usar /editarkit ou acessar o arquivo da warp ou do kit.       |
 #    |                                                                                             |
-#    | 5) TODAS AS MENSAGENS do plugin pode ser alteradas dentro do arquivo mensagens.yml. Exceto  |
+#    | 5) O limite de homes que cada player pode setar é definido pela permissão system.homes.<?>  |
+#    |    Para isto você pode definir o limite de homes usando o núemro depois do ponto. Exemplo:  |
+#    |    system.homes.7 -> Neste caso o player podera definir 7 homes.                            |
+#    |                                                                                             |
+#    |    Além disso você também pode configurar grupos de homes no arquivo settings.yml. Exemplo: |
+#    |    youtuber: 15, neste caso a permissão seria system.homes.youtuber e o player poderia      |
+#    |    setar 15 homes.                                                                          |
+#    |                                                                                             |
+#    | 6) TODAS AS MENSAGENS do plugin pode ser alteradas dentro do arquivo mensagens.yml. Exceto  |
 #    |    as mensagens das warps. As mensagens das warps estão dentro do arquivo de cada warp.     |
 #    |    Ou seja, cada warp possui suas próprias mensagens, para edita-las basta acessar a pasta  |
 #    |    das warps e depois acessar o arquivo da warp desejada e editar o que você quiser.        |
 #    |                                                                                             |
-#    | 6) Se você tiver alguma sugestão, ou se você encontrar algum BUG ou ERRO você deve entra    |
+#    | 7) Se você tiver alguma sugestão, ou se você encontrar algum BUG ou ERRO você deve entra    |
 #    |    em contanto comigo por um dos meios de comunicação o mais rapido possível para que o     |
 #    |    problema sejá corrigido o mais rapido possísvel.                                         |
 #    |                                                                                             |
-#    | 7) Você pode encontrar mais informações usando o comando /system                            |
+#    | 8) Você pode encontrar mais informações usando o comando /system                            |
 #    |                                                                                             |
-#    | 8) Você pode encontrar os nomes dos tipos de inventarios, nomes das entidades, nomes do     |
+#    | 9) Você pode encontrar os nomes dos tipos de inventarios, nomes das entidades, nomes do     |
 #    |    sons, nome dos encantamentos e muito mais neste link: https://pastebin.com/raw/x0eEJJpw  |
 #    |                                                                                             |
 #    +---------------------------------------------------------------------------------------------+
@@ -115,6 +123,7 @@
 #    | system.home               - Permissão para utilizar o comando /home                         |
 #    | system.home.admin         - Permissão para ver e para se teleportar para homes privadas     |
 #    | system.homes.<quantia>    - Permissão para salvar uma quantia especificade homes            |
+#    | system.homes.<grupo>      - Permissão para salvar uma quantia especificade homes (settings) |
 #    | system.invsee             - Permissão para utilizar o comando /invsee                       |
 #    | system.invsee.admin       - Permissão para modificar o inventario de outra pessoa           |
 #    | system.kit                - Permissão para utilizar o comando /kit                          |

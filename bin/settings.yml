@@ -1,4 +1,4 @@
-﻿file-version: 6
+﻿file-version: 7
 ############################################################
 # +------------------------------------------------------+ #
 # |              Recuros Adicionais (Addons)             | #
@@ -236,6 +236,17 @@ Mundos-Onde-Pode-Usar-Fly:
 Mundos-Sem-Sistema-De-Back:
   - "guerra"
   - "arena"
+
+# Limite inicial de homes que o player pode setar.
+# Caso o player não possua nenhuma permissão system.homes.<quantia> então sera usado este valor.
+Limite-De-Homes-Inicial: 1
+
+# Devido a alguns problemas detectados em algumas versões do minecraft e em alguns plugins de permissão
+# a partir de agora também é possível setar o número de homes a partir de permissões especificas de grupos.
+# Neste caso usamos system.homes.<grupo> --> EXEMPLO: system.homes.vip  -  system.homes.youtuber
+Grupos-De-Permissoes-De-Homes:
+   vip: 10
+   youtuber: 20
 
 ############################################################
 # +------------------------------------------------------+ #

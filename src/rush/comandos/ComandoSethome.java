@@ -2,6 +2,7 @@ package rush.comandos;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Map.Entry;
 import java.util.Set;
 
 import org.bukkit.Bukkit;
@@ -16,6 +17,7 @@ import org.bukkit.permissions.PermissionAttachmentInfo;
 import rush.Main;
 import rush.addons.MassiveFactions;
 import rush.configuracoes.Mensagens;
+import rush.configuracoes.Settings;
 import rush.utils.Utils;
 import rush.utils.manager.DataManager;
 
@@ -79,16 +81,32 @@ public class ComandoSethome implements CommandExecutor {
 		return true;
 	}
 	
-	private int getHomesLimit(Player p) {
-		int limit = 1;
-		for (PermissionAttachmentInfo perm : p.getEffectivePermissions()) {
-			if (perm.getPermission().startsWith("system.homes.")) {
-				int newLimit = Integer.parseInt(perm.getPermission().replace("system.homes.", ""));
+	private int getHomesLimit(Player p) {		
+		int limit = Settings.Limite_De_Homes_Inicial;
+		
+		// Percorrendo todas os grupos de homes e verificando se o player tem permissão de algum
+		for (Entry<String, Integer> perm : Settings.Grupos_De_Permissoes_De_Homes.entrySet()) {
+			if (p.hasPermission("system.homes." + perm.getKey())) {
+				int newLimit = perm.getValue();
 				if (newLimit > limit) {
 					limit = newLimit;
 				}
 			}
 		}
+		
+		// Percorrendo todas as permissões do player e verificando se ele possui algum limite de homes
+		for (PermissionAttachmentInfo perm : p.getEffectivePermissions()) {
+			if (perm.getPermission().startsWith("system.homes.")) {
+				try {
+					int newLimit = Integer.parseInt(perm.getPermission().replace("system.homes.", ""));
+					if (newLimit > limit) {
+						limit = newLimit;
+					}
+				} catch (Throwable e) {}
+			}
+		}
+		
+		// Retornando o limite
 		return limit;
 	}
     

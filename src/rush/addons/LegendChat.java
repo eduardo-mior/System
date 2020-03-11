@@ -27,11 +27,22 @@ public class LegendChat implements Listener {
     }
 	
 	private String getChatColorIdByPerm(Player p) {
+		
+		// Percorrendo todas as cores e verificando se o player tem permissão de alguma
+		for (String perm : Settings.CorAutomatica.keySet()) {
+			if (p.hasPermission("system.chat.cor." + perm)) {
+				return perm;
+			}
+		}
+		
+		// Percorrendo todas as permissões do player e verificando se ele possui alguma cor
 		for (PermissionAttachmentInfo perm : p.getEffectivePermissions()) {
 			if (perm.getPermission().startsWith("system.chat.cor.")) {
 				return perm.getPermission().replace("system.chat.cor.", "");
 			}
 		}
+		
+		// Caso não tenha nada retorna nulo
 		return null;
 	}
     

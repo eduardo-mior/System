@@ -81,13 +81,19 @@ public class Locations {
 	}
 	
 	private static void setDefaultServerSpawn() {
-		List<World> worlds = Bukkit.getServer().getWorlds();
-		World worldSpawn = spawn.getWorld();
-		if (worldSpawn == null) {
-			worlds.get(0).setSpawnLocation(padrao.getBlockX(), padrao.getBlockY(), padrao.getBlockZ());
-		} else {
-			worldSpawn.setSpawnLocation(spawn.getBlockX(), spawn.getBlockY(), spawn.getBlockZ());
-		}
+		// Voltando para o Sync
+		Bukkit.getScheduler().runTask(Main.get(), new Runnable() {
+			@Override
+			public void run() {
+				List<World> worlds = Bukkit.getServer().getWorlds();
+				World worldSpawn = spawn.getWorld();
+				if (worldSpawn == null) {
+					worlds.get(0).setSpawnLocation(padrao.getBlockX(), padrao.getBlockY(), padrao.getBlockZ());
+				} else {
+					worldSpawn.setSpawnLocation(spawn.getBlockX(), spawn.getBlockY(), spawn.getBlockZ());
+				}	
+			}
+		});
 	}
 	
 	private static void validarLocations(boolean reavaliar) {

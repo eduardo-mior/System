@@ -86,6 +86,16 @@ public class Utils {
 		return output;
 	}
 	
+	public static <K, V> Map<String, Integer> mapToMapInt(Map<K, V> input) {
+		Map<String, Integer> output = new HashMap<>();
+		for (Entry<K, V> entry : input.entrySet()) {
+			try {
+				output.put(entry.getKey().toString(), Integer.parseInt(entry.getValue().toString()));
+			} catch (Throwable e) {}
+		}
+		return output;
+	}
+	
 	public static List<String> colorizeListString(List<String> input) {
 		List<String> output = new ArrayList<>();
 		for (int i = 0; i < input.size(); i++) {
