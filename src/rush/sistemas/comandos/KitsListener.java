@@ -68,14 +68,15 @@ public class KitsListener implements Listener {
 	private void createKit(Inventory inv, Player p, String id) {
 		String permissao = "system.kit." + id;
 		String itens = serializeItens(inv.getContents());
-		Kit kit = new Kit(id, permissao, "§rKit '" + id + "' sem nome! Use /editarkit!", 5, itens);
+		Kit kit = new Kit(id, permissao, "§rKit '" + id + "' sem nome! Use /editarkit!", 5, Mensagens.Kit_Sem_Permissao, itens);
 		File file = DataManager.getFile(id, "kits");
 		FileConfiguration config = DataManager.getConfiguration(file);
 		DataManager.createFile(file);
 		config.set("Permissao", permissao);
-		config.set("Delay", 5);
-		config.set("Itens", itens);
 		config.set("Nome", "§rKit '" + id + "' sem nome! Use /editarkit!");
+		config.set("Delay", 5);
+		config.set("MensagemDeErro", Mensagens.Kit_Sem_Permissao);
+		config.set("Itens", itens);
 		try {
 			Kits.create(id, kit);
 			config.save(file);

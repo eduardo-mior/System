@@ -44,7 +44,7 @@ public class ComandoEditarkit implements CommandExecutor {
 		String kitNome = kit.getNome();
 		
 		// Verificando se o player quer editar os itens do kit
-		if (args[1].equalsIgnoreCase("itens")) {
+		if (args[1].equalsIgnoreCase("itens") || args[1].equalsIgnoreCase("item")) {
 				
 			// Verificando se o sender não é o console
 			if (!(s instanceof Player)) {
@@ -102,7 +102,7 @@ public class ComandoEditarkit implements CommandExecutor {
 		}
 			
 		// Verificando se o player quer editar a permissão para pegar o kit
-		if (args[1].equalsIgnoreCase("perm")) {
+		if (args[1].equalsIgnoreCase("perm") || args[1].equalsIgnoreCase("permissao")) {
 			
 			// Verificando se o player digitou o número de argumentos correto
 			if (args.length != 3) {
@@ -140,6 +140,30 @@ public class ComandoEditarkit implements CommandExecutor {
 			try {
 				config.save(file);
 				s.sendMessage(Mensagens.Kit_Editado.replace("%kit-nome%", novoNome).replace("%kit-id%", id));
+			} catch (IOException e) {
+				Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
+			}
+			return true;
+		}
+		
+		// Verificando se o player quer editar a mensagem de erro do kit
+		if (args[1].equalsIgnoreCase("mensagemdeerro") || args[1].equals("mensagem") || args[1].equals("message")) {
+			
+			// Verificando se o player digitou o número de argumetnos correto
+			if (args.length < 3) {
+				s.sendMessage(Mensagens.EditarKit_Comando_Incorreto_MensagemDeErro);
+				return true;
+			}
+			
+			// Salvando os arquivos na config
+			String novaMensagem = "";
+			for (int i = 2; i < args.length; i++) {novaMensagem += args[i] + " ";}
+			novaMensagem = novaMensagem.replace('&', '§').trim();
+			kit.setMensagemDeErro(novaMensagem);
+			config.set("MensagemDeErro", novaMensagem);
+			try {
+				config.save(file);
+				s.sendMessage(Mensagens.Kit_Editado.replace("%kit-nome%", kit.getNome()).replace("%kit-id%", id));
 			} catch (IOException e) {
 				Bukkit.getConsoleSender().sendMessage(Mensagens.Falha_Ao_Salvar.replace("%arquivo%", file.getName()));
 			}

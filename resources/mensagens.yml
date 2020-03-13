@@ -144,12 +144,14 @@ CriarKit-Comando-Incorreto: "&cComando incorreto, use /criarkit <kit-id>"
 EditarKit-Comando-Incorreto-Delay: "&cComando incorreto, use /editarkit <kit-id> delay <minutos>"
 EditarKit-Comando-Incorreto-Perm: "&cComando incorreto, use /editarkit <kit-id> perm <permissão>"
 EditarKit-Comando-Incorreto-Nome: "&cComando incorreto, use /editarkit <kit-id> nome <novo-nome>"
+EditarKit-Comando-Incorreto-MensagemDeErro: "&cComando incorreto, use /editarkit <kit-id> MensagemDeErro <mensagem>"
 EditarKit-Comando-Incorreto: | 
   &cComando incorreto, use:
   &c/editarkit <kit-id> itens &8-&7 Edita os itens.
   &c/editarkit <kit-id> perm <permissão> &8-&7 Editar a permissão.
   &c/editarkit <kit-id> delay <minutos> &8-&7 Edita o delay.
   &c/editarkit <kit-id> nome <nome> &8-&7 Edita o nome do kit.
+  &c/editarkit <kit-id> mensagemDeErro <mensagem> &8-&7 Edita a mensagem de erro de permissão do kit.
 Kit-Nao-Existe: "&cO kit '%kit-id%' não existe."
 Kit-Ja-Existe: "&cO kit '%kit-id%' já existe."
 Kit-Sem-Permissao: "&cVocê não tem permissão para pegar este kit."

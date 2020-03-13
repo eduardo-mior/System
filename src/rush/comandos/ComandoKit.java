@@ -81,7 +81,11 @@ public class ComandoKit implements CommandExecutor {
 		String perm = kit.getPermissao();
 		String nomeKit = kit.getNome();
 		if (!s.hasPermission(perm) && !s.hasPermission("system.kit.all") && !s.isOp()) {
-			s.sendMessage(Mensagens.Kit_Sem_Permissao.replace("%kit-id%", id).replace("%kit-nome%",	nomeKit));
+			if (kit.getMensagemDeErro() != null && !kit.getMensagemDeErro().isEmpty()) {
+				s.sendMessage(kit.getMensagemDeErro().replace("%kit-id%", id).replace("%kit-nome%",	nomeKit));
+			} else {
+				s.sendMessage(Mensagens.Kit_Sem_Permissao.replace("%kit-id%", id).replace("%kit-nome%",	nomeKit));
+			}
 			return true;
 		}
 

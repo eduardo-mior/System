@@ -76,6 +76,7 @@ public class Mensagens {
 	public static String EditarKit_Comando_Incorreto_Delay;
 	public static String EditarKit_Comando_Incorreto_Perm;
 	public static String EditarKit_Comando_Incorreto_Nome;
+	public static String EditarKit_Comando_Incorreto_MensagemDeErro;
 	public static String EditarKit_Comando_Incorreto;
 	public static String Kit_Nao_Existe;
 	public static String Kit_Ja_Existe;
@@ -383,6 +384,7 @@ public class Mensagens {
 		EditarKit_Comando_Incorreto_Delay = getString(config, "EditarKit-Comando-Incorreto-Delay");
 		EditarKit_Comando_Incorreto_Perm = getString(config, "EditarKit-Comando-Incorreto-Perm");
 		EditarKit_Comando_Incorreto_Nome = getString(config, "EditarKit-Comando-Incorreto-Nome");
+		EditarKit_Comando_Incorreto_MensagemDeErro = getString(config, "EditarKit-Comando-Incorreto-MensagemDeErro");
 		EditarKit_Comando_Incorreto = getString(config, "EditarKit-Comando-Incorreto");
 		Kit_Nao_Existe = getString(config, "Kit-Nao-Existe");
 		Kit_Ja_Existe = getString(config, "Kit-Ja-Existe");

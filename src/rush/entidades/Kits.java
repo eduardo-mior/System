@@ -45,8 +45,9 @@ public abstract class Kits {
 				String nome = configKit.getString("Nome", "§rKit '" + id + "' sem nome! Use /editarkit!");
 				String permissao = configKit.getString("Permissao");
 				long delay = configKit.getLong("Delay");
+				String mensagemDeErro = configKit.getString("MensagemDeErro");
 				String itens = configKit.getString("Itens");
-				Kit kit = new Kit(id, permissao, nome, delay, itens);
+				Kit kit = new Kit(id, permissao, nome, delay, mensagemDeErro, itens);
 				KITS.put(id, kit);
 			}
 		}	

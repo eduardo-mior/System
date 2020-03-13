@@ -13,15 +13,17 @@ public class Kit {
 	private String nome;
 	private String permissao;
 	private long delay;
+	private String mensagemDeErro;
 	private ItemStack[] itens;
 	private int amountItens;
 	
-	public Kit(String id, String permissao, String nome, long delay, String itens) {
+	public Kit(String id, String permissao, String nome, long delay, String mensagemDeErro, String itens) {
 		ItemStack[] itensStack = getItensByData(itens);
 		this.id = id;
 		this.permissao = permissao;
 		this.nome = nome;
 		this.delay = delay;
+		this.mensagemDeErro = mensagemDeErro;
 		this.itens = itensStack;
 		this.amountItens = calcule(itensStack);
 	}
@@ -57,7 +59,15 @@ public class Kit {
 	public void setDelay(long delay) {
 		this.delay = delay;
 	}
+	
+	public String getMensagemDeErro() {
+		return mensagemDeErro;
+	}
 
+	public void setMensagemDeErro(String mensagemDeErro) {
+		this.mensagemDeErro = mensagemDeErro;
+	}
+	
 	public ItemStack[] getItens() {
 		return itens;
 	}
@@ -66,7 +76,7 @@ public class Kit {
 		this.itens = itens;
 		this.amountItens = calcule(itens);
 	}
-	
+
 	public int getAmountItens() {
 		return amountItens;
 	}
