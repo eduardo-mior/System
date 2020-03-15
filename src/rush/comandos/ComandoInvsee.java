@@ -47,7 +47,7 @@ public class ComandoInvsee implements CommandExecutor {
 		// Abrindo o inventario e avisando
 		InvseeListener.invseelist.put(sender.getName(), target.getName());
 		sender.openInventory(target.getInventory());
-		s.sendMessage(Mensagens.Invsee_Abrindo_Inventario.replaceAll("%player%", target.getName()));
+		sender.sendMessage(Mensagens.Invsee_Abrindo_Inventario.replaceAll("%player%", target.getName()));
 		return true;
 	}
 }

@@ -27,13 +27,13 @@ public class ComandoDerreter implements CommandExecutor {
 			
 		// Verificando se o player possui itens para derreter
 		if (!possuiItensParaDerreter(i)) {
-			s.sendMessage(Mensagens.Derreter_Nao_Possui);
+			p.sendMessage(Mensagens.Derreter_Nao_Possui);
 			return true;
 		}
 			
 		// Chamando o método que derrete os itens e enviando mensagem
 		int derretidos = derreterItens(i);
-		s.sendMessage(Mensagens.Derreter_Com_Sucesso.replace("%quantia%", String.valueOf(derretidos)));
+		p.sendMessage(Mensagens.Derreter_Com_Sucesso.replace("%quantia%", String.valueOf(derretidos)));
 		return true;
 	}
 	

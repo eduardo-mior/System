@@ -25,20 +25,20 @@ public class ComandoCompactarOLD implements CommandExecutor {
 		}
 
 		// Pegando o player, o inventario e os itens do inventario
-		Player p = (Player)s;
+		Player p = (Player) s;
 			
 		// Chamando o método que compacta os itens e enviando mensagem
 		int compactados = compactarItens(p.getInventory().getContents(), p.getInventory(), p);
 		
 		// Verificando se o player compactou algum item
 		if (compactados == 0) {
-			s.sendMessage(Mensagens.Compactar_Nao_Possui);
+			p.sendMessage(Mensagens.Compactar_Nao_Possui);
 			return true;
 		}
 		
 		// Recompactandos os itens pois podem haver sobras no inventario e informado o player
 		compactados += compactarItens(p.getInventory().getContents(), p.getInventory(), p);
-		s.sendMessage(Mensagens.Compactar_Com_Sucesso.replace("%quantia%", String.valueOf(compactados)));
+		p.sendMessage(Mensagens.Compactar_Com_Sucesso.replace("%quantia%", String.valueOf(compactados)));
 		return true;
 	}
 	

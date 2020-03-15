@@ -72,7 +72,7 @@ public class EnderChestListener implements Listener {
 				Player admin = Bukkit.getPlayer(viewer);
 				if (admin != null) {
 					admin.closeInventory();
-					admin.openInventory(p.getEnderChest());
+					admin.sendMessage(Mensagens.Echest_Logou.replace("%player%", p.getName()));
 				} else {
 					echestlist.remove(viewer);
 				}

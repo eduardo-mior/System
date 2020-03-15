@@ -231,6 +231,11 @@ public class Mensagens {
 	public static String Invsee_Comando_Incorreto;
 	public static String Invsee_Abrindo_Inventario;
 	public static String Invsee_Erro_Voce_Mesmo;
+	public static String Invsee_Deslogou;
+	public static String Invsee_Logou;
+	public static String Echest_Abrindo_Inventario;
+	public static String Echest_Deslogou;
+	public static String Echest_Logou;
 	public static String Title_Comando_Incorreto;
 	public static String Title_Enviado;
 	public static String Titulo_Da_Lixeira;
@@ -310,8 +315,6 @@ public class Mensagens {
 	public static String Plugin_Religado_Com_Sucesso;
 	public static String Plugin_Recarregado_Com_Sucesso;
 	public static String Erro_Nome_Com_Caracteres_Especiais;
-	public static String Invsee_Deslogou;
-	public static String Echest_Deslogou;
 
 	public static void loadMensagens() {
 		FileConfiguration config = ConfigManager.getConfig("mensagens");
@@ -541,6 +544,11 @@ public class Mensagens {
 		Invsee_Comando_Incorreto = getString(config, "Invsee-Comando-Incorreto");
 		Invsee_Abrindo_Inventario = getString(config, "Invsee-Abrindo-Inventario");
 		Invsee_Erro_Voce_Mesmo = getString(config, "Invsee-Erro-Voce-Mesmo");
+		Invsee_Deslogou = getString(config, "Invsee-Deslogou");
+		Invsee_Logou = getString(config, "Invsee-Logou");
+		Echest_Abrindo_Inventario = getString(config, "Echest-Abrindo-Inventario");
+		Echest_Deslogou = getString(config, "Echest-Deslogou");
+		Echest_Logou = getString(config, "Echest-Logou");
 		Title_Comando_Incorreto = getString(config, "Title-Comando-Incorreto");
 		Title_Enviado = getString(config, "Title-Enviado");
 		Titulo_Da_Lixeira = getString(config, "Titulo-Da-Lixeira");
@@ -620,8 +628,6 @@ public class Mensagens {
 		Plugin_Religado_Com_Sucesso = getString(config, "Plugin-Religado-Com-Sucesso");
 		Plugin_Recarregado_Com_Sucesso = getString(config, "Plugin-Recarregado-Com-Sucesso");
 		Erro_Nome_Com_Caracteres_Especiais = getString(config, "Erro-Nome-Com-Caracteres-Especiais");
-		Invsee_Deslogou = getString(config, "Invsee-Deslogou");
-		Echest_Deslogou = getString(config, "Echest-Deslogou");
 	}
 	
 	private static String getString(FileConfiguration config, String path) {

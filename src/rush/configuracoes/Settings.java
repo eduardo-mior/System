@@ -128,8 +128,8 @@ public class Settings {
 	public static String Footer;
 	public static long Tempo_Para_Expirar_Solicitacao_Tpa;
 	public static long Tempo_Para_Poder_Enviar_Outra_Solicitacao_Tpa;
-	public static Sound Commando_Slime_Esta;
-	public static Sound Commando_Slime_Nao_esta;
+	public static Sound Som_Slime_Esta;
+	public static Sound Som_Slime_Nao_esta;
 	public static boolean Bloquear_Quebrar_Plantacoes_Pulando;
 	public static boolean Deletar_Comandos;
 	public static List<String> Lista_Dos_Comandos_Deletados;
@@ -257,8 +257,8 @@ public class Settings {
 		Footer = getString(config, "Parte-De-Baixo");
 		Tempo_Para_Expirar_Solicitacao_Tpa = config.getLong("Tempo-Para-Expirar-Solicitacao-Tpa");
 		Tempo_Para_Poder_Enviar_Outra_Solicitacao_Tpa = config.getLong("Tempo-Para-Poder-Enviar-Outra-Solicitacao-Tpa");
-		Commando_Slime_Esta = Utils.tryLoadSound("SLIME_WALK2", "ENTITY_SLIME_SQUISH");
-		Commando_Slime_Nao_esta = Utils.tryLoadSound("SLIME_ATTACK", "ENTITY_SLIME_ATTACK");
+		Som_Slime_Esta = Utils.tryLoadSound("SLIME_WALK2", "ENTITY_SLIME_SQUISH");
+		Som_Slime_Nao_esta = Utils.tryLoadSound("SLIME_ATTACK", "ENTITY_SLIME_ATTACK");
 		Bloquear_Quebrar_Plantacoes_Pulando = config.getBoolean("Bloquear-Quebrar-Plantacoes-Pulando");
 		Deletar_Comandos = config.getBoolean("Deletar-Comandos");
 		Lista_Dos_Comandos_Deletados = Utils.listToLowerCase(config.getStringList("Lista-Dos-Comandos-Deletados"));

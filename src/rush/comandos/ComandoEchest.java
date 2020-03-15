@@ -31,7 +31,7 @@ public class ComandoEchest implements CommandExecutor {
 			// Pegando o player e verificando se o ele esta online, caso ele não estiver tentamos pegar o offline
 			Player target = OfflinePlayerAPI.getPlayer(args[0]);
 			if (target == null) {
-				s.sendMessage(Mensagens.Player_Offline);
+				sender.sendMessage(Mensagens.Player_Offline);
 				return true;
 			}
 
@@ -39,6 +39,7 @@ public class ComandoEchest implements CommandExecutor {
 			EnderChestListener.echestlist.put(sender.getName(), target.getName());
 			Inventory i = target.getEnderChest();
 			sender.openInventory(i);
+			sender.sendMessage(Mensagens.Echest_Abrindo_Inventario.replaceAll("%player%", target.getName()));
 			return true;
 		}
 

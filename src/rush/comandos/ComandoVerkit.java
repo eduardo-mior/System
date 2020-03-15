@@ -36,14 +36,14 @@ public class ComandoVerkit implements CommandExecutor {
 			return true;
 		}
 
-		// Pegando o kit e a config do Kit
-		Kit kit = Kits.get(nome);
-
 		// Verificando se o sender não é o console
 		if (!(s instanceof Player)) {
 			s.sendMessage(Mensagens.Console_Nao_Pode);
 			return true;
 		}
+		
+		// Pegando o kit e a config do Kit
+		Kit kit = Kits.get(nome);
 
 		// Pegando o player e abrindo um inventarios com os itens, o resto é feito pela classe KitsListener
 		Player p = (Player) s;

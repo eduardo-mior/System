@@ -1,4 +1,4 @@
-﻿file-version: 8
+﻿file-version: 9
 ############################################################
 # +------------------------------------------------------+ #
 # |                   Mensagens gerais                   | #
@@ -538,8 +538,13 @@ Invsee-Abrindo-Inventario: "&aAbrindo inventário de %player%."
 Invsee-Erro-Voce-Mesmo: "&cVocê não pode espionar o seu próprio inventário!"
 Invsee-Deslogou: |
    &c &c
-   &cO player %player% saiu do servidor portanto o seu inventário fechado.
-   &cVocê pode visualizar e editar o inventário dele mesmo ele estando offline basta usar /invsee %player%
+   &cO player %player% saiu do servidor portanto o seu inventário automaticamente fechado.
+   &cVocê pode visualizar e editar o inventário dele mesmo ele estando offline, basta usar o comando /invsee %player%
+   &c &c   
+Invsee-Logou: |
+   &c &c
+   &cO player %player% entrou no servidor portanto o seu inventário automaticamente fechado.
+   &cVocê já pode visualizar novamente o inventário dele, basta usar o comando /invsee %player%
    &c &c
 
 ############################################################
@@ -547,12 +552,18 @@ Invsee-Deslogou: |
 # |                   Comando /echest                    | #
 # +------------------------------------------------------+ #
 ############################################################
+Echest-Abrindo-Inventario: "&aAbrindo echest de %player%."
 Echest-Deslogou: |
    &c &c
-   &cO player %player% saiu do servidor portanto o seu echest fechado.
-   &cVocê pode visualizar e editar o echest dele mesmo ele estando offline basta usar /echest %player%
+   &cO player %player% saiu do servidor portanto o seu echest automaticamente fechado.
+   &cVocê pode visualizar e editar o echest dele mesmo ele estando offline, basta usar o comando /echest %player%
    &c &c
-
+Echest-Logou: |
+   &c &c
+   &cO player %player% entrou no servidor portanto o seu echest automaticamente fechado.
+   &cVocê já pode visualizar novamente o echest dele, basta usar o comando /invsee %player%
+   &c &c
+   
 ############################################################
 # +------------------------------------------------------+ #
 # |                    Comando /title                    | #

@@ -30,7 +30,7 @@ public class ComandoBack implements CommandExecutor {
 
 		// Verificando se o player possui um lugar para se voltar
 		if (!BackListener.backList.containsKey(p.getName())) {
-			s.sendMessage(Mensagens.Nao_Possui_Back);
+			p.sendMessage(Mensagens.Nao_Possui_Back);
 			return true;
 		}
 			
@@ -45,13 +45,13 @@ public class ComandoBack implements CommandExecutor {
 		}
 
 		// Verificando se ele possui permissão para se teleportar sem precisar esperar
-		if (!s.hasPermission("system.semdelay")) {
-			s.sendMessage(Mensagens.Iniciando_Teleporte_Back);
+		if (!p.hasPermission("system.semdelay")) {
+			p.sendMessage(Mensagens.Iniciando_Teleporte_Back);
 			new BukkitRunnable() {
 				@Override
 				public void run() {
 					p.teleport(l, TeleportCause.COMMAND);
-					s.sendMessage(Mensagens.Back_Teleportado_Sucesso);
+					p.sendMessage(Mensagens.Back_Teleportado_Sucesso);
 				}
 			}.runTaskLater(Main.get(), 20L * Settings.Delay_Para_Teleportar_Comandos);
 			return true;
@@ -59,7 +59,7 @@ public class ComandoBack implements CommandExecutor {
 			
 		// Caso o player possui a permissão para se teleportar sem delay o código acima é ignorado
 		p.teleport(l, TeleportCause.COMMAND);
-		s.sendMessage(Mensagens.Back_Teleportado_Sucesso);
+		p.sendMessage(Mensagens.Back_Teleportado_Sucesso);
 		return true;
 	}
 }

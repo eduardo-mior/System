@@ -72,7 +72,7 @@ public class InvseeListener implements Listener {
 				Player admin = Bukkit.getPlayer(viewer);
 				if (admin != null) {
 					admin.closeInventory();
-					admin.openInventory(p.getInventory());
+					admin.sendMessage(Mensagens.Invsee_Logou.replace("%player%", p.getName()));
 				} else {
 					invseelist.remove(viewer);
 				}
