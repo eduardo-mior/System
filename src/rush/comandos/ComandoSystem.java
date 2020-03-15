@@ -40,6 +40,8 @@ import rush.apis.UltimateFancy;
 import rush.configuracoes.Locations;
 import rush.configuracoes.Mensagens;
 import rush.configuracoes.Settings;
+import rush.entidades.Kits;
+import rush.entidades.Warps;
 import rush.utils.Backup;
 import rush.utils.SystemInfo;
 import rush.utils.Utils;
@@ -65,10 +67,17 @@ public class ComandoSystem implements CommandExecutor {
 			
 		// Caso o argumento seja 'reload' então recarregamos as configs do pl
 		if (cmd.equals("reload")) {
-			Settings.loadSettings();
-			Mensagens.loadMensagens();
-			Locations.loadLocations();
-			s.sendMessage(Mensagens.System_Recarregado_Sucesso);
+			try {
+				Settings.loadSettings();
+				Mensagens.loadMensagens();
+				Locations.loadLocations();
+				Warps.loadWarps();
+				Kits.loadKits();
+				s.sendMessage(Mensagens.System_Recarregado_Sucesso);	
+			} catch (Throwable e) {
+				e.printStackTrace();
+				s.sendMessage(Mensagens.System_Erro_Ao_Recarregar);
+			}
 			return true;
 		}
 		
@@ -194,7 +203,7 @@ public class ComandoSystem implements CommandExecutor {
 		// Caso o argumento seja 'info' então é exibido algumas informações do plugin
 		if (cmd.equals("info")) {					
 			s.sendMessage("§e*-=-=-=-=-=-=-* §bServer Info §e*-=-=-=-=-=-=-* ");
-			s.sendMessage("§ePlugin Version: §61.14.7");
+			s.sendMessage("§ePlugin Version: §61.14.8");
 			s.sendMessage("§eJava version: §6" + System.getProperty("java.version"));
 			s.sendMessage("§eMinecraft Version: §6" + SystemInfo.getMinecraftVersion());
 			s.sendMessage("§eServerAPI Vesrion: §6" + SystemInfo.getApiVersion());

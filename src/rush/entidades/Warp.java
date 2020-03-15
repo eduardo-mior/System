@@ -16,25 +16,32 @@ public class Warp {
 	private String semPermissao;
 	private int delay;
 	private boolean delayParaVips;
+    private boolean enviarMensagem;
 	private String mensagemInicio;
 	private String mensagemFinal;
 	private boolean enviarTitle;
 	private String title;
 	private String subtitle;
-
+	private String mensagemPlayerTeleportado;
+    private String mensagemPlayerTeleportadoStaff;
+	
 	public Warp(String nome, String location, String permissao, String semPermissao, int delay, boolean delayVip,
-				String mensagemInicio, String mensagemFinal, boolean enviarTitle, String title, String subtitle) {
+				boolean enviarMensagem, String mensagemInicio, String mensagemFinal, boolean enviarTitle, String title,
+				 String subtitle, String mensagemPlayerTeleportado, String mensagemPlayerTeleportadoStaff) {
 		this.location = Utils.deserializeLocation(location);
-		this.nome = nome;
-		this.permissao = permissao;
-		this.semPermissao = semPermissao;
+		this.nome = nome.replace('&', '§');
+		this.permissao = permissao.trim();
+		this.semPermissao = semPermissao.replace('&', '§');
 		this.delay = delay;
+		this.enviarMensagem = enviarMensagem;
 		this.delayParaVips = delayVip;
 		this.mensagemInicio = mensagemInicio.replace('&', '§');
 		this.mensagemFinal = mensagemFinal.replace('&', '§');
 		this.enviarTitle = enviarTitle;
 		this.title = title.replace('&', '§');
 		this.subtitle = subtitle.replace('&', '§');
+		this.mensagemPlayerTeleportado = mensagemPlayerTeleportado.replace('&', '§');
+		this.mensagemPlayerTeleportadoStaff = mensagemPlayerTeleportadoStaff.replace('&', '§');
 		this.validWarp(location);
 	}
 
@@ -56,6 +63,10 @@ public class Warp {
 
 	public boolean delayParaVips() {
 		return delayParaVips;
+	}
+	
+	public boolean enviarMensagem() {
+		return enviarMensagem;
 	}
 
 	public String getMensagemInicio() {
@@ -80,6 +91,14 @@ public class Warp {
 
 	public String getNome() {
 		return nome;
+	}
+	
+	public String getMensagemPlayerTeleportado() {
+		return mensagemPlayerTeleportado;
+	}
+	
+	public String getMensagemPlayerTeleportadoStaff() {
+		return mensagemPlayerTeleportadoStaff;
 	}
 	
 	private void validWarp(String location) {

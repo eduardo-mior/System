@@ -134,6 +134,7 @@
 #    | system.luz                - Permissão para utilizar o comando /luz                          |
 #    | system.manterxp           - Permissão para não perder xp ao morrer                          |
 #    | system.mundovip           - Permissão para utilizar o comando /vip                          |
+#    | system.mundovip.outros    - Permissão para teleportar outras pessoas para o mundo vip       |
 #    | system.online             - Permissão para utilizar o comando /online                       |
 #    | system.particular         - Permissão para utilizar o comando /particular                   |
 #    | system.ping               - Permissão para utilizar o comando /ping                         |
@@ -152,6 +153,7 @@
 #    | system.skull              - Permissão para utilizar o comando /skull                        |
 #    | system.slime              - Permissão para utilizar o comando /slime                        |
 #    | system.spawn              - Permissão para utilizar o comando /spawn                        |
+#    | system.spawn.outros       - Permissão para teleportar outras pessoas para o spawn           |
 #    | system.spawn.vip          - Permissão para nascer direto no spawn vip                       |
 #    | system.speed              - Permissão para utilizar o comando /speed                        |
 #    | system.speed.outos        - Permissão para alterar a velocidade de outros players           |
@@ -174,6 +176,7 @@
 #    | system.vip                - Permissão para acessar a Area VIP do comando /vip               |
 #    | system.warp               - Permissão para utilizar o comando /warp                         |
 #    | system.warp.all           - Permissão para poder se teleportar para qualquer warp           |
+#    | system.warp.outros        - Permissão para teleportar outras pessoas para warps             |
 #    | system.warps              - Permissão para utilizar o comando /warps                        |
 #    +---------------------------------------------------------------------------------------------+
 #    | system.chat.destaque  - Permissão para escrever em destaque no chat.                        |

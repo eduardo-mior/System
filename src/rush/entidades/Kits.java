@@ -35,6 +35,8 @@ public abstract class Kits {
 	}
 	
 	public static void loadKits() {
+		KITS.clear();
+		
 		File folder = DataManager.getFolder("kits");
 		File[] file = folder.listFiles();
 		
@@ -43,9 +45,9 @@ public abstract class Kits {
 				FileConfiguration configKit = DataManager.getConfiguration(file[i]);
 				String id = file[i].getName().replace(".yml", "");
 				String nome = configKit.getString("Nome", "§rKit '" + id + "' sem nome! Use /editarkit!");
-				String permissao = configKit.getString("Permissao");
+				String permissao = configKit.getString("Permissao", "");
 				long delay = configKit.getLong("Delay");
-				String mensagemDeErro = configKit.getString("MensagemDeErro");
+				String mensagemDeErro = configKit.getString("MensagemDeErro", "");
 				String itens = configKit.getString("Itens");
 				Kit kit = new Kit(id, permissao, nome, delay, mensagemDeErro, itens);
 				KITS.put(id, kit);

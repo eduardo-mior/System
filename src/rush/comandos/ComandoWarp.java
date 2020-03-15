@@ -1,5 +1,6 @@
 package rush.comandos;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -14,6 +15,7 @@ import rush.configuracoes.Mensagens;
 import rush.entidades.Warp;
 import rush.entidades.Warps;
 
+@SuppressWarnings("all")
 public class ComandoWarp implements CommandExecutor {
 	
 	@Override
@@ -26,8 +28,12 @@ public class ComandoWarp implements CommandExecutor {
 		}
 			     
 		// Verificando se o sender digitou o número de argumentos correto
-		if (args.length != 1) {
-			s.sendMessage(Mensagens.Warp_Comando_Incorreto);
+		if (args.length < 1 || args.length > 2) {
+			if (s.hasPermission("system.warp.outros")) {
+				s.sendMessage(Mensagens.Warp_Comando_Incorreto_Staff);
+			} else {
+				s.sendMessage(Mensagens.Warp_Comando_Incorreto);
+			}
 			return true;
 		}
 			     
@@ -43,20 +49,40 @@ public class ComandoWarp implements CommandExecutor {
 			return true;
 		}
 		
-		// Pegando o player e a localização
-		Player p = (Player) s;
+		// Pegando a localização
 		Warp w = Warps.get(warp);
 		Location location = w.getLocation();
+		
+		// Verificando se o número de argumentos for 2 então queremos teleportar outro player
+		if (args.length == 2) {
+			
+			// Pegando o player e verificando se ele esta online
+			Player target = Bukkit.getPlayer(args[1]);
+			if (target == null) {
+				s.sendMessage(Mensagens.Player_Offline);
+				return true;
+			}		
+			
+			target.teleport(w.getLocation(), TeleportCause.COMMAND);
+			target.sendMessage(w.getMensagemPlayerTeleportado().replace("%player%", s.getName()));
+			s.sendMessage(w.getMensagemPlayerTeleportadoStaff().replace("%player%", target.getName()));
+			return true;
+		}
 		
 		// Verificando se o player tem permissão para se teleportar a warp
 		if (!s.hasPermission(w.getPermissao()) && !s.hasPermission("system.warp.all")) {
 			s.sendMessage(w.getSemPermissao());
 			return true;
 		} 
+		
+		// Pegando o player
+		Player p = (Player) s;
 			    	
 		// Verificando se o player tem permissão para se teleportar sem delay
 		if (!s.hasPermission("system.semdelay") || w.delayParaVips()) {
-			s.sendMessage(w.getMensagemInicio());
+			if (w.getDelay() > 0 && w.enviarMensagem()) {
+				s.sendMessage(w.getMensagemInicio());
+			}
 			new BukkitRunnable() {
 				@Override
 				public void run() {
@@ -64,7 +90,9 @@ public class ComandoWarp implements CommandExecutor {
 					if (w.enviarTitle()) {
 						TitleAPI.sendTitle(p, 10, 40, 10, w.getTitle(), w.getSubtitle());		
 					}
-					s.sendMessage(w.getMensagemFinal());
+					if (w.enviarMensagem()) {
+						s.sendMessage(w.getMensagemFinal());
+					}
 				}
 			}.runTaskLater(Main.get(), 20L * w.getDelay());
 			return true;

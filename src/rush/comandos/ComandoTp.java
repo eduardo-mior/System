@@ -158,7 +158,7 @@ public class ComandoTp implements CommandExecutor {
 		}
 		
 
-		// Se os argumentos foram 5 então o sender quer se teleportar até uma cordenada
+		// Se os argumentos foram 5 então o sender quer teleportar um player até uma cordenada
 		if (args.length == 5) {
 			// Verificando se o mundo é 1 mundo valido
 			World w = Bukkit.getWorld(args[0]);

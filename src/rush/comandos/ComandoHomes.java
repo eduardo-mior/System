@@ -62,8 +62,8 @@ public class ComandoHomes implements CommandExecutor {
 		}
 		
 		// Verificando se o player possui homes e formatando a mensagem
-		String particulares = homesParticulares.size() == 0 ? "[§8§oNenhuma]" : homesParticulares.toString();
-		String publicas = homesPublicas.size() == 0 ? "[§8§oNenhuma]" : homesPublicas.toString();
+		String particulares = homesParticulares.size() == 0 ? Mensagens.Nenhuma_Home : homesParticulares.toString();
+		String publicas = homesPublicas.size() == 0 ? Mensagens.Nenhuma_Home : homesPublicas.toString();
 		s.sendMessage(Mensagens.Homes_Publicas.replace("%homes%", publicas.substring(1, publicas.length() -1).replace(",", separador)));
 		if (player.equals(s.getName()) || s.hasPermission("system.home.admin")) {
 			s.sendMessage(Mensagens.Homes_Particulares.replace("%homes%", particulares.substring(1, particulares.length() -1).replace(",", separador)));

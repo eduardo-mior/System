@@ -1,5 +1,6 @@
 package rush.comandos;
 
+import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -12,6 +13,7 @@ import rush.configuracoes.Locations;
 import rush.configuracoes.Mensagens;
 import rush.configuracoes.Settings;
 
+@SuppressWarnings("all")
 public class ComandoMundoVip implements CommandExecutor {
 
 	@Override
@@ -22,7 +24,30 @@ public class ComandoMundoVip implements CommandExecutor {
 			s.sendMessage(Mensagens.Console_Nao_Pode);
 			return true;
 		}
+		
+		// Verificando se o número de argumentos é maior que 0 e se ele tem permissão para teleportar outros
+		if (args.length > 0 && s.hasPermission("system.mundovip.outros")) {
+			
+			// Verificando se ele digitou o número de argumentos corretos
+			if (args.length > 1) {
+				s.sendMessage(Mensagens.MundoVip_Comando_Incorreto);
+				return true;
+			}
 
+			// Pegando o player e verificando se ele esta online
+			Player target = Bukkit.getPlayer(args[0]);
+			if (target == null) {
+				s.sendMessage(Mensagens.Player_Offline);
+				return true;
+			}			
+			
+			// Teleportando o player para o spawn e informando
+			target.teleport(Locations.areaVip, TeleportCause.COMMAND);
+			target.sendMessage(Mensagens.Teleportado_Para_Vip.replace("%player%", s.getName()));
+			s.sendMessage(Mensagens.Teleportado_Outro_Com_Sucesso_Vip.replace("%player%", target.getName()));
+			return true;
+		}
+		
 		// Pegando o player
 		Player p = (Player) s;
 

@@ -1,4 +1,4 @@
-﻿file-version: 7
+﻿file-version: 9
 ############################################################
 # +------------------------------------------------------+ #
 # |              Recuros Adicionais (Addons)             | #
@@ -199,6 +199,12 @@ Delay-Para-Teleportar-Comandos: 5 #segundos
 # OBS: Para burlar use a permissão: system.bypass.delaydivulgar
 Delay-Para-Divulgar: 15 #minutos
 
+# Este delay é que sera usado por padrão nas warps
+# Você pode configurar um delay diferente para cada WARP acessando o arquivo da WARP dentro da pasta warps
+# OBS: Se você colocar 0 você desativa o delay para todos.
+# OBS: Para burlar o delay user a permissão: system.semdelay
+Delay-Padrao-Warps: 5 #segundos
+
 Tempo-Para-Expirar-Solicitacao-Tpa: 60 #segundos
 Tempo-Para-Poder-Enviar-Outra-Solicitacao-Tpa: 30 #segundos
 
@@ -237,6 +243,11 @@ Mundos-Sem-Sistema-De-Back:
   - "guerra"
   - "arena"
 
+############################################################
+# +------------------------------------------------------+ #
+# |                   Sistemas de Homes                  | #
+# +------------------------------------------------------+ #
+############################################################
 # Limite inicial de homes que o player pode setar.
 # Caso o player não possua nenhuma permissão system.homes.<quantia> então sera usado este valor.
 Limite-De-Homes-Inicial: 1

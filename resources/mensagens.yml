@@ -107,6 +107,7 @@ Tptoggle-Ja-Ativado: "&eSeu recebimento de tpas já esta &cdesabilitado&e."
 # |                   Sistema de Homes                   | #
 # +------------------------------------------------------+ #
 ############################################################
+Nenhuma-Home: "[&8&oNenhuma]"
 Particular-Comando-Incorreto: "&cComando incorreto,use /particular <home>"
 Publica-Comando-Incorreto: "&cComando incorreto, use /publica <home"
 SetHome-Comando-Incorreto: "&cComando incorreto, use /sethome <home>"
@@ -184,13 +185,25 @@ Spawner-Desconhecido: "&cTipo de Spawner desconhecido!\n&eLista de Spawners: &7%
 SetWarp-Comando-Incorreto: "&cComando incorreto, use /setwarp <warp>"
 DelWarp-Comando-Incorreto: "&cComando incorreto, use /delwarp <warp>"
 Warp-Comando-Incorreto: "&cComando incorreto, use /warp <warp>"
+Warp-Comando-Incorreto-Staff: "&cComando incorreto, use /warp <warp> [player]"
 Warp-Definida: "&aWarp '%warp%' definida com sucesso!"
 Warp-Deletada: "&aWarp '%warp%' deletada  com sucesso!"
 Warp-Ja-Existe: "&cA warp '%warp%' já existe!"
 Warp-Nao-Existe: "&cA warp '%warp%' não existe!"
 Nenhuma-Warp-Definida: "&cNão há warps disponíveis."
 Warps-Lista: "&eWarps disponíveis(%n%): &7%warps%"
-# O resto das mensagens do sistema de Warps esta dentro do arquivo da WARP.
+
+# Todas as mensagens a seguir podem ser modificadas dentro do arquivo de cada WARP.
+# Estas são as mensagens que vão vir por padrão na WARP, caso você queira você pode abrir
+# o arquivo da warp e customizar a mensagem lá dentro.
+# Além das mensagens, dentro do arquivo da WARP você também pode configurar o delay da WARP, a permissão dentre outras configurações.
+Warp-MensagemSemPermissao: "&cVocê não tem permissão para se teleportar para a warp %warp%."
+Warp-MensagemInicio: "&aVocê sera teleportado para a warp %warp% em 5 segundos!"
+Warp-MensagemFinal: "&aTeleportado com sucesso para a warp %warp%!"
+Warp-Title: "&aVOCÊ FOI TELEPORTADO"
+Warp-SubTitle: "&ePARA A WARP %warp%"
+Warp-MensagemPlayerTeleportado: "&aVocê foi teleportado para a warp %warp%!"
+Warp-MensagemPlayerTeleportadoStaff: "&a%player% teleportado com sucesso para a warp %warp%."
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -427,9 +440,12 @@ Skull-Enviada-Voce: "&aSkull de %dono% enviada para o seu inventário."
 # |                     Comando /vip                     | #
 # +------------------------------------------------------+ #
 ############################################################
+MundoVip-Comando-Incorreto: "&cComando incorreto, use /mundovip <player>"
 Iniciando-Teleporte-Vip: "&eEm %tempo% segundos você ira para o mundo VIP."
 Teleportado-Com-Sucesso-Sem-Vip: "&cOpa, este é o mundo VIP. Para acessá-lo por completo adquira um VIP em nosso site: &ewww.gamersboard.com.br"
 Teleportado-Com-Sucesso-Vip: "&aBem vindo ao mundo VIP."
+Teleportado-Outro-Com-Sucesso-Vip: "&a%player% teleportado para o mundo VIP."
+Teleportado-Para-Vip: "&aVocê foi teleportardo para o mundo VIP."
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -484,8 +500,13 @@ SetSpawn-Vip-Definido: "&aSpawn &eVip&a definido com sucesso."
 # |                    Comando /spawn                    | #
 # +------------------------------------------------------+ #
 ############################################################
-Teleportado-Com-Sucesso-Spawn: "&aTeleportado com sucesso para o spawn."
+Spawn-Comando-Incorreto: "&cComando incorreto, use /spawn <normal&8/&cvip> <player>"
 Iniciando-Teleporte-Spawn: "&eEm %tempo% segundos você ira para o spawn."
+Teleportado-Com-Sucesso-Spawn: "&aTeleportado com sucesso para o spawn."
+Teleportado-Outro-Com-Sucesso-Spawn: "&a%player% teleportado para o spawn."
+Teleportado-Outro-Com-Sucesso-Spawn-Vip: "&a%player% teleportado para o spawn VIP."
+Teleportado-Para-Spawn: "&aVocê foi teleportardo para o spawn."
+Teleportado-Para-Spawn-Vip: "&aVocê foi teleportardo para o spawn VIP."
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -727,8 +748,11 @@ System-Comando-Incorreto: |
   &c/system console <comando> &8-&7 Executa um comando no console do server.
   &c/system terminal <comando> &8-&7 Executa um comando no terminal (cmd) da host do server.
 System-Recarregado-Sucesso: |
-  &aMensagens e configurações recarregadas com sucesso!
+  &aSystem recarregado com sucesso!
   &7OBS: Algumas alterações só terão efeito quando o servidor for reinicializado.
+System-Erro-Ao-Recarregar: |
+  &cErro ao tentar recarregar o System. 
+  &cPor favor, verifique o console e se necessário contato comigo.
 Backup-Com-Sucesso: "&aBackup realizado com sucesso! O backup foi criado dentro da pasta 'backups' na pasta principal do plugin."
 
 ############################################################

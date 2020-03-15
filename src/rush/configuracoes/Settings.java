@@ -140,6 +140,7 @@ public class Settings {
 	public static boolean Desativar_Dano_Do_Cacto;
 	public static int Limite_De_Homes_Inicial;
 	public static Map<String, Integer> Grupos_De_Permissoes_De_Homes;
+	public static int Delay_Padrao_Warps;
 
 	public static void loadSettings() {
 		FileConfiguration config = ConfigManager.getConfig("settings");
@@ -269,6 +270,7 @@ public class Settings {
 		Desativar_Dano_Do_Cacto = config.getBoolean("Desativar-Dano-Do-Cacto");
 		Limite_De_Homes_Inicial = config.getInt("Limite-De-Homes-Inicial", 1);
 		try { Grupos_De_Permissoes_De_Homes = Utils.mapToMapInt(config.getConfigurationSection("Grupos-De-Permissoes-De-Homes").getValues(true)); } catch (Throwable e) {Grupos_De_Permissoes_De_Homes = new HashMap<>();} ;
+		Delay_Padrao_Warps = config.getInt("Delay-Padrao-Warps", 5);
 	}
 	
 	private static String getString(FileConfiguration config, String path) {

@@ -1,5 +1,5 @@
 main: rush.Main
-version: 1.14.7
+version: 1.14.8
 name: System
 load: POSTWORLD
 author: RUSH
@@ -171,6 +171,9 @@ permissions:
   system.mundovip:
     description: Permissão para usar o comando /mundovip.
     default: op
+  system.mundovip.outros:
+    description: Permissão para teleportar outros players até o spawn.
+    default: op
   system.online:
     description: Permissão para ver o número de players online no servidor.
     default: op
@@ -221,6 +224,9 @@ permissions:
     default: op
   system.spawn:
     description: Permissão para se teleportar até o spawn.
+    default: op
+  system.spawn.outros:
+    description: Permissão para teleportar outros players até o spawn.
     default: op
   system.spawn.vip:
     description: Permissão para nascer direto no spawn vip.
@@ -287,6 +293,9 @@ permissions:
     default: op
   system.warp.all:
     description: Permissão para se teleportar para qualquer warp.
+    default: op
+  system.warp.outros:
+    description: Permissão para teleportar outras pessoas para warps.
     default: op
   system.warps:
     description: Permissão para ver a lista de warps disponiveis.
@@ -407,6 +416,7 @@ permissions:
       system.luz: true
       system.manterxp: true
       system.mundovip: true
+      system.mundovip.outros: true
       system.online: true
       system.particular: true
       system.ping: true
@@ -424,6 +434,7 @@ permissions:
       system.skull: true
       system.slime: true
       system.spawn: true
+      system.spawn.outros: true
       system.spawn.vip: true
       system.speed.outros: true
       system.speed: true
@@ -446,4 +457,5 @@ permissions:
       system.vip: true
       system.warp: true
       system.warp.all: true
+      system.warp.outros: true
       system.warps: true
