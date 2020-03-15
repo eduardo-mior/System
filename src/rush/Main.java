@@ -150,8 +150,8 @@ import rush.sistemas.comandos.InvseeListener;
 import rush.sistemas.comandos.KitsListener;
 import rush.sistemas.comandos.VanishListener;
 import rush.sistemas.gerais.AnunciarMorte;
-import rush.sistemas.gerais.DeletarComandos;
 import rush.sistemas.gerais.AutoAnuncio;
+import rush.sistemas.gerais.DeletarComandos;
 import rush.sistemas.gerais.DroparCabecaAoMorrer;
 import rush.sistemas.gerais.Motd;
 import rush.sistemas.gerais.PlayerData;
@@ -291,7 +291,7 @@ public class Main extends JavaPlugin {
 			new Command("warp", "system.warp", new ComandoWarp());
 		}
 		
-		if (!isOldVersion() && version != Version.v1_14 && version != Version.v1_15 && version != Version.v1_16) {
+		if (!isOldVersion() && !isVeryFuckingNewVersion()) {
 			new Command("renderizacao", "system.renderizacao", new ComandoRenderizacao());
 		}
 		
@@ -303,7 +303,7 @@ public class Main extends JavaPlugin {
 			new Command("sgive", "system.sgive", new ComandoSGive());
 		}
 		
-		if (version != Version.v1_14 && version != Version.v1_15 && version != Version.v1_16) {
+		if (!isVeryFuckingNewVersion()) {
 			new Command("bigorna", "system.bigorna", new ComandoBigorna());
 		}
 		
@@ -329,7 +329,7 @@ public class Main extends JavaPlugin {
 			AutoAnuncio.runMensagens();
 		}
 
-		if (Settings.Bigorna_Infinita && version != Version.v1_14 && version != Version.v1_15 && version != Version.v1_16) {
+		if (Settings.Bigorna_Infinita && !isVeryFuckingNewVersion()) {
 			pm.registerEvents(new BigornaInfinita(), this);
 		}
 
@@ -645,9 +645,7 @@ public class Main extends JavaPlugin {
 		}
 		
 		if (commands.getBoolean("comandos.echest.ativar-comando")) {
-			if (!isOldVersion()) {
-				pm.registerEvents(new EnderChestListener(), this);
-			}
+			pm.registerEvents(new EnderChestListener(), this);
 		}
 		
 		if (commands.getBoolean("comandos.invsee.ativar-comando")) {
@@ -661,7 +659,7 @@ public class Main extends JavaPlugin {
 		if (commands.getBoolean("comandos.back.ativar-comando")) {
 			pm.registerEvents(new BackListener(), this);
 		}
-		
+
 		pm.registerEvents(new PlayerData(), this);
 		pm.registerEvents(new ManterXpAoMorrer(), this);
 		pm.registerEvents(new Outros(), this);
@@ -697,9 +695,9 @@ public class Main extends JavaPlugin {
 	}
 	
 	public static boolean isVeryOldVersion() {
-		if (version == Version.v1_5)
-			return true;
 		if (version == Version.v1_6)
+			return true;
+		if (version == Version.v1_5)
 			return true;
 		return false;
 	}
@@ -728,6 +726,16 @@ public class Main extends JavaPlugin {
 		if (version == Version.v1_14)
 			return true;
 		if (version == Version.v1_13)
+			return true;
+		return false;
+	}
+	
+	public static boolean isVeryFuckingNewVersion() {
+		if (version == Version.v1_16)
+			return true;
+		if (version == Version.v1_15)
+			return true;
+		if (version == Version.v1_14)
 			return true;
 		return false;
 	}

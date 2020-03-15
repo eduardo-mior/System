@@ -6,7 +6,11 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
+import rush.Main;
+import rush.apis.OfflinePlayerAPI;
 import rush.configuracoes.Mensagens;
+import rush.enums.Version;
+import rush.sistemas.comandos.InvseeListener;
 
 @SuppressWarnings("all")
 public class ComandoInvsee implements CommandExecutor {
@@ -25,23 +29,24 @@ public class ComandoInvsee implements CommandExecutor {
 			s.sendMessage(Mensagens.Invsee_Comando_Incorreto);
 			return true;
 		}
-
-		// Pegando o player target e verificando se ele esta online
-		Player target = Bukkit.getPlayer(args[0]);
+		
+		// Pegando o player e verificando se o ele esta online, caso ele não estiver tentamos pegar o offline
+		Player target = OfflinePlayerAPI.getPlayer(args[0]);
 		if (target == null) {
 			s.sendMessage(Mensagens.Player_Offline);
 			return true;
-		}		
+		}
 		
 		// Pegando o player e, verificando se o target e o sender são a mesma pessoa
-		Player p = (Player) s;
+		Player sender = (Player) s;
 		if (target.getName().equals(s.getName())) {
 			s.sendMessage(Mensagens.Invsee_Erro_Voce_Mesmo);
 			return true;
 		}
 		
 		// Abrindo o inventario e avisando
-		p.openInventory(target.getInventory());
+		InvseeListener.invseelist.put(sender.getName(), target.getName());
+		sender.openInventory(target.getInventory());
 		s.sendMessage(Mensagens.Invsee_Abrindo_Inventario.replaceAll("%player%", target.getName()));
 		return true;
 	}

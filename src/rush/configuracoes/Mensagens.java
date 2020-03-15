@@ -310,7 +310,9 @@ public class Mensagens {
 	public static String Plugin_Religado_Com_Sucesso;
 	public static String Plugin_Recarregado_Com_Sucesso;
 	public static String Erro_Nome_Com_Caracteres_Especiais;
-	
+	public static String Invsee_Deslogou;
+	public static String Echest_Deslogou;
+
 	public static void loadMensagens() {
 		FileConfiguration config = ConfigManager.getConfig("mensagens");
 		FileConfiguration settings = ConfigManager.getConfig("settings");
@@ -618,6 +620,8 @@ public class Mensagens {
 		Plugin_Religado_Com_Sucesso = getString(config, "Plugin-Religado-Com-Sucesso");
 		Plugin_Recarregado_Com_Sucesso = getString(config, "Plugin-Recarregado-Com-Sucesso");
 		Erro_Nome_Com_Caracteres_Especiais = getString(config, "Erro-Nome-Com-Caracteres-Especiais");
+		Invsee_Deslogou = getString(config, "Invsee-Deslogou");
+		Echest_Deslogou = getString(config, "Echest-Deslogou");
 	}
 	
 	private static String getString(FileConfiguration config, String path) {

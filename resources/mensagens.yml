@@ -536,6 +536,22 @@ Chapeu-Invalido: "&cEste item não pode ser usado como chapéu!"
 Invsee-Comando-Incorreto: "&cComando incorreto, use /invsee <player>"
 Invsee-Abrindo-Inventario: "&aAbrindo inventário de %player%."
 Invsee-Erro-Voce-Mesmo: "&cVocê não pode espionar o seu próprio inventário!"
+Invsee-Deslogou: |
+   &c &c
+   &cO player %player% saiu do servidor portanto o seu inventário fechado.
+   &cVocê pode visualizar e editar o inventário dele mesmo ele estando offline basta usar /invsee %player%
+   &c &c
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   Comando /echest                    | #
+# +------------------------------------------------------+ #
+############################################################
+Echest-Deslogou: |
+   &c &c
+   &cO player %player% saiu do servidor portanto o seu echest fechado.
+   &cVocê pode visualizar e editar o echest dele mesmo ele estando offline basta usar /echest %player%
+   &c &c
 
 ############################################################
 # +------------------------------------------------------+ #

@@ -31,6 +31,8 @@ public class OfflinePlayerAPI {
         Player testPlayer = Bukkit.getPlayerExact(playerName);
         if (testPlayer != null) return testPlayer; // Caso ele já estiver online...
         
+        if (Main.isVeryFuckingNewVersion()) return null; // Caso a versão do minecraft seja 1.14 ou acima...
+        
         try {
 	        OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(playerName);
 	        if (!offlinePlayer.hasPlayedBefore()) return null; // Caso o player não existir...
@@ -57,6 +59,8 @@ public class OfflinePlayerAPI {
 		
 		for (Player p : OnlinePlayersAPI.getOnlinePlayers()) 
 			players.add(p);
+		
+        if (Main.isVeryFuckingNewVersion()) return players; // Caso a versão do minecraft seja 1.14 ou acima...
 		
 		try {
 	        Object minecraftServer = getServer.invoke(null);
