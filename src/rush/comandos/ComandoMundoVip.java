@@ -18,12 +18,6 @@ public class ComandoMundoVip implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
-
-		// Verificando se o sender é um player
-		if (!(s instanceof Player)) {
-			s.sendMessage(Mensagens.Console_Nao_Pode);
-			return true;
-		}
 		
 		// Verificando se o número de argumentos é maior que 0 e se ele tem permissão para teleportar outros
 		if (args.length > 0 && s.hasPermission("system.mundovip.outros")) {
@@ -45,6 +39,12 @@ public class ComandoMundoVip implements CommandExecutor {
 			target.teleport(Locations.areaVip, TeleportCause.COMMAND);
 			target.sendMessage(Mensagens.Teleportado_Para_Vip.replace("%player%", s.getName()));
 			s.sendMessage(Mensagens.Teleportado_Outro_Com_Sucesso_Vip.replace("%player%", target.getName()));
+			return true;
+		}
+
+		// Verificando se o sender é um player
+		if (!(s instanceof Player)) {
+			s.sendMessage(Mensagens.Console_Nao_Pode);
 			return true;
 		}
 		

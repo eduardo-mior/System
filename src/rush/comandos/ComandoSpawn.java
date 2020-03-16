@@ -18,12 +18,6 @@ public class ComandoSpawn implements CommandExecutor {
 
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lb, String[] args) {
-
-		// Verificando se o sender é um player
-		if (!(s instanceof Player)) {
-			s.sendMessage(Mensagens.Console_Nao_Pode);
-			return true;
-		}
 		
 		// Verificando se o número de argumentos é maior que 0 e se ele tem permissão para teleportar outros
 		if (args.length > 0 && s.hasPermission("system.spawn.outros")) {
@@ -62,6 +56,12 @@ public class ComandoSpawn implements CommandExecutor {
 			return true;
 		}
 
+		// Verificando se o sender é um player
+		if (!(s instanceof Player)) {
+			s.sendMessage(Mensagens.Console_Nao_Pode);
+			return true;
+		}
+		
 		// Pegando o player e verificando se ele possui permissão para se teleportar sem precisar esperar
 		Player p = (Player) s;
 		if (!s.hasPermission("system.semdelay")) {

@@ -20,12 +20,6 @@ public class ComandoWarp implements CommandExecutor {
 	
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
-		
-		// Verificando se o sender é um player
-		if (!(s instanceof Player)) {
-			s.sendMessage(Mensagens.Console_Nao_Pode); 
-			return true;
-		}
 			     
 		// Verificando se o sender digitou o número de argumentos correto
 		if (args.length < 1 || args.length > 2) {
@@ -66,6 +60,12 @@ public class ComandoWarp implements CommandExecutor {
 			target.teleport(w.getLocation(), TeleportCause.COMMAND);
 			target.sendMessage(w.getMensagemPlayerTeleportado().replace("%player%", s.getName()));
 			s.sendMessage(w.getMensagemPlayerTeleportadoStaff().replace("%player%", target.getName()));
+			return true;
+		}
+		
+		// Verificando se o sender é um player
+		if (!(s instanceof Player)) {
+			s.sendMessage(Mensagens.Console_Nao_Pode); 
 			return true;
 		}
 		

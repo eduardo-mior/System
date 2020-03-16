@@ -19,12 +19,6 @@ public class ComandoWarpOLD implements CommandExecutor {
 	
 	@Override
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
-		
-		// Verificando se o sender é um player
-		if (!(s instanceof Player)) {
-			s.sendMessage(Mensagens.Console_Nao_Pode); 
-			return true;
-		}
 			     
 		// Verificando se o sender digitou o número de argumentos correto
 		if (args.length < 1 || args.length > 2) {
@@ -73,6 +67,12 @@ public class ComandoWarpOLD implements CommandExecutor {
 			s.sendMessage(w.getSemPermissao());
 			return true;
 		} 
+		
+		// Verificando se o sender é um player
+		if (!(s instanceof Player)) {
+			s.sendMessage(Mensagens.Console_Nao_Pode); 
+			return true;
+		}
 		
 		// Pegando o player
 		Player p = (Player) s;
