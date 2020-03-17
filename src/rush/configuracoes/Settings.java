@@ -141,7 +141,11 @@ public class Settings {
 	public static int Limite_De_Homes_Inicial;
 	public static Map<String, Integer> Grupos_De_Permissoes_De_Homes;
 	public static int Delay_Padrao_Warps;
-
+	public static boolean Comandos_Com_Cooldown;
+	public static Map<String, Long> Lista_Dos_Comandos_Com_Cooldown;
+	public static boolean Comandos_Com_Delay;
+	public static Map<String, Long> Lista_Dos_Comandos_Com_Delay;
+	
 	public static void loadSettings() {
 		FileConfiguration config = ConfigManager.getConfig("settings");
 		AtivarAddons_MassiveFactions = config.getBoolean("AtivarAddons.MassiveFactions");
@@ -271,6 +275,10 @@ public class Settings {
 		Limite_De_Homes_Inicial = config.getInt("Limite-De-Homes-Inicial", 1);
 		try { Grupos_De_Permissoes_De_Homes = Utils.mapToMapInt(config.getConfigurationSection("Grupos-De-Permissoes-De-Homes").getValues(true)); } catch (Throwable e) {Grupos_De_Permissoes_De_Homes = new HashMap<>();} ;
 		Delay_Padrao_Warps = config.getInt("Delay-Padrao-Warps", 5);
+		Comandos_Com_Cooldown = config.getBoolean("Comandos-Com-Cooldown");
+		try { Lista_Dos_Comandos_Com_Cooldown = Utils.listSplitToMapMillis(config.getStringList("Lista-Dos-Comandos-Com-Cooldown"), ":"); } catch (Throwable e) { Lista_Dos_Comandos_Com_Cooldown = new HashMap<>();}
+		Comandos_Com_Delay = config.getBoolean("Comandos-Com-Delay");
+		try { Lista_Dos_Comandos_Com_Delay = Utils.listSplitToMapMillis(config.getStringList("Lista-Dos-Comandos-Com-Delay"), ":"); } catch (Throwable e) { Lista_Dos_Comandos_Com_Delay = new HashMap<>();}
 	}
 	
 	private static String getString(FileConfiguration config, String path) {

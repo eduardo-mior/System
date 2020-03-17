@@ -78,6 +78,17 @@ public class Utils {
 		return output;
 	}
 	
+	public static Map<String, Long> listSplitToMapMillis(List<String> input, String split) {
+		Map<String, Long> output = new HashMap<>();
+		for (String element : input) {
+			String[] entry = element.split(split);
+			String key = entry[0];
+			String value = entry[1];
+			output.put(key, Long.parseLong(value));
+		}
+		return output;
+	}
+	
 	public static <K, V> Map<String, String> mapToMapString(Map<K, V> input) {
 		Map<String, String> output = new HashMap<>();
 		for (Entry<K, V> entry : input.entrySet()) {

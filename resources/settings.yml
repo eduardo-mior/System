@@ -388,6 +388,38 @@ Lista-Dos-Comandos-Bloqueados:
  
 ############################################################
 # +------------------------------------------------------+ #
+# |               Comandos Com Cooldown                  | #
+# +------------------------------------------------------+ #
+############################################################
+# Este recurso serve para adicionar um Cooldown para o player usar o comando novamente.
+# Este recurso coloca Cooldown tanto no comando /exemplo quanto no comando /plugin:exemplo
+# Para configurar um Cooldown basta colocar /comando:tempo --> EXEMPLO: /title:60000
+# OBS: O tempo do Cooldown é em segundos
+# OBS: Para burlar use a permissão: system.bypass.comandocooldown
+Comandos-Com-Cooldown: true
+Lista-Dos-Comandos-Com-Cooldown: 
+   - "/exemplo:300"
+   - "/debug:60"   
+   
+    
+############################################################
+# +------------------------------------------------------+ #
+# |                  Comandos Com Delay                  | #
+# +------------------------------------------------------+ #
+############################################################
+# Este recurso serve para adicionar um Delay para o comando ser executado.
+# Este recurso coloca Delay tanto no comando /exemplo quanto no comando /plugin:exemplo
+# Para configurar um Delay basta colocar /comando:tempo --> EXEMPLO: /tp:5
+# OBS: O tempo do Delay é em segundos
+# OBS: Para burlar use a permissão: system.bypass.comandodelay
+# OBS: O sistema de Delay usa p.performCommand() em vez de p.chat() então talvez alguns comandos não funcionem!
+Comandos-Com-Delay: true
+Lista-Dos-Comandos-Com-Delay: 
+   - "/teste:5"
+   - "/trigger:30" 
+
+############################################################
+# +------------------------------------------------------+ #
 # |                    Bloquear Crafts                   | #
 # +------------------------------------------------------+ #
 ############################################################

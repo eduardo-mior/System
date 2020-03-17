@@ -183,6 +183,8 @@
 #    | system.chat.cor.<cor> - Permissão para escrever com a cor automatica (definida na config)   |
 #    +---------------------------------------------------------------------------------------------+
 #    | system.bypass.comandobloqueado    - Permissão para utilizar comandos que foram bloqueados   |
+#    | system.bypass.comandocooldown     - Permissão para burlar o cooldown do sistema de cooldown |
+#    | system.bypass.comandodelay        - Permissão para burlar o delay do sistema de delays      |
 #    | system.bypass.containerbloqueado  - Permissão para abrir containers que foram bloqueados    |
 #    | system.bypass.craftbloqueado      - Permissão para craftar itens que foram bloqueados       |
 #    | system.bypass.delaydivulgar       - Permissão para divulgar sem esperar o delay             |

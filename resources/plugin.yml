@@ -1,5 +1,5 @@
 main: rush.Main
-version: 1.14.8
+version: 1.14.9
 name: System
 load: POSTWORLD
 author: RUSH
@@ -305,6 +305,12 @@ permissions:
   system.bypass.comandobloqueado:
     description: Permissão para usar comandos que foram bloqueados.
     default: false
+  system.bypass.comandocooldown:
+    description: Permissão para burlar o cooldown do sistema de cooldowns.
+    default: false
+  system.bypass.comandodelay:
+    description: Permissão para burlar o delay do sistema de delays.
+    default: false
   system.bypass.containerbloqueado:
     description: Permissão para abrir um inventario que foi bloqueado.
     default: false
@@ -350,6 +356,8 @@ permissions:
     default: false
     children:
       system.bypass.comandobloqueado: true
+      system.bypass.comandocooldown: true
+      system.bypass.comandodelay: true
       system.bypass.containerbloqueado: true
       system.bypass.craftbloqueado: true
       system.bypass.delaydivulgar: true

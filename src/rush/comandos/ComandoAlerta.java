@@ -28,9 +28,7 @@ public class ComandoAlerta implements CommandExecutor {
 			TitleAPI.sendTitle(p, 20, 60, 20,
 			Mensagens.Alerta_Title.replace("%alerta%", alerta).replace("%player%", s.getName()),
     		Mensagens.Alerta_SubTitle.replace("%alerta%", alerta).replace("%player%", s.getName()));
-    		p.sendMessage("");
     		p.sendMessage(Mensagens.Alerta_Chat.replace("%alerta%", alerta).replace("%player%", s.getName()));
-    		p.sendMessage("");
 		}
 		return true;
 	}

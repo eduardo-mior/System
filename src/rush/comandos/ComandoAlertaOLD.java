@@ -22,9 +22,7 @@ public class ComandoAlertaOLD implements CommandExecutor {
 		String alerta = String.join(" ", args).replace('&', '§');
 			
 		// Enviando a mensagem digita
-		Bukkit.broadcastMessage("");
 		Bukkit.broadcastMessage(Mensagens.Alerta_Chat.replace("%alerta%", alerta).replace("%player%", s.getName()));
-		Bukkit.broadcastMessage("");
 		return true;
 	}
 }

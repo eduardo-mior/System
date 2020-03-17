@@ -333,6 +333,8 @@ public class Mensagens {
 	public static String Plugin_Religado_Com_Sucesso;
 	public static String Plugin_Recarregado_Com_Sucesso;
 	public static String Erro_Nome_Com_Caracteres_Especiais;
+	public static String Aguarde_Cooldown_Comandos;
+	public static String Aguarde_Delay_Comandos;
 
 	public static void loadMensagens() {
 		FileConfiguration config = ConfigManager.getConfig("mensagens");
@@ -384,7 +386,6 @@ public class Mensagens {
 		Warp_SubTitle = getString(config, "Warp-SubTitle");
 		Warp_MensagemPlayerTeleportado = getString(config, "Warp-MensagemPlayerTeleportado");
 		Warp_MensagemPlayerTeleportadoStaff = getString(config, "Warp-MensagemPlayerTeleportadoStaff");
-
 		Nenhuma_Home = getString(config, "Nenhuma-Home");
 		Particular_Comando_Incorreto = getString(config, "Particular-Comando-Incorreto");
 		Publica_Comando_Incorreto = getString(config, "Publica-Comando-Incorreto");
@@ -665,6 +666,8 @@ public class Mensagens {
 		Plugin_Religado_Com_Sucesso = getString(config, "Plugin-Religado-Com-Sucesso");
 		Plugin_Recarregado_Com_Sucesso = getString(config, "Plugin-Recarregado-Com-Sucesso");
 		Erro_Nome_Com_Caracteres_Especiais = getString(config, "Erro-Nome-Com-Caracteres-Especiais");
+		Aguarde_Cooldown_Comandos = getString(config, "Aguarde-Cooldown-Comandos");
+		Aguarde_Delay_Comandos = getString(config, "Aguarde-Delay-Comandos");
 	}
 	
 	private static String getString(FileConfiguration config, String path) {

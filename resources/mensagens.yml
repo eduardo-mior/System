@@ -37,6 +37,8 @@ Shift-Bloqueado-No-Container: "&cO botão SHIFT foi desabilitado neste tipo de c
 Placas:
   Palavras-Desativadas-Na-Placa: "&cVocê não pode escrever em placas pois este recurso foi desativado no servidor."
   Palavra-Bloqueada-Na-Placa: "&cA palavra '%palavra%' foi bloqueada de ser usada em placas."
+Aguarde-Cooldown-Comandos: "&cAguarde %tempo% para poder usar este comando novamente."
+Aguarde-Delay-Comandos: "&eExecutando comando %comando% em %tempo%."
 
 ############################################################
 # +------------------------------------------------------+ #
@@ -407,7 +409,7 @@ Setmundovip-Comando-Incorreto: "&cComando incorreto, use /setmundovip <AreaVip &
 # +------------------------------------------------------+ #
 ############################################################
 Alerta-Comando-Incorreto: "&cComando incorreto, use /alerta <mensagem>"
-Alerta-Chat: "&a[ALERTA] %alerta%"
+Alerta-Chat: "&f \n&a[ALERTA] %alerta%\n &f"
 Alerta-Title: "&a&lALERTA"
 Alerta-SubTitle: "&e%player% TRANSMITIU UM ALERTA!"
 #Você pode usar as variaveis %alerta% e %player% nos titles e nas mensagens :D
@@ -582,7 +584,7 @@ Echest-Deslogou: |
 Echest-Logou: |
    &c &c
    &cO player %player% entrou no servidor portanto o seu echest automaticamente fechado.
-   &cVocê já pode visualizar novamente o echest dele, basta usar o comando /invsee %player%
+   &cVocê já pode visualizar novamente o echest dele, basta usar o comando /echest %player%
    &c &c
    
 ############################################################

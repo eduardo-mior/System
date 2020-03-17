@@ -151,6 +151,8 @@ import rush.sistemas.comandos.KitsListener;
 import rush.sistemas.comandos.VanishListener;
 import rush.sistemas.gerais.AnunciarMorte;
 import rush.sistemas.gerais.AutoAnuncio;
+import rush.sistemas.gerais.CooldownComandos;
+import rush.sistemas.gerais.DelayComandos;
 import rush.sistemas.gerais.DeletarComandos;
 import rush.sistemas.gerais.DroparCabecaAoMorrer;
 import rush.sistemas.gerais.Motd;
@@ -429,6 +431,14 @@ public class Main extends JavaPlugin {
 
 		if (Settings.Bloquear_Teleport_Por_Portal_Ativar) {
 			pm.registerEvents(new BloquearTeleportPorPortal(), this);
+		}
+		
+		if (Settings.Comandos_Com_Cooldown) {
+			pm.registerEvents(new CooldownComandos(), this);
+		}
+		
+		if (Settings.Comandos_Com_Delay) {
+			pm.registerEvents(new DelayComandos(), this);
 		}
 		
 		if (Settings.Deletar_Comandos) {
