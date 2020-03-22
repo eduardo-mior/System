@@ -593,7 +593,7 @@ public class Mensagens {
 		SetSpawn_Comando_Incorreto = getString(config, "SetSpawn-Comando-Incorreto");
 		SetSpawn_Normal_Definido = getString(config, "SetSpawn-Normal-Definido");
 		SetSpawn_Vip_Definido = getString(config, "SetSpawn-Vip-Definido");
-		Tabela_De_Cores = getString(config, "Tabela-De-Cores");
+		Tabela_De_Cores = config.getString("Tabela-De-Cores");
 		Avisar_Que_O_Chat_Foi_Limpo = config.getBoolean("Avisar-Que-O-Chat-Foi-Limpo");
 		Aviso_Que_O_Chat_Limpo_Global = getString(config, "Aviso-Que-O-Chat-Limpo-Global");
 		mcMMO_Upou_100_Niveis = getString(config, "mcMMO-Upou-100-Niveis");

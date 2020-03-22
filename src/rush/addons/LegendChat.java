@@ -16,7 +16,7 @@ public class LegendChat implements Listener {
     	Player p = e.getSender();
        
     	if (p.hasPermission("system.chat.destaque")) {
-    		e.setFormat(" \n" + e.getFormat() + "\n ");
+    		e.setFormat(" §l§f §a \n" + e.getFormat() + "\n §l§f §a ");
     	}
        
     	String colorId = getChatColorIdByPerm(p);
