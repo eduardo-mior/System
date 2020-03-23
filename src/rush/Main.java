@@ -128,6 +128,7 @@ import rush.recursos.desativadores.DesativarMensagemDeEntrada;
 import rush.recursos.desativadores.DesativarMensagemDeMorte;
 import rush.recursos.desativadores.DesativarMensagemDeSaida;
 import rush.recursos.desativadores.DesativarMobsNaturais;
+import rush.recursos.desativadores.DesativarMobsNaturaisOLD;
 import rush.recursos.desativadores.DesativarPropagacaoDoFogo;
 import rush.recursos.desativadores.DesativarQuedaDaAreia;
 import rush.recursos.desativadores.DesativarQuedaDasFolhas;
@@ -502,7 +503,11 @@ public class Main extends JavaPlugin {
 		}
 
 		if (Settings.Desativar_Mobs_Naturais) {
-			pm.registerEvents(new DesativarMobsNaturais(), this);
+			if (isOldVersion()) {
+				pm.registerEvents(new DesativarMobsNaturaisOLD(), this);				
+			} else {
+				pm.registerEvents(new DesativarMobsNaturais(), this);
+			}
 		}
 
 		if (Settings.Desativar_Propagacao_Do_Fogo) {
