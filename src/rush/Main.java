@@ -131,9 +131,11 @@ import rush.recursos.desativadores.DesativarMobsNaturais;
 import rush.recursos.desativadores.DesativarMobsNaturaisOLD;
 import rush.recursos.desativadores.DesativarPropagacaoDoFogo;
 import rush.recursos.desativadores.DesativarQuedaDaAreia;
+import rush.recursos.desativadores.DesativarQuedaDaBigorna;
 import rush.recursos.desativadores.DesativarQuedaDasFolhas;
 import rush.recursos.gerais.BigornaInfinita;
 import rush.recursos.gerais.BloquearMoneyInvalido;
+import rush.recursos.gerais.ComandosPrimeiroLogin;
 import rush.recursos.gerais.CoresNaBigorna;
 import rush.recursos.gerais.CoresNaPlaca;
 import rush.recursos.gerais.EnderPearlCooldown;
@@ -518,6 +520,10 @@ public class Main extends JavaPlugin {
 			pm.registerEvents(new DesativarQuedaDaAreia(), this);
 		}
 
+		if (Settings.Desativar_Queda_Da_Bigorna) {
+			pm.registerEvents(new DesativarQuedaDaBigorna(), this);
+		}
+		
 		if (Settings.Desativar_Queda_Das_Folhas) {
 			pm.registerEvents(new DesativarQuedaDasFolhas(), this);
 		}
@@ -536,6 +542,10 @@ public class Main extends JavaPlugin {
 			pm.registerEvents(new EntrarNoSpawnAoLogar(), Main.this);
 		}
 
+		if (Settings.Executar_Comandos_No_Primeiro_Login) {
+			pm.registerEvents(new ComandosPrimeiroLogin(), Main.this);
+		}
+		
 		if (Settings.Invencibilidade_Ao_Teleportar) {
 			pm.registerEvents(new InvencibilidadeAoTeleportar(), this);
 		}

@@ -1,5 +1,6 @@
 package rush.configuracoes;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,6 +38,7 @@ public class Settings {
 	public static boolean Desativar_Propagacao_Do_Fogo;
 	public static boolean Desativar_Queda_Das_Folhas;
 	public static boolean Desativar_Queda_Da_Areia;
+	public static boolean Desativar_Queda_Da_Bigorna;
 	public static boolean Desativar_Flow_Da_Agua_E_Lava;
 	public static boolean Desativar_Chuva;
 	public static long Delay_Para_Teleportar_Comandos;
@@ -145,6 +147,8 @@ public class Settings {
 	public static Map<String, Long> Lista_Dos_Comandos_Com_Cooldown;
 	public static boolean Comandos_Com_Delay;
 	public static Map<String, Long> Lista_Dos_Comandos_Com_Delay;
+	public static List<String> Lista_Dos_Comandos_Executados_No_Primeiro_Login;
+	public static boolean Executar_Comandos_No_Primeiro_Login;
 	
 	public static void loadSettings() {
 		FileConfiguration config = ConfigManager.getConfig("settings");
@@ -171,6 +175,7 @@ public class Settings {
 		Desativar_Propagacao_Do_Fogo = config.getBoolean("Desativar-Propagacao-Do-Fogo");
 		Desativar_Queda_Das_Folhas = config.getBoolean("Desativar-Queda-Das-Folhas");
 		Desativar_Queda_Da_Areia = config.getBoolean("Desativar-Queda-Da-Areia");
+		Desativar_Queda_Da_Bigorna = config.getBoolean("Desativar-Queda-Da-Bigorna");
 		Desativar_Flow_Da_Agua_E_Lava = config.getBoolean("Desativar-Flow-Da-Agua-E-Lava");
 		Desativar_Chuva = config.getBoolean("Desativar-Chuva");
 		Delay_Para_Teleportar_Comandos = config.getLong("Delay-Para-Teleportar-Comandos");
@@ -279,6 +284,8 @@ public class Settings {
 		try { Lista_Dos_Comandos_Com_Cooldown = Utils.listSplitToMapMillis(config.getStringList("Lista-Dos-Comandos-Com-Cooldown"), ":"); } catch (Throwable e) { Lista_Dos_Comandos_Com_Cooldown = new HashMap<>();}
 		Comandos_Com_Delay = config.getBoolean("Comandos-Com-Delay");
 		try { Lista_Dos_Comandos_Com_Delay = Utils.listSplitToMapMillis(config.getStringList("Lista-Dos-Comandos-Com-Delay"), ":"); } catch (Throwable e) { Lista_Dos_Comandos_Com_Delay = new HashMap<>();}
+		Executar_Comandos_No_Primeiro_Login = config.getBoolean("Executar-Comandos-No-Primeiro-Login");
+		try { Lista_Dos_Comandos_Executados_No_Primeiro_Login = Utils.colorizeListString(config.getStringList("Lista-Dos-Comandos-Executados-No-Primeiro-Login")); } catch (Throwable e) { Lista_Dos_Comandos_Executados_No_Primeiro_Login = new ArrayList<>(); }
 	}
 	
 	private static String getString(FileConfiguration config, String path) {
