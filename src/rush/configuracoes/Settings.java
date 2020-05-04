@@ -149,7 +149,9 @@ public class Settings {
 	public static Map<String, Long> Lista_Dos_Comandos_Com_Delay;
 	public static List<String> Lista_Dos_Comandos_Executados_No_Primeiro_Login;
 	public static boolean Executar_Comandos_No_Primeiro_Login;
-	
+	public static boolean Listar_Warps_Caso_Nao_Exista;
+	public static boolean Listar_Kits_Caso_Nao_Exista;
+
 	public static void loadSettings() {
 		FileConfiguration config = ConfigManager.getConfig("settings");
 		AtivarAddons_MassiveFactions = config.getBoolean("AtivarAddons.MassiveFactions");
@@ -286,6 +288,8 @@ public class Settings {
 		try { Lista_Dos_Comandos_Com_Delay = Utils.listSplitToMapMillis(config.getStringList("Lista-Dos-Comandos-Com-Delay"), ":"); } catch (Throwable e) { Lista_Dos_Comandos_Com_Delay = new HashMap<>();}
 		Executar_Comandos_No_Primeiro_Login = config.getBoolean("Executar-Comandos-No-Primeiro-Login");
 		try { Lista_Dos_Comandos_Executados_No_Primeiro_Login = Utils.colorizeListString(config.getStringList("Lista-Dos-Comandos-Executados-No-Primeiro-Login")); } catch (Throwable e) { Lista_Dos_Comandos_Executados_No_Primeiro_Login = new ArrayList<>(); }
+		Listar_Warps_Caso_Nao_Exista = config.getBoolean("Listar-Warps-Caso-Nao-Exista", true);
+		Listar_Kits_Caso_Nao_Exista = config.getBoolean("Listar-Kits-Caso-Nao-Exista", true);
 	}
 	
 	private static String getString(FileConfiguration config, String path) {

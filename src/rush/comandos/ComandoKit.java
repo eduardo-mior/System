@@ -15,6 +15,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.PlayerInventory;
 
 import rush.configuracoes.Mensagens;
+import rush.configuracoes.Settings;
 import rush.entidades.Kit;
 import rush.entidades.Kits;
 import rush.utils.TimeFormatter;
@@ -39,7 +40,9 @@ public class ComandoKit implements CommandExecutor {
 			String id = args[0].toLowerCase();
 			if (!Kits.contains(id)) {
 				s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit-id%", id));
-				ComandoKits.ListKitsForStaff(s);
+				if (Settings.Listar_Kits_Caso_Nao_Exista) {
+					ComandoKits.ListKitsForStaff(s);
+				}
 				return true;
 			}
 
@@ -68,10 +71,12 @@ public class ComandoKit implements CommandExecutor {
 		String id = args[0].toLowerCase();
 		if (!Kits.contains(id)) {
 			s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit-id%", id));
-			if (!s.hasPermission("system.kit.all") && !s.isOp()) {
-				ComandoKits.ListKits(s);
-			} else {
-				ComandoKits.ListKitsForStaff(s);
+			if (Settings.Listar_Kits_Caso_Nao_Exista) {
+				if (!s.hasPermission("system.kit.all") && !s.isOp()) {
+					ComandoKits.ListKits(s);
+				} else {
+					ComandoKits.ListKitsForStaff(s);
+				}	
 			}
 			return true;
 		}

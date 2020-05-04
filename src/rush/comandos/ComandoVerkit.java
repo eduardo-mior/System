@@ -9,6 +9,7 @@ import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 
 import rush.configuracoes.Mensagens;
+import rush.configuracoes.Settings;
 import rush.entidades.Kit;
 import rush.entidades.Kits;
 import rush.utils.GuiHolder;
@@ -28,10 +29,12 @@ public class ComandoVerkit implements CommandExecutor {
 		String nome = args[0].toLowerCase();
 		if (!Kits.contains(nome)) {
 			s.sendMessage(Mensagens.Kit_Nao_Existe.replace("%kit-id%", nome));
-			if (!s.hasPermission("system.kit.all") && !s.isOp()) {
-				ComandoKits.ListKits(s);
-			} else {
-				ComandoKits.ListKitsForStaff(s);
+			if (Settings.Listar_Kits_Caso_Nao_Exista) {
+				if (!s.hasPermission("system.kit.all") && !s.isOp()) {
+					ComandoKits.ListKits(s);
+				} else {
+					ComandoKits.ListKitsForStaff(s);
+				}	
 			}
 			return true;
 		}

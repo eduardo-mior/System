@@ -1,4 +1,4 @@
-﻿file-version: 9
+﻿file-version: 10
 ############################################################
 # +------------------------------------------------------+ #
 # |              Recuros Adicionais (Addons)             | #
@@ -245,6 +245,12 @@ Mundos-Onde-Pode-Usar-Fly:
 Mundos-Sem-Sistema-De-Back:
   - "guerra"
   - "arena"
+
+# Quando um player digitar o nome de uma warp ou de um kit que não existe então é exibida uma mensagem com
+# todas as warps ou kits. Caso você desative esta função então não ira aparecer a lsita de warps ou kits apenas 
+# ira aparecer a mensagem de erro dizendo que não existe.
+Listar-Warps-Caso-Nao-Exista: true
+Listar-Kits-Caso-Nao-Exista: true
 
 ############################################################
 # +------------------------------------------------------+ #

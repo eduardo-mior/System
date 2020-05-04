@@ -27,7 +27,7 @@ public class ComandoExecutarSom implements CommandExecutor {
 		}
             
 		// Verificando se o player quer mandar um som para todo o servidor
-		if (args[1].equalsIgnoreCase("all")) {
+		if (args[1].equalsIgnoreCase("all") || args[1].equalsIgnoreCase("@a") || args[1].equals("*")) {
 			
 			// Verificando se o som é um som valido
 			if (!Utils.isValidEnum(Sound.class, args[0].toUpperCase())) {

@@ -12,6 +12,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 import rush.Main;
 import rush.apis.TitleAPI;
 import rush.configuracoes.Mensagens;
+import rush.configuracoes.Settings;
 import rush.entidades.Warp;
 import rush.entidades.Warps;
 
@@ -22,12 +23,11 @@ public class ComandoWarp implements CommandExecutor {
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 			     
 		// Verificando se o sender digitou o número de argumentos correto
-		if (args.length < 1 || args.length > 2) {
-			if (s.hasPermission("system.warp.outros")) {
-				s.sendMessage(Mensagens.Warp_Comando_Incorreto_Staff);
-			} else {
-				s.sendMessage(Mensagens.Warp_Comando_Incorreto);
-			}
+		if (args.length != 1 && !s.hasPermission("system.warp.outros")) {
+			s.sendMessage(Mensagens.Warp_Comando_Incorreto);
+			return true;
+		} else if (args.length < 1 || args.length > 2) {
+			s.sendMessage(Mensagens.Warp_Comando_Incorreto_Staff);
 			return true;
 		}
 			     
@@ -35,10 +35,12 @@ public class ComandoWarp implements CommandExecutor {
 		String warp = args[0].toLowerCase();
 		if (!Warps.contains(warp)) {
 			s.sendMessage(Mensagens.Warp_Nao_Existe.replace("%warp%", warp));
-			if (!s.hasPermission("system.warp.all")) {
-				ComandoWarps.ListWarps(s);
-			} else {
-				ComandoWarps.ListWarpsForStaff(s);
+			if (Settings.Listar_Warps_Caso_Nao_Exista) {
+				if (!s.hasPermission("system.warp.all")) {
+					ComandoWarps.ListWarps(s);
+				} else {
+					ComandoWarps.ListWarpsForStaff(s);
+				}	
 			}
 			return true;
 		}
@@ -48,7 +50,7 @@ public class ComandoWarp implements CommandExecutor {
 		Location location = w.getLocation();
 		
 		// Verificando se o número de argumentos for 2 então queremos teleportar outro player
-		if (args.length == 2) {
+		if (args.length == 2 && s.hasPermission("system.warp.outros")) {
 			
 			// Pegando o player e verificando se ele esta online
 			Player target = Bukkit.getPlayer(args[1]);

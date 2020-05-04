@@ -1,4 +1,4 @@
-﻿file-version: 9
+﻿file-version: 10
 ############################################################
 # +------------------------------------------------------+ #
 # |                   Mensagens gerais                   | #
@@ -454,10 +454,14 @@ Teleportado-Para-Vip: "&aVocê foi teleportardo para o mundo VIP."
 # |                    Comando /sudo                     | #
 # +------------------------------------------------------+ #
 ############################################################
-Sudo-Comando-Incorreto: "&cComando incorreto, use /sudo <player> /<comando>"
+Sudo-Comando-Incorreto: |
+  &cComando incorreto, use:
+  &c/sudo <player> /<comando> &8-&7 Envia o comando para um player.
+  &c/sudo all /<comando> &8-&7 Envia o comando para todos os players.
 Sudo-Executado-Com-Sucesso: |
   &aSudo enviado com sucesso para %player%.
   &aComando executado: &7%comando%
+Sudo-Executado-Com-Sucesso-Para-Todos: "&aComando &7%comando% &aenviado com sucesso para todos os players."
 
 ############################################################
 # +------------------------------------------------------+ #

@@ -9,6 +9,7 @@ public enum JarType {
 	SPIGOT,
 	BUKKIT,
 	TORCH,
+	CAULDRON,
 	DESCONHECIDA;
 	
 	public static JarType getJarType() {
@@ -23,6 +24,8 @@ public enum JarType {
 			return JarType.SPIGOT;
 		else if (ver.contains("git-Bukkit"))
 			return JarType.BUKKIT;
+		else if (ver.contains("git-Cauldron"))
+			return JarType.CAULDRON;
 		else
 			return JarType.DESCONHECIDA;
 	}

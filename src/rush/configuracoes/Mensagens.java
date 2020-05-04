@@ -268,6 +268,7 @@ public class Mensagens {
 	public static String Crashado_Com_Sucesso;
 	public static String Sudo_Comando_Incorreto;
 	public static String Sudo_Executado_Com_Sucesso;
+	public static String Sudo_Executado_Com_Sucesso_Para_Todos;
 	public static String Fome_Level_Maximo;
 	public static String Vida_Level_Maximo;
 	public static String Fome_Regenerada_Com_Sucesso;
@@ -601,6 +602,7 @@ public class Mensagens {
 		Crashado_Com_Sucesso = getString(config, "Crashado-Com-Sucesso");
 		Sudo_Comando_Incorreto = getString(config, "Sudo-Comando-Incorreto");
 		Sudo_Executado_Com_Sucesso = getString(config, "Sudo-Executado-Com-Sucesso");
+		Sudo_Executado_Com_Sucesso_Para_Todos = getString(config, "Sudo-Executado-Com-Sucesso-Para-Todos");
 		Fome_Level_Maximo = getString(config, "Fome-Level-Maximo");
 		Vida_Level_Maximo = getString(config, "Vida-Level-Maximo");
 		Fome_Regenerada_Com_Sucesso = getString(config, "Fome-Regenerada-Com-Sucesso");

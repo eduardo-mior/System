@@ -11,6 +11,7 @@ import org.bukkit.scheduler.BukkitRunnable;
 
 import rush.Main;
 import rush.configuracoes.Mensagens;
+import rush.configuracoes.Settings;
 import rush.entidades.Warp;
 import rush.entidades.Warps;
 
@@ -34,10 +35,12 @@ public class ComandoWarpOLD implements CommandExecutor {
 		String warp = args[0].toLowerCase();
 		if (!Warps.contains(warp)) {
 			s.sendMessage(Mensagens.Warp_Nao_Existe.replace("%warp%", warp));
-			if (!s.hasPermission("system.warp.all")) {
-				ComandoWarps.ListWarps(s);
-			} else {
-				ComandoWarps.ListWarpsForStaff(s);
+			if (Settings.Listar_Warps_Caso_Nao_Exista) {
+				if (!s.hasPermission("system.warp.all")) {
+					ComandoWarps.ListWarps(s);
+				} else {
+					ComandoWarps.ListWarpsForStaff(s);
+				}	
 			}
 			return true;
 		}

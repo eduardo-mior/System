@@ -2,6 +2,8 @@ package rush.enums;
 
 import org.bukkit.Bukkit;
 
+import rush.utils.SystemInfo;
+
 public enum Version {
 
 	v1_16 (16),
@@ -19,7 +21,14 @@ public enum Version {
 	DESCONHECIDA (999);
 	
 	public static Version getServerVersion() {
-		String ver = Bukkit.getVersion();
+		Version version = getServerVersion(SystemInfo.getMinecraftVersion());
+		if (version == DESCONHECIDA) {
+			version = getServerVersion(Bukkit.getVersion());
+		}
+		return version;
+	}
+	
+	private static Version getServerVersion(String ver) {
 		if (ver.contains("1.16")) 
 			return v1_16;
 		else if (ver.contains("1.15")) 
