@@ -22,12 +22,11 @@ public class ComandoWarpOLD implements CommandExecutor {
 	public boolean onCommand(CommandSender s, Command cmd, String lbl, String[] args) {
 			     
 		// Verificando se o sender digitou o número de argumentos correto
-		if (args.length < 1 || args.length > 2) {
-			if (s.hasPermission("system.warp.outros")) {
-				s.sendMessage(Mensagens.Warp_Comando_Incorreto_Staff);
-			} else {
-				s.sendMessage(Mensagens.Warp_Comando_Incorreto);
-			}
+		if (args.length != 1 && !s.hasPermission("system.warp.outros")) {
+			s.sendMessage(Mensagens.Warp_Comando_Incorreto);
+			return true;
+		} else if (args.length < 1 || args.length > 2) {
+			s.sendMessage(Mensagens.Warp_Comando_Incorreto_Staff);
 			return true;
 		}
 			     

@@ -204,8 +204,8 @@ public class ComandoSystem implements CommandExecutor {
 		// Caso o argumento seja 'info' então é exibido algumas informações do plugin
 		if (cmd.equals("info")) {					
 			s.sendMessage("§e*-=-=-=-=-=-=-* §bServer Info §e*-=-=-=-=-=-=-* ");
-			s.sendMessage("§ePlugin Version: §61.14.12");
-			s.sendMessage("§eJava version: §6" + System.getProperty("java.version"));
+			s.sendMessage("§ePlugin Version: §61.14.13");
+			s.sendMessage("§eJava Version: §6" + System.getProperty("java.version"));
 			s.sendMessage("§eMinecraft Version: §6" + SystemInfo.getMinecraftVersion());
 			s.sendMessage("§eServerAPI Vesrion: §6" + SystemInfo.getApiVersion());
 			s.sendMessage("§eServer JarType: §6" + SystemInfo.getJarType());
@@ -268,14 +268,14 @@ public class ComandoSystem implements CommandExecutor {
 				s.sendMessage("§eMemória RAM total do servidor: §6" + totalRuntimeMemory);
 				s.sendMessage("§eMemória RAM livre do servidor: §6" + freeRuntimeMemory);
 				s.sendMessage("§eMemória RAM usada no servidor: §6" + usedRuntimeMemory);
-				s.sendMessage("§eMemória RAM total da maquina: §6" + totalComputerMemory);
-				s.sendMessage("§eMemória RAM livre da maquina: §6" + freeComputerMemory);
-				s.sendMessage("§eMemória RAM usada na maquina: §6" + usedComputerMemory);
-				s.sendMessage("§eArmazenamento total da maquina: §6" + totalComputerSpace);
-				s.sendMessage("§eArmazenamento livre da maquina: §6" + freeComputerSpace);
-				s.sendMessage("§eArmazenamento usado na maquina: §6" + usedComputerSpace);
-				s.sendMessage("§eNúmero de processadores (nucleos): §6" + availableProcessors);
-				s.sendMessage("§eArquitetura do processadore: §6" + processorArch);
+				s.sendMessage("§eMemória RAM total da máquina: §6" + totalComputerMemory);
+				s.sendMessage("§eMemória RAM livre da máquina: §6" + freeComputerMemory);
+				s.sendMessage("§eMemória RAM usada na máquina: §6" + usedComputerMemory);
+				s.sendMessage("§eArmazenamento total da máquina: §6" + totalComputerSpace);
+				s.sendMessage("§eArmazenamento livre da máquina: §6" + freeComputerSpace);
+				s.sendMessage("§eArmazenamento usado na máquina: §6" + usedComputerSpace);
+				s.sendMessage("§eNúmero de processadores (núcleos): §6" + availableProcessors);
+				s.sendMessage("§eArquitetura do processador: §6" + processorArch);
 				s.sendMessage("§eModelo do processador: §6" + (processor == null ? "Informação indisponivel! Veja o relatório avançado." : processor));
 				s.sendMessage("§e*-=-=-=-=-=-=-=* §bHost Info §e*=-=-=-=-=-=-=-* ");
 				return true;

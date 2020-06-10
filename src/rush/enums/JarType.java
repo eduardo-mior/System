@@ -5,7 +5,7 @@ import org.bukkit.Bukkit;
 public enum JarType {
 	
 	TACO_SPIGOT,
-	PAPE_SPIGOT,
+	PAPER_SPIGOT,
 	SPIGOT,
 	BUKKIT,
 	TORCH,
@@ -19,7 +19,7 @@ public enum JarType {
 		else if (ver.contains("git-Taco"))
 			return JarType.TACO_SPIGOT;
 		else if (ver.contains("git-Paper"))
-			return JarType.PAPE_SPIGOT;
+			return JarType.PAPER_SPIGOT;
 		else if (ver.contains("git-Spigot"))
 			return JarType.SPIGOT;
 		else if (ver.contains("git-Bukkit"))

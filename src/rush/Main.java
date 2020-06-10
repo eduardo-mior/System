@@ -331,7 +331,9 @@ public class Main extends JavaPlugin {
 		}
 
 		if (Settings.Auto_Anuncio) {
-			AutoAnuncio.runMensagens();
+			if (Settings.Lista_De_Anuncios != null && Settings.Lista_De_Anuncios.size() > 0) {
+				AutoAnuncio.runMensagens();	
+			}
 		}
 
 		if (Settings.Bigorna_Infinita && !isVeryFuckingNewVersion()) {
@@ -339,7 +341,9 @@ public class Main extends JavaPlugin {
 		}
 
 		if (Settings.Bloquear_Abrir_Containers_Ativar) {
-			pm.registerEvents(new BloquearAbrirContainers(), this);
+			if (Settings.Bloquear_Abrir_Containers_Containers != null && Settings.Bloquear_Abrir_Containers_Containers.size() > 0) {
+				pm.registerEvents(new BloquearAbrirContainers(), this);	
+			}
 		}
 
 		if (Settings.Bloquear_Cair_No_Void) {
@@ -351,7 +355,9 @@ public class Main extends JavaPlugin {
 		}
 
 		if (Settings.Bloquear_Comandos) {
-			pm.registerEvents(new BloquearComandos(), this);
+			if (Settings.Lista_Dos_Comandos_Bloqueados != null && Settings.Lista_Dos_Comandos_Bloqueados.size() > 0) {
+				pm.registerEvents(new BloquearComandos(), this);
+			}
 		}
 
 		if (Settings.Bloquear_Congelar_Agua) {
@@ -359,7 +365,9 @@ public class Main extends JavaPlugin {
 		}
 
 		if (Settings.Bloquear_Crafts) {
-			pm.registerEvents(new BloquearCrafts(), this);
+			if (Settings.Lista_Dos_Crafts_Bloqueados != null && Settings.Lista_Dos_Crafts_Bloqueados.size() > 0) {
+				pm.registerEvents(new BloquearCrafts(), this);	
+			}
 		}
 
 		if (Settings.Bloquear_Criar_Portal) {
@@ -391,7 +399,9 @@ public class Main extends JavaPlugin {
 		}
 
 		if (Settings.Bloquear_Nicks_Improprios) {
-			pm.registerEvents(new BloquearNicksImproprios(), this);
+			if (Settings.Nicks_Bloqueados != null && Settings.Nicks_Bloqueados.size() > 0) {
+				pm.registerEvents(new BloquearNicksImproprios(), this);				
+			}
 		}
 
 		if (Settings.Bloquear_Mobs_De_Pegarem_Fogo_Para_O_Sol) {
@@ -421,7 +431,9 @@ public class Main extends JavaPlugin {
 		}
 		
 		if (Settings.Bloquear_Shift_Em_Containers_Ativar) {
-			pm.registerEvents(new BloquearShiftEmContainers(), this);
+			if (Settings.Bloquear_Shift_Em_Containers_Containers != null && Settings.Bloquear_Shift_Em_Containers_Containers.size() > 0) {
+				pm.registerEvents(new BloquearShiftEmContainers(), this);	
+			}
 		}
 
 		if (Settings.Bloquear_Subir_Em_Veiculos) {
@@ -437,15 +449,21 @@ public class Main extends JavaPlugin {
 		}
 		
 		if (Settings.Comandos_Com_Cooldown) {
-			pm.registerEvents(new CooldownComandos(), this);
+			if (Settings.Lista_Dos_Comandos_Com_Cooldown != null && Settings.Lista_Dos_Comandos_Com_Cooldown.size() > 0) {
+				pm.registerEvents(new CooldownComandos(), this);	
+			}
 		}
 		
 		if (Settings.Comandos_Com_Delay) {
-			pm.registerEvents(new DelayComandos(), this);
+			if (Settings.Lista_Dos_Comandos_Com_Delay != null && Settings.Lista_Dos_Comandos_Com_Delay.size() > 0) {
+				pm.registerEvents(new DelayComandos(), this);	
+			}
 		}
 		
 		if (Settings.Deletar_Comandos) {
-			DeletarComandos.deleteCommands();
+			if (Settings.Lista_Dos_Comandos_Deletados != null && Settings.Lista_Dos_Comandos_Deletados.size() > 0) {
+				DeletarComandos.deleteCommands();
+			}
 		}
 		
 		if (Settings.Desativar_Chuva) {
@@ -543,7 +561,9 @@ public class Main extends JavaPlugin {
 		}
 
 		if (Settings.Executar_Comandos_No_Primeiro_Login) {
-			pm.registerEvents(new ComandosPrimeiroLogin(), Main.this);
+			if (Settings.Lista_Dos_Comandos_Executados_No_Primeiro_Login != null && Settings.Lista_Dos_Comandos_Executados_No_Primeiro_Login.size() > 0) {
+				pm.registerEvents(new ComandosPrimeiroLogin(), Main.this);	
+			}
 		}
 		
 		if (Settings.Invencibilidade_Ao_Teleportar) {
@@ -603,7 +623,6 @@ public class Main extends JavaPlugin {
 							pm.registerEvents(new DroparSpawnerAoExplodir(), this);
 						}
 					}
-
 				}
 			}
 		}
