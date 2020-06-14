@@ -34,8 +34,7 @@ public class ActionBarAPI {
 		    for (Player player : Bukkit.getOnlinePlayers()) {
 		    	ReflectionUtils.sendPacket(player, packet);
 		    }
-		} 
-		catch (Throwable e) {
+		} catch (Throwable e) {
 			e.printStackTrace();
 		}
 	}
