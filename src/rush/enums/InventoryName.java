@@ -25,6 +25,7 @@ public enum InventoryName {
 	LOOM("Tear"),
 	MERCHANT("Aldeão"), // Não sei se é a melhor tradução
 	PLAYER("Inventário"),
+	SMITHING("Bancada de ferraria"),
 	SMOKER("Defumador"),
 	STONECUTTER("Cortador de pedras"),
 	SHULKER_BOX("Caixa de Shulker"),

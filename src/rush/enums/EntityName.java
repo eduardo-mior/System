@@ -43,6 +43,7 @@ public enum EntityName {
 	GHAST("Ghast"),
 	GIANT("Zumbi Gigante"),
 	GUARDIAN("Guardião"),
+	HOGLIN("Hoglin"),
 	HORSE("Cavalo"),
 	HUSK("Zumbi do Deserto"),
 	ILLUSIONER("Ilusionista"),
@@ -69,6 +70,7 @@ public enum EntityName {
 	PARROT("Papagaio"),
 	PHANTOM("Phantom"),
 	PIG("Porco"),
+	PIGLIN("Piglin"),
 	PIG_ZOMBIE("Porco Zumbi"),
 	PILLAGER("Saqueador"),
 	PLAYER("Player"),
@@ -92,6 +94,7 @@ public enum EntityName {
 	SPIDER("Aranha"),
 	SPLASH_POTION("Poção Arremessável"),
 	SQUID("Lula"),
+	STRIDER("Lavagante"),
 	STRAY("Esqueleto Vagante"),
 	THROWN_EXP_BOTTLE("Frasco de Experiência"),
 	TIPPED_ARROW("Flecha"),
@@ -110,9 +113,11 @@ public enum EntityName {
 	WITHER_SKELETON("Esqueleto Wither"),
 	WITHER_SKULL("Cabeça do Wither"),
 	WOLF("Lobo"),
+	ZOGLIN("Zoglin"),
 	ZOMBIE("Zumbi"),
 	ZOMBIE_HORSE("Cavalo Zumbi"),
-	ZOMBIE_VILLAGER("Aldeão Zumbi");
+	ZOMBIE_VILLAGER("Aldeão Zumbi"),
+	ZOMBIFIED_PIGLIN("Piglin Zumbi");
 
 	private String name;
 	

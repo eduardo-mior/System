@@ -204,7 +204,7 @@ public class ComandoSystem implements CommandExecutor {
 		// Caso o argumento seja 'info' então é exibido algumas informações do plugin
 		if (cmd.equals("info")) {					
 			s.sendMessage("§e*-=-=-=-=-=-=-* §bServer Info §e*-=-=-=-=-=-=-* ");
-			s.sendMessage("§ePlugin Version: §61.14.13");
+			s.sendMessage("§ePlugin Version: §61.14.14");
 			s.sendMessage("§eJava Version: §6" + System.getProperty("java.version"));
 			s.sendMessage("§eMinecraft Version: §6" + SystemInfo.getMinecraftVersion());
 			s.sendMessage("§eServerAPI Vesrion: §6" + SystemInfo.getApiVersion());
@@ -217,13 +217,13 @@ public class ComandoSystem implements CommandExecutor {
 		
 		// Caso o argumento seja 'debug' então são exibidas algumas informações do system
 		if (cmd.equals("debug")) {
-			s.sendMessage("§e*-=-=-=-=-=-=-* §bSystem Info §e*-=-=-=-=-=-=-* ");
+			s.sendMessage("§e*-=-=-=-=-=-=-* §bSystem Debug §e*-=-=-=-=-=-=-* ");
 			s.sendMessage("§eSystem JarType detectada: §6" + Main.getTypeJar());
 			s.sendMessage("§eSystem Bukkit Version detectada: §6" + Main.getVersion());
 			s.sendMessage("§eNúmero de Kits: §6" + Kits.getAll().size());
 			s.sendMessage("§eNúmero de Warps: §6" + Warps.getAll().size());
 			s.sendMessage("§eNúmero de Players cadastrados: §6" + DataManager.getFolder("playerdata").listFiles().length);
-			s.sendMessage("§e*-=-=-=-=-=-=-* §bSystem Info §e*-=-=-=-=-=-=-* ");
+			s.sendMessage("§e*-=-=-=-=-=-=-* §bSystem Debug §e*-=-=-=-=-=-=-* ");
 			return true;
 		}
 

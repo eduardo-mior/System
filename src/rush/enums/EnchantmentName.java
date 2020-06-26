@@ -37,6 +37,7 @@ public enum EnchantmentName {
 	QUICK_CHARGE("Carga rápida"),
 	RIPTIDE("Correnteza"),
 	SILK_TOUCH("Toque suave"),
+	SOUL_SPEED("Velocidade das almas"),
 	SWEEPING_EDGE("Alcance"),
 	THORNS("Espinhos"),
 	VANISHING_CURSE("Maldição do desaparecimento"),
