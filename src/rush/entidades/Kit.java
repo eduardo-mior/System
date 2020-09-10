@@ -95,13 +95,13 @@ public class Kit {
 		{
 			return SerializerOLD.deserializeListItemStack(data);
 		}
-		else if (Main.isNewVersion()) 
-		{
-			return SerializerNEW.deserializeListItemStack(data);
-		}
 		else if (Main.isMotherFuckerVersion()) 
 		{
 			return SerializerVeryNEW.deserializeListItemStack(data);
+		}
+		else if (Main.isNewVersion()) 
+		{
+			return SerializerNEW.deserializeListItemStack(data);
 		}
 		else 
 		{

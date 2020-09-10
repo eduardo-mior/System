@@ -109,13 +109,13 @@ public class KitsListener implements Listener {
 		{
 			return SerializerOLD.serializeListItemStack(itens);
 		}
-		else if (Main.isNewVersion()) 
-		{
-			return SerializerNEW.serializeListItemStack(itens);
-		}
 		else if (Main.isMotherFuckerVersion()) 
 		{
 			return SerializerVeryNEW.serializeListItemStack(itens);
+		}
+		else if (Main.isNewVersion()) 
+		{
+			return SerializerNEW.serializeListItemStack(itens);
 		}
 		else 
 		{
