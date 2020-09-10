@@ -23,6 +23,7 @@ import rush.utils.GuiHolder;
 import rush.utils.manager.DataManager;
 import rush.utils.serializer.Serializer;
 import rush.utils.serializer.SerializerNEW;
+import rush.utils.serializer.SerializerVeryNEW;
 import rush.utils.serializer.SerializerOLD;
 
 public class KitsListener implements Listener {
@@ -111,6 +112,10 @@ public class KitsListener implements Listener {
 		else if (Main.isNewVersion()) 
 		{
 			return SerializerNEW.serializeListItemStack(itens);
+		}
+		else if (Main.isMotherFuckerVersion()) 
+		{
+			return SerializerVeryNEW.serializeListItemStack(itens);
 		}
 		else 
 		{

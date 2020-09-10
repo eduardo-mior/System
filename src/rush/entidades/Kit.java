@@ -5,6 +5,7 @@ import org.bukkit.inventory.ItemStack;
 import rush.Main;
 import rush.utils.serializer.Serializer;
 import rush.utils.serializer.SerializerNEW;
+import rush.utils.serializer.SerializerVeryNEW;
 import rush.utils.serializer.SerializerOLD;
 
 public class Kit {
@@ -97,6 +98,10 @@ public class Kit {
 		else if (Main.isNewVersion()) 
 		{
 			return SerializerNEW.deserializeListItemStack(data);
+		}
+		else if (Main.isMotherFuckerVersion()) 
+		{
+			return SerializerVeryNEW.deserializeListItemStack(data);
 		}
 		else 
 		{

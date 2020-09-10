@@ -71,6 +71,7 @@ public enum EntityName {
 	PHANTOM("Phantom"),
 	PIG("Porco"),
 	PIGLIN("Piglin"),
+	PIGLIN_BRUTE("Piglin Bárbaro"),
 	PIG_ZOMBIE("Porco Zumbi"),
 	PILLAGER("Saqueador"),
 	PLAYER("Player"),
