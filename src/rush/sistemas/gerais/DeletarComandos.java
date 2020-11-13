@@ -49,7 +49,7 @@ public class DeletarComandos {
 						
 						else if (plugin.equals("*")) {
 							for (Entry<String, Command> entry : commands.entrySet()) {
-								if (entry.getValue().getName().toLowerCase().equals(command) || (entry.getKey().contains(":") && entry.getKey().toLowerCase().split(":")[1].equals(command))) {
+								if (entry.getValue().getName().toLowerCase().equals(command) || (entry.getKey().split(":").length > 1 && entry.getKey().toLowerCase().split(":")[1].equals(command))) {
 									removes.add(entry);
 								}
 							}
@@ -57,7 +57,7 @@ public class DeletarComandos {
 						
 						else {
 							for (Entry<String, Command> entry : commands.entrySet()) {
-								if (entry.getKey().contains(":") && entry.getKey().toLowerCase().split(":")[0].equals(plugin) && (entry.getValue().getName().toLowerCase().equals(command) || entry.getKey().toLowerCase().split(":")[1].equals(command) )) {
+								if (entry.getKey().split(":").length > 1 && entry.getKey().toLowerCase().split(":")[0].equals(plugin) && (entry.getValue().getName().toLowerCase().equals(command) || entry.getKey().toLowerCase().split(":")[1].equals(command) )) {
 									removes.add(entry);
 								}
 							}
