@@ -66,7 +66,7 @@ public class ComandoSystem implements CommandExecutor {
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 			
-		// Caso o argumento seja 'reload' então recarregamos as configs do pl
+		// Caso o argumento seja 'reload' entï¿½o recarregamos as configs do pl
 		if (cmd.equals("reload")) {
 			try {
 				Settings.loadSettings();
@@ -84,9 +84,9 @@ public class ComandoSystem implements CommandExecutor {
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 			
-		// Caso o argumento seja 'backup' então criamos 1 backup dos arquivos do plugin
+		// Caso o argumento seja 'backup' entï¿½o criamos 1 backup dos arquivos do plugin
 		if (cmd.equals("backup")) {
-			// Criando uma nova Theard para não rodar na principal
+			// Criando uma nova Theard para nï¿½o rodar na principal
 			new Thread() {
 				@Override
 				public void run() {
@@ -99,40 +99,40 @@ public class ComandoSystem implements CommandExecutor {
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		// Caso o argumento seja 'contato' então é exibido os contatos do desenvolvodres
+		// Caso o argumento seja 'contato' entï¿½o ï¿½ exibido os contatos do desenvolvodres
 		if (cmd.equals("contato")) {
 			s.sendMessage("");
-			s.sendMessage("§6 §l* §eEduardo Mior - RUSHyoutuber");
+			s.sendMessage("ï¿½6 ï¿½l* ï¿½eEduardo Mior - RUSHyoutuber");
 			s.sendMessage("");
-			s.sendMessage("§aWhatsApp: §f(54) 991343192");
-			s.sendMessage("§9Facebook: §fhttp://fb.com/eduardo.mior.3");
-			s.sendMessage("§bTwitter: §fhttps://twitter.com/CanalDaRUSH");
-			s.sendMessage("§bSkype: §flive:eduardo-mior");
-			s.sendMessage("§3Discord: §fEduardo Mior#5793");
-			s.sendMessage("§cE-Mail: §feduardo-mior@hotmail.com");
-			s.sendMessage("§2TeamSpeak: §frush.ts3elite.com");
-			s.sendMessage("§eSpigot: §fhttps://spigotmc.org/members/mior.344828");
+			s.sendMessage("ï¿½aWhatsApp: ï¿½f(54) 991343192");
+			s.sendMessage("ï¿½9Facebook: ï¿½fhttp://fb.com/eduardo.mior.3");
+			s.sendMessage("ï¿½bTwitter: ï¿½fhttps://twitter.com/CanalDaRUSH");
+			s.sendMessage("ï¿½bSkype: ï¿½flive:eduardo-mior");
+			s.sendMessage("ï¿½3Discord: ï¿½fEduardo Mior#5793");
+			s.sendMessage("ï¿½cE-Mail: ï¿½feduardo-mior@hotmail.com");
+			s.sendMessage("ï¿½2TeamSpeak: ï¿½frush.ts3elite.com");
+			s.sendMessage("ï¿½eSpigot: ï¿½fhttps://spigotmc.org/members/mior.344828");
 			return true;
 		}
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		// Caso o argumento seja 'help' então é exibido a lista de comandos do plugin
+		// Caso o argumento seja 'help' entï¿½o ï¿½ exibido a lista de comandos do plugin
 		if (cmd.equals("help")) {
 			
-			// Verificando se a versão suporta JSON
+			// Verificando se a versï¿½o suporta JSON
 			if (Main.isVeryOldVersion()) {
 				s.sendMessage(Mensagens.Erro_Versao_Nao_Suportada);
 				return true;
 			}
 			
-			// Verificando se o player é o console
+			// Verificando se o player ï¿½ o console
 			if (!(s instanceof Player)) {
 				s.sendMessage(Mensagens.Console_Nao_Pode);
 				return true;
 			}
 			
-			// Verificando se o número da página informada é valido
+			// Verificando se o nï¿½mero da pï¿½gina informada ï¿½ valido
 			int pag = 1;
 			if (args.length == 2) {
 				try {
@@ -148,50 +148,50 @@ public class ComandoSystem implements CommandExecutor {
 			Set<String> keys = config.getConfigurationSection("comandos").getKeys(false);
 			String[] cmds = keys.toArray(new String[keys.size()]);
 				
-			// Pegando o total de páginas, e administrando as paginas
+			// Pegando o total de pï¿½ginas, e administrando as paginas
 			int maxPag =  (int) Math.ceil((double) cmds.length / 10.0);
 			int inicio = (pag - 1) * 10;
 			int fim = ((pag - 1) * 10) + 10;
 				
-			// Verificando se a página solicitada existe
+			// Verificando se a pï¿½gina solicitada existe
 			if (pag < 1 || pag > maxPag) {
-				s.sendMessage("§cPágina invalida!");
+				s.sendMessage("ï¿½cPï¿½gina invalida!");
 				return true;
 			}
 				
 			// Criando a mensagem JSON com a lista de comandos
 			UltimateFancy msg = new UltimateFancy();
-			s.sendMessage("§e§lLista de comandos do §nSystem§e: ");
+			s.sendMessage("ï¿½eï¿½lLista de comandos do ï¿½nSystemï¿½e: ");
 			for (int i = inicio; i < fim && i < cmds.length; i++) {
 				String description = config.getString("comandos." + cmds[i] + ".descricao");
 				String permission = "system." + cmds[i];
-				String sempermission = config.getString("comandos." + cmds[i] + ".sem-permissao").replace('&', '§');
+				String sempermission = config.getString("comandos." + cmds[i] + ".sem-permissao").replace('&', 'ï¿½');
 				String aliases = config.getStringList("comandos." + cmds[i] + ".aliases").toString();
 				boolean enabled = config.getBoolean("comandos." + cmds[i] + ".ativar-comando");
-				msg.text("§b/" + cmds[i] + " §7-§f " + description + "\n");
+				msg.text("ï¿½b/" + cmds[i] + " ï¿½7-ï¿½f " + description + "\n");
 				msg.hoverShowText(
-						"§eComando: §f/" + cmds[i] +
-						"\n§eComando ativado: §f" + enabled +
-						"\n§eAliases: §f" + aliases +
-						"\n§eDescrição: §f" + description +
-						"\n§ePermissão: §f" + permission +
-						"\n§eMensagem de erro: " + sempermission
+						"ï¿½eComando: ï¿½f/" + cmds[i] +
+						"\nï¿½eComando ativado: ï¿½f" + enabled +
+						"\nï¿½eAliases: ï¿½f" + aliases +
+						"\nï¿½eDescriï¿½ï¿½o: ï¿½f" + description +
+						"\nï¿½ePermissï¿½o: ï¿½f" + permission +
+						"\nï¿½eMensagem de erro: " + sempermission
 						);
 				msg.clickSuggestCmd("/" + cmds[i]);
 				msg.next();
 			}
 				
-			// Criando a mensagem JSON para passar e volta de página
-			msg.text("§ePagina ");
+			// Criando a mensagem JSON para passar e volta de pï¿½gina
+			msg.text("ï¿½ePagina ");
 			msg.next();
-			msg.text("§l[§b<§e] §r§e");
-			msg.hoverShowText("§bVoltar página");
+			msg.text("ï¿½l[ï¿½b<ï¿½e] ï¿½rï¿½e");
+			msg.hoverShowText("ï¿½bVoltar pï¿½gina");
 			msg.clickRunCmd("/system help " + (pag - 1));
 			msg.next();
-			msg.text(pag + "§7/§e" + maxPag);
+			msg.text(pag + "ï¿½7/ï¿½e" + maxPag);
 			msg.next();
-			msg.text(" §l[§b>§e]");
-			msg.hoverShowText("§bPróxima página");
+			msg.text(" ï¿½l[ï¿½b>ï¿½e]");
+			msg.hoverShowText("ï¿½bPrï¿½xima pï¿½gina");
 			msg.clickRunCmd("/system help " + (pag + 1));
 				
 			// Enviando a mensagem para o player
@@ -201,46 +201,46 @@ public class ComandoSystem implements CommandExecutor {
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		// Caso o argumento seja 'info' então é exibido algumas informações do plugin
+		// Caso o argumento seja 'info' entï¿½o ï¿½ exibido algumas informaï¿½ï¿½es do plugin
 		if (cmd.equals("info")) {					
-			s.sendMessage("§e*-=-=-=-=-=-=-* §bServer Info §e*-=-=-=-=-=-=-* ");
-			s.sendMessage("§ePlugin Version: §61.14.15");
-			s.sendMessage("§eJava Version: §6" + System.getProperty("java.version"));
-			s.sendMessage("§eMinecraft Version: §6" + SystemInfo.getMinecraftVersion());
-			s.sendMessage("§eServerAPI Vesrion: §6" + SystemInfo.getApiVersion());
-			s.sendMessage("§eServer JarType: §6" + SystemInfo.getJarType());
-			s.sendMessage("§e*-=-=-=-=-=-=-* §bServer Info §e*-=-=-=-=-=-=-* ");
+			s.sendMessage("ï¿½e*-=-=-=-=-=-=-* ï¿½bServer Info ï¿½e*-=-=-=-=-=-=-* ");
+			s.sendMessage("ï¿½ePlugin Version: ï¿½61.14.16");
+			s.sendMessage("ï¿½eJava Version: ï¿½6" + System.getProperty("java.version"));
+			s.sendMessage("ï¿½eMinecraft Version: ï¿½6" + SystemInfo.getMinecraftVersion());
+			s.sendMessage("ï¿½eServerAPI Vesrion: ï¿½6" + SystemInfo.getApiVersion());
+			s.sendMessage("ï¿½eServer JarType: ï¿½6" + SystemInfo.getJarType());
+			s.sendMessage("ï¿½e*-=-=-=-=-=-=-* ï¿½bServer Info ï¿½e*-=-=-=-=-=-=-* ");
 			return true;
 		}
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 		
-		// Caso o argumento seja 'debug' então são exibidas algumas informações do system
+		// Caso o argumento seja 'debug' entï¿½o sï¿½o exibidas algumas informaï¿½ï¿½es do system
 		if (cmd.equals("debug")) {
-			s.sendMessage("§e*-=-=-=-=-=-=-* §bSystem Debug §e*-=-=-=-=-=-=-* ");
-			s.sendMessage("§eSystem JarType detectada: §6" + Main.getTypeJar());
-			s.sendMessage("§eSystem Bukkit Version detectada: §6" + Main.getVersion());
-			s.sendMessage("§eNúmero de Kits: §6" + Kits.getAll().size());
-			s.sendMessage("§eNúmero de Warps: §6" + Warps.getAll().size());
-			s.sendMessage("§eNúmero de Players cadastrados: §6" + DataManager.getFolder("playerdata").listFiles().length);
-			s.sendMessage("§e*-=-=-=-=-=-=-* §bSystem Debug §e*-=-=-=-=-=-=-* ");
+			s.sendMessage("ï¿½e*-=-=-=-=-=-=-* ï¿½bSystem Debug ï¿½e*-=-=-=-=-=-=-* ");
+			s.sendMessage("ï¿½eSystem JarType detectada: ï¿½6" + Main.getTypeJar());
+			s.sendMessage("ï¿½eSystem Bukkit Version detectada: ï¿½6" + Main.getVersion());
+			s.sendMessage("ï¿½eNï¿½mero de Kits: ï¿½6" + Kits.getAll().size());
+			s.sendMessage("ï¿½eNï¿½mero de Warps: ï¿½6" + Warps.getAll().size());
+			s.sendMessage("ï¿½eNï¿½mero de Players cadastrados: ï¿½6" + DataManager.getFolder("playerdata").listFiles().length);
+			s.sendMessage("ï¿½e*-=-=-=-=-=-=-* ï¿½bSystem Debug ï¿½e*-=-=-=-=-=-=-* ");
 			return true;
 		}
 
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		// Caso o argumento seja 'host' então é exibida algumas informações do server
+		// Caso o argumento seja 'host' entï¿½o ï¿½ exibida algumas informaï¿½ï¿½es do server
 		if (cmd.equals("host")) {
 			
 			// Verificando os argumentos
 			if (args.length < 2) {
-				s.sendMessage("§cComando incorreto, use:");
-				s.sendMessage("§c/system host basico §8-§7 Mosta as informações mais basicas e importantes da host.");
-				s.sendMessage("§c/system host avancado §8-§7 Gera um relatório super completo TODAS as informações sobre a host.");
+				s.sendMessage("ï¿½cComando incorreto, use:");
+				s.sendMessage("ï¿½c/system host basico ï¿½8-ï¿½7 Mosta as informaï¿½ï¿½es mais basicas e importantes da host.");
+				s.sendMessage("ï¿½c/system host avancado ï¿½8-ï¿½7 Gera um relatï¿½rio super completo TODAS as informaï¿½ï¿½es sobre a host.");
 				return true;
 			}
 			
-			// Caso o argumento seja 'basico' então são exibidas das informações basicas
+			// Caso o argumento seja 'basico' entï¿½o sï¿½o exibidas das informaï¿½ï¿½es basicas
 			if (args[1].equalsIgnoreCase("basico")) {
 				// Pegando o runtime onde o programa esta sendo rodado, e pegando o sistema operacional (base)
 				Runtime machine = Runtime.getRuntime();
@@ -263,47 +263,47 @@ public class ComandoSystem implements CommandExecutor {
 				String processor = System.getenv("PROCESSOR_IDENTIFIER");
 				
 				// Exibindo os dados
-				s.sendMessage("§e*-=-=-=-=-=-=-=* §bHost Info §e*=-=-=-=-=-=-=-* ");
-				s.sendMessage("§eSistema Operacional: §6" + so + " §8-§6 " + soVersion);
-				s.sendMessage("§eMemória RAM total do servidor: §6" + totalRuntimeMemory);
-				s.sendMessage("§eMemória RAM livre do servidor: §6" + freeRuntimeMemory);
-				s.sendMessage("§eMemória RAM usada no servidor: §6" + usedRuntimeMemory);
-				s.sendMessage("§eMemória RAM total da máquina: §6" + totalComputerMemory);
-				s.sendMessage("§eMemória RAM livre da máquina: §6" + freeComputerMemory);
-				s.sendMessage("§eMemória RAM usada na máquina: §6" + usedComputerMemory);
-				s.sendMessage("§eArmazenamento total da máquina: §6" + totalComputerSpace);
-				s.sendMessage("§eArmazenamento livre da máquina: §6" + freeComputerSpace);
-				s.sendMessage("§eArmazenamento usado na máquina: §6" + usedComputerSpace);
-				s.sendMessage("§eNúmero de processadores (núcleos): §6" + availableProcessors);
-				s.sendMessage("§eArquitetura do processador: §6" + processorArch);
-				s.sendMessage("§eModelo do processador: §6" + (processor == null ? "Informação indisponivel! Veja o relatório avançado." : processor));
-				s.sendMessage("§e*-=-=-=-=-=-=-=* §bHost Info §e*=-=-=-=-=-=-=-* ");
+				s.sendMessage("ï¿½e*-=-=-=-=-=-=-=* ï¿½bHost Info ï¿½e*=-=-=-=-=-=-=-* ");
+				s.sendMessage("ï¿½eSistema Operacional: ï¿½6" + so + " ï¿½8-ï¿½6 " + soVersion);
+				s.sendMessage("ï¿½eMemï¿½ria RAM total do servidor: ï¿½6" + totalRuntimeMemory);
+				s.sendMessage("ï¿½eMemï¿½ria RAM livre do servidor: ï¿½6" + freeRuntimeMemory);
+				s.sendMessage("ï¿½eMemï¿½ria RAM usada no servidor: ï¿½6" + usedRuntimeMemory);
+				s.sendMessage("ï¿½eMemï¿½ria RAM total da mï¿½quina: ï¿½6" + totalComputerMemory);
+				s.sendMessage("ï¿½eMemï¿½ria RAM livre da mï¿½quina: ï¿½6" + freeComputerMemory);
+				s.sendMessage("ï¿½eMemï¿½ria RAM usada na mï¿½quina: ï¿½6" + usedComputerMemory);
+				s.sendMessage("ï¿½eArmazenamento total da mï¿½quina: ï¿½6" + totalComputerSpace);
+				s.sendMessage("ï¿½eArmazenamento livre da mï¿½quina: ï¿½6" + freeComputerSpace);
+				s.sendMessage("ï¿½eArmazenamento usado na mï¿½quina: ï¿½6" + usedComputerSpace);
+				s.sendMessage("ï¿½eNï¿½mero de processadores (nï¿½cleos): ï¿½6" + availableProcessors);
+				s.sendMessage("ï¿½eArquitetura do processador: ï¿½6" + processorArch);
+				s.sendMessage("ï¿½eModelo do processador: ï¿½6" + (processor == null ? "Informaï¿½ï¿½o indisponivel! Veja o relatï¿½rio avanï¿½ado." : processor));
+				s.sendMessage("ï¿½e*-=-=-=-=-=-=-=* ï¿½bHost Info ï¿½e*=-=-=-=-=-=-=-* ");
 				return true;
 			}
 			
-			// Caso o argumento seja 'avancado' então são exibidas das informações avancadas
-			if (args[1].equalsIgnoreCase("avancado") || args[1].equalsIgnoreCase("avançado")) {
-				// Criando uma nova Theard para não rodar na principal
+			// Caso o argumento seja 'avancado' entï¿½o sï¿½o exibidas das informaï¿½ï¿½es avancadas
+			if (args[1].equalsIgnoreCase("avancado") || args[1].equalsIgnoreCase("avanï¿½ado")) {
+				// Criando uma nova Theard para nï¿½o rodar na principal
 				new Thread() {
 					@Override
 					public void run() {
-						s.sendMessage("§aObtendo informações do sistema e da host...");
+						s.sendMessage("ï¿½aObtendo informaï¿½ï¿½es do sistema e da host...");
 						SystemInfo.createFullLog();
-						s.sendMessage("§aSucesso! O arquivo com todas as informações sobre o sistema e a host foram criados dentro da pasta principal do plugin.");
+						s.sendMessage("ï¿½aSucesso! O arquivo com todas as informaï¿½ï¿½es sobre o sistema e a host foram criados dentro da pasta principal do plugin.");
 					}
 				}.start();
 				return true;
 			}
 			
-			s.sendMessage("§cComando incorreto, use:");
-			s.sendMessage("§c/system host basico §8-§7 Para ver as informações basicas da host.");
-			s.sendMessage("§c/system host avancado §8-§7 Para relatório um arquivo com TODAS as informações sobre a host.");
+			s.sendMessage("ï¿½cComando incorreto, use:");
+			s.sendMessage("ï¿½c/system host basico ï¿½8-ï¿½7 Para ver as informaï¿½ï¿½es basicas da host.");
+			s.sendMessage("ï¿½c/system host avancado ï¿½8-ï¿½7 Para relatï¿½rio um arquivo com TODAS as informaï¿½ï¿½es sobre a host.");
 			return true;
 		}
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		// Caso o argumento seja 'plugin' então é gerenciado os plugins do servidor
+		// Caso o argumento seja 'plugin' entï¿½o ï¿½ gerenciado os plugins do servidor
 		if (cmd.startsWith("pl")) {
 			
 			// Verificando se ele digitou os argumentos minimos
@@ -314,28 +314,28 @@ public class ComandoSystem implements CommandExecutor {
 			
 			String subcmd = args[1].toLowerCase();
 			
-			// Caso o argumento seja 'help' então é exibido o menu de ajuda
+			// Caso o argumento seja 'help' entï¿½o ï¿½ exibido o menu de ajuda
 			if (subcmd.equals("help") || subcmd.equals("ajuda") || subcmd.equals("?")) {
-				s.sendMessage("§e*-=-=-=-=-=-=-=* §bMenu de Ajuda §e*=-=-=-=-=-=-=-* ");
-				s.sendMessage("§e§lImportante: §eOs plugins desligados aparece em §cvermelho §ena lista do /plugins, os plugins não carregados não aparecem na lista do /plugins.");
+				s.sendMessage("ï¿½e*-=-=-=-=-=-=-=* ï¿½bMenu de Ajuda ï¿½e*=-=-=-=-=-=-=-* ");
+				s.sendMessage("ï¿½eï¿½lImportante: ï¿½eOs plugins desligados aparece em ï¿½cvermelho ï¿½ena lista do /plugins, os plugins nï¿½o carregados nï¿½o aparecem na lista do /plugins.");
 				s.sendMessage(" ");
-				s.sendMessage("§bQual a diferença entre §nDisable §be §nUnload§b?");
-				s.sendMessage("§eA função §6disable§e serve para desligar um plugin do servidor. O plugin continuara carregado no servidor, porém ele estara desligado.");
-				s.sendMessage("§eA função §6unload§e serve para descarregar totalmente um plugin do servidor. O plugin não continuara carregado no servidor, ele sera desligado e removido.");
+				s.sendMessage("ï¿½bQual a diferenï¿½a entre ï¿½nDisable ï¿½be ï¿½nUnloadï¿½b?");
+				s.sendMessage("ï¿½eA funï¿½ï¿½o ï¿½6disableï¿½e serve para desligar um plugin do servidor. O plugin continuara carregado no servidor, porï¿½m ele estara desligado.");
+				s.sendMessage("ï¿½eA funï¿½ï¿½o ï¿½6unloadï¿½e serve para descarregar totalmente um plugin do servidor. O plugin nï¿½o continuara carregado no servidor, ele sera desligado e removido.");
 				s.sendMessage(" ");
-				s.sendMessage("§bQual a diferença entre §nEnable §be §nLoad§b?");
-				s.sendMessage("§eA função §6enable§e serve para ligar um plugin do servidor que esta desligado.");
-				s.sendMessage("§eA função §6load§e serve para ligar um plugin do servidor que ainda não foi carregado, que esta descarregado.");
+				s.sendMessage("ï¿½bQual a diferenï¿½a entre ï¿½nEnable ï¿½be ï¿½nLoadï¿½b?");
+				s.sendMessage("ï¿½eA funï¿½ï¿½o ï¿½6enableï¿½e serve para ligar um plugin do servidor que esta desligado.");
+				s.sendMessage("ï¿½eA funï¿½ï¿½o ï¿½6loadï¿½e serve para ligar um plugin do servidor que ainda nï¿½o foi carregado, que esta descarregado.");
 				s.sendMessage(" ");
-				s.sendMessage("§bQual a diferença entre §nRe-Enable §be §nRe-Load§b?");
-				s.sendMessage("§eA função §6Re-Enable§e serve para ligar e desligar um plugin do servidor.");
-				s.sendMessage("§eA função §6Re-Load§e serve para descarregar de pois carregar novamente um plugin no servidor.");
-				s.sendMessage("§e*-=-=-=-=-=-=-=* §bMenu de Ajuda §e*=-=-=-=-=-=-=-* ");
+				s.sendMessage("ï¿½bQual a diferenï¿½a entre ï¿½nRe-Enable ï¿½be ï¿½nRe-Loadï¿½b?");
+				s.sendMessage("ï¿½eA funï¿½ï¿½o ï¿½6Re-Enableï¿½e serve para ligar e desligar um plugin do servidor.");
+				s.sendMessage("ï¿½eA funï¿½ï¿½o ï¿½6Re-Loadï¿½e serve para descarregar de pois carregar novamente um plugin no servidor.");
+				s.sendMessage("ï¿½e*-=-=-=-=-=-=-=* ï¿½bMenu de Ajuda ï¿½e*=-=-=-=-=-=-=-* ");
 				return true;
 			}
 			
 			
-			// Caso o argumento seja 'list' então é listado todos os plugins
+			// Caso o argumento seja 'list' entï¿½o ï¿½ listado todos os plugins
 			if (subcmd.startsWith("list")) {
 				// Pegando o plugin loader para carregar os PDF
 				PluginLoader loader = Main.get().getPluginLoader();
@@ -345,7 +345,7 @@ public class ComandoSystem implements CommandExecutor {
 				SortedSet<String> disableds = new TreeSet<>();
 				SortedSet<String> unloadeds = new TreeSet<>();
 				
-				// Fazendo um loop por todas as jars e fazendo as devidas verificações
+				// Fazendo um loop por todas as jars e fazendo as devidas verificaï¿½ï¿½es
 				for (File jar : Utils.getAllPluginsJar()) {
 					try {
 						PluginDescriptionFile pdf = loader.getPluginDescription(jar);
@@ -364,30 +364,30 @@ public class ComandoSystem implements CommandExecutor {
 				}
 				
 				// Informando o sender
-				s.sendMessage("Plugins Ligados (" + enableds.size() + "): §a" + enableds.toString().replace("[", "").replace("]", "").replace(",", "§f,§a"));
-				s.sendMessage("Plugins Desligados (" + disableds.size() + "): §c" + disableds.toString().replace("[", "").replace("]", "").replace(",", "§f,§c"));
-				s.sendMessage("Plugins Descarregados (" + unloadeds.size() + "): §d" + unloadeds.toString().replace("[", "").replace("]", "").replace(",", "§f,§d"));
+				s.sendMessage("Plugins Ligados (" + enableds.size() + "): ï¿½a" + enableds.toString().replace("[", "").replace("]", "").replace(",", "ï¿½f,ï¿½a"));
+				s.sendMessage("Plugins Desligados (" + disableds.size() + "): ï¿½c" + disableds.toString().replace("[", "").replace("]", "").replace(",", "ï¿½f,ï¿½c"));
+				s.sendMessage("Plugins Descarregados (" + unloadeds.size() + "): ï¿½d" + unloadeds.toString().replace("[", "").replace("]", "").replace(",", "ï¿½f,ï¿½d"));
 				return true;
 			}
 			
 			
-			// Caso o argumento seja 'enable' então é ligado um plugin
+			// Caso o argumento seja 'enable' entï¿½o ï¿½ ligado um plugin
 			if (subcmd.startsWith("enable") || subcmd.equals("ligar") || subcmd.equals("habilitar") || subcmd.equals("on")) {
 				
-				// Verificando se o número de argumentos é valido
+				// Verificando se o nï¿½mero de argumentos ï¿½ valido
 				if (args.length < 3) {
 					s.sendMessage(Mensagens.Plugin_Sintaxe_Incorreto.replace("%comando%", "enable"));
 					return true;
 				}
 				
-				// Pegando o plugin e verificando se é valido
+				// Pegando o plugin e verificando se ï¿½ valido
 				Plugin plugin = Utils.getPluginByName(args[2]);
 				if (plugin == null) {
 					s.sendMessage(Mensagens.Plugin_Nao_Encontrado.replace("%plugin%", args[2]));
 					return true;
 				}
 				
-				// Verificando se o plugin já não esta ligado
+				// Verificando se o plugin jï¿½ nï¿½o esta ligado
 				if (plugin.isEnabled()) {
 					s.sendMessage(Mensagens.Plugin_Ja_Ligado.replace("%plugin%", plugin.getName()));
 					return true;
@@ -400,23 +400,23 @@ public class ComandoSystem implements CommandExecutor {
 			}
 			
 			
-			// Caso o argumento seja 'disable' então é desligado um plugin
+			// Caso o argumento seja 'disable' entï¿½o ï¿½ desligado um plugin
 			if (subcmd.startsWith("disable") || subcmd.equals("desligar") || subcmd.equals("desabilitar") || subcmd.equals("off")) {
 				
-				// Verificando se o número de argumentos é valido
+				// Verificando se o nï¿½mero de argumentos ï¿½ valido
 				if (args.length < 3) {
 					s.sendMessage(Mensagens.Plugin_Sintaxe_Incorreto.replace("%comando%", "disable"));
 					return true;
 				}
 				
-				// Pegando o plugin e verificando se é valido
+				// Pegando o plugin e verificando se ï¿½ valido
 				Plugin plugin = Utils.getPluginByName(args[2]);
 				if (plugin == null) {
 					s.sendMessage(Mensagens.Plugin_Nao_Encontrado.replace("%plugin%", args[2]));
 					return true;
 				}
 				
-				// Verificando se o plugin já não esta ligado
+				// Verificando se o plugin jï¿½ nï¿½o esta ligado
 				if (!plugin.isEnabled()) {
 					s.sendMessage(Mensagens.Plugin_Ja_Desligado.replace("%plugin%", plugin.getName()));
 					return true;
@@ -429,16 +429,16 @@ public class ComandoSystem implements CommandExecutor {
 			}
 			
 			
-			// Caso o argumento seja 'load' então é carregado um plugin
+			// Caso o argumento seja 'load' entï¿½o ï¿½ carregado um plugin
 			if (subcmd.startsWith("load") || subcmd.equals("carregar")) {
 
-				// Verificando se o número de argumentos é valido
+				// Verificando se o nï¿½mero de argumentos ï¿½ valido
 				if (args.length < 3) {
 					s.sendMessage(Mensagens.Plugin_Sintaxe_Incorreto.replace("%comando%", "load"));
 					return true;
 				}
 				
-				// Pegando o plugin e verificando se ele já esta carregado
+				// Pegando o plugin e verificando se ele jï¿½ esta carregado
 				String pluginName = String.join(" ", Arrays.copyOfRange(args, 2, args.length)).replace(".jar", "");
 				Plugin enabledPlugin = Utils.getPluginByName(pluginName);
 				if (enabledPlugin != null) {
@@ -455,11 +455,11 @@ public class ComandoSystem implements CommandExecutor {
 				
 				try
 				{
-					// Verificando se já existe um plugin com esse nome
+					// Verificando se jï¿½ existe um plugin com esse nome
 					PluginDescriptionFile pdf = Main.get().getPluginLoader().getPluginDescription(filePlugin);
 					Plugin loadedPlugin = Utils.getPluginByName(pdf.getName());
 					if (loadedPlugin != null) {
-						s.sendMessage(Mensagens.Plugin_Erro_Ao_Carregar.replace("%plugin%", loadedPlugin.getName()).replace("%motivo%", "Já existe um plugin carregado com este nome."));
+						s.sendMessage(Mensagens.Plugin_Erro_Ao_Carregar.replace("%plugin%", loadedPlugin.getName()).replace("%motivo%", "Jï¿½ existe um plugin carregado com este nome."));
 						return true;
 					}
 					
@@ -469,46 +469,46 @@ public class ComandoSystem implements CommandExecutor {
 					s.sendMessage(Mensagens.Plugin_Carregado_Com_Sucesso.replace("%plugin%", plugin.getName()));
 				}
 				catch (UnknownDependencyException e) {
-					s.sendMessage(Mensagens.Plugin_Erro_Ao_Carregar.replace("%plugin%", pluginName).replace("%motivo%", "As dependencias do plugin não foram encontradas."));
-					s.sendMessage("§c§nPara mais informações sobre o erro verifique o console.");
+					s.sendMessage(Mensagens.Plugin_Erro_Ao_Carregar.replace("%plugin%", pluginName).replace("%motivo%", "As dependencias do plugin nï¿½o foram encontradas."));
+					s.sendMessage("ï¿½cï¿½nPara mais informaï¿½ï¿½es sobre o erro verifique o console.");
 					e.printStackTrace();
 				}
 				catch (InvalidPluginException e) {
 					s.sendMessage(Mensagens.Plugin_Erro_Ao_Carregar.replace("%plugin%", pluginName).replace("%motivo%", "Erro interno do plugin."));
-					s.sendMessage("§c§nPara mais informações sobre o erro verifique o console.");
+					s.sendMessage("ï¿½cï¿½nPara mais informaï¿½ï¿½es sobre o erro verifique o console.");
 					e.printStackTrace();
 				}
 				catch (InvalidDescriptionException e) {
 					s.sendMessage(Mensagens.Plugin_Erro_Ao_Carregar.replace("%plugin%", pluginName).replace("%motivo%", "Erro no arquivo no plugin.yml do plugin."));
-					s.sendMessage("§c§nPara mais informações sobre o erro verifique o console.");
+					s.sendMessage("ï¿½cï¿½nPara mais informaï¿½ï¿½es sobre o erro verifique o console.");
 					e.printStackTrace();
 				}
 				catch (Throwable e) {
 					s.sendMessage(Mensagens.Plugin_Erro_Ao_Carregar.replace("%plugin%", pluginName).replace("%motivo%", "Erro totalmente desconhecido."));
-					s.sendMessage("§c§nPara mais informações sobre o erro verifique o console.");
+					s.sendMessage("ï¿½cï¿½nPara mais informaï¿½ï¿½es sobre o erro verifique o console.");
 					e.printStackTrace();
 				}
 				return true;
 			}
 
 			
-			// Caso o argumento seja 'unload' então é descarregado um plugin
+			// Caso o argumento seja 'unload' entï¿½o ï¿½ descarregado um plugin
 			if (subcmd.startsWith("unload") || subcmd.equals("descarregar")) {
 
-				// Verificando se o número de argumentos é valido
+				// Verificando se o nï¿½mero de argumentos ï¿½ valido
 				if (args.length < 3) {
 					s.sendMessage(Mensagens.Plugin_Sintaxe_Incorreto.replace("%comando%", "unload"));
 					return true;
 				}
 				
-				// Pegando o plugin e verificando se ele já esta carregado
+				// Pegando o plugin e verificando se ele jï¿½ esta carregado
 				Plugin plugin = Utils.getPluginByName(args[2]);
 				if (plugin == null) {
 					s.sendMessage(Mensagens.Plugin_Nao_Encontrado.replace("%plugin%", args[2]));
 					return true;
 				}
 				
-				// Cancelando as tasks, os serviços e os listeners do plugin 
+				// Cancelando as tasks, os serviï¿½os e os listeners do plugin 
 				Bukkit.getPluginManager().disablePlugin(plugin);
 				Bukkit.getScheduler().cancelTasks(plugin);
 				Bukkit.getServicesManager().unregisterAll(plugin);
@@ -542,12 +542,12 @@ public class ComandoSystem implements CommandExecutor {
 					}
 				} 
 				catch (Throwable e) {
-					s.sendMessage("§cNão foi possível descarregar completamente os comandos do plugin. Para mais informações verifique o console.");
+					s.sendMessage("ï¿½cNï¿½o foi possï¿½vel descarregar completamente os comandos do plugin. Para mais informaï¿½ï¿½es verifique o console.");
 					e.printStackTrace();
 				}
 				
 				/**
-				 * Código criado por iPyronic
+				 * Cï¿½digo criado por iPyronic
 				 * Link: https://github.com/r-clancy/PlugMan/blob/master/src/main/java/com/rylinaux/plugman/util/PluginUtil.java
 				 */
 				// Removendo o plugin da lista de plugins.
@@ -567,15 +567,15 @@ public class ComandoSystem implements CommandExecutor {
 					names.remove(plugin.getName().toLowerCase()); // PaperSpigot
 				} 
 				catch (Throwable e) {
-					s.sendMessage("§cNão foi possível remover o plugin da lista de plugins. Para mais informações verifique o console.");
+					s.sendMessage("ï¿½cNï¿½o foi possï¿½vel remover o plugin da lista de plugins. Para mais informaï¿½ï¿½es verifique o console.");
 					e.printStackTrace();
 				}
 				
 				/**
-				 * Código criado por iPyronic
+				 * Cï¿½digo criado por iPyronic
 				 * Link: https://github.com/r-clancy/PlugMan/blob/master/src/main/java/com/rylinaux/plugman/util/PluginUtil.java
 				 */
-				// Eu realmente não sei se isso é necessario... Removendo e desativando a classloader do plugin.
+				// Eu realmente nï¿½o sei se isso ï¿½ necessario... Removendo e desativando a classloader do plugin.
 		        ClassLoader cl = plugin.getClass().getClassLoader();
 		        if (cl instanceof URLClassLoader) {
 		            try {
@@ -595,10 +595,10 @@ public class ComandoSystem implements CommandExecutor {
 		        }
 				
 				/**
-				 * Código criado por QuarterCode
+				 * Cï¿½digo criado por QuarterCode
 				 * Link: https://dev.bukkit.org/projects/pluginmanager
 				 */
-				// Eu realmente não sei se isso é necessario... Removendo o plugin da lista de loaders.
+				// Eu realmente nï¿½o sei se isso ï¿½ necessario... Removendo o plugin da lista de loaders.
 		        try 
 		        {
 		        	JavaPluginLoader jpl = (JavaPluginLoader) plugin.getPluginLoader();
@@ -616,16 +616,16 @@ public class ComandoSystem implements CommandExecutor {
 			}			
 			
 			
-			// Caso o argumento seja 're-enable' então é habilitado um plugin
+			// Caso o argumento seja 're-enable' entï¿½o ï¿½ habilitado um plugin
 			if (subcmd.equals("re-enable") || subcmd.equals("reenable")) {
 
-				// Verificando se o número de argumentos é valido
+				// Verificando se o nï¿½mero de argumentos ï¿½ valido
 				if (args.length < 3) {
 					s.sendMessage(Mensagens.Plugin_Sintaxe_Incorreto.replace("%comando%", "re-enable"));
 					return true;
 				}
 				
-				// Pegando o plugin e verificando se é valido
+				// Pegando o plugin e verificando se ï¿½ valido
 				Plugin plugin = Utils.getPluginByName(args[2]);
 				if (plugin == null) {
 					s.sendMessage(Mensagens.Plugin_Nao_Encontrado.replace("%plugin%", args[2]));
@@ -638,9 +638,9 @@ public class ComandoSystem implements CommandExecutor {
 					return true;
 				}
 				
-				// Verificando se o plugi não é o System.
+				// Verificando se o plugi nï¿½o ï¿½ o System.
 				if (plugin.getName().equalsIgnoreCase("system")) {
-					s.sendMessage("§cOps! §nBad Vibes§c :( Você não pode usar este comando com o system. Caso queira use /system reload.");
+					s.sendMessage("ï¿½cOps! ï¿½nBad Vibesï¿½c :( Vocï¿½ nï¿½o pode usar este comando com o system. Caso queira use /system reload.");
 					return true;
 				}
 				
@@ -652,16 +652,16 @@ public class ComandoSystem implements CommandExecutor {
 			}			
 			
 			
-			// Caso o argumento seja 're-load' então é recarregado um plugin
+			// Caso o argumento seja 're-load' entï¿½o ï¿½ recarregado um plugin
 			if (subcmd.equals("re-load") || subcmd.equals("reload") || subcmd.equals("restart")) {
 
-				// Verificando se o número de argumentos é valido
+				// Verificando se o nï¿½mero de argumentos ï¿½ valido
 				if (args.length < 3) {
 					s.sendMessage(Mensagens.Plugin_Sintaxe_Incorreto.replace("%comando%", "re-load"));
 					return true;
 				}
 				
-				// Pegando o plugin e verificando se é valido
+				// Pegando o plugin e verificando se ï¿½ valido
 				Plugin plugin = Utils.getPluginByName(args[2]);
 				if (plugin == null) {
 					s.sendMessage(Mensagens.Plugin_Nao_Encontrado.replace("%plugin%", args[2]));
@@ -674,9 +674,9 @@ public class ComandoSystem implements CommandExecutor {
 					return true;
 				}
 				
-				// Verificando se o plugi não é o System.
+				// Verificando se o plugi nï¿½o ï¿½ o System.
 				if (plugin.getName().equalsIgnoreCase("system")) {
-					s.sendMessage("§cOps! §nBad Vibes§c :( Você não pode usar este comando com o system. Caso queira use /system reload.");
+					s.sendMessage("ï¿½cOps! ï¿½nBad Vibesï¿½c :( Vocï¿½ nï¿½o pode usar este comando com o system. Caso queira use /system reload.");
 					return true;
 				}
 				
@@ -688,16 +688,16 @@ public class ComandoSystem implements CommandExecutor {
 			}
 			
 			
-			// Caso o argumento seja 'info' então é habilitado um plugin
+			// Caso o argumento seja 'info' entï¿½o ï¿½ habilitado um plugin
 			if (subcmd.startsWith("info")) {
 
-				// Verificando se o número de argumentos é valido
+				// Verificando se o nï¿½mero de argumentos ï¿½ valido
 				if (args.length < 3) {
 					s.sendMessage(Mensagens.Plugin_Sintaxe_Incorreto.replace("%comando%", "load"));
 					return true;
 				}
 				
-				// Pegando o plugin e verificando se ele já esta carregado
+				// Pegando o plugin e verificando se ele jï¿½ esta carregado
 				String pluginName = String.join(" ", Arrays.copyOfRange(args, 2, args.length)).replace(".jar", "");
 				File filePlugin = Utils.getPluginJar(pluginName);
 				if (filePlugin == null) {
@@ -706,10 +706,10 @@ public class ComandoSystem implements CommandExecutor {
 				}
 				
 				try {
-					// Pegando o arquivo com as informações (plugin.yml)
+					// Pegando o arquivo com as informaï¿½ï¿½es (plugin.yml)
 					PluginDescriptionFile pdf = Main.get().getPluginLoader().getPluginDescription(filePlugin);
 					
-					// Pegando todas as informações
+					// Pegando todas as informaï¿½ï¿½es
 					String name = pdf.getName();
 					String prefix = pdf.getPrefix();
 					String version = pdf.getVersion();
@@ -719,36 +719,36 @@ public class ComandoSystem implements CommandExecutor {
 					List<String> depends = pdf.getDepend();
 					Map<String, Map<String, Object>> commands = pdf.getCommands();
 					
-					// Printando as informações
-					s.sendMessage("§e*-=-=-=-=-=-=-=* §bInformações do Plugin §e*=-=-=-=-=-=-=-* ");
+					// Printando as informaï¿½ï¿½es
+					s.sendMessage("ï¿½e*-=-=-=-=-=-=-=* ï¿½bInformaï¿½ï¿½es do Plugin ï¿½e*=-=-=-=-=-=-=-* ");
 					
 					if (name != null && !name.isEmpty()) 
-						s.sendMessage("§eNome: §6" + name);
+						s.sendMessage("ï¿½eNome: ï¿½6" + name);
 					
 					if (prefix != null && !prefix.isEmpty()) 
-						s.sendMessage("§ePrefixo: §6" + prefix);
+						s.sendMessage("ï¿½ePrefixo: ï¿½6" + prefix);
 					
 					if (version != null && !version.isEmpty()) 
-						s.sendMessage("§eVersão: §6" + version);
+						s.sendMessage("ï¿½eVersï¿½o: ï¿½6" + version);
 					
 					if (description != null && !description.isEmpty())
-						s.sendMessage("§eDescrição: §6" + description);
+						s.sendMessage("ï¿½eDescriï¿½ï¿½o: ï¿½6" + description);
 					
 					if (website != null && !website.isEmpty())
-						s.sendMessage("§eWebsite: §6" + website);
+						s.sendMessage("ï¿½eWebsite: ï¿½6" + website);
 					
 					if (autores != null && !autores.isEmpty())
-						s.sendMessage(autores.size() == 1 ? "§eAutor: §6" : "§eAutores: §6" + autores.toString().replace(",", "§8,§6"));
+						s.sendMessage(autores.size() == 1 ? "ï¿½eAutor: ï¿½6" : "ï¿½eAutores: ï¿½6" + autores.toString().replace(",", "ï¿½8,ï¿½6"));
 					
 					if (depends != null && !depends.isEmpty())
-						s.sendMessage("§eDependências: §6" + depends.toString());
+						s.sendMessage("ï¿½eDependï¿½ncias: ï¿½6" + depends.toString());
 					
 					if (commands != null && !commands.isEmpty())
-						s.sendMessage("§eComandos: §6" + commands.keySet().toString().replace(",", "§8,§6"));
+						s.sendMessage("ï¿½eComandos: ï¿½6" + commands.keySet().toString().replace(",", "ï¿½8,ï¿½6"));
 
-					s.sendMessage("§e*-=-=-=-=-=-=-=* §bInformações do Plugin §e*=-=-=-=-=-=-=-* ");
+					s.sendMessage("ï¿½e*-=-=-=-=-=-=-=* ï¿½bInformaï¿½ï¿½es do Plugin ï¿½e*=-=-=-=-=-=-=-* ");
 				} catch (Throwable e) {
-					s.sendMessage("§cNão foi possível carregar as informações do plugin.");
+					s.sendMessage("ï¿½cNï¿½o foi possï¿½vel carregar as informaï¿½ï¿½es do plugin.");
 				}
 				return true;
 			}
@@ -759,16 +759,16 @@ public class ComandoSystem implements CommandExecutor {
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		// Caso o argumento seja 'terminal' então é executado um comando no terminal
+		// Caso o argumento seja 'terminal' entï¿½o ï¿½ executado um comando no terminal
 		if (cmd.equals("terminal") || cmd.equals("cmd") || cmd.equals("prompt")) {
 			
-			// Verificando se o player digitou o número de argumentos corretos
+			// Verificando se o player digitou o nï¿½mero de argumentos corretos
 			if (args.length < 2) {
 				s.sendMessage(Mensagens.Terminal_Comando_Incorreto);
 				return true;
 			}
 
-			// Criando uma nova Theard para não rodar na principal
+			// Criando uma nova Theard para nï¿½o rodar na principal
 			new Thread() {
 				@Override
 				public void run() {
@@ -795,10 +795,10 @@ public class ComandoSystem implements CommandExecutor {
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 		
-		// Caso o argumento seja 'console' então executamos um comando no console do servidor
+		// Caso o argumento seja 'console' entï¿½o executamos um comando no console do servidor
 		if (cmd.equals("console") || cmd.equals("@console")) {
 			
-			// Verificando se o player digitou o número de argumentos corretos
+			// Verificando se o player digitou o nï¿½mero de argumentos corretos
 			if (args.length < 2) {
 				s.sendMessage(Mensagens.Terminal_Comando_Incorreto);
 				return true;
@@ -815,14 +815,14 @@ public class ComandoSystem implements CommandExecutor {
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 		
-		// Caso o argumento seja 'desligar' então o servidor é desligado
+		// Caso o argumento seja 'desligar' entï¿½o o servidor ï¿½ desligado
 		if (cmd.equals("disable") || cmd.equals("desligar") || cmd.equals("stop")) {
 			System.exit(0);
 		}
 		
 		//////////////////////////////////////////////////////////////////////////////////////////////////////
 
-		// Caso nenhum dos argumentos acima for valido é dado com comando incorreto
+		// Caso nenhum dos argumentos acima for valido ï¿½ dado com comando incorreto
 		s.sendMessage(Mensagens.System_Comando_Incorreto);
 		return true;
 	}

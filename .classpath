@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
+	<classpathentry exported="true" kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/JavaSE-1.8"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="resources"/>
-	<classpathentry kind="lib" path="D:/Programação/Dependencias/LegendChat.jar"/>
-	<classpathentry kind="lib" path="D:/Programação/Dependencias/MambaFactions.jar"/>
-	<classpathentry kind="lib" path="D:/Programação/Dependencias/MambaMassiveCore.jar"/>
-	<classpathentry kind="lib" path="D:/Programação/Dependencias/mcMMO.jar"/>
-	<classpathentry kind="lib" path="D:/Programação/Dependencias/Vault.jar"/>
-	<classpathentry kind="lib" path="D:/Programação/Dependencias/craftbukkit-1.8.8-R0.1-SNAPSHOT-latest.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Meus Documentos/Programação/Programação/Dependencias/craftbukkit-1.8.8.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Meus Documentos/Desktop/plugins/1.8/MambaFactions Premium.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Meus Documentos/Desktop/plugins/1.8/MambaMassiveCore Premium.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Meus Documentos/Desktop/plugins/1.8/Vault.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Meus Documentos/Desktop/plugins/1.8/mcMMO/1.8/mcMMO 1.8 - TRADUZIDO by RUSH.jar.jar"/>
+	<classpathentry exported="true" kind="lib" path="D:/Meus Documentos/Desktop/plugins/1.8/PLS BACKUP/LegendChat-TRADUZIDO.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
