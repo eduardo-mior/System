@@ -36,12 +36,11 @@ public abstract class Warps {
 	
 	public static void loadWarps() {
 		WARPS.clear();
-		
 		File folder = DataManager.getFolder("warps");
 		File[] file = folder.listFiles();
-		
-		for (int i = 0; i < file.length; i++) {
-			if (file[i].isFile()) {
+		if(file != null) {
+			for (int i = 0; i < file.length; i++) {
+				if (file[i] != null && file[i].isFile())  {
 				FileConfiguration configWarp = DataManager.getConfiguration(file[i]);
 				String nome = file[i].getName().replace(".yml", "");
 				String loc = configWarp.getString("Localizacao");
@@ -59,6 +58,7 @@ public abstract class Warps {
 				String teleportadoStaff = configWarp.getString("MensagemPlayerTeleportadoStaff", "");
 				Warp warp = new Warp(nome, loc, perm, semPerm, delay, delayVip, mensagem, inicio, fim, enviar, title, subTitle, teleportado, teleportadoStaff);
 				WARPS.put(nome, warp);
+				}
 			}
 		}
 	}
