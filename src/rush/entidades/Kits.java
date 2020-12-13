@@ -39,18 +39,19 @@ public abstract class Kits {
 		
 		File folder = DataManager.getFolder("kits");
 		File[] file = folder.listFiles();
-		
-		for (int i = 0; i < file.length; i++) {
-			if (file[i].isFile()) {
+		if(file != null) {
+			for (int i = 0; i < file.length; i++) {
+				if (file[i] != null && file[i].isFile())  {
 				FileConfiguration configKit = DataManager.getConfiguration(file[i]);
 				String id = file[i].getName().replace(".yml", "");
-				String nome = configKit.getString("Nome", "§rKit '" + id + "' sem nome! Use /editarkit!");
+				String nome = configKit.getString("Nome", "Â§rKit '" + id + "' sem nome! Use /editarkit!");
 				String permissao = configKit.getString("Permissao", "");
 				long delay = configKit.getLong("Delay");
 				String mensagemDeErro = configKit.getString("MensagemDeErro", "");
 				String itens = configKit.getString("Itens");
 				Kit kit = new Kit(id, permissao, nome, delay, mensagemDeErro, itens);
 				KITS.put(id, kit);
+				}
 			}
 		}	
 	}
