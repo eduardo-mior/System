@@ -13,7 +13,7 @@ public class BloquearSubirNoTetoNether implements Listener {
 
 	@EventHandler(priority = EventPriority.HIGH, ignoreCancelled = true)
 	public void aoTeleportar(PlayerTeleportEvent e) {
-		if (e.getTo().getWorld().getEnvironment() == Environment.NETHER && e.getTo().getY() > 124.0D) {
+		if (e.getTo() != null && e.getTo().getWorld().getEnvironment() == Environment.NETHER && e.getTo().getY() > 124.0D) {
 			e.getPlayer().teleport(Locations.spawn, TeleportCause.PLUGIN);
 			e.setCancelled(true);
 		}
