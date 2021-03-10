@@ -1,6 +1,8 @@
 package rush.recursos.desativadores;
 
 import org.bukkit.Material;
+import org.bukkit.block.Block;
+import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -8,19 +10,14 @@ import org.bukkit.event.entity.EntityChangeBlockEvent;
 
 public class DesativarQuedaDaAreia implements Listener {
 
-	/**
-	 * Código criado por iPyronic
-	 * Link: https://www.spigotmc.org/threads/prevent-sand-from-falling-upon-placing-sand.133386/
-	 */
-	
-	@EventHandler(ignoreCancelled = true)
-	public void aoCair(EntityChangeBlockEvent e) {
-		if (e.getEntityType() == EntityType.FALLING_BLOCK && e.getTo() == Material.AIR) {
-			if (e.getBlock().getType() == Material.SAND || e.getBlock().getType() == Material.GRAVEL) {
-				e.setCancelled(true);
-				e.getBlock().getState().update(false, false);
-			}
-		}
-	}
-	
+    @EventHandler
+    public void onChange(EntityChangeBlockEvent e) {
+        Block block = e.getBlock();
+        Entity entity = e.getEntity();
+
+        if (entity.getType() == EntityType.FALLING_BLOCK & block.getType() == Material.SAND) {
+            e.setCancelled(true);
+            block.getState().update(false, false);
+        }
+    }
 }
