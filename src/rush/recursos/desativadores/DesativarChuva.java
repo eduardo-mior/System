@@ -6,11 +6,10 @@ import org.bukkit.event.weather.WeatherChangeEvent;
 
 public class DesativarChuva implements Listener {
 
-	@EventHandler(ignoreCancelled = true)
-	public void aoComecarChuva(WeatherChangeEvent e) {
-		if (e.toWeatherState()) {
-			e.setCancelled(true);
-		}
-	}
-	
+    @EventHandler
+    public void onWeatherChange(WeatherChangeEvent e) {
+        if (e.toWeatherState()) {
+            e.setCancelled(true);
+        }
+    }
 }
