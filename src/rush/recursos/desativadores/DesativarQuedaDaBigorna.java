@@ -8,7 +8,7 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.EntityChangeBlockEvent;
 
-public class SandChangeListener implements Listener {
+public class DesativarQuedaDaBigorna implements Listener {
 
     @EventHandler
     public void onChange(EntityChangeBlockEvent e) {
