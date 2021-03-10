@@ -1,4 +1,4 @@
-package com.factions.utils;
+package rush.recursos.desativadores;
 
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
