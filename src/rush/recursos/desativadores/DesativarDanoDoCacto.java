@@ -7,11 +7,12 @@ import org.bukkit.event.entity.EntityDamageEvent.DamageCause;
 
 public class DesativarDanoDoCacto implements Listener {
 
-	@EventHandler(ignoreCancelled = true)
-	public void aoSofrerDanoParaCacto(EntityDamageByBlockEvent e) {
-		if (e.getCause() == DamageCause.CONTACT) {
-			e.setCancelled(true);
-		}
-	}
+    @EventHandler
+    public void onDamage(EntityDamageByBlockEvent e) {
+        DamageCause damageCause = e.getCause();
 
+        if (damageCause == DamageCause.CONTACT) {
+            e.setCancelled(true);
+        }
+    }
 }
