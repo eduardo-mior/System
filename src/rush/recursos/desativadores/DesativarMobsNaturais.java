@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public class DesativarMobsNaturais implements Listener {
 
-    private final CreatureSpawnEvent.SpawnReason[] ALLOWED_REASONS = { SpawnReason.SPAWNER, SpawnReason.CUSTOM, SpawnReason.SPAWNER_EGG };
+    private final SpawnReason[] ALLOWED_REASONS = { SpawnReason.SPAWNER, SpawnReason.CUSTOM, SpawnReason.SPAWNER_EGG };
 
     @EventHandler
     public void onSpawn(CreatureSpawnEvent e) {
