@@ -14,6 +14,7 @@ public enum InventoryName {
 	CHEST("Baú"),
 	CRAFTING("Inventário"), // É aquela parte do inv com 4 slots que da pra craftar
 	CREATIVE("Criativo"), // Não sei se é a melhor tradução
+	COMPOSTER("Composteira"),
 	DISPENSER("Ejetor"),
 	DROPPER("Liberador"),
 	ENCHANTING("Mesa de encantamentos"),
