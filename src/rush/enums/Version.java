@@ -7,6 +7,7 @@ import rush.utils.SystemInfo;
 public enum Version {
 
 	v1_17 (17),
+	v1_16_5 (16),
 	v1_16_4 (16),
 	v1_16_3 (16),
 	v1_16_2 (16),
@@ -35,6 +36,8 @@ public enum Version {
 	private static Version getServerVersion(String ver) {
 		if (ver.contains("1.17")) 
 			return v1_17;
+		else if (ver.contains("1.16.5")) 
+			return v1_16_5;
 		else if (ver.contains("1.16.4")) 
 			return v1_16_4;
 		else if (ver.contains("1.16.3")) 

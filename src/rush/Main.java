@@ -749,6 +749,8 @@ public class Main extends JavaPlugin {
 	public static boolean isNewVersion() {
 		if (version == Version.v1_17)
 			return true;
+		if (version == Version.v1_16_5)
+			return true;
 		if (version == Version.v1_16_4)
 			return true;
 		if (version == Version.v1_16_3)
@@ -773,6 +775,8 @@ public class Main extends JavaPlugin {
 	public static boolean isVeryNewVersion() {
 		if (version == Version.v1_17)
 			return true;
+		if (version == Version.v1_16_5)
+			return true;
 		if (version == Version.v1_16_4)
 			return true;
 		if (version == Version.v1_16_3)
@@ -793,6 +797,8 @@ public class Main extends JavaPlugin {
 	public static boolean isVeryFuckingNewVersion() {
 		if (version == Version.v1_17)
 			return true;
+		if (version == Version.v1_16_5)
+			return true;
 		if (version == Version.v1_16_4)
 			return true;
 		if (version == Version.v1_16_3)
@@ -810,6 +816,8 @@ public class Main extends JavaPlugin {
 	
 	public static boolean isMotherFuckerVersion() {
 		if (version == Version.v1_17)
+			return true;
+		if (version == Version.v1_16_5)
 			return true;
 		if (version == Version.v1_16_4)
 			return true;
