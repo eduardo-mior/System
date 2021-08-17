@@ -223,6 +223,8 @@ public class ComandoSystem implements CommandExecutor {
 			s.sendMessage("§eNúmero de Kits: §6" + Kits.getAll().size());
 			s.sendMessage("§eNúmero de Warps: §6" + Warps.getAll().size());
 			s.sendMessage("§eNúmero de Players cadastrados: §6" + DataManager.getFolder("playerdata").listFiles().length);
+			s.sendMessage("§eMinecraft Raw Version: §6" +  Bukkit.getVersion());
+			s.sendMessage("§eMinecraft Bukkit Raw Version: §6" + Bukkit.getBukkitVersion());
 			s.sendMessage("§e*-=-=-=-=-=-=-* §bSystem Debug §e*-=-=-=-=-=-=-* ");
 			return true;
 		}
