@@ -4,6 +4,7 @@ name: System
 load: POSTWORLD
 author: RUSH
 softdepend: [Legendchat, mcMMO, MassiveCore, Factions, Vault]
+api-version: 1.13
 
 permissions:
   system.alerta:
