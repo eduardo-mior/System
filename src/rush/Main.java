@@ -182,11 +182,15 @@ public class Main extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
+		getServer().getConsoleSender().sendMessage("§a[System] -------------------------------------------------");
+		getServer().getConsoleSender().sendMessage("§a[System] Inicianlizando plugin...");
 		enablePlugin();
 		gerarConfigs();
 		carregarConfigs();
 		registrarEventos();
 		registrarComandos();
+		getServer().getConsoleSender().sendMessage("§a[System] Plugin Inicianlizado com sucesso!");
+		getServer().getConsoleSender().sendMessage("§a[System] -------------------------------------------------");
 	}
 
 	@Override
@@ -228,35 +232,26 @@ public class Main extends JavaPlugin {
 		new Command("clearchat", "system.clearchat", new ComandoClearChat());
 		new Command("cores", "system.cores", new ComandoCores());
 		new Command("craft", "system.craft", new ComandoCraft());
-		new Command("crashar", "system.crashar", new ComandoCrashar());
-		new Command("criarkit", "system.criarkit", new ComandoCriarkit());
-		new Command("darkit", "system.darkit", new ComandoDarkit());
 		new Command("delhome", "system.delhome", new ComandoDelhome());
-		new Command("delkit", "system.delkit", new ComandoDelkit());
 		new Command("delwarp", "system.delwarp", new ComandoDelwarp());
 		new Command("derreter", "system.derreter", new ComandoDerreter());
 		new Command("divulgar", "system.divulgar", new ComandoDivulgar());
 		new Command("echest", "system.echest", new ComandoEchest());
-		new Command("editarkit", "system.editarkit", new ComandoEditarkit());
 		new Command("editarplaca", "system.editarplaca", new ComandoEditarplaca());
 		new Command("enchant", "system.enchant", new ComandoEnchant());
 		new Command("executarsom", "system.executarsom", new ComandoExecutarSom());
 		new Command("feed", "system.feed", new ComandoFeed());
 		new Command("fly", "system.fly", new ComandoFly());
 		new Command("gamemode", "system.gamemode", new ComandoGamemode());
-		new Command("god", "system.god", new ComandoGod());
 		new Command("heal", "system.heal", new ComandoHeal());
 		new Command("home", "system.home", new ComandoHome());
 		new Command("homes", "system.home", new ComandoHomes());
 		new Command("invsee", "system.invsee", new ComandoInvsee());
-		new Command("kit", "system.kit", new ComandoKit());
-		new Command("kits", "system.kits", new ComandoKits());
 		new Command("lixo", "system.lixo", new ComandoLixo());
 		new Command("luz", "system.luz", new ComandoLuz());
 		new Command("mundovip", "system.mundovip", new ComandoMundoVip());
 		new Command("online", "system.online", new ComandoOnline());
 		new Command("particular", "system.particular", new ComandoParticular());
-		new Command("ping", "system.ping", new ComandoPing());
 		new Command("potion", "system.potion", new ComandoPotion());
 		new Command("publica", "system.publica", new ComandoPublica());
 		new Command("reparar", "system.reparar", new ComandoReparar());
@@ -278,30 +273,58 @@ public class Main extends JavaPlugin {
 		new Command("tphere", "system.tphere", new ComandoTphere());
 		new Command("tptoggle", "system.tptoggle", new ComandoTptoggle());
 		new Command("vanish", "system.vanish", new ComandoVanish());
-		new Command("verkit", "system.verkit", new ComandoVerkit());
 		new Command("verinfo", "system.verinfo", new ComandoVerinfo());
 		new Command("warps", "system.warps", new ComandoWarps());
+		
+		if (version != Version.v1_17) {	
+			new Command("criarkit", "system.criarkit", new ComandoCriarkit());
+			new Command("darkit", "system.darkit", new ComandoDarkit());
+			new Command("delkit", "system.delkit", new ComandoDelkit());
+			new Command("editarkit", "system.editarkit", new ComandoEditarkit());
+			new Command("kit", "system.kit", new ComandoKit());
+			new Command("kits", "system.kits", new ComandoKits());
+			new Command("verkit", "system.verkit", new ComandoVerkit());
+			new Command("god", "system.god", new ComandoGod());
+			new Command("crashar", "system.crashar", new ComandoCrashar());
+			new Command("ping", "system.ping", new ComandoPing());
+		} else {
+			notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Comandos /kit, /criarkit etc (nao disponivel na versao 1.17)");
+			notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Comando /god (nao disponivel na versao 1.17)");
+			notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Comando /ping (nao disponivel na versao 1.17)");
+			notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Comando /crashar (nao disponivel na versao 1.17)");
+		}
 
 		if (isOldVersion()) {
 			new Command("alerta", "system.alerta", new ComandoAlertaOLD());
 			new Command("compactar", "system.compactar", new ComandoCompactarOLD());
 			new Command("editaritem", "system.editaritem", new ComandoEditaritemOLD());
 			new Command("warp", "system.warp", new ComandoWarpOLD());
+			notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Comando /skull (nao disponivel na versao 1.5, 1.6 e 1.7)");
+			notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Comando /title (nao disponivel na versao 1.5, 1.6 e 1.7 e 1.17)");
 		} else {
-			new Command("alerta", "system.alerta", new ComandoAlerta());
 			new Command("compactar", "system.compactar", new ComandoCompactar());
 			new Command("editaritem", "system.editaritem", new ComandoEditaritem());
 			new Command("skull", "system.skull", new ComandoSkull());
-			new Command("title", "system.title", new ComandoTitle());
 			new Command("warp", "system.warp", new ComandoWarp());
+			if (version != Version.v1_17) {
+				new Command("alerta", "system.alerta", new ComandoAlerta());
+				new Command("title", "system.title", new ComandoTitle());				
+			} else {
+				notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Comando /alerta (nao disponivel na versao 1.17)");
+				notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Comando /title (nao disponivel na versao 1.17)");
+			}
 		}
 		
 		if (!isOldVersion() && !isVeryFuckingNewVersion()) {
 			new Command("renderizacao", "system.renderizacao", new ComandoRenderizacao());
+		} else {
+			notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Comando /renderizacao (nao disponivel nas versoes 1.5, 1,6, 1.7, 1.14, 1.15, 1.16 e 1.17)");
 		}
 		
 		if (!isVeryOldVersion()) {
 			new Command("estatisticas", "system.estatisticas", new ComandoEstatisticas());
+		} else {
+			notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Comando /estatisticas (nao disponivel nas versoes 1.5 e 1.6)");
 		}
 		
 		if (!isVeryNewVersion()) {
@@ -310,11 +333,20 @@ public class Main extends JavaPlugin {
 		
 		if (!isVeryFuckingNewVersion()) {
 			new Command("bigorna", "system.bigorna", new ComandoBigorna());
+		} else {
+			notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Comando /bigorna (nao disponivel nas versoes 1.14, 1.15, 1.16 e 1.17)");
 		}
 		
 	}
 
 	private void registrarEventos() {
+		getServer().getConsoleSender().sendMessage("§a[System] Versao identificada do servidor: " + jarType + " " + version.toString().replace("_", ".").replace("v", ""));
+
+		if (!isRecomendedVersion()) {
+			getServer().getConsoleSender().sendMessage("§c[System] Atencao! Voce esta utilizando uma versao do Minecraft que nao suporta todos os recursos do System!");
+			getServer().getConsoleSender().sendMessage("§c[System] Lista dos recursos dos System que nao serao habilitados:");
+		}
+		
 		PluginManager pm = Bukkit.getServer().getPluginManager();
 		FileConfiguration commands = ConfigManager.getConfig("comandos");
 				
@@ -336,8 +368,12 @@ public class Main extends JavaPlugin {
 			}
 		}
 
-		if (Settings.Bigorna_Infinita && !isVeryFuckingNewVersion()) {
-			pm.registerEvents(new BigornaInfinita(), this);
+		if (Settings.Bigorna_Infinita) {
+			if (!isVeryFuckingNewVersion()) {
+				pm.registerEvents(new BigornaInfinita(), this);								
+			} else {
+				notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Bigorna Infinita (nao disponivel nas versoes 1.13, 1.14, 1.15, 1.16 e 1.17)");
+			}
 		}
 
 		if (Settings.Bloquear_Abrir_Containers_Ativar) {
@@ -395,6 +431,8 @@ public class Main extends JavaPlugin {
 		if (Settings.Bloquear_NameTag) {
 			if (!isOldVersion()) {
 				pm.registerEvents(new BloquearNameTag(), this);
+			} else {
+				notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Bloquear NameTag (nao disponivel nas versoes 1.5, 1.6 e 1.7)");
 			}
 		}
 
@@ -423,6 +461,8 @@ public class Main extends JavaPlugin {
 		if (Settings.Bloquear_Passar_Da_Borda) {
 			if (!isOldVersion()) {
 				pm.registerEvents(new BloquearPassarDaBorda(), this);
+			} else {
+				notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Bloquear Passar da Borda (nao disponivel nas versoes 1.5, 1.6 e 1.7)");
 			}
 		}
 
@@ -481,6 +521,8 @@ public class Main extends JavaPlugin {
 		if (Settings.Desativar_Dano_Do_Blaze) {
 			if (!isVeryOldVersion()) {
 				pm.registerEvents(new DesativarDanoDoBlaze(), this);
+			} else {
+				notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Desativar Dano do Blazer (nao disponivel nas versoes 1.5 e 1.6)");
 			}
 		}
 		
@@ -495,6 +537,8 @@ public class Main extends JavaPlugin {
 		if (Settings.Desativar_Dano_Do_Ghast) {
 			if (!isVeryOldVersion()) {
 				pm.registerEvents(new DesativarDanoDoGhast(), this);
+			} else {
+				notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Desativar Dano do Ghast (nao disponivel nas versoes 1.5 e 1.6)");
 			}
 		}
 		
@@ -553,6 +597,8 @@ public class Main extends JavaPlugin {
 		if (Settings.EnderPearl_Cooldown_Ativar) {
 			if (!isVeryOldVersion()) {
 				pm.registerEvents(new EnderPearlCooldown(), this);
+			} else {
+				notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("EnderPearl Cooldown (nao disponivel nas versoes 1.5 e 1.6)");
 			}
 		}
 
@@ -573,6 +619,8 @@ public class Main extends JavaPlugin {
 		if (Settings.Limitador_De_Players) {
 			if (!isOldVersion()) {
 				pm.registerEvents(new LimiteDePlayers(), this);
+			} else {
+				notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Limitador de Players (nao disponivel nas versoes 1.5, 1.6 e 1.7)");
 			}
 		}
 
@@ -623,19 +671,25 @@ public class Main extends JavaPlugin {
 							pm.registerEvents(new DroparSpawnerAoExplodir(), this);
 						}
 					}
+				} else {
+					notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Sistema de Spawners (nao disponivel nas versoes 1.13, 1.14, 1.15, 1.16 e 1.17)");
 				}
 			}
 		}
 
 		if (Settings.Title_De_Boas_Vindas_Ativar) {
-			if (!isOldVersion()) {
+			if (!isOldVersion() && version != Version.v1_17) {
 				pm.registerEvents(new TitleDeBoasVindas(), this);
+			} else {
+				notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Title de Boas Vindas (nao disponivel nas versoes 1.5, 1.6, 1.7 e 1.17)");
 			}
 		}
 
 		if (Settings.Ativar_Tablist) {
-			if (!isOldVersion()) {
+			if (!isOldVersion() && version != Version.v1_17) {
 				pm.registerEvents(new Tablist(), this);
+			} else {
+				notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Tablist (nao disponivel nas versoes 1.5, 1.6, 1.7 e 1.17)");
 			}
 		}
 
@@ -697,7 +751,11 @@ public class Main extends JavaPlugin {
 		}
 		
 		if (commands.getBoolean("comandos.kit.ativar-comando")) {
-			pm.registerEvents(new KitsListener(), this);
+			if (version != Version.v1_17) {
+				pm.registerEvents(new KitsListener(), this);				
+			} else {
+				notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Sistema de Kits (nao disponivel nas versao 1.17)");
+			}
 		}
 		
 		if (commands.getBoolean("comandos.back.ativar-comando")) {
@@ -707,6 +765,10 @@ public class Main extends JavaPlugin {
 		pm.registerEvents(new PlayerData(), this);
 		pm.registerEvents(new ManterXpAoMorrer(), this);
 		pm.registerEvents(new Outros(), this);
+	}
+	
+	private void notificarQueEsteRecursoNaoEstaDisponivelNestaVersao(String mensagem) {
+		getServer().getConsoleSender().sendMessage("§c[System] " + mensagem);
 	}
 
 	private void disablePlugin() {
@@ -726,6 +788,20 @@ public class Main extends JavaPlugin {
 				AutoAnuncio.XTask.cancel();
 			}
 		} catch (Throwable e) {}
+	}
+	
+	public static boolean isRecomendedVersion() {
+		if (version == Version.v1_8) 
+			return true;
+		if (version == Version.v1_9)
+			return true;
+		if (version == Version.v1_10) 
+			return true;
+		if (version == Version.v1_11) 
+			return true;
+		if (version == Version.v1_12) 
+			return true;
+		return false;
 	}
 
 	public static boolean isOldVersion() {
