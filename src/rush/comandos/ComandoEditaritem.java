@@ -16,6 +16,7 @@ import org.bukkit.inventory.meta.ItemMeta;
 import rush.Main;
 import rush.apis.ItemAPI;
 import rush.configuracoes.Mensagens;
+import rush.enums.Version;
 import rush.utils.Utils;
 
 public class ComandoEditaritem implements CommandExecutor {
@@ -123,6 +124,13 @@ public class ComandoEditaritem implements CommandExecutor {
 			
 		// Verificando se o player quer adiconar 'bugar' o item
 		if (args[0].equalsIgnoreCase("bugar")) {
+			
+			// Verificando se a versão do player suporta a operação
+			if (Main.getVersion() == Version.v1_17) {
+				s.sendMessage(Mensagens.Erro_Versao_Nao_Suportada);
+				return true;
+			}
+			
 			item.setDurability(Short.MAX_VALUE);
 			s.sendMessage(Mensagens.Editar_Item_Com_Sucesso);
 			return true;
@@ -137,6 +145,13 @@ public class ComandoEditaritem implements CommandExecutor {
 		
 		// Verificando se o player quer deixar o item inquebravel
 		if (args[0].equalsIgnoreCase("inquebravel")) {
+			
+			// Verificando se a versão do player suporta a operação
+			if (Main.getVersion() == Version.v1_17) {
+				s.sendMessage(Mensagens.Erro_Versao_Nao_Suportada);
+				return true;
+			}
+			
 			// Setando o item como inquebravel e setando o item na mão do player
 			p.setItemInHand(ItemAPI.setUnbreakable(item, true));
 			s.sendMessage(Mensagens.Editar_Item_Com_Sucesso);
@@ -145,6 +160,12 @@ public class ComandoEditaritem implements CommandExecutor {
 		
 		// Verificando se o player quer alterar o custo de reparação do item
 		if (args[0].equalsIgnoreCase("custoreparar") || args[0].equalsIgnoreCase("custoreparacao")) {
+			
+			// Verificando se a versão do player suporta a operação
+			if (Main.getVersion() == Version.v1_17) {
+				s.sendMessage(Mensagens.Erro_Versao_Nao_Suportada);
+				return true;
+			}
 			
 			int custo;
 			try {
