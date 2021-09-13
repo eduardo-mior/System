@@ -1,6 +1,7 @@
 package rush.comandos;
 
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -198,6 +199,7 @@ public class ComandoVanish implements CommandExecutor {
 					target.hidePlayer(player);
 				}
 			}
+			player.setGameMode(GameMode.SPECTATOR);
 			return;
 			
 		// Caso contrario desativando o vanish
@@ -211,6 +213,7 @@ public class ComandoVanish implements CommandExecutor {
 			for (Player target : OnlinePlayersAPI.getOnlinePlayers()) {
 				target.showPlayer(player);
 			}
+			player.setGameMode(GameMode.SURVIVAL);
 		}
 	}
 
