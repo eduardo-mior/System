@@ -1,0 +1,10 @@
+<component name="libraryTable">
+  <library name="MambaMassiveCore">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../Projetos/MambaMassiveCore.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Projetos/MambaFactions.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

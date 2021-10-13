@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="spigot-1.8.8-R0.1-SNAPSHOT-latest">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/../../Projetos/spigot-1.8.8-R0.1-SNAPSHOT-latest.jar!/" />
+      <root url="jar://$PROJECT_DIR$/../../Projetos/Vault.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$PROJECT_DIR$/../../Projetos/spigot-1.8.8-R0.1-SNAPSHOT-latest.jar!/" />
+    </SOURCES>
+  </library>
+</component>

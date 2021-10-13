@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="System:jar">
+    <output-path>$PROJECT_DIR$/../../Servidor/proprios</output-path>
+    <root id="archive" name="System.jar">
+      <element id="module-output" name="System" />
+    </root>
+  </artifact>
+</component>

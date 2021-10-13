@@ -26,7 +26,7 @@ public class StackMobs implements Listener {
 	private static double RANGE = Settings.Raio_De_Distancia;
 	private static List<EntityType> WHITE_LIST = Settings.Lista_De_Mobs_Que_Nao_Agrupam;
 	
-	@EventHandler(ignoreCancelled = true, priority = EventPriority.HIGH)
+	@EventHandler(ignoreCancelled = true, priority = EventPriority.HIGHEST)
 	public void onSpawn(CreatureSpawnEvent e) {
 		
 		LivingEntity spawned = e.getEntity();
@@ -70,7 +70,7 @@ public class StackMobs implements Listener {
 		}
 	}
 	
-	@EventHandler(priority = EventPriority.MONITOR)
+	@EventHandler(priority = EventPriority.HIGHEST)
 	public void onDeath(EntityDeathEvent e) {
 		LivingEntity entity = e.getEntity();
 		if (entity.hasMetadata("stack")) {
