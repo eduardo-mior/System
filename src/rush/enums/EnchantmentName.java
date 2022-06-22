@@ -39,6 +39,7 @@ public enum EnchantmentName {
 	SILK_TOUCH("Toque suave"),
 	SOUL_SPEED("Velocidade das almas"),
 	SWEEPING_EDGE("Alcance"),
+	SWIFT_SNEAK("Passos furtivos"),
 	THORNS("Espinhos"),
 	VANISHING_CURSE("Maldição do desaparecimento"),
 	WATER_WORKER("Afinidade aquática");

@@ -18,7 +18,6 @@ import rush.apis.PingAPI;
 import rush.configuracoes.Mensagens;
 import rush.enums.GameModeName;
 import rush.enums.PotionName;
-import rush.enums.Version;
 import rush.sistemas.comandos.VanishListener;
 
 @SuppressWarnings("all")
@@ -74,7 +73,7 @@ public class ComandoVerinfo implements CommandExecutor {
 		String dead = translateBoolean(p.isDead());
 		String fly = translateBoolean(p.getAllowFlight());
 		String vanish = translateBoolean(VanishListener.VANISHEDS.contains(p));
-		String god = translateBoolean(Main.getVersion() != Version.v1_17 ? GodModeAPI.getGodMode(p) : false);
+		String god = translateBoolean(Main.getVersion().value < 17 ? GodModeAPI.getGodMode(p) : false);
 		String vehicle = translateBoolean(p.isInsideVehicle());
 		String vehicleType = p.getVehicle() == null ? "Nenhum" : p.getVehicle().getType().name();
 		String sleep = translateBoolean(p.isSleeping());

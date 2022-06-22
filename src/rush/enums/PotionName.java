@@ -11,6 +11,7 @@ public enum PotionName {
 	CONDUIT_POWER("Proteção do mar"),
 	CONFUSION("Náusea"),
 	DAMAGE_RESISTANCE("Resistência"),
+	DARKNESS("Escuridão"),
 	DOLPHINS_GRACE("Graça do golfinho"),
 	FAST_DIGGING("Pressa"), 
 	FIRE_RESISTANCE("Resistência ao fogo"),

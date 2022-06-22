@@ -5,6 +5,7 @@ import org.bukkit.entity.EntityType;
 
 public enum EntityName {
 
+	ALLAY("Allay"),
 	AREA_EFFECT_CLOUD("Área de Efeito de Poção"),
 	ARMOR_STAND("Suporte para Armaduras"),
 	AXOLOTL("Axolote"),
@@ -16,6 +17,7 @@ public enum EntityName {
 	CAT("Gato"),
 	CAVE_SPIDER("Aranha da Caverna"),
 	CHICKEN("Galinha"),
+	CHEST_BOAT("Barco com Baú"),
 	COD("Bacalhau"),
 	COMPLEX_PART("Desconhecido"),
 	COW("Vaca"),
@@ -41,6 +43,7 @@ public enum EntityName {
 	FIREWORK("Fogos de Artifício"),
 	FISHING_HOOK("Isca da Vara de Pesca"),
 	FOX("Raposa"),
+	FROG("Sapo"),
 	GHAST("Ghast"),
 	GIANT("Zumbi Gigante"),
 	GLOW_ITEM_FRAME("Moldura Brilhante"),
@@ -102,6 +105,7 @@ public enum EntityName {
 	SQUID("Lula"),
 	STRIDER("Lavagante"),
 	STRAY("Esqueleto Vagante"),
+	TADPOLE("Girino"),
 	THROWN_EXP_BOTTLE("Frasco de Experiência"),
 	TIPPED_ARROW("Flecha"),
 	TRADER_LLAMA("Lhama"),
@@ -113,6 +117,7 @@ public enum EntityName {
 	VILLAGER("Aldeão"),
 	VINDICATOR("Vingador"),
 	WANDERING_TRADER("Vendedor Ambulante"),
+	WARDEN("Defensor"),
 	WEATHER("Chuva"),
 	WITCH("Bruxa"),
 	WITHER("Wither"),

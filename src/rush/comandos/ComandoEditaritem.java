@@ -16,7 +16,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import rush.Main;
 import rush.apis.ItemAPI;
 import rush.configuracoes.Mensagens;
-import rush.enums.Version;
 import rush.utils.Utils;
 
 public class ComandoEditaritem implements CommandExecutor {
@@ -126,7 +125,7 @@ public class ComandoEditaritem implements CommandExecutor {
 		if (args[0].equalsIgnoreCase("bugar")) {
 			
 			// Verificando se a versão do player suporta a operação
-			if (Main.getVersion() == Version.v1_17) {
+			if (Main.getVersion().value > 16) {
 				s.sendMessage(Mensagens.Erro_Versao_Nao_Suportada);
 				return true;
 			}
@@ -147,7 +146,7 @@ public class ComandoEditaritem implements CommandExecutor {
 		if (args[0].equalsIgnoreCase("inquebravel")) {
 			
 			// Verificando se a versão do player suporta a operação
-			if (Main.getVersion() == Version.v1_17) {
+			if (Main.getVersion().value > 16) {
 				s.sendMessage(Mensagens.Erro_Versao_Nao_Suportada);
 				return true;
 			}
@@ -162,7 +161,7 @@ public class ComandoEditaritem implements CommandExecutor {
 		if (args[0].equalsIgnoreCase("custoreparar") || args[0].equalsIgnoreCase("custoreparacao")) {
 			
 			// Verificando se a versão do player suporta a operação
-			if (Main.getVersion() == Version.v1_17) {
+			if (Main.getVersion().value > 16) {
 				s.sendMessage(Mensagens.Erro_Versao_Nao_Suportada);
 				return true;
 			}
