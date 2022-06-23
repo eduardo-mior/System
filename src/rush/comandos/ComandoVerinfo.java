@@ -73,7 +73,7 @@ public class ComandoVerinfo implements CommandExecutor {
 		String dead = translateBoolean(p.isDead());
 		String fly = translateBoolean(p.getAllowFlight());
 		String vanish = translateBoolean(VanishListener.VANISHEDS.contains(p));
-		String god = translateBoolean(Main.getVersion().value < 17 ? GodModeAPI.getGodMode(p) : false);
+		String god = translateBoolean(GodModeAPI.getGodMode(p));
 		String vehicle = translateBoolean(p.isInsideVehicle());
 		String vehicleType = p.getVehicle() == null ? "Nenhum" : p.getVehicle().getType().name();
 		String sleep = translateBoolean(p.isSleeping());
@@ -148,8 +148,8 @@ public class ComandoVerinfo implements CommandExecutor {
 	private String getLocale(Player player) {
 		try {
 			Object entityPlayer = player.getClass().getMethod("getHandle").invoke(player);
-			Field ping = entityPlayer.getClass().getField("locale");
-			return String.valueOf(ping.get(entityPlayer));
+			Field locale = entityPlayer.getClass().getField("locale");
+			return String.valueOf(locale.get(entityPlayer));
 		} catch (Throwable e) {
 			return "§cIndisponivel";
 		}

@@ -243,6 +243,7 @@ public class Main extends JavaPlugin {
 		new Command("feed", "system.feed", new ComandoFeed());
 		new Command("fly", "system.fly", new ComandoFly());
 		new Command("gamemode", "system.gamemode", new ComandoGamemode());
+		new Command("god", "system.god", new ComandoGod());
 		new Command("heal", "system.heal", new ComandoHeal());
 		new Command("home", "system.home", new ComandoHome());
 		new Command("homes", "system.home", new ComandoHomes());
@@ -285,11 +286,9 @@ public class Main extends JavaPlugin {
 			new Command("kit", "system.kit", new ComandoKit());
 			new Command("kits", "system.kits", new ComandoKits());
 			new Command("verkit", "system.verkit", new ComandoVerkit());
-			new Command("god", "system.god", new ComandoGod());
 			new Command("crashar", "system.crashar", new ComandoCrashar());
 		} else {
 			notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Comandos /kit, /criarkit etc (nao disponivel nas versoes acima da 1.17)");
-			notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Comando /god (nao disponivel nas versoes acima da 1.17)");
 			notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Comando /crashar (nao disponivel nas versoes acima da 1.17)");
 		}
 
