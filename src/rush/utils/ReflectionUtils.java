@@ -9,6 +9,8 @@ import java.util.List;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 
+import rush.Main;
+
 /**
  * @author Mior
  * @version 1.0
@@ -42,9 +44,18 @@ public class ReflectionUtils {
    	
    	public static void sendPacket(Player player, Object packet) {
    		try {
-   			Object entityPlayer = getHandle.invoke(player);
-   			Object playerConnection = playerConnectionField.get(entityPlayer);
-   			sendPacket.invoke(playerConnection, packet);
+   			
+   			if (Main.getVersion().value < 17) {   				
+   				Object entityPlayer = getHandle.invoke(player);
+   				Object playerConnection = playerConnectionField.get(entityPlayer);
+   				sendPacket.invoke(playerConnection, packet);
+   			} else {
+   	            Object handle = player.getClass().getMethod("getHandle").invoke(player);
+   	            Object playerConnection = handle.getClass().getField("b").get(handle);
+   	            Class<?> packetClass = Class.forName("net.minecraft.network.protocol.Packet");
+   	            playerConnection.getClass().getMethod("sendPacket", packetClass).invoke(playerConnection, packet);
+   			}
+   			
    		} catch (Throwable e) {
    			e.printStackTrace();
    		}
