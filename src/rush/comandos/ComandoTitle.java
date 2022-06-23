@@ -21,9 +21,6 @@ public class ComandoTitle implements CommandExecutor {
 		// Pegando a mensagem do title
 		String msg = String.join(" ", args).replace('&', '§');
 
-		// Divindo a mensagem em title e subtitle
-		String[] txt = msg.split("<nl>");
-
 		// Caso a mensagem não contenha "<nl>" então apenas o title é enviado
 		if (!(msg.contains("<nl>"))) {
 			// Enviando o title para todos os players do serivdor
@@ -31,6 +28,10 @@ public class ComandoTitle implements CommandExecutor {
 
 		// Caso a mensagem conter "<nl>" então o title e o subtitle é enviado
 		} else {
+
+			// Divindo a mensagem em title e subtitle
+			String[] txt = msg.split("<nl>");
+
 			// Enviando o title para todos os players do serivdor
 			TitleAPI.broadcastTitle(20, 60, 20, txt[0], txt[1]);
 		}
