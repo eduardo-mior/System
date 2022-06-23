@@ -679,10 +679,10 @@ public class Main extends JavaPlugin {
 		}
 
 		if (Settings.Ativar_Tablist) {
-			if (!isOldVersion() && version.value < 17) {
+			if (!isOldVersion()) {
 				pm.registerEvents(new Tablist(), this);
 			} else {
-				notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Tablist (nao disponivel nas versoes 1.5, 1.6, 1.7, 1.17 e nas versoes acima da 1.17)");
+				notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Tablist (nao disponivel nas versoes 1.5, 1.6, 1.7)");
 			}
 		}
 
