@@ -182,15 +182,15 @@ public class Main extends JavaPlugin {
 
 	@Override
 	public void onEnable() {
-		getServer().getConsoleSender().sendMessage("ï¿½a[System] -------------------------------------------------");
-		getServer().getConsoleSender().sendMessage("ï¿½a[System] Inicianlizando plugin...");
+		getServer().getConsoleSender().sendMessage("§a[System] -------------------------------------------------");
+		getServer().getConsoleSender().sendMessage("§a[System] Inicianlizando plugin...");
 		enablePlugin();
 		gerarConfigs();
 		carregarConfigs();
 		registrarEventos();
 		registrarComandos();
-		getServer().getConsoleSender().sendMessage("ï¿½a[System] Plugin Inicianlizado com sucesso!");
-		getServer().getConsoleSender().sendMessage("ï¿½a[System] -------------------------------------------------");
+		getServer().getConsoleSender().sendMessage("§a[System] Plugin Inicianlizado com sucesso!");
+		getServer().getConsoleSender().sendMessage("§a[System] -------------------------------------------------");
 	}
 
 	@Override
@@ -252,6 +252,7 @@ public class Main extends JavaPlugin {
 		new Command("mundovip", "system.mundovip", new ComandoMundoVip());
 		new Command("online", "system.online", new ComandoOnline());
 		new Command("particular", "system.particular", new ComandoParticular());
+		new Command("ping", "system.ping", new ComandoPing());
 		new Command("potion", "system.potion", new ComandoPotion());
 		new Command("publica", "system.publica", new ComandoPublica());
 		new Command("reparar", "system.reparar", new ComandoReparar());
@@ -286,11 +287,9 @@ public class Main extends JavaPlugin {
 			new Command("verkit", "system.verkit", new ComandoVerkit());
 			new Command("god", "system.god", new ComandoGod());
 			new Command("crashar", "system.crashar", new ComandoCrashar());
-			new Command("ping", "system.ping", new ComandoPing());
 		} else {
 			notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Comandos /kit, /criarkit etc (nao disponivel nas versoes acima da 1.17)");
 			notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Comando /god (nao disponivel nas versoes acima da 1.17)");
-			notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Comando /ping (nao disponivel nas versoes acima da 1.17)");
 			notificarQueEsteRecursoNaoEstaDisponivelNestaVersao("Comando /crashar (nao disponivel nas versoes acima da 1.17)");
 		}
 
@@ -306,8 +305,8 @@ public class Main extends JavaPlugin {
 			new Command("editaritem", "system.editaritem", new ComandoEditaritem());
 			new Command("skull", "system.skull", new ComandoSkull());
 			new Command("warp", "system.warp", new ComandoWarp());
-				new Command("alerta", "system.alerta", new ComandoAlerta());
-				new Command("title", "system.title", new ComandoTitle());				
+			new Command("alerta", "system.alerta", new ComandoAlerta());
+			new Command("title", "system.title", new ComandoTitle());				
 		}
 		
 		if (!isOldVersion() && !isVeryFuckingNewVersion()) {
@@ -335,11 +334,11 @@ public class Main extends JavaPlugin {
 	}
 
 	private void registrarEventos() {
-		getServer().getConsoleSender().sendMessage("ï¿½a[System] Versao identificada do servidor: " + jarType + " " + version.toString().replace("_", ".").replace("v", ""));
+		getServer().getConsoleSender().sendMessage("§a[System] Versao identificada do servidor: " + jarType + " " + version.toString().replace("_", ".").replace("v", ""));
 
 		if (!isRecomendedVersion()) {
-			getServer().getConsoleSender().sendMessage("ï¿½c[System] Atencao! Voce esta utilizando uma versao do Minecraft que nao suporta todos os recursos do System!");
-			getServer().getConsoleSender().sendMessage("ï¿½c[System] Lista dos recursos dos System que nao serao habilitados:");
+			getServer().getConsoleSender().sendMessage("§c[System] Atencao! Voce esta utilizando uma versao do Minecraft que nao suporta todos os recursos do System!");
+			getServer().getConsoleSender().sendMessage("§c[System] Lista dos recursos dos System que nao serao habilitados:");
 		}
 		
 		PluginManager pm = Bukkit.getServer().getPluginManager();
@@ -690,7 +689,7 @@ public class Main extends JavaPlugin {
 
 		if (Settings.AtivarAddons_Legendchat) {
 			if (pm.getPlugin("Legendchat") == null) {
-				getServer().getConsoleSender().sendMessage("ï¿½c[System] Legendchat nao encontrado, desativando addons!");
+				getServer().getConsoleSender().sendMessage("§c[System] Legendchat nao encontrado, desativando addons!");
 			} else if (Settings.CorAutomatica != null) {
 				pm.registerEvents(new LegendChat(), this);
 			}
@@ -699,7 +698,7 @@ public class Main extends JavaPlugin {
 		if (Settings.AtivarAddons_McMMO) {
 			if (!isOldVersion()) {
 				if (pm.getPlugin("mcMMO") == null) {
-					getServer().getConsoleSender().sendMessage("ï¿½c[System] McMMO nao encontrado, desativando addons!");
+					getServer().getConsoleSender().sendMessage("§c[System] McMMO nao encontrado, desativando addons!");
 				} else {
 					pm.registerEvents(new Mcmmo(), this);
 					if (pm.getPlugin("Legendchat") != null) {
@@ -712,7 +711,7 @@ public class Main extends JavaPlugin {
 
 		if (Settings.AtivarAddons_MassiveFactions) {
 			if (pm.getPlugin("MassiveCore") == null || pm.getPlugin("Factions") == null) {
-				getServer().getConsoleSender().sendMessage("ï¿½c[System] Factions nao encontrado, desativando addons!");
+				getServer().getConsoleSender().sendMessage("§c[System] Factions nao encontrado, desativando addons!");
 			} else {
 				setupFactions = true;
 			}
@@ -720,7 +719,7 @@ public class Main extends JavaPlugin {
 		
 		if (Settings.AtivarAddons_Vault) {
 			if (pm.getPlugin("Vault") == null) {
-				getServer().getConsoleSender().sendMessage("ï¿½c[System] Vault nao encontrado, desativando addons!");
+				getServer().getConsoleSender().sendMessage("§c[System] Vault nao encontrado, desativando addons!");
 			} else {
 				if (Vault.setupEconomy()) {
 					if (pm.getPlugin("Legendchat") != null) {
@@ -728,7 +727,7 @@ public class Main extends JavaPlugin {
 						MagnataTag.checkMagnata();
 					}
 				} else {
-					getServer().getConsoleSender().sendMessage("ï¿½c[System] Nenhum plugin valido de economia encontrado!");
+					getServer().getConsoleSender().sendMessage("§c[System] Nenhum plugin valido de economia encontrado!");
 				}
 			}
 		}
@@ -763,7 +762,7 @@ public class Main extends JavaPlugin {
 	}
 	
 	private void notificarQueEsteRecursoNaoEstaDisponivelNestaVersao(String mensagem) {
-		getServer().getConsoleSender().sendMessage("ï¿½c[System] " + mensagem);
+		getServer().getConsoleSender().sendMessage("§c[System] " + mensagem);
 	}
 
 	private void disablePlugin() {
