@@ -4,6 +4,9 @@ Este sistema foi originalmente criado por RUSHyotuber com o intuito de ajudar mu
 
 Pessoas que contribuiram com o projeto [AnonyDev, LeoDev, Wolf_131, leonardosc, TequilAxBr, zAth, Jota, KickPost, gcunha, Gutyerrez, AlexHackers, BigWriter, Hard, Alomax, Joao Seidel, Pica-Pau, codename_G, Shisui, Kaway, Jamp, dargoh, aureom, VitorBlog, NatanDev, Duck, DvH, MarcioRUSH]
 
+Link do plugin no Spigot: https://www.spigotmc.org/resources/system.102876/
+Link do plugin na GamersBoard: https://gamersboard.com.br/topic/61255-system-o-seu-novo-super-essentials
+
 # Atenção Importante
 No dia 23 de junho de 2022 foi lançada a versão `1.14.19` do System. A partir deste dia em diante o plugin não receberá mais atualizações.
  
