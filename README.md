@@ -20,3 +20,14 @@ Foram mais de 5 anos trabalhando no System e eu tenho muito orgulho de tudo que 
 
 ### Você gostaria de dar continuidade no System?
 Atualmente o System não possui nenhum desenvolvedor ativo dando continuidade no Projeto, caso você queira dar continuidade no projeto basta aprir um PullRequest ou entrar em contato comigo.
+
+### Oque ainda precisaria ser feito no System?
+Lista das coisas que ainda precisariam ser feitas no System para melhorar ainda mais o plugin.
+- [ ] Adicionar suporte ao sistema de Kits para a versão 1.17 e versões acima da 1.17.
+- [ ] Adicionar suporte a cores RGB nas novas versões do minecraft.
+- [ ] Adicionar suporte ao comando /bigorna e a funcionalidade bigorna infinita nas versões acima da 1.13.
+- [ ] Melhorar o comando /compactar e /derreter para serem compatíveis com os novos minérios das novas versões do minecraft.
+- [ ] Melhorar o comando /estatisticas e /verinfo para mostrar informações novas disponíveis nas novas versões do minecraft.
+- [ ] Estudar as versões do minecraft desde a 1.13 para identificar novos recursos e funcionalidades interessantes que poderiam ser adicionados no plugin.
+- [ ] Analisar as novas necessidades dos servidores modernos do minecraft para entender oque eles estão precisando e adicionar novos recursos e funcionalidades utis no plugin, a ultima vez que esse estudo foi feito foi em 2018.
+- [ ] Analisar o Timmings de servidores grandes que usam o System para identificar melhorias que possam ser feitas no código para deixa-lo mais otimizado.
